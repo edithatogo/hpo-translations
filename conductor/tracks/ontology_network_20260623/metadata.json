@@ -3,7 +3,7 @@
   "type": "feature",
   "status": "implemented",
   "created_at": "2026-06-23T00:00:00Z",
-  "updated_at": "2026-06-23T00:00:00Z",
+  "updated_at": "2026-06-24T08:51:34Z",
   "depends_on": [
     "conductor_validation_20260623:phase_1_metadata_schema",
     "translation_agents_20260622"
@@ -28,14 +28,14 @@
     "oncotree_integration_20260623",
     "lddb_integration_20260623"
   ],
-  "branch": "codex/ontology_network_20260623",
+  "branch": "main",
   "pr_url": null,
-  "ci_status": "local_passing",
-  "merge_status": "not_opened",
-  "last_commit": null,
+  "ci_status": "passing",
+  "merge_status": "blocked",
+  "last_commit": "314a3ae50a08c872f9471c2f8a378a37087830bc",
   "phase_review_status": "subagent_review_completed_fixes_applied",
-  "github_checks_url": null,
-  "merge_commit": null,
+  "github_checks_url": "https://github.com/edithatogo/hpo-translations/actions/runs/28086836791",
+  "merge_commit": "314a3ae50a08c872f9471c2f8a378a37087830bc",
   "parallel_group": "ontology-network",
   "local_only_artifacts": [
     "raw downloads",
@@ -55,7 +55,7 @@
   "known_blockers": [
     "Restricted-source payload ingestion remains gated to source-specific tracks and local-only policies.",
     "Per-source authoritative release versions are not pinned until each ontology integration track performs source-specific access and license review.",
-    "Remote PR, GitHub Actions, and merge evidence is not recorded until this local implementation is committed and opened upstream."
+    "Upstream PR creation is paused by maintainer instruction; do not open upstream PRs until explicitly requested."
   ],
   "expected_blockers": [
     "Different ontology licenses and access modes will limit which network artifacts are PR-safe or release-safe.",
