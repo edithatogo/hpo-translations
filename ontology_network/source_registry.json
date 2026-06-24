@@ -447,14 +447,22 @@
         "excluded_until_policy_allows": [
           "raw_source_payloads",
           "licensed_release_archives",
-          "credentialed_api_responses"
+          "credentialed_api_responses",
+          "source_labels",
+          "source_synonyms",
+          "source_definitions",
+          "full_api_responses",
+          "release_payload_rows",
+          "national_variant_release_payloads"
         ],
         "required_before_phase_1_completion": [
           "registry_record",
           "source_access_record",
           "provenance_manifest",
           "validation_report",
-          "review_handoff_pack"
+          "review_handoff_pack",
+          "phase_0_source_probe_report",
+          "metadata_only_scaffold"
         ]
       },
       "authoritative_endpoint": "authority_described_github_not_authoritative",
@@ -476,7 +484,7 @@
         "Localized variant selection must be explicit before candidate evidence is generated.",
         "Disease-code mappings require confidence and caveat fields."
       ],
-      "fallback_path": "Start with WHO/public governance records and defer national variants to separate source manifests.",
+      "fallback_path": "Use metadata-only WHO/public governance records and defer WHO release payloads and national variants to source-specific terms review.",
       "github_repositories": [
         "https://github.com/ICD-API"
       ],
@@ -491,7 +499,8 @@
       "human_review_required": true,
       "known_blockers": [
         "National ICD-10 variants have different terms, languages, and license rules.",
-        "Diagnostic classification granularity is often broader than HPO phenotypes."
+        "Diagnostic classification granularity is often broader than HPO phenotypes.",
+        "Terms, national variant selection, and payload handling must be cleared before committing ICD-10 labels, synonyms, definitions, full responses, or release payload rows."
       ],
       "language_codes": [
         "ar",
@@ -521,7 +530,7 @@
         "raw downloads"
       ],
       "metadata_created_at": "2026-06-23T00:00:00Z",
-      "metadata_updated_at": "2026-06-23T00:00:00Z",
+      "metadata_updated_at": "2026-06-24T00:00:00Z",
       "ontology_name": "ICD-10",
       "payload_commit_allowed": false,
       "pr_safe": true,
@@ -546,7 +555,7 @@
       "source_payloads_can_be_committed": false,
       "source_version": null,
       "track_id": "icd10_integration_20260623",
-      "track_status": "planned",
+      "track_status": "phase_0_implemented_blocked",
       "usefulness": "Disease classification crosswalks and national morbidity/mortality coding context.",
       "version_status": "not_pinned_in_track_metadata"
     },

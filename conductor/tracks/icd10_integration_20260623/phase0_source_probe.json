@@ -1,0 +1,110 @@
+{
+  "track_id": "icd10_integration_20260623",
+  "source_id": "icd10",
+  "source_name": "ICD-10",
+  "phase": "phase_0_governance_source_probe",
+  "probe_status": "metadata_only_scaffolded",
+  "probe_date": "2026-06-24",
+  "authoritative_source": {
+    "source_type": "who_release_and_national_variants",
+    "url": "https://icd.who.int/browse10/2019/en",
+    "tooling_reference": "https://github.com/ICD-API",
+    "authority_status": "pending_who_terms_release_channel_and_national_variant_review",
+    "version_pinning_strategy": "pin by WHO release year/version plus national variant authority, language, release date, and immutable download/API version before payload access",
+    "credential_required": false,
+    "network_probe_required_before_ingestion": true
+  },
+  "access_and_license_gate": {
+    "access_mode": "public_or_national_variant_download",
+    "source_access_status": "public_or_national_variant_review_required",
+    "license_status": "pending_who_and_national_variant_terms_review",
+    "payload_commit_allowed": false,
+    "derived_commit_allowed": false,
+    "local_only_required_for_payloads": true,
+    "go_no_go": "no_go_for_payload_ingestion_until_who_and_variant_terms_reviewed"
+  },
+  "payload_policy": {
+    "no_external_payloads_fetched": true,
+    "no_raw_terms_committed": true,
+    "commit_allowlist": [
+      "source governance metadata",
+      "source access records",
+      "provenance shells",
+      "validation summaries",
+      "review handoff skeletons"
+    ],
+    "commit_denylist": [
+      "raw ICD-10 release payloads",
+      "ICD-10 labels",
+      "synonyms",
+      "definitions",
+      "full API responses",
+      "national variant release rows",
+      "credentials",
+      "redistributable payload fragments"
+    ],
+    "local_only_manifest_required_if_payload_touched": true
+  },
+  "artifact_contract": {
+    "committed_artifacts": [
+      "conductor/tracks/icd10_integration_20260623/metadata.json",
+      "conductor/tracks/icd10_integration_20260623/plan.md",
+      "conductor/tracks/icd10_integration_20260623/spec.md",
+      "conductor/tracks/icd10_integration_20260623/phase0_source_probe.json"
+    ],
+    "future_payload_free_outputs": [
+      "registry_record",
+      "source_access_record",
+      "provenance_manifest",
+      "validation_report",
+      "review_handoff_pack"
+    ],
+    "local_only_artifacts": [
+      "raw downloads",
+      "release archives",
+      "full API responses",
+      "national variant payloads"
+    ],
+    "validation_commands": [
+      "pixi run validate-conductor",
+      "pixi run build-ontology-network",
+      "pixi run validate-ontology-network-artifacts"
+    ],
+    "freshness_rule": "refresh probe metadata when WHO release year/version, national variant authority, endpoint, license, or payload policy changes"
+  },
+  "fail_fast_probe_design": {
+    "record_scope": "one authoritative WHO or national variant source record only after terms and variant scope are cleared",
+    "required_outputs": [
+      "normalized registry row",
+      "provenance row",
+      "schema validation result",
+      "candidate comparison or crosswalk shell when applicable"
+    ],
+    "success_criteria": [
+      "WHO or national authority and license state recorded",
+      "payload handling path classified as commit-safe or local-only",
+      "schema validation passes",
+      "review handoff remains candidate-only and human-review-required"
+    ]
+  },
+  "human_review_and_llm_policy": {
+    "candidate_only": true,
+    "human_review_required": true,
+    "llm_output_allowed": "metadata and review-assistance only until source terms and national variant scope are cleared",
+    "promotion_policy": "manual_review_only"
+  },
+  "telemetry": {
+    "coding_agent": "codex",
+    "model": "gpt-5",
+    "task_id": "phase0_source_probe_scaffold",
+    "source_version": "not_pinned",
+    "validation_result": "local_validation_pending",
+    "open_blockers": [
+      "WHO terms review required",
+      "national variant scope and terms review required",
+      "release channel/version pinning required",
+      "payload handling decision required"
+    ],
+    "conflict_count": 0
+  }
+}

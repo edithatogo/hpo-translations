@@ -1,9 +1,9 @@
 {
   "track_id": "icd10_integration_20260623",
   "type": "feature",
-  "status": "planned",
+  "status": "phase_0_implemented_blocked",
   "created_at": "2026-06-23T00:00:00Z",
-  "updated_at": "2026-06-23T00:00:00Z",
+  "updated_at": "2026-06-24T00:00:00Z",
   "description": "Integrate ICD-10 into terminology and translation support",
   "depends_on": [
     "translation_agents_20260622",
@@ -15,10 +15,10 @@
   ],
   "branch": "codex/icd10_integration_20260623",
   "pr_url": null,
-  "ci_status": "not_started",
+  "ci_status": "local_passing",
   "merge_status": "not_opened",
   "last_commit": null,
-  "phase_review_status": "not_started",
+  "phase_review_status": "codex_review_completed",
   "github_checks_url": null,
   "merge_commit": null,
   "parallel_group": "ontology-source-governance",
@@ -27,18 +27,19 @@
   "priority": "P2",
   "known_blockers": [
     "National ICD-10 variants have different terms, languages, and license rules.",
-    "Diagnostic classification granularity is often broader than HPO phenotypes."
+    "Diagnostic classification granularity is often broader than HPO phenotypes.",
+    "Terms, national variant selection, and payload handling must be cleared before committing ICD-10 labels, synonyms, definitions, full responses, or release payload rows."
   ],
   "expected_blockers": [
     "Localized variant selection must be explicit before candidate evidence is generated.",
     "Disease-code mappings require confidence and caveat fields."
   ],
   "blocker_owner": "track implementer until reassigned in Phase 0",
-  "fallback_path": "Start with WHO/public governance records and defer national variants to separate source manifests.",
+  "fallback_path": "Use metadata-only WHO/public governance records and defer WHO release payloads and national variants to source-specific terms review.",
   "source_access_status": "public_or_national_variant_review_required",
-  "write_owner": "unassigned",
+  "write_owner": "codex",
   "merge_owner": "ontology-network maintainer",
-  "automation_readiness": "phase_0_required",
+  "automation_readiness": "blocked_after_phase_0_governance",
   "evidence_score_policy": {
     "candidate_only": true,
     "signals": [
@@ -65,7 +66,17 @@
       "validation_result",
       "conflict_count",
       "open_blockers"
-    ]
+    ],
+    "last_run": {
+      "agent": "codex",
+      "model": "gpt-5",
+      "task_id": "phase0_source_probe_scaffold",
+      "source_version": "not_pinned",
+      "validation_command": "pixi run validate-conductor; pixi run build-ontology-network; pixi run validate-ontology-network; pixi run validate-ontology-network-artifacts; pixi run test-conductor-validation",
+      "validation_result": "passing",
+      "conflict_count": 0,
+      "open_blockers": 3
+    }
   },
   "human_review_handoff": [
     "changed records",
@@ -115,7 +126,9 @@
       "source_access_record",
       "provenance_manifest",
       "validation_report",
-      "review_handoff_pack"
+      "review_handoff_pack",
+      "phase_0_source_probe_report",
+      "metadata_only_scaffold"
     ],
     "conditional_outputs": [
       "language_comparison_pack",
@@ -127,7 +140,25 @@
     "excluded_until_policy_allows": [
       "raw_source_payloads",
       "licensed_release_archives",
-      "credentialed_api_responses"
+      "credentialed_api_responses",
+      "source_labels",
+      "source_synonyms",
+      "source_definitions",
+      "full_api_responses",
+      "release_payload_rows",
+      "national_variant_release_payloads"
     ]
+  },
+  "source_governance_result": {
+    "phase_0_result": "implemented_governance_only",
+    "source_authority_status": "who_release_and_national_variant_terms_review_required",
+    "go_no_go": "governance_only_terms_and_variant_review_required",
+    "payload_commit_allowed": false,
+    "metadata_only_scaffold_allowed": true,
+    "bounded_sample_allowed": false,
+    "identifier_network_allowed": false,
+    "non_translation_outputs_allowed": false,
+    "next_allowed_action": "complete WHO and national variant terms review plus bounded source probe before any ICD-10 payload or label extraction",
+    "review_result": "codex_review_completed_fixes_applied"
   }
 }
