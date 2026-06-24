@@ -48,3 +48,8 @@ This plan introduces Disease Ontology into the project where it can improve term
 - [ ] **Task 1:** Validate schema, provenance, and license metadata.
 - [ ] **Task 2:** Run translation-audit and import dry-run checks against sample outputs.
 - [ ] **Task 3:** Document limitations, excluded payloads, and review decisions.
+
+## P1 Implementation Candidate Addendum
+This track is a highest-priority P1 open/public ontology implementation candidate. Start with Phase 0 governance, source-authority confirmation, terms review, and one bounded source probe before any bulk extraction.
+Until source terms and payload handling are cleared, commit metadata-only scaffolding only: registry records, source-access records, provenance shells, local-only manifest references, schemas, validation summaries, and reviewer handoff skeletons.
+Do not commit raw source terms, ontology labels, synonyms, definitions, full API responses, release payload rows, credentials, or redistributable payload fragments unless redistribution permission is explicitly recorded.
