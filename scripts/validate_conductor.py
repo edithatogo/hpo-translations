@@ -549,7 +549,7 @@ def validate_repo_hygiene(root: Path, run_git: bool) -> list[Issue]:
         )
     if run_git and (root / ".git").exists():
         result = subprocess.run(
-            ["git", "diff", "--check", "--", "conductor", ".github/workflows"],
+            ["git", "diff", "--check"],
             cwd=root,
             capture_output=True,
             text=True,

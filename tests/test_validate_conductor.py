@@ -1,9 +1,11 @@
 import json
 import os
 import shutil
+import subprocess
 import unittest
 import uuid
 from pathlib import Path
+from unittest.mock import patch
 
 from scripts.validate_conductor import validate
 
@@ -191,6 +193,23 @@ class ValidateConductorTests(unittest.TestCase):
         )
         report = validate(root, run_git=False)
         self.assertIn("metadata.restricted_source_policy_unresolved", issue_codes(report))
+
+    def test_repo_hygiene_diff_check_covers_non_conductor_files(self) -> None:
+        root = self.make_root()
+        write_track(root, "repo_hygiene")
+        (root / ".git").mkdir()
+        completed = subprocess.CompletedProcess(
+            args=["git", "diff", "--check"],
+            returncode=1,
+            stdout="README.md:1: trailing whitespace\n",
+            stderr="",
+        )
+        with patch("scripts.validate_conductor.subprocess.run", return_value=completed) as run:
+            report = validate(root, run_git=True)
+
+        run.assert_called_once()
+        self.assertEqual(run.call_args.args[0], ["git", "diff", "--check"])
+        self.assertIn("git.diff_check_failed", issue_codes(report))
 
     def test_restricted_payload_path_warns(self) -> None:
         root = self.make_root()
