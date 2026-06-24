@@ -1,6 +1,6 @@
 {
   "generated_date": "2026-06-23",
-  "schema_count": 18,
+  "schema_count": 19,
   "schemas": [
     {
       "artifact": "artifact_schema_index_record",
@@ -138,6 +138,40 @@
       ],
       "safety_class": "release-safe-contract",
       "schema_path": "schemas/license_access_record.schema.json"
+    },
+    {
+      "artifact": "p1_source_governance_record",
+      "artifact_status": "committed_contract",
+      "downstream_consumers": [
+        "ontology source integration tracks",
+        "translation candidate review packs",
+        "release readiness checks"
+      ],
+      "local_only": false,
+      "owner": "ontology-network maintainer",
+      "required_fields": [
+        "blocked_payload_classes",
+        "bounded_sample_allowed",
+        "candidate_only",
+        "commit_safe_artifacts",
+        "go_no_go",
+        "human_review_required",
+        "identifier_network_allowed",
+        "known_blockers",
+        "metadata_only_scaffold_allowed",
+        "next_allowed_action",
+        "non_translation_outputs_allowed",
+        "ontology_name",
+        "payload_commit_allowed",
+        "phase_0_result",
+        "priority",
+        "provenance_id",
+        "source_access_status",
+        "source_id",
+        "track_id"
+      ],
+      "safety_class": "release-safe-contract",
+      "schema_path": "schemas/p1_source_governance_record.schema.json"
     },
     {
       "artifact": "p3_source_governance_record",

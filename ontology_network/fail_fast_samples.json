@@ -39,14 +39,22 @@
       "excluded_until_policy_allows": [
         "raw_source_payloads",
         "licensed_release_archives",
-        "credentialed_api_responses"
+        "credentialed_api_responses",
+        "source_labels",
+        "source_synonyms",
+        "source_definitions",
+        "full_api_responses",
+        "release_payload_rows"
       ],
       "required_before_phase_1_completion": [
         "registry_record",
         "source_access_record",
         "provenance_manifest",
         "validation_report",
-        "review_handoff_pack"
+        "review_handoff_pack",
+        "phase_0_source_probe_report",
+        "metadata_only_scaffold",
+        "p1_source_governance_record"
       ]
     },
     "authoritative_endpoint": "repository_recorded_authority_review_required",
@@ -83,7 +91,8 @@
     "human_review_required": true,
     "known_blockers": [
       "Disease entities are not phenotype labels and require mapping caveats.",
-      "Disease-to-HPO links should prefer curated mappings over text similarity."
+      "Disease-to-HPO links should prefer curated mappings over text similarity.",
+      "Terms and payload handling must be cleared before committing ontology labels, synonyms, definitions, full responses, or release payload rows."
     ],
     "language_codes": [
       "en"
@@ -102,7 +111,7 @@
       "raw downloads"
     ],
     "metadata_created_at": "2026-06-23T00:00:00Z",
-    "metadata_updated_at": "2026-06-23T00:00:00Z",
+    "metadata_updated_at": "2026-06-24T00:00:00Z",
     "ontology_name": "Disease Ontology",
     "payload_commit_allowed": false,
     "pr_safe": true,
@@ -127,7 +136,7 @@
     "source_payloads_can_be_committed": false,
     "source_version": null,
     "track_id": "do_integration_20260623",
-    "track_status": "planned",
+    "track_status": "phase_0_implemented_blocked",
     "usefulness": "Disease normalization and disease-phenotype crosswalk review.",
     "version_status": "not_pinned_in_track_metadata"
   },

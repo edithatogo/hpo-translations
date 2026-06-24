@@ -22,6 +22,7 @@ ADVANCED_ARTIFACTS = {
     "validation_report.json",
     "source_class_probes.json",
     "p3_source_governance.json",
+    "p1_source_governance.json",
     "validation_fixtures/registry.json",
     "validation_fixtures/crosswalk.json",
     "validation_fixtures/conflict.json",

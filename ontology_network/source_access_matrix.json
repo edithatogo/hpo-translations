@@ -61,7 +61,7 @@
         }
       ],
       "human_review_required": true,
-      "known_blocker_count": 2,
+      "known_blocker_count": 3,
       "language_codes": [
         "en"
       ],
@@ -107,7 +107,7 @@
         }
       ],
       "human_review_required": true,
-      "known_blocker_count": 2,
+      "known_blocker_count": 3,
       "language_codes": [
         "en"
       ],
@@ -248,7 +248,7 @@
         }
       ],
       "human_review_required": true,
-      "known_blocker_count": 2,
+      "known_blocker_count": 3,
       "language_codes": [
         "ar",
         "cs",
@@ -502,7 +502,7 @@
         }
       ],
       "human_review_required": true,
-      "known_blocker_count": 2,
+      "known_blocker_count": 3,
       "language_codes": [
         "cs",
         "de",
@@ -568,7 +568,7 @@
         }
       ],
       "human_review_required": true,
-      "known_blocker_count": 2,
+      "known_blocker_count": 3,
       "language_codes": [
         "en"
       ],
@@ -663,7 +663,7 @@
         }
       ],
       "human_review_required": true,
-      "known_blocker_count": 2,
+      "known_blocker_count": 3,
       "language_codes": [
         "en"
       ],
@@ -710,7 +710,7 @@
         }
       ],
       "human_review_required": true,
-      "known_blocker_count": 2,
+      "known_blocker_count": 3,
       "language_codes": [
         "cs",
         "de",
@@ -772,7 +772,7 @@
         }
       ],
       "human_review_required": true,
-      "known_blocker_count": 2,
+      "known_blocker_count": 3,
       "language_codes": [
         "en"
       ],
@@ -965,7 +965,7 @@
         }
       ],
       "human_review_required": true,
-      "known_blocker_count": 2,
+      "known_blocker_count": 3,
       "language_codes": [
         "en"
       ],

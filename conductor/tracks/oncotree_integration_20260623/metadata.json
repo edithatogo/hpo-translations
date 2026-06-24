@@ -1,9 +1,9 @@
 {
   "track_id": "oncotree_integration_20260623",
   "type": "feature",
-  "status": "planned",
+  "status": "phase_0_implemented_blocked",
   "created_at": "2026-06-23T00:00:00Z",
-  "updated_at": "2026-06-23T00:00:00Z",
+  "updated_at": "2026-06-24T00:00:00Z",
   "description": "Integrate OncoTree into terminology and translation support",
   "depends_on": [
     "translation_agents_20260622",
@@ -15,10 +15,10 @@
   ],
   "branch": "codex/oncotree_integration_20260623",
   "pr_url": null,
-  "ci_status": "not_started",
+  "ci_status": "local_passing",
   "merge_status": "not_opened",
   "last_commit": null,
-  "phase_review_status": "not_started",
+  "phase_review_status": "pending_conductor_review",
   "github_checks_url": null,
   "merge_commit": null,
   "parallel_group": "ontology-source-governance",
@@ -27,7 +27,8 @@
   "priority": "P1",
   "known_blockers": [
     "Cancer classification scope is narrow relative to HPO.",
-    "API or release terms and version pinning must be documented."
+    "API or release terms and version pinning must be documented.",
+    "Terms and payload handling must be cleared before committing ontology labels, synonyms, definitions, full responses, or release payload rows."
   ],
   "expected_blockers": [
     "Tumor-type labels can be disease context rather than phenotype candidates.",
@@ -36,9 +37,9 @@
   "blocker_owner": "track implementer until reassigned in Phase 0",
   "fallback_path": "Use OncoTree for oncology context, mappings, and coverage reports.",
   "source_access_status": "open_api_terms_review_required",
-  "write_owner": "unassigned",
+  "write_owner": "codex",
   "merge_owner": "ontology-network maintainer",
-  "automation_readiness": "phase_0_required",
+  "automation_readiness": "blocked_after_phase_0_governance",
   "evidence_score_policy": {
     "candidate_only": true,
     "signals": [
@@ -115,7 +116,10 @@
       "source_access_record",
       "provenance_manifest",
       "validation_report",
-      "review_handoff_pack"
+      "review_handoff_pack",
+      "phase_0_source_probe_report",
+      "metadata_only_scaffold",
+      "p1_source_governance_record"
     ],
     "conditional_outputs": [
       "language_comparison_pack",
@@ -127,7 +131,23 @@
     "excluded_until_policy_allows": [
       "raw_source_payloads",
       "licensed_release_archives",
-      "credentialed_api_responses"
+      "credentialed_api_responses",
+      "source_labels",
+      "source_synonyms",
+      "source_definitions",
+      "full_api_responses",
+      "release_payload_rows"
     ]
+  },
+  "source_governance_result": {
+    "phase_0_result": "implemented_governance_only",
+    "source_authority_status": "recorded_in_source_profile_terms_review_required",
+    "go_no_go": "governance_only_terms_review_required",
+    "payload_commit_allowed": false,
+    "metadata_only_scaffold_allowed": true,
+    "bounded_sample_allowed": false,
+    "identifier_network_allowed": false,
+    "non_translation_outputs_allowed": false,
+    "next_allowed_action": "complete source terms review and bounded source probe before any payload or label extraction"
   }
 }

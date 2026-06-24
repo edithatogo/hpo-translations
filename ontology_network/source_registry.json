@@ -118,14 +118,22 @@
         "excluded_until_policy_allows": [
           "raw_source_payloads",
           "licensed_release_archives",
-          "credentialed_api_responses"
+          "credentialed_api_responses",
+          "source_labels",
+          "source_synonyms",
+          "source_definitions",
+          "full_api_responses",
+          "release_payload_rows"
         ],
         "required_before_phase_1_completion": [
           "registry_record",
           "source_access_record",
           "provenance_manifest",
           "validation_report",
-          "review_handoff_pack"
+          "review_handoff_pack",
+          "phase_0_source_probe_report",
+          "metadata_only_scaffold",
+          "p1_source_governance_record"
         ]
       },
       "authoritative_endpoint": "repository_recorded_authority_review_required",
@@ -162,7 +170,8 @@
       "human_review_required": true,
       "known_blockers": [
         "Disease entities are not phenotype labels and require mapping caveats.",
-        "Disease-to-HPO links should prefer curated mappings over text similarity."
+        "Disease-to-HPO links should prefer curated mappings over text similarity.",
+        "Terms and payload handling must be cleared before committing ontology labels, synonyms, definitions, full responses, or release payload rows."
       ],
       "language_codes": [
         "en"
@@ -181,7 +190,7 @@
         "raw downloads"
       ],
       "metadata_created_at": "2026-06-23T00:00:00Z",
-      "metadata_updated_at": "2026-06-23T00:00:00Z",
+      "metadata_updated_at": "2026-06-24T00:00:00Z",
       "ontology_name": "Disease Ontology",
       "payload_commit_allowed": false,
       "pr_safe": true,
@@ -206,7 +215,7 @@
       "source_payloads_can_be_committed": false,
       "source_version": null,
       "track_id": "do_integration_20260623",
-      "track_status": "planned",
+      "track_status": "phase_0_implemented_blocked",
       "usefulness": "Disease normalization and disease-phenotype crosswalk review.",
       "version_status": "not_pinned_in_track_metadata"
     },
@@ -224,14 +233,22 @@
         "excluded_until_policy_allows": [
           "raw_source_payloads",
           "licensed_release_archives",
-          "credentialed_api_responses"
+          "credentialed_api_responses",
+          "source_labels",
+          "source_synonyms",
+          "source_definitions",
+          "full_api_responses",
+          "release_payload_rows"
         ],
         "required_before_phase_1_completion": [
           "registry_record",
           "source_access_record",
           "provenance_manifest",
           "validation_report",
-          "review_handoff_pack"
+          "review_handoff_pack",
+          "phase_0_source_probe_report",
+          "metadata_only_scaffold",
+          "p1_source_governance_record"
         ]
       },
       "authoritative_endpoint": "repository_recorded_authority_review_required",
@@ -268,7 +285,8 @@
       "human_review_required": true,
       "known_blockers": [
         "EFO integrates many domains, so source-specific provenance and subsets matter.",
-        "Experimental factor semantics may not directly map to phenotypes."
+        "Experimental factor semantics may not directly map to phenotypes.",
+        "Terms and payload handling must be cleared before committing ontology labels, synonyms, definitions, full responses, or release payload rows."
       ],
       "language_codes": [
         "en"
@@ -287,7 +305,7 @@
         "raw downloads"
       ],
       "metadata_created_at": "2026-06-23T00:00:00Z",
-      "metadata_updated_at": "2026-06-23T00:00:00Z",
+      "metadata_updated_at": "2026-06-24T00:00:00Z",
       "ontology_name": "EFO",
       "payload_commit_allowed": false,
       "pr_safe": true,
@@ -312,7 +330,7 @@
       "source_payloads_can_be_committed": false,
       "source_version": null,
       "track_id": "efo_integration_20260623",
-      "track_status": "planned",
+      "track_status": "phase_0_implemented_blocked",
       "usefulness": "Experimental factor, disease, trait, and assay context for biomedical mappings.",
       "version_status": "not_pinned_in_track_metadata"
     },
@@ -546,14 +564,22 @@
         "excluded_until_policy_allows": [
           "raw_source_payloads",
           "licensed_release_archives",
-          "credentialed_api_responses"
+          "credentialed_api_responses",
+          "source_labels",
+          "source_synonyms",
+          "source_definitions",
+          "full_api_responses",
+          "release_payload_rows"
         ],
         "required_before_phase_1_completion": [
           "registry_record",
           "source_access_record",
           "provenance_manifest",
           "validation_report",
-          "review_handoff_pack"
+          "review_handoff_pack",
+          "phase_0_source_probe_report",
+          "metadata_only_scaffold",
+          "p1_source_governance_record"
         ]
       },
       "authoritative_endpoint": "authority_described_github_not_authoritative",
@@ -590,7 +616,8 @@
       "human_review_required": true,
       "known_blockers": [
         "ICD-11 API terms and rate limits must be documented before automation.",
-        "Foundation entities and MMS codes need distinct provenance handling."
+        "Foundation entities and MMS codes need distinct provenance handling.",
+        "Terms and payload handling must be cleared before committing ontology labels, synonyms, definitions, full responses, or release payload rows."
       ],
       "language_codes": [
         "ar",
@@ -628,7 +655,7 @@
         "source-specific extraction outputs remain local-only until access and redistribution terms pass review"
       ],
       "metadata_created_at": "2026-06-23T00:00:00Z",
-      "metadata_updated_at": "2026-06-23T00:00:00Z",
+      "metadata_updated_at": "2026-06-24T00:00:00Z",
       "ontology_name": "ICD-11",
       "payload_commit_allowed": false,
       "pr_safe": true,
@@ -653,7 +680,7 @@
       "source_payloads_can_be_committed": false,
       "source_version": null,
       "track_id": "icd11_integration_20260623",
-      "track_status": "planned",
+      "track_status": "phase_0_implemented_blocked",
       "usefulness": "Digital-first disease classification, multilingual terminology comparison, and ICD-11 foundation alignment.",
       "version_status": "not_pinned_in_track_metadata"
     },
@@ -1040,14 +1067,22 @@
         "excluded_until_policy_allows": [
           "raw_source_payloads",
           "licensed_release_archives",
-          "credentialed_api_responses"
+          "credentialed_api_responses",
+          "source_labels",
+          "source_synonyms",
+          "source_definitions",
+          "full_api_responses",
+          "release_payload_rows"
         ],
         "required_before_phase_1_completion": [
           "registry_record",
           "source_access_record",
           "provenance_manifest",
           "validation_report",
-          "review_handoff_pack"
+          "review_handoff_pack",
+          "phase_0_source_probe_report",
+          "metadata_only_scaffold",
+          "p1_source_governance_record"
         ]
       },
       "authoritative_endpoint": "repository_recorded_authority_review_required",
@@ -1084,7 +1119,8 @@
       "human_review_required": true,
       "known_blockers": [
         "Descriptor, concept, term, and supplementary-record layers need separate provenance.",
-        "Tree-number changes can create semantic drift across releases."
+        "Tree-number changes can create semantic drift across releases.",
+        "Terms and payload handling must be cleared before committing ontology labels, synonyms, definitions, full responses, or release payload rows."
       ],
       "language_codes": [
         "cs",
@@ -1123,7 +1159,7 @@
         "raw downloads"
       ],
       "metadata_created_at": "2026-06-23T00:00:00Z",
-      "metadata_updated_at": "2026-06-23T00:00:00Z",
+      "metadata_updated_at": "2026-06-24T00:00:00Z",
       "ontology_name": "MeSH",
       "payload_commit_allowed": false,
       "pr_safe": true,
@@ -1148,7 +1184,7 @@
       "source_payloads_can_be_committed": false,
       "source_version": null,
       "track_id": "mesh_integration_20260623",
-      "track_status": "planned",
+      "track_status": "phase_0_implemented_blocked",
       "usefulness": "Biomedical literature indexing, synonym enrichment, and concept-discovery support.",
       "version_status": "not_pinned_in_track_metadata"
     },
@@ -1166,14 +1202,22 @@
         "excluded_until_policy_allows": [
           "raw_source_payloads",
           "licensed_release_archives",
-          "credentialed_api_responses"
+          "credentialed_api_responses",
+          "source_labels",
+          "source_synonyms",
+          "source_definitions",
+          "full_api_responses",
+          "release_payload_rows"
         ],
         "required_before_phase_1_completion": [
           "registry_record",
           "source_access_record",
           "provenance_manifest",
           "validation_report",
-          "review_handoff_pack"
+          "review_handoff_pack",
+          "phase_0_source_probe_report",
+          "metadata_only_scaffold",
+          "p1_source_governance_record"
         ]
       },
       "authoritative_endpoint": "repository_recorded_authority_review_required",
@@ -1210,7 +1254,8 @@
       "human_review_required": true,
       "known_blockers": [
         "Mouse phenotype terms are model-organism evidence and require species-context caveats.",
-        "Mammalian phenotype mappings to HPO can be indirect or evidence-specific."
+        "Mammalian phenotype mappings to HPO can be indirect or evidence-specific.",
+        "Terms and payload handling must be cleared before committing ontology labels, synonyms, definitions, full responses, or release payload rows."
       ],
       "language_codes": [
         "en"
@@ -1229,7 +1274,7 @@
         "raw downloads"
       ],
       "metadata_created_at": "2026-06-23T00:00:00Z",
-      "metadata_updated_at": "2026-06-23T00:00:00Z",
+      "metadata_updated_at": "2026-06-24T00:00:00Z",
       "ontology_name": "Mammalian Phenotype Ontology",
       "payload_commit_allowed": false,
       "pr_safe": true,
@@ -1254,7 +1299,7 @@
       "source_payloads_can_be_committed": false,
       "source_version": null,
       "track_id": "mp_integration_20260623",
-      "track_status": "planned",
+      "track_status": "phase_0_implemented_blocked",
       "usefulness": "Model-organism phenotype comparison and cross-species validation.",
       "version_status": "not_pinned_in_track_metadata"
     },
@@ -1381,14 +1426,22 @@
         "excluded_until_policy_allows": [
           "raw_source_payloads",
           "licensed_release_archives",
-          "credentialed_api_responses"
+          "credentialed_api_responses",
+          "source_labels",
+          "source_synonyms",
+          "source_definitions",
+          "full_api_responses",
+          "release_payload_rows"
         ],
         "required_before_phase_1_completion": [
           "registry_record",
           "source_access_record",
           "provenance_manifest",
           "validation_report",
-          "review_handoff_pack"
+          "review_handoff_pack",
+          "phase_0_source_probe_report",
+          "metadata_only_scaffold",
+          "p1_source_governance_record"
         ]
       },
       "authoritative_endpoint": "repository_recorded_authority_review_required",
@@ -1425,7 +1478,8 @@
       "human_review_required": true,
       "known_blockers": [
         "Cancer classification scope is narrow relative to HPO.",
-        "API or release terms and version pinning must be documented."
+        "API or release terms and version pinning must be documented.",
+        "Terms and payload handling must be cleared before committing ontology labels, synonyms, definitions, full responses, or release payload rows."
       ],
       "language_codes": [
         "en"
@@ -1445,7 +1499,7 @@
         "source-specific extraction outputs remain local-only until access and redistribution terms pass review"
       ],
       "metadata_created_at": "2026-06-23T00:00:00Z",
-      "metadata_updated_at": "2026-06-23T00:00:00Z",
+      "metadata_updated_at": "2026-06-24T00:00:00Z",
       "ontology_name": "OncoTree",
       "payload_commit_allowed": false,
       "pr_safe": true,
@@ -1470,7 +1524,7 @@
       "source_payloads_can_be_committed": false,
       "source_version": null,
       "track_id": "oncotree_integration_20260623",
-      "track_status": "planned",
+      "track_status": "phase_0_implemented_blocked",
       "usefulness": "Cancer type normalization for oncology-specific phenotype and disease contexts.",
       "version_status": "not_pinned_in_track_metadata"
     },
@@ -1488,14 +1542,22 @@
         "excluded_until_policy_allows": [
           "raw_source_payloads",
           "licensed_release_archives",
-          "credentialed_api_responses"
+          "credentialed_api_responses",
+          "source_labels",
+          "source_synonyms",
+          "source_definitions",
+          "full_api_responses",
+          "release_payload_rows"
         ],
         "required_before_phase_1_completion": [
           "registry_record",
           "source_access_record",
           "provenance_manifest",
           "validation_report",
-          "review_handoff_pack"
+          "review_handoff_pack",
+          "phase_0_source_probe_report",
+          "metadata_only_scaffold",
+          "p1_source_governance_record"
         ]
       },
       "authoritative_endpoint": "authority_described_github_not_authoritative",
@@ -1532,7 +1594,8 @@
       "human_review_required": true,
       "known_blockers": [
         "Orphanet disease entities and HPO phenotype terms operate at different granularities.",
-        "Download terms and versioned XML schemas must be captured before ingestion."
+        "Download terms and versioned XML schemas must be captured before ingestion.",
+        "Terms and payload handling must be cleared before committing ontology labels, synonyms, definitions, full responses, or release payload rows."
       ],
       "language_codes": [
         "cs",
@@ -1567,7 +1630,7 @@
         "raw downloads"
       ],
       "metadata_created_at": "2026-06-23T00:00:00Z",
-      "metadata_updated_at": "2026-06-23T00:00:00Z",
+      "metadata_updated_at": "2026-06-24T00:00:00Z",
       "ontology_name": "Orphanet",
       "payload_commit_allowed": false,
       "pr_safe": true,
@@ -1592,7 +1655,7 @@
       "source_payloads_can_be_committed": false,
       "source_version": null,
       "track_id": "orphanet_integration_20260623",
-      "track_status": "planned",
+      "track_status": "phase_0_implemented_blocked",
       "usefulness": "Rare disease terminology and HPO disease-context alignment.",
       "version_status": "not_pinned_in_track_metadata"
     },
@@ -1610,14 +1673,22 @@
         "excluded_until_policy_allows": [
           "raw_source_payloads",
           "licensed_release_archives",
-          "credentialed_api_responses"
+          "credentialed_api_responses",
+          "source_labels",
+          "source_synonyms",
+          "source_definitions",
+          "full_api_responses",
+          "release_payload_rows"
         ],
         "required_before_phase_1_completion": [
           "registry_record",
           "source_access_record",
           "provenance_manifest",
           "validation_report",
-          "review_handoff_pack"
+          "review_handoff_pack",
+          "phase_0_source_probe_report",
+          "metadata_only_scaffold",
+          "p1_source_governance_record"
         ]
       },
       "authoritative_endpoint": "repository_recorded_authority_review_required",
@@ -1654,7 +1725,8 @@
       "human_review_required": true,
       "known_blockers": [
         "Quality terms require composition handling before they can explain HPO labels.",
-        "OBO release drift must be pinned by version or PURL snapshot."
+        "OBO release drift must be pinned by version or PURL snapshot.",
+        "Terms and payload handling must be cleared before committing ontology labels, synonyms, definitions, full responses, or release payload rows."
       ],
       "language_codes": [
         "en"
@@ -1673,7 +1745,7 @@
         "raw downloads"
       ],
       "metadata_created_at": "2026-06-23T00:00:00Z",
-      "metadata_updated_at": "2026-06-23T00:00:00Z",
+      "metadata_updated_at": "2026-06-24T00:00:00Z",
       "ontology_name": "PATO",
       "payload_commit_allowed": false,
       "pr_safe": true,
@@ -1698,7 +1770,7 @@
       "source_payloads_can_be_committed": false,
       "source_version": null,
       "track_id": "pato_integration_20260623",
-      "track_status": "planned",
+      "track_status": "phase_0_implemented_blocked",
       "usefulness": "Phenotypic quality normalization and logical definition support.",
       "version_status": "not_pinned_in_track_metadata"
     },
@@ -1985,14 +2057,22 @@
         "excluded_until_policy_allows": [
           "raw_source_payloads",
           "licensed_release_archives",
-          "credentialed_api_responses"
+          "credentialed_api_responses",
+          "source_labels",
+          "source_synonyms",
+          "source_definitions",
+          "full_api_responses",
+          "release_payload_rows"
         ],
         "required_before_phase_1_completion": [
           "registry_record",
           "source_access_record",
           "provenance_manifest",
           "validation_report",
-          "review_handoff_pack"
+          "review_handoff_pack",
+          "phase_0_source_probe_report",
+          "metadata_only_scaffold",
+          "p1_source_governance_record"
         ]
       },
       "authoritative_endpoint": "repository_recorded_authority_review_required",
@@ -2029,7 +2109,8 @@
       "human_review_required": true,
       "known_blockers": [
         "uPheno depends on upstream ontology build products and may change with source releases.",
-        "Cross-species phenotype patterns require explicit evidence and predicate fields."
+        "Cross-species phenotype patterns require explicit evidence and predicate fields.",
+        "Terms and payload handling must be cleared before committing ontology labels, synonyms, definitions, full responses, or release payload rows."
       ],
       "language_codes": [
         "en"
@@ -2048,7 +2129,7 @@
         "raw downloads"
       ],
       "metadata_created_at": "2026-06-23T00:00:00Z",
-      "metadata_updated_at": "2026-06-23T00:00:00Z",
+      "metadata_updated_at": "2026-06-24T00:00:00Z",
       "ontology_name": "uPheno",
       "payload_commit_allowed": false,
       "pr_safe": true,
@@ -2073,7 +2154,7 @@
       "source_payloads_can_be_committed": false,
       "source_version": null,
       "track_id": "upheno_integration_20260623",
-      "track_status": "planned",
+      "track_status": "phase_0_implemented_blocked",
       "usefulness": "Cross-species phenotype pattern alignment and ontology bridge review.",
       "version_status": "not_pinned_in_track_metadata"
     }

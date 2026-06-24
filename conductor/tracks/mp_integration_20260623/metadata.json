@@ -1,9 +1,9 @@
 {
   "track_id": "mp_integration_20260623",
   "type": "feature",
-  "status": "planned",
+  "status": "phase_0_implemented_blocked",
   "created_at": "2026-06-23T00:00:00Z",
-  "updated_at": "2026-06-23T00:00:00Z",
+  "updated_at": "2026-06-24T00:00:00Z",
   "description": "Integrate Mammalian Phenotype Ontology into terminology and translation support",
   "depends_on": [
     "translation_agents_20260622",
@@ -15,7 +15,7 @@
   ],
   "branch": "codex/mp_integration_20260623",
   "pr_url": null,
-  "ci_status": "not_started",
+  "ci_status": "local_pending",
   "merge_status": "not_opened",
   "last_commit": null,
   "phase_review_status": "not_started",
@@ -27,7 +27,8 @@
   "priority": "P1",
   "known_blockers": [
     "Mouse phenotype terms are model-organism evidence and require species-context caveats.",
-    "Mammalian phenotype mappings to HPO can be indirect or evidence-specific."
+    "Mammalian phenotype mappings to HPO can be indirect or evidence-specific.",
+    "Terms and payload handling must be cleared before committing ontology labels, synonyms, definitions, full responses, or release payload rows."
   ],
   "expected_blockers": [
     "Synonym overlap may create false positives without curated mapping predicates.",
@@ -36,9 +37,9 @@
   "blocker_owner": "track implementer until reassigned in Phase 0",
   "fallback_path": "Use MP for cross-species semantic validation and conflict detection, not autonomous candidate promotion.",
   "source_access_status": "open_ontology_download_review_required",
-  "write_owner": "unassigned",
+  "write_owner": "codex",
   "merge_owner": "ontology-network maintainer",
-  "automation_readiness": "phase_0_required",
+  "automation_readiness": "blocked_after_phase_0_governance",
   "evidence_score_policy": {
     "candidate_only": true,
     "signals": [
@@ -115,7 +116,10 @@
       "source_access_record",
       "provenance_manifest",
       "validation_report",
-      "review_handoff_pack"
+      "review_handoff_pack",
+      "phase_0_source_probe_report",
+      "metadata_only_scaffold",
+      "p1_source_governance_record"
     ],
     "conditional_outputs": [
       "language_comparison_pack",
@@ -127,7 +131,59 @@
     "excluded_until_policy_allows": [
       "raw_source_payloads",
       "licensed_release_archives",
-      "credentialed_api_responses"
+      "credentialed_api_responses",
+      "source_labels",
+      "source_synonyms",
+      "source_definitions",
+      "full_api_responses",
+      "release_payload_rows"
     ]
+  },
+  "source_probe_scaffold": {
+    "probe_type": "metadata_only_source_probe",
+    "probe_date": "2026-06-24",
+    "source_authority_status": "repository_recorded_authority_review_required",
+    "payload_accessed": false,
+    "payload_commit_allowed": false,
+    "term_text_included": false,
+    "release_payload_included": false,
+    "credential_required": false,
+    "source_version_status": "not_pinned_terms_review_required",
+    "checked_surfaces": [
+      "track metadata",
+      "source profile specification",
+      "recorded repository URL",
+      "source access status",
+      "restricted payload policy",
+      "artifact contract",
+      "downstream blocker list"
+    ],
+    "committed_outputs": [
+      "plan phase-0 implementation result",
+      "metadata source-probe scaffold",
+      "governance-only blocker state"
+    ],
+    "prohibited_outputs": [
+      "raw ontology payloads",
+      "term labels",
+      "synonyms",
+      "definitions",
+      "full API responses",
+      "release archives",
+      "credentialed exports",
+      "redistributable payload fragments"
+    ],
+    "validation_expectation": "pixi run validate-conductor plus ontology-network validation after regeneration by owning orchestrator"
+  },
+  "source_governance_result": {
+    "phase_0_result": "implemented_governance_only",
+    "source_authority_status": "repository_recorded_authority_review_required",
+    "go_no_go": "governance_only_terms_review_required",
+    "payload_commit_allowed": false,
+    "identifier_network_allowed": false,
+    "non_translation_outputs_allowed": false,
+    "candidate_use": "cross_species_phenotype_governance",
+    "blocking_caveat": "model_organism_context_required_for_all_evidence",
+    "next_allowed_action": "complete MGI repository release, license, and version review before any MP label or synonym extraction"
   }
 }

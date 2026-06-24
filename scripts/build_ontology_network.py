@@ -628,6 +628,27 @@ SCHEMA_REQUIRED_FIELDS: dict[str, set[str]] = {
         "candidate_only",
         "provenance_id",
     },
+    "p1_source_governance_record": {
+        "source_id",
+        "track_id",
+        "ontology_name",
+        "priority",
+        "source_access_status",
+        "phase_0_result",
+        "go_no_go",
+        "payload_commit_allowed",
+        "metadata_only_scaffold_allowed",
+        "bounded_sample_allowed",
+        "identifier_network_allowed",
+        "non_translation_outputs_allowed",
+        "candidate_only",
+        "human_review_required",
+        "next_allowed_action",
+        "blocked_payload_classes",
+        "commit_safe_artifacts",
+        "known_blockers",
+        "provenance_id",
+    },
     "validation_report": {"generated_date", "artifact", "validation_result", "issues"},
 }
 
@@ -711,6 +732,11 @@ def schema_definitions(registry: dict[str, Any] | None = None) -> dict[str, dict
             "p3_source_governance_record",
             cast(list[dict[str, Any]], outputs[Path("p3_source_governance.json")]["records"]),
             SCHEMA_REQUIRED_FIELDS["p3_source_governance_record"],
+        ),
+        "p1_source_governance_record": _schema_from_records(
+            "p1_source_governance_record",
+            cast(list[dict[str, Any]], outputs[Path("p1_source_governance.json")]["records"]),
+            SCHEMA_REQUIRED_FIELDS["p1_source_governance_record"],
         ),
         "release_readiness_manifest": _schema_from_records(
             "release_readiness_manifest",
@@ -997,6 +1023,53 @@ def p3_source_governance(registry: dict[str, Any]) -> list[dict[str, Any]]:
     return governance
 
 
+def p1_source_governance(registry: dict[str, Any]) -> list[dict[str, Any]]:
+    records = [record for record in cast(list[dict[str, Any]], registry["records"]) if record.get("priority") == "P1"]
+    governance: list[dict[str, Any]] = []
+    for record in sorted(records, key=lambda row: str(row["source_id"])):
+        source_id = str(record["source_id"])
+        governance.append(
+            {
+                "source_id": source_id,
+                "track_id": record["track_id"],
+                "ontology_name": record["ontology_name"],
+                "priority": record["priority"],
+                "source_access_status": record["source_access_status"],
+                "phase_0_result": "implemented_governance_only",
+                "go_no_go": "governance_only_terms_review_required",
+                "payload_commit_allowed": False,
+                "metadata_only_scaffold_allowed": True,
+                "bounded_sample_allowed": False,
+                "identifier_network_allowed": False,
+                "non_translation_outputs_allowed": False,
+                "candidate_only": True,
+                "human_review_required": True,
+                "next_allowed_action": (
+                    "complete source terms review and bounded source probe before any payload or label extraction"
+                ),
+                "blocked_payload_classes": [
+                    "source_labels",
+                    "source_synonyms",
+                    "source_definitions",
+                    "full_api_responses",
+                    "release_payload_rows",
+                ],
+                "commit_safe_artifacts": [
+                    "registry records",
+                    "source access records",
+                    "provenance shells",
+                    "local-only manifest references",
+                    "schema fixtures",
+                    "validation summaries",
+                    "reviewer handoff skeletons",
+                ],
+                "known_blockers": record["known_blockers"],
+                "provenance_id": f"prov-p1-governance-{source_id}",
+            }
+        )
+    return governance
+
+
 def fail_fast_samples(registry: dict[str, Any]) -> dict[str, Any]:
     records = cast(list[dict[str, Any]], registry["records"])
     open_record = next(record for record in records if record["access_class"] == "open")
@@ -1230,6 +1303,16 @@ def network_outputs(registry: dict[str, Any]) -> dict[Path, dict[str, Any]]:
             ),
             "records": p3_source_governance(registry),
         },
+        Path("p1_source_governance.json"): {
+            "generated_date": GENERATED_DATE,
+            "scope": "P1 open/public ontology Phase 0 governance tracks",
+            "record_count": len(p1_source_governance(registry)),
+            "payload_policy": (
+                "metadata-only governance; no source labels, synonyms, definitions, full API responses, "
+                "or release payload rows are read or committed"
+            ),
+            "records": p1_source_governance(registry),
+        },
         Path("reproducibility_capsule.json"): {
             "generated_date": GENERATED_DATE,
             "commands": [
@@ -1450,6 +1533,9 @@ def schema_records(output_dir: Path) -> dict[str, list[dict[str, Any]]]:
         "p3_source_governance_record": cast(
             list[dict[str, Any]], load_json(output_dir / "p3_source_governance.json")["records"]
         ),
+        "p1_source_governance_record": cast(
+            list[dict[str, Any]], load_json(output_dir / "p1_source_governance.json")["records"]
+        ),
         "release_readiness_manifest": [load_json(output_dir / "release_readiness_manifest.json")],
         "payload_policy_record": [load_json(output_dir / "source_payload_policy.json")],
         "artifact_schema_index_record": cast(
@@ -1504,6 +1590,7 @@ def validate(output_dir: Path = DEFAULT_OUTPUT_DIR) -> list[str]:
         output_dir / "license_access_report.json",
         output_dir / "source_class_probes.json",
         output_dir / "p3_source_governance.json",
+        output_dir / "p1_source_governance.json",
         output_dir / "reproducibility_capsule.json",
         output_dir / "validation_report.json",
     ]
@@ -1554,6 +1641,20 @@ def validate(output_dir: Path = DEFAULT_OUTPUT_DIR) -> list[str]:
             if not record.get("human_review_required") or not record.get("candidate_only"):
                 errors.append(
                     f"{record.get('source_id')} P3 governance must stay candidate-only and human-review-required"
+                )
+        p1 = load_json(output_dir / "p1_source_governance.json")
+        p1_records = cast(list[dict[str, Any]], p1.get("records", []))
+        expected_p1 = {"do", "efo", "icd11", "mesh", "mp", "oncotree", "orphanet", "pato", "upheno"}
+        if {record.get("source_id") for record in p1_records} != expected_p1:
+            errors.append("P1 source governance must cover the nine open/public P1 ontology tracks")
+        for record in p1_records:
+            if record.get("payload_commit_allowed") or record.get("identifier_network_allowed"):
+                errors.append(
+                    f"{record.get('source_id')} P1 governance must keep payload and identifier-network work blocked"
+                )
+            if not record.get("human_review_required") or not record.get("candidate_only"):
+                errors.append(
+                    f"{record.get('source_id')} P1 governance must stay candidate-only and human-review-required"
                 )
         errors.extend(schema_shape_errors(output_dir, schemas))
 

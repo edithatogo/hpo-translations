@@ -1,0 +1,359 @@
+{
+  "generated_date": "2026-06-23",
+  "payload_policy": "metadata-only governance; no source labels, synonyms, definitions, full API responses, or release payload rows are read or committed",
+  "record_count": 9,
+  "records": [
+    {
+      "blocked_payload_classes": [
+        "source_labels",
+        "source_synonyms",
+        "source_definitions",
+        "full_api_responses",
+        "release_payload_rows"
+      ],
+      "bounded_sample_allowed": false,
+      "candidate_only": true,
+      "commit_safe_artifacts": [
+        "registry records",
+        "source access records",
+        "provenance shells",
+        "local-only manifest references",
+        "schema fixtures",
+        "validation summaries",
+        "reviewer handoff skeletons"
+      ],
+      "go_no_go": "governance_only_terms_review_required",
+      "human_review_required": true,
+      "identifier_network_allowed": false,
+      "known_blockers": [
+        "Disease entities are not phenotype labels and require mapping caveats.",
+        "Disease-to-HPO links should prefer curated mappings over text similarity.",
+        "Terms and payload handling must be cleared before committing ontology labels, synonyms, definitions, full responses, or release payload rows."
+      ],
+      "metadata_only_scaffold_allowed": true,
+      "next_allowed_action": "complete source terms review and bounded source probe before any payload or label extraction",
+      "non_translation_outputs_allowed": false,
+      "ontology_name": "Disease Ontology",
+      "payload_commit_allowed": false,
+      "phase_0_result": "implemented_governance_only",
+      "priority": "P1",
+      "provenance_id": "prov-p1-governance-do",
+      "source_access_status": "open_ontology_download_review_required",
+      "source_id": "do",
+      "track_id": "do_integration_20260623"
+    },
+    {
+      "blocked_payload_classes": [
+        "source_labels",
+        "source_synonyms",
+        "source_definitions",
+        "full_api_responses",
+        "release_payload_rows"
+      ],
+      "bounded_sample_allowed": false,
+      "candidate_only": true,
+      "commit_safe_artifacts": [
+        "registry records",
+        "source access records",
+        "provenance shells",
+        "local-only manifest references",
+        "schema fixtures",
+        "validation summaries",
+        "reviewer handoff skeletons"
+      ],
+      "go_no_go": "governance_only_terms_review_required",
+      "human_review_required": true,
+      "identifier_network_allowed": false,
+      "known_blockers": [
+        "EFO integrates many domains, so source-specific provenance and subsets matter.",
+        "Experimental factor semantics may not directly map to phenotypes.",
+        "Terms and payload handling must be cleared before committing ontology labels, synonyms, definitions, full responses, or release payload rows."
+      ],
+      "metadata_only_scaffold_allowed": true,
+      "next_allowed_action": "complete source terms review and bounded source probe before any payload or label extraction",
+      "non_translation_outputs_allowed": false,
+      "ontology_name": "EFO",
+      "payload_commit_allowed": false,
+      "phase_0_result": "implemented_governance_only",
+      "priority": "P1",
+      "provenance_id": "prov-p1-governance-efo",
+      "source_access_status": "open_ontology_download_review_required",
+      "source_id": "efo",
+      "track_id": "efo_integration_20260623"
+    },
+    {
+      "blocked_payload_classes": [
+        "source_labels",
+        "source_synonyms",
+        "source_definitions",
+        "full_api_responses",
+        "release_payload_rows"
+      ],
+      "bounded_sample_allowed": false,
+      "candidate_only": true,
+      "commit_safe_artifacts": [
+        "registry records",
+        "source access records",
+        "provenance shells",
+        "local-only manifest references",
+        "schema fixtures",
+        "validation summaries",
+        "reviewer handoff skeletons"
+      ],
+      "go_no_go": "governance_only_terms_review_required",
+      "human_review_required": true,
+      "identifier_network_allowed": false,
+      "known_blockers": [
+        "ICD-11 API terms and rate limits must be documented before automation.",
+        "Foundation entities and MMS codes need distinct provenance handling.",
+        "Terms and payload handling must be cleared before committing ontology labels, synonyms, definitions, full responses, or release payload rows."
+      ],
+      "metadata_only_scaffold_allowed": true,
+      "next_allowed_action": "complete source terms review and bounded source probe before any payload or label extraction",
+      "non_translation_outputs_allowed": false,
+      "ontology_name": "ICD-11",
+      "payload_commit_allowed": false,
+      "phase_0_result": "implemented_governance_only",
+      "priority": "P1",
+      "provenance_id": "prov-p1-governance-icd11",
+      "source_access_status": "public_api_terms_review_required",
+      "source_id": "icd11",
+      "track_id": "icd11_integration_20260623"
+    },
+    {
+      "blocked_payload_classes": [
+        "source_labels",
+        "source_synonyms",
+        "source_definitions",
+        "full_api_responses",
+        "release_payload_rows"
+      ],
+      "bounded_sample_allowed": false,
+      "candidate_only": true,
+      "commit_safe_artifacts": [
+        "registry records",
+        "source access records",
+        "provenance shells",
+        "local-only manifest references",
+        "schema fixtures",
+        "validation summaries",
+        "reviewer handoff skeletons"
+      ],
+      "go_no_go": "governance_only_terms_review_required",
+      "human_review_required": true,
+      "identifier_network_allowed": false,
+      "known_blockers": [
+        "Descriptor, concept, term, and supplementary-record layers need separate provenance.",
+        "Tree-number changes can create semantic drift across releases.",
+        "Terms and payload handling must be cleared before committing ontology labels, synonyms, definitions, full responses, or release payload rows."
+      ],
+      "metadata_only_scaffold_allowed": true,
+      "next_allowed_action": "complete source terms review and bounded source probe before any payload or label extraction",
+      "non_translation_outputs_allowed": false,
+      "ontology_name": "MeSH",
+      "payload_commit_allowed": false,
+      "phase_0_result": "implemented_governance_only",
+      "priority": "P1",
+      "provenance_id": "prov-p1-governance-mesh",
+      "source_access_status": "public_download_terms_review_required",
+      "source_id": "mesh",
+      "track_id": "mesh_integration_20260623"
+    },
+    {
+      "blocked_payload_classes": [
+        "source_labels",
+        "source_synonyms",
+        "source_definitions",
+        "full_api_responses",
+        "release_payload_rows"
+      ],
+      "bounded_sample_allowed": false,
+      "candidate_only": true,
+      "commit_safe_artifacts": [
+        "registry records",
+        "source access records",
+        "provenance shells",
+        "local-only manifest references",
+        "schema fixtures",
+        "validation summaries",
+        "reviewer handoff skeletons"
+      ],
+      "go_no_go": "governance_only_terms_review_required",
+      "human_review_required": true,
+      "identifier_network_allowed": false,
+      "known_blockers": [
+        "Mouse phenotype terms are model-organism evidence and require species-context caveats.",
+        "Mammalian phenotype mappings to HPO can be indirect or evidence-specific.",
+        "Terms and payload handling must be cleared before committing ontology labels, synonyms, definitions, full responses, or release payload rows."
+      ],
+      "metadata_only_scaffold_allowed": true,
+      "next_allowed_action": "complete source terms review and bounded source probe before any payload or label extraction",
+      "non_translation_outputs_allowed": false,
+      "ontology_name": "Mammalian Phenotype Ontology",
+      "payload_commit_allowed": false,
+      "phase_0_result": "implemented_governance_only",
+      "priority": "P1",
+      "provenance_id": "prov-p1-governance-mp",
+      "source_access_status": "open_ontology_download_review_required",
+      "source_id": "mp",
+      "track_id": "mp_integration_20260623"
+    },
+    {
+      "blocked_payload_classes": [
+        "source_labels",
+        "source_synonyms",
+        "source_definitions",
+        "full_api_responses",
+        "release_payload_rows"
+      ],
+      "bounded_sample_allowed": false,
+      "candidate_only": true,
+      "commit_safe_artifacts": [
+        "registry records",
+        "source access records",
+        "provenance shells",
+        "local-only manifest references",
+        "schema fixtures",
+        "validation summaries",
+        "reviewer handoff skeletons"
+      ],
+      "go_no_go": "governance_only_terms_review_required",
+      "human_review_required": true,
+      "identifier_network_allowed": false,
+      "known_blockers": [
+        "Cancer classification scope is narrow relative to HPO.",
+        "API or release terms and version pinning must be documented.",
+        "Terms and payload handling must be cleared before committing ontology labels, synonyms, definitions, full responses, or release payload rows."
+      ],
+      "metadata_only_scaffold_allowed": true,
+      "next_allowed_action": "complete source terms review and bounded source probe before any payload or label extraction",
+      "non_translation_outputs_allowed": false,
+      "ontology_name": "OncoTree",
+      "payload_commit_allowed": false,
+      "phase_0_result": "implemented_governance_only",
+      "priority": "P1",
+      "provenance_id": "prov-p1-governance-oncotree",
+      "source_access_status": "open_api_terms_review_required",
+      "source_id": "oncotree",
+      "track_id": "oncotree_integration_20260623"
+    },
+    {
+      "blocked_payload_classes": [
+        "source_labels",
+        "source_synonyms",
+        "source_definitions",
+        "full_api_responses",
+        "release_payload_rows"
+      ],
+      "bounded_sample_allowed": false,
+      "candidate_only": true,
+      "commit_safe_artifacts": [
+        "registry records",
+        "source access records",
+        "provenance shells",
+        "local-only manifest references",
+        "schema fixtures",
+        "validation summaries",
+        "reviewer handoff skeletons"
+      ],
+      "go_no_go": "governance_only_terms_review_required",
+      "human_review_required": true,
+      "identifier_network_allowed": false,
+      "known_blockers": [
+        "Orphanet disease entities and HPO phenotype terms operate at different granularities.",
+        "Download terms and versioned XML schemas must be captured before ingestion.",
+        "Terms and payload handling must be cleared before committing ontology labels, synonyms, definitions, full responses, or release payload rows."
+      ],
+      "metadata_only_scaffold_allowed": true,
+      "next_allowed_action": "complete source terms review and bounded source probe before any payload or label extraction",
+      "non_translation_outputs_allowed": false,
+      "ontology_name": "Orphanet",
+      "payload_commit_allowed": false,
+      "phase_0_result": "implemented_governance_only",
+      "priority": "P1",
+      "provenance_id": "prov-p1-governance-orphanet",
+      "source_access_status": "public_download_terms_review_required",
+      "source_id": "orphanet",
+      "track_id": "orphanet_integration_20260623"
+    },
+    {
+      "blocked_payload_classes": [
+        "source_labels",
+        "source_synonyms",
+        "source_definitions",
+        "full_api_responses",
+        "release_payload_rows"
+      ],
+      "bounded_sample_allowed": false,
+      "candidate_only": true,
+      "commit_safe_artifacts": [
+        "registry records",
+        "source access records",
+        "provenance shells",
+        "local-only manifest references",
+        "schema fixtures",
+        "validation summaries",
+        "reviewer handoff skeletons"
+      ],
+      "go_no_go": "governance_only_terms_review_required",
+      "human_review_required": true,
+      "identifier_network_allowed": false,
+      "known_blockers": [
+        "Quality terms require composition handling before they can explain HPO labels.",
+        "OBO release drift must be pinned by version or PURL snapshot.",
+        "Terms and payload handling must be cleared before committing ontology labels, synonyms, definitions, full responses, or release payload rows."
+      ],
+      "metadata_only_scaffold_allowed": true,
+      "next_allowed_action": "complete source terms review and bounded source probe before any payload or label extraction",
+      "non_translation_outputs_allowed": false,
+      "ontology_name": "PATO",
+      "payload_commit_allowed": false,
+      "phase_0_result": "implemented_governance_only",
+      "priority": "P1",
+      "provenance_id": "prov-p1-governance-pato",
+      "source_access_status": "open_ontology_download_review_required",
+      "source_id": "pato",
+      "track_id": "pato_integration_20260623"
+    },
+    {
+      "blocked_payload_classes": [
+        "source_labels",
+        "source_synonyms",
+        "source_definitions",
+        "full_api_responses",
+        "release_payload_rows"
+      ],
+      "bounded_sample_allowed": false,
+      "candidate_only": true,
+      "commit_safe_artifacts": [
+        "registry records",
+        "source access records",
+        "provenance shells",
+        "local-only manifest references",
+        "schema fixtures",
+        "validation summaries",
+        "reviewer handoff skeletons"
+      ],
+      "go_no_go": "governance_only_terms_review_required",
+      "human_review_required": true,
+      "identifier_network_allowed": false,
+      "known_blockers": [
+        "uPheno depends on upstream ontology build products and may change with source releases.",
+        "Cross-species phenotype patterns require explicit evidence and predicate fields.",
+        "Terms and payload handling must be cleared before committing ontology labels, synonyms, definitions, full responses, or release payload rows."
+      ],
+      "metadata_only_scaffold_allowed": true,
+      "next_allowed_action": "complete source terms review and bounded source probe before any payload or label extraction",
+      "non_translation_outputs_allowed": false,
+      "ontology_name": "uPheno",
+      "payload_commit_allowed": false,
+      "phase_0_result": "implemented_governance_only",
+      "priority": "P1",
+      "provenance_id": "prov-p1-governance-upheno",
+      "source_access_status": "open_ontology_download_review_required",
+      "source_id": "upheno",
+      "track_id": "upheno_integration_20260623"
+    }
+  ],
+  "scope": "P1 open/public ontology Phase 0 governance tracks"
+}
