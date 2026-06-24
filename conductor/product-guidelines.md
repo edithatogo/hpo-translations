@@ -13,5 +13,10 @@
   - Automated machine translations
 
 ## 3. Formatting & Git Hygiene
-- **Sorting Entries:** To maintain clean git diffs and prevent merge conflicts, all translation files must be regularly sorted. The `make sort-all` task should be run to organize entries systematically.
-- **Whitespace Normalization:** Regular cleanup via `make clean-all` is recommended to strip trailing spaces and normalize tab-separated fields.
+- **Sorting Entries:** To maintain clean git diffs and prevent merge conflicts, all translation files must be regularly sorted. The `pixi run sort-all` task should be run to organize entries systematically.
+- **Whitespace Normalization:** Regular cleanup via `pixi run clean-all` is recommended to strip trailing spaces and normalize tab-separated fields.
+
+## 4. Automated Fix Policy
+- Automated fixes are allowed for formatting, schema, documentation, and deterministic workflow issues inside the declared write scope.
+- Automated fixes are not allowed for license classification, source-authority decisions, or semantic translation changes without explicit human approval.
+- Every automated fix must be followed by validation, `conductor-review`, and a separate commit when it is not part of the original task commit.

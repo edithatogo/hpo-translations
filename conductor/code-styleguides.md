@@ -7,7 +7,7 @@
 
 ## 2. Prose & Documentation Style Guide
 - **Vale Prose Linter:** Enforces editorial guidelines, syntax rules, and clear messaging across Markdown documentation (`README.md`, `docs/`, `conductor/`).
-- **Markdownlint / Prettier:** Normalizes syntax (e.g., list formatting, heading spacing, line breaks) to guarantee readability.
+- **Configured checks:** Use `pixi run lint`, `pixi run qc`, and `pixi run vale-check`; do not require tools that are not configured in this repository.
 
 ## 3. Translation Profile (TSV) Formatting
 - **Separators:** Must use Tab characters (`\t`) exclusively. Spaces should not be used as field delimiters.
