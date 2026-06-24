@@ -808,14 +808,24 @@
         "excluded_until_policy_allows": [
           "raw_source_payloads",
           "licensed_release_archives",
-          "credentialed_api_responses"
+          "credentialed_api_responses",
+          "source_labels",
+          "source_synonyms",
+          "source_definitions",
+          "long_names",
+          "part_names",
+          "linguistic_variants",
+          "full_api_responses",
+          "release_payload_rows"
         ],
         "required_before_phase_1_completion": [
           "registry_record",
           "source_access_record",
           "provenance_manifest",
           "validation_report",
-          "review_handoff_pack"
+          "review_handoff_pack",
+          "phase_0_source_probe_report",
+          "metadata_only_scaffold"
         ]
       },
       "authoritative_endpoint": "repository_recorded_authority_review_required",
@@ -837,7 +847,7 @@
         "Part names, long names, and component strings may conflict as candidate evidence.",
         "Clinical lab coverage may be sparse for non-lab HPO branches."
       ],
-      "fallback_path": "Commit only source governance metadata and define local-only extraction steps until license review passes.",
+      "fallback_path": "Commit metadata-only governance records and define local-only extraction steps until LOINC account, license, and release terms review passes.",
       "github_repositories": [
         "https://github.com/loinc",
         "https://github.com/loinc/comp-loinc"
@@ -858,7 +868,8 @@
       "human_review_required": true,
       "known_blockers": [
         "LOINC access requires license/account review before download automation.",
-        "Laboratory-observation semantics are not direct phenotype labels and need context fields."
+        "Laboratory-observation semantics are not direct phenotype labels and need context fields.",
+        "LOINC account, license, and payload handling must be cleared before committing labels, long names, part names, linguistic variants, full responses, or release payload rows."
       ],
       "language_codes": [
         "de",
@@ -898,7 +909,7 @@
         "source-specific extraction outputs remain local-only until access and redistribution terms pass review"
       ],
       "metadata_created_at": "2026-06-23T00:00:00Z",
-      "metadata_updated_at": "2026-06-23T00:00:00Z",
+      "metadata_updated_at": "2026-06-24T00:00:00Z",
       "ontology_name": "LOINC",
       "payload_commit_allowed": false,
       "pr_safe": true,
@@ -925,7 +936,7 @@
       "source_payloads_can_be_committed": false,
       "source_version": null,
       "track_id": "loinc_integration_20260623",
-      "track_status": "planned",
+      "track_status": "phase_0_implemented_blocked",
       "usefulness": "Laboratory and clinical observation terminology alignment.",
       "version_status": "not_pinned_in_track_metadata"
     },

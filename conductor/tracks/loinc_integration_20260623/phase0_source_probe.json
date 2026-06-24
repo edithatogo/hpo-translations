@@ -1,0 +1,115 @@
+{
+  "track_id": "loinc_integration_20260623",
+  "source_id": "loinc",
+  "source_name": "LOINC",
+  "phase": "phase_0_governance_source_probe",
+  "probe_status": "metadata_only_scaffolded",
+  "probe_date": "2026-06-24",
+  "authoritative_source": {
+    "source_type": "official_download_account_gated",
+    "url": "https://loinc.org/downloads/",
+    "source_repository": "https://github.com/loinc",
+    "ontology_build_repository": "https://github.com/loinc/comp-loinc",
+    "authority_status": "pending_account_license_and_release_terms_review",
+    "observed_release": "LOINC 2.82 listed as released 2026-03-04; payload not downloaded",
+    "version_pinning_strategy": "pin by official LOINC release version, release date, license file version, MD5, and immutable download artifact after account/license review",
+    "credential_required": true,
+    "network_probe_required_before_ingestion": true
+  },
+  "access_and_license_gate": {
+    "access_mode": "account_gated_download",
+    "source_access_status": "free_account_license_review_required",
+    "license_status": "pending_loinc_account_and_terms_review",
+    "payload_commit_allowed": false,
+    "derived_commit_allowed": false,
+    "local_only_required_for_payloads": true,
+    "go_no_go": "no_go_for_payload_ingestion_until_account_license_and_release_terms_reviewed"
+  },
+  "payload_policy": {
+    "no_external_payloads_fetched": true,
+    "no_raw_terms_committed": true,
+    "commit_allowlist": [
+      "source governance metadata",
+      "source access records",
+      "provenance shells",
+      "validation summaries",
+      "review handoff skeletons"
+    ],
+    "commit_denylist": [
+      "raw LOINC release payloads",
+      "LOINC labels",
+      "long names",
+      "part names",
+      "linguistic variants",
+      "definitions",
+      "full API responses",
+      "release payload rows",
+      "credentials",
+      "redistributable payload fragments"
+    ],
+    "local_only_manifest_required_if_payload_touched": true
+  },
+  "artifact_contract": {
+    "committed_artifacts": [
+      "conductor/tracks/loinc_integration_20260623/metadata.json",
+      "conductor/tracks/loinc_integration_20260623/plan.md",
+      "conductor/tracks/loinc_integration_20260623/spec.md",
+      "conductor/tracks/loinc_integration_20260623/phase0_source_probe.json"
+    ],
+    "future_payload_free_outputs": [
+      "registry_record",
+      "source_access_record",
+      "provenance_manifest",
+      "validation_report",
+      "review_handoff_pack"
+    ],
+    "local_only_artifacts": [
+      "raw downloads",
+      "release archives",
+      "full API responses",
+      "account-gated exports",
+      "LOINC release zip contents"
+    ],
+    "validation_commands": [
+      "pixi run validate-conductor",
+      "pixi run build-ontology-network",
+      "pixi run validate-ontology-network-artifacts"
+    ],
+    "freshness_rule": "refresh probe metadata when LOINC release version, license, account gate, endpoint, MD5, or payload policy changes"
+  },
+  "fail_fast_probe_design": {
+    "record_scope": "one authoritative LOINC source record only after account, license, and release terms are cleared",
+    "required_outputs": [
+      "normalized registry row",
+      "provenance row",
+      "schema validation result",
+      "candidate comparison or crosswalk shell when applicable"
+    ],
+    "success_criteria": [
+      "LOINC authority, account gate, and license state recorded",
+      "payload handling path classified as commit-safe or local-only",
+      "schema validation passes",
+      "review handoff remains candidate-only and human-review-required"
+    ]
+  },
+  "human_review_and_llm_policy": {
+    "candidate_only": true,
+    "human_review_required": true,
+    "llm_output_allowed": "metadata and review-assistance only until LOINC account, license, and release terms are cleared",
+    "promotion_policy": "manual_review_only"
+  },
+  "telemetry": {
+    "coding_agent": "codex",
+    "model": "gpt-5",
+    "task_id": "phase0_source_probe_scaffold",
+    "source_version": "LOINC 2.82 observed on official download page, payload not downloaded",
+    "validation_result": "local_validation_pending",
+    "open_blockers": [
+      "LOINC account and license review required",
+      "release artifact/version pinning required",
+      "payload handling decision required",
+      "lab-observation-to-phenotype mapping caveats required"
+    ],
+    "conflict_count": 0
+  }
+}
