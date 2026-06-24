@@ -120,6 +120,22 @@ class ValidateConductorTests(unittest.TestCase):
         errors = [issue for issue in issues if isinstance(issue, dict) and issue["severity"] == "error"]
         self.assertEqual(errors, [])
 
+    def test_report_outputs_include_ci_and_remediation_sections(self) -> None:
+        root = self.make_root()
+        write_track(root, "missing_metadata")
+        metadata_path = root / "conductor" / "tracks" / "missing_metadata" / "metadata.json"
+        metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+        del metadata["artifact_contract"]
+        metadata_path.write_text(json.dumps(metadata), encoding="utf-8")
+
+        report = validate(root, run_git=False)
+        ci_summary = report["ci_summary"]
+        remediation = report["remediation_by_track"]
+        assert isinstance(ci_summary, dict)
+        assert isinstance(remediation, dict)
+        self.assertEqual(ci_summary["status"], "fail")
+        self.assertIn("missing_metadata", remediation)
+
     def test_missing_metadata_field_fails(self) -> None:
         root = self.make_root()
         write_track(root, "missing_metadata")
@@ -151,6 +167,30 @@ class ValidateConductorTests(unittest.TestCase):
         write_track(root, "bad_dependency", {"depends_on": ["missing_track"]})
         report = validate(root, run_git=False)
         self.assertIn("dependency.depends_on.unknown_ref", issue_codes(report))
+
+    def test_implemented_track_missing_review_gate_fails(self) -> None:
+        root = self.make_root()
+        write_track(root, "missing_review", {"status": "implemented", "phase_review_status": "not_started"})
+        report = validate(root, run_git=False)
+        self.assertIn("metadata.review_gate_missing", issue_codes(report))
+
+    def test_restricted_source_without_policy_evidence_fails(self) -> None:
+        root = self.make_root()
+        write_track(
+            root,
+            "restricted_source",
+            {
+                "source_access_status": "license_required",
+                "restricted_payload_policy": {
+                    "commit_policy": "metadata only",
+                    "local_only_artifacts": [],
+                    "blocked_patterns": [],
+                    "required_evidence": [],
+                },
+            },
+        )
+        report = validate(root, run_git=False)
+        self.assertIn("metadata.restricted_source_policy_unresolved", issue_codes(report))
 
     def test_restricted_payload_path_warns(self) -> None:
         root = self.make_root()

@@ -41,6 +41,24 @@ KNOWN_EXTERNAL_REFS = {
     "all_future_conductor_tracks",
     "language_candidate_tracks",
 }
+RESTRICTED_SOURCE_STATES = {
+    "api_key_or_license_required",
+    "free_account_license_review_required",
+    "license_or_affiliate_release_required",
+    "license_required",
+    "permission_or_api_terms_required",
+    "subscription_or_license_required",
+}
+IMPLEMENTED_REVIEW_STATES = {
+    "codex_review_completed",
+    "pending_conductor_review",
+    "review_completed",
+    "subagent_review_completed_fixes_applied",
+}
+IMPLEMENTED_STATUSES = {
+    "implemented",
+    "phase_0_implemented_blocked",
+}
 REQUIRED_METADATA_FIELDS = {
     "agent_telemetry",
     "artifact_contract",
@@ -317,6 +335,43 @@ def validate_metadata(tracks: list[Track]) -> list[Issue]:
                 )
             )
 
+        if (
+            metadata.get("status") in IMPLEMENTED_STATUSES
+            and metadata.get("phase_review_status") not in IMPLEMENTED_REVIEW_STATES
+        ):
+            issues.append(
+                Issue(
+                    "error",
+                    "metadata.review_gate_missing",
+                    "Implemented or blocked track is missing a phase review gate state.",
+                    str(track.metadata_path),
+                    track.track_id,
+                    remediation=(
+                        "Run conductor-review and record the phase review status before claiming implementation."
+                    ),
+                )
+            )
+
+        policy = metadata.get("restricted_payload_policy")
+        if metadata.get("source_access_status") in RESTRICTED_SOURCE_STATES and isinstance(policy, dict):
+            local_only = policy.get("local_only_artifacts")
+            blocked_patterns = policy.get("blocked_patterns")
+            required_evidence = policy.get("required_evidence")
+            if not local_only or not blocked_patterns or not required_evidence:
+                issues.append(
+                    Issue(
+                        "error",
+                        "metadata.restricted_source_policy_unresolved",
+                        "Restricted-source track lacks local-only artifacts, blocked patterns, or required evidence.",
+                        str(track.metadata_path),
+                        track.track_id,
+                        remediation=(
+                            "Record local-only payload handling, blocked payload patterns, "
+                            "and review evidence before access."
+                        ),
+                    )
+                )
+
     return issues
 
 
@@ -569,6 +624,39 @@ def release_readiness(tracks: list[Track], issues: list[Issue]) -> dict[str, Any
     }
 
 
+def remediation_by_track(issues: list[Issue]) -> dict[str, list[dict[str, str]]]:
+    remediation: dict[str, list[dict[str, str]]] = {}
+    for issue in issues:
+        key = issue.track_id or "repository"
+        if not issue.remediation:
+            continue
+        remediation.setdefault(key, []).append(
+            {
+                "code": issue.code,
+                "severity": issue.severity,
+                "path": issue.path,
+                "remediation": issue.remediation,
+            }
+        )
+    return dict(sorted(remediation.items()))
+
+
+def ci_summary(summary: dict[str, Any]) -> dict[str, Any]:
+    issue_counts = cast(dict[str, int], summary["issue_counts"])
+    error_count = issue_counts.get("error", 0)
+    warning_count = issue_counts.get("warning", 0)
+    return {
+        "status": "pass" if error_count == 0 else "fail",
+        "release_ready": summary["release_ready"],
+        "track_count": summary["track_count"],
+        "error_count": error_count,
+        "warning_count": warning_count,
+        "info_count": issue_counts.get("info", 0),
+        "known_blocker_count": summary["known_blocker_count"],
+        "github_step_summary_title": "Conductor validation",
+    }
+
+
 def validate(root: Path, run_git: bool = True, check_remote: bool = False) -> dict[str, Any]:
     tracks, issues = load_tracks(root)
     issues.extend(validate_metadata(tracks))
@@ -577,8 +665,11 @@ def validate(root: Path, run_git: bool = True, check_remote: bool = False) -> di
     issues.extend(validate_payload_paths(root))
     issues.extend(validate_repo_hygiene(root, run_git))
     issues.extend(validate_remote_lifecycle(tracks, check_remote))
+    summary = release_readiness(tracks, issues)
     return {
-        "summary": release_readiness(tracks, issues),
+        "summary": summary,
+        "ci_summary": ci_summary(summary),
+        "remediation_by_track": remediation_by_track(issues),
         "issues": [asdict(issue) for issue in issues],
         "tracks": [
             {
@@ -609,6 +700,12 @@ def render_text(report: dict[str, Any]) -> str:
         f"- Source access counts: {json.dumps(summary['source_access_counts'], sort_keys=True)}",
         f"- Known blocker count: {summary['known_blocker_count']}",
         "",
+        "## CI Summary",
+        f"- Status: {report['ci_summary']['status']}",
+        f"- Errors: {report['ci_summary']['error_count']}",
+        f"- Warnings: {report['ci_summary']['warning_count']}",
+        f"- Info: {report['ci_summary']['info_count']}",
+        "",
         "## Issues",
     ]
     if not issues:
@@ -621,16 +718,52 @@ def render_text(report: dict[str, Any]) -> str:
             )
             if issue.get("remediation"):
                 lines.append(f"  Remediation: {issue['remediation']}")
+
+    remediation = cast(dict[str, list[dict[str, str]]], report["remediation_by_track"])
+    lines.extend(["", "## Remediation By Track"])
+    if not remediation:
+        lines.append("- None")
+    else:
+        for track_id, items in remediation.items():
+            lines.append(f"- {track_id}: {len(items)} item(s)")
+            for item in items:
+                lines.append(f"  - {item['code']}: {item['remediation']}")
     return "\n".join(lines) + "\n"
 
 
-def write_report(report: dict[str, Any], json_output: Path | None, text_output: Path | None) -> None:
+def render_ci_summary(report: dict[str, Any]) -> str:
+    summary = cast(dict[str, Any], report["ci_summary"])
+    return "\n".join(
+        [
+            f"# {summary['github_step_summary_title']}",
+            "",
+            f"- Status: {summary['status']}",
+            f"- Release ready: {str(summary['release_ready']).lower()}",
+            f"- Tracks: {summary['track_count']}",
+            f"- Errors: {summary['error_count']}",
+            f"- Warnings: {summary['warning_count']}",
+            f"- Info: {summary['info_count']}",
+            f"- Known blockers: {summary['known_blocker_count']}",
+            "",
+        ]
+    )
+
+
+def write_report(
+    report: dict[str, Any],
+    json_output: Path | None,
+    text_output: Path | None,
+    ci_output: Path | None = None,
+) -> None:
     if json_output is not None:
         json_output.parent.mkdir(parents=True, exist_ok=True)
         json_output.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     if text_output is not None:
         text_output.parent.mkdir(parents=True, exist_ok=True)
         text_output.write_text(render_text(report), encoding="utf-8")
+    if ci_output is not None:
+        ci_output.parent.mkdir(parents=True, exist_ok=True)
+        ci_output.write_text(render_ci_summary(report), encoding="utf-8")
 
 
 def main() -> None:
@@ -638,6 +771,7 @@ def main() -> None:
     parser.add_argument("--root", type=Path, default=Path("."), help="Repository root to validate.")
     parser.add_argument("--json-output", type=Path, help="Optional path for machine-readable JSON report.")
     parser.add_argument("--text-output", type=Path, help="Optional path for Markdown/text report.")
+    parser.add_argument("--ci-output", type=Path, help="Optional path for CI-step Markdown summary.")
     parser.add_argument("--skip-git", action="store_true", help="Skip git diff and index-lock checks.")
     parser.add_argument("--check-remote", action="store_true", help="Attempt optional GitHub CLI PR checks.")
     parser.add_argument("--warnings-as-errors", action="store_true", help="Exit non-zero when warnings are present.")
@@ -645,7 +779,7 @@ def main() -> None:
 
     root = args.root.resolve()
     report = validate(root, run_git=not args.skip_git, check_remote=args.check_remote)
-    write_report(report, args.json_output, args.text_output)
+    write_report(report, args.json_output, args.text_output, args.ci_output)
     print(render_text(report), end="")
 
     issues = cast(list[dict[str, Any]], report["issues"])

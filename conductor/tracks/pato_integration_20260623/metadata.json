@@ -18,7 +18,7 @@
   "ci_status": "local_pending",
   "merge_status": "not_opened",
   "last_commit": null,
-  "phase_review_status": "not_started",
+  "phase_review_status": "pending_conductor_review",
   "github_checks_url": null,
   "merge_commit": null,
   "parallel_group": "ontology-source-governance",

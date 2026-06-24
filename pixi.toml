@@ -34,7 +34,7 @@ validate-ontology-network-artifacts = ".pixi/envs/default/python.exe scripts/val
 check-ontology-network-drift = ".pixi/envs/default/python.exe scripts/check_ontology_network_drift.py"
 ontology-network = ".pixi/envs/default/python.exe -u scripts/build_ontology_network.py all"
 validate-conductor = ".pixi/envs/default/python.exe -u scripts/validate_conductor.py"
-validate-conductor-report = ".pixi/envs/default/python.exe -u scripts/validate_conductor.py --json-output tmp/conductor_validation_report.json --text-output tmp/conductor_validation_report.md"
+validate-conductor-report = ".pixi/envs/default/python.exe -u scripts/validate_conductor.py --json-output tmp/conductor_validation_report.json --text-output tmp/conductor_validation_report.md --ci-output tmp/conductor_validation_summary.md"
 test-conductor-validation = ".pixi/envs/default/python.exe -m unittest discover -s tests -p test_*.py"
 
 [dependencies]
