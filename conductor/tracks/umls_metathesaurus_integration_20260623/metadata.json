@@ -1,9 +1,9 @@
 {
   "track_id": "umls_metathesaurus_integration_20260623",
   "type": "feature",
-  "status": "planned",
+  "status": "phase_0_implemented_blocked",
   "created_at": "2026-06-23T00:00:00Z",
-  "updated_at": "2026-06-23T00:00:00Z",
+  "updated_at": "2026-06-24T00:00:00Z",
   "description": "Integrate UMLS Metathesaurus into terminology and translation support",
   "depends_on": [
     "translation_agents_20260622",
@@ -15,14 +15,24 @@
   ],
   "branch": "codex/umls_metathesaurus_integration_20260623",
   "pr_url": null,
-  "ci_status": "not_started",
+  "ci_status": "local_passing",
   "merge_status": "not_opened",
   "last_commit": null,
-  "phase_review_status": "not_started",
+  "phase_review_status": "codex_review_completed",
   "github_checks_url": null,
   "merge_commit": null,
   "parallel_group": "ontology-source-governance",
-  "local_only_artifacts": [],
+  "local_only_artifacts": [
+    "raw downloads",
+    "licensed payloads",
+    "full API responses",
+    "credentialed exports",
+    "UMLS full release files",
+    "Metathesaurus precomputed subsets",
+    "MRCONSO.RRF",
+    "MRREL.RRF",
+    "MRSAB.RRF"
+  ],
   "restricted_sources": [
     "UMLS Metathesaurus"
   ],
@@ -30,18 +40,19 @@
   "known_blockers": [
     "UMLS UTS license and credentials are required before any payload access.",
     "Metathesaurus source files and CUIs may be redistribution-restricted.",
-    "Source vocabulary provenance must be retained so mappings do not imply UMLS endorsement."
+    "Source vocabulary provenance must be retained so mappings do not imply UMLS endorsement.",
+    "UMLS license, UTS account/API key, source-vocabulary restrictions, and release-file terms must be cleared before committing MRCONSO, MRREL, MRSAB, CUI/AUI atoms, source labels, source relationships, full API responses, or release payload rows."
   ],
   "expected_blockers": [
     "Large release files may require local-only cache and incremental extraction.",
     "Concept-level mappings can collapse clinically distinct HPO terms if source-vocabulary context is ignored."
   ],
   "blocker_owner": "track implementer until reassigned in Phase 0",
-  "fallback_path": "Create registry-only governance records and validation stubs until licensed UTS access is confirmed.",
+  "fallback_path": "Use metadata-only governance records, source-version references, and payload-free review scaffolds until UMLS license, API key, release-file terms, and source-vocabulary redistribution constraints are confirmed.",
   "source_access_status": "license_required",
-  "write_owner": "unassigned",
+  "write_owner": "codex",
   "merge_owner": "ontology-network maintainer",
-  "automation_readiness": "phase_0_required",
+  "automation_readiness": "blocked_after_phase_0_governance",
   "evidence_score_policy": {
     "candidate_only": true,
     "signals": [
@@ -68,7 +79,23 @@
       "validation_result",
       "conflict_count",
       "open_blockers"
-    ]
+    ],
+    "last_run": {
+      "agent": "codex",
+      "model": "gpt-5",
+      "task_id": "phase0_source_probe_scaffold",
+      "source_version": "UMLS 2026AA observed on NLM release/download documentation; no UMLS payloads downloaded",
+      "runtime_seconds": null,
+      "validation_command": "pixi run build-ontology-network; pixi run validate-conductor; pixi run validate-ontology-network; pixi run validate-ontology-network-artifacts; pixi run test-conductor-validation; git diff --check",
+      "validation_result": "passing",
+      "conflict_count": 0,
+      "open_blockers": [
+        "UMLS license agreement review required",
+        "UTS account/API key required before API or release access",
+        "source-vocabulary restrictions must be retained and enforced",
+        "large release files require local-only cache and checksum/version pinning"
+      ]
+    }
   },
   "human_review_handoff": [
     "changed records",
@@ -114,6 +141,7 @@
   },
   "artifact_contract": {
     "required_before_phase_1_completion": [
+      "phase_0_source_probe_report",
       "registry_record",
       "source_access_record",
       "provenance_manifest",
@@ -130,7 +158,29 @@
     "excluded_until_policy_allows": [
       "raw_source_payloads",
       "licensed_release_archives",
-      "credentialed_api_responses"
+      "credentialed_api_responses",
+      "mrconso_rows",
+      "mrrel_rows",
+      "mrsab_rows",
+      "cui_atoms",
+      "aui_atoms",
+      "source_labels",
+      "source_synonyms",
+      "source_relationships",
+      "full_api_responses",
+      "release_payload_rows",
+      "licensed_source_vocabulary_content"
     ]
+  },
+  "source_governance_result": {
+    "phase_0_result": "implemented_governance_only",
+    "source_authority_status": "official_nlm_2026aa_release_and_uts_api_documentation_recorded",
+    "tooling_repository_status": "archived_hhs_uts_rest_api_samples_recorded_not_authoritative_for_payload_release",
+    "payload_commit_allowed": false,
+    "derived_commit_allowed": false,
+    "bounded_sample_allowed": false,
+    "local_only_required_for_payloads": true,
+    "go_no_go": "no_go_for_payload_ingestion_until_license_api_key_release_terms_and_source_vocabulary_restrictions_reviewed",
+    "review_result": "codex_review_completed_fixes_applied"
   }
 }

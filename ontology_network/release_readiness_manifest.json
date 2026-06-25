@@ -8,11 +8,11 @@
   "generated_date": "2026-06-23",
   "governance_artifacts_release_ready": true,
   "human_review_required": true,
-  "known_blocker_count": 50,
+  "known_blocker_count": 51,
   "release_policy": "Payload-free registry, schemas, validation summaries, provenance, and review scaffolds are release-safe; raw, licensed, credentialed, and full-release source payloads are excluded.",
   "release_ready": true,
   "restricted_source_count": 6,
   "source_count": 18,
-  "source_payload_blocker_count": 50,
+  "source_payload_blocker_count": 51,
   "source_payload_release_ready": false
 }

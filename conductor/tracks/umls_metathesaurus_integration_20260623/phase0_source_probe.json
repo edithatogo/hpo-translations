@@ -1,0 +1,126 @@
+{
+  "track_id": "umls_metathesaurus_integration_20260623",
+  "source_id": "umls",
+  "source_name": "UMLS Metathesaurus",
+  "phase": "phase_0_governance_source_probe",
+  "probe_status": "metadata_only_scaffolded",
+  "probe_date": "2026-06-24",
+  "authoritative_source": {
+    "source_type": "official_nlm_license_gated_release_and_uts_api",
+    "downloads_url": "https://www.nlm.nih.gov/research/umls/licensedcontent/umlsknowledgesources.html",
+    "release_documentation_url": "https://www.nlm.nih.gov/research/umls/knowledge_sources/metathesaurus/release/index.html",
+    "api_documentation_url": "https://documentation.uts.nlm.nih.gov/rest/home.html",
+    "api_base_uri": "https://uts-ws.nlm.nih.gov/rest",
+    "tooling_repository": "https://github.com/HHS/uts-rest-api",
+    "authority_status": "official NLM 2026AA release/download/API documentation recorded; payload access not attempted",
+    "observed_release": "2026AA UMLS Metathesaurus release files dated May 4, 2026; no files downloaded",
+    "version_pinning_strategy": "pin by UMLS release name, file date, file MD5, license agreement/appendix version, API version parameter, retrieval date, and local-only cache manifest after license review",
+    "credential_required": true,
+    "network_probe_required_before_ingestion": true
+  },
+  "access_and_license_gate": {
+    "access_mode": "licensed_release_download_or_api_key",
+    "source_access_status": "license_required",
+    "license_status": "pending_umls_license_uts_api_key_release_terms_and_source_vocabulary_restriction_review",
+    "payload_commit_allowed": false,
+    "derived_commit_allowed": false,
+    "bounded_sample_allowed": false,
+    "local_only_required_for_payloads": true,
+    "go_no_go": "no_go_for_payload_ingestion_until_license_api_key_release_terms_and_source_vocabulary_restrictions_reviewed"
+  },
+  "payload_policy": {
+    "no_external_payloads_fetched": true,
+    "no_raw_terms_committed": true,
+    "commit_allowlist": [
+      "source governance metadata",
+      "source access records",
+      "provenance shells",
+      "validation summaries",
+      "review handoff skeletons"
+    ],
+    "commit_denylist": [
+      "raw UMLS downloads",
+      "full UMLS release archives",
+      "Metathesaurus precomputed subsets",
+      "MRCONSO.RRF rows",
+      "MRREL.RRF rows",
+      "MRSAB.RRF rows",
+      "CUI atoms",
+      "AUI atoms",
+      "source vocabulary labels",
+      "source vocabulary relationships",
+      "full API responses",
+      "credentials",
+      "redistributable payload fragments"
+    ],
+    "local_only_manifest_required_if_payload_touched": true
+  },
+  "artifact_contract": {
+    "committed_artifacts": [
+      "conductor/tracks/umls_metathesaurus_integration_20260623/metadata.json",
+      "conductor/tracks/umls_metathesaurus_integration_20260623/plan.md",
+      "conductor/tracks/umls_metathesaurus_integration_20260623/spec.md",
+      "conductor/tracks/umls_metathesaurus_integration_20260623/phase0_source_probe.json"
+    ],
+    "future_payload_free_outputs": [
+      "registry_record",
+      "source_access_record",
+      "provenance_manifest",
+      "validation_report",
+      "review_handoff_pack"
+    ],
+    "local_only_artifacts": [
+      "raw downloads",
+      "UMLS full release files",
+      "Metathesaurus precomputed subsets",
+      "MRCONSO.RRF",
+      "MRREL.RRF",
+      "MRSAB.RRF",
+      "full API responses",
+      "credentialed exports"
+    ],
+    "validation_commands": [
+      "pixi run validate-conductor",
+      "pixi run build-ontology-network",
+      "pixi run validate-ontology-network-artifacts"
+    ],
+    "freshness_rule": "refresh probe metadata when UMLS release, license agreement, source-vocabulary restrictions, UTS API docs, download files, MD5 checksums, or payload policy changes"
+  },
+  "fail_fast_probe_design": {
+    "record_scope": "one UMLS source governance record only; no CUI, AUI, atom, relationship, label, or release file row until license/API and source-vocabulary restrictions are cleared",
+    "required_outputs": [
+      "normalized registry row",
+      "provenance row",
+      "schema validation result",
+      "candidate comparison or crosswalk shell when applicable"
+    ],
+    "success_criteria": [
+      "UMLS authority, release version, API key gate, and license state recorded",
+      "payload handling path classified as commit-safe or local-only",
+      "schema validation passes",
+      "review handoff remains candidate-only and human-review-required"
+    ]
+  },
+  "human_review_and_llm_policy": {
+    "candidate_only": true,
+    "human_review_required": true,
+    "llm_output_allowed": "metadata and review-assistance only until UMLS license, API key, release terms, and source-vocabulary restrictions are cleared",
+    "promotion_policy": "manual_review_only"
+  },
+  "telemetry": {
+    "agent": "codex",
+    "model": "gpt-5",
+    "task_id": "phase0_source_probe_scaffold",
+    "source_version": "UMLS 2026AA observed on NLM release/download documentation; no UMLS payloads downloaded",
+    "runtime_seconds": null,
+    "validation_command": "pixi run build-ontology-network; pixi run validate-conductor; pixi run validate-ontology-network; pixi run validate-ontology-network-artifacts; pixi run test-conductor-validation; git diff --check",
+    "validation_result": "passing",
+    "conflict_count": 0,
+    "open_blockers": [
+      "UMLS license agreement review required",
+      "UTS account/API key required before API or release access",
+      "source-vocabulary restrictions must be retained and enforced",
+      "large release files require local-only cache and checksum/version pinning"
+    ]
+  }
+}
