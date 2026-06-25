@@ -3,7 +3,7 @@
   "type": "feature",
   "status": "legacy_complete",
   "created_at": "2026-06-22T00:45:30Z",
-  "updated_at": "2026-06-23T00:00:00Z",
+  "updated_at": "2026-06-25T00:00:00Z",
   "description": "Migrate project environment and automation workflows from uv/Makefile to pixi and configure code quality tools (ruff and vale)",
   "lifecycle_note": "Completed before the current remote-delivery lifecycle; PR/CI/merge evidence was not backfilled.",
   "depends_on": [],
@@ -15,7 +15,7 @@
   "ci_status": "not_started",
   "merge_status": "legacy_unverified",
   "last_commit": null,
-  "phase_review_status": "not_started",
+  "phase_review_status": "codex_legacy_review_completed",
   "github_checks_url": null,
   "merge_commit": null,
   "parallel_group": "foundation",
@@ -57,5 +57,12 @@
     "record_required": false,
     "fields": []
   },
-  "human_review_handoff": []
+  "human_review_handoff": [],
+  "legacy_review_archive": {
+    "reviewed_at": "2026-06-25T00:00:00Z",
+    "review_result": "codex_legacy_review_completed",
+    "archive_status": "legacy_review_archived",
+    "review_scope": "plan, spec, metadata, conductor workflow, product guidelines, validation contract",
+    "evidence_boundary": "No PR, CI, merge, or commit evidence was backfilled because this track predates the current remote-delivery lifecycle."
+  }
 }
