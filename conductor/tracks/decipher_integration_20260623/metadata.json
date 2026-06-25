@@ -1,9 +1,9 @@
 {
   "track_id": "decipher_integration_20260623",
   "type": "feature",
-  "status": "planned",
+  "status": "phase_0_implemented_blocked",
   "created_at": "2026-06-23T00:00:00Z",
-  "updated_at": "2026-06-23T00:00:00Z",
+  "updated_at": "2026-06-25T00:00:00Z",
   "description": "Integrate DECIPHER into terminology and translation support",
   "depends_on": [
     "translation_agents_20260622",
@@ -15,32 +15,43 @@
   ],
   "branch": "codex/decipher_integration_20260623",
   "pr_url": null,
-  "ci_status": "not_started",
+  "ci_status": "local_passing",
   "merge_status": "not_opened",
   "last_commit": null,
-  "phase_review_status": "not_started",
+  "phase_review_status": "codex_review_completed",
   "github_checks_url": null,
   "merge_commit": null,
   "parallel_group": "ontology-source-governance",
-  "local_only_artifacts": [],
+  "local_only_artifacts": [
+    "raw downloads",
+    "licensed payloads",
+    "full API responses",
+    "credentialed exports",
+    "patient records",
+    "variant records",
+    "phenotype records",
+    "syndrome data files",
+    "gene review data files"
+  ],
   "restricted_sources": [
     "DECIPHER"
   ],
   "priority": "P2",
   "known_blockers": [
     "DECIPHER may include sensitive case-level or consent-governed content.",
-    "API or data-use terms must be reviewed before any automated extraction."
+    "API or data-use terms must be reviewed before any automated extraction.",
+    "DECIPHER public site, login/join surfaces, data-file links, terms of use, and consent/privacy boundaries must be reviewed before committing patient, variant, phenotype, syndrome, gene-review, API, or downloaded data rows."
   ],
   "expected_blockers": [
     "Only aggregate or public gene/variant/disease evidence may be commit-safe.",
     "Privacy review may block payload use entirely."
   ],
   "blocker_owner": "track implementer until reassigned in Phase 0",
-  "fallback_path": "Keep this as a governance-only track until explicit permitted public surfaces are documented.",
+  "fallback_path": "Keep DECIPHER as metadata-only governance with current EMBL-EBI endpoint references until terms, consent/privacy scope, data-file access, API access, and redistribution rules are explicitly cleared.",
   "source_access_status": "permission_or_api_terms_required",
-  "write_owner": "unassigned",
+  "write_owner": "codex",
   "merge_owner": "ontology-network maintainer",
-  "automation_readiness": "phase_0_required",
+  "automation_readiness": "blocked_after_phase_0_governance",
   "evidence_score_policy": {
     "candidate_only": true,
     "signals": [
@@ -67,7 +78,23 @@
       "validation_result",
       "conflict_count",
       "open_blockers"
-    ]
+    ],
+    "last_run": {
+      "agent": "codex",
+      "model": "gpt-5",
+      "task_id": "phase0_source_probe_scaffold",
+      "source_version": "DECIPHER v11.39 observed on current public landing page; no data files, patient records, or API payloads downloaded",
+      "runtime_seconds": null,
+      "validation_command": "pixi run build-ontology-network; pixi run validate-conductor; pixi run validate-ontology-network; pixi run validate-ontology-network-artifacts; pixi run test-conductor-validation; git diff --check",
+      "validation_result": "passing",
+      "conflict_count": 0,
+      "open_blockers": [
+        "DECIPHER terms of use review required",
+        "consent and privacy scope review required before any patient, phenotype, or variant payload use",
+        "data-file and API access policy review required",
+        "release/version pinning required before downstream crosswalk or review artifacts"
+      ]
+    }
   },
   "human_review_handoff": [
     "changed records",
@@ -113,6 +140,7 @@
   },
   "artifact_contract": {
     "required_before_phase_1_completion": [
+      "phase_0_source_probe_report",
       "registry_record",
       "source_access_record",
       "provenance_manifest",
@@ -129,7 +157,25 @@
     "excluded_until_policy_allows": [
       "raw_source_payloads",
       "licensed_release_archives",
-      "credentialed_api_responses"
+      "credentialed_api_responses",
+      "patient_records",
+      "variant_records",
+      "phenotype_records",
+      "syndrome_rows",
+      "gene_review_rows",
+      "full_api_responses",
+      "downloaded_data_files",
+      "consent_governed_content"
     ]
+  },
+  "source_governance_result": {
+    "phase_0_result": "implemented_governance_only",
+    "source_authority_status": "current_embl_ebi_deciphergenomics_endpoint_recorded_old_sanger_endpoint_gone",
+    "payload_commit_allowed": false,
+    "derived_commit_allowed": false,
+    "bounded_sample_allowed": false,
+    "local_only_required_for_payloads": true,
+    "go_no_go": "no_go_for_payload_ingestion_until_terms_privacy_consent_api_and_data_file_scope_reviewed",
+    "review_result": "codex_review_completed_fixes_applied"
   }
 }

@@ -17,9 +17,18 @@
         "excluded_until_policy_allows": [
           "raw_source_payloads",
           "licensed_release_archives",
-          "credentialed_api_responses"
+          "credentialed_api_responses",
+          "patient_records",
+          "variant_records",
+          "phenotype_records",
+          "syndrome_rows",
+          "gene_review_rows",
+          "full_api_responses",
+          "downloaded_data_files",
+          "consent_governed_content"
         ],
         "required_before_phase_1_completion": [
+          "phase_0_source_probe_report",
           "registry_record",
           "source_access_record",
           "provenance_manifest",
@@ -46,14 +55,15 @@
         "Only aggregate or public gene/variant/disease evidence may be commit-safe.",
         "Privacy review may block payload use entirely."
       ],
-      "fallback_path": "Keep this as a governance-only track until explicit permitted public surfaces are documented.",
+      "fallback_path": "Keep DECIPHER as metadata-only governance with current EMBL-EBI endpoint references until terms, consent/privacy scope, data-file access, API access, and redistribution rules are explicitly cleared.",
       "github_repositories": [],
       "github_repository_count": 0,
       "github_repository_roles": [],
       "human_review_required": true,
       "known_blockers": [
         "DECIPHER may include sensitive case-level or consent-governed content.",
-        "API or data-use terms must be reviewed before any automated extraction."
+        "API or data-use terms must be reviewed before any automated extraction.",
+        "DECIPHER public site, login/join surfaces, data-file links, terms of use, and consent/privacy boundaries must be reviewed before committing patient, variant, phenotype, syndrome, gene-review, API, or downloaded data rows."
       ],
       "language_codes": [
         "en"
@@ -73,7 +83,7 @@
         "source-specific extraction outputs remain local-only until access and redistribution terms pass review"
       ],
       "metadata_created_at": "2026-06-23T00:00:00Z",
-      "metadata_updated_at": "2026-06-23T00:00:00Z",
+      "metadata_updated_at": "2026-06-25T00:00:00Z",
       "ontology_name": "DECIPHER",
       "payload_commit_allowed": false,
       "pr_safe": true,
@@ -100,7 +110,7 @@
       "source_payloads_can_be_committed": false,
       "source_version": null,
       "track_id": "decipher_integration_20260623",
-      "track_status": "planned",
+      "track_status": "phase_0_implemented_blocked",
       "usefulness": "Variant, CNV, and phenotype case context where licensed access permits.",
       "version_status": "not_pinned_in_track_metadata"
     },

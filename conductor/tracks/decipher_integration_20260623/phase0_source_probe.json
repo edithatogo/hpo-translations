@@ -1,0 +1,120 @@
+{
+  "track_id": "decipher_integration_20260623",
+  "source_id": "decipher",
+  "source_name": "DECIPHER",
+  "phase": "phase_0_governance_source_probe",
+  "probe_status": "metadata_only_scaffolded",
+  "probe_date": "2026-06-25",
+  "authoritative_source": {
+    "source_type": "current_embl_ebi_public_site_with_login_join_data_file_terms_surfaces",
+    "current_url": "https://www.deciphergenomics.org/",
+    "legacy_url": "https://decipher.sanger.ac.uk/",
+    "terms_url": "https://www.deciphergenomics.org/files/pdfs/DECIPHER_Terms_of_Use.pdf",
+    "data_files_url": "https://www.deciphergenomics.org/about/downloads/data",
+    "authority_status": "current EMBL-EBI endpoint reachable; legacy Sanger endpoint returns 410 Gone and points to deciphergenomics.org",
+    "observed_release": "DECIPHER v11.39 landing page observed; no data files, patient records, or API payloads downloaded",
+    "version_pinning_strategy": "pin by DECIPHER version string, endpoint, retrieval date, terms file version/checksum, data-file inventory, and API/download policy after review",
+    "credential_required": true,
+    "network_probe_required_before_ingestion": true
+  },
+  "access_and_license_gate": {
+    "access_mode": "permissioned_public_site_login_join_terms_gated_access",
+    "source_access_status": "permission_or_api_terms_required",
+    "license_status": "pending_decipher_terms_privacy_consent_api_and_data_file_review",
+    "payload_commit_allowed": false,
+    "derived_commit_allowed": false,
+    "bounded_sample_allowed": false,
+    "local_only_required_for_payloads": true,
+    "go_no_go": "no_go_for_payload_ingestion_until_terms_privacy_consent_api_and_data_file_scope_reviewed"
+  },
+  "payload_policy": {
+    "no_external_payloads_fetched": true,
+    "no_raw_terms_committed": true,
+    "commit_allowlist": [
+      "source governance metadata",
+      "source access records",
+      "provenance shells",
+      "validation summaries",
+      "review handoff skeletons"
+    ],
+    "commit_denylist": [
+      "patient records",
+      "variant records",
+      "phenotype records",
+      "syndrome data files",
+      "gene-review data files",
+      "full API responses",
+      "credentialed exports",
+      "consent-governed content",
+      "redistributable payload fragments",
+      "credentials"
+    ],
+    "local_only_manifest_required_if_payload_touched": true
+  },
+  "artifact_contract": {
+    "committed_artifacts": [
+      "conductor/tracks/decipher_integration_20260623/metadata.json",
+      "conductor/tracks/decipher_integration_20260623/plan.md",
+      "conductor/tracks/decipher_integration_20260623/spec.md",
+      "conductor/tracks/decipher_integration_20260623/phase0_source_probe.json"
+    ],
+    "future_payload_free_outputs": [
+      "registry_record",
+      "source_access_record",
+      "provenance_manifest",
+      "validation_report",
+      "review_handoff_pack"
+    ],
+    "local_only_artifacts": [
+      "raw downloads",
+      "patient records",
+      "variant records",
+      "phenotype records",
+      "full API responses",
+      "credentialed exports"
+    ],
+    "validation_commands": [
+      "pixi run validate-conductor",
+      "pixi run build-ontology-network",
+      "pixi run validate-ontology-network-artifacts"
+    ],
+    "freshness_rule": "refresh probe metadata when DECIPHER version, host, terms, data-file inventory, API access, consent/privacy policy, or payload policy changes"
+  },
+  "fail_fast_probe_design": {
+    "record_scope": "one DECIPHER source governance record only; no patient, variant, phenotype, or data-file rows until terms and privacy review clear ingestion",
+    "required_outputs": [
+      "normalized registry row",
+      "provenance row",
+      "schema validation result",
+      "candidate comparison or crosswalk shell when applicable"
+    ],
+    "success_criteria": [
+      "DECIPHER authority, host migration, access gate, and terms state recorded",
+      "payload handling path classified as commit-safe or local-only",
+      "schema validation passes",
+      "review handoff remains candidate-only and human-review-required"
+    ]
+  },
+  "human_review_and_llm_policy": {
+    "candidate_only": true,
+    "human_review_required": true,
+    "llm_output_allowed": "metadata and review-assistance only until DECIPHER terms, privacy, consent, API, and data-file scope are cleared",
+    "promotion_policy": "manual_review_only"
+  },
+  "telemetry": {
+    "agent": "codex",
+    "model": "gpt-5",
+    "task_id": "phase0_source_probe_scaffold",
+    "source_version": "DECIPHER v11.39 observed on current public landing page; no data files, patient records, or API payloads downloaded",
+    "runtime_seconds": null,
+    "validation_command": "pixi run build-ontology-network; pixi run validate-conductor; pixi run validate-ontology-network; pixi run validate-ontology-network-artifacts; pixi run test-conductor-validation; git diff --check",
+    "validation_result": "passing",
+    "conflict_count": 0,
+    "open_blockers": [
+      "DECIPHER terms of use review required",
+      "consent and privacy scope review required before any patient, phenotype, or variant payload use",
+      "data-file and API access policy review required",
+      "release/version pinning required before downstream crosswalk or review artifacts"
+    ]
+  }
+}
