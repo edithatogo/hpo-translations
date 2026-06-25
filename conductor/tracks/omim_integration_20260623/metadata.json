@@ -1,9 +1,9 @@
 {
   "track_id": "omim_integration_20260623",
   "type": "feature",
-  "status": "planned",
+  "status": "phase_0_implemented_blocked",
   "created_at": "2026-06-23T00:00:00Z",
-  "updated_at": "2026-06-23T00:00:00Z",
+  "updated_at": "2026-06-25T00:00:00Z",
   "description": "Integrate OMIM into terminology and translation support",
   "depends_on": [
     "translation_agents_20260622",
@@ -15,32 +15,42 @@
   ],
   "branch": "codex/omim_integration_20260623",
   "pr_url": null,
-  "ci_status": "not_started",
+  "ci_status": "local_passing",
   "merge_status": "not_opened",
   "last_commit": null,
-  "phase_review_status": "not_started",
+  "phase_review_status": "codex_review_completed",
   "github_checks_url": null,
   "merge_commit": null,
   "parallel_group": "ontology-source-governance",
-  "local_only_artifacts": [],
+  "local_only_artifacts": [
+    "raw downloads",
+    "licensed payloads",
+    "full API responses",
+    "credentialed exports",
+    "genemap2.txt",
+    "morbidmap.txt",
+    "clinical synopsis payloads",
+    "gene-disease relationship files"
+  ],
   "restricted_sources": [
     "OMIM"
   ],
   "priority": "P2",
   "known_blockers": [
     "OMIM API/download access is licensed and requires credentials.",
-    "Narrative clinical synopses and identifiers must not be redistributed beyond allowed terms."
+    "Narrative clinical synopses and identifiers must not be redistributed beyond allowed terms.",
+    "OMIM registration, API/download credentials, and redistribution terms must be cleared before committing genemap2, morbidmap, clinical synopsis text, phenotype labels, gene-disease relationship rows, full API responses, or release payload rows."
   ],
   "expected_blockers": [
     "Gene-disease-phenotype evidence requires careful source attribution.",
     "English-only coverage limits multilingual triangulation outputs."
   ],
   "blocker_owner": "track implementer until reassigned in Phase 0",
-  "fallback_path": "Use OMIM identifier references and access-controlled local manifests until license and API access are confirmed.",
+  "fallback_path": "Use OMIM identifier references, metadata-only governance records, and access-controlled local manifests until registration, API/download credentials, and redistribution terms are confirmed.",
   "source_access_status": "api_key_or_license_required",
-  "write_owner": "unassigned",
+  "write_owner": "codex",
   "merge_owner": "ontology-network maintainer",
-  "automation_readiness": "phase_0_required",
+  "automation_readiness": "blocked_after_phase_0_governance",
   "evidence_score_policy": {
     "candidate_only": true,
     "signals": [
@@ -67,7 +77,23 @@
       "validation_result",
       "conflict_count",
       "open_blockers"
-    ]
+    ],
+    "last_run": {
+      "agent": "codex",
+      "model": "gpt-5",
+      "task_id": "phase0_source_probe_scaffold",
+      "source_version": "OMIM live release not downloaded; official site/API/download routes and GitHub organization recorded",
+      "runtime_seconds": null,
+      "validation_command": "pixi run build-ontology-network; pixi run validate-conductor; pixi run validate-ontology-network; pixi run validate-ontology-network-artifacts; pixi run test-conductor-validation; git diff --check",
+      "validation_result": "passing",
+      "conflict_count": 0,
+      "open_blockers": [
+        "OMIM registration and credentials required before payload access",
+        "API/download terms and redistribution policy review required",
+        "release/version pinning required after authenticated access",
+        "gene-disease-phenotype evidence attribution rules required before downstream crosswalks"
+      ]
+    }
   },
   "human_review_handoff": [
     "changed records",
@@ -113,6 +139,7 @@
   },
   "artifact_contract": {
     "required_before_phase_1_completion": [
+      "phase_0_source_probe_report",
       "registry_record",
       "source_access_record",
       "provenance_manifest",
@@ -129,7 +156,28 @@
     "excluded_until_policy_allows": [
       "raw_source_payloads",
       "licensed_release_archives",
-      "credentialed_api_responses"
+      "credentialed_api_responses",
+      "source_labels",
+      "source_synonyms",
+      "source_definitions",
+      "clinical_synopses",
+      "genemap2_rows",
+      "morbidmap_rows",
+      "gene_disease_relationship_rows",
+      "full_api_responses",
+      "release_payload_rows",
+      "credentialed_exports"
     ]
+  },
+  "source_governance_result": {
+    "phase_0_result": "implemented_governance_only",
+    "source_authority_status": "official_omim_site_cloudflare_challenged_registration_required_for_downloads",
+    "source_repository_status": "github_organization_and_sample_parser_recorded_not_authoritative_for_payload_release",
+    "payload_commit_allowed": false,
+    "derived_commit_allowed": false,
+    "bounded_sample_allowed": false,
+    "local_only_required_for_payloads": true,
+    "go_no_go": "no_go_for_payload_ingestion_until_registration_credentials_api_terms_and_redistribution_terms_reviewed",
+    "review_result": "codex_review_completed_fixes_applied"
   }
 }

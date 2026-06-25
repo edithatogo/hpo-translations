@@ -1,0 +1,121 @@
+{
+  "track_id": "omim_integration_20260623",
+  "source_id": "omim",
+  "source_name": "OMIM",
+  "phase": "phase_0_governance_source_probe",
+  "probe_status": "metadata_only_scaffolded",
+  "probe_date": "2026-06-25",
+  "authoritative_source": {
+    "source_type": "official_site_registration_gated_api_or_download",
+    "url": "https://www.omim.org/",
+    "api_url": "https://www.omim.org/api",
+    "downloads_url": "https://www.omim.org/downloads",
+    "source_repository": "https://github.com/OMIM-org",
+    "sample_parser_repository": "https://github.com/OMIM-org/genemap2-parser",
+    "authority_status": "official site/API/download routes recorded; headless probe encountered browser challenge; payload access not attempted",
+    "observed_release": "not_pinned; no OMIM payload downloaded",
+    "version_pinning_strategy": "pin by OMIM file/API release timestamp, retrieval date, terms version, file checksum, and authenticated endpoint after credentials and redistribution review",
+    "credential_required": true,
+    "network_probe_required_before_ingestion": true
+  },
+  "access_and_license_gate": {
+    "access_mode": "credentialed_api_or_download",
+    "source_access_status": "api_key_or_license_required",
+    "license_status": "pending_omim_registration_api_download_and_redistribution_terms_review",
+    "payload_commit_allowed": false,
+    "derived_commit_allowed": false,
+    "bounded_sample_allowed": false,
+    "local_only_required_for_payloads": true,
+    "go_no_go": "no_go_for_payload_ingestion_until_registration_credentials_api_terms_and_redistribution_terms_reviewed"
+  },
+  "payload_policy": {
+    "no_external_payloads_fetched": true,
+    "no_raw_terms_committed": true,
+    "commit_allowlist": [
+      "source governance metadata",
+      "source access records",
+      "provenance shells",
+      "validation summaries",
+      "review handoff skeletons"
+    ],
+    "commit_denylist": [
+      "raw OMIM downloads",
+      "genemap2.txt",
+      "morbidmap.txt",
+      "clinical synopsis text",
+      "phenotype labels",
+      "gene-disease relationship payload rows",
+      "full API responses",
+      "credentialed exports",
+      "credentials",
+      "redistributable payload fragments"
+    ],
+    "local_only_manifest_required_if_payload_touched": true
+  },
+  "artifact_contract": {
+    "committed_artifacts": [
+      "conductor/tracks/omim_integration_20260623/metadata.json",
+      "conductor/tracks/omim_integration_20260623/plan.md",
+      "conductor/tracks/omim_integration_20260623/spec.md",
+      "conductor/tracks/omim_integration_20260623/phase0_source_probe.json"
+    ],
+    "future_payload_free_outputs": [
+      "registry_record",
+      "source_access_record",
+      "provenance_manifest",
+      "validation_report",
+      "review_handoff_pack"
+    ],
+    "local_only_artifacts": [
+      "raw downloads",
+      "genemap2.txt",
+      "morbidmap.txt",
+      "clinical synopsis payloads",
+      "full API responses",
+      "credentialed exports"
+    ],
+    "validation_commands": [
+      "pixi run validate-conductor",
+      "pixi run build-ontology-network",
+      "pixi run validate-ontology-network-artifacts"
+    ],
+    "freshness_rule": "refresh probe metadata when OMIM access terms, API/download endpoints, file availability, repository inventory, or redistribution policy changes"
+  },
+  "fail_fast_probe_design": {
+    "record_scope": "one OMIM source record only after registration, credentials, API/download terms, and redistribution constraints are cleared",
+    "required_outputs": [
+      "normalized registry row",
+      "provenance row",
+      "schema validation result",
+      "candidate comparison or crosswalk shell when applicable"
+    ],
+    "success_criteria": [
+      "OMIM authority, registration gate, and license state recorded",
+      "payload handling path classified as commit-safe or local-only",
+      "schema validation passes",
+      "review handoff remains candidate-only and human-review-required"
+    ]
+  },
+  "human_review_and_llm_policy": {
+    "candidate_only": true,
+    "human_review_required": true,
+    "llm_output_allowed": "metadata and review-assistance only until OMIM registration, credentials, and redistribution terms are cleared",
+    "promotion_policy": "manual_review_only"
+  },
+  "telemetry": {
+    "agent": "codex",
+    "model": "gpt-5",
+    "task_id": "phase0_source_probe_scaffold",
+    "source_version": "OMIM live release not downloaded; official site/API/download routes and GitHub organization recorded",
+    "runtime_seconds": null,
+    "validation_command": "pixi run build-ontology-network; pixi run validate-conductor; pixi run validate-ontology-network; pixi run validate-ontology-network-artifacts; pixi run test-conductor-validation; git diff --check",
+    "validation_result": "passing",
+    "conflict_count": 0,
+    "open_blockers": [
+      "OMIM registration and credentials required before payload access",
+      "API/download terms and redistribution policy review required",
+      "release/version pinning required after authenticated access",
+      "gene-disease-phenotype evidence attribution rules required before downstream crosswalks"
+    ]
+  }
+}
