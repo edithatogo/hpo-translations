@@ -1,0 +1,127 @@
+{
+  "track_id": "snomed_ct_integration_20260623",
+  "source_id": "snomed_ct",
+  "source_name": "SNOMED CT",
+  "phase": "phase_0_governance_source_probe",
+  "probe_status": "metadata_only_scaffolded",
+  "probe_date": "2026-06-25",
+  "authoritative_source": {
+    "source_type": "official_snomed_international_site_and_mlds_release_distribution",
+    "official_site_url": "https://www.snomed.org/",
+    "get_snomed_url": "https://www.snomed.org/snomed-ct/get-snomed",
+    "mlds_url": "https://mlds.ihtsdotools.org/",
+    "tooling_repositories": [
+      "https://github.com/IHTSDO",
+      "https://github.com/IHTSDO/snowstorm",
+      "https://github.com/IHTSDO/snomed-owl-toolkit"
+    ],
+    "authority_status": "official SNOMED site and MLDS portal reachable; RF2 release access not attempted",
+    "observed_release": "not_pinned; no SNOMED CT release payloads downloaded",
+    "version_pinning_strategy": "pin by edition, extension, release package name, release date, effectiveTime, RF2 package checksum, license/affiliate terms, and local-only cache manifest after access review",
+    "credential_required": true,
+    "network_probe_required_before_ingestion": true
+  },
+  "access_and_license_gate": {
+    "access_mode": "licensed_release_download",
+    "source_access_status": "license_or_affiliate_release_required",
+    "license_status": "pending_snomed_affiliate_member_license_mlds_edition_extension_rf2_and_crossmap_terms_review",
+    "payload_commit_allowed": false,
+    "derived_commit_allowed": false,
+    "bounded_sample_allowed": false,
+    "local_only_required_for_payloads": true,
+    "go_no_go": "no_go_for_payload_ingestion_until_license_mlds_edition_extension_rf2_and_crossmap_terms_reviewed"
+  },
+  "payload_policy": {
+    "no_external_payloads_fetched": true,
+    "no_raw_terms_committed": true,
+    "commit_allowlist": [
+      "source governance metadata",
+      "source access records",
+      "provenance shells",
+      "validation summaries",
+      "review handoff skeletons"
+    ],
+    "commit_denylist": [
+      "raw SNOMED CT downloads",
+      "RF2 release archives",
+      "concept rows",
+      "description rows",
+      "relationship rows",
+      "refset rows",
+      "language refset rows",
+      "OWL axiom rows",
+      "cross-map rows",
+      "full API responses",
+      "credentials",
+      "redistributable payload fragments"
+    ],
+    "local_only_manifest_required_if_payload_touched": true
+  },
+  "artifact_contract": {
+    "committed_artifacts": [
+      "conductor/tracks/snomed_ct_integration_20260623/metadata.json",
+      "conductor/tracks/snomed_ct_integration_20260623/plan.md",
+      "conductor/tracks/snomed_ct_integration_20260623/spec.md",
+      "conductor/tracks/snomed_ct_integration_20260623/phase0_source_probe.json"
+    ],
+    "future_payload_free_outputs": [
+      "registry_record",
+      "source_access_record",
+      "provenance_manifest",
+      "validation_report",
+      "review_handoff_pack"
+    ],
+    "local_only_artifacts": [
+      "raw downloads",
+      "RF2 release archives",
+      "international edition files",
+      "national extension files",
+      "language refset files",
+      "cross-map files",
+      "full API responses"
+    ],
+    "validation_commands": [
+      "pixi run validate-conductor",
+      "pixi run build-ontology-network",
+      "pixi run validate-ontology-network-artifacts"
+    ],
+    "freshness_rule": "refresh probe metadata when SNOMED edition, extension, MLDS route, release package, effectiveTime, license/affiliate terms, cross-map terms, or payload policy changes"
+  },
+  "fail_fast_probe_design": {
+    "record_scope": "one SNOMED CT source governance record only; no concept, description, relationship, refset, OWL, language, map, or RF2 release rows until license and redistribution terms are cleared",
+    "required_outputs": [
+      "normalized registry row",
+      "provenance row",
+      "schema validation result",
+      "candidate comparison or crosswalk shell when applicable"
+    ],
+    "success_criteria": [
+      "SNOMED authority, MLDS access gate, edition scope, and license state recorded",
+      "payload handling path classified as commit-safe or local-only",
+      "schema validation passes",
+      "review handoff remains candidate-only and human-review-required"
+    ]
+  },
+  "human_review_and_llm_policy": {
+    "candidate_only": true,
+    "human_review_required": true,
+    "llm_output_allowed": "metadata and review-assistance only until SNOMED license, MLDS access, edition/extension scope, RF2, and cross-map terms are cleared",
+    "promotion_policy": "manual_review_only"
+  },
+  "telemetry": {
+    "agent": "codex",
+    "model": "gpt-5",
+    "task_id": "phase0_source_probe_scaffold",
+    "source_version": "official SNOMED site and MLDS portal observed; release version and RF2 payload not downloaded",
+    "runtime_seconds": null,
+    "validation_command": "pixi run build-ontology-network; pixi run validate-conductor; pixi run validate-ontology-network; pixi run validate-ontology-network-artifacts; pixi run test-conductor-validation; git diff --check",
+    "validation_result": "passing",
+    "conflict_count": 0,
+    "open_blockers": [
+      "SNOMED CT affiliate/member license review required",
+      "MLDS release access and edition scope review required",
+      "national extension and language refset terms review required",
+      "RF2 redistribution and cross-map terms review required"
+    ]
+  }
+}

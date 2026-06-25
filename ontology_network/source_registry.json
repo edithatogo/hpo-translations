@@ -1821,9 +1821,20 @@
         "excluded_until_policy_allows": [
           "raw_source_payloads",
           "licensed_release_archives",
-          "credentialed_api_responses"
+          "credentialed_api_responses",
+          "concept_rows",
+          "description_rows",
+          "relationship_rows",
+          "refset_rows",
+          "language_refset_rows",
+          "owl_axiom_rows",
+          "cross_map_rows",
+          "full_api_responses",
+          "release_payload_rows",
+          "licensed_rf2_content"
         ],
         "required_before_phase_1_completion": [
+          "phase_0_source_probe_report",
           "registry_record",
           "source_access_record",
           "provenance_manifest",
@@ -1850,7 +1861,7 @@
         "Localized extensions can diverge from the international release.",
         "Cross-map availability and licensing can vary by jurisdiction."
       ],
-      "fallback_path": "Record edition-specific governance and use public documentation only until licensed release access is confirmed.",
+      "fallback_path": "Record edition-specific governance and use public documentation/tooling references only until licensed MLDS release access, edition/extension scope, RF2 redistribution terms, and cross-map permissions are confirmed.",
       "github_repositories": [
         "https://github.com/IHTSDO",
         "https://github.com/IHTSDO/snowstorm",
@@ -1878,7 +1889,8 @@
       "known_blockers": [
         "SNOMED CT release access depends on national or affiliate license terms.",
         "RF2 payloads must not be committed unless redistribution permission is explicit.",
-        "Postcoordination and hierarchy semantics need separate handling from flat label matching."
+        "Postcoordination and hierarchy semantics need separate handling from flat label matching.",
+        "SNOMED CT affiliate/member license, MLDS release access, edition/extension terms, RF2 redistribution constraints, and cross-map terms must be cleared before committing concepts, descriptions, relationships, refsets, language refsets, OWL axioms, maps, full API/export responses, or release payload rows."
       ],
       "language_codes": [
         "da",
@@ -1918,7 +1930,7 @@
         "source-specific extraction outputs remain local-only until access and redistribution terms pass review"
       ],
       "metadata_created_at": "2026-06-23T00:00:00Z",
-      "metadata_updated_at": "2026-06-23T00:00:00Z",
+      "metadata_updated_at": "2026-06-25T00:00:00Z",
       "ontology_name": "SNOMED CT",
       "payload_commit_allowed": false,
       "pr_safe": true,
@@ -1945,7 +1957,7 @@
       "source_payloads_can_be_committed": false,
       "source_version": null,
       "track_id": "snomed_ct_integration_20260623",
-      "track_status": "planned",
+      "track_status": "phase_0_implemented_blocked",
       "usefulness": "Clinical terminology crosswalks, post-coordination review, and clinical synonym support.",
       "version_status": "not_pinned_in_track_metadata"
     },

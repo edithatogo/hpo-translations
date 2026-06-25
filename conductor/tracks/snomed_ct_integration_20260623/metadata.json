@@ -1,9 +1,9 @@
 {
   "track_id": "snomed_ct_integration_20260623",
   "type": "feature",
-  "status": "planned",
+  "status": "phase_0_implemented_blocked",
   "created_at": "2026-06-23T00:00:00Z",
-  "updated_at": "2026-06-23T00:00:00Z",
+  "updated_at": "2026-06-25T00:00:00Z",
   "description": "Integrate SNOMED CT into terminology and translation support",
   "depends_on": [
     "translation_agents_20260622",
@@ -15,14 +15,23 @@
   ],
   "branch": "codex/snomed_ct_integration_20260623",
   "pr_url": null,
-  "ci_status": "not_started",
+  "ci_status": "local_passing",
   "merge_status": "not_opened",
   "last_commit": null,
-  "phase_review_status": "not_started",
+  "phase_review_status": "codex_review_completed",
   "github_checks_url": null,
   "merge_commit": null,
   "parallel_group": "ontology-source-governance",
-  "local_only_artifacts": [],
+  "local_only_artifacts": [
+    "raw downloads",
+    "licensed payloads",
+    "full API responses",
+    "credentialed exports",
+    "RF2 release archives",
+    "international edition files",
+    "national extension files",
+    "cross-map files"
+  ],
   "restricted_sources": [
     "SNOMED CT"
   ],
@@ -30,18 +39,19 @@
   "known_blockers": [
     "SNOMED CT release access depends on national or affiliate license terms.",
     "RF2 payloads must not be committed unless redistribution permission is explicit.",
-    "Postcoordination and hierarchy semantics need separate handling from flat label matching."
+    "Postcoordination and hierarchy semantics need separate handling from flat label matching.",
+    "SNOMED CT affiliate/member license, MLDS release access, edition/extension terms, RF2 redistribution constraints, and cross-map terms must be cleared before committing concepts, descriptions, relationships, refsets, language refsets, OWL axioms, maps, full API/export responses, or release payload rows."
   ],
   "expected_blockers": [
     "Localized extensions can diverge from the international release.",
     "Cross-map availability and licensing can vary by jurisdiction."
   ],
   "blocker_owner": "track implementer until reassigned in Phase 0",
-  "fallback_path": "Record edition-specific governance and use public documentation only until licensed release access is confirmed.",
+  "fallback_path": "Record edition-specific governance and use public documentation/tooling references only until licensed MLDS release access, edition/extension scope, RF2 redistribution terms, and cross-map permissions are confirmed.",
   "source_access_status": "license_or_affiliate_release_required",
-  "write_owner": "unassigned",
+  "write_owner": "codex",
   "merge_owner": "ontology-network maintainer",
-  "automation_readiness": "phase_0_required",
+  "automation_readiness": "blocked_after_phase_0_governance",
   "evidence_score_policy": {
     "candidate_only": true,
     "signals": [
@@ -68,7 +78,23 @@
       "validation_result",
       "conflict_count",
       "open_blockers"
-    ]
+    ],
+    "last_run": {
+      "agent": "codex",
+      "model": "gpt-5",
+      "task_id": "phase0_source_probe_scaffold",
+      "source_version": "official SNOMED site and MLDS portal observed; release version and RF2 payload not downloaded",
+      "runtime_seconds": null,
+      "validation_command": "pixi run build-ontology-network; pixi run validate-conductor; pixi run validate-ontology-network; pixi run validate-ontology-network-artifacts; pixi run test-conductor-validation; git diff --check",
+      "validation_result": "passing",
+      "conflict_count": 0,
+      "open_blockers": [
+        "SNOMED CT affiliate/member license review required",
+        "MLDS release access and edition scope review required",
+        "national extension and language refset terms review required",
+        "RF2 redistribution and cross-map terms review required"
+      ]
+    }
   },
   "human_review_handoff": [
     "changed records",
@@ -114,6 +140,7 @@
   },
   "artifact_contract": {
     "required_before_phase_1_completion": [
+      "phase_0_source_probe_report",
       "registry_record",
       "source_access_record",
       "provenance_manifest",
@@ -130,7 +157,28 @@
     "excluded_until_policy_allows": [
       "raw_source_payloads",
       "licensed_release_archives",
-      "credentialed_api_responses"
+      "credentialed_api_responses",
+      "concept_rows",
+      "description_rows",
+      "relationship_rows",
+      "refset_rows",
+      "language_refset_rows",
+      "owl_axiom_rows",
+      "cross_map_rows",
+      "full_api_responses",
+      "release_payload_rows",
+      "licensed_rf2_content"
     ]
+  },
+  "source_governance_result": {
+    "phase_0_result": "implemented_governance_only",
+    "source_authority_status": "official_snomed_site_and_mlds_distribution_portal_recorded",
+    "tooling_repository_status": "ihtsdo_github_repositories_recorded_not_authoritative_for_payload_release",
+    "payload_commit_allowed": false,
+    "derived_commit_allowed": false,
+    "bounded_sample_allowed": false,
+    "local_only_required_for_payloads": true,
+    "go_no_go": "no_go_for_payload_ingestion_until_license_mlds_edition_extension_rf2_and_crossmap_terms_reviewed",
+    "review_result": "codex_review_completed_fixes_applied"
   }
 }
