@@ -1,0 +1,124 @@
+{
+  "track_id": "meddra_integration_20260623",
+  "source_id": "meddra",
+  "source_name": "MedDRA",
+  "phase": "phase_0_governance_source_probe",
+  "probe_status": "metadata_only_scaffolded",
+  "probe_date": "2026-06-25",
+  "authoritative_source": {
+    "source_type": "official_meddra_mss_o_ich_subscription_distribution",
+    "official_site_url": "https://www.meddra.org/",
+    "support_documentation_url": "https://www.meddra.org/how-to-use/support-documentation",
+    "subscription_url": "https://www.meddra.org/subscription",
+    "github_repository": null,
+    "authority_status": "official MedDRA site reachable; SPA support/subscription routes recorded; licensed payload access not attempted",
+    "observed_release": "not_pinned; no MedDRA release payloads downloaded",
+    "version_pinning_strategy": "pin by MedDRA release version, release date, language pack, distribution channel, license/subscription terms, file checksums, and local-only manifest after terms review",
+    "credential_required": true,
+    "network_probe_required_before_ingestion": true
+  },
+  "access_and_license_gate": {
+    "access_mode": "licensed_release_download",
+    "source_access_status": "subscription_or_license_required",
+    "license_status": "pending_meddra_subscription_license_release_language_pack_and_redistribution_terms_review",
+    "payload_commit_allowed": false,
+    "derived_commit_allowed": false,
+    "bounded_sample_allowed": false,
+    "local_only_required_for_payloads": true,
+    "go_no_go": "no_go_for_payload_ingestion_until_subscription_license_release_language_pack_and_redistribution_terms_reviewed"
+  },
+  "payload_policy": {
+    "no_external_payloads_fetched": true,
+    "no_raw_terms_committed": true,
+    "commit_allowlist": [
+      "source governance metadata",
+      "source access records",
+      "provenance shells",
+      "validation summaries",
+      "review handoff skeletons"
+    ],
+    "commit_denylist": [
+      "raw MedDRA downloads",
+      "MedDRA release archives",
+      "LLT rows",
+      "PT rows",
+      "HLT rows",
+      "HLGT rows",
+      "SOC rows",
+      "SMQ rows",
+      "multilingual terms",
+      "hierarchy rows",
+      "full API responses",
+      "credentials",
+      "redistributable payload fragments"
+    ],
+    "local_only_manifest_required_if_payload_touched": true
+  },
+  "artifact_contract": {
+    "committed_artifacts": [
+      "conductor/tracks/meddra_integration_20260623/metadata.json",
+      "conductor/tracks/meddra_integration_20260623/plan.md",
+      "conductor/tracks/meddra_integration_20260623/spec.md",
+      "conductor/tracks/meddra_integration_20260623/phase0_source_probe.json"
+    ],
+    "future_payload_free_outputs": [
+      "registry_record",
+      "source_access_record",
+      "provenance_manifest",
+      "validation_report",
+      "review_handoff_pack"
+    ],
+    "local_only_artifacts": [
+      "raw downloads",
+      "MedDRA release archives",
+      "MedDRA multilingual release files",
+      "SMQ files",
+      "hierarchy files",
+      "full API responses",
+      "credentialed exports"
+    ],
+    "validation_commands": [
+      "pixi run validate-conductor",
+      "pixi run build-ontology-network",
+      "pixi run validate-ontology-network-artifacts"
+    ],
+    "freshness_rule": "refresh probe metadata when MedDRA version, release cadence, subscription terms, language-pack scope, official routes, checksums, or payload policy changes"
+  },
+  "fail_fast_probe_design": {
+    "record_scope": "one MedDRA source governance record only; no LLT, PT, HLT, HLGT, SOC, SMQ, language-pack, or hierarchy rows until license and redistribution terms are cleared",
+    "required_outputs": [
+      "normalized registry row",
+      "provenance row",
+      "schema validation result",
+      "candidate comparison or crosswalk shell when applicable"
+    ],
+    "success_criteria": [
+      "MedDRA authority, subscription gate, release path, and license state recorded",
+      "payload handling path classified as commit-safe or local-only",
+      "schema validation passes",
+      "review handoff remains candidate-only and human-review-required"
+    ]
+  },
+  "human_review_and_llm_policy": {
+    "candidate_only": true,
+    "human_review_required": true,
+    "llm_output_allowed": "metadata and review-assistance only until MedDRA subscription/license, language-pack, and redistribution terms are cleared",
+    "promotion_policy": "manual_review_only"
+  },
+  "telemetry": {
+    "agent": "codex",
+    "model": "gpt-5",
+    "task_id": "phase0_source_probe_scaffold",
+    "source_version": "official MedDRA site observed; release payload and version not downloaded",
+    "runtime_seconds": null,
+    "validation_command": "pixi run build-ontology-network; pixi run validate-conductor; pixi run validate-ontology-network; pixi run validate-ontology-network-artifacts; pixi run test-conductor-validation; git diff --check",
+    "validation_result": "passing",
+    "conflict_count": 0,
+    "open_blockers": [
+      "MedDRA subscription/license review required",
+      "MSSO/ICH release and redistribution terms review required",
+      "multilingual language-pack terms review required",
+      "regulatory adverse-event semantics require human review before HPO translation use"
+    ]
+  }
+}

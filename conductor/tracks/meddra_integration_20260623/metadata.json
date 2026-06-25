@@ -1,9 +1,9 @@
 {
   "track_id": "meddra_integration_20260623",
   "type": "feature",
-  "status": "planned",
+  "status": "phase_0_implemented_blocked",
   "created_at": "2026-06-23T00:00:00Z",
-  "updated_at": "2026-06-23T00:00:00Z",
+  "updated_at": "2026-06-25T00:00:00Z",
   "description": "Integrate MedDRA into terminology and translation support",
   "depends_on": [
     "translation_agents_20260622",
@@ -15,32 +15,42 @@
   ],
   "branch": "codex/meddra_integration_20260623",
   "pr_url": null,
-  "ci_status": "not_started",
+  "ci_status": "local_passing",
   "merge_status": "not_opened",
   "last_commit": null,
-  "phase_review_status": "not_started",
+  "phase_review_status": "codex_review_completed",
   "github_checks_url": null,
   "merge_commit": null,
   "parallel_group": "ontology-source-governance",
-  "local_only_artifacts": [],
+  "local_only_artifacts": [
+    "raw downloads",
+    "licensed payloads",
+    "full API responses",
+    "credentialed exports",
+    "MedDRA release archives",
+    "MedDRA multilingual release files",
+    "SMQ files",
+    "hierarchy files"
+  ],
   "restricted_sources": [
     "MedDRA"
   ],
   "priority": "P2",
   "known_blockers": [
     "MedDRA is subscription/licensed terminology and payloads must remain local-only.",
-    "Regulatory adverse-event semantics do not always align with phenotypic description semantics."
+    "Regulatory adverse-event semantics do not always align with phenotypic description semantics.",
+    "MedDRA subscription/license, MSSO/ICH release terms, language-pack terms, and redistribution constraints must be cleared before committing LLT, PT, HLT, HLGT, SOC, SMQ, multilingual terms, hierarchy rows, full API/export responses, or release payload rows."
   ],
   "expected_blockers": [
     "Versioned multilingual terms may require reviewer confirmation before use.",
     "Redistribution-safe artifacts may be limited to manifests, counts, and non-sensitive derived validation summaries."
   ],
   "blocker_owner": "track implementer until reassigned in Phase 0",
-  "fallback_path": "Keep a metadata-only track and define review-pack schema without ingesting MedDRA payloads.",
+  "fallback_path": "Keep MedDRA as metadata-only governance with payload-free review-pack schemas until MSSO/ICH subscription/license, release, multilingual pack, and redistribution terms are confirmed.",
   "source_access_status": "subscription_or_license_required",
-  "write_owner": "unassigned",
+  "write_owner": "codex",
   "merge_owner": "ontology-network maintainer",
-  "automation_readiness": "phase_0_required",
+  "automation_readiness": "blocked_after_phase_0_governance",
   "evidence_score_policy": {
     "candidate_only": true,
     "signals": [
@@ -67,7 +77,23 @@
       "validation_result",
       "conflict_count",
       "open_blockers"
-    ]
+    ],
+    "last_run": {
+      "agent": "codex",
+      "model": "gpt-5",
+      "task_id": "phase0_source_probe_scaffold",
+      "source_version": "official MedDRA site observed; release payload and version not downloaded",
+      "runtime_seconds": null,
+      "validation_command": "pixi run build-ontology-network; pixi run validate-conductor; pixi run validate-ontology-network; pixi run validate-ontology-network-artifacts; pixi run test-conductor-validation; git diff --check",
+      "validation_result": "passing",
+      "conflict_count": 0,
+      "open_blockers": [
+        "MedDRA subscription/license review required",
+        "MSSO/ICH release and redistribution terms review required",
+        "multilingual language-pack terms review required",
+        "regulatory adverse-event semantics require human review before HPO translation use"
+      ]
+    }
   },
   "human_review_handoff": [
     "changed records",
@@ -113,6 +139,7 @@
   },
   "artifact_contract": {
     "required_before_phase_1_completion": [
+      "phase_0_source_probe_report",
       "registry_record",
       "source_access_record",
       "provenance_manifest",
@@ -129,7 +156,29 @@
     "excluded_until_policy_allows": [
       "raw_source_payloads",
       "licensed_release_archives",
-      "credentialed_api_responses"
+      "credentialed_api_responses",
+      "llt_rows",
+      "pt_rows",
+      "hlt_rows",
+      "hlgt_rows",
+      "soc_rows",
+      "smq_rows",
+      "multilingual_terms",
+      "hierarchy_rows",
+      "full_api_responses",
+      "release_payload_rows",
+      "licensed_meddra_content"
     ]
+  },
+  "source_governance_result": {
+    "phase_0_result": "implemented_governance_only",
+    "source_authority_status": "official_meddra_site_reachable_mss_o_ich_distribution_terms_required",
+    "github_repository_status": "no_official_public_github_repository_confirmed",
+    "payload_commit_allowed": false,
+    "derived_commit_allowed": false,
+    "bounded_sample_allowed": false,
+    "local_only_required_for_payloads": true,
+    "go_no_go": "no_go_for_payload_ingestion_until_subscription_license_release_language_pack_and_redistribution_terms_reviewed",
+    "review_result": "codex_review_completed_fixes_applied"
   }
 }
