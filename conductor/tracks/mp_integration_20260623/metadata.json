@@ -3,7 +3,7 @@
   "type": "feature",
   "status": "phase_0_implemented_blocked",
   "created_at": "2026-06-23T00:00:00Z",
-  "updated_at": "2026-06-24T00:00:00Z",
+  "updated_at": "2026-06-25T00:00:00Z",
   "description": "Integrate Mammalian Phenotype Ontology into terminology and translation support",
   "depends_on": [
     "translation_agents_20260622",
@@ -15,10 +15,10 @@
   ],
   "branch": "codex/mp_integration_20260623",
   "pr_url": null,
-  "ci_status": "local_pending",
+  "ci_status": "local_passing",
   "merge_status": "not_opened",
   "last_commit": null,
-  "phase_review_status": "pending_conductor_review",
+  "phase_review_status": "codex_review_completed",
   "github_checks_url": null,
   "merge_commit": null,
   "parallel_group": "ontology-source-governance",
@@ -66,7 +66,17 @@
       "validation_result",
       "conflict_count",
       "open_blockers"
-    ]
+    ],
+    "last_run": {
+      "agent": "codex",
+      "model": "gpt-5",
+      "task_id": "phase0_source_probe_scaffold",
+      "source_version": "not_pinned",
+      "validation_command": "pixi run build-ontology-network; pixi run validate-conductor; pixi run validate-ontology-network; pixi run validate-ontology-network-artifacts; pixi run test-conductor-validation; git diff --check",
+      "validation_result": "passing",
+      "conflict_count": 0,
+      "open_blockers": []
+    }
   },
   "human_review_handoff": [
     "changed records",
@@ -184,6 +194,8 @@
     "non_translation_outputs_allowed": false,
     "candidate_use": "cross_species_phenotype_governance",
     "blocking_caveat": "model_organism_context_required_for_all_evidence",
-    "next_allowed_action": "complete MGI repository release, license, and version review before any MP label or synonym extraction"
+    "next_allowed_action": "complete MGI repository release, license, and version review before any MP label or synonym extraction",
+    "review_result": "codex_review_completed_fixes_applied",
+    "review_archive_status": "phase_0_review_archived"
   }
 }

@@ -200,7 +200,7 @@
         "raw downloads"
       ],
       "metadata_created_at": "2026-06-23T00:00:00Z",
-      "metadata_updated_at": "2026-06-24T00:00:00Z",
+      "metadata_updated_at": "2026-06-25T00:00:00Z",
       "ontology_name": "Disease Ontology",
       "payload_commit_allowed": false,
       "pr_safe": true,
@@ -315,7 +315,7 @@
         "raw downloads"
       ],
       "metadata_created_at": "2026-06-23T00:00:00Z",
-      "metadata_updated_at": "2026-06-24T00:00:00Z",
+      "metadata_updated_at": "2026-06-25T00:00:00Z",
       "ontology_name": "EFO",
       "payload_commit_allowed": false,
       "pr_safe": true,
@@ -674,7 +674,7 @@
         "source-specific extraction outputs remain local-only until access and redistribution terms pass review"
       ],
       "metadata_created_at": "2026-06-23T00:00:00Z",
-      "metadata_updated_at": "2026-06-24T00:00:00Z",
+      "metadata_updated_at": "2026-06-25T00:00:00Z",
       "ontology_name": "ICD-11",
       "payload_commit_allowed": false,
       "pr_safe": true,
@@ -919,7 +919,7 @@
         "source-specific extraction outputs remain local-only until access and redistribution terms pass review"
       ],
       "metadata_created_at": "2026-06-23T00:00:00Z",
-      "metadata_updated_at": "2026-06-24T00:00:00Z",
+      "metadata_updated_at": "2026-06-25T00:00:00Z",
       "ontology_name": "LOINC",
       "payload_commit_allowed": false,
       "pr_safe": true,
@@ -1202,7 +1202,7 @@
         "raw downloads"
       ],
       "metadata_created_at": "2026-06-23T00:00:00Z",
-      "metadata_updated_at": "2026-06-24T00:00:00Z",
+      "metadata_updated_at": "2026-06-25T00:00:00Z",
       "ontology_name": "MeSH",
       "payload_commit_allowed": false,
       "pr_safe": true,
@@ -1317,7 +1317,7 @@
         "raw downloads"
       ],
       "metadata_created_at": "2026-06-23T00:00:00Z",
-      "metadata_updated_at": "2026-06-24T00:00:00Z",
+      "metadata_updated_at": "2026-06-25T00:00:00Z",
       "ontology_name": "Mammalian Phenotype Ontology",
       "payload_commit_allowed": false,
       "pr_safe": true,
@@ -1554,7 +1554,7 @@
         "source-specific extraction outputs remain local-only until access and redistribution terms pass review"
       ],
       "metadata_created_at": "2026-06-23T00:00:00Z",
-      "metadata_updated_at": "2026-06-24T00:00:00Z",
+      "metadata_updated_at": "2026-06-25T00:00:00Z",
       "ontology_name": "OncoTree",
       "payload_commit_allowed": false,
       "pr_safe": true,
@@ -1685,7 +1685,7 @@
         "raw downloads"
       ],
       "metadata_created_at": "2026-06-23T00:00:00Z",
-      "metadata_updated_at": "2026-06-24T00:00:00Z",
+      "metadata_updated_at": "2026-06-25T00:00:00Z",
       "ontology_name": "Orphanet",
       "payload_commit_allowed": false,
       "pr_safe": true,
@@ -1800,7 +1800,7 @@
         "raw downloads"
       ],
       "metadata_created_at": "2026-06-23T00:00:00Z",
-      "metadata_updated_at": "2026-06-24T00:00:00Z",
+      "metadata_updated_at": "2026-06-25T00:00:00Z",
       "ontology_name": "PATO",
       "payload_commit_allowed": false,
       "pr_safe": true,
@@ -2209,7 +2209,7 @@
         "raw downloads"
       ],
       "metadata_created_at": "2026-06-23T00:00:00Z",
-      "metadata_updated_at": "2026-06-24T00:00:00Z",
+      "metadata_updated_at": "2026-06-25T00:00:00Z",
       "ontology_name": "uPheno",
       "payload_commit_allowed": false,
       "pr_safe": true,

@@ -103,13 +103,14 @@
     "model": "gpt-5",
     "task_id": "phase0_source_probe_scaffold",
     "source_version": "LOINC 2.82 observed on official download page, payload not downloaded",
-    "validation_result": "local_validation_pending",
+    "validation_result": "passing",
     "open_blockers": [
       "LOINC account and license review required",
       "release artifact/version pinning required",
       "payload handling decision required",
       "lab-observation-to-phenotype mapping caveats required"
     ],
-    "conflict_count": 0
+    "conflict_count": 0,
+    "validation_command": "pixi run build-ontology-network; pixi run validate-conductor; pixi run validate-ontology-network; pixi run validate-ontology-network-artifacts; pixi run test-conductor-validation; git diff --check"
   }
 }

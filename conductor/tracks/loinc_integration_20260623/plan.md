@@ -56,3 +56,9 @@ This plan introduces LOINC into the project where it can improve terminology ali
 - Source authority: official LOINC downloads require login/account and terms review; GitHub repositories are recorded as source and ontology-build references but no release payload is downloaded.
 - Payload status: no raw, licensed, credentialed, private, full-release, label, long-name, part-name, linguistic-variant, definition, or API-response payload is read or committed.
 - Downstream status: identifier-network, translation-use, and non-translation outputs remain blocked until account/license review and bounded source probe pass.
+
+## Phase 0 Review Archive
+- Review status: `codex_review_completed`.
+- Fixes applied: synchronized metadata, telemetry, source-governance review result, and automation index review state.
+- Validation archive: `pixi run validate-conductor`, `pixi run validate-ontology-network`, `pixi run validate-ontology-network-artifacts`, `pixi run test-conductor-validation`, and `git diff --check`.
+- Residual blocker: downstream payload ingestion, identifier-network work, translation-use, and non-translation outputs remain blocked until source terms and bounded probes pass.

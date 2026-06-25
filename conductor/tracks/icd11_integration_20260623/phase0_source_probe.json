@@ -95,12 +95,13 @@
     "model": "gpt-5",
     "task_id": "phase0_source_probe_scaffold",
     "source_version": "not_pinned",
-    "validation_result": "local_validation_pending",
+    "validation_result": "passing",
     "open_blockers": [
       "terms review required",
       "release channel/version pinning required",
       "payload handling decision required"
     ],
-    "conflict_count": 0
+    "conflict_count": 0,
+    "validation_command": "pixi run build-ontology-network; pixi run validate-conductor; pixi run validate-ontology-network; pixi run validate-ontology-network-artifacts; pixi run test-conductor-validation; git diff --check"
   }
 }
