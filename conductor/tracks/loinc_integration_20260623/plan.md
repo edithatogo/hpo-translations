@@ -37,7 +37,8 @@ This plan introduces LOINC into the project where it can improve terminology ali
   - https://github.com/loinc/comp-loinc
 
 ## Phase 2: Data Access and Normalization
-- [ ] **Task 1:** Define source retrieval path without committing restricted payloads.
+- [x] **Task 1:** Define source retrieval path without committing restricted payloads.
+  - Use the official account-gated LOINC download path and local-only cache; no payload access before account/licence approval.
 - [ ] **Task 2:** Normalize identifiers, preferred labels, synonyms, language tags, and provenance fields.
 - [ ] **Task 3:** Produce a bounded sample artifact for maintainer review.
 

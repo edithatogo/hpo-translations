@@ -36,7 +36,8 @@ This plan introduces MeSH into the project where it can improve terminology alig
   - https://github.com/HHS/meshrdf
 
 ## Phase 2: Data Access and Normalization
-- [ ] **Task 1:** Define source retrieval path without committing restricted payloads.
+- [x] **Task 1:** Define source retrieval path without committing restricted payloads.
+  - Use the official NLM MeSH download path and local-only cache; terms review gates any payload access.
 - [ ] **Task 2:** Normalize identifiers, preferred labels, synonyms, language tags, and provenance fields.
 - [ ] **Task 3:** Produce a bounded sample artifact for maintainer review.
 

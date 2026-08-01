@@ -37,7 +37,8 @@ This plan introduces Orphanet into the project where it can improve terminology 
   - https://github.com/Orphanet
 
 ## Phase 2: Data Access and Normalization
-- [ ] **Task 1:** Define source retrieval path without committing restricted payloads.
+- [x] **Task 1:** Define source retrieval path without committing restricted payloads.
+  - Use the public Orphadata Science catalogue path for metadata only; DTA/pricing-gated products remain local-only and blocked.
 - [ ] **Task 2:** Normalize identifiers, preferred labels, synonyms, language tags, and provenance fields.
 - [ ] **Task 3:** Produce a bounded sample artifact for maintainer review.
 
