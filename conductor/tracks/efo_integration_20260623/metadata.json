@@ -71,7 +71,7 @@
       "agent": "codex",
       "model": "gpt-5",
       "task_id": "phase0_source_probe_scaffold",
-      "source_version": "v3.92.0 @ 704cbf64e95ac374374b309691d86d95c84dfe17 (OWL versionInfo verification pending)",
+      "source_version": "EFO 3.92.0 @ 704cbf64e95ac374374b309691d86d95c84dfe17",
       "validation_command": "pixi run build-ontology-network; pixi run validate-conductor; pixi run validate-ontology-network; pixi run validate-ontology-network-artifacts; pixi run test-conductor-validation; git diff --check",
       "validation_result": "passing",
       "conflict_count": 0,
@@ -152,13 +152,13 @@
   "source_governance_result": {
     "phase_0_result": "implemented_governance_only",
     "source_authority_status": "EBI EFO repository and OLS authoritative; Apache-2.0 terms verified",
-    "go_no_go": "governance_complete_release_pin_required",
+    "go_no_go": "governance_complete_bounded_metadata_probe_passed_terms_review_required",
     "payload_commit_allowed": false,
     "metadata_only_scaffold_allowed": true,
     "bounded_sample_allowed": false,
     "identifier_network_allowed": false,
     "non_translation_outputs_allowed": false,
-    "next_allowed_action": "pin OWL versionInfo and run one bounded metadata probe; no payload or label commit",
+    "next_allowed_action": "complete source terms review; no payload or label commit",
     "review_result": "codex_review_completed_fixes_applied",
     "review_archive_status": "phase_0_review_archived"
   }
