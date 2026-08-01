@@ -7,6 +7,8 @@
 - ontology_network_20260623 depends on translation_agents_20260622 and conductor_validation_20260623 Phase 1 for registry schema, metadata validation, governance rules, crosswalk graph contracts, provenance, validation, review-pack, and release surfaces.
 - Each ontology integration track depends on ontology_network_20260623 Phase 1 for registry schema and governance rules before source-specific implementation begins.
 - Language profile candidate tracks depend on translation_agents_20260622 and may depend on ontology_network_20260623 when ontology triangulation evidence is required before upstream submission.
+- research_validation_20260801 depends on the ontology-network registry contract, translation-agent candidate workflow, and Conductor validation. It provides the scientific-readiness manifest, source-lineage contract, benchmark protocol, language-identity gate, empirical validation, and calibrated evidence required before ontology-supported translation evidence can be described as validated.
+- Language profile candidate tracks that use ontology or model evidence depend on research_validation_20260801 Phase 2 before a pilot and on its applicable human-review phase before upstream submission.
 
 ## Readiness States
 - `planned`: track exists but Phase 0 gates are incomplete.

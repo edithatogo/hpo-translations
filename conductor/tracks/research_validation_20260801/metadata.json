@@ -1,0 +1,177 @@
+{
+  "track_id": "research_validation_20260801",
+  "type": "research_feature",
+  "status": "planned",
+  "created_at": "2026-08-01T00:00:00Z",
+  "updated_at": "2026-08-01T00:00:00Z",
+  "description": "Establish empirical validation for multilingual HPO translation and ontology evidence",
+  "depends_on": [
+    "conductor_validation_20260623",
+    "translation_agents_20260622",
+    "ontology_network_20260623:phase_1_registry_contract"
+  ],
+  "blocks": [
+    "language_candidate_tracks"
+  ],
+  "branch": "codex/research-validation-20260801",
+  "pr_url": null,
+  "ci_status": "not_started",
+  "merge_status": "not_opened",
+  "last_commit": null,
+  "phase_review_status": "not_started",
+  "github_checks_url": null,
+  "merge_commit": null,
+  "priority": "P0",
+  "parallel_group": "research-validation",
+  "write_owner": "codex",
+  "merge_owner": "hpo-translations maintainer",
+  "known_blockers": [
+    "Seventeen of eighteen ontology-network source versions are not pinned in current track metadata.",
+    "Current ontology-network comparison packs contain zero empirical candidates and are not computed.",
+    "The `tw` profile is described as both Tiwi and Twi; language authority and migration direction are unresolved.",
+    "Restricted terminology content requires source-specific license and redistribution review.",
+    "Human reviewers and language-working-group approval have not been secured for a pilot.",
+    "Upstream push, PR, preregistration, and publication require explicit maintainer approval."
+  ],
+  "expected_blockers": [
+    "Source dependence may reduce the number of genuinely independent terminology signals.",
+    "Reviewer availability and adjudication capacity may determine feasible sample size.",
+    "Community-governed languages may prohibit or constrain automated model use.",
+    "Model and benchmark contamination may require temporal or held-out-language designs."
+  ],
+  "blocker_owner": "hpo-translations maintainer with language-working-group and source-license owners",
+  "fallback_path": "Deliver versioned schemas, fixtures, protocol, and governance-only reports without source payloads or empirical quality claims.",
+  "source_access_status": "mixed_public_and_restricted_metadata_only",
+  "local_only_artifacts": [
+    "licensed terminology payloads",
+    "credentialed API responses",
+    "raw reviewer data containing personal information",
+    "identifiable clinical text",
+    "unredistributable model outputs"
+  ],
+  "restricted_sources": [
+    "DECIPHER",
+    "LOINC",
+    "MedDRA",
+    "OMIM",
+    "PRO-CTCAE",
+    "SNOMED CT",
+    "UMLS Metathesaurus"
+  ],
+  "restricted_payload_policy": {
+    "commit_policy": "commit protocols, schemas, synthetic fixtures, aggregate validation results, permitted identifiers, and payload-safe provenance only",
+    "local_only_artifacts": [
+      "licensed terminology payloads",
+      "credentialed API responses",
+      "raw reviewer data",
+      "identifiable clinical text",
+      "full restricted model contexts"
+    ],
+    "blocked_patterns": [
+      "api_key",
+      "credential",
+      "full_release",
+      "licensed",
+      "patient_record",
+      "private",
+      "restricted",
+      "token"
+    ],
+    "required_evidence": [
+      "source and license classification",
+      "local-only manifest for restricted inputs",
+      "redaction or exclusion proof",
+      "reviewer consent and privacy assessment",
+      "community model-use authority where applicable"
+    ]
+  },
+  "fail_fast_probe": {
+    "required": true,
+    "scope": "one synthetic benchmark item with one HPO concept, one hard negative, and two independent evidence groups",
+    "success_criteria": [
+      "all identifiers and versions are pinned",
+      "language identity is a valid BCP 47 tag",
+      "dependent sources share an evidence group",
+      "restricted text is absent",
+      "candidate remains candidate-only",
+      "human review is required",
+      "passing and expected-failure fixtures behave deterministically"
+    ]
+  },
+  "artifact_contract": {
+    "required_before_phase_1_completion": [
+      "scientific readiness manifest",
+      "language identity registry",
+      "readiness regression tests"
+    ],
+    "required_before_pilot": [
+      "benchmark protocol",
+      "pilot design",
+      "language identity schema",
+      "translation evaluation item schema",
+      "source lineage schema",
+      "reviewer decision schema",
+      "run manifest schema",
+      "passing and expected-failure fixtures",
+      "analysis plan",
+      "approval manifest"
+    ],
+    "conditional_outputs": [
+      "candidate comparison dataset",
+      "lineage-aware calibration report",
+      "reviewer trial report",
+      "ontology discrimination benchmark",
+      "downstream utility report",
+      "drift and active-learning reports"
+    ],
+    "excluded_until_policy_allows": [
+      "restricted source text",
+      "identifiable clinical records",
+      "unapproved community language content",
+      "raw reviewer personal data",
+      "official translation promotion"
+    ]
+  },
+  "automation_readiness": "planned_governance_only",
+  "evidence_score_policy": {
+    "candidate_only": true,
+    "signals": [
+      "mapping predicate and justification",
+      "originating source authority",
+      "independent evidence group",
+      "designation role",
+      "compositional semantic agreement",
+      "ontology discrimination",
+      "human adjudication",
+      "clinical error severity",
+      "license caveat"
+    ],
+    "promotion_rule": "no score, source count, ontology agreement, or model agreement promotes a translation without authorized human approval"
+  },
+  "agent_telemetry": {
+    "record_required": true,
+    "fields": [
+      "agent",
+      "model",
+      "task_id",
+      "prompt_version",
+      "hpo_release",
+      "source_versions",
+      "runtime_seconds",
+      "validation_command",
+      "validation_result",
+      "conflict_count",
+      "open_blockers"
+    ]
+  },
+  "human_review_handoff": [
+    "benchmark item and hard negatives",
+    "candidate provenance",
+    "independent evidence groups",
+    "source and license caveats",
+    "blinded reviewer instrument",
+    "adjudication record",
+    "validation output",
+    "unresolved authority and ethics blockers"
+  ]
+}
