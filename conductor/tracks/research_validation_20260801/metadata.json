@@ -15,10 +15,10 @@
   ],
   "branch": "codex/research-validation-20260801",
   "pr_url": null,
-  "ci_status": "not_started",
+  "ci_status": "local_passing",
   "merge_status": "not_opened",
-  "last_commit": null,
-  "phase_review_status": "not_started",
+  "last_commit": "9412ef3",
+  "phase_review_status": "codex_phase_1_2_review_completed_fixes_applied",
   "github_checks_url": null,
   "merge_commit": null,
   "priority": "P0",
@@ -132,7 +132,7 @@
       "official translation promotion"
     ]
   },
-  "automation_readiness": "phase_1_in_progress_governance_only",
+  "automation_readiness": "phase_2_contract_local_passing_empirical_work_blocked",
   "evidence_score_policy": {
     "candidate_only": true,
     "signals": [
@@ -162,7 +162,34 @@
       "validation_result",
       "conflict_count",
       "open_blockers"
-    ]
+    ],
+    "last_run": {
+      "agent": "codex",
+      "model": "GPT-5",
+      "task_id": "research_validation_20260801_phase_1_2",
+      "prompt_version": "research-validation-track-2026-08-01",
+      "hpo_release": "synthetic schema fixture only; empirical release not selected",
+      "source_versions": {
+        "synthetic-public-source": "fixture-1.0",
+        "synthetic-structural-source": "fixture-1.0"
+      },
+      "runtime_seconds": null,
+      "validation_command": [
+        "pixi run validate-research-validation",
+        "pixi run test-conductor-validation",
+        "pixi run ruff-check",
+        "pixi run ruff-format",
+        "pixi run mypy-check",
+        "pixi run vale-check",
+        ".pixi/envs/default/bin/vale.exe research_validation",
+        "pixi run validate-ontology-network",
+        "pixi run validate-ontology-network-artifacts",
+        "pixi run validate-conductor"
+      ],
+      "validation_result": "local_passing_contract_only",
+      "conflict_count": 1,
+      "open_blockers": 6
+    }
   },
   "human_review_handoff": [
     "benchmark item and hard negatives",

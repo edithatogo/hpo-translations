@@ -5,31 +5,31 @@
 - [x] **Task 1:** Populate the blocker registry and assign owners.
 - [ ] **Task 2:** Pin the HPO release and every source release selected for the pilot; complete source access, license, credential, source-authority, language, and version checks.
 - [x] **Task 3:** Define restricted-payload policy, local-only manifest requirements, and the commit allowlist and denylist.
-- [ ] **Task 4:** Run a fail-fast benchmark fixture containing one HPO concept, one hard negative, and two independently identified evidence groups.
+- [x] **Task 4:** Run a fail-fast benchmark fixture containing one HPO concept, one hard negative, and two independently identified evidence groups. (`57f8816`, review fix `9412ef3`)
 - [x] **Task 5:** Define the research artifact contract and downstream consumers.
 - [x] **Task 6:** Declare priority, write owner, merge owner, and parallelization boundaries.
 - [x] **Task 7:** Define local validation commands, commit boundaries, branch, remote, PR target, CI gate, and merge gate; retain push and PR as explicit maintainer gates.
-- [~] **Task 8:** Start telemetry for agent, model, runtime, validation, conflicts, and unresolved blockers.
-- [ ] **Task 9:** Phase Verification & Checkpoint (Refer to workflow.md).
+- [x] **Task 8:** Start telemetry for agent, model, runtime, validation, conflicts, and unresolved blockers. (`9412ef3`)
+- [x] **Task 9:** Phase Verification & Checkpoint (Refer to workflow.md). Governance and contract work may proceed; empirical ingress remains blocked on Task 2. (`9412ef3`)
 
 ## Phase 1: Scientific Readiness Corrections
 
-- [~] **Task 1:** Replace ambiguous overall release readiness with separate governance-scaffold, empirical-artifact, translation-evidence, and source-payload readiness fields.
-- [ ] **Task 2:** Reframe the archived ontology-network plan as completed scaffolding and hand empirical work to this track.
-- [ ] **Task 3:** Add a fail-closed language-identity registry and record the unresolved `tw` Tiwi/Twi authority conflict without renaming translation assets.
-- [ ] **Task 4:** Add tests proving zero empirical records, unpinned inputs, or unresolved language identity cannot be reported as translation-evidence ready.
-- [ ] **Task 5:** Run local ontology-network and Conductor validation.
-- [ ] **Task 6:** Phase Verification & Checkpoint (Refer to workflow.md).
+- [x] **Task 1:** Replace ambiguous overall release readiness with separate governance-scaffold, empirical-artifact, translation-evidence, and source-payload readiness fields. (`dc8c359`)
+- [x] **Task 2:** Reframe the archived ontology-network plan as completed scaffolding and hand empirical work to this track. (`dc8c359`)
+- [x] **Task 3:** Add a fail-closed language-identity registry and record the unresolved `tw` Tiwi/Twi authority conflict without renaming translation assets. (`dc8c359`)
+- [x] **Task 4:** Add tests proving zero empirical records, unpinned inputs, or unresolved language identity cannot be reported as translation-evidence ready. (`dc8c359`)
+- [x] **Task 5:** Run local ontology-network and Conductor validation. (`dc8c359`, rerun after `9412ef3`)
+- [x] **Task 6:** Phase Verification & Checkpoint (Refer to workflow.md). Review completed with fixes applied; no high or critical findings remain. (`9412ef3`)
 
 ## Phase 2: Benchmark and Evaluation Contract
 
-- [ ] **Task 1:** Define schemas for benchmark items, source lineage, reviewer decisions, language identity, and run manifests.
-- [ ] **Task 2:** Add passing and expected-failure fixtures for every schema.
-- [ ] **Task 3:** Define the sampling frame, hard-negative construction, error taxonomy, blinding, reviewer qualifications, adjudication, and statistical analysis.
-- [ ] **Task 4:** Define primary outcomes: clinically significant error rate, no-edit acceptance, edit burden, reviewer time, ontology-discrimination accuracy, and calibration.
-- [ ] **Task 5:** Define secondary outcomes for labels, definitions, synonyms, regional variants, patient-facing terms, and downstream tasks.
-- [ ] **Task 6:** Run schema, fixture, lint, and documentation validation.
-- [ ] **Task 7:** Phase Verification & Checkpoint (Refer to workflow.md).
+- [x] **Task 1:** Define schemas for benchmark items, source lineage, reviewer decisions, language identity, and run manifests. (`57f8816`, review fix `9412ef3`)
+- [x] **Task 2:** Add passing and expected-failure fixtures for every schema. (`57f8816`, review fix `9412ef3`)
+- [x] **Task 3:** Define the sampling frame, hard-negative construction, error taxonomy, blinding, reviewer qualifications, adjudication, and statistical analysis. (`57f8816`)
+- [x] **Task 4:** Define primary outcomes: clinically significant error rate, no-edit acceptance, edit burden, reviewer time, ontology-discrimination accuracy, and calibration. (`57f8816`, review fix `9412ef3`)
+- [x] **Task 5:** Define secondary outcomes for labels, definitions, synonyms, regional variants, patient-facing terms, and downstream tasks. (`57f8816`)
+- [x] **Task 6:** Run schema, fixture, lint, and documentation validation. (`9412ef3`)
+- [x] **Task 7:** Phase Verification & Checkpoint (Refer to workflow.md). Review completed with linked lineage, checksum, outcome, and frozen-run fixes applied. (`9412ef3`)
 
 ## Phase 3: Source Provenance and Dependence
 
@@ -69,3 +69,7 @@
 - [ ] **Task 4:** Verify required GitHub checks and merge state before marking the track complete.
 - [ ] **Task 5:** Record downstream handoff to language working groups and ontology maintainers.
 - [ ] **Task 6:** Phase Verification & Checkpoint (Refer to workflow.md).
+
+## Phase 1-2 Review Fixes
+
+- [x] **Task:** Apply review suggestions for fixture integrity, linked source lineage, frozen run metadata, reviewer conflicts, edit burden, and ontology-discrimination outcomes. (`9412ef3`)
