@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
+import re
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -47,6 +49,12 @@ def semantic_errors(schema_name: str, instance: Any) -> list[str]:
         hard_negatives = instance.get("hard_negative_hpo_ids", [])
         if instance.get("hpo_id") in hard_negatives:
             errors.append("the target HPO identifier cannot also be a hard negative")
+        source_text = instance.get("source_text")
+        source_text_sha256 = instance.get("source_text_sha256")
+        if isinstance(source_text, str) and isinstance(source_text_sha256, str):
+            computed_sha256 = hashlib.sha256(source_text.encode("utf-8")).hexdigest()
+            if source_text_sha256 != computed_sha256:
+                errors.append("source_text_sha256 does not match source_text")
 
     if schema_name == "run_manifest":
         empirical_count = instance.get("empirical_record_count")
@@ -58,6 +66,28 @@ def semantic_errors(schema_name: str, instance: Any) -> list[str]:
             approvals = instance.get("approvals", {})
             if isinstance(approvals, dict) and any(value in {"pending", "rejected"} for value in approvals.values()):
                 errors.append("pilot and confirmatory runs require approved or not-required approval states")
+            for field in ("sampling_code_commit", "analysis_code_commit"):
+                if not re.fullmatch(r"[0-9a-f]{7,40}", str(instance.get(field, ""))):
+                    errors.append(f"{field} must be a Git commit for pilot and confirmatory runs")
+
+        source_versions = instance.get("source_versions", {})
+        source_retrieval_dates = instance.get("source_retrieval_dates", {})
+        if (
+            isinstance(source_versions, dict)
+            and isinstance(source_retrieval_dates, dict)
+            and source_versions.keys() != source_retrieval_dates.keys()
+        ):
+            errors.append("source_versions and source_retrieval_dates must name the same sources")
+
+    if schema_name == "reviewer_decision":
+        if instance.get("clinically_significant_error") and not instance.get("error_categories"):
+            errors.append("a clinically significant error requires at least one error category")
+        selected_hpo_id = instance.get("selected_hpo_id")
+        discrimination_correct = instance.get("ontology_discrimination_correct")
+        if (selected_hpo_id is None) != (discrimination_correct is None):
+            errors.append("ontology discrimination identifier and result must be recorded together")
+        if instance.get("conflict_status") == "recused" and instance.get("decision") != "abstain":
+            errors.append("a recused reviewer must abstain")
 
     return errors
 
@@ -130,6 +160,92 @@ def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[Valid
                 )
             )
 
+        lineage_schema = schemas.get("source_lineage_record")
+        manifest_path = passing_dir / "run_manifest.json"
+        manifest = load_json(manifest_path) if manifest_path.exists() else {}
+        probe_run_id = probe.get("run_id")
+        if probe_run_id != manifest.get("run_id"):
+            issues.append(
+                ValidationIssue(
+                    "probe.run_id.mismatch", str(probe_path), "benchmark item is not linked to its manifest"
+                )
+            )
+        lineage_paths = [
+            passing_dir / "source_lineage_record.json",
+            passing_dir / "source_lineage_record_b.json",
+        ]
+        evidence_groups: dict[str, str] = {}
+        for lineage_path in lineage_paths:
+            if not lineage_path.exists():
+                issues.append(
+                    ValidationIssue(
+                        "probe.source_lineage.missing", str(lineage_path), "probe lineage record is required"
+                    )
+                )
+                continue
+            lineage_record = load_json(lineage_path)
+            if lineage_schema is not None:
+                for message in schema_errors(lineage_schema, lineage_record):
+                    issues.append(ValidationIssue("probe.source_lineage.invalid", str(lineage_path), message))
+            if isinstance(lineage_record, dict):
+                if lineage_record.get("run_id") != probe_run_id:
+                    issues.append(
+                        ValidationIssue(
+                            "probe.source_lineage.run_id.mismatch",
+                            str(lineage_path),
+                            "source lineage record is not linked to the probe run",
+                        )
+                    )
+                evidence_id = lineage_record.get("evidence_id")
+                evidence_group = lineage_record.get("independent_evidence_group")
+                if isinstance(evidence_id, str) and isinstance(evidence_group, str):
+                    evidence_groups[evidence_id] = evidence_group
+                source_id = lineage_record.get("source_id")
+                manifest_source_versions = manifest.get("source_versions", {})
+                if isinstance(source_id, str) and source_id not in manifest_source_versions:
+                    issues.append(
+                        ValidationIssue(
+                            "probe.source_lineage.source_version.missing",
+                            str(lineage_path),
+                            "source lineage record has no pinned version in the run manifest",
+                        )
+                    )
+
+        probe_evidence_ids = probe.get("evidence_ids", [])
+        missing_evidence_ids = set(probe_evidence_ids) - evidence_groups.keys()
+        if missing_evidence_ids:
+            issues.append(
+                ValidationIssue(
+                    "probe.source_lineage.unresolved",
+                    str(probe_path),
+                    f"missing lineage for evidence IDs: {sorted(missing_evidence_ids)}",
+                )
+            )
+        else:
+            linked_groups = {evidence_groups[evidence_id] for evidence_id in probe_evidence_ids}
+            if linked_groups != set(probe.get("independent_evidence_groups", [])):
+                issues.append(
+                    ValidationIssue(
+                        "probe.independent_evidence_groups.mismatch",
+                        str(probe_path),
+                        "item groups do not match the linked source-lineage records",
+                    )
+                )
+
+        reviewer_path = passing_dir / "reviewer_decision.json"
+        if reviewer_path.exists():
+            reviewer_decision = load_json(reviewer_path)
+            reviewer_run_mismatch = reviewer_decision.get("run_id") != probe_run_id
+            reviewer_item_mismatch = reviewer_decision.get("item_id") != probe.get("item_id")
+            if reviewer_run_mismatch or reviewer_item_mismatch:
+                issues.append(
+                    ValidationIssue(
+                        "probe.reviewer_decision.link.mismatch",
+                        str(reviewer_path),
+                        "reviewer decision is not linked to the probe run and item",
+                    )
+                )
+
     return issues
 
 
@@ -145,7 +261,7 @@ def main() -> int:
             print(f"- [{issue.code}] {issue.path}: {issue.message}")
         return 1
 
-    print("Research validation contract passed: 5 schemas, 5 passing fixtures, and 5 expected failures.")
+    print("Research validation contract passed: 5 schemas, 6 passing fixtures, and 5 expected failures.")
     print("This result validates the contract only; it does not establish empirical translation readiness.")
     return 0
 

@@ -35,6 +35,14 @@ class ValidateResearchValidationTests(unittest.TestCase):
             semantic_errors("translation_evaluation_item", item),
         )
 
+    def test_source_text_checksum_must_match(self) -> None:
+        item = load_json(DEFAULT_RESEARCH_ROOT / "fixtures" / "passing" / "translation_evaluation_item.json")
+        item["source_text"] = "Changed after checksum"
+        self.assertIn(
+            "source_text_sha256 does not match source_text",
+            semantic_errors("translation_evaluation_item", item),
+        )
+
     def test_reviewed_count_cannot_exceed_empirical_count(self) -> None:
         manifest = load_json(DEFAULT_RESEARCH_ROOT / "fixtures" / "passing" / "run_manifest.json")
         manifest["human_reviewed_record_count"] = 1
@@ -52,6 +60,21 @@ class ValidateResearchValidationTests(unittest.TestCase):
             semantic_errors("run_manifest", manifest),
         )
 
+    def test_run_manifest_source_versions_and_dates_must_align(self) -> None:
+        manifest = load_json(DEFAULT_RESEARCH_ROOT / "fixtures" / "passing" / "run_manifest.json")
+        manifest["source_retrieval_dates"].pop("synthetic-structural-source")
+        self.assertIn(
+            "source_versions and source_retrieval_dates must name the same sources",
+            semantic_errors("run_manifest", manifest),
+        )
+
+    def test_empirical_run_requires_frozen_git_commits(self) -> None:
+        manifest = load_json(DEFAULT_RESEARCH_ROOT / "fixtures" / "passing" / "run_manifest.json")
+        manifest["release_scope"] = "pilot"
+        errors = semantic_errors("run_manifest", manifest)
+        self.assertIn("sampling_code_commit must be a Git commit for pilot and confirmatory runs", errors)
+        self.assertIn("analysis_code_commit must be a Git commit for pilot and confirmatory runs", errors)
+
     def test_missing_fixture_is_reported(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory) / "research_validation"
@@ -63,6 +86,19 @@ class ValidateResearchValidationTests(unittest.TestCase):
             (root / "fixtures" / "passing" / "reviewer_decision.json").unlink()
             codes = {issue.code for issue in validate_contract(root)}
             self.assertIn("fixture.passing.missing", codes)
+
+    def test_probe_requires_both_linked_lineage_records(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory) / "research_validation"
+            for source in DEFAULT_RESEARCH_ROOT.rglob("*"):
+                if source.is_file():
+                    destination = root / source.relative_to(DEFAULT_RESEARCH_ROOT)
+                    destination.parent.mkdir(parents=True, exist_ok=True)
+                    destination.write_bytes(source.read_bytes())
+            (root / "fixtures" / "passing" / "source_lineage_record_b.json").unlink()
+            codes = {issue.code for issue in validate_contract(root)}
+            self.assertIn("probe.source_lineage.missing", codes)
+            self.assertIn("probe.source_lineage.unresolved", codes)
 
     def test_unknown_fields_are_rejected(self) -> None:
         schema = load_json(DEFAULT_RESEARCH_ROOT / "schemas" / "translation_evaluation_item.schema.json")

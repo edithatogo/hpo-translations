@@ -4,8 +4,9 @@
   "title": "Source lineage record",
   "type": "object",
   "additionalProperties": false,
-  "required": ["evidence_id", "source_id", "source_release", "source_atom_id", "originating_authority", "derivation_path", "shared_lineage_cluster", "independent_evidence_group", "semantic_role", "mapping_predicate", "designation_role", "license_class", "payload_commit_allowed", "provenance_id"],
+  "required": ["run_id", "evidence_id", "source_id", "source_release", "source_atom_id", "originating_authority", "derivation_path", "shared_lineage_cluster", "independent_evidence_group", "semantic_role", "mapping_predicate", "designation_role", "license_class", "payload_commit_allowed", "provenance_id"],
   "properties": {
+    "run_id": {"type": "string", "pattern": "^run-[a-z0-9-]+$"},
     "evidence_id": {"type": "string", "pattern": "^evidence-[a-z0-9-]+$"},
     "source_id": {"type": "string", "minLength": 1},
     "source_release": {"type": "string", "minLength": 1},

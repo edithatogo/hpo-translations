@@ -1,4 +1,5 @@
 {
+  "run_id": "run-invalid-restricted-input",
   "item_id": "item-invalid-candidate",
   "hpo_id": "HP:0001250",
   "hpo_release": "2026-01-15",

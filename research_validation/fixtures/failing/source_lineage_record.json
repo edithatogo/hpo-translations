@@ -1,4 +1,5 @@
 {
+  "run_id": "run-invalid-restricted-input",
   "evidence_id": "evidence-restricted-fixture",
   "source_id": "restricted-source",
   "source_release": "fixture-1.0",
