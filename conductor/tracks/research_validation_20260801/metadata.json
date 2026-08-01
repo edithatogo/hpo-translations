@@ -17,8 +17,8 @@
   "pr_url": null,
   "ci_status": "local_passing",
   "merge_status": "not_opened",
-  "last_commit": "e410f47",
-  "phase_review_status": "codex_phase_3_metadata_review_completed_fixes_applied_phase_open",
+  "last_commit": "f3a9584",
+  "phase_review_status": "codex_phase_3_source_review_completed_no_blocking_findings_payload_gates_retained",
   "github_checks_url": null,
   "merge_commit": null,
   "priority": "P0",
@@ -112,6 +112,7 @@
       "source lineage schema",
       "authoritative source catalog",
       "source verification report",
+      "supplementary source access register and review",
       "reviewer decision schema",
       "run manifest schema",
       "passing and expected-failure fixtures",
@@ -134,7 +135,7 @@
       "official translation promotion"
     ]
   },
-  "automation_readiness": "phase_3_authoritative_mapping_metadata_local_passing_payload_ingress_blocked",
+  "automation_readiness": "phase_3_source_metadata_and_access_reviews_local_passing_payload_ingress_blocked",
   "source_verification": {
     "verified_at": "2026-08-01T00:00:00Z",
     "hpo_release": "v2026-06-23",
@@ -147,6 +148,28 @@
     "payloads_retained": false,
     "payload_commit_allowed": false,
     "license_decision": "maintainer_review_required"
+  },
+  "supplementary_source_access_review": {
+    "reviewed_at": "2026-08-01T00:00:00Z",
+    "source_count": 9,
+    "metadata_probe_allowed_count": 5,
+    "permission_required_count": 2,
+    "human_review_required_count": 2,
+    "payloads_retrieved": 0,
+    "payload_retrieval_allowed_count": 0,
+    "unresolved_language_profiles_counted": 0,
+    "source_versions": {
+      "DeCS": null,
+      "Mondo": "v2026-07-06",
+      "PRO-CTCAE": "1.0",
+      "WHO ICF": "2026-01",
+      "NCIt": "26.07d",
+      "RadLex": "4.3",
+      "Uberon": "v2026-06-23",
+      "Cell Ontology": "v2026-06-08",
+      "PATO": "v2025-05-14"
+    },
+    "decision_boundary": "metadata decisions only; human approval is required before payload retrieval, mapping, adaptation, redistribution, or empirical use"
   },
   "evidence_score_policy": {
     "candidate_only": true,
@@ -181,14 +204,22 @@
     "last_run": {
       "agent": "codex",
       "model": "GPT-5",
-      "task_id": "research_validation_20260801_phase_3_metadata",
-      "prompt_version": "research-validation-source-verification-2026-08-01",
+      "task_id": "research_validation_20260801_phase_3_source_access",
+      "prompt_version": "research-validation-supplementary-access-review-2026-08-01",
       "hpo_release": "v2026-06-23",
       "source_versions": {
         "HP-MESH": "2026-07-19",
         "HP-UMLS": "2026-07-19",
         "HP-UPHENO": "2026-07-19",
-        "HP-MP": "1ed989cc6d367890f16ce6ee43d4d257d6615137"
+        "HP-MP": "1ed989cc6d367890f16ce6ee43d4d257d6615137",
+        "Mondo": "v2026-07-06",
+        "PRO-CTCAE": "1.0",
+        "WHO ICF": "2026-01",
+        "NCIt": "26.07d",
+        "RadLex": "4.3",
+        "Uberon": "v2026-06-23",
+        "Cell Ontology": "v2026-06-08",
+        "PATO": "v2025-05-14"
       },
       "runtime_seconds": null,
       "validation_command": [
@@ -204,7 +235,7 @@
         "pixi run validate-ontology-network-artifacts",
         "pixi run validate-conductor"
       ],
-      "validation_result": "local_passing_metadata_only_payload_blocked",
+      "validation_result": "local_passing_45_tests_metadata_only_payload_blocked",
       "conflict_count": 2,
       "open_blockers": 6
     }
