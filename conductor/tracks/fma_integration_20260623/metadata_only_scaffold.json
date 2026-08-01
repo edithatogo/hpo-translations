@@ -1,10 +1,10 @@
 {
   "track": "fma_integration_20260623",
   "artifact_type": "metadata_only_governance_scaffold",
-  "source": {"name": "Foundational Model of Anatomy Ontology", "authority_status": "washington_sig_authority_documented", "version": "release pin required (review target)", "release_url": "https://sig.biostr.washington.edu/projects/fm/AboutFM.html", "license": "FMA licence terms require explicit review; redistribution remains blocked"},
+  "source": {"name": "Foundational Model of Anatomy Ontology", "authority_status": "washington_sig_authority_documented", "version": "observed catalogue latest 2025-09-18; authoritative release pin pending", "release_url": "https://sig.biostr.washington.edu/projects/fm/AboutFM.html", "observed_catalogue_uri": "https://rdfportal.org/download/ontology/fma/", "license": "FMA licence terms require explicit review; redistribution remains blocked"},
   "access": {"mode": "documentation_only", "credentials_required": "unknown", "payload_accessed": false, "payload_commit_allowed": false},
   "normalization": {"identifier": "FMA identifier preserved; no term values", "language": "en (verify release language metadata)", "provenance": ["source_uri", "release_or_commit", "retrieved_at", "license_status"]},
   "translation_use": {"allowed": ["anatomy consistency schema"], "blocked": ["labels", "synonyms", "definitions", "crosswalk promotion", "identifier-network outputs"]},
   "review": {"required": ["authoritative release/version", "FMA licence and redistribution", "payload handling"], "status": "metadata_review_required", "evidence": ["https://sig.biostr.washington.edu/projects/fm/AboutFM.html"]},
-  "next_allowed_action": "confirm current authoritative release and licence terms without fetching payloads"
+  "next_allowed_action": "confirm current authoritative release and licence terms without fetching payloads; observed catalogue metadata is non-authoritative until SIG confirmation"
 }
