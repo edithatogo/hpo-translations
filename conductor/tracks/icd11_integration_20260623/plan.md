@@ -44,7 +44,6 @@ This plan introduces ICD-11 into the project where it can improve terminology al
   - Implemented in `phase2_data_access_normalization.json`: WHO API v2, OAuth2 client credentials, request-manifest-only retrieval, and local-only credential/response boundaries.
 - [x] **Task 2:** Normalize identifiers, preferred labels, synonyms, language tags, and provenance fields.
   - Implemented a metadata-only normalization contract distinguishing foundation URIs from MMS linearization codes and requiring ISO 639-1 language and request-manifest provenance.
-- [ ] **Task 3:** Produce a bounded sample artifact for maintainer review.
 - [x] **Task 3:** Produce a bounded sample artifact for maintainer review.
   - `phase4_bounded_sample_metadata.json` records the successful one-entity probe without retaining source labels, synonyms, definitions, or the full response.
 
