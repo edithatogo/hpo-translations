@@ -3,13 +3,13 @@
   "source_id": "oncotree",
   "source_name": "OncoTree",
   "phase": "phase_0_governance_source_probe",
-  "probe_status": "bounded_metadata_probe_blocked_endpoint_not_found",
+  "probe_status": "bounded_metadata_probe_passed_metadata_only_payload_discarded",
   "probe_date": "2026-08-01",
   "authoritative_source": {
     "source_type": "github_repository",
     "url": "https://github.com/cBioPortal/oncotree",
     "authority_status": "pending_terms_and_release_channel_review",
-    "version_pinning_strategy": "upstream release tag 2.1.0 (published 2026-01-27), resolved commit 72f5796147a49da0f05fa2fa6cdf1cac7b64fe55; verify API response metadata during bounded probe before payload access",
+    "version_pinning_strategy": "upstream release tag 2.1.0 (published 2026-01-27), resolved commit 72f5796147a49da0f05fa2fa6cdf1cac7b64fe55; metadata endpoint http://oncotree.mskcc.org/api/versions returned HTTP 200",
     "credential_required": false,
     "network_probe_required_before_ingestion": true
   },
@@ -96,7 +96,7 @@
     "task_id": "phase0_source_probe_scaffold",
     "source_version": "2.1.0 @ 72f5796147a49da0f05fa2fa6cdf1cac7b64fe55",
     "validation_result": "passing",
-    "open_blockers": ["terms review required", "API endpoint confirmation required", "payload handling decision required"],
+    "open_blockers": ["terms review required", "payload handling decision required"],
     "conflict_count": 0,
     "validation_command": "pixi run build-ontology-network; pixi run validate-conductor; pixi run validate-ontology-network; pixi run validate-ontology-network-artifacts; pixi run test-conductor-validation; git diff --check"
   }

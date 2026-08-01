@@ -11,6 +11,6 @@
   "supported_languages": ["en"],
   "payload_commit_allowed": false,
   "credential_required": false,
-  "next_gate": "confirm the current API endpoint from authoritative documentation and rerun a bounded metadata probe; retain payload and labels behind review gate",
+  "next_gate": "complete API/source terms review and maintainer review; retain payload and labels behind review gate",
   "excluded": ["labels", "synonyms", "definitions", "full_release_payload"]
 }
