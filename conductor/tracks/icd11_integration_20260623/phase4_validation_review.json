@@ -16,7 +16,7 @@
   "dry_run": {
     "translation_audit_command": "pixi run audit-translations",
     "import_dry_run": "metadata-only contract validation; no ICD-11 sample imported",
-    "sample_status": "blocked_pending_authenticated_probe",
+    "sample_status": "one_record_structural_probe_passed_payload_discarded",
     "expected_fail_closed_behavior": [
       "reject missing source version or entity URI",
       "reject missing provenance or language code",

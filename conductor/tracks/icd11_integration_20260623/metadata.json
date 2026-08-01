@@ -152,13 +152,13 @@
   "source_governance_result": {
     "phase_0_result": "implemented_governance_only",
     "source_authority_status": "WHO ICD API authoritative; 2026-01 release recorded; CC BY-ND 3.0 IGO terms accepted for metadata-only governance",
-    "go_no_go": "metadata_only_go; authenticated_probe_pending_explicit_credential_and_terms_gate",
+    "go_no_go": "bounded_probe_passed_payload_extraction_still_blocked",
     "payload_commit_allowed": false,
     "metadata_only_scaffold_allowed": true,
-    "bounded_sample_allowed": false,
+    "bounded_sample_allowed": true,
     "identifier_network_allowed": false,
     "non_translation_outputs_allowed": false,
-    "next_allowed_action": "roadmap bounded authenticated probe after credential custody and payload handling decision; no payload or label extraction yet",
+    "next_allowed_action": "maintainer review of redacted metadata result; no source payload or label extraction",
     "review_result": "codex_review_completed_fixes_applied",
     "review_archive_status": "phase_0_review_archived"
   }

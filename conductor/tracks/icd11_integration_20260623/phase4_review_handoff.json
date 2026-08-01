@@ -1,7 +1,7 @@
 {
   "track_id": "icd11_integration_20260623",
   "handoff_type": "metadata_only_maintainer_review",
-  "status": "awaiting_bounded_probe",
+  "status": "ready_for_maintainer_review",
   "review_scope": [
     "source authority and release pin",
     "CC BY-ND 3.0 IGO/no-adaptation boundary",
@@ -20,11 +20,11 @@
     "redaction/exclusion proof"
   ],
   "approval_decisions": {
-    "payload_access": "pending",
+    "payload_access": "one_record_structural_probe_complete_full_payload_discarded",
     "candidate_promotion": "not approved",
     "identifier_network": "blocked",
     "non_translation_outputs": "blocked"
   },
   "reviewer_role": "ontology-network maintainer",
-  "next_action": "approve or reject the bounded authenticated probe manifest before any source response is read"
+  "next_action": "review redacted metadata result before any future source-label or crosswalk work"
 }

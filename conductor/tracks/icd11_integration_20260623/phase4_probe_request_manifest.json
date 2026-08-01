@@ -1,7 +1,7 @@
 {
   "track_id": "icd11_integration_20260623",
   "manifest_type": "future_bounded_authenticated_probe",
-  "status": "not_executed",
+  "status": "executed_one_record",
   "source": {
     "source_id": "icd11",
     "release": "2026-01",
@@ -12,7 +12,7 @@
   },
   "request_scope": {
     "records": 1,
-    "entity_selection": "one authoritative entity URI selected by maintainer at execution time",
+    "entity_selection": "WHO documentation example entity URI 257068234",
     "include": ["entity URI", "release identifier", "language", "provenance metadata"],
     "exclude": ["bulk traversal", "full release download", "unbounded search", "source payload commit"]
   },

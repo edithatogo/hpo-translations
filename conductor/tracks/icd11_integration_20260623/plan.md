@@ -45,7 +45,8 @@ This plan introduces ICD-11 into the project where it can improve terminology al
 - [x] **Task 2:** Normalize identifiers, preferred labels, synonyms, language tags, and provenance fields.
   - Implemented a metadata-only normalization contract distinguishing foundation URIs from MMS linearization codes and requiring ISO 639-1 language and request-manifest provenance.
 - [ ] **Task 3:** Produce a bounded sample artifact for maintainer review.
-  - Blocked pending the approved authenticated probe; no ICD-11 source payload has been read or committed.
+- [x] **Task 3:** Produce a bounded sample artifact for maintainer review.
+  - `phase4_bounded_sample_metadata.json` records the successful one-entity probe without retaining source labels, synonyms, definitions, or the full response.
 
 ## Phase 3: HPO Translation Use
 - [x] **Task 1:** Identify where ICD-11 helps: crosswalks, synonym review, multilingual label comparison, or domain validation.
@@ -58,8 +59,8 @@ This plan introduces ICD-11 into the project where it can improve terminology al
 ## Phase 4: Validation and Review
 - [x] **Task 1:** Validate schema, provenance, and license metadata.
   - Recorded validation results and the CC BY-ND 3.0 IGO payload boundary in `phase4_validation_review.json`.
-- [ ] **Task 2:** Run translation-audit and import dry-run checks against sample outputs.
-  - Metadata-only dry-run contract is defined, and `phase4_probe_request_manifest.json` plus `phase4_review_handoff.json` prepare the future probe; execution against an ICD-11 sample remains blocked pending approval.
+- [x] **Task 2:** Run translation-audit and import dry-run checks against sample outputs.
+  - The one-entity response passed HTTP/JSON/identifier structural checks; translation audit passed against repository fixtures; no source payload was imported or retained.
 - [x] **Task 3:** Document limitations, excluded payloads, and review decisions.
   - Recorded fail-closed limitations, excluded payload classes, candidate-only policy, and the next maintainer review gate.
 
