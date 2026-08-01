@@ -17,8 +17,8 @@
   "pr_url": null,
   "ci_status": "local_passing",
   "merge_status": "not_opened",
-  "last_commit": "9412ef3",
-  "phase_review_status": "codex_phase_1_2_review_completed_fixes_applied",
+  "last_commit": "e410f47",
+  "phase_review_status": "codex_phase_3_metadata_review_completed_fixes_applied_phase_open",
   "github_checks_url": null,
   "merge_commit": null,
   "priority": "P0",
@@ -110,6 +110,8 @@
       "language identity schema",
       "translation evaluation item schema",
       "source lineage schema",
+      "authoritative source catalog",
+      "source verification report",
       "reviewer decision schema",
       "run manifest schema",
       "passing and expected-failure fixtures",
@@ -132,7 +134,20 @@
       "official translation promotion"
     ]
   },
-  "automation_readiness": "phase_2_contract_local_passing_empirical_work_blocked",
+  "automation_readiness": "phase_3_authoritative_mapping_metadata_local_passing_payload_ingress_blocked",
+  "source_verification": {
+    "verified_at": "2026-08-01T00:00:00Z",
+    "hpo_release": "v2026-06-23",
+    "hpo_commit": "1366616bda33cd5eb18bb232287e139a1b075eb8",
+    "monarch_mapping_snapshot": "2026-07-19",
+    "mouse_human_mapping_commit": "1ed989cc6d367890f16ce6ee43d4d257d6615137",
+    "verified_public_asset_count": 11,
+    "naive_mapping_family_count": 4,
+    "independent_evidence_group_count": 3,
+    "payloads_retained": false,
+    "payload_commit_allowed": false,
+    "license_decision": "maintainer_review_required"
+  },
   "evidence_score_policy": {
     "candidate_only": true,
     "signals": [
@@ -166,16 +181,19 @@
     "last_run": {
       "agent": "codex",
       "model": "GPT-5",
-      "task_id": "research_validation_20260801_phase_1_2",
-      "prompt_version": "research-validation-track-2026-08-01",
-      "hpo_release": "synthetic schema fixture only; empirical release not selected",
+      "task_id": "research_validation_20260801_phase_3_metadata",
+      "prompt_version": "research-validation-source-verification-2026-08-01",
+      "hpo_release": "v2026-06-23",
       "source_versions": {
-        "synthetic-public-source": "fixture-1.0",
-        "synthetic-structural-source": "fixture-1.0"
+        "HP-MESH": "2026-07-19",
+        "HP-UMLS": "2026-07-19",
+        "HP-UPHENO": "2026-07-19",
+        "HP-MP": "1ed989cc6d367890f16ce6ee43d4d257d6615137"
       },
       "runtime_seconds": null,
       "validation_command": [
         "pixi run validate-research-validation",
+        "pixi run verify-research-source-pins",
         "pixi run test-conductor-validation",
         "pixi run ruff-check",
         "pixi run ruff-format",
@@ -186,8 +204,8 @@
         "pixi run validate-ontology-network-artifacts",
         "pixi run validate-conductor"
       ],
-      "validation_result": "local_passing_contract_only",
-      "conflict_count": 1,
+      "validation_result": "local_passing_metadata_only_payload_blocked",
+      "conflict_count": 2,
       "open_blockers": 6
     }
   },

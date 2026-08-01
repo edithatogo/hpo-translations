@@ -3,7 +3,7 @@
 ## Phase 0: Dependency, Blocker, Source, and Automation Gates
 
 - [x] **Task 1:** Populate the blocker registry and assign owners.
-- [ ] **Task 2:** Pin the HPO release and every source release selected for the pilot; complete source access, license, credential, source-authority, language, and version checks.
+- [~] **Task 2:** Pin the HPO release and every source release selected for the pilot; complete source access, license, credential, source-authority, language, and version checks. HPO `v2026-06-23` and the four official mapping families are pinned; the final pilot source set and human license decisions remain open. (`3ff429e`, review fix `e410f47`)
 - [x] **Task 3:** Define restricted-payload policy, local-only manifest requirements, and the commit allowlist and denylist.
 - [x] **Task 4:** Run a fail-fast benchmark fixture containing one HPO concept, one hard negative, and two independently identified evidence groups. (`57f8816`, review fix `9412ef3`)
 - [x] **Task 5:** Define the research artifact contract and downstream consumers.
@@ -33,11 +33,11 @@
 
 ## Phase 3: Source Provenance and Dependence
 
-- [ ] **Task 1:** Ingest metadata for official HPO SSSOM mappings before generating new crosswalks.
-- [ ] **Task 2:** Classify each source by semantic role, authority, active-language overlap, license feasibility, update cadence, and expected reviewer burden.
-- [ ] **Task 3:** Populate derivation paths, shared-lineage clusters, and independent-evidence groups at the originating source-atom level.
+- [x] **Task 1:** Ingest metadata for official HPO SSSOM mappings before generating new crosswalks. (`3ff429e`)
+- [x] **Task 2:** Classify each source by semantic role, authority, active-language overlap, license feasibility, update cadence, and expected reviewer burden. Completed for the official HPO mapping source set. (`3ff429e`)
+- [~] **Task 3:** Populate derivation paths, shared-lineage clusters, and independent-evidence groups at the originating source-atom level. Metadata-level lineage is complete; source-atom ingestion remains blocked on payload and license approval. (`3ff429e`)
 - [ ] **Task 4:** Add DeCS, Mondo, PRO-CTCAE, WHO ICF, NCIt/NCI dictionaries, RadLex, and structural ontologies only after source-specific access review.
-- [ ] **Task 5:** Demonstrate that mirrors and aggregator-derived labels do not increase independent source counts.
+- [x] **Task 5:** Demonstrate that mirrors and aggregator-derived labels do not increase independent source counts. Four mapping families resolve to three conservative independent-evidence groups; HP–MeSH and HP–UMLS share a MedGen origin. (`3ff429e`, review fix `e410f47`)
 - [ ] **Task 6:** Phase Verification & Checkpoint (Refer to workflow.md).
 
 ## Phase 4: Preregistered Pilot
@@ -73,3 +73,7 @@
 ## Phase 1-2 Review Fixes
 
 - [x] **Task:** Apply review suggestions for fixture integrity, linked source lineage, frozen run metadata, reviewer conflicts, edit burden, and ontology-discrimination outcomes. (`9412ef3`)
+
+## Phase 3 Metadata Review Fixes
+
+- [x] **Task:** Require shared-origin summaries to identify their exact source members and independent-evidence group. (`e410f47`)
