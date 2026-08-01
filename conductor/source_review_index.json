@@ -4,7 +4,7 @@
   "handoffs": [
     {"track":"efo_integration_20260623","file":"conductor/tracks/efo_integration_20260623/maintainer_review_handoff.json","status":"approved_bounded_metadata_only_sample"},
     {"track":"oncotree_integration_20260623","file":"conductor/tracks/oncotree_integration_20260623/maintainer_review_handoff.json","status":"approved_bounded_metadata_only_sample"},
-    {"track":"pato_integration_20260623","file":"conductor/tracks/pato_integration_20260623/maintainer_review_handoff.json","status":"awaiting_licence_review"},
+    {"track":"pato_integration_20260623","file":"conductor/tracks/pato_integration_20260623/maintainer_review_handoff.json","status":"approved_bounded_metadata_only_sample"},
     {"track":"mp_integration_20260623","file":"conductor/tracks/mp_integration_20260623/maintainer_review_handoff.json","status":"awaiting_licence_review"},
     {"track":"upheno_integration_20260623","file":"conductor/tracks/upheno_integration_20260623/maintainer_review_handoff.json","status":"awaiting_component_licence_review"},
     {"track":"fma_integration_20260623","file":"conductor/tracks/fma_integration_20260623/maintainer_review_handoff.json","status":"awaiting_authority_and_licence_review"},
