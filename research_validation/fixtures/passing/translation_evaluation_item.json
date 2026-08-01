@@ -1,0 +1,18 @@
+{
+  "item_id": "item-synthetic-seizure",
+  "hpo_id": "HP:0001250",
+  "hpo_release": "2026-01-15",
+  "language_tag": "es",
+  "object_type": "label",
+  "source_text": "Synthetic source label for schema testing",
+  "source_text_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+  "candidate_text": "Etiqueta candidata sintetica",
+  "candidate_method": "synthetic_fixture",
+  "hard_negative_hpo_ids": ["HP:0002123"],
+  "evidence_ids": ["evidence-public-fixture-a", "evidence-public-fixture-b"],
+  "independent_evidence_groups": ["fixture-independent-a", "fixture-independent-b"],
+  "candidate_only": true,
+  "human_review_required": true,
+  "license_status": "approved_for_fixture",
+  "provenance_id": "provenance-item-fixture"
+}

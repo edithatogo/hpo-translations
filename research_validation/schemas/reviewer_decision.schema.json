@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hpo-translations.example/schemas/reviewer_decision.schema.json",
+  "title": "Reviewer decision",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["decision_id", "item_id", "reviewer_id_pseudonym", "reviewer_roles", "blinded_to_candidate_method", "decision", "clinically_significant_error", "error_categories", "review_seconds", "confidence", "adjudication_status"],
+  "properties": {
+    "decision_id": {"type": "string", "pattern": "^decision-[a-z0-9-]+$"},
+    "item_id": {"type": "string", "pattern": "^item-[a-z0-9-]+$"},
+    "reviewer_id_pseudonym": {"type": "string", "pattern": "^reviewer-[a-z0-9-]+$"},
+    "reviewer_roles": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["target_language", "clinical", "ontology", "community", "patient"]}},
+    "blinded_to_candidate_method": {"const": true},
+    "decision": {"enum": ["accept_no_edit", "accept_with_edit", "reject", "abstain"]},
+    "clinically_significant_error": {"type": "boolean"},
+    "error_categories": {"type": "array", "uniqueItems": true, "items": {"enum": ["polarity", "anatomy", "laterality", "severity_frequency", "temporal_course", "inheritance_causality", "granularity", "omission", "addition", "ambiguity", "misleading_cognate", "register", "regional_mismatch", "grammar", "other"]}},
+    "review_seconds": {"type": "number", "minimum": 0},
+    "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+    "adjudication_status": {"enum": ["pending", "agreed", "adjudicated", "withdrawn"]}
+  }
+}

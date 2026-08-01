@@ -1,0 +1,13 @@
+{
+  "decision_id": "decision-synthetic-001",
+  "item_id": "item-synthetic-seizure",
+  "reviewer_id_pseudonym": "reviewer-synthetic-001",
+  "reviewer_roles": ["target_language", "clinical"],
+  "blinded_to_candidate_method": true,
+  "decision": "accept_with_edit",
+  "clinically_significant_error": false,
+  "error_categories": ["grammar"],
+  "review_seconds": 42.5,
+  "confidence": 0.8,
+  "adjudication_status": "pending"
+}

@@ -1,0 +1,82 @@
+import copy
+import json
+import tempfile
+import unittest
+from pathlib import Path
+
+from scripts.validate_research_validation import (
+    DEFAULT_RESEARCH_ROOT,
+    load_json,
+    schema_errors,
+    semantic_errors,
+    validate_contract,
+)
+
+
+class ValidateResearchValidationTests(unittest.TestCase):
+    def test_committed_contract_passes(self) -> None:
+        self.assertEqual(validate_contract(), [])
+
+    def test_every_schema_rejects_its_expected_failure(self) -> None:
+        schema_dir = DEFAULT_RESEARCH_ROOT / "schemas"
+        failing_dir = DEFAULT_RESEARCH_ROOT / "fixtures" / "failing"
+        for schema_path in schema_dir.glob("*.schema.json"):
+            name = schema_path.name.removesuffix(".schema.json")
+            with self.subTest(schema=name):
+                schema = load_json(schema_path)
+                instance = load_json(failing_dir / f"{name}.json")
+                self.assertTrue(schema_errors(schema, instance) + semantic_errors(name, instance))
+
+    def test_target_cannot_be_its_own_hard_negative(self) -> None:
+        item = load_json(DEFAULT_RESEARCH_ROOT / "fixtures" / "passing" / "translation_evaluation_item.json")
+        item["hard_negative_hpo_ids"] = [item["hpo_id"]]
+        self.assertIn(
+            "the target HPO identifier cannot also be a hard negative",
+            semantic_errors("translation_evaluation_item", item),
+        )
+
+    def test_reviewed_count_cannot_exceed_empirical_count(self) -> None:
+        manifest = load_json(DEFAULT_RESEARCH_ROOT / "fixtures" / "passing" / "run_manifest.json")
+        manifest["human_reviewed_record_count"] = 1
+        self.assertIn(
+            "human_reviewed_record_count cannot exceed empirical_record_count",
+            semantic_errors("run_manifest", manifest),
+        )
+
+    def test_rejected_approval_blocks_empirical_run(self) -> None:
+        manifest = load_json(DEFAULT_RESEARCH_ROOT / "fixtures" / "passing" / "run_manifest.json")
+        manifest["release_scope"] = "pilot"
+        manifest["approvals"]["license"] = "rejected"
+        self.assertIn(
+            "pilot and confirmatory runs require approved or not-required approval states",
+            semantic_errors("run_manifest", manifest),
+        )
+
+    def test_missing_fixture_is_reported(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory) / "research_validation"
+            for source in DEFAULT_RESEARCH_ROOT.rglob("*"):
+                if source.is_file():
+                    destination = root / source.relative_to(DEFAULT_RESEARCH_ROOT)
+                    destination.parent.mkdir(parents=True, exist_ok=True)
+                    destination.write_bytes(source.read_bytes())
+            (root / "fixtures" / "passing" / "reviewer_decision.json").unlink()
+            codes = {issue.code for issue in validate_contract(root)}
+            self.assertIn("fixture.passing.missing", codes)
+
+    def test_unknown_fields_are_rejected(self) -> None:
+        schema = load_json(DEFAULT_RESEARCH_ROOT / "schemas" / "translation_evaluation_item.schema.json")
+        item = copy.deepcopy(
+            load_json(DEFAULT_RESEARCH_ROOT / "fixtures" / "passing" / "translation_evaluation_item.json")
+        )
+        item["unreviewed_claim"] = "release ready"
+        self.assertTrue(schema_errors(schema, item))
+
+    def test_schema_files_are_json_objects(self) -> None:
+        for schema_path in (DEFAULT_RESEARCH_ROOT / "schemas").glob("*.schema.json"):
+            with self.subTest(schema=schema_path.name), schema_path.open(encoding="utf-8") as handle:
+                self.assertIsInstance(json.load(handle), dict)
+
+
+if __name__ == "__main__":
+    unittest.main()

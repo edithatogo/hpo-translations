@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hpo-translations.example/schemas/translation_evaluation_item.schema.json",
+  "title": "Translation evaluation item",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["item_id", "hpo_id", "hpo_release", "language_tag", "object_type", "source_text", "source_text_sha256", "candidate_text", "candidate_method", "hard_negative_hpo_ids", "evidence_ids", "independent_evidence_groups", "candidate_only", "human_review_required", "license_status", "provenance_id"],
+  "properties": {
+    "item_id": {"type": "string", "pattern": "^item-[a-z0-9-]+$"},
+    "hpo_id": {"type": "string", "pattern": "^HP:[0-9]{7}$"},
+    "hpo_release": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"},
+    "language_tag": {"type": "string", "pattern": "^[A-Za-z]{2,8}(?:-[A-Za-z0-9]{1,8})*$"},
+    "object_type": {"enum": ["label", "definition", "synonym", "regional_variant", "patient_facing"]},
+    "source_text": {"type": "string", "minLength": 1},
+    "source_text_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "candidate_text": {"type": "string", "minLength": 1},
+    "candidate_method": {"enum": ["synthetic_fixture", "machine_translation", "language_model", "ontology_supported_language_model", "authorized_human_reference"]},
+    "hard_negative_hpo_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^HP:[0-9]{7}$"}},
+    "evidence_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^evidence-[a-z0-9-]+$"}},
+    "independent_evidence_groups": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "candidate_only": {"const": true},
+    "human_review_required": {"const": true},
+    "license_status": {"enum": ["approved_for_fixture", "approved_for_study", "pending", "blocked"]},
+    "provenance_id": {"type": "string", "minLength": 1}
+  }
+}

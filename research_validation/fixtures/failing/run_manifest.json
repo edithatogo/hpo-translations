@@ -1,0 +1,17 @@
+{
+  "run_id": "run-invalid-restricted-input",
+  "protocol_version": "draft-2026-08-01",
+  "hpo_release": "2026-01-15",
+  "source_versions": {"restricted-source": "fixture-1.0"},
+  "model_runs": [],
+  "random_seed": 1,
+  "generated_at": "2026-08-01T00:00:00Z",
+  "validation_commands": ["pixi run validate-research-validation"],
+  "restricted_inputs_present": true,
+  "local_only_manifest": null,
+  "empirical_record_count": 1,
+  "human_reviewed_record_count": 2,
+  "approvals": {"license": "pending", "ethics": "pending", "community": "pending", "language_working_group": "pending"},
+  "release_scope": "pilot",
+  "promotion_policy": "automatic"
+}

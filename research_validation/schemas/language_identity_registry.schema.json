@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hpo-translations.example/schemas/language_identity_registry.schema.json",
+  "title": "Language identity registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["generated_date", "policy", "records"],
+  "properties": {
+    "generated_date": {"type": "string", "format": "date"},
+    "policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["authority_required_for_asset_rename", "standard", "translation_evidence_ready_requires_zero_unresolved_records"],
+      "properties": {
+        "authority_required_for_asset_rename": {"const": true},
+        "standard": {"const": "BCP 47"},
+        "translation_evidence_ready_requires_zero_unresolved_records": {"const": true}
+      }
+    },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["authority_owner", "candidate_identities", "current_asset_suffix", "decision", "issue_id", "required_action", "status"],
+        "properties": {
+          "authority_owner": {"type": "string", "minLength": 1},
+          "candidate_identities": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["bcp47", "language_name", "source"],
+              "properties": {
+                "bcp47": {"type": "string", "pattern": "^[A-Za-z]{2,8}(?:-[A-Za-z0-9]{1,8})*$"},
+                "language_name": {"type": "string", "minLength": 1},
+                "source": {"type": "string", "minLength": 1}
+              }
+            }
+          },
+          "current_asset_suffix": {"type": "string", "minLength": 1},
+          "decision": {"type": ["string", "null"]},
+          "issue_id": {"type": "string", "pattern": "^language-identity-[a-z0-9-]+$"},
+          "required_action": {"type": "string", "minLength": 1},
+          "status": {"enum": ["authority_review_required", "resolved", "rejected"]}
+        }
+      }
+    }
+  }
+}

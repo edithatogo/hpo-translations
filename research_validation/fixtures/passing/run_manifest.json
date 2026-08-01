@@ -1,0 +1,17 @@
+{
+  "run_id": "run-synthetic-schema-probe",
+  "protocol_version": "draft-2026-08-01",
+  "hpo_release": "2026-01-15",
+  "source_versions": {"synthetic-public-source": "fixture-1.0"},
+  "model_runs": [],
+  "random_seed": 20260801,
+  "generated_at": "2026-08-01T00:00:00Z",
+  "validation_commands": ["pixi run validate-research-validation"],
+  "restricted_inputs_present": false,
+  "local_only_manifest": null,
+  "empirical_record_count": 0,
+  "human_reviewed_record_count": 0,
+  "approvals": {"license": "not_required", "ethics": "not_required", "community": "not_required", "language_working_group": "not_required"},
+  "release_scope": "schema_probe",
+  "promotion_policy": "human_authorization_required"
+}
