@@ -92,6 +92,18 @@ class ValidateResearchValidationTests(unittest.TestCase):
             semantic_errors("source_catalog", catalog),
         )
 
+    def test_shared_origin_summary_must_name_exact_members_and_group(self) -> None:
+        catalog = load_json(DEFAULT_RESEARCH_ROOT / "fixtures" / "passing" / "source_catalog.json")
+        summary = catalog["dependence_summary"]["shared_origin_groups"][0]
+        summary["members"] = ["fixture-a", "invented-source"]
+        summary["independent_evidence_group"] = "invented-independent-group"
+        errors = semantic_errors("source_catalog", catalog)
+        self.assertIn("shared origin fixture-origin must list its exact source members", errors)
+        self.assertIn(
+            "shared origin fixture-origin must use its source records' independent evidence group",
+            errors,
+        )
+
     def test_versioned_source_cannot_use_latest_alias(self) -> None:
         catalog = load_json(DEFAULT_RESEARCH_ROOT / "fixtures" / "passing" / "source_catalog.json")
         catalog["mappings"][0]["versioned_url"] = "https://example.org/latest/a.tsv"

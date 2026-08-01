@@ -132,17 +132,36 @@ def semantic_errors(schema_name: str, instance: Any) -> list[str]:
             errors.append("records with the same origin_dataset must share one independent evidence group")
         if isinstance(dependence_summary, dict):
             origin_counts: dict[str, int] = {}
+            members_by_origin: dict[str, set[str]] = {}
             for record in mappings:
-                if isinstance(record, dict) and isinstance(record.get("origin_dataset"), str):
+                if (
+                    isinstance(record, dict)
+                    and isinstance(record.get("origin_dataset"), str)
+                    and isinstance(record.get("source_id"), str)
+                ):
                     origin = str(record["origin_dataset"])
                     origin_counts[origin] = origin_counts.get(origin, 0) + 1
+                    members_by_origin.setdefault(origin, set()).add(str(record["source_id"]))
             expected_shared_origins = {origin for origin, count in origin_counts.items() if count > 1}
             shared_origin_groups = dependence_summary.get("shared_origin_groups", [])
             reported_shared_origins = {
                 group.get("origin_dataset") for group in shared_origin_groups if isinstance(group, dict)
             }
-            if reported_shared_origins != expected_shared_origins:
+            if reported_shared_origins != expected_shared_origins or len(reported_shared_origins) != len(
+                shared_origin_groups
+            ):
                 errors.append("shared_origin_groups must enumerate every repeated origin_dataset exactly once")
+            for group in shared_origin_groups:
+                if not isinstance(group, dict):
+                    continue
+                origin = group.get("origin_dataset")
+                if not isinstance(origin, str) or origin not in expected_shared_origins:
+                    continue
+                if set(group.get("members", [])) != members_by_origin[origin]:
+                    errors.append(f"shared origin {origin} must list its exact source members")
+                expected_groups = groups_by_origin.get(origin, set())
+                if len(expected_groups) == 1 and group.get("independent_evidence_group") not in expected_groups:
+                    errors.append(f"shared origin {origin} must use its source records' independent evidence group")
 
     return errors
 
