@@ -1,0 +1,17 @@
+{
+  "prepared_at": "2026-08-01",
+  "policy": "metadata_only_until_explicit_terms_and_maintainer_approval",
+  "handoffs": [
+    {"track":"efo_integration_20260623","file":"conductor/tracks/efo_integration_20260623/maintainer_review_handoff.json","status":"approved_bounded_metadata_only_sample"},
+    {"track":"oncotree_integration_20260623","file":"conductor/tracks/oncotree_integration_20260623/maintainer_review_handoff.json","status":"approved_bounded_metadata_only_sample"},
+    {"track":"pato_integration_20260623","file":"conductor/tracks/pato_integration_20260623/maintainer_review_handoff.json","status":"awaiting_licence_review"},
+    {"track":"mp_integration_20260623","file":"conductor/tracks/mp_integration_20260623/maintainer_review_handoff.json","status":"awaiting_licence_review"},
+    {"track":"upheno_integration_20260623","file":"conductor/tracks/upheno_integration_20260623/maintainer_review_handoff.json","status":"awaiting_component_licence_review"},
+    {"track":"fma_integration_20260623","file":"conductor/tracks/fma_integration_20260623/maintainer_review_handoff.json","status":"awaiting_authority_and_licence_review"},
+    {"track":"loinc_integration_20260623","file":"conductor/tracks/loinc_integration_20260623/maintainer_review_handoff.json","status":"awaiting_account_and_licence_review"},
+    {"track":"mesh_integration_20260623","file":"conductor/tracks/mesh_integration_20260623/maintainer_review_handoff.json","status":"awaiting_terms_review"},
+    {"track":"orphanet_integration_20260623","file":"conductor/tracks/orphanet_integration_20260623/maintainer_review_handoff.json","status":"awaiting_product_scope_review"},
+    {"track":"lddb_integration_20260623","file":"conductor/tracks/lddb_integration_20260623/maintainer_review_handoff.json","status":"no_go_investigation_only"}
+  ],
+  "prohibited_without_approval": ["source labels","synonyms","definitions","crosswalks","downstream promotion"]
+}
