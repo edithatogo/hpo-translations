@@ -12,6 +12,8 @@
   "response_structural_property_count": 11,
   "response_bytes_observed": 1454,
   "response_retention": "discarded_after_in_memory_structural_validation",
+  "retrieval_timestamp": "2026-08-01T17:19:33+10:00",
+  "request_scope_sha256": "460bc7f55b6e492eddc2904595626a2ff7ff3959f915fa083bc14de2536851f2",
   "payload_commit_allowed": false,
   "source_labels_committed": false,
   "source_synonyms_committed": false,

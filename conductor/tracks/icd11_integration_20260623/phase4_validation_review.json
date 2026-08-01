@@ -15,7 +15,7 @@
   },
   "dry_run": {
     "translation_audit_command": "pixi run audit-translations",
-    "import_dry_run": "metadata-only contract validation; no ICD-11 sample imported",
+    "import_dry_run": "metadata-only contract validation; one redacted structural sample validated; no source terms imported",
     "sample_status": "one_record_structural_probe_passed_payload_discarded",
     "expected_fail_closed_behavior": [
       "reject missing source version or entity URI",
@@ -25,8 +25,8 @@
     ]
   },
   "limitations": [
-    "No authenticated ICD-11 response was read or committed.",
-    "No bounded source sample is available until credential custody and payload handling are approved.",
+    "The authenticated response was read in memory for structural validation and discarded; no response was committed.",
+    "Only a redacted metadata sample is available; source terms remain excluded pending maintainer review.",
     "Foundation polyhierarchy and MMS linearization semantics require separate provenance.",
     "Postcoordination cannot be flattened into an HPO assertion without human review.",
     "Language availability is release-specific and must be rechecked at probe time."
@@ -36,6 +36,6 @@
     "human_review_required": true,
     "approved_translation": false,
     "identifier_network_allowed": false,
-    "next_review_gate": "bounded authenticated probe and maintainer review of a redacted sample"
+    "next_review_gate": "maintainer review of the redacted metadata sample"
   }
 }
