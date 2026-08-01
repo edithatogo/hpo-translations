@@ -1,0 +1,63 @@
+{
+  "track_id": "icd11_integration_20260623",
+  "phase": "phase_2_data_access_and_normalization",
+  "source_id": "icd11",
+  "source_version": "2026-01",
+  "authoritative_endpoint": "https://id.who.int/",
+  "api_version": "v2",
+  "access_mode": "authenticated_oauth2_client_credentials",
+  "credential_required": true,
+  "retrieval_policy": {
+    "request_manifest_only": true,
+    "full_api_responses_commit_allowed": false,
+    "raw_source_payload_commit_allowed": false,
+    "local_only_artifacts": [
+      "client credentials",
+      "access tokens",
+      "full API responses",
+      "licensed release payloads"
+    ],
+    "rate_limit_policy": "respect WHO API terms and documented service limits; do not retry indefinitely",
+    "probe_scope": "one authoritative record after explicit credential and payload-handling approval"
+  },
+  "normalization_contract": {
+    "identifier": "preserve WHO entity URI and distinguish foundation URI from MMS linearization URI",
+    "code": "retain MMS code only when returned by a linearization endpoint",
+    "preferred_label": "store only in local or approved derived artifacts after terms gate",
+    "synonyms": "store only in local or approved derived artifacts after terms gate",
+    "language": "normalize Accept-Language and returned language tags to ISO 639-1",
+    "provenance": [
+      "source_id",
+      "source_version",
+      "endpoint",
+      "retrieval_timestamp",
+      "entity_uri",
+      "linearization",
+      "request_manifest_digest"
+    ],
+    "candidate_policy": "all HPO crosswalk or LLM-assisted outputs remain candidate-only and require human review"
+  },
+  "declared_languages": [
+    {"name": "Arabic", "code": "ar"},
+    {"name": "Chinese", "code": "zh"},
+    {"name": "Czech", "code": "cs"},
+    {"name": "English", "code": "en"},
+    {"name": "French", "code": "fr"},
+    {"name": "German (prerelease)", "code": "de"},
+    {"name": "Kazakh", "code": "kk"},
+    {"name": "Latin (titles only)", "code": "la"},
+    {"name": "Portuguese", "code": "pt"},
+    {"name": "Russian", "code": "ru"},
+    {"name": "Slovak", "code": "sk"},
+    {"name": "Spanish", "code": "es"},
+    {"name": "Swedish", "code": "sv"},
+    {"name": "Turkish", "code": "tr"},
+    {"name": "Uzbek", "code": "uz"}
+  ],
+  "bounded_sample": {
+    "status": "blocked_pending_authenticated_probe_decision",
+    "source_payload_read": false,
+    "source_payload_committed": false,
+    "required_approval": "credential custody and payload-handling decision"
+  }
+}

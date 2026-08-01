@@ -40,9 +40,12 @@ This plan introduces ICD-11 into the project where it can improve terminology al
   - The bounded authenticated probe remains a roadmap item and is not executed in this phase.
 
 ## Phase 2: Data Access and Normalization
-- [ ] **Task 1:** Define source retrieval path without committing restricted payloads.
-- [ ] **Task 2:** Normalize identifiers, preferred labels, synonyms, language tags, and provenance fields.
+- [x] **Task 1:** Define source retrieval path without committing restricted payloads.
+  - Implemented in `phase2_data_access_normalization.json`: WHO API v2, OAuth2 client credentials, request-manifest-only retrieval, and local-only credential/response boundaries.
+- [x] **Task 2:** Normalize identifiers, preferred labels, synonyms, language tags, and provenance fields.
+  - Implemented a metadata-only normalization contract distinguishing foundation URIs from MMS linearization codes and requiring ISO 639-1 language and request-manifest provenance.
 - [ ] **Task 3:** Produce a bounded sample artifact for maintainer review.
+  - Blocked pending the approved authenticated probe; no ICD-11 source payload has been read or committed.
 
 ## Phase 3: HPO Translation Use
 - [ ] **Task 1:** Identify where ICD-11 helps: crosswalks, synonym review, multilingual label comparison, or domain validation.
