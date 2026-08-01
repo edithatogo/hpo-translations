@@ -1,0 +1,20 @@
+{
+  "track_id": "efo_integration_20260623",
+  "status": "awaiting_explicit_maintainer_approval",
+  "prepared_at": "2026-08-01",
+  "evidence": {
+    "authority": "https://github.com/EBISPOT/efo",
+    "release": "v3.92.0",
+    "immutable_commit": "704cbf64e95ac374374b309691d86d95c84dfe17",
+    "owl_version_info": "3.92.0",
+    "license": "Apache-2.0",
+    "probe": "HTTP 200 metadata-only probe; response discarded"
+  },
+  "decisions_requested": [
+    "Approve Apache-2.0 EFO release metadata for future bounded payload access",
+    "Confirm English-only scope and provenance requirements",
+    "Authorize a one-record non-redistributive sample, if permitted"
+  ],
+  "blocked_until_approval": ["source labels", "synonyms", "definitions", "crosswalk edges", "downstream promotion"],
+  "llm_policy": "candidate_only_human_review_required"
+}
