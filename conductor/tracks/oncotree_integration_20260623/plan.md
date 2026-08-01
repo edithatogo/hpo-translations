@@ -37,7 +37,8 @@ This plan introduces OncoTree into the project where it can improve terminology 
 ## Phase 2: Data Access and Normalization
 - [ ] **Task 1:** Define source retrieval path without committing restricted payloads.
 - [ ] **Task 2:** Normalize identifiers, preferred labels, synonyms, language tags, and provenance fields.
-- [ ] **Task 3:** Produce a bounded sample artifact for maintainer review.
+- [x] **Task 3:** Produce a bounded sample artifact for maintainer review.
+  - Approved one-record opaque-code sample is recorded in `maintainer_review_handoff.json`; payload discarded.
 
 ## Phase 3: HPO Translation Use
 - [ ] **Task 1:** Identify where OncoTree helps: crosswalks, synonym review, multilingual label comparison, or domain validation.
@@ -45,9 +46,9 @@ This plan introduces OncoTree into the project where it can improve terminology 
 - [ ] **Task 3:** Ensure LLM-assisted outputs remain candidate-only and human-review-required.
 
 ## Phase 4: Validation and Review
-- [ ] **Task 1:** Validate schema, provenance, and license metadata.
+- [x] **Task 1:** Validate schema, provenance, and license metadata.
 - [ ] **Task 2:** Run translation-audit and import dry-run checks against sample outputs.
-- [ ] **Task 3:** Document limitations, excluded payloads, and review decisions.
+- [x] **Task 3:** Document limitations, excluded payloads, and review decisions.
 
 ## P1 Implementation Candidate Addendum
 This track is a highest-priority P1 open/public ontology implementation candidate. Start with Phase 0 governance, source-authority confirmation, terms review, and one bounded source probe before any bulk extraction.
