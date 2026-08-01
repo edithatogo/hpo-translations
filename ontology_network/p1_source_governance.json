@@ -100,7 +100,6 @@
         "validation summaries",
         "reviewer handoff skeletons"
       ],
-      "go_no_go": "governance_only_terms_review_required",
       "human_review_required": true,
       "identifier_network_allowed": false,
       "known_blockers": [
@@ -108,15 +107,16 @@
         "Foundation entities and MMS codes need distinct provenance handling.",
         "Terms and payload handling must be cleared before committing ontology labels, synonyms, definitions, full responses, or release payload rows."
       ],
+      "go_no_go": "metadata_only_go_authenticated_probe_pending",
+      "next_allowed_action": "roadmap bounded authenticated probe after credential custody and payload handling decision; no payload or label extraction",
       "metadata_only_scaffold_allowed": true,
-      "next_allowed_action": "complete source terms review and bounded source probe before any payload or label extraction",
       "non_translation_outputs_allowed": false,
       "ontology_name": "ICD-11",
       "payload_commit_allowed": false,
       "phase_0_result": "implemented_governance_only",
       "priority": "P1",
       "provenance_id": "prov-p1-governance-icd11",
-      "source_access_status": "public_api_terms_review_required",
+      "source_access_status": "public_api_metadata_only_terms_recorded",
       "source_id": "icd11",
       "track_id": "icd11_integration_20260623"
     },

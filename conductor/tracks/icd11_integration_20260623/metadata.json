@@ -3,7 +3,7 @@
   "type": "feature",
   "status": "phase_0_implemented_blocked",
   "created_at": "2026-06-23T00:00:00Z",
-  "updated_at": "2026-06-25T00:00:00Z",
+  "updated_at": "2026-08-01T00:00:00Z",
   "description": "Integrate ICD-11 into terminology and translation support",
   "depends_on": [
     "translation_agents_20260622",
@@ -36,7 +36,7 @@
   ],
   "blocker_owner": "track implementer until reassigned in Phase 0",
   "fallback_path": "Use bounded API probes and committed manifests without caching full API payloads.",
-  "source_access_status": "public_api_terms_review_required",
+  "source_access_status": "public_api_metadata_only_terms_recorded",
   "write_owner": "codex",
   "merge_owner": "ontology-network maintainer",
   "automation_readiness": "blocked_after_phase_0_governance",
@@ -151,14 +151,14 @@
   },
   "source_governance_result": {
     "phase_0_result": "implemented_governance_only",
-    "source_authority_status": "recorded_in_source_profile_terms_review_required",
-    "go_no_go": "governance_only_terms_review_required",
+    "source_authority_status": "WHO ICD API authoritative; 2026-01 release recorded; CC BY-ND 3.0 IGO terms accepted for metadata-only governance",
+    "go_no_go": "metadata_only_go; authenticated_probe_pending_explicit_credential_and_terms_gate",
     "payload_commit_allowed": false,
     "metadata_only_scaffold_allowed": true,
     "bounded_sample_allowed": false,
     "identifier_network_allowed": false,
     "non_translation_outputs_allowed": false,
-    "next_allowed_action": "complete source terms review and bounded source probe before any payload or label extraction",
+    "next_allowed_action": "roadmap bounded authenticated probe after credential custody and payload handling decision; no payload or label extraction yet",
     "review_result": "codex_review_completed_fixes_applied",
     "review_archive_status": "phase_0_review_archived"
   }

@@ -29,10 +29,15 @@ This plan introduces ICD-11 into the project where it can improve terminology al
   - Mark any LLM-assisted candidate output as candidate-only and human-review-required in the handoff pack.
 
 ## Phase 1: Source Governance
-- [ ] **Task 1:** Confirm authoritative release source, license, and redistribution constraints.
-- [ ] **Task 2:** Record supported languages and source-version metadata.
-- [ ] **Task 3:** List relevant GitHub repositories:
+- [x] **Task 1:** Confirm authoritative release source, license, and redistribution constraints.
+  - WHO ICD API is the authoritative API; ICD-11 is CC BY-ND 3.0 IGO and no adaptations or source-payload redistribution are approved.
+  - Decision recorded: metadata-only governance is approved; authenticated probing remains gated on credential custody and a later bounded-probe decision.
+- [x] **Task 2:** Record supported languages and source-version metadata.
+  - Review target is ICD-11 release `2026-01`; supported MMS languages are Arabic, Chinese, Czech, English, French, German (prerelease), Kazakh, Latin (titles only), Portuguese, Russian, Slovak, Spanish, Swedish, Turkish, and Uzbek.
+  - API access uses OAuth2 client credentials; no credential or response payload is stored in the repository.
+- [x] **Task 3:** List relevant GitHub repositories:
   - https://github.com/ICD-API
+  - The bounded authenticated probe remains a roadmap item and is not executed in this phase.
 
 ## Phase 2: Data Access and Normalization
 - [ ] **Task 1:** Define source retrieval path without committing restricted payloads.
