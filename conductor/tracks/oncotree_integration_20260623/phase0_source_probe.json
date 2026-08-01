@@ -94,7 +94,7 @@
     "coding_agent": "codex",
     "model": "gpt-5",
     "task_id": "phase0_source_probe_scaffold",
-    "source_version": "2.1.0 @ 72f5796147a49da0f05fa2fa6cdf1cac7b64fe55",
+    "source_version": "repository 2.1.0 @ 72f5796147a49da0f05fa2fa6cdf1cac7b64fe55; API sample oncotree_2025_10_03",
     "validation_result": "passing",
     "open_blockers": ["terms review required", "payload handling decision required"],
     "conflict_count": 0,

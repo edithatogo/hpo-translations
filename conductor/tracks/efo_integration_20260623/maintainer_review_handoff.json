@@ -20,6 +20,11 @@
     "approved_at": "2026-08-01",
     "scope": "one-record metadata-only sample; no source-term redistribution"
   },
+  "bounded_sample": {
+    "identifier": "http://purl.obolibrary.org/obo/BFO_0000015",
+    "release": "EFO 3.92.0",
+    "payload_retained": false
+  },
   "blocked_until_approval": ["source labels", "synonyms", "definitions", "crosswalk edges", "downstream promotion"],
   "llm_policy": "candidate_only_human_review_required"
 }
