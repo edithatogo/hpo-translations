@@ -1,7 +1,7 @@
 {
   "track_id": "research_validation_20260801",
   "type": "research_feature",
-  "status": "planned",
+  "status": "in_progress",
   "created_at": "2026-08-01T00:00:00Z",
   "updated_at": "2026-08-01T00:00:00Z",
   "description": "Establish empirical validation for multilingual HPO translation and ontology evidence",
@@ -132,7 +132,7 @@
       "official translation promotion"
     ]
   },
-  "automation_readiness": "planned_governance_only",
+  "automation_readiness": "phase_1_in_progress_governance_only",
   "evidence_score_policy": {
     "candidate_only": true,
     "signals": [

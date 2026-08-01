@@ -14,7 +14,7 @@
 
 ## Phase 1: Scientific Readiness Corrections
 
-- [ ] **Task 1:** Replace ambiguous overall release readiness with separate governance-scaffold, empirical-artifact, translation-evidence, and source-payload readiness fields.
+- [~] **Task 1:** Replace ambiguous overall release readiness with separate governance-scaffold, empirical-artifact, translation-evidence, and source-payload readiness fields.
 - [ ] **Task 2:** Reframe the archived ontology-network plan as completed scaffolding and hand empirical work to this track.
 - [ ] **Task 3:** Add a fail-closed language-identity registry and record the unresolved `tw` Tiwi/Twi authority conflict without renaming translation assets.
 - [ ] **Task 4:** Add tests proving zero empirical records, unpinned inputs, or unresolved language identity cannot be reported as translation-evidence ready.
