@@ -59,7 +59,7 @@ This plan introduces ICD-11 into the project where it can improve terminology al
 - [x] **Task 1:** Validate schema, provenance, and license metadata.
   - Recorded validation results and the CC BY-ND 3.0 IGO payload boundary in `phase4_validation_review.json`.
 - [ ] **Task 2:** Run translation-audit and import dry-run checks against sample outputs.
-  - Metadata-only dry-run contract is defined, but execution against an ICD-11 sample remains blocked pending the authenticated probe.
+  - Metadata-only dry-run contract is defined, and `phase4_probe_request_manifest.json` plus `phase4_review_handoff.json` prepare the future probe; execution against an ICD-11 sample remains blocked pending approval.
 - [x] **Task 3:** Document limitations, excluded payloads, and review decisions.
   - Recorded fail-closed limitations, excluded payload classes, candidate-only policy, and the next maintainer review gate.
 

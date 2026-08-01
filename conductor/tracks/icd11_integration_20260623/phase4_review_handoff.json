@@ -1,0 +1,30 @@
+{
+  "track_id": "icd11_integration_20260623",
+  "handoff_type": "metadata_only_maintainer_review",
+  "status": "awaiting_bounded_probe",
+  "review_scope": [
+    "source authority and release pin",
+    "CC BY-ND 3.0 IGO/no-adaptation boundary",
+    "foundation versus MMS provenance",
+    "language and postcoordination handling",
+    "candidate-only HPO promotion policy",
+    "redaction and local-only response handling"
+  ],
+  "evidence_expected_at_probe": [
+    "request manifest digest",
+    "one source URI and release identifier",
+    "normalized registry shell",
+    "provenance shell",
+    "schema validation report",
+    "conflict or ambiguity report",
+    "redaction/exclusion proof"
+  ],
+  "approval_decisions": {
+    "payload_access": "pending",
+    "candidate_promotion": "not approved",
+    "identifier_network": "blocked",
+    "non_translation_outputs": "blocked"
+  },
+  "reviewer_role": "ontology-network maintainer",
+  "next_action": "approve or reject the bounded authenticated probe manifest before any source response is read"
+}

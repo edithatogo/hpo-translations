@@ -1,0 +1,34 @@
+{
+  "track_id": "icd11_integration_20260623",
+  "manifest_type": "future_bounded_authenticated_probe",
+  "status": "not_executed",
+  "source": {
+    "source_id": "icd11",
+    "release": "2026-01",
+    "api_version": "v2",
+    "base_url": "https://id.who.int/",
+    "linearization": "mms",
+    "language": "en"
+  },
+  "request_scope": {
+    "records": 1,
+    "entity_selection": "one authoritative entity URI selected by maintainer at execution time",
+    "include": ["entity URI", "release identifier", "language", "provenance metadata"],
+    "exclude": ["bulk traversal", "full release download", "unbounded search", "source payload commit"]
+  },
+  "execution_requirements": [
+    "maintainer confirms credential custody outside Git",
+    "maintainer confirms WHO terms and local-only response handling",
+    "request and response timestamps are recorded",
+    "response is redacted or excluded before any commit",
+    "schema and candidate-only validation passes"
+  ],
+  "fail_closed_conditions": [
+    "missing authentication",
+    "terms or rate limits cannot be documented",
+    "response contains prohibited payload beyond approved scope",
+    "foundation and MMS provenance cannot be separated",
+    "language or release metadata is absent"
+  ],
+  "commit_policy": "commit this manifest and derived validation summaries only; never commit credentials, tokens, full responses, labels, synonyms, definitions, or release rows"
+}
