@@ -25,6 +25,8 @@ The Monarch HP–MeSH, HP–UMLS, and HP–uPheno headers declare the SSSOM lice
 
 The HPO release repository points to a separate HPO website license explanation. Its license is not inferred here. Only public release metadata, URLs, identifiers, sizes, and cryptographic digests are committed.
 
+Supplementary terminology and ontology access decisions are maintained separately in `supplementary_source_access_reviews.json` and `supplementary_source_access_review.md`. Those decisions do not change the independent-evidence count above and do not authorize payload retrieval.
+
 ## Primary sources
 
 - https://github.com/obophenotype/human-phenotype-ontology/releases/tag/v2026-06-23

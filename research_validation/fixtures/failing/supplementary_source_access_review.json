@@ -1,0 +1,15 @@
+{
+  "review_version": "1.0.0",
+  "generated_at": "2026-08-01T00:00:00Z",
+  "scope": "governance_metadata_only",
+  "payloads_retrieved": 1,
+  "active_translation_profiles": ["tw"],
+  "reviews": [],
+  "summary": {
+    "source_count": 1,
+    "metadata_probe_allowed_count": 0,
+    "permission_required_count": 0,
+    "human_review_required_count": 0,
+    "payload_allowed_count": 1
+  }
+}

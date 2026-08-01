@@ -112,6 +112,79 @@ class ValidateResearchValidationTests(unittest.TestCase):
             semantic_errors("source_catalog", catalog),
         )
 
+    def test_supplementary_source_counts_are_recomputed(self) -> None:
+        review = load_json(DEFAULT_RESEARCH_ROOT / "supplementary_source_access_reviews.json")
+        review["summary"]["metadata_probe_allowed_count"] = 9
+        self.assertIn(
+            "metadata_probe_allowed_count must equal the recomputed supplementary source count",
+            semantic_errors("supplementary_source_access_review", review),
+        )
+
+    def test_permission_block_requires_written_provider_gate(self) -> None:
+        review = load_json(DEFAULT_RESEARCH_ROOT / "fixtures" / "passing" / "supplementary_source_access_review.json")
+        record = review["reviews"][0]
+        record["repository_decision"] = "payload_blocked_permission_required"
+        self.assertIn(
+            "fixture-ontology permission block requires a written-provider gate",
+            semantic_errors("supplementary_source_access_review", review),
+        )
+
+    def test_unexposed_supplementary_version_cannot_be_claimed(self) -> None:
+        review = load_json(DEFAULT_RESEARCH_ROOT / "fixtures" / "passing" / "supplementary_source_access_review.json")
+        source_version = review["reviews"][0]["source_version"]
+        source_version["status"] = "version_not_exposed_before_access"
+        self.assertIn(
+            "fixture-ontology cannot claim a version before access",
+            semantic_errors("supplementary_source_access_review", review),
+        )
+
+    def test_unresolved_language_profile_cannot_be_counted_as_overlap(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory) / "research_validation"
+            for source in DEFAULT_RESEARCH_ROOT.rglob("*"):
+                if source.is_file():
+                    destination = root / source.relative_to(DEFAULT_RESEARCH_ROOT)
+                    destination.parent.mkdir(parents=True, exist_ok=True)
+                    destination.write_bytes(source.read_bytes())
+            review_path = root / "supplementary_source_access_reviews.json"
+            review = load_json(review_path)
+            review["reviews"][0]["active_translation_profile_overlap"].append("tw")
+            review_path.write_text(json.dumps(review), encoding="utf-8")
+            codes = {issue.code for issue in validate_contract(root)}
+            self.assertIn("supplementary_source_access_review.language_identity_unresolved", codes)
+
+    def test_canonical_supplementary_source_coverage_is_enforced(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory) / "research_validation"
+            for source in DEFAULT_RESEARCH_ROOT.rglob("*"):
+                if source.is_file():
+                    destination = root / source.relative_to(DEFAULT_RESEARCH_ROOT)
+                    destination.parent.mkdir(parents=True, exist_ok=True)
+                    destination.write_bytes(source.read_bytes())
+            review_path = root / "supplementary_source_access_reviews.json"
+            review = load_json(review_path)
+            review["reviews"].pop()
+            review["summary"]["source_count"] -= 1
+            review["summary"]["metadata_probe_allowed_count"] -= 1
+            review_path.write_text(json.dumps(review), encoding="utf-8")
+            codes = {issue.code for issue in validate_contract(root)}
+            self.assertIn("supplementary_source_access_review.coverage", codes)
+
+    def test_supplementary_active_profiles_cannot_go_stale(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory) / "research_validation"
+            for source in DEFAULT_RESEARCH_ROOT.rglob("*"):
+                if source.is_file():
+                    destination = root / source.relative_to(DEFAULT_RESEARCH_ROOT)
+                    destination.parent.mkdir(parents=True, exist_ok=True)
+                    destination.write_bytes(source.read_bytes())
+            review_path = root / "supplementary_source_access_reviews.json"
+            review = load_json(review_path)
+            review["active_translation_profiles"].remove("ar")
+            review_path.write_text(json.dumps(review), encoding="utf-8")
+            codes = {issue.code for issue in validate_contract(root)}
+            self.assertIn("supplementary_source_access_review.active_profiles_stale", codes)
+
     def test_empirical_run_requires_frozen_git_commits(self) -> None:
         manifest = load_json(DEFAULT_RESEARCH_ROOT / "fixtures" / "passing" / "run_manifest.json")
         manifest["release_scope"] = "pilot"

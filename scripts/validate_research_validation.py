@@ -20,7 +20,19 @@ EXPECTED_SCHEMA_NAMES = {
     "run_manifest",
     "source_catalog",
     "source_lineage_record",
+    "supplementary_source_access_review",
     "translation_evaluation_item",
+}
+EXPECTED_SUPPLEMENTARY_SOURCE_IDS = {
+    "cell-ontology",
+    "decs",
+    "mondo",
+    "ncit",
+    "pato",
+    "pro-ctcae",
+    "radlex",
+    "uberon",
+    "who-icf",
 }
 
 
@@ -163,6 +175,82 @@ def semantic_errors(schema_name: str, instance: Any) -> list[str]:
                 if len(expected_groups) == 1 and group.get("independent_evidence_group") not in expected_groups:
                     errors.append(f"shared origin {origin} must use its source records' independent evidence group")
 
+    if schema_name == "supplementary_source_access_review":
+        reviews = instance.get("reviews", [])
+        if not isinstance(reviews, list):
+            return errors
+        source_ids = [
+            source_id
+            for record in reviews
+            if isinstance(record, dict) and isinstance(source_id := record.get("source_id"), str)
+        ]
+        if len(source_ids) != len(set(source_ids)):
+            errors.append("supplementary source_id values must be unique")
+
+        raw_active_profiles = instance.get("active_translation_profiles", [])
+        active_profiles = (
+            {profile for profile in raw_active_profiles if isinstance(profile, str)}
+            if isinstance(raw_active_profiles, list)
+            else set()
+        )
+        for record in reviews:
+            if not isinstance(record, dict):
+                continue
+            raw_overlap = record.get("active_translation_profile_overlap", [])
+            overlap = (
+                {profile for profile in raw_overlap if isinstance(profile, str)}
+                if isinstance(raw_overlap, list)
+                else set()
+            )
+            if not overlap <= active_profiles:
+                errors.append(f"{record.get('source_id')} overlap must be a subset of active translation profiles")
+            source_version = record.get("source_version", {})
+            if isinstance(source_version, dict):
+                version_status = source_version.get("status")
+                version_value = source_version.get("value")
+                commit_sha = source_version.get("commit_sha")
+                if version_status == "version_not_exposed_before_access" and (
+                    version_value is not None or commit_sha is not None
+                ):
+                    errors.append(f"{record.get('source_id')} cannot claim a version before access")
+                if version_status != "version_not_exposed_before_access" and not isinstance(version_value, str):
+                    errors.append(f"{record.get('source_id')} reviewed release requires a version value")
+            if record.get("repository_decision") == "payload_blocked_permission_required" and (
+                "written_provider_permission" not in record.get("open_gates", [])
+            ):
+                errors.append(f"{record.get('source_id')} permission block requires a written-provider gate")
+            if record.get("credential_requirement") == "oauth2_client_credentials" and (
+                "credential_provisioning" not in record.get("open_gates", [])
+            ):
+                errors.append(f"{record.get('source_id')} OAuth2 access requires a credential-provisioning gate")
+
+        summary = instance.get("summary", {})
+        if isinstance(summary, dict):
+            expected_counts = {
+                "source_count": len(reviews),
+                "metadata_probe_allowed_count": sum(
+                    record.get("repository_decision") == "metadata_probe_allowed"
+                    for record in reviews
+                    if isinstance(record, dict)
+                ),
+                "permission_required_count": sum(
+                    record.get("repository_decision") == "payload_blocked_permission_required"
+                    for record in reviews
+                    if isinstance(record, dict)
+                ),
+                "human_review_required_count": sum(
+                    record.get("repository_decision") == "payload_blocked_human_review_required"
+                    for record in reviews
+                    if isinstance(record, dict)
+                ),
+                "payload_allowed_count": sum(
+                    bool(record.get("payload_retrieval_allowed")) for record in reviews if isinstance(record, dict)
+                ),
+            }
+            for field, expected in expected_counts.items():
+                if summary.get(field) != expected:
+                    errors.append(f"{field} must equal the recomputed supplementary source count")
+
     return errors
 
 
@@ -230,6 +318,85 @@ def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[Valid
             errors = schema_errors(catalog_schema, catalog) + semantic_errors("source_catalog", catalog)
             for message in errors:
                 issues.append(ValidationIssue("source_catalog.invalid", str(catalog_path), message))
+
+    supplementary_path = research_root / "supplementary_source_access_reviews.json"
+    supplementary_schema = schemas.get("supplementary_source_access_review")
+    if supplementary_schema is not None:
+        if not supplementary_path.exists():
+            issues.append(
+                ValidationIssue(
+                    "supplementary_source_access_review.missing",
+                    str(supplementary_path),
+                    "canonical supplementary source access review is required",
+                )
+            )
+        else:
+            supplementary = load_json(supplementary_path)
+            errors = schema_errors(supplementary_schema, supplementary) + semantic_errors(
+                "supplementary_source_access_review", supplementary
+            )
+            for message in errors:
+                issues.append(
+                    ValidationIssue("supplementary_source_access_review.invalid", str(supplementary_path), message)
+                )
+            if isinstance(supplementary, dict):
+                reviews = supplementary.get("reviews", [])
+                source_ids = {
+                    source_id
+                    for record in reviews
+                    if isinstance(record, dict) and isinstance(source_id := record.get("source_id"), str)
+                }
+                if source_ids != EXPECTED_SUPPLEMENTARY_SOURCE_IDS:
+                    issues.append(
+                        ValidationIssue(
+                            "supplementary_source_access_review.coverage",
+                            str(supplementary_path),
+                            "canonical review must cover the complete planned supplementary source set",
+                        )
+                    )
+                recorded_active_profiles = supplementary.get("active_translation_profiles", [])
+                actual_active_profiles = {
+                    path.name.removeprefix("hp-").removesuffix(".babelon.tsv")
+                    for path in (ROOT / "babelon").glob("hp-*.babelon.tsv")
+                }
+                if set(recorded_active_profiles) != actual_active_profiles:
+                    issues.append(
+                        ValidationIssue(
+                            "supplementary_source_access_review.active_profiles_stale",
+                            str(supplementary_path),
+                            "active translation profiles must match the committed Babelon translation assets",
+                        )
+                    )
+                unresolved_suffixes: set[str] = set()
+                if registry_path.exists():
+                    registry = load_json(registry_path)
+                    for record in registry.get("records", []):
+                        if not isinstance(record, dict) or record.get("status") != "authority_review_required":
+                            continue
+                        suffix = record.get("current_asset_suffix")
+                        if isinstance(suffix, str):
+                            unresolved_suffixes.add(suffix)
+                for record in reviews:
+                    if not isinstance(record, dict):
+                        continue
+                    raw_overlap = record.get("active_translation_profile_overlap", [])
+                    overlap = (
+                        {profile for profile in raw_overlap if isinstance(profile, str)}
+                        if isinstance(raw_overlap, list)
+                        else set()
+                    )
+                    blocked_overlap = overlap & unresolved_suffixes
+                    if blocked_overlap:
+                        issues.append(
+                            ValidationIssue(
+                                "supplementary_source_access_review.language_identity_unresolved",
+                                str(supplementary_path),
+                                (
+                                    f"{record.get('source_id')} counts unresolved language profiles: "
+                                    f"{sorted(blocked_overlap)}"
+                                ),
+                            )
+                        )
 
     probe_path = passing_dir / "translation_evaluation_item.json"
     if probe_path.exists():
