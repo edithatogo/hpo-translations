@@ -1,10 +1,10 @@
 {
   "track": "pato_integration_20260623",
   "artifact_type": "metadata_only_governance_scaffold",
-  "source": {"name": "Phenotypic Quality Ontology", "authority_status": "pending_obo_release_terms_review", "version": null, "release_url": null},
+  "source": {"name": "Phenotypic Quality Ontology", "authority_status": "obo_foundry_release_documented", "version": "v2024-03-28 (review target)", "release_url": "https://github.com/pato-ontology/pato/releases/tag/v2024-03-28", "license": "OBO Foundry open-licence principle; verify PATO release metadata before redistribution"},
   "access": {"mode": "documentation_only", "credentials_required": "unknown", "payload_accessed": false, "payload_commit_allowed": false},
   "normalization": {"identifier": "PATO CURIE preserved; no term values", "language": "BCP-47 tag required", "provenance": ["source_uri", "release_or_commit", "retrieved_at", "license_status"]},
   "translation_use": {"allowed": ["schema and review scaffolding"], "blocked": ["labels", "synonyms", "definitions", "crosswalk promotion", "identifier-network outputs"]},
-  "review": {"required": ["OBO authority", "license and redistribution", "PURL/version pin", "payload handling"], "status": "not_approved"},
+  "review": {"required": ["license and redistribution", "PURL/version pin", "payload handling"], "status": "metadata_review_required", "evidence": ["https://pato-ontology.github.io/pato/odk-workflows/ReleaseWorkflow/", "https://obofoundry.org/principles/fp-001-open.html"]},
   "next_allowed_action": "complete OBO release, license, and PURL review without fetching payloads"
 }

@@ -3,11 +3,17 @@
   "status": "metadata_only_terms_review_required",
   "authoritative_source": "EBISPOT EFO repository and release documentation",
   "repository": "https://github.com/EBISPOT/efo",
-  "source_version": null,
-  "license": "pending_terms_verification",
+  "source_version": "release version must be read from OWL versionInfo at probe time",
+  "license": "Apache-2.0",
   "supported_languages": ["en"],
   "payload_commit_allowed": false,
   "credential_required": false,
-  "next_gate": "verify release licence and redistribution terms before bounded probe",
+  "next_gate": "pin the OWL versionInfo release and run a one-record bounded probe; retain payload local-only until maintainer review",
+  "evidence": {
+    "license_source": "https://www.ebi.ac.uk/efo/",
+    "release_source": "https://www.ebi.ac.uk/efo/about.html",
+    "ols_source": "https://www.ebi.ac.uk/ols4/ontologies/efo",
+    "terms_verified_at": "2026-08-01"
+  },
   "excluded": ["labels", "synonyms", "definitions", "full_release_payload"]
 }

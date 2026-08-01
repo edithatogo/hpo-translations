@@ -1,7 +1,8 @@
 {
   "track": "orphanet_integration_20260623",
   "mode": "metadata_only",
-  "source_access": {"status": "blocked", "reason": "public_download_terms_review_required", "payload_fetch": false},
+  "source_access": {"status": "metadata_ready_for_science_product", "reason": "Orphadata Science is public CC BY 4.0; other products require data-transfer agreement or pricing", "payload_fetch": false},
+  "source_evidence": {"authority_uri": "https://www.orphadata.com/", "catalogue_uri": "https://www.orphadata.com/docs/Catalogue_Orphadata.pdf", "observed_catalogue": "April 2026", "science_product_license": "CC BY 4.0", "science_product_access": "public no-fee XML/JSON", "other_products_access": "data-transfer agreement or pricing", "retrieved_at": "2026-08-01", "payload_observed": false},
   "retrieval_contract": {"credential_source": "none_or_local_environment_only", "cache": "local_only", "commit_payload": false, "request_manifest_required": true},
   "normalization": {"identifier": "Orphanet ORPHAcode as opaque string", "language": "BCP-47 when source metadata is available", "provenance": ["source_uri", "release", "retrieved_at", "license"]},
   "review": {"labels_synonyms_definitions": "blocked", "crosswalk": "candidate_only", "llm_output": "candidate_only_human_review_required"},

@@ -1,7 +1,8 @@
 {
   "track": "mesh_integration_20260623",
   "mode": "metadata_only",
-  "source_access": {"status": "blocked", "reason": "public_download_terms_review_required", "payload_fetch": false},
+  "source_access": {"status": "metadata_ready", "reason": "public_nlm_distribution_with_acknowledgement_and_freshness_conditions", "payload_fetch": false},
+  "source_evidence": {"authority_uri": "https://www.nlm.nih.gov/databases/download/mesh.html", "terms_uri": "https://www.nlm.nih.gov/databases/download/terms_and_conditions.html", "observed_release": "2026 production year", "retrieved_at": "2026-08-01", "formats": ["XML", "MARC21", "RDF"], "ascii_status": "discontinued January 2026", "payload_observed": false},
   "retrieval_contract": {"credential_source": "none_or_local_environment_only", "cache": "local_only", "commit_payload": false, "request_manifest_required": true},
   "normalization": {"identifier": "MeSH descriptor or supplementary concept ID as opaque string", "language": "BCP-47 when source metadata is available", "provenance": ["source_uri", "release", "retrieved_at", "license"]},
   "review": {"labels_synonyms_definitions": "blocked", "crosswalk": "candidate_only", "llm_output": "candidate_only_human_review_required"},

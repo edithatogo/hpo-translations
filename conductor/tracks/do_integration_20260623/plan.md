@@ -29,8 +29,10 @@ This plan introduces Disease Ontology into the project where it can improve term
   - Mark any LLM-assisted candidate output as candidate-only and human-review-required in the handoff pack.
 
 ## Phase 1: Source Governance
-- [ ] **Task 1:** Confirm authoritative release source, license, and redistribution constraints.
-- [ ] **Task 2:** Record supported languages and source-version metadata.
+- [x] **Task 1:** Confirm authoritative release source, license, and redistribution constraints.
+  - Disease Ontology project resources and the pinned GitHub release `v2026-07-31` are authoritative; project data are CC0-1.0. Payload use remains subject to provenance and review controls.
+- [x] **Task 2:** Record supported languages and source-version metadata.
+  - Pinned release: `v2026-07-31`; English primary, Spanish translations reported by the release; release metadata must be rechecked at probe time.
 - [ ] **Task 3:** List relevant GitHub repositories:
   - https://github.com/DiseaseOntology/HumanDiseaseOntology
 

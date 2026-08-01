@@ -3,11 +3,16 @@
   "status": "metadata_only_terms_review_required",
   "authoritative_source": "Disease Ontology project and release documentation",
   "repository": "https://github.com/DiseaseOntology/HumanDiseaseOntology",
-  "source_version": null,
-  "license": "pending_terms_verification",
+  "source_version": "v2026-07-31",
+  "license": "CC0-1.0",
   "supported_languages": ["en"],
   "payload_commit_allowed": false,
   "credential_required": false,
-  "next_gate": "verify release licence and redistribution terms before bounded probe",
+  "next_gate": "run a one-record bounded probe against the pinned v2026-07-31 release; retain payload local-only until maintainer review",
+  "evidence": {
+    "license_source": "https://www.disease-ontology.org/resources/do-resources/",
+    "release_source": "https://github.com/DiseaseOntology/HumanDiseaseOntology/releases/tag/v2026-07-31",
+    "terms_verified_at": "2026-08-01"
+  },
   "excluded": ["labels", "synonyms", "definitions", "full_release_payload"]
 }

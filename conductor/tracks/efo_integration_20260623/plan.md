@@ -29,8 +29,10 @@ This plan introduces EFO into the project where it can improve terminology align
   - Mark any LLM-assisted candidate output as candidate-only and human-review-required in the handoff pack.
 
 ## Phase 1: Source Governance
-- [ ] **Task 1:** Confirm authoritative release source, license, and redistribution constraints.
+- [x] **Task 1:** Confirm authoritative release source, license, and redistribution constraints.
+  - EMBL-EBI EFO repository/OLS are authoritative; EFO is released under Apache-2.0. Payload use remains subject to provenance and review controls.
 - [ ] **Task 2:** Record supported languages and source-version metadata.
+  - English scope is recorded; the exact OWL `versionInfo` must be pinned during the bounded probe.
 - [ ] **Task 3:** List relevant GitHub repositories:
   - https://github.com/EBISPOT/efo
 
