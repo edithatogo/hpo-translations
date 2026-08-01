@@ -1,4 +1,4 @@
-# Project Tracks
+﻿# Project Tracks
 
 This file tracks all major tracks for the project. Each track has its own detailed plan in its respective folder.
 
@@ -9,12 +9,12 @@ This file tracks all major tracks for the project. Each track has its own detail
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | `migrate_to_pixi_20260622` | `legacy_complete` | `legacy` | `not_applicable` | `-` | `translation_agents_20260622` | `foundation` | `not_started` | `codex_legacy_review_completed` | `legacy_unverified` |
 | `translation_agents_20260622` | `legacy_complete` | `legacy` | `not_applicable` | `migrate_to_pixi_20260622` | `ontology_network_20260623, language_candidate_tracks` | `foundation` | `not_started` | `codex_legacy_review_completed` | `legacy_unverified` |
-| `conductor_validation_20260623` | `implemented` | `P0` | `not_applicable` | `migrate_to_pixi_20260622, translation_agents_20260622` | `ontology_network_20260623, all_future_conductor_tracks` | `conductor-validation` | `local_passing` | `codex_review_completed` | `not_opened` |
-| `ontology_network_20260623` | `implemented` | `P0` | `mixed_network_sources` | `conductor_validation_20260623:phase_1_metadata_schema, translation_agents_20260622` | `umls_metathesaurus_integration_20260623, snomed_ct_integration_20260623, meddra_integration_20260623, icd10_integration_20260623, icd11_integration_20260623, loinc_integration_20260623, mesh_integration_20260623, orphanet_integration_20260623, omim_integration_20260623, decipher_integration_20260623, fma_integration_20260623, pato_integration_20260623, mp_integration_20260623, upheno_integration_20260623, efo_integration_20260623, do_integration_20260623, oncotree_integration_20260623, lddb_integration_20260623` | `ontology-network` | `passing` | `subagent_review_completed_fixes_applied` | `blocked` |
-| `umls_metathesaurus_integration_20260623` | `phase_0_implemented_blocked` | `P2` | `license_required` | `translation_agents_20260622, ontology_network_20260623:phase_1_registry_schema` | `ontology_network_20260623:phase_3_identifier_network, ontology_network_20260623:phase_4_non_translation_outputs` | `ontology-source-governance` | `local_passing` | `codex_review_completed` | `not_opened` |
-| `snomed_ct_integration_20260623` | `phase_0_implemented_blocked` | `P2` | `license_or_affiliate_release_required` | `translation_agents_20260622, ontology_network_20260623:phase_1_registry_schema` | `ontology_network_20260623:phase_3_identifier_network, ontology_network_20260623:phase_4_non_translation_outputs` | `ontology-source-governance` | `local_passing` | `codex_review_completed` | `not_opened` |
-| `meddra_integration_20260623` | `phase_0_implemented_blocked` | `P2` | `subscription_or_license_required` | `translation_agents_20260622, ontology_network_20260623:phase_1_registry_schema` | `ontology_network_20260623:phase_3_identifier_network, ontology_network_20260623:phase_4_non_translation_outputs` | `ontology-source-governance` | `local_passing` | `codex_review_completed` | `not_opened` |
-| `icd10_integration_20260623` | `phase_0_implemented_blocked` | `P2` | `public_or_national_variant_review_required` | `translation_agents_20260622, ontology_network_20260623:phase_1_registry_schema` | `ontology_network_20260623:phase_3_identifier_network, ontology_network_20260623:phase_4_non_translation_outputs` | `ontology-source-governance` | `local_passing` | `codex_review_completed` | `not_opened` |
+| `conductor_validation_20260623` | `archived` | `P0` | `not_applicable` | `migrate_to_pixi_20260622, translation_agents_20260622` | `ontology_network_20260623, all_future_conductor_tracks` | `conductor-validation` | `not_applicable` | `archive_review_completed` | `not_applicable` |
+| `ontology_network_20260623` | `archived` | `P0` | `mixed_network_sources` | `conductor_validation_20260623:phase_1_metadata_schema, translation_agents_20260622` | `umls_metathesaurus_integration_20260623, snomed_ct_integration_20260623, meddra_integration_20260623, icd10_integration_20260623, icd11_integration_20260623, loinc_integration_20260623, mesh_integration_20260623, orphanet_integration_20260623, omim_integration_20260623, decipher_integration_20260623, fma_integration_20260623, pato_integration_20260623, mp_integration_20260623, upheno_integration_20260623, efo_integration_20260623, do_integration_20260623, oncotree_integration_20260623, lddb_integration_20260623` | `ontology-network` | `not_applicable` | `archive_review_completed` | `blocked` |
+| `umls_metathesaurus_integration_20260623` | `archived` | `P2` | `license_required` | `translation_agents_20260622, ontology_network_20260623:phase_1_registry_schema` | `ontology_network_20260623:phase_3_identifier_network, ontology_network_20260623:phase_4_non_translation_outputs` | `ontology-source-governance` | `not_applicable` | `archive_review_completed` | `not_applicable` |
+| `snomed_ct_integration_20260623` | `archived` | `P2` | `license_or_affiliate_release_required` | `translation_agents_20260622, ontology_network_20260623:phase_1_registry_schema` | `ontology_network_20260623:phase_3_identifier_network, ontology_network_20260623:phase_4_non_translation_outputs` | `ontology-source-governance` | `not_applicable` | `archive_review_completed` | `not_applicable` |
+| `meddra_integration_20260623` | `archived` | `P2` | `subscription_or_license_required` | `translation_agents_20260622, ontology_network_20260623:phase_1_registry_schema` | `ontology_network_20260623:phase_3_identifier_network, ontology_network_20260623:phase_4_non_translation_outputs` | `ontology-source-governance` | `not_applicable` | `archive_review_completed` | `not_applicable` |
+| `icd10_integration_20260623` | `archived` | `P2` | `public_or_national_variant_review_required` | `translation_agents_20260622, ontology_network_20260623:phase_1_registry_schema` | `ontology_network_20260623:phase_3_identifier_network, ontology_network_20260623:phase_4_non_translation_outputs` | `ontology-source-governance` | `not_applicable` | `archive_review_completed` | `not_applicable` |
 | `icd11_integration_20260623` | `phase_0_implemented_blocked` | `P1` | `public_api_terms_review_required` | `translation_agents_20260622, ontology_network_20260623:phase_1_registry_schema` | `ontology_network_20260623:phase_3_identifier_network, ontology_network_20260623:phase_4_non_translation_outputs` | `ontology-source-governance` | `local_passing` | `codex_review_completed` | `not_opened` |
 | `loinc_integration_20260623` | `phase_0_implemented_blocked` | `P2` | `free_account_license_review_required` | `translation_agents_20260622, ontology_network_20260623:phase_1_registry_schema` | `ontology_network_20260623:phase_3_identifier_network, ontology_network_20260623:phase_4_non_translation_outputs` | `ontology-source-governance` | `local_passing` | `codex_review_completed` | `not_opened` |
 | `mesh_integration_20260623` | `phase_0_implemented_blocked` | `P1` | `public_download_terms_review_required` | `translation_agents_20260622, ontology_network_20260623:phase_1_registry_schema` | `ontology_network_20260623:phase_3_identifier_network, ontology_network_20260623:phase_4_non_translation_outputs` | `ontology-source-governance` | `local_passing` | `codex_review_completed` | `not_opened` |
@@ -49,22 +49,22 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ---
 
-## [ ] Track: Integrate UMLS Metathesaurus into terminology and translation support
+## [x] Track: Integrate UMLS Metathesaurus into terminology and translation support (archived — blocked on license_required)
 *Link: [./tracks/umls_metathesaurus_integration_20260623/](file:///C:/Users/60217257/OneDrive%20-%20Flinders/repos/biomedical/hpo-translations/conductor/tracks/umls_metathesaurus_integration_20260623/)*
 
 ---
 
-## [ ] Track: Integrate SNOMED CT into terminology and translation support
+## [x] Track: Integrate SNOMED CT into terminology and translation support (archived — blocked on license_or_affiliate_release_required)
 *Link: [./tracks/snomed_ct_integration_20260623/](file:///C:/Users/60217257/OneDrive%20-%20Flinders/repos/biomedical/hpo-translations/conductor/tracks/snomed_ct_integration_20260623/)*
 
 ---
 
-## [ ] Track: Integrate MedDRA into terminology and translation support
+## [x] Track: Integrate MedDRA into terminology and translation support (archived — blocked on subscription_or_license_required)
 *Link: [./tracks/meddra_integration_20260623/](file:///C:/Users/60217257/OneDrive%20-%20Flinders/repos/biomedical/hpo-translations/conductor/tracks/meddra_integration_20260623/)*
 
 ---
 
-## [ ] Track: Integrate ICD-10 into terminology and translation support
+## [x] Track: Integrate ICD-10 into terminology and translation support (archived — blocked on public_or_national_variant_review_required)
 *Link: [./tracks/icd10_integration_20260623/](file:///C:/Users/60217257/OneDrive%20-%20Flinders/repos/biomedical/hpo-translations/conductor/tracks/icd10_integration_20260623/)*
 
 ---
