@@ -590,9 +590,13 @@ SCHEMA_REQUIRED_FIELDS: dict[str, set[str]] = {
         "generated_date",
         "source_count",
         "restricted_source_count",
-        "release_ready",
-        "governance_artifacts_release_ready",
+        "overall_release_ready",
+        "release_scope",
+        "governance_scaffold_release_ready",
+        "empirical_artifacts_release_ready",
+        "translation_evidence_release_ready",
         "source_payload_release_ready",
+        "unresolved_language_identity_count",
     },
     "source_class_probe": {
         "probe_id",
@@ -925,18 +929,33 @@ def release_manifest(registry: dict[str, Any]) -> dict[str, Any]:
     restricted = access_counts["restricted"]
     blockers = sum(len(cast(list[Any], record.get("known_blockers", []))) for record in records)
     source_payload_ready = restricted == 0 and blockers == 0
+    language_identity_path = Path("research_validation/language_identity_registry.json")
+    unresolved_language_identities = 0
+    if language_identity_path.exists():
+        language_identity_registry = load_json(language_identity_path)
+        unresolved_language_identities = sum(
+            1
+            for record in cast(list[dict[str, Any]], language_identity_registry.get("records", []))
+            if record.get("status") != "resolved"
+        )
     return {
         "generated_date": GENERATED_DATE,
         "source_count": len(records),
         "access_class_counts": dict(sorted(access_counts.items())),
         "restricted_source_count": restricted,
         "known_blocker_count": blockers,
-        "release_ready": True,
-        "governance_artifacts_release_ready": True,
+        "overall_release_ready": False,
+        "release_scope": "governance_scaffold_only",
+        "governance_scaffold_release_ready": True,
+        "empirical_artifacts_release_ready": False,
+        "translation_evidence_release_ready": False,
         "source_payload_release_ready": source_payload_ready,
         "source_payload_blocker_count": blockers,
+        "unresolved_language_identity_count": unresolved_language_identities,
         "release_policy": (
             "Payload-free registry, schemas, validation summaries, provenance, and review scaffolds are release-safe; "
+            "empirical translation evidence is not release-ready until version-pinned, nonzero records pass human "
+            "review; "
             "raw, licensed, credentialed, and full-release source payloads are excluded."
         ),
         "human_review_required": True,

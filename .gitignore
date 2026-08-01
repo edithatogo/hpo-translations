@@ -1,5 +1,8 @@
 
 .DS_Store
+.tmp_*
+__pycache__/
+*.py[cod]
 all_translations.zip
 crowdin_data/
 /site

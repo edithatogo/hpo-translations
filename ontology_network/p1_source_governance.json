@@ -89,6 +89,7 @@
         "full_api_responses",
         "release_payload_rows"
       ],
+      "bounded_sample_allowed": false,
       "candidate_only": true,
       "commit_safe_artifacts": [
         "registry records",
@@ -99,6 +100,7 @@
         "validation summaries",
         "reviewer handoff skeletons"
       ],
+      "go_no_go": "governance_only_terms_review_required",
       "human_review_required": true,
       "identifier_network_allowed": false,
       "known_blockers": [
@@ -106,10 +108,8 @@
         "Foundation entities and MMS codes need distinct provenance handling.",
         "Terms and payload handling must be cleared before committing ontology labels, synonyms, definitions, full responses, or release payload rows."
       ],
-      "bounded_sample_allowed": true,
-      "go_no_go": "bounded_probe_passed_payload_extraction_still_blocked",
-      "next_allowed_action": "maintainer review of redacted metadata result; no source payload or label extraction",
       "metadata_only_scaffold_allowed": true,
+      "next_allowed_action": "complete source terms review and bounded source probe before any payload or label extraction",
       "non_translation_outputs_allowed": false,
       "ontology_name": "ICD-11",
       "payload_commit_allowed": false,

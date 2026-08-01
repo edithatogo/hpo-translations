@@ -236,7 +236,7 @@
       "authoritative_endpoint": "authority_described_github_not_authoritative",
       "authoritative_endpoint_status": "authority_described_github_not_authoritative",
       "credential_required": false,
-      "declared_language_count": 10,
+      "declared_language_count": 12,
       "github_repositories": [
         "https://github.com/ICD-API"
       ],
@@ -257,6 +257,8 @@
         "fr",
         "pt",
         "ru",
+        "sk",
+        "sv",
         "tr",
         "uz",
         "zh"
@@ -267,13 +269,18 @@
         "Czech",
         "English",
         "French",
+        "German (prerelease)",
+        "Kazakh",
+        "Latin (titles only)",
         "Portuguese",
         "Russian",
+        "Slovak",
         "Spanish",
+        "Swedish",
         "Turkish",
         "Uzbek"
       ],
-      "license_status": "terms_review_required",
+      "license_status": "not_recorded",
       "local_only_requirements": [
         "credentialed exports",
         "full API responses",
@@ -284,16 +291,16 @@
       "ontology_name": "ICD-11",
       "payload_commit_allowed": false,
       "pr_safe": true,
-      "redistribution_status": "CC_BY-ND_3.0_IGO_no_adaptation_no_full_response_redistribution",
+      "redistribution_status": "api_terms_required_no_full_response_redistribution",
       "release_safe": false,
       "restricted_sources": [],
       "source_access_status": "public_api_metadata_only_terms_recorded",
       "source_id": "icd11",
       "source_payload_commit_policy": "do_not_commit_full_api_responses; commit only schemas, request manifests, validation summaries, and redacted derived reports",
       "source_payloads_can_be_committed": false,
-      "source_version": "2026-01",
+      "source_version": null,
       "track_id": "icd11_integration_20260623",
-      "version_status": "pinned_review_target"
+      "version_status": "not_pinned_in_track_metadata"
     },
     {
       "access_class": "investigation-only",

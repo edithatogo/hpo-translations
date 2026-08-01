@@ -605,6 +605,7 @@
         "conflict-sk-metadata"
       ],
       "coverage_ids": [
+        "coverage-icd11-sk",
         "coverage-snomed_ct-sk"
       ],
       "crosswalk_ids": [
@@ -621,6 +622,7 @@
       "reviewer_role": "language reviewer",
       "scope": "payload-free ontology-network metadata probe",
       "source_ids": [
+        "icd11",
         "snomed_ct"
       ]
     },
@@ -631,6 +633,7 @@
         "conflict-sv-metadata"
       ],
       "coverage_ids": [
+        "coverage-icd11-sv",
         "coverage-meddra-sv",
         "coverage-snomed_ct-sv"
       ],
@@ -648,6 +651,7 @@
       "reviewer_role": "language reviewer",
       "scope": "payload-free ontology-network metadata probe",
       "source_ids": [
+        "icd11",
         "meddra",
         "snomed_ct"
       ]

@@ -54,7 +54,7 @@
     {
       "access_class": "API-only",
       "credential_required": false,
-      "license_status": "terms_review_required",
+      "license_status": "not_recorded",
       "payload_commit_allowed": false,
       "pr_safe": true,
       "redistribution_status": "api_terms_required_no_full_response_redistribution",

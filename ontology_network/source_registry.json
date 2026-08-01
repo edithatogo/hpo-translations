@@ -200,7 +200,7 @@
         "raw downloads"
       ],
       "metadata_created_at": "2026-06-23T00:00:00Z",
-      "metadata_updated_at": "2026-06-25T00:00:00Z",
+      "metadata_updated_at": "2026-08-01T00:00:00Z",
       "ontology_name": "Disease Ontology",
       "payload_commit_allowed": false,
       "pr_safe": true,
@@ -315,7 +315,7 @@
         "raw downloads"
       ],
       "metadata_created_at": "2026-06-23T00:00:00Z",
-      "metadata_updated_at": "2026-06-25T00:00:00Z",
+      "metadata_updated_at": "2026-08-01T00:00:00Z",
       "ontology_name": "EFO",
       "payload_commit_allowed": false,
       "pr_safe": true,
@@ -540,7 +540,7 @@
         "raw downloads"
       ],
       "metadata_created_at": "2026-06-23T00:00:00Z",
-      "metadata_updated_at": "2026-06-24T00:00:00Z",
+      "metadata_updated_at": "2026-06-25T00:00:00Z",
       "ontology_name": "ICD-10",
       "payload_commit_allowed": false,
       "pr_safe": true,
@@ -565,7 +565,7 @@
       "source_payloads_can_be_committed": false,
       "source_version": null,
       "track_id": "icd10_integration_20260623",
-      "track_status": "phase_0_implemented_blocked",
+      "track_status": "archived",
       "usefulness": "Disease classification crosswalks and national morbidity/mortality coding context.",
       "version_status": "not_pinned_in_track_metadata"
     },
@@ -614,7 +614,7 @@
         "review pack structure without restricted labels"
       ],
       "credential_required": false,
-      "declared_language_count": 10,
+      "declared_language_count": 12,
       "description": "Integrate ICD-11 into terminology and translation support",
       "expected_blockers": [
         "Polyhierarchy and postcoordination can create ambiguous HPO crosswalk evidence.",
@@ -646,11 +646,13 @@
         "fr",
         "pt",
         "ru",
+        "sk",
+        "sv",
         "tr",
         "uz",
         "zh"
       ],
-      "language_count": 10,
+      "language_count": 12,
       "language_normalization_status": "normalized_listed_languages",
       "languages": [
         "Arabic",
@@ -658,14 +660,19 @@
         "Czech",
         "English",
         "French",
+        "German (prerelease)",
+        "Kazakh",
+        "Latin (titles only)",
         "Portuguese",
         "Russian",
+        "Slovak",
         "Spanish",
+        "Swedish",
         "Turkish",
         "Uzbek"
       ],
       "license_review_required": true,
-      "license_status": "terms_review_required",
+      "license_status": "not_recorded",
       "local_only_requirements": [
         "credentialed exports",
         "full API responses",
@@ -674,7 +681,7 @@
         "source-specific extraction outputs remain local-only until access and redistribution terms pass review"
       ],
       "metadata_created_at": "2026-06-23T00:00:00Z",
-      "metadata_updated_at": "2026-06-25T00:00:00Z",
+      "metadata_updated_at": "2026-08-01T00:00:00Z",
       "ontology_name": "ICD-11",
       "payload_commit_allowed": false,
       "pr_safe": true,
@@ -685,7 +692,7 @@
         "method": "conductor_track_metadata_parse",
         "spec_path": "conductor\\tracks\\icd11_integration_20260623\\spec.md"
       },
-      "redistribution_status": "CC_BY-ND_3.0_IGO_no_adaptation_no_full_response_redistribution",
+      "redistribution_status": "api_terms_required_no_full_response_redistribution",
       "release_safe": false,
       "restricted_sources": [],
       "source_access_status": "public_api_metadata_only_terms_recorded",
@@ -697,11 +704,11 @@
       "source_note": "Use WHO ICD API, browser, and licensing as authority; GitHub repositories are implementation support.",
       "source_payload_commit_policy": "do_not_commit_full_api_responses; commit only schemas, request manifests, validation summaries, and redacted derived reports",
       "source_payloads_can_be_committed": false,
-      "source_version": "2026-01",
+      "source_version": null,
       "track_id": "icd11_integration_20260623",
-      "track_status": "bounded_probe_passed_payload_extraction_blocked",
+      "track_status": "phase_0_implemented_blocked",
       "usefulness": "Digital-first disease classification, multilingual terminology comparison, and ICD-11 foundation alignment.",
-      "version_status": "pinned_review_target"
+      "version_status": "not_pinned_in_track_metadata"
     },
     {
       "access_class": "investigation-only",
@@ -1092,7 +1099,7 @@
       "source_payloads_can_be_committed": false,
       "source_version": null,
       "track_id": "meddra_integration_20260623",
-      "track_status": "phase_0_implemented_blocked",
+      "track_status": "archived",
       "usefulness": "Adverse-event terminology alignment for pharmacovigilance and regulatory phenotype context.",
       "version_status": "not_pinned_in_track_metadata"
     },
@@ -1979,7 +1986,7 @@
       "source_payloads_can_be_committed": false,
       "source_version": null,
       "track_id": "snomed_ct_integration_20260623",
-      "track_status": "phase_0_implemented_blocked",
+      "track_status": "archived",
       "usefulness": "Clinical terminology crosswalks, post-coordination review, and clinical synonym support.",
       "version_status": "not_pinned_in_track_metadata"
     },
@@ -2092,7 +2099,7 @@
         "source-specific extraction outputs remain local-only until access and redistribution terms pass review"
       ],
       "metadata_created_at": "2026-06-23T00:00:00Z",
-      "metadata_updated_at": "2026-06-24T00:00:00Z",
+      "metadata_updated_at": "2026-06-25T00:00:00Z",
       "ontology_name": "UMLS Metathesaurus",
       "payload_commit_allowed": false,
       "pr_safe": true,
@@ -2119,7 +2126,7 @@
       "source_payloads_can_be_committed": false,
       "source_version": null,
       "track_id": "umls_metathesaurus_integration_20260623",
-      "track_status": "phase_0_implemented_blocked",
+      "track_status": "archived",
       "usefulness": "Cross-terminology concept anchoring across UMLS CUIs and source vocabularies.",
       "version_status": "not_pinned_in_track_metadata"
     },
