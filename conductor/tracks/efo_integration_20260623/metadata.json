@@ -71,7 +71,7 @@
       "agent": "codex",
       "model": "gpt-5",
       "task_id": "phase0_source_probe_scaffold",
-      "source_version": "v3.92.0 (release tag; OWL versionInfo verification pending)",
+      "source_version": "v3.92.0 @ 704cbf64e95ac374374b309691d86d95c84dfe17 (OWL versionInfo verification pending)",
       "validation_command": "pixi run build-ontology-network; pixi run validate-conductor; pixi run validate-ontology-network; pixi run validate-ontology-network-artifacts; pixi run test-conductor-validation; git diff --check",
       "validation_result": "passing",
       "conflict_count": 0,

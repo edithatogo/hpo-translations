@@ -9,7 +9,7 @@
     "source_type": "github_repository",
     "url": "https://github.com/EBISPOT/efo",
     "authority_status": "pending_terms_and_release_channel_review",
-    "version_pinning_strategy": "upstream release tag v3.92.0 (published 2026-07-15); verify OWL versionInfo and immutable commit during bounded probe before payload access",
+    "version_pinning_strategy": "upstream release tag v3.92.0 (published 2026-07-15), resolved commit 704cbf64e95ac374374b309691d86d95c84dfe17; verify OWL versionInfo during bounded probe before payload access",
     "credential_required": false,
     "network_probe_required_before_ingestion": true
   },
@@ -94,7 +94,7 @@
     "coding_agent": "codex",
     "model": "gpt-5",
     "task_id": "phase0_source_probe_scaffold",
-    "source_version": "v3.92.0 (release tag; OWL versionInfo verification pending)",
+    "source_version": "v3.92.0 @ 704cbf64e95ac374374b309691d86d95c84dfe17 (OWL versionInfo verification pending)",
     "validation_result": "passing",
     "open_blockers": [
       "terms review required",

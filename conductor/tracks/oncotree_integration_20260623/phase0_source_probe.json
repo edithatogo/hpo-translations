@@ -9,7 +9,7 @@
     "source_type": "github_repository",
     "url": "https://github.com/cBioPortal/oncotree",
     "authority_status": "pending_terms_and_release_channel_review",
-    "version_pinning_strategy": "upstream release tag 2.1.0 (published 2026-01-27); verify immutable commit and API response metadata during bounded probe before payload access",
+    "version_pinning_strategy": "upstream release tag 2.1.0 (published 2026-01-27), resolved commit 72f5796147a49da0f05fa2fa6cdf1cac7b64fe55; verify API response metadata during bounded probe before payload access",
     "credential_required": false,
     "network_probe_required_before_ingestion": true
   },
@@ -94,7 +94,7 @@
     "coding_agent": "codex",
     "model": "gpt-5",
     "task_id": "phase0_source_probe_scaffold",
-    "source_version": "2.1.0 (release tag; immutable commit verification pending)",
+    "source_version": "2.1.0 @ 72f5796147a49da0f05fa2fa6cdf1cac7b64fe55",
     "validation_result": "passing",
     "open_blockers": [
       "terms review required",
