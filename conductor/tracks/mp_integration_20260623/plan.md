@@ -35,7 +35,8 @@ Phase 0 governance is implemented as metadata-only and remains blocked before pa
 - [ ] **Task 1:** Confirm authoritative release source, license, and redistribution constraints.
 - [x] **Task 2:** Record supported languages and source-version metadata.
   - MGI/MP release `v2026-07-22` and immutable commit are recorded; release-specific licence review remains open.
-- [ ] **Task 3:** List relevant GitHub repositories:
+- [x] **Task 3:** List relevant GitHub repositories:
+  - `mgijax/mammalian-phenotype-ontology` is pinned as the upstream release authority.
   - https://github.com/mgijax/mammalian-phenotype-ontology
 
 ## Phase 2: Data Access and Normalization

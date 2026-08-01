@@ -35,7 +35,8 @@ Phase 0 governance is implemented as metadata-only and remains blocked before pa
 - [ ] **Task 1:** Confirm authoritative release source, license, and redistribution constraints.
 - [x] **Task 2:** Record supported languages and source-version metadata.
   - Release target `v2025-05-14` and immutable commit are recorded; licence redistribution review remains open.
-- [ ] **Task 3:** List relevant GitHub repositories:
+- [x] **Task 3:** List relevant GitHub repositories:
+  - `pato-ontology/pato` is pinned as the upstream release authority.
   - https://github.com/pato-ontology/pato
 
 ## Phase 2: Data Access and Normalization

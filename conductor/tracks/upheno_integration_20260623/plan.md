@@ -35,7 +35,8 @@ Phase 0 governance is implemented as metadata-only and remains blocked before pa
 - [ ] **Task 1:** Confirm authoritative release source, license, and redistribution constraints.
 - [x] **Task 2:** Record supported languages and source-version metadata.
   - uPheno release `v2025-10-12` and immutable commit are recorded; component licence matrix review remains open.
-- [ ] **Task 3:** List relevant GitHub repositories:
+- [x] **Task 3:** List relevant GitHub repositories:
+  - `obophenotype/upheno` is pinned as the build/release authority; component repositories remain licence-gated.
   - https://github.com/obophenotype/upheno
 
 ## Phase 2: Data Access and Normalization
