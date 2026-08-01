@@ -33,7 +33,8 @@ This plan introduces EFO into the project where it can improve terminology align
   - EMBL-EBI EFO repository/OLS are authoritative; EFO is released under Apache-2.0. Payload use remains subject to provenance and review controls.
 - [x] **Task 2:** Record supported languages and source-version metadata.
   - English scope is recorded; OWL `versionInfo` `3.92.0` matches release tag `v3.92.0` at immutable commit `704cbf64e95ac374374b309691d86d95c84dfe17` (bounded metadata probe, payload discarded).
-- [ ] **Task 3:** List relevant GitHub repositories:
+- [x] **Task 3:** List relevant GitHub repositories:
+  - EBISPOT/efo is authoritative; EMBL-EBI OLS is the documented distribution/access reference.
   - https://github.com/EBISPOT/efo
 
 ## Phase 2: Data Access and Normalization
