@@ -44,7 +44,7 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ---
 
-## [ ] Track: Implement automated Conductor validation and lifecycle gates
+## [x] Track: Implement automated Conductor validation and lifecycle gates
 *Link: [./tracks/conductor_validation_20260623/](file:///C:/Users/60217257/OneDrive%20-%20Flinders/repos/biomedical/hpo-translations/conductor/tracks/conductor_validation_20260623/)*
 
 ---
