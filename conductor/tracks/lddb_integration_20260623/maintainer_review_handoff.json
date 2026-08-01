@@ -1,0 +1,16 @@
+{
+  "track_id": "lddb_integration_20260623",
+  "status": "no_go_investigation_only",
+  "prepared_at": "2026-08-01",
+  "evidence": {
+    "current_authority": "not established",
+    "historical_references": ["https://pubmed.ncbi.nlm.nih.gov/3307585/"],
+    "redistribution_licence": "not established"
+  },
+  "decisions_requested": [
+    "Confirm whether a current rights-holder or maintained release exists",
+    "Provide explicit redistribution permission if a source is identified",
+    "Otherwise close the investigation as no-go"
+  ],
+  "prohibited_until_resolution": ["payload retrieval", "reconstruction", "labels", "crosswalks", "promotion"]
+}
