@@ -38,7 +38,8 @@ Phase 0 governance is implemented as metadata-only and remains blocked before pa
   - None confirmed; document authoritative non-GitHub source instead.
 
 ## Phase 2: Data Access and Normalization
-- [ ] **Task 1:** Define source retrieval path without committing restricted payloads.
+- [x] **Task 1:** Define source retrieval path without committing restricted payloads.
+  - Documentation-only SIG/RDF catalogue references are recorded; no FMA payload retrieval until licence and authoritative release review passes.
 - [ ] **Task 2:** Normalize identifiers, preferred labels, synonyms, language tags, and provenance fields.
 - [ ] **Task 3:** Produce a bounded sample artifact for maintainer review.
 
