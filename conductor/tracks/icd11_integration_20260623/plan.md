@@ -48,9 +48,12 @@ This plan introduces ICD-11 into the project where it can improve terminology al
   - Blocked pending the approved authenticated probe; no ICD-11 source payload has been read or committed.
 
 ## Phase 3: HPO Translation Use
-- [ ] **Task 1:** Identify where ICD-11 helps: crosswalks, synonym review, multilingual label comparison, or domain validation.
-- [ ] **Task 2:** Add deterministic matching rules and conflict reporting.
-- [ ] **Task 3:** Ensure LLM-assisted outputs remain candidate-only and human-review-required.
+- [x] **Task 1:** Identify where ICD-11 helps: crosswalks, synonym review, multilingual label comparison, or domain validation.
+  - Defined crosswalk review, multilingual label comparison, and domain-validation use cases in `phase3_hpo_translation_use.json`.
+- [x] **Task 2:** Add deterministic matching rules and conflict reporting.
+  - Added exact-identifier, curated-crosswalk, language-match, and postcoordination rules with explicit conflict types and unresolved-by-default handling.
+- [x] **Task 3:** Ensure LLM-assisted outputs remain candidate-only and human-review-required.
+  - Enforced candidate-only, human-review-required, and no-approved-translation guardrails without reading source payloads.
 
 ## Phase 4: Validation and Review
 - [ ] **Task 1:** Validate schema, provenance, and license metadata.

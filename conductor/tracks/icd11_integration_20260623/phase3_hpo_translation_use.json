@@ -1,0 +1,72 @@
+{
+  "track_id": "icd11_integration_20260623",
+  "phase": "phase_3_hpo_translation_use",
+  "source_id": "icd11",
+  "payload_policy": "metadata_only_until_authenticated_probe_and_terms_gate",
+  "use_cases": [
+    {
+      "id": "crosswalk_review",
+      "purpose": "review candidate ICD-11-to-HPO relationships",
+      "promotion": "human_review_required"
+    },
+    {
+      "id": "multilingual_label_comparison",
+      "purpose": "compare language availability and terminology coverage",
+      "promotion": "candidate_only"
+    },
+    {
+      "id": "domain_validation",
+      "purpose": "use disease-classification context to flag HPO translation review needs",
+      "promotion": "candidate_only"
+    }
+  ],
+  "deterministic_matching_rules": [
+    {
+      "id": "exact_identifier",
+      "rule": "preserve exact WHO entity URI and MMS code separately",
+      "decision": "eligible_for_review"
+    },
+    {
+      "id": "curated_crosswalk",
+      "rule": "prefer an explicitly curated mapping over lexical or embedding similarity",
+      "decision": "eligible_for_review_with_provenance"
+    },
+    {
+      "id": "language_match",
+      "rule": "require matching ISO 639-1 language tags before language-level comparison",
+      "decision": "eligible_for_review"
+    },
+    {
+      "id": "postcoordination",
+      "rule": "do not flatten postcoordination or polyhierarchy into a single HPO assertion",
+      "decision": "manual_review_required"
+    }
+  ],
+  "conflict_reporting": {
+    "required_fields": [
+      "conflict_type",
+      "source_ids",
+      "entity_uris",
+      "language",
+      "mapping_basis",
+      "provenance_id",
+      "resolution_status"
+    ],
+    "conflict_types": [
+      "source_disagreement",
+      "foundation_mms_mismatch",
+      "language_unavailable",
+      "polyhierarchy_ambiguity",
+      "postcoordination_not_representable",
+      "candidate_label_disagreement"
+    ],
+    "default_resolution": "unresolved_until_human_review"
+  },
+  "llm_guardrails": {
+    "candidate_only": true,
+    "human_review_required": true,
+    "approved_translation": false,
+    "source_payload_read": false,
+    "source_payload_committed": false
+  }
+}
