@@ -72,10 +72,10 @@ Do not commit raw source terms, ontology labels, synonyms, definitions, full API
 ## Phase 0 Validation Evidence
 - Generated governance record: `ontology_network/p1_source_governance.json` entry for `icd11_integration_20260623`.
 - Payload status: no raw, licensed, credentialed, private, full-release, label, synonym, definition, or API-response payload is read or committed.
-- Downstream status: identifier-network, translation-use, and non-translation outputs remain blocked until source terms review and bounded source probe pass.
+- Downstream status: identifier-network, translation-use, and non-translation outputs remain blocked until maintainer review of the redacted probe result and any later source-label approval.
 
 ## Phase 0 Review Archive
 - Review status: `codex_review_completed`.
 - Fixes applied: synchronized metadata, telemetry, source-governance review result, and automation index review state.
 - Validation archive: `pixi run validate-conductor`, `pixi run validate-ontology-network`, `pixi run validate-ontology-network-artifacts`, `pixi run test-conductor-validation`, and `git diff --check`.
-- Residual blocker: downstream payload ingestion, identifier-network work, translation-use, and non-translation outputs remain blocked until source terms and bounded probes pass.
+- Residual blocker: source-label extraction and downstream promotion remain blocked pending maintainer review; the bounded structural probe has passed.

@@ -685,10 +685,10 @@
         "method": "conductor_track_metadata_parse",
         "spec_path": "conductor\\tracks\\icd11_integration_20260623\\spec.md"
       },
-      "redistribution_status": "api_terms_required_no_full_response_redistribution",
+      "redistribution_status": "CC_BY-ND_3.0_IGO_no_adaptation_no_full_response_redistribution",
       "release_safe": false,
       "restricted_sources": [],
-      "source_access_status": "public_api_terms_review_required",
+      "source_access_status": "public_api_metadata_only_terms_recorded",
       "source_id": "icd11",
       "source_metadata_paths": {
         "metadata": "conductor\\tracks\\icd11_integration_20260623\\metadata.json",
@@ -697,11 +697,11 @@
       "source_note": "Use WHO ICD API, browser, and licensing as authority; GitHub repositories are implementation support.",
       "source_payload_commit_policy": "do_not_commit_full_api_responses; commit only schemas, request manifests, validation summaries, and redacted derived reports",
       "source_payloads_can_be_committed": false,
-      "source_version": null,
+      "source_version": "2026-01",
       "track_id": "icd11_integration_20260623",
-      "track_status": "phase_0_implemented_blocked",
+      "track_status": "bounded_probe_passed_payload_extraction_blocked",
       "usefulness": "Digital-first disease classification, multilingual terminology comparison, and ICD-11 foundation alignment.",
-      "version_status": "not_pinned_in_track_metadata"
+      "version_status": "pinned_review_target"
     },
     {
       "access_class": "investigation-only",
