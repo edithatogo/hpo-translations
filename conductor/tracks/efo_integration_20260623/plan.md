@@ -38,7 +38,8 @@ This plan introduces EFO into the project where it can improve terminology align
   - https://github.com/EBISPOT/efo
 
 ## Phase 2: Data Access and Normalization
-- [ ] **Task 1:** Define source retrieval path without committing restricted payloads.
+- [x] **Task 1:** Define source retrieval path without committing restricted payloads.
+  - Use the pinned EFO release and local-only transient probe path; the approved sample retained only an opaque identifier.
 - [ ] **Task 2:** Normalize identifiers, preferred labels, synonyms, language tags, and provenance fields.
 - [x] **Task 3:** Produce a bounded sample artifact for maintainer review.
   - Approved one-record opaque-identifier sample is recorded in `maintainer_review_handoff.json`; payload discarded.
