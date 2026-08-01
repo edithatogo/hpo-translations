@@ -38,6 +38,7 @@ validate-conductor-report = ".pixi/envs/default/python.exe -u scripts/validate_c
 test-conductor-validation = ".pixi/envs/default/python.exe -m unittest discover -s tests -p test_*.py"
 validate-research-validation = ".pixi/envs/default/python.exe -u scripts/validate_research_validation.py"
 test-research-validation = ".pixi/envs/default/python.exe -m unittest discover -s tests -p test_validate_research_validation.py"
+verify-research-source-pins = ".pixi/envs/default/python.exe -u scripts/verify_research_sources.py"
 
 [dependencies]
 python = ">=3.14.6,<3.15"

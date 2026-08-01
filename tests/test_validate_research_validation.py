@@ -68,6 +68,38 @@ class ValidateResearchValidationTests(unittest.TestCase):
             semantic_errors("run_manifest", manifest),
         )
 
+    def test_source_catalog_dependence_counts_are_recomputed(self) -> None:
+        catalog = load_json(DEFAULT_RESEARCH_ROOT / "source_catalog.json")
+        catalog["dependence_summary"]["independent_evidence_group_count"] = 4
+        self.assertIn(
+            "independent_evidence_group_count must equal the number of unique groups",
+            semantic_errors("source_catalog", catalog),
+        )
+
+    def test_same_origin_cannot_create_false_independence(self) -> None:
+        catalog = load_json(DEFAULT_RESEARCH_ROOT / "fixtures" / "passing" / "source_catalog.json")
+        catalog["mappings"][1]["independent_evidence_group"] = "invented-independent-group"
+        self.assertIn(
+            "records with the same origin_dataset must share one independent evidence group",
+            semantic_errors("source_catalog", catalog),
+        )
+
+    def test_repeated_origins_must_be_reported(self) -> None:
+        catalog = load_json(DEFAULT_RESEARCH_ROOT / "fixtures" / "passing" / "source_catalog.json")
+        catalog["dependence_summary"]["shared_origin_groups"] = []
+        self.assertIn(
+            "shared_origin_groups must enumerate every repeated origin_dataset exactly once",
+            semantic_errors("source_catalog", catalog),
+        )
+
+    def test_versioned_source_cannot_use_latest_alias(self) -> None:
+        catalog = load_json(DEFAULT_RESEARCH_ROOT / "fixtures" / "passing" / "source_catalog.json")
+        catalog["mappings"][0]["versioned_url"] = "https://example.org/latest/a.tsv"
+        self.assertIn(
+            "fixture-a versioned_url cannot use a latest alias",
+            semantic_errors("source_catalog", catalog),
+        )
+
     def test_empirical_run_requires_frozen_git_commits(self) -> None:
         manifest = load_json(DEFAULT_RESEARCH_ROOT / "fixtures" / "passing" / "run_manifest.json")
         manifest["release_scope"] = "pilot"

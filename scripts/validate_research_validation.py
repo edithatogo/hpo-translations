@@ -18,6 +18,7 @@ EXPECTED_SCHEMA_NAMES = {
     "language_identity_registry",
     "reviewer_decision",
     "run_manifest",
+    "source_catalog",
     "source_lineage_record",
     "translation_evaluation_item",
 }
@@ -89,6 +90,60 @@ def semantic_errors(schema_name: str, instance: Any) -> list[str]:
         if instance.get("conflict_status") == "recused" and instance.get("decision") != "abstain":
             errors.append("a recused reviewer must abstain")
 
+    if schema_name == "source_catalog":
+        mappings = instance.get("mappings", [])
+        if not isinstance(mappings, list):
+            return errors
+        source_ids = [record.get("source_id") for record in mappings if isinstance(record, dict)]
+        if len(source_ids) != len(set(source_ids)):
+            errors.append("source catalog source_id values must be unique")
+
+        dependence_summary = instance.get("dependence_summary", {})
+        if isinstance(dependence_summary, dict):
+            if dependence_summary.get("naive_mapping_family_count") != len(mappings):
+                errors.append("naive_mapping_family_count must equal the number of mapping families")
+            independent_groups = {
+                record.get("independent_evidence_group") for record in mappings if isinstance(record, dict)
+            }
+            if dependence_summary.get("independent_evidence_group_count") != len(independent_groups):
+                errors.append("independent_evidence_group_count must equal the number of unique groups")
+
+        groups_by_origin: dict[str, set[str]] = {}
+        for record in mappings:
+            if not isinstance(record, dict):
+                continue
+            origin = record.get("origin_dataset")
+            group = record.get("independent_evidence_group")
+            if isinstance(origin, str) and isinstance(group, str):
+                groups_by_origin.setdefault(origin, set()).add(group)
+            versioned_url = record.get("versioned_url")
+            mutable_alias_url = record.get("mutable_alias_url")
+            if isinstance(versioned_url, str) and "/latest/" in versioned_url:
+                errors.append(f"{record.get('source_id')} versioned_url cannot use a latest alias")
+            if versioned_url == mutable_alias_url:
+                errors.append(f"{record.get('source_id')} versioned and mutable URLs must differ")
+            members = record.get("members", [])
+            artifact_size = record.get("artifact_size_bytes")
+            if isinstance(members, list) and members and isinstance(artifact_size, int):
+                member_size = sum(member.get("size_bytes", 0) for member in members if isinstance(member, dict))
+                if member_size != artifact_size:
+                    errors.append(f"{record.get('source_id')} member sizes must sum to artifact_size_bytes")
+        if any(len(groups) > 1 for groups in groups_by_origin.values()):
+            errors.append("records with the same origin_dataset must share one independent evidence group")
+        if isinstance(dependence_summary, dict):
+            origin_counts: dict[str, int] = {}
+            for record in mappings:
+                if isinstance(record, dict) and isinstance(record.get("origin_dataset"), str):
+                    origin = str(record["origin_dataset"])
+                    origin_counts[origin] = origin_counts.get(origin, 0) + 1
+            expected_shared_origins = {origin for origin, count in origin_counts.items() if count > 1}
+            shared_origin_groups = dependence_summary.get("shared_origin_groups", [])
+            reported_shared_origins = {
+                group.get("origin_dataset") for group in shared_origin_groups if isinstance(group, dict)
+            }
+            if reported_shared_origins != expected_shared_origins:
+                errors.append("shared_origin_groups must enumerate every repeated origin_dataset exactly once")
+
     return errors
 
 
@@ -145,6 +200,17 @@ def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[Valid
             registry = load_json(registry_path)
             for message in schema_errors(registry_schema, registry):
                 issues.append(ValidationIssue("registry.invalid", str(registry_path), message))
+
+    catalog_path = research_root / "source_catalog.json"
+    catalog_schema = schemas.get("source_catalog")
+    if catalog_schema is not None:
+        if not catalog_path.exists():
+            issues.append(ValidationIssue("source_catalog.missing", str(catalog_path), "canonical catalog is required"))
+        else:
+            catalog = load_json(catalog_path)
+            errors = schema_errors(catalog_schema, catalog) + semantic_errors("source_catalog", catalog)
+            for message in errors:
+                issues.append(ValidationIssue("source_catalog.invalid", str(catalog_path), message))
 
     probe_path = passing_dir / "translation_evaluation_item.json"
     if probe_path.exists():
@@ -261,7 +327,13 @@ def main() -> int:
             print(f"- [{issue.code}] {issue.path}: {issue.message}")
         return 1
 
-    print("Research validation contract passed: 5 schemas, 6 passing fixtures, and 5 expected failures.")
+    schema_count = len(EXPECTED_SCHEMA_NAMES)
+    passing_count = len(list((args.research_root / "fixtures" / "passing").glob("*.json")))
+    failing_count = len(list((args.research_root / "fixtures" / "failing").glob("*.json")))
+    print(
+        f"Research validation contract passed: {schema_count} schemas, "
+        f"{passing_count} passing fixtures, and {failing_count} expected failures."
+    )
     print("This result validates the contract only; it does not establish empirical translation readiness.")
     return 0
 
