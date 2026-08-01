@@ -1,0 +1,10 @@
+{
+  "track": "pato_integration_20260623",
+  "artifact_type": "metadata_only_governance_scaffold",
+  "source": {"name": "Phenotypic Quality Ontology", "authority_status": "pending_obo_release_terms_review", "version": null, "release_url": null},
+  "access": {"mode": "documentation_only", "credentials_required": "unknown", "payload_accessed": false, "payload_commit_allowed": false},
+  "normalization": {"identifier": "PATO CURIE preserved; no term values", "language": "BCP-47 tag required", "provenance": ["source_uri", "release_or_commit", "retrieved_at", "license_status"]},
+  "translation_use": {"allowed": ["schema and review scaffolding"], "blocked": ["labels", "synonyms", "definitions", "crosswalk promotion", "identifier-network outputs"]},
+  "review": {"required": ["OBO authority", "license and redistribution", "PURL/version pin", "payload handling"], "status": "not_approved"},
+  "next_allowed_action": "complete OBO release, license, and PURL review without fetching payloads"
+}

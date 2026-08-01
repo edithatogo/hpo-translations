@@ -1,0 +1,8 @@
+{
+  "track_id": "do_integration_20260623",
+  "status": "scaffold_only_blocked",
+  "checks": ["schema", "provenance", "license", "import_dry_run"],
+  "sample_validation": "not_run",
+  "review_required": true,
+  "excluded_payloads": ["source_labels", "source_synonyms", "source_definitions", "full_responses"]
+}

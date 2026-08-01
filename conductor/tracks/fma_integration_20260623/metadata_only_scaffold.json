@@ -1,0 +1,10 @@
+{
+  "track": "fma_integration_20260623",
+  "artifact_type": "metadata_only_governance_scaffold",
+  "source": {"name": "Foundational Model of Anatomy", "authority_status": "pending_terms_review", "version": null, "release_url": null},
+  "access": {"mode": "documentation_only", "credentials_required": "unknown", "payload_accessed": false, "payload_commit_allowed": false},
+  "normalization": {"identifier": "source CURIE preserved; no term values", "language": "BCP-47 tag required", "provenance": ["source_uri", "release_or_commit", "retrieved_at", "license_status"]},
+  "translation_use": {"allowed": ["schema and review scaffolding"], "blocked": ["labels", "synonyms", "definitions", "crosswalk promotion", "identifier-network outputs"]},
+  "review": {"required": ["authoritative release", "license and redistribution", "version pin", "payload handling"], "status": "not_approved"},
+  "next_allowed_action": "complete public ontology terms and release review without fetching payloads"
+}

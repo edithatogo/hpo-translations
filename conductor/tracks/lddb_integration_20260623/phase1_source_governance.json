@@ -1,0 +1,13 @@
+{
+  "track_id": "lddb_integration_20260623",
+  "status": "investigation_only_no_go",
+  "authoritative_source": null,
+  "repository": null,
+  "source_version": null,
+  "license": "unverified",
+  "supported_languages": [],
+  "payload_commit_allowed": false,
+  "credential_required": "unknown",
+  "next_gate": "identify maintained authoritative source, access path, licence and redistribution terms",
+  "excluded": ["labels", "synonyms", "definitions", "full_release_payload"]
+}

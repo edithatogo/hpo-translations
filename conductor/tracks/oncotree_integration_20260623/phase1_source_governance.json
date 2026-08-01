@@ -1,0 +1,13 @@
+{
+  "track_id": "oncotree_integration_20260623",
+  "status": "metadata_only_terms_review_required",
+  "authoritative_source": "cBioPortal OncoTree repository and release documentation",
+  "repository": "https://github.com/cBioPortal/oncotree",
+  "source_version": null,
+  "license": "pending_terms_verification",
+  "supported_languages": ["en"],
+  "payload_commit_allowed": false,
+  "credential_required": false,
+  "next_gate": "verify release licence and redistribution terms before bounded probe",
+  "excluded": ["labels", "synonyms", "definitions", "full_release_payload"]
+}
