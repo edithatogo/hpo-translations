@@ -43,7 +43,7 @@
 ## Phase 4: Prospectively Frozen Feasibility Pilot
 
 - [ ] **Task 1:** Record the maintainer's G0 decision: Option A, B, C, or D; language-selection rule; maximum reviewer-time budget; and frozen default progression thresholds from `phase_4_options.md`.
-- [ ] **Task 2:** Run the 12-item, payload-free synthetic Stage 0 rehearsal for sampling, randomization, blinding, export, adjudication, redaction, and stop-condition handling. Record operational evidence only.
+- [x] **Task 2:** Run the 12-item, payload-free synthetic Stage 0 rehearsal for sampling, randomization, blinding, export, adjudication, redaction, and stop-condition handling. Record operational evidence only. (`4bfcb2b`; receipt validated)
 - [ ] **Task 3:** Select the permitted language slots, reviewer and adjudicator roster, source set, and stratified concepts for the approved option. Exclude `tw` until its language authority is resolved.
 - [ ] **Task 4:** Close source, license, ethics, privacy, reviewer-consent, language-working-group, and community model-use gates. Step down A → B → C → D when a required gate cannot close.
 - [ ] **Task 5:** Freeze and checksum candidate conditions, prompts, model endpoints, source versions, randomization, exclusions, instrument, progression criteria, and analysis code. Obtain explicit maintainer approval before any external preregistration.
