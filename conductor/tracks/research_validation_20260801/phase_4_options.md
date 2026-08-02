@@ -5,8 +5,9 @@
 The user accepted the recommended path on 2026-08-02: Option A is the target,
 Option D is the immediate route, and the language-selection rule and progression
 defaults are accepted for prospective freeze. The payload-free Stage 0 rehearsal
-has passed. G0 remains partial because no maximum reviewer-time budget has been
-set; this prevents empirical work but does not invalidate the completed rehearsal.
+has passed. G0 is complete with a provisional 30-hour Stage 1 release cap and a
+120-hour full-pilot ceiling. This closes design capacity planning only; it does
+not activate empirical work or authorize reviewer contact or expenditure.
 
 The current source-access review authorizes zero payload retrievals, no reviewer
 roster is approved, and external preregistration requires explicit maintainer
@@ -165,9 +166,11 @@ formal effectiveness hypothesis tests or significance-based progression.
 | Community approval is unavailable | Substitute an approved language or step down the design | No inference to the unavailable community |
 | `tw` remains ambiguous | Exclude it | No Tiwi or Twi claim |
 
-## Owner decisions required at G0
+## Decision record and downstream owner gates
 
-The maintainer must record:
+G0 records items 1–5 below. They are complete under the provisional budget and
+remain subject to the G3 checksum freeze. Items 6–8 are downstream gates and
+remain pending:
 
 1. selected option and maximum reviewer-time budget;
 2. language-selection rule and any named candidate languages;
@@ -176,9 +179,10 @@ The maintainer must record:
 4. go, revise, and stop thresholds;
 5. whether two reviewers plus an adjudicator is an acceptable feasibility-only
    fallback;
-6. authorized source set and owner for each unresolved permission;
-7. ethics, privacy, reviewer-consent, and community-approval owners; and
-8. whether external preregistration is authorized after the prospective freeze.
+6. **Pending G1:** authorized source set and owner for each unresolved permission;
+7. **Pending G2:** ethics, privacy, reviewer-consent, and community-approval
+   owners; and
+8. **Not authorized:** external preregistration after the prospective freeze.
 
 ## Rationale and methodological sources
 

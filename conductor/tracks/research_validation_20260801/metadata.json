@@ -17,8 +17,8 @@
   "pr_url": null,
   "ci_status": "local_passing",
   "merge_status": "not_opened",
-  "last_commit": "eb8df7b",
-  "phase_review_status": "codex_phase_4_stage_0_review_completed_no_blocking_findings_empirical_gates_retained",
+  "last_commit": "2a74f58",
+  "phase_review_status": "codex_phase_4_g0_budget_review_completed_no_blocking_findings_empirical_gates_retained",
   "github_checks_url": null,
   "merge_commit": null,
   "priority": "P0",
@@ -31,7 +31,7 @@
     "The `tw` profile is described as both Tiwi and Twi; language authority and migration direction are unresolved.",
     "Restricted terminology content requires source-specific license and redistribution review.",
     "Human reviewers and language-working-group approval have not been secured for a pilot.",
-    "The Phase 4 target and defaults are selected, but the maximum reviewer-time budget and named languages remain unset.",
+    "The Phase 4 target, defaults, and provisional capacity envelope are selected, but named languages and reviewer rosters remain unset.",
     "Upstream push, PR, preregistration, and publication require explicit maintainer approval."
   ],
   "expected_blockers": [
@@ -139,7 +139,7 @@
       "official translation promotion"
     ]
   },
-  "automation_readiness": "phase_4_stage_0_local_passing_empirical_ingress_blocked",
+  "automation_readiness": "phase_4_g0_and_stage_0_local_passing_empirical_ingress_blocked",
   "source_verification": {
     "verified_at": "2026-08-01T00:00:00Z",
     "hpo_release": "v2026-06-23",
@@ -176,7 +176,7 @@
     "decision_boundary": "metadata decisions only; human approval is required before payload retrieval, mapping, adaptation, redistribution, or empirical use"
   },
   "phase_4_decision": {
-    "status": "target_a_selected_stage_0_complete_reviewer_budget_pending",
+    "status": "g0_complete_target_a_selected_stage_0_complete_empirical_gates_pending",
     "canonical_document": "conductor/tracks/research_validation_20260801/phase_4_options.md",
     "decision_source": "user_instruction_2026-08-02_proceed_with_recommendations",
     "current_permitted_route": "option_d_payload_free_stage_0_completed_no_empirical_ingress",
@@ -184,8 +184,14 @@
     "recommended_target": "option_a_staged_three_language_pilot",
     "language_selection_rule_status": "accepted_named_languages_pending",
     "progression_defaults_status": "accepted_pending_g3_checksum_freeze",
-    "reviewer_time_budget_minutes": null,
-    "reviewer_time_budget_status": "pending_blocks_empirical_work",
+    "reviewer_time_budget_minutes": 7200,
+    "reviewer_time_budget_hours": 120,
+    "stage_1_release_cap_minutes": 1800,
+    "stage_1_release_cap_hours": 30,
+    "remaining_budget_release_cap_minutes": 5400,
+    "remaining_budget_release_cap_hours": 90,
+    "reviewer_time_budget_status": "provisional_g0_approved_stage_1_only_remaining_requires_observed_reforecast",
+    "reviewer_time_budget_artifact": "research_validation/reviewer_workload_budget.json",
     "planned_fallback_order": [
       "option_b_lean_two_language_pilot",
       "option_c_single_language_measurement_pilot",
@@ -283,6 +289,8 @@
     "external_actions_not_authorized": [
       "payload_retrieval",
       "reviewer_recruitment_or_contact",
+      "financial_spend",
+      "empirical_candidate_generation",
       "external_preregistration",
       "publication",
       "push",
@@ -322,8 +330,8 @@
     "last_run": {
       "agent": "codex",
       "model": "GPT-5",
-      "task_id": "research_validation_20260801_phase_4_stage_0_rehearsal",
-      "prompt_version": "research-validation-phase-4-stage-0-2026-08-02",
+      "task_id": "research_validation_20260801_phase_4_g0_reviewer_budget",
+      "prompt_version": "research-validation-phase-4-g0-budget-2026-08-02",
       "hpo_release": "v2026-06-23",
       "source_versions": {
         "HP-MESH": "2026-07-19",
@@ -350,7 +358,7 @@
         ".pixi/envs/default/bin/vale.exe research_validation/README.md research_validation/stage_0/README.md conductor/tracks/research_validation_20260801/phase_4_options.md conductor/tracks/research_validation_20260801/plan.md",
         "pixi run validate-conductor"
       ],
-      "validation_result": "local_passing_53_tests_stage_0_receipt_verified_empirical_gates_retained",
+      "validation_result": "local_passing_57_tests_reviewer_budget_and_stage_0_verified_empirical_gates_retained",
       "conflict_count": 2,
       "open_blockers": 7
     }
