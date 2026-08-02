@@ -7,7 +7,7 @@
   "prospective_freeze_claim_allowed": false,
   "external_preregistration_claim_allowed": false,
   "prerequisites": {
-    "G1_source_authority": "pending",
+    "G1_source_authority": "conditional",
     "G2_human_and_community_authority": "pending",
     "approval_manifest_state": "stage0_synthetic_only",
     "approved_language_count": 0,

@@ -1,0 +1,104 @@
+{
+  "schema_version": "phase-4-wave-1-source-decisions-v1",
+  "track_id": "research_validation_20260801",
+  "wave_id": "wave_1_minimum_source_scope",
+  "status": "completed_scoped_decisions_recorded_payload_blocked",
+  "decision_date": "2026-08-03",
+  "authorization_source": "repository_maintainer_instruction_proceed_with_wave_1",
+  "authority_role": "hpo_translations_repository_maintainer",
+  "approver_pseudonym": "repository-maintainer",
+  "recheck_date": "2027-08-03",
+  "recheck_earlier_on": ["source_release_change", "licence_or_terms_change", "semantic_role_change", "planned_payload_or_distribution_scope_change"],
+  "decisions": [
+    {
+      "source_id": "mondo",
+      "source_release": "v2026-07-06",
+      "declared_licence": "CC_BY_4_0",
+      "decision": "conditional",
+      "permitted_scope": "version_pinned_Japanese_disease_context_and_source_atom_provenance_for_internal_pilot_design",
+      "conditions": ["credit_creator_and_source", "link_licence", "identify_release", "indicate_changes", "avoid_endorsement_implication", "preserve_source_atom_and_lineage"],
+      "prohibited_or_deferred": ["independent_HPO_lexical_vote", "payload_retrieval", "redistribution", "official_translation_promotion"],
+      "evidence": {
+        "official_uri": "https://mondo.monarchinitiative.org/pages/download/",
+        "licence_uri": "https://creativecommons.org/licenses/by/4.0/",
+        "retrieved_at": "2026-08-03",
+        "assertion": "Official Mondo download page declares CC BY 4.0 and lists the international edition with Japanese translations.",
+        "assertion_sha256": "209225d0bbe00796106570ec0ef3e85203e98c0ca4d37bfb02e4323042ee8cfc"
+      },
+      "payload_retrieval_allowed": false,
+      "promotion_allowed": false
+    },
+    {
+      "source_id": "who-icf",
+      "source_release": "2026-01",
+      "declared_licence": "CC_BY_ND_3_0_IGO",
+      "decision": "conditional",
+      "permitted_scope": "unchanged_version_pinned_Spanish_functional_context_with_appropriate_citation_for_internal_pilot_design",
+      "conditions": ["credit_WHO_and_source", "link_licence", "identify_release", "no_code_adaptation", "no_endorsement_implication", "no_logo_use", "permissions_review_for_any_changed_scope"],
+      "prohibited_or_deferred": ["adaptation_of_codes", "distribution_of_modified_material", "mapping_or_transformative_use", "lexical_vote", "payload_retrieval", "official_translation_promotion"],
+      "evidence": {
+        "official_uri": "https://www.who.int/about/policies/publishing/copyright",
+        "licence_uri": "https://creativecommons.org/licenses/by-nd/3.0/igo/",
+        "retrieved_at": "2026-08-03",
+        "assertion": "WHO states that ICF is licensed under CC BY-ND 3.0 IGO for commercial and non-commercial use provided codes are not adapted and the work is appropriately cited.",
+        "assertion_sha256": "d7dbc55467c57b8bfe6a8266c5472999b345613c99877774af39f27bf83e53b0"
+      },
+      "payload_retrieval_allowed": false,
+      "promotion_allowed": false
+    },
+    {
+      "source_id": "uberon",
+      "source_release": "v2026-06-23",
+      "declared_licence": "CC_BY_3_0",
+      "decision": "conditional",
+      "permitted_scope": "version_pinned_structural_anatomy_and_hard_negative_design_for_internal_pilot_design",
+      "conditions": ["credit_creator_and_source", "include_title_if_supplied", "link_licence", "identify_release", "indicate_derivative_changes", "avoid_endorsement_implication"],
+      "prohibited_or_deferred": ["lexical_vote", "payload_retrieval", "redistribution", "official_translation_promotion"],
+      "evidence": {
+        "official_uri": "https://obofoundry.org/ontology/uberon.html",
+        "licence_uri": "https://creativecommons.org/licenses/by/3.0/",
+        "retrieved_at": "2026-08-03",
+        "assertion": "OBO Foundry Uberon metadata declares CC BY 3.0.",
+        "assertion_sha256": "11621a24c3b06a5af67831d89a73be28f62b2c4b33652e40b99eab6112358073"
+      },
+      "payload_retrieval_allowed": false,
+      "promotion_allowed": false
+    },
+    {
+      "source_id": "pato",
+      "source_release": "v2025-05-14",
+      "declared_licence": "CC_BY_3_0",
+      "decision": "conditional",
+      "permitted_scope": "version_pinned_structural_quality_and_hard_negative_design_for_internal_pilot_design",
+      "conditions": ["credit_creator_and_source", "include_title_if_supplied", "link_licence", "identify_release", "indicate_derivative_changes", "avoid_endorsement_implication"],
+      "prohibited_or_deferred": ["lexical_vote", "payload_retrieval", "redistribution", "official_translation_promotion"],
+      "evidence": {
+        "official_uri": "https://obofoundry.org/ontology/pato.html",
+        "licence_uri": "https://creativecommons.org/licenses/by/3.0/",
+        "retrieved_at": "2026-08-03",
+        "assertion": "OBO Foundry PATO metadata declares CC BY 3.0.",
+        "assertion_sha256": "59ffbd0e2a632727239fa6a6878551dafd2f7afaa6df54f014e595bd1184b6b4"
+      },
+      "payload_retrieval_allowed": false,
+      "promotion_allowed": false
+    }
+  ],
+  "summary": {
+    "conditional_scope_decision_count": 4,
+    "payload_retrieval_allowed_count": 0,
+    "promotion_allowed_count": 0,
+    "omitted_source_count": 0,
+    "remaining_external_permission_sources": ["pro-ctcae", "decs"]
+  },
+  "authorization_boundary": {
+    "bounded_internal_licence_scope_recorded": true,
+    "source_payload_retrieval_authorized": false,
+    "mapping_or_adaptation_authorized": false,
+    "redistribution_authorized": false,
+    "empirical_work_authorized": false,
+    "publication_authorized": false,
+    "push_authorized": false,
+    "pull_request_authorized": false
+  },
+  "claims_boundary": "scoped_licence_compatibility_decisions_only_no_payload_empirical_translation_promotion_or_legal_advice_claim"
+}

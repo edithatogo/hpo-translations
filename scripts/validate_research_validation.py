@@ -67,6 +67,7 @@ EXPECTED_PHASE_4_GATE_PACKET_IDS = {
 }
 EXPECTED_PHASE_4_G1_ROUTE_SOURCE_IDS = {"pro-ctcae", "decs", "mondo", "who-icf", "uberon", "pato"}
 EXPECTED_PHASE_4_INTERNAL_SCOPE_SOURCE_IDS = {"mondo", "who-icf", "uberon", "pato"}
+EXPECTED_PHASE_4_WAVE_1_CONDITIONAL_PACKETS = {"g1-mondo", "g1-who-icf", "g1-structural-sources"}
 
 
 @dataclass(frozen=True)
@@ -553,7 +554,9 @@ def phase_4_candidate_matrix_errors(instance: Any, supplementary: Any) -> list[s
     return errors
 
 
-def phase_4_gate_docket_errors(instance: Any, supplementary: Any, approval_manifest: Any) -> list[str]:
+def phase_4_gate_docket_errors(
+    instance: Any, supplementary: Any, approval_manifest: Any, wave_1_decisions: Any | None = None
+) -> list[str]:
     if not all(isinstance(value, dict) for value in (instance, supplementary, approval_manifest)):
         return ["Phase 4 gate docket inputs must be JSON objects"]
 
@@ -617,8 +620,16 @@ def phase_4_gate_docket_errors(instance: Any, supplementary: Any, approval_manif
         if not isinstance(packet, dict):
             errors.append("each Phase 4 decision packet must be an object")
             continue
-        if packet.get("decision") != "pending":
-            errors.append("decision packets must remain pending until evidence is recorded in the approval manifest")
+        packet_id = packet.get("packet_id")
+        expected_decision = "conditional" if packet_id in EXPECTED_PHASE_4_WAVE_1_CONDITIONAL_PACKETS else "pending"
+        if packet.get("decision") != expected_decision:
+            errors.append("decision packet state must match the recorded Wave 1 evidence and pending gate set")
+        if expected_decision == "conditional" and (
+            packet.get("decision_evidence_ref") != "research_validation/phase_4_wave_1_source_decisions.json"
+            or not packet.get("decision_scope")
+            or not packet.get("recheck_date")
+        ):
+            errors.append("conditional Wave 1 packets require bounded scope, evidence reference, and recheck date")
         linked_sources = set(packet.get("linked_source_ids", []))
         if not linked_sources.issubset(source_ids):
             errors.append(f"decision packet references unknown sources: {sorted(linked_sources - source_ids)}")
@@ -632,9 +643,34 @@ def phase_4_gate_docket_errors(instance: Any, supplementary: Any, approval_manif
         ):
             errors.append("each decision packet requires an owner role, evidence list, and failure action")
 
-    manifest_decisions = {gate.get("decision") for gate in approval_manifest.get("gates", []) if isinstance(gate, dict)}
-    if manifest_decisions != {"pending"} or approval_manifest.get("promotion_allowed") is not False:
-        errors.append("gate docket is valid only while the canonical approval manifest remains pending and fail-closed")
+    manifest_gates = {
+        gate.get("gate"): gate
+        for gate in approval_manifest.get("gates", [])
+        if isinstance(gate, dict) and isinstance(gate.get("gate"), str)
+    }
+    source_gate = manifest_gates.get("source_licence", {})
+    other_decisions = {gate.get("decision") for gate_id, gate in manifest_gates.items() if gate_id != "source_licence"}
+    if (
+        source_gate.get("decision") != "conditional"
+        or other_decisions != {"pending"}
+        or source_gate.get("promotion_allowed") is not False
+        or approval_manifest.get("promotion_allowed") is not False
+    ):
+        errors.append("gate docket requires a conditional Wave 1 source gate with all G2 gates pending and fail-closed")
+    if isinstance(wave_1_decisions, dict):
+        wave_1_sources = {
+            decision.get("source_id")
+            for decision in wave_1_decisions.get("decisions", [])
+            if isinstance(decision, dict)
+        }
+        conditional_packet_sources = {
+            source_id
+            for packet in packets
+            if isinstance(packet, dict) and packet.get("decision") == "conditional"
+            for source_id in packet.get("linked_source_ids", [])
+        }
+        if wave_1_sources != conditional_packet_sources:
+            errors.append("conditional gate packets must cover exactly the Wave 1 source decisions")
 
     authorization = instance.get("authorization_boundary", {})
     if (
@@ -726,6 +762,8 @@ def phase_4_g1_internal_scope_review_errors(instance: Any) -> list[str]:
     if not isinstance(instance, dict):
         return ["Phase 4 G1 internal scope review must be a JSON object"]
     errors: list[str] = []
+    if instance.get("schema_version") != "phase-4-g1-internal-scope-review-v2":
+        errors.append("internal scope review must use the Wave 1 decision v2 contract")
     reviews = instance.get("source_reviews", [])
     if not isinstance(reviews, list):
         return ["Phase 4 G1 internal source reviews must be a list"]
@@ -740,13 +778,10 @@ def phase_4_g1_internal_scope_review_errors(instance: Any) -> list[str]:
         if not isinstance(review, dict):
             errors.append("each internal source review must be an object")
             continue
-        if (
-            review.get("payload_retrieval_allowed") is not False
-            or review.get("human_license_decision_recorded") is not False
-        ):
-            errors.append(
-                "internal scope recommendations must not record payload authority or a human licence decision"
-            )
+        if review.get("payload_retrieval_allowed") is not False:
+            errors.append("Wave 1 internal scope decisions must not authorize payload retrieval")
+        if review.get("decision") != "conditional" or review.get("accountable_scope_decision_recorded") is not True:
+            errors.append("each Wave 1 internal source requires a recorded conditional accountable decision")
         if not review.get("required_controls") or not review.get("prohibited_or_deferred_roles"):
             errors.append("each internal source review requires controls and prohibited or deferred roles")
         if review.get("source_id") == "who-icf":
@@ -754,15 +789,83 @@ def phase_4_g1_internal_scope_review_errors(instance: Any) -> list[str]:
             if not {"adaptation_of_codes", "distribution_of_modified_material"}.issubset(prohibited):
                 errors.append("WHO ICF review must prohibit code adaptation and modified-material distribution")
     program_decision = instance.get("program_decision", {})
-    if not isinstance(program_decision, dict) or program_decision.get("source_licence_gate_closed") is not False:
-        errors.append("internal recommendations must leave the source licence gate open")
+    if (
+        not isinstance(program_decision, dict)
+        or program_decision.get("source_licence_gate_closed") is not False
+        or program_decision.get("wave_1_minimum_source_scope_complete") is not True
+    ):
+        errors.append("Wave 1 must be complete while the overall source licence gate remains open")
     authorization = instance.get("authorization_boundary", {})
     if (
         not isinstance(authorization, dict)
-        or not authorization
-        or any(value is not False for value in authorization.values())
+        or authorization.get("bounded_internal_licence_scope_recorded") is not True
+        or any(
+            value is not False
+            for field, value in authorization.items()
+            if field != "bounded_internal_licence_scope_recorded"
+        )
     ):
-        errors.append("all internal scope authorization fields must remain false")
+        errors.append("internal scope authorization must be limited to the recorded bounded licence decision")
+    return errors
+
+
+def phase_4_wave_1_source_decisions_errors(instance: Any) -> list[str]:
+    if not isinstance(instance, dict):
+        return ["Phase 4 Wave 1 source decisions must be a JSON object"]
+    errors: list[str] = []
+    if (
+        instance.get("schema_version") != "phase-4-wave-1-source-decisions-v1"
+        or instance.get("wave_id") != "wave_1_minimum_source_scope"
+        or instance.get("status") != "completed_scoped_decisions_recorded_payload_blocked"
+    ):
+        errors.append("Wave 1 source decisions must use the completed payload-blocked contract")
+    decisions = instance.get("decisions", [])
+    source_ids = [decision.get("source_id") for decision in decisions if isinstance(decision, dict)]
+    if set(source_ids) != EXPECTED_PHASE_4_INTERNAL_SCOPE_SOURCE_IDS or len(source_ids) != len(set(source_ids)):
+        errors.append("Wave 1 must cover Mondo, WHO ICF, Uberon, and PATO exactly once")
+    for decision in decisions:
+        if not isinstance(decision, dict):
+            errors.append("each Wave 1 source decision must be an object")
+            continue
+        if decision.get("decision") != "conditional" or not decision.get("source_release"):
+            errors.append("each Wave 1 source requires a conditional decision and release pin")
+        if decision.get("payload_retrieval_allowed") is not False or decision.get("promotion_allowed") is not False:
+            errors.append("Wave 1 source decisions must not authorize payload retrieval or promotion")
+        if not decision.get("conditions") or not decision.get("prohibited_or_deferred"):
+            errors.append("each Wave 1 source decision requires conditions and prohibited scope")
+        evidence = decision.get("evidence", {})
+        assertion = evidence.get("assertion") if isinstance(evidence, dict) else None
+        assertion_sha256 = evidence.get("assertion_sha256") if isinstance(evidence, dict) else None
+        if (
+            not isinstance(assertion, str)
+            or not isinstance(assertion_sha256, str)
+            or hashlib.sha256(assertion.encode("utf-8")).hexdigest() != assertion_sha256
+        ):
+            errors.append("Wave 1 evidence assertion hash must match its payload-safe assertion")
+        if decision.get("source_id") == "who-icf" and not {
+            "adaptation_of_codes",
+            "distribution_of_modified_material",
+            "mapping_or_transformative_use",
+        }.issubset(set(decision.get("prohibited_or_deferred", []))):
+            errors.append("WHO ICF Wave 1 scope must prohibit adaptation, mapping, and modified distribution")
+    summary = instance.get("summary", {})
+    if (
+        summary.get("conditional_scope_decision_count") != 4
+        or summary.get("payload_retrieval_allowed_count") != 0
+        or summary.get("promotion_allowed_count") != 0
+    ):
+        errors.append("Wave 1 summary must record four conditional scopes and zero payload or promotion authority")
+    authorization = instance.get("authorization_boundary", {})
+    if (
+        not isinstance(authorization, dict)
+        or authorization.get("bounded_internal_licence_scope_recorded") is not True
+        or any(
+            value is not False
+            for field, value in authorization.items()
+            if field != "bounded_internal_licence_scope_recorded"
+        )
+    ):
+        errors.append("Wave 1 authorization must remain bounded to internal licence scope recording")
     return errors
 
 
@@ -869,10 +972,10 @@ def phase_4_g3_freeze_readiness_errors(
         errors.append("G3 readiness must not authorize freeze or preregistration claims")
     prerequisites = instance.get("prerequisites", {})
     if (
-        prerequisites.get("G1_source_authority") != "pending"
+        prerequisites.get("G1_source_authority") != "conditional"
         or prerequisites.get("G2_human_and_community_authority") != "pending"
     ):
-        errors.append("G3 readiness must preserve pending G1 and G2 prerequisites")
+        errors.append("G3 readiness must preserve conditional G1 scope and pending G2 prerequisites")
     if (
         any(
             prerequisites.get(field) != 0
@@ -1112,6 +1215,23 @@ def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[Valid
         for message in phase_4_candidate_matrix_errors(candidate_matrix, supplementary):
             issues.append(ValidationIssue("phase_4_candidate_matrix.invalid", str(candidate_matrix_path), message))
 
+    wave_1_decisions_path = research_root / "phase_4_wave_1_source_decisions.json"
+    wave_1_decisions = None
+    if not wave_1_decisions_path.exists():
+        issues.append(
+            ValidationIssue(
+                "phase_4_wave_1_source_decisions.missing",
+                str(wave_1_decisions_path),
+                "Wave 1 source decisions are required",
+            )
+        )
+    else:
+        wave_1_decisions = load_json(wave_1_decisions_path)
+        for message in phase_4_wave_1_source_decisions_errors(wave_1_decisions):
+            issues.append(
+                ValidationIssue("phase_4_wave_1_source_decisions.invalid", str(wave_1_decisions_path), message)
+            )
+
     gate_docket_path = research_root / "phase_4_gate_docket.json"
     approval_manifest_path = research_root / "approval_manifest.json"
     if not gate_docket_path.exists():
@@ -1128,7 +1248,9 @@ def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[Valid
         gate_docket = load_json(gate_docket_path)
         supplementary = load_json(supplementary_path)
         approval_manifest = load_json(approval_manifest_path)
-        for message in phase_4_gate_docket_errors(gate_docket, supplementary, approval_manifest):
+        for message in phase_4_gate_docket_errors(
+            gate_docket, supplementary, approval_manifest, wave_1_decisions=wave_1_decisions
+        ):
             issues.append(ValidationIssue("phase_4_gate_docket.invalid", str(gate_docket_path), message))
 
     action_pack_path = research_root / "phase_4_external_action_pack.md"

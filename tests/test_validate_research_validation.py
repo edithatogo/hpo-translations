@@ -15,6 +15,7 @@ from scripts.validate_research_validation import (
     phase_4_g3_freeze_readiness_errors,
     phase_4_g3_freeze_receipt_template_errors,
     phase_4_gate_docket_errors,
+    phase_4_wave_1_source_decisions_errors,
     reviewer_workload_budget_errors,
     schema_errors,
     semantic_errors,
@@ -84,7 +85,7 @@ class ValidateResearchValidationTests(unittest.TestCase):
         approval = load_json(DEFAULT_RESEARCH_ROOT / "approval_manifest.json")
         docket["decision_packets"][0]["decision"] = "approved"
         self.assertIn(
-            "decision packets must remain pending until evidence is recorded in the approval manifest",
+            "decision packet state must match the recorded Wave 1 evidence and pending gate set",
             phase_4_gate_docket_errors(docket, supplementary, approval),
         )
 
@@ -161,7 +162,7 @@ class ValidateResearchValidationTests(unittest.TestCase):
         review = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_g1_internal_scope_review.json")
         review["source_reviews"][0]["payload_retrieval_allowed"] = True
         self.assertIn(
-            "internal scope recommendations must not record payload authority or a human licence decision",
+            "Wave 1 internal scope decisions must not authorize payload retrieval",
             phase_4_g1_internal_scope_review_errors(review),
         )
 
@@ -169,8 +170,33 @@ class ValidateResearchValidationTests(unittest.TestCase):
         review = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_g1_internal_scope_review.json")
         review["program_decision"]["source_licence_gate_closed"] = True
         self.assertIn(
-            "internal recommendations must leave the source licence gate open",
+            "Wave 1 must be complete while the overall source licence gate remains open",
             phase_4_g1_internal_scope_review_errors(review),
+        )
+
+    def test_wave_1_source_decisions_reject_evidence_hash_drift(self) -> None:
+        decisions = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_wave_1_source_decisions.json")
+        decisions["decisions"][0]["evidence"]["assertion"] += " changed"
+        self.assertIn(
+            "Wave 1 evidence assertion hash must match its payload-safe assertion",
+            phase_4_wave_1_source_decisions_errors(decisions),
+        )
+
+    def test_wave_1_source_decisions_reject_payload_authority(self) -> None:
+        decisions = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_wave_1_source_decisions.json")
+        decisions["decisions"][0]["payload_retrieval_allowed"] = True
+        self.assertIn(
+            "Wave 1 source decisions must not authorize payload retrieval or promotion",
+            phase_4_wave_1_source_decisions_errors(decisions),
+        )
+
+    def test_wave_1_source_decisions_preserve_who_no_derivatives(self) -> None:
+        decisions = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_wave_1_source_decisions.json")
+        who = next(item for item in decisions["decisions"] if item["source_id"] == "who-icf")
+        who["prohibited_or_deferred"].remove("mapping_or_transformative_use")
+        self.assertIn(
+            "WHO ICF Wave 1 scope must prohibit adaptation, mapping, and modified distribution",
+            phase_4_wave_1_source_decisions_errors(decisions),
         )
 
     def test_internal_scope_review_preserves_who_no_derivatives(self) -> None:
@@ -266,7 +292,7 @@ class ValidateResearchValidationTests(unittest.TestCase):
     def test_g3_readiness_rejects_approval_manifest_drift(self) -> None:
         readiness = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_g3_freeze_readiness.json")
         approval = load_json(DEFAULT_RESEARCH_ROOT / "approval_manifest.json")
-        approval["gates"][4]["decision"] = "conditional"
+        approval["gates"][4]["decision"] = "approved"
         self.assertIn(
             "G3 readiness G1 state must match the canonical source-licence decision",
             phase_4_g3_freeze_readiness_errors(readiness, approval_manifest=approval),

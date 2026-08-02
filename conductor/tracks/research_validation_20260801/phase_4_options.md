@@ -9,9 +9,11 @@ has passed. G0 is complete with a provisional 30-hour Stage 1 release cap and a
 120-hour full-pilot ceiling. This closes design capacity planning only; it does
 not activate empirical work or authorize reviewer contact or expenditure.
 
-The current source-access review authorizes zero payload retrievals, no reviewer
-roster is approved, and external preregistration requires explicit maintainer
-approval. No empirical pilot is active.
+Wave 1 has recorded bounded conditional licence-scope decisions for Mondo, WHO
+ICF, Uberon, and PATO. These decisions authorize no payload retrieval, mapping,
+adaptation, redistribution, or promotion. No reviewer roster is approved,
+external preregistration requires explicit maintainer approval, and no empirical
+pilot is active.
 
 ### Decision receipt
 
@@ -22,7 +24,7 @@ approval. No empirical pilot is active.
 | Language-selection rule | Accepted; named languages remain unselected |
 | Progression defaults | Accepted; must be checksummed again at G3 before empirical data |
 | Maximum reviewer-time budget | Provisional G0 envelope recorded: 30-hour Stage 1 cap, 120-hour full-pilot ceiling; expansion requires observed Stage 1 reforecast |
-| Stage 1 approvals | All pending in `research_validation/approval_manifest.json` |
+| Stage 1 approvals | Source licence is conditional for four bounded planning roles; five G2 gates remain pending in `research_validation/approval_manifest.json` |
 | External preregistration, publication, push, and PR | Not authorized |
 
 The deterministic receipt at `research_validation/stage_0/receipt.json` records
@@ -128,14 +130,16 @@ bounded-use decisions rather than speculative permission requests. No message
 was sent because the connected mailbox identity and repository author identity
 do not establish an authorized sender name, institution, and reply address.
 
-Conditional internal scope recommendations for Mondo, WHO ICF, Uberon, and
-PATO are recorded in
+Scoped conditional decisions for Mondo, WHO ICF, Uberon, and PATO are recorded
+in
 `research_validation/phase_4_g1_internal_scope_review.json`. The Creative
 Commons attribution sources are restricted to version-pinned contextual or
 structural roles with attribution and lineage controls. WHO ICF is restricted
 to unchanged, cited reference use; adaptation, modified-material distribution,
 and lexical voting remain prohibited or deferred. This governance summary is
-not legal advice, licence acceptance, payload authority, or a closed G1 gate.
+not legal advice or payload authority, and it does not close the overall G1 gate.
+The payload-safe decision receipt is
+`research_validation/phase_4_wave_1_source_decisions.json`.
 
 ## Blocker-resolution recommendation
 
@@ -158,8 +162,8 @@ conditions after empirical ingress.
 
 The ordered resolution waves are:
 
-1. record scoped licence decisions for Mondo, WHO ICF, Uberon, and PATO, omitting
-   any source that is not approved;
+1. **Complete:** record scoped licence decisions for Mondo, WHO ICF, Uberon, and
+   PATO, omitting any source that is not approved;
 2. obtain the ethics/privacy determination and separate Spanish and Japanese
    language-scope decisions;
 3. authorize recruitment and record the pseudonymous reviewer/adjudicator
@@ -276,7 +280,8 @@ remain pending:
 4. go, revise, and stop thresholds;
 5. whether two reviewers plus an adjudicator is an acceptable feasibility-only
    fallback;
-6. **Pending G1:** authorized source set and owner for each unresolved permission;
+6. **Partially complete G1:** four bounded licence scopes are conditional;
+   payload authority, exact source atoms, PRO-CTCAE, and DeCS remain pending;
 7. **Pending G2:** ethics, privacy, reviewer-consent, and community-approval
    owners; and
 8. **Not authorized:** external preregistration after the prospective freeze.

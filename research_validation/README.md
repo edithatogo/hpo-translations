@@ -23,6 +23,11 @@ or pull request.
 
 `language_identity_registry.json` records language identities that require authority review. An unresolved record fails translation-evidence readiness but does not rename or modify any translation profile.
 
+`phase_4_wave_1_source_decisions.json` records bounded conditional licence-scope
+decisions for Mondo, WHO ICF, Uberon, and PATO. It authorizes no payload
+retrieval, mapping or adaptation, redistribution, empirical work, or promotion.
+The overall source gate remains open and the track remains synthetic-only.
+
 ## Benchmark contract
 
 - `protocol.md` defines the payload-safe pilot design, outcomes, reviewer process, and analysis gates.

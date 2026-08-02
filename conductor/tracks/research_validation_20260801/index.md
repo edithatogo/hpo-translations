@@ -9,4 +9,5 @@
 - [Phase 4 Decision Receipt Template](../../../research_validation/phase_4_decision_receipt.template.json)
 - [Phase 4 G1 Route Review](../../../research_validation/phase_4_g1_route_review.json)
 - [Phase 4 G1 Internal Scope Review](../../../research_validation/phase_4_g1_internal_scope_review.json)
+- [Phase 4 Wave 1 Source Decisions](../../../research_validation/phase_4_wave_1_source_decisions.json)
 - [Metadata](./metadata.json)

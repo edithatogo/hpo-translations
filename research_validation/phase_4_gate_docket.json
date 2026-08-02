@@ -1,7 +1,7 @@
 {
   "schema_version": "phase-4-gate-docket-v2",
   "track_id": "research_validation_20260801",
-  "status": "decision_packets_prepared_all_external_decisions_pending",
+  "status": "wave_1_scoped_source_decisions_recorded_remaining_gates_pending",
   "current_route": "option_d_synthetic_only",
   "target_route": "option_a_staged_three_language_pilot",
   "blocker_resolution_plan": {
@@ -58,6 +58,7 @@
     "resolution_waves": [
       {
         "wave_id": "wave_1_minimum_source_scope",
+        "status": "completed_scoped_decisions_recorded_payload_blocked",
         "action": "record_scoped_internal_decisions_for_Mondo_WHO_ICF_Uberon_and_PATO_or_omit_each_unapproved_source",
         "exit_evidence": "source_licence_receipts_with_version_scope_conditions_and_recheck_dates",
         "contingency": "use_HPO_only_or_the_remaining_approved_subset_without_replacing_an_omitted_source_with_a_mirror"
@@ -125,7 +126,10 @@
       "linked_source_ids": ["mondo"],
       "linked_language_ids": ["ja"],
       "decision_owner_role": "maintainer_and_source_license_owner",
-      "decision": "pending",
+      "decision": "conditional",
+      "decision_scope": "version_pinned_Japanese_disease_context_and_source_atom_provenance_for_internal_pilot_design",
+      "decision_evidence_ref": "research_validation/phase_4_wave_1_source_decisions.json",
+      "recheck_date": "2027-08-03",
       "required_evidence": ["license_review", "source_atom_provenance_rule", "pilot_scope", "version_pin"],
       "recommended_resolution": "review_the_registered_version_and_source_atom_rules_before_any_payload_probe",
       "if_not_approved": "omit_mondo_disease_context"
@@ -137,7 +141,10 @@
       "linked_source_ids": ["who-icf"],
       "linked_language_ids": ["es"],
       "decision_owner_role": "maintainer_and_who_icf_license_owner",
-      "decision": "pending",
+      "decision": "conditional",
+      "decision_scope": "unchanged_version_pinned_Spanish_functional_context_with_appropriate_citation_for_internal_pilot_design",
+      "decision_evidence_ref": "research_validation/phase_4_wave_1_source_decisions.json",
+      "recheck_date": "2027-08-03",
       "required_evidence": ["source_specific_license_review", "version_pin", "permitted_semantic_role", "payload_storage_rule"],
       "recommended_resolution": "treat_as_optional_functional_context_not_a_lexical_vote",
       "if_not_approved": "omit_who_icf_context_without_substitution_by_mirror"
@@ -149,7 +156,10 @@
       "linked_source_ids": ["uberon", "pato"],
       "linked_language_ids": [],
       "decision_owner_role": "maintainer_and_structural_source_license_owners",
-      "decision": "pending",
+      "decision": "conditional",
+      "decision_scope": "version_pinned_Uberon_and_PATO_structural_and_hard_negative_design_for_internal_pilot_design",
+      "decision_evidence_ref": "research_validation/phase_4_wave_1_source_decisions.json",
+      "recheck_date": "2027-08-03",
       "required_evidence": ["source_specific_license_review", "version_pin", "structural_semantic_role", "payload_storage_rule"],
       "recommended_resolution": "authorize_only_for_structural_and_hard_negative_design_not_lexical_voting",
       "if_not_approved": "omit_each_unapproved_structural_source"
@@ -236,5 +246,5 @@
     "push_authorized": false,
     "pull_request_authorized": false
   },
-  "claims_boundary": "decision_docket_only_no_approval_contact_permission_payload_or_empirical_readiness"
+  "claims_boundary": "wave_1_scoped_source_decisions_recorded_no_contact_payload_empirical_or_promotion_readiness"
 }
