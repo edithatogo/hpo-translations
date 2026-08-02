@@ -12,6 +12,13 @@ sampling, blinding, randomization, export, adjudication, redaction, and
 go/revise/stop handling. A passing receipt establishes operational readiness
 only; it does not create empirical translation or human-review evidence.
 
+`reviewer_workload_budget.json` records the provisional G0 capacity envelope.
+Only the 30-hour Stage 1 cap is initially releasable; the remaining capacity up
+to the 120-hour pilot ceiling requires a reforecast from observed Stage 1 timing,
+adjudication, completion, attrition, and roster data. It authorizes no contact,
+spend, payload retrieval, empirical generation, registration, publication, push,
+or pull request.
+
 ## Current gate
 
 `language_identity_registry.json` records language identities that require authority review. An unresolved record fails translation-evidence readiness but does not rename or modify any translation profile.

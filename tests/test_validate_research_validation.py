@@ -7,6 +7,7 @@ from pathlib import Path
 from scripts.validate_research_validation import (
     DEFAULT_RESEARCH_ROOT,
     load_json,
+    reviewer_workload_budget_errors,
     schema_errors,
     semantic_errors,
     validate_contract,
@@ -229,6 +230,38 @@ class ValidateResearchValidationTests(unittest.TestCase):
         for schema_path in (DEFAULT_RESEARCH_ROOT / "schemas").glob("*.schema.json"):
             with self.subTest(schema=schema_path.name), schema_path.open(encoding="utf-8") as handle:
                 self.assertIsInstance(json.load(handle), dict)
+
+    def test_reviewer_workload_budget_arithmetic_passes(self) -> None:
+        budget = load_json(DEFAULT_RESEARCH_ROOT / "reviewer_workload_budget.json")
+        self.assertEqual(reviewer_workload_budget_errors(budget), [])
+
+    def test_reviewer_workload_budget_rejects_inconsistent_ceiling(self) -> None:
+        budget = load_json(DEFAULT_RESEARCH_ROOT / "reviewer_workload_budget.json")
+        budget["full_pilot_ceiling"]["ceiling_minutes"] = 7100
+        self.assertIn(
+            "full-pilot ceiling must equal its workload components",
+            reviewer_workload_budget_errors(budget),
+        )
+
+    def test_reviewer_workload_budget_rejects_unapproved_ceiling_drift(self) -> None:
+        budget = load_json(DEFAULT_RESEARCH_ROOT / "reviewer_workload_budget.json")
+        budget["full_pilot_ceiling"]["coordination_and_contingency_minutes"] += 60
+        budget["full_pilot_ceiling"]["ceiling_minutes"] += 60
+        budget["full_pilot_ceiling"]["ceiling_hours"] = 121
+        budget["full_pilot_ceiling"]["remaining_after_stage_1_cap_minutes"] += 60
+        budget["full_pilot_ceiling"]["remaining_after_stage_1_cap_hours"] = 91
+        self.assertIn(
+            "approved Stage 1 and full-pilot workload ceilings cannot drift without amendment",
+            reviewer_workload_budget_errors(budget),
+        )
+
+    def test_reviewer_workload_budget_cannot_authorize_external_action(self) -> None:
+        budget = load_json(DEFAULT_RESEARCH_ROOT / "reviewer_workload_budget.json")
+        budget["authorization_boundary"]["reviewer_contact_authorized"] = True
+        self.assertIn(
+            "capacity planning cannot authorize reviewer, payload, empirical, or external actions",
+            reviewer_workload_budget_errors(budget),
+        )
 
 
 if __name__ == "__main__":

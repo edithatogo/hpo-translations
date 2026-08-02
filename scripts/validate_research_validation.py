@@ -36,6 +36,23 @@ EXPECTED_SUPPLEMENTARY_SOURCE_IDS = {
     "uberon",
     "who-icf",
 }
+EXPECTED_REFORECAST_INPUTS = {
+    "median_minutes_per_independent_judgment",
+    "observed_adjudication_fraction",
+    "observed_training_and_coordination_minutes",
+    "confirmed_reviewer_count",
+    "observed_completion_and_attrition",
+}
+EXPECTED_BUDGET_AUTHORIZATION_FIELDS = {
+    "reviewer_contact_authorized",
+    "financial_spend_authorized",
+    "source_payload_retrieval_authorized",
+    "empirical_candidate_generation_authorized",
+    "external_preregistration_authorized",
+    "publication_authorized",
+    "push_authorized",
+    "pull_request_authorized",
+}
 
 
 @dataclass(frozen=True)
@@ -256,6 +273,166 @@ def semantic_errors(schema_name: str, instance: Any) -> list[str]:
     return errors
 
 
+def reviewer_workload_budget_errors(instance: Any) -> list[str]:
+    if not isinstance(instance, dict):
+        return ["reviewer workload budget must be a JSON object"]
+
+    errors: list[str] = []
+    design = instance.get("design_snapshot", {})
+    assumptions = instance.get("planning_assumptions", {})
+    stage_1 = instance.get("stage_1_release", {})
+    full = instance.get("full_pilot_ceiling", {})
+    release_rule = instance.get("release_rule", {})
+    authorization = instance.get("authorization_boundary", {})
+    if not all(isinstance(value, dict) for value in (design, assumptions, stage_1, full, release_rule, authorization)):
+        return ["reviewer workload budget sections must be JSON objects"]
+
+    numeric_requirements = {
+        "design_snapshot": (
+            design,
+            (
+                "concept_language_units",
+                "candidate_conditions",
+                "reviews_per_candidate",
+                "independent_judgments",
+                "planning_reviewer_count",
+            ),
+        ),
+        "planning_assumptions": (
+            assumptions,
+            (
+                "minutes_per_independent_judgment",
+                "training_minutes_per_reviewer",
+                "anticipated_adjudication_fraction",
+                "minutes_per_adjudication",
+            ),
+        ),
+        "stage_1_release": (
+            stage_1,
+            (
+                "concept_language_units",
+                "candidate_rows",
+                "independent_judgments",
+                "anticipated_adjudications",
+                "independent_review_minutes",
+                "training_minutes",
+                "adjudication_minutes",
+                "coordination_and_contingency_minutes",
+                "release_cap_minutes",
+                "release_cap_hours",
+            ),
+        ),
+        "full_pilot_ceiling": (
+            full,
+            (
+                "candidate_rows",
+                "independent_judgments",
+                "anticipated_adjudications",
+                "independent_review_minutes",
+                "training_minutes",
+                "adjudication_minutes",
+                "coordination_and_contingency_minutes",
+                "ceiling_minutes",
+                "ceiling_hours",
+                "remaining_after_stage_1_cap_minutes",
+                "remaining_after_stage_1_cap_hours",
+            ),
+        ),
+    }
+    for section_name, (section, fields) in numeric_requirements.items():
+        for field in fields:
+            value = section.get(field)
+            if isinstance(value, bool) or not isinstance(value, int | float):
+                errors.append(f"{section_name}.{field} must be numeric")
+    if errors:
+        return errors
+
+    design_candidate_rows = design.get("concept_language_units", 0) * design.get("candidate_conditions", 0)
+    design_judgments = design_candidate_rows * design.get("reviews_per_candidate", 0)
+    if full.get("candidate_rows") != design_candidate_rows:
+        errors.append("full-pilot candidate rows must match the design snapshot")
+    if design.get("independent_judgments") != design_judgments or full.get("independent_judgments") != design_judgments:
+        errors.append("full-pilot independent judgments must match the design snapshot")
+
+    stage_1_candidate_rows = stage_1.get("concept_language_units", 0) * design.get("candidate_conditions", 0)
+    stage_1_judgments = stage_1_candidate_rows * design.get("reviews_per_candidate", 0)
+    if stage_1.get("candidate_rows") != stage_1_candidate_rows:
+        errors.append("Stage 1 candidate rows must match its concept-language units")
+    if stage_1.get("independent_judgments") != stage_1_judgments:
+        errors.append("Stage 1 independent judgments must match its candidate rows")
+
+    minutes_per_judgment = assumptions.get("minutes_per_independent_judgment", 0)
+    training_minutes = assumptions.get("training_minutes_per_reviewer", 0) * design.get("planning_reviewer_count", 0)
+    minutes_per_adjudication = assumptions.get("minutes_per_adjudication", 0)
+    if stage_1.get("independent_review_minutes") != stage_1_judgments * minutes_per_judgment:
+        errors.append("Stage 1 independent-review minutes do not match the planning assumption")
+    if full.get("independent_review_minutes") != design_judgments * minutes_per_judgment:
+        errors.append("full-pilot independent-review minutes do not match the planning assumption")
+    if stage_1.get("training_minutes") != training_minutes or full.get("training_minutes") != training_minutes:
+        errors.append("training minutes must match reviewer count and the per-reviewer assumption")
+    if stage_1.get("adjudication_minutes") != stage_1.get("anticipated_adjudications", 0) * minutes_per_adjudication:
+        errors.append("Stage 1 adjudication minutes do not match the planning assumption")
+    if full.get("adjudication_minutes") != full.get("anticipated_adjudications", 0) * minutes_per_adjudication:
+        errors.append("full-pilot adjudication minutes do not match the planning assumption")
+
+    stage_1_components = sum(
+        stage_1.get(field, 0)
+        for field in (
+            "independent_review_minutes",
+            "training_minutes",
+            "adjudication_minutes",
+            "coordination_and_contingency_minutes",
+        )
+    )
+    full_components = sum(
+        full.get(field, 0)
+        for field in (
+            "independent_review_minutes",
+            "training_minutes",
+            "adjudication_minutes",
+            "coordination_and_contingency_minutes",
+        )
+    )
+    if stage_1.get("release_cap_minutes") != stage_1_components:
+        errors.append("Stage 1 release cap must equal its workload components")
+    if full.get("ceiling_minutes") != full_components:
+        errors.append("full-pilot ceiling must equal its workload components")
+    if stage_1.get("release_cap_hours") * 60 != stage_1.get("release_cap_minutes"):
+        errors.append("Stage 1 hour and minute caps must agree")
+    if full.get("ceiling_hours") * 60 != full.get("ceiling_minutes"):
+        errors.append("full-pilot hour and minute ceilings must agree")
+
+    remaining_minutes = full.get("ceiling_minutes", 0) - stage_1.get("release_cap_minutes", 0)
+    if full.get("remaining_after_stage_1_cap_minutes") != remaining_minutes:
+        errors.append("remaining budget minutes must equal the ceiling less the Stage 1 cap")
+    if full.get("remaining_after_stage_1_cap_hours") * 60 != remaining_minutes:
+        errors.append("remaining budget hours and minutes must agree")
+
+    adjudication_fraction = assumptions["anticipated_adjudication_fraction"]
+    if stage_1.get("anticipated_adjudications") != round(stage_1_candidate_rows * adjudication_fraction):
+        errors.append("Stage 1 anticipated adjudications must match the planning fraction")
+    if full.get("anticipated_adjudications") != round(design_candidate_rows * adjudication_fraction):
+        errors.append("full-pilot anticipated adjudications must match the planning fraction")
+
+    if instance.get("status") != "provisional_g0_budget_approved":
+        errors.append("reviewer workload budget must retain its provisional G0 status")
+    if instance.get("target_option") != "A":
+        errors.append("reviewer workload budget must remain scoped to selected Option A")
+    if stage_1.get("release_cap_minutes") != 1800 or full.get("ceiling_minutes") != 7200:
+        errors.append("approved Stage 1 and full-pilot workload ceilings cannot drift without amendment")
+    if not release_rule.get("stage_1_only_initially") or not release_rule.get(
+        "remaining_budget_requires_observed_stage_1_data"
+    ):
+        errors.append("remaining budget must stay gated on observed Stage 1 data")
+    if set(release_rule.get("required_reforecast_inputs", [])) != EXPECTED_REFORECAST_INPUTS:
+        errors.append("remaining budget reforecast inputs must remain complete")
+    if set(authorization) != EXPECTED_BUDGET_AUTHORIZATION_FIELDS or any(
+        value is not False for value in authorization.values()
+    ):
+        errors.append("capacity planning cannot authorize reviewer, payload, empirical, or external actions")
+    return errors
+
+
 def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[ValidationIssue]:
     issues: list[ValidationIssue] = []
     schema_dir = research_root / "schemas"
@@ -399,6 +576,16 @@ def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[Valid
                                 ),
                             )
                         )
+
+    budget_path = research_root / "reviewer_workload_budget.json"
+    if not budget_path.exists():
+        issues.append(
+            ValidationIssue("reviewer_budget.missing", str(budget_path), "reviewer workload budget is required")
+        )
+    else:
+        budget = load_json(budget_path)
+        for message in reviewer_workload_budget_errors(budget):
+            issues.append(ValidationIssue("reviewer_budget.invalid", str(budget_path), message))
 
     probe_path = passing_dir / "translation_evaluation_item.json"
     if probe_path.exists():
