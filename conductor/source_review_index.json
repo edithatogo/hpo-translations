@@ -13,5 +13,19 @@
     {"track":"orphanet_integration_20260623","file":"conductor/tracks/orphanet_integration_20260623/maintainer_review_handoff.json","status":"awaiting_product_scope_review"},
     {"track":"lddb_integration_20260623","file":"conductor/tracks/lddb_integration_20260623/maintainer_review_handoff.json","status":"no_go_investigation_only"}
   ],
+  "decision_options": {
+    "recommended": "Approve metadata-only bounded probes with local-only cache, explicit attribution, source/version pins, and no term redistribution or promotion.",
+    "contingency": "If licence, authority, or component scope is unclear, remain documentation-only/no-go and seek maintainer or rights-holder clarification.",
+    "formal_review": "Use legal or institutional review before any redistribution, derived artefact, publication, or downstream promotion."
+  },
+  "source_specific_recommendations": {
+    "PATO": "BSD-3-Clause repository attribution; verify release components.",
+    "MP": "CC BY 4.0 candidate; require release-specific MGI confirmation and version/date attribution.",
+    "uPheno": "Require component authority/licence matrix; do not infer aggregate licence.",
+    "FMA": "Keep documentation-only until SIG confirms exact licence and current release.",
+    "LOINC": "Account/licence acceptance scoped to local-only metadata; seek Regenstrief clarification if terms are unclear.",
+    "MeSH": "Bounded metadata under NLM attribution/freshness terms; no redistribution until scope confirmed.",
+    "Orphanet": "Approve only Orphadata Science CC BY 4.0 product; exclude DTA/pricing products."
+  },
   "prohibited_without_approval": ["source labels","synonyms","definitions","crosswalks","downstream promotion"]
 }

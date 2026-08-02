@@ -1,7 +1,7 @@
 {
   "track": "pato_integration_20260623",
   "artifact_type": "metadata_only_governance_scaffold",
-  "source": {"name": "Phenotypic Quality Ontology", "authority_status": "obo_foundry_release_documented", "version": "v2025-05-14 @ 3c8f76d30e446a621932c84260d0a3887e73dc54 (review target)", "release_url": "https://github.com/pato-ontology/pato/releases/tag/v2025-05-14", "license": "OBO Foundry open-licence principle; verify PATO release metadata before redistribution"},
+  "source": {"name": "Phenotypic Quality Ontology", "authority_status": "obo_foundry_release_documented", "version": "v2025-05-14 @ 3c8f76d30e446a621932c84260d0a3887e73dc54 (review target)", "release_url": "https://github.com/pato-ontology/pato/releases/tag/v2025-05-14", "license": "BSD-3-Clause repository LICENSE; verify release-artifact components before redistribution"},
   "access": {"mode": "documentation_only", "credentials_required": "unknown", "payload_accessed": false, "payload_commit_allowed": false},
   "normalization": {"identifier": "PATO CURIE preserved; no term values", "language": "BCP-47 tag required", "provenance": ["source_uri", "release_or_commit", "retrieved_at", "license_status"]},
   "translation_use": {"allowed": ["schema and review scaffolding"], "blocked": ["labels", "synonyms", "definitions", "crosswalk promotion", "identifier-network outputs"]},
