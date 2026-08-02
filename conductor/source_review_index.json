@@ -22,7 +22,7 @@
     "PATO": "BSD-3-Clause repository attribution; verify release components.",
     "MP": "CC BY 4.0 candidate; require release-specific MGI confirmation and version/date attribution.",
     "uPheno": "Require component authority/licence matrix; do not infer aggregate licence.",
-    "FMA": "Keep documentation-only until SIG confirms exact licence and current release.",
+    "FMA": "Keep blocked_no_authority until Washington SIG confirms exact licence and current release; RDFPortal is secondary evidence only.",
     "LOINC": "Account/licence acceptance scoped to local-only metadata; seek Regenstrief clarification if terms are unclear.",
     "MeSH": "Bounded metadata under NLM attribution/freshness terms; no redistribution until scope confirmed.",
     "Orphanet": "Approve only Orphadata Science CC BY 4.0 product; exclude DTA/pricing products."
