@@ -2,11 +2,32 @@
 
 ## Decision status
 
-This document presents the Phase 4 choices; it does not activate an empirical
-pilot. The current source-access review authorizes zero payload retrievals, no
-reviewer roster is approved, and external preregistration requires explicit
-maintainer approval. Until those gates close, only the synthetic operational
-rehearsal described below may run.
+The user accepted the recommended path on 2026-08-02: Option A is the target,
+Option D is the immediate route, and the language-selection rule and progression
+defaults are accepted for prospective freeze. The payload-free Stage 0 rehearsal
+has passed. G0 remains partial because no maximum reviewer-time budget has been
+set; this prevents empirical work but does not invalidate the completed rehearsal.
+
+The current source-access review authorizes zero payload retrievals, no reviewer
+roster is approved, and external preregistration requires explicit maintainer
+approval. No empirical pilot is active.
+
+### Decision receipt
+
+| Decision | State |
+| --- | --- |
+| Target design | Option A selected |
+| Immediate route | Option D completed |
+| Language-selection rule | Accepted; named languages remain unselected |
+| Progression defaults | Accepted; must be checksummed again at G3 before empirical data |
+| Maximum reviewer-time budget | Pending; G0 remains partial |
+| Stage 1 approvals | All pending in `research_validation/approval_manifest.json` |
+| External preregistration, publication, push, and PR | Not authorized |
+
+The deterministic receipt at `research_validation/stage_0/receipt.json` records
+12 synthetic items, 48 blinded candidate rows, 144 synthetic assignments and
+decisions, 24 synthetic adjudications, temporary export hashes, redaction checks,
+and all go/revise/stop branches. It establishes operational readiness only.
 
 ## What Phase 4 must decide
 
@@ -49,10 +70,11 @@ migration direction are resolved.
 
 ## Recommendation
 
-Adopt **Option A as the target** and **Option D as the immediate, payload-free
-Stage 0**. After the synthetic rehearsal passes, freeze a prospective package
-and run an authorized 12-concept-language-unit Stage 1 before committing the
-remaining review budget. Balance those units across the approved languages and,
+The selected path adopts **Option A as the target** and has completed **Option D
+as the immediate, payload-free Stage 0**. After the remaining gates close,
+freeze a prospective package and run an authorized 12-concept-language-unit
+Stage 1 before committing the remaining review budget. Balance those units
+across the approved languages and,
 when the design has more than one language, include at least two common anchors.
 Continue to the full Option A sample only if the prespecified progression
 criteria pass.

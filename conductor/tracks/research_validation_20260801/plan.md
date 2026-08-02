@@ -42,8 +42,8 @@
 
 ## Phase 4: Prospectively Frozen Feasibility Pilot
 
-- [ ] **Task 1:** Record the maintainer's G0 decision: Option A, B, C, or D; language-selection rule; maximum reviewer-time budget; and frozen default progression thresholds from `phase_4_options.md`.
-- [x] **Task 2:** Run the 12-item, payload-free synthetic Stage 0 rehearsal for sampling, randomization, blinding, export, adjudication, redaction, and stop-condition handling. Record operational evidence only. (`4bfcb2b`; receipt validated)
+- [~] **Task 1:** Record the maintainer's G0 decision: Option A is selected as the target, Option D as the immediate route, and the language-selection rule and progression defaults are accepted. The maximum reviewer-time budget remains pending, so G0 is partial and empirical work stays blocked. (`4bfcb2b`, refinement `fdc3068`)
+- [x] **Task 2:** Run the 12-item, payload-free synthetic Stage 0 rehearsal for sampling, randomization, artifact-level blinding, export, adjudication, redaction, and stop-condition handling. The deterministic receipt records 48 blinded candidate rows, 144 synthetic assignments and decisions, 24 adjudications, and calculated go/revise/stop branches; it supports operational-readiness claims only. (`4bfcb2b`, refinement `fdc3068`, review fix `eb8df7b`)
 - [ ] **Task 3:** Select the permitted language slots, reviewer and adjudicator roster, source set, and stratified concepts for the approved option. Exclude `tw` until its language authority is resolved.
 - [ ] **Task 4:** Close source, license, ethics, privacy, reviewer-consent, language-working-group, and community model-use gates. Step down A → B → C → D when a required gate cannot close.
 - [ ] **Task 5:** Freeze and checksum candidate conditions, prompts, model endpoints, source versions, randomization, exclusions, instrument, progression criteria, and analysis code. Obtain explicit maintainer approval before any external preregistration.
@@ -80,3 +80,7 @@
 ## Phase 3 Metadata Review Fixes
 
 - [x] **Task:** Require shared-origin summaries to identify their exact source members and independent-evidence group. (`e410f47`)
+
+## Phase 4 Stage 0 Review Fixes
+
+- [x] **Task:** Calculate progression outcomes from numeric feasibility inputs, test the 90% completion and 20% invalidity boundaries, and limit the blinding claim to the reviewer-facing artifact. (`eb8df7b`)
