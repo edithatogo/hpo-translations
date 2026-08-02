@@ -43,7 +43,15 @@
           "decision": {"type": ["string", "null"]},
           "issue_id": {"type": "string", "pattern": "^language-identity-[a-z0-9-]+$"},
           "required_action": {"type": "string", "minLength": 1},
-          "status": {"enum": ["authority_review_required", "resolved", "rejected"]}
+          "status": {"enum": ["authority_review_required", "unresolved_blocked", "resolved", "rejected"]},
+          "authority_standard": {"type": "string", "minLength": 1},
+          "iana_registry_uri": {"type": "string", "format": "uri"},
+          "iana_registry_retrieved_at": {"type": "string", "format": "date"},
+          "candidate_iso6393": {"type": "object", "additionalProperties": {"type": "string", "minLength": 1}},
+          "compatibility_alias": {"type": "string", "minLength": 1},
+          "migration_plan": {"type": "string", "minLength": 1},
+          "evidence_expiry": {"type": "string", "minLength": 1},
+          "empirical_use": {"enum": ["excluded_from_overlap_counts_and_pilot_claims", "approved"]}
         }
       }
     }
