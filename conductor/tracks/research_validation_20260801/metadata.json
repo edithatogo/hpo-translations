@@ -207,6 +207,8 @@
     "g3_freeze_readiness_status": "preflight_contract_ready_cross_input_reconciled_not_frozen_g1_g2_and_maintainer_approval_pending",
     "g3_component_inventory_artifact": "research_validation/phase_4_g3_component_inventory.json",
     "g3_component_inventory_status": "twelve_components_mapped_zero_ready_checksummed_or_frozen",
+    "g3_freeze_receipt_template_artifact": "research_validation/phase_4_g3_freeze_receipt.template.json",
+    "g3_freeze_receipt_template_status": "unexecuted_all_canonical_freeze_fields_null_no_authority",
     "planning_primary_reviewer_count": 9,
     "planning_independent_adjudicator_count": 3,
     "planning_human_role_count": 12,
@@ -376,7 +378,7 @@
         ".pixi/envs/default/bin/vale.exe research_validation/README.md research_validation/stage_0/README.md conductor/tracks/research_validation_20260801/phase_4_options.md conductor/tracks/research_validation_20260801/plan.md",
         "pixi run validate-conductor"
       ],
-      "validation_result": "local_passing_81_tests_g3_component_inventory_verified_zero_ready_checksummed_or_frozen",
+      "validation_result": "local_passing_84_tests_g3_receipt_template_verified_unexecuted_all_freeze_fields_null",
       "conflict_count": 2,
       "open_blockers": 7
     }

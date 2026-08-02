@@ -782,6 +782,36 @@ def phase_4_g3_component_inventory_errors(instance: Any) -> list[str]:
     return errors
 
 
+def phase_4_g3_freeze_receipt_template_errors(instance: Any, required_fields: set[str] | None = None) -> list[str]:
+    if not isinstance(instance, dict):
+        return ["Phase 4 G3 freeze receipt template must be a JSON object"]
+    errors: list[str] = []
+    if instance.get("template_only") is not True or instance.get("execution_state") != "unexecuted_not_frozen":
+        errors.append("G3 freeze receipt must remain an unexecuted not-frozen template")
+    freeze_fields = instance.get("freeze_fields", {})
+    if not isinstance(freeze_fields, dict):
+        errors.append("G3 freeze receipt template fields must be an object")
+    else:
+        if required_fields is not None and set(freeze_fields) != required_fields:
+            errors.append("G3 freeze receipt template must match the canonical required freeze fields")
+        if any(value is not None for value in freeze_fields.values()):
+            errors.append("G3 freeze receipt template must not contain executed freeze values")
+    for field in ("component_manifest_sha256", "aggregate_freeze_manifest_sha256", "maintainer_approval_receipt"):
+        if instance.get(field) is not None:
+            errors.append(f"G3 freeze receipt template field {field} must remain null")
+    registration = instance.get("external_registration", {})
+    if (
+        not isinstance(registration, dict)
+        or registration.get("authorized") is not False
+        or any(registration.get(field) is not None for field in ("provider", "identifier", "registered_at"))
+    ):
+        errors.append("G3 freeze receipt template must not record external registration")
+    authorization = instance.get("authorization_boundary", {})
+    if not authorization or any(value is not False for value in authorization.values()):
+        errors.append("all G3 freeze receipt template authorization fields must remain false")
+    return errors
+
+
 def phase_4_g3_freeze_readiness_errors(
     instance: Any, candidate_matrix: Any | None = None, approval_manifest: Any | None = None
 ) -> list[str]:
@@ -1147,6 +1177,29 @@ def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[Valid
                         f"planning source does not exist: {planning_source}",
                     )
                 )
+
+    g3_receipt_template_path = research_root / "phase_4_g3_freeze_receipt.template.json"
+    freeze_governance_path = research_root / "freeze_governance.json"
+    if not g3_receipt_template_path.exists():
+        issues.append(
+            ValidationIssue(
+                "phase_4_g3_freeze_receipt_template.missing",
+                str(g3_receipt_template_path),
+                "G3 freeze receipt template is required",
+            )
+        )
+    else:
+        g3_receipt_template = load_json(g3_receipt_template_path)
+        required_freeze_fields: set[str] | None = None
+        if freeze_governance_path.exists():
+            freeze_governance = load_json(freeze_governance_path)
+            raw_required_fields = freeze_governance.get("required_freeze_fields", [])
+            if isinstance(raw_required_fields, list):
+                required_freeze_fields = {field for field in raw_required_fields if isinstance(field, str)}
+        for message in phase_4_g3_freeze_receipt_template_errors(g3_receipt_template, required_freeze_fields):
+            issues.append(
+                ValidationIssue("phase_4_g3_freeze_receipt_template.invalid", str(g3_receipt_template_path), message)
+            )
 
     g3_readiness_path = research_root / "phase_4_g3_freeze_readiness.json"
     if not g3_readiness_path.exists():

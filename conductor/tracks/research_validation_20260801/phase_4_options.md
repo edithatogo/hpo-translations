@@ -149,6 +149,8 @@ not legal advice, licence acceptance, payload authority, or a closed G1 gate.
 The machine-checkable G3 preflight is `research_validation/phase_4_g3_freeze_readiness.json`. It enumerates the complete freeze package and checksum rules, but deliberately contains no checksums, freeze identifier, or authorization. A separate freeze receipt may be created only after G1/G2 evidence and explicit maintainer approval satisfy its advance rule.
 
 The companion `research_validation/phase_4_g3_component_inventory.json` maps all 12 required components to their planning sources, intended immutable artifact paths, readiness states, and blockers. It is an inventory only: zero components are ready, checksummed, or frozen.
+
+The `research_validation/phase_4_g3_freeze_receipt.template.json` file is the unexecuted receipt contract. It mirrors every field required by `freeze_governance.json`, but all execution values, hashes, approvals, and registration identifiers must remain null until a separate immutable receipt is authorized.
 | **G4 — Stage 1 feasibility** | The first 12 authorized concept-language units complete without a stop condition and meet the frozen progression rule | Revise once under a logged amendment, or stop |
 | **G5 — Pilot completion** | Remaining authorized sample, adjudication, descriptive analysis, deviation log, payload-safe report, and full-study sample-size recommendation are complete | Retain a feasibility-only conclusion |
 

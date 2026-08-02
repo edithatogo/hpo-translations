@@ -13,6 +13,7 @@ from scripts.validate_research_validation import (
     phase_4_g1_route_review_errors,
     phase_4_g3_component_inventory_errors,
     phase_4_g3_freeze_readiness_errors,
+    phase_4_g3_freeze_receipt_template_errors,
     phase_4_gate_docket_errors,
     reviewer_workload_budget_errors,
     schema_errors,
@@ -190,6 +191,30 @@ class ValidateResearchValidationTests(unittest.TestCase):
         self.assertIn(
             "G3 component inventory must not claim component freeze readiness",
             phase_4_g3_component_inventory_errors(inventory),
+        )
+
+    def test_g3_freeze_receipt_template_rejects_false_execution(self) -> None:
+        receipt = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_g3_freeze_receipt.template.json")
+        receipt["execution_state"] = "prospective_frozen"
+        self.assertIn(
+            "G3 freeze receipt must remain an unexecuted not-frozen template",
+            phase_4_g3_freeze_receipt_template_errors(receipt),
+        )
+
+    def test_g3_freeze_receipt_template_rejects_hash(self) -> None:
+        receipt = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_g3_freeze_receipt.template.json")
+        receipt["aggregate_freeze_manifest_sha256"] = "sha256:premature"
+        self.assertIn(
+            "G3 freeze receipt template field aggregate_freeze_manifest_sha256 must remain null",
+            phase_4_g3_freeze_receipt_template_errors(receipt),
+        )
+
+    def test_g3_freeze_receipt_template_rejects_preregistration(self) -> None:
+        receipt = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_g3_freeze_receipt.template.json")
+        receipt["external_registration"]["authorized"] = True
+        self.assertIn(
+            "G3 freeze receipt template must not record external registration",
+            phase_4_g3_freeze_receipt_template_errors(receipt),
         )
 
     def test_g3_readiness_rejects_premature_checksum(self) -> None:
