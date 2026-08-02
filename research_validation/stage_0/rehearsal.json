@@ -1,0 +1,229 @@
+{
+  "schema_version": "stage-0-rehearsal-v1",
+  "run_id": "run-stage-0-synthetic-rehearsal",
+  "target_option": "A",
+  "immediate_option": "D",
+  "decision_source": "user_instruction_2026-08-02_proceed_with_recommendations",
+  "language_selection_rule_accepted": true,
+  "progression_defaults_accepted": true,
+  "reviewer_time_budget_minutes": null,
+  "random_seed": 20260802,
+  "candidate_condition_count": 4,
+  "reviewer_slots_per_candidate": 3,
+  "source_payloads_used": false,
+  "real_translations_used": false,
+  "human_review_used": false,
+  "external_actions_performed": [],
+  "items": [
+    {
+      "item_id": "item-stage0-001",
+      "synthetic_concept_id": "SYNTH:CONCEPT:001",
+      "language_tag": "x-stage0",
+      "object_type": "label",
+      "stratum_ids": ["synthetic-branch-a", "synthetic-short"],
+      "source_text": "Synthetic phenotype source 01",
+      "source_text_sha256": "4bebe01ac95a9f0987161c55b6edbf72dba8220a823e828ef6b1f6b7284a614c",
+      "hard_negative_ids": ["SYNTH:NEGATIVE:001"],
+      "candidates": [
+        {"method_code": "synthetic-control-template", "candidate_text": "Synthetic candidate 01 A"},
+        {"method_code": "synthetic-model-template", "candidate_text": "Synthetic candidate 01 B"},
+        {"method_code": "synthetic-ontology-template", "candidate_text": "Synthetic candidate 01 C"},
+        {"method_code": "synthetic-reference-template", "candidate_text": "Synthetic candidate 01 D"}
+      ]
+    },
+    {
+      "item_id": "item-stage0-002",
+      "synthetic_concept_id": "SYNTH:CONCEPT:002",
+      "language_tag": "x-stage0",
+      "object_type": "definition",
+      "stratum_ids": ["synthetic-branch-b", "synthetic-long"],
+      "source_text": "Synthetic phenotype source 02",
+      "source_text_sha256": "a5c654f9c1c710821028f1c130a7660839f1750501e3ba7e41a98cd88d484ac0",
+      "hard_negative_ids": ["SYNTH:NEGATIVE:002"],
+      "candidates": [
+        {"method_code": "synthetic-control-template", "candidate_text": "Synthetic candidate 02 A"},
+        {"method_code": "synthetic-model-template", "candidate_text": "Synthetic candidate 02 B"},
+        {"method_code": "synthetic-ontology-template", "candidate_text": "Synthetic candidate 02 C"},
+        {"method_code": "synthetic-reference-template", "candidate_text": "Synthetic candidate 02 D"}
+      ]
+    },
+    {
+      "item_id": "item-stage0-003",
+      "synthetic_concept_id": "SYNTH:CONCEPT:003",
+      "language_tag": "x-stage0",
+      "object_type": "synonym",
+      "stratum_ids": ["synthetic-branch-c", "synthetic-compositional"],
+      "source_text": "Synthetic phenotype source 03",
+      "source_text_sha256": "51ba49ee87ecc971de4a60499a678ab0c281e1134291483c86e81b9868f5d1e4",
+      "hard_negative_ids": ["SYNTH:NEGATIVE:003"],
+      "candidates": [
+        {"method_code": "synthetic-control-template", "candidate_text": "Synthetic candidate 03 A"},
+        {"method_code": "synthetic-model-template", "candidate_text": "Synthetic candidate 03 B"},
+        {"method_code": "synthetic-ontology-template", "candidate_text": "Synthetic candidate 03 C"},
+        {"method_code": "synthetic-reference-template", "candidate_text": "Synthetic candidate 03 D"}
+      ]
+    },
+    {
+      "item_id": "item-stage0-004",
+      "synthetic_concept_id": "SYNTH:CONCEPT:004",
+      "language_tag": "x-stage0",
+      "object_type": "regional_variant",
+      "stratum_ids": ["synthetic-branch-a", "synthetic-disagreement"],
+      "source_text": "Synthetic phenotype source 04",
+      "source_text_sha256": "d3b9b8b65583543329d07fdddd5b6a4700e4f432288209669e80b4d6b492104d",
+      "hard_negative_ids": ["SYNTH:NEGATIVE:004"],
+      "candidates": [
+        {"method_code": "synthetic-control-template", "candidate_text": "Synthetic candidate 04 A"},
+        {"method_code": "synthetic-model-template", "candidate_text": "Synthetic candidate 04 B"},
+        {"method_code": "synthetic-ontology-template", "candidate_text": "Synthetic candidate 04 C"},
+        {"method_code": "synthetic-reference-template", "candidate_text": "Synthetic candidate 04 D"}
+      ]
+    },
+    {
+      "item_id": "item-stage0-005",
+      "synthetic_concept_id": "SYNTH:CONCEPT:005",
+      "language_tag": "x-stage0",
+      "object_type": "patient_facing",
+      "stratum_ids": ["synthetic-branch-b", "synthetic-register"],
+      "source_text": "Synthetic phenotype source 05",
+      "source_text_sha256": "7bc469453fdcf4534870dfc347221e67c6f6347f9091d81e45609837f1514dec",
+      "hard_negative_ids": ["SYNTH:NEGATIVE:005"],
+      "candidates": [
+        {"method_code": "synthetic-control-template", "candidate_text": "Synthetic candidate 05 A"},
+        {"method_code": "synthetic-model-template", "candidate_text": "Synthetic candidate 05 B"},
+        {"method_code": "synthetic-ontology-template", "candidate_text": "Synthetic candidate 05 C"},
+        {"method_code": "synthetic-reference-template", "candidate_text": "Synthetic candidate 05 D"}
+      ]
+    },
+    {
+      "item_id": "item-stage0-006",
+      "synthetic_concept_id": "SYNTH:CONCEPT:006",
+      "language_tag": "x-stage0",
+      "object_type": "label",
+      "stratum_ids": ["synthetic-branch-c", "synthetic-deep"],
+      "source_text": "Synthetic phenotype source 06",
+      "source_text_sha256": "86468a0b35e8de57356612c2a3cf88183545b728df04bc234ad795bccbdffcc7",
+      "hard_negative_ids": ["SYNTH:NEGATIVE:006"],
+      "candidates": [
+        {"method_code": "synthetic-control-template", "candidate_text": "Synthetic candidate 06 A"},
+        {"method_code": "synthetic-model-template", "candidate_text": "Synthetic candidate 06 B"},
+        {"method_code": "synthetic-ontology-template", "candidate_text": "Synthetic candidate 06 C"},
+        {"method_code": "synthetic-reference-template", "candidate_text": "Synthetic candidate 06 D"}
+      ]
+    },
+    {
+      "item_id": "item-stage0-007",
+      "synthetic_concept_id": "SYNTH:CONCEPT:007",
+      "language_tag": "x-stage0",
+      "object_type": "definition",
+      "stratum_ids": ["synthetic-branch-a", "synthetic-sparse"],
+      "source_text": "Synthetic phenotype source 07",
+      "source_text_sha256": "21cdcde2e9953cc31a7a8a0a3ea8a18c3aad4ceff193cd1e86828b6e42f804cd",
+      "hard_negative_ids": ["SYNTH:NEGATIVE:007"],
+      "candidates": [
+        {"method_code": "synthetic-control-template", "candidate_text": "Synthetic candidate 07 A"},
+        {"method_code": "synthetic-model-template", "candidate_text": "Synthetic candidate 07 B"},
+        {"method_code": "synthetic-ontology-template", "candidate_text": "Synthetic candidate 07 C"},
+        {"method_code": "synthetic-reference-template", "candidate_text": "Synthetic candidate 07 D"}
+      ]
+    },
+    {
+      "item_id": "item-stage0-008",
+      "synthetic_concept_id": "SYNTH:CONCEPT:008",
+      "language_tag": "x-stage0",
+      "object_type": "synonym",
+      "stratum_ids": ["synthetic-branch-b", "synthetic-dense"],
+      "source_text": "Synthetic phenotype source 08",
+      "source_text_sha256": "006bcf3af38a167c3731e13b1ead3e027c689d8209fc9aafd687e7c3c109f970",
+      "hard_negative_ids": ["SYNTH:NEGATIVE:008"],
+      "candidates": [
+        {"method_code": "synthetic-control-template", "candidate_text": "Synthetic candidate 08 A"},
+        {"method_code": "synthetic-model-template", "candidate_text": "Synthetic candidate 08 B"},
+        {"method_code": "synthetic-ontology-template", "candidate_text": "Synthetic candidate 08 C"},
+        {"method_code": "synthetic-reference-template", "candidate_text": "Synthetic candidate 08 D"}
+      ]
+    },
+    {
+      "item_id": "item-stage0-009",
+      "synthetic_concept_id": "SYNTH:CONCEPT:009",
+      "language_tag": "x-stage0",
+      "object_type": "regional_variant",
+      "stratum_ids": ["synthetic-branch-c", "synthetic-changed"],
+      "source_text": "Synthetic phenotype source 09",
+      "source_text_sha256": "df6ac20c2de8f7b2e63a18d816f08ece0d8c48ad4620a3af57e35390cd4dea1c",
+      "hard_negative_ids": ["SYNTH:NEGATIVE:009"],
+      "candidates": [
+        {"method_code": "synthetic-control-template", "candidate_text": "Synthetic candidate 09 A"},
+        {"method_code": "synthetic-model-template", "candidate_text": "Synthetic candidate 09 B"},
+        {"method_code": "synthetic-ontology-template", "candidate_text": "Synthetic candidate 09 C"},
+        {"method_code": "synthetic-reference-template", "candidate_text": "Synthetic candidate 09 D"}
+      ]
+    },
+    {
+      "item_id": "item-stage0-010",
+      "synthetic_concept_id": "SYNTH:CONCEPT:010",
+      "language_tag": "x-stage0",
+      "object_type": "patient_facing",
+      "stratum_ids": ["synthetic-branch-a", "synthetic-unchanged"],
+      "source_text": "Synthetic phenotype source 10",
+      "source_text_sha256": "943efbc2c4b0a3947ce7e66821b9fd6b510a876d2585796f3fe2e106ac9e6476",
+      "hard_negative_ids": ["SYNTH:NEGATIVE:010"],
+      "candidates": [
+        {"method_code": "synthetic-control-template", "candidate_text": "Synthetic candidate 10 A"},
+        {"method_code": "synthetic-model-template", "candidate_text": "Synthetic candidate 10 B"},
+        {"method_code": "synthetic-ontology-template", "candidate_text": "Synthetic candidate 10 C"},
+        {"method_code": "synthetic-reference-template", "candidate_text": "Synthetic candidate 10 D"}
+      ]
+    },
+    {
+      "item_id": "item-stage0-011",
+      "synthetic_concept_id": "SYNTH:CONCEPT:011",
+      "language_tag": "x-stage0",
+      "object_type": "label",
+      "stratum_ids": ["synthetic-branch-b", "synthetic-ambiguous"],
+      "source_text": "Synthetic phenotype source 11",
+      "source_text_sha256": "e9a7274ca36c3596d9e95a0c687e69f37d90553a93c3caa9c333c485248715b0",
+      "hard_negative_ids": ["SYNTH:NEGATIVE:011"],
+      "candidates": [
+        {"method_code": "synthetic-control-template", "candidate_text": "Synthetic candidate 11 A"},
+        {"method_code": "synthetic-model-template", "candidate_text": "Synthetic candidate 11 B"},
+        {"method_code": "synthetic-ontology-template", "candidate_text": "Synthetic candidate 11 C"},
+        {"method_code": "synthetic-reference-template", "candidate_text": "Synthetic candidate 11 D"}
+      ]
+    },
+    {
+      "item_id": "item-stage0-012",
+      "synthetic_concept_id": "SYNTH:CONCEPT:012",
+      "language_tag": "x-stage0",
+      "object_type": "definition",
+      "stratum_ids": ["synthetic-branch-c", "synthetic-high-consequence"],
+      "source_text": "Synthetic phenotype source 12",
+      "source_text_sha256": "72ae7a34c36ca090af474e034b5b998090cb9744a8d578c941fbc653649093cd",
+      "hard_negative_ids": ["SYNTH:NEGATIVE:012"],
+      "candidates": [
+        {"method_code": "synthetic-control-template", "candidate_text": "Synthetic candidate 12 A"},
+        {"method_code": "synthetic-model-template", "candidate_text": "Synthetic candidate 12 B"},
+        {"method_code": "synthetic-ontology-template", "candidate_text": "Synthetic candidate 12 C"},
+        {"method_code": "synthetic-reference-template", "candidate_text": "Synthetic candidate 12 D"}
+      ]
+    }
+  ],
+  "stop_condition_scenarios": [
+    {"scenario_id": "full-feasibility-success", "expected_action": "go"},
+    {"scenario_id": "two-reviewers-with-adjudicator", "expected_action": "revise"},
+    {"scenario_id": "one-reviewer-only", "expected_action": "stop"},
+    {"scenario_id": "review-completion-80-percent", "expected_action": "revise"},
+    {"scenario_id": "technical-invalidity-15-percent", "expected_action": "revise"},
+    {"scenario_id": "technical-invalidity-25-percent", "expected_action": "stop"},
+    {"scenario_id": "permission-revoked", "expected_action": "stop"},
+    {"scenario_id": "material-governance-incident", "expected_action": "stop"}
+  ],
+  "claims_allowed": ["operational_readiness_only"],
+  "claims_prohibited": [
+    "translation_quality",
+    "reviewer_variance",
+    "clinical_safety",
+    "candidate_method_superiority",
+    "official_translation_status"
+  ]
+}

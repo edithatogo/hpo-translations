@@ -12,6 +12,8 @@ from typing import Any
 
 from jsonschema import Draft202012Validator, FormatChecker  # type: ignore[import-untyped]
 
+from scripts.run_stage0_rehearsal import validate_stage0_artifacts
+
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_RESEARCH_ROOT = ROOT / "research_validation"
 EXPECTED_SCHEMA_NAMES = {
@@ -497,6 +499,15 @@ def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[Valid
                         "reviewer decision is not linked to the probe run and item",
                     )
                 )
+
+    for stage0_issue in validate_stage0_artifacts(research_root / "stage_0"):
+        issues.append(
+            ValidationIssue(
+                f"stage0.{stage0_issue.code}",
+                stage0_issue.path,
+                stage0_issue.message,
+            )
+        )
 
     return issues
 

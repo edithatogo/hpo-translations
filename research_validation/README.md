@@ -4,6 +4,14 @@ This directory contains canonical, payload-safe research governance inputs for t
 
 The ontology-network build may read these files to determine scientific readiness, but it must not infer that schema validation, a source count, or a payload-free probe constitutes empirical translation evidence.
 
+## Stage 0 rehearsal
+
+`stage_0/` contains the deterministic, payload-free Phase 4 operational rehearsal.
+Run it with `pixi run run-stage-0-rehearsal`. Its receipt covers synthetic
+sampling, blinding, randomization, export, adjudication, redaction, and
+go/revise/stop handling. A passing receipt establishes operational readiness
+only; it does not create empirical translation or human-review evidence.
+
 ## Current gate
 
 `language_identity_registry.json` records language identities that require authority review. An unresolved record fails translation-evidence readiness but does not rename or modify any translation profile.

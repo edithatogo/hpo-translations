@@ -1,0 +1,33 @@
+{
+  "run_id": "run-stage-0-synthetic-rehearsal",
+  "protocol_version": "draft-2026-08-02",
+  "hpo_release": "2026-06-23",
+  "source_versions": {
+    "synthetic-stage-0-fixtures": "1.0"
+  },
+  "source_retrieval_dates": {
+    "synthetic-stage-0-fixtures": "2026-08-02"
+  },
+  "model_runs": [],
+  "random_seed": 20260802,
+  "sampling_code_commit": "not-applicable-schema-probe",
+  "instrument_version": "stage-0-synthetic-1.0",
+  "analysis_code_commit": "not-applicable-schema-probe",
+  "generated_at": "2026-08-02T00:00:00Z",
+  "validation_commands": [
+    "pixi run run-stage-0-rehearsal",
+    "pixi run validate-research-validation"
+  ],
+  "restricted_inputs_present": false,
+  "local_only_manifest": null,
+  "empirical_record_count": 0,
+  "human_reviewed_record_count": 0,
+  "approvals": {
+    "license": "not_required",
+    "ethics": "not_required",
+    "community": "not_required",
+    "language_working_group": "not_required"
+  },
+  "release_scope": "schema_probe",
+  "promotion_policy": "human_authorization_required"
+}

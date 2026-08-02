@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hpo-translations.example/schemas/stage-0-rehearsal.schema.json",
+  "title": "Payload-free Stage 0 operational rehearsal",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "run_id",
+    "target_option",
+    "immediate_option",
+    "decision_source",
+    "language_selection_rule_accepted",
+    "progression_defaults_accepted",
+    "reviewer_time_budget_minutes",
+    "random_seed",
+    "candidate_condition_count",
+    "reviewer_slots_per_candidate",
+    "source_payloads_used",
+    "real_translations_used",
+    "human_review_used",
+    "external_actions_performed",
+    "items",
+    "stop_condition_scenarios",
+    "claims_allowed",
+    "claims_prohibited"
+  ],
+  "properties": {
+    "schema_version": {"const": "stage-0-rehearsal-v1"},
+    "run_id": {"const": "run-stage-0-synthetic-rehearsal"},
+    "target_option": {"const": "A"},
+    "immediate_option": {"const": "D"},
+    "decision_source": {"const": "user_instruction_2026-08-02_proceed_with_recommendations"},
+    "language_selection_rule_accepted": {"const": true},
+    "progression_defaults_accepted": {"const": true},
+    "reviewer_time_budget_minutes": {"type": "null"},
+    "random_seed": {"type": "integer", "minimum": 0},
+    "candidate_condition_count": {"const": 4},
+    "reviewer_slots_per_candidate": {"const": 3},
+    "source_payloads_used": {"const": false},
+    "real_translations_used": {"const": false},
+    "human_review_used": {"const": false},
+    "external_actions_performed": {"type": "array", "maxItems": 0},
+    "items": {
+      "type": "array",
+      "minItems": 12,
+      "maxItems": 12,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "item_id",
+          "synthetic_concept_id",
+          "language_tag",
+          "object_type",
+          "stratum_ids",
+          "source_text",
+          "source_text_sha256",
+          "hard_negative_ids",
+          "candidates"
+        ],
+        "properties": {
+          "item_id": {"type": "string", "pattern": "^item-stage0-[0-9]{3}$"},
+          "synthetic_concept_id": {"type": "string", "pattern": "^SYNTH:CONCEPT:[0-9]{3}$"},
+          "language_tag": {"const": "x-stage0"},
+          "object_type": {"enum": ["label", "definition", "synonym", "regional_variant", "patient_facing"]},
+          "stratum_ids": {
+            "type": "array",
+            "minItems": 2,
+            "uniqueItems": true,
+            "items": {"type": "string", "pattern": "^synthetic-[a-z0-9-]+$"}
+          },
+          "source_text": {"type": "string", "pattern": "^Synthetic phenotype source [0-9]{2}$"},
+          "source_text_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+          "hard_negative_ids": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {"type": "string", "pattern": "^SYNTH:NEGATIVE:[0-9]{3}$"}
+          },
+          "candidates": {
+            "type": "array",
+            "minItems": 4,
+            "maxItems": 4,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["method_code", "candidate_text"],
+              "properties": {
+                "method_code": {
+                  "enum": [
+                    "synthetic-control-template",
+                    "synthetic-model-template",
+                    "synthetic-ontology-template",
+                    "synthetic-reference-template"
+                  ]
+                },
+                "candidate_text": {"type": "string", "pattern": "^Synthetic candidate [0-9]{2} [A-D]$"}
+              }
+            }
+          }
+        }
+      }
+    },
+    "stop_condition_scenarios": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 8,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["scenario_id", "expected_action"],
+        "properties": {
+          "scenario_id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+          "expected_action": {"enum": ["go", "revise", "stop"]}
+        }
+      }
+    },
+    "claims_allowed": {"const": ["operational_readiness_only"]},
+    "claims_prohibited": {
+      "const": [
+        "translation_quality",
+        "reviewer_variance",
+        "clinical_safety",
+        "candidate_method_superiority",
+        "official_translation_status"
+      ]
+    }
+  }
+}

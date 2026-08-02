@@ -1,0 +1,38 @@
+{
+  "schema_version": "stage-0-receipt-v1",
+  "run_id": "run-stage-0-synthetic-rehearsal",
+  "generated_at": "2026-08-02T00:00:00Z",
+  "rehearsal_sha256": "730404515b6de21c3d4758a1d8d501b57c9dd890bac14295a63f89f81c13c267",
+  "manifest_sha256": "81c9cc9d69f0cd20d05efc65d6523f0abfcecea13434101f0ef751448629221b",
+  "export_sha256": {
+    "adjudications": "b6aa0c8957dfbfc866a1984b1f9333d4cf527696b93e02b91d1b17969dc734b9",
+    "assignments": "e8f317f6c806b0063236dd58ec84da09f504e310efd314b6221826279aa414bf",
+    "decisions": "49dcc50357648709e03f7f04f7ace8dbfb173a5e950ac9801ecc48f739e383ee",
+    "review_packet": "ba83d7adcbffa247391df0a34dc9aca57cec9b37fbd2b2ac4ae9909b7f4ce2f5",
+    "stop_condition_results": "4877d331e3ba39eb9146c8ce298ebc49f7bc5e58f19101118a6dea704ab048be"
+  },
+  "counts": {
+    "synthetic_items": 12,
+    "blinded_candidate_rows": 48,
+    "synthetic_assignments": 144,
+    "synthetic_decisions": 144,
+    "agreed_candidates": 24,
+    "adjudicated_candidates": 24,
+    "stop_scenarios": 4,
+    "revise_scenarios": 3,
+    "go_scenarios": 1
+  },
+  "checks": {
+    "sampling_count": true,
+    "randomization_reproducible": true,
+    "blinding": true,
+    "export_round_trip": true,
+    "adjudication_exercised": true,
+    "redaction": true,
+    "stop_conditions_exercised": true,
+    "restricted_inputs_absent": true,
+    "empirical_records_absent": true,
+    "human_review_absent": true
+  },
+  "claims_boundary": "operational_readiness_only_no_translation_or_human_validation_evidence"
+}
