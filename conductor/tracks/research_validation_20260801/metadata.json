@@ -17,8 +17,8 @@
   "pr_url": null,
   "ci_status": "local_passing",
   "merge_status": "not_opened",
-  "last_commit": "b4f31f7",
-  "phase_review_status": "codex_phase_4_blocker_resolution_plan_validation_completed_empirical_gates_retained",
+  "last_commit": "7881787",
+  "phase_review_status": "codex_phase_4_wave_1_source_scope_validation_completed_empirical_gates_retained",
   "github_checks_url": null,
   "merge_commit": null,
   "priority": "P0",
@@ -140,7 +140,7 @@
       "official translation promotion"
     ]
   },
-  "automation_readiness": "phase_4_g0_and_stage_0_local_passing_empirical_ingress_blocked",
+  "automation_readiness": "phase_4_wave_1_source_scope_local_passing_payload_and_empirical_ingress_blocked",
   "source_verification": {
     "verified_at": "2026-08-01T00:00:00Z",
     "hpo_release": "v2026-06-23",
@@ -152,7 +152,7 @@
     "independent_evidence_group_count": 3,
     "payloads_retained": false,
     "payload_commit_allowed": false,
-    "license_decision": "maintainer_review_required"
+    "license_decision": "wave_1_four_source_conditional_scope_recorded_payload_blocked"
   },
   "supplementary_source_access_review": {
     "reviewed_at": "2026-08-01T00:00:00Z",
@@ -195,7 +195,7 @@
     "reviewer_time_budget_artifact": "research_validation/reviewer_workload_budget.json",
     "candidate_matrix_artifact": "research_validation/phase_4_candidate_matrix.json",
     "gate_docket_artifact": "research_validation/phase_4_gate_docket.json",
-    "gate_docket_status": "ten_decision_packets_pending_with_validated_B_to_A_dual_lane_resolution_plan_no_external_action_authorized",
+    "gate_docket_status": "wave_1_three_packets_conditional_seven_pending_no_external_action_or_payload_authorized",
     "blocker_resolution_recommendation": "minimum_viable_option_b_then_expand_to_option_a_only_if_optional_gates_close_before_G3",
     "blocker_resolution_fallbacks": [
       "single_language_option_c",
@@ -207,7 +207,9 @@
     "g1_route_review_artifact": "research_validation/phase_4_g1_route_review.json",
     "g1_route_review_status": "scope_authorized_zero_dispatches_sender_identity_required",
     "g1_internal_scope_review_artifact": "research_validation/phase_4_g1_internal_scope_review.json",
-    "g1_internal_scope_review_status": "four_conditional_recommendations_human_decision_and_payload_authority_pending",
+    "g1_internal_scope_review_status": "wave_1_four_conditional_scope_decisions_recorded_payload_authority_pending",
+    "wave_1_source_decisions_artifact": "research_validation/phase_4_wave_1_source_decisions.json",
+    "wave_1_source_decisions_status": "completed_four_conditional_scopes_zero_payload_or_promotion_authority",
     "g3_freeze_readiness_artifact": "research_validation/phase_4_g3_freeze_readiness.json",
     "g3_freeze_readiness_status": "preflight_contract_ready_cross_input_reconciled_not_frozen_g1_g2_and_maintainer_approval_pending",
     "g3_component_inventory_artifact": "research_validation/phase_4_g3_component_inventory.json",
@@ -355,8 +357,8 @@
     "last_run": {
       "agent": "codex",
       "model": "GPT-5",
-      "task_id": "research_validation_20260801_phase_4_task_4_blocker_resolution_plan",
-      "prompt_version": "research-validation-phase-4-blocker-resolution-plan-2026-08-03",
+      "task_id": "research_validation_20260801_phase_4_task_4_wave_1_source_scope",
+      "prompt_version": "research-validation-phase-4-wave-1-source-scope-2026-08-03",
       "hpo_release": "v2026-06-23",
       "source_versions": {
         "HP-MESH": "2026-07-19",
@@ -383,7 +385,7 @@
         ".pixi/envs/default/bin/vale.exe research_validation/README.md research_validation/stage_0/README.md conductor/tracks/research_validation_20260801/phase_4_options.md conductor/tracks/research_validation_20260801/plan.md",
         "pixi run validate-conductor"
       ],
-      "validation_result": "local_passing_86_tests_dual_lane_options_fallbacks_resolution_waves_and_subagent_accountability_boundary_verified",
+      "validation_result": "local_passing_89_tests_four_conditional_source_scopes_evidence_hashes_and_zero_payload_promotion_authority_verified",
       "conflict_count": 2,
       "open_blockers": 7
     }
