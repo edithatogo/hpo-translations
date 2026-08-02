@@ -9,7 +9,7 @@
   "prerequisites": {
     "G1_source_authority": "pending",
     "G2_human_and_community_authority": "pending",
-    "approval_manifest_state": "stage_0_synthetic_only",
+    "approval_manifest_state": "stage0_synthetic_only",
     "approved_language_count": 0,
     "approved_payload_source_count": 0,
     "named_reviewer_count": 0,

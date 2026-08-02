@@ -744,7 +744,9 @@ EXPECTED_G3_COMPONENTS = {
 }
 
 
-def phase_4_g3_freeze_readiness_errors(instance: Any) -> list[str]:
+def phase_4_g3_freeze_readiness_errors(
+    instance: Any, candidate_matrix: Any | None = None, approval_manifest: Any | None = None
+) -> list[str]:
     if not isinstance(instance, dict):
         return ["Phase 4 G3 freeze readiness contract must be a JSON object"]
     errors: list[str] = []
@@ -786,6 +788,46 @@ def phase_4_g3_freeze_readiness_errors(instance: Any) -> list[str]:
     authorization = instance.get("authorization_boundary", {})
     if not authorization or any(value is not False for value in authorization.values()):
         errors.append("all G3 readiness authorization fields must remain false")
+    if isinstance(candidate_matrix, dict):
+        expected_counts = {
+            "approved_language_count": candidate_matrix.get("approved_language_count"),
+            "approved_payload_source_count": candidate_matrix.get("approved_source_payload_count"),
+            "named_reviewer_count": candidate_matrix.get("named_reviewer_count"),
+        }
+        if any(prerequisites.get(field) != value for field, value in expected_counts.items()):
+            errors.append("G3 readiness approval counts must match the canonical candidate matrix")
+        matrix_authorization = candidate_matrix.get("authorization_boundary", {})
+        if not isinstance(matrix_authorization, dict) or any(
+            value is not False for value in matrix_authorization.values()
+        ):
+            errors.append("G3 readiness cannot remain valid when the candidate matrix grants downstream authority")
+    if isinstance(approval_manifest, dict):
+        if prerequisites.get("approval_manifest_state") != approval_manifest.get("state"):
+            errors.append("G3 readiness approval state must match the canonical approval manifest")
+        gates = approval_manifest.get("gates", [])
+        decisions = {
+            gate.get("gate"): gate.get("decision")
+            for gate in gates
+            if isinstance(gate, dict) and isinstance(gate.get("gate"), str)
+        }
+        if decisions.get("source_licence") != prerequisites.get("G1_source_authority"):
+            errors.append("G3 readiness G1 state must match the canonical source-licence decision")
+        g2_gate_ids = {
+            "language_working_group",
+            "domain_reviewer",
+            "community_authority",
+            "ethics_privacy",
+            "reviewer_conflict_adjudication",
+        }
+        g2_decisions = {decisions.get(gate_id) for gate_id in g2_gate_ids}
+        if g2_decisions == {"pending"}:
+            canonical_g2_state = "pending"
+        elif g2_decisions and g2_decisions <= {"approved", "conditional"}:
+            canonical_g2_state = "approved_or_conditional"
+        else:
+            canonical_g2_state = "mixed_or_blocked"
+        if prerequisites.get("G2_human_and_community_authority") != canonical_g2_state:
+            errors.append("G3 readiness G2 state must match the canonical human and community gate decisions")
     return errors
 
 
@@ -1053,7 +1095,9 @@ def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[Valid
         )
     else:
         g3_readiness = load_json(g3_readiness_path)
-        for message in phase_4_g3_freeze_readiness_errors(g3_readiness):
+        candidate_matrix = load_json(candidate_matrix_path) if candidate_matrix_path.exists() else None
+        approval_manifest = load_json(approval_manifest_path) if approval_manifest_path.exists() else None
+        for message in phase_4_g3_freeze_readiness_errors(g3_readiness, candidate_matrix, approval_manifest):
             issues.append(ValidationIssue("phase_4_g3_freeze_readiness.invalid", str(g3_readiness_path), message))
 
     probe_path = passing_dir / "translation_evaluation_item.json"

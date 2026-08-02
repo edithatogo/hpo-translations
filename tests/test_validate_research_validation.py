@@ -182,6 +182,24 @@ class ValidateResearchValidationTests(unittest.TestCase):
             "all G3 readiness authorization fields must remain false", phase_4_g3_freeze_readiness_errors(readiness)
         )
 
+    def test_g3_readiness_rejects_candidate_matrix_drift(self) -> None:
+        readiness = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_g3_freeze_readiness.json")
+        matrix = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_candidate_matrix.json")
+        matrix["approved_language_count"] = 1
+        self.assertIn(
+            "G3 readiness approval counts must match the canonical candidate matrix",
+            phase_4_g3_freeze_readiness_errors(readiness, matrix),
+        )
+
+    def test_g3_readiness_rejects_approval_manifest_drift(self) -> None:
+        readiness = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_g3_freeze_readiness.json")
+        approval = load_json(DEFAULT_RESEARCH_ROOT / "approval_manifest.json")
+        approval["gates"][4]["decision"] = "conditional"
+        self.assertIn(
+            "G3 readiness G1 state must match the canonical source-licence decision",
+            phase_4_g3_freeze_readiness_errors(readiness, approval_manifest=approval),
+        )
+
     def test_every_schema_rejects_its_expected_failure(self) -> None:
         schema_dir = DEFAULT_RESEARCH_ROOT / "schemas"
         failing_dir = DEFAULT_RESEARCH_ROOT / "fixtures" / "failing"
