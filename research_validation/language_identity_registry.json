@@ -7,7 +7,7 @@
   },
   "records": [
     {
-      "authority_owner": "language working group and HPOIE operations",
+      "authority_owner": "advisory language subagent panel with accountable language authority and HPOIE maintainer gate",
       "candidate_identities": [
         {
           "bcp47": "tiw",
@@ -29,7 +29,7 @@
       "compatibility_alias": "tw retained as opaque legacy suffix only",
       "migration_plan": "if Tiwi confirmed, canonicalize to tiw with explicit alias mapping; if Twi confirmed, retain tw and correct metadata; never silently reinterpret",
       "authority_request": {
-        "recipient": "language-working-group chair, HPOIE maintainer, and recognised Tiwi/Twi community authority",
+        "recipient": "advisory language subagent panel for evidence pack, then accountable HPOIE maintainer and recognised Tiwi/Twi community authority",
         "draft": "Please confirm whether the existing tw translation assets represent Twi (BCP 47 tw, ISO 639-3 twi) or Tiwi (ISO 639-3 tiw), identify the authoritative evidence, and approve the compatibility or staged migration plan.",
         "required_reply_fields": ["confirmed_identity", "authority_uri", "community_review_ref", "affected_assets", "migration_or_compatibility_decision", "approver_role", "decision_date"]
       },
