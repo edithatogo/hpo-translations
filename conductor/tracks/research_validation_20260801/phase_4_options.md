@@ -87,6 +87,22 @@ linguistic coverage. Option B is the preferred planned fallback, Option C is a
 measurement-only fallback, and Option D remains the safe fallback if empirical
 permissions do not close.
 
+The governed planning shortlist is recorded in
+`research_validation/phase_4_candidate_matrix.json`. It prefers Spanish for the
+high-resource Latin-script slot and Japanese for the script/typology contrast
+slot. The community-governed slot remains deliberately unassigned because an
+active translation profile is not evidence of community authority. If that
+authority is unavailable by G2, step down to Option B with Spanish and Japanese;
+the subsequent fallbacks are Spanish/Chinese, French-or-Portuguese/Japanese,
+Option C, and then synthetic-only Option D. These are planning contingencies,
+not language or source approvals.
+
+The capacity envelope now includes nine primary reviewers and three independent
+adjudicators. Training/calibration time is budgeted for all 12 roles without
+changing the 30-hour Stage 1 release cap or 120-hour total ceiling. Reviewer
+identities, qualifications, conflicts, consent, and capacity remain G2 evidence
+and must not be committed as personal data.
+
 ## Gate sequence
 
 | Gate | Required evidence | If the gate does not close |

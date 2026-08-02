@@ -3,7 +3,7 @@
   "type": "research_feature",
   "status": "in_progress",
   "created_at": "2026-08-01T00:00:00Z",
-  "updated_at": "2026-08-02T00:00:00Z",
+  "updated_at": "2026-08-03T00:00:00Z",
   "description": "Establish empirical validation for multilingual HPO translation and ontology evidence",
   "depends_on": [
     "conductor_validation_20260623",
@@ -18,7 +18,7 @@
   "ci_status": "local_passing",
   "merge_status": "not_opened",
   "last_commit": "2a74f58",
-  "phase_review_status": "codex_phase_4_g0_budget_review_completed_no_blocking_findings_empirical_gates_retained",
+  "phase_review_status": "codex_phase_4_task_3_matrix_review_completed_no_blocking_findings_empirical_gates_retained",
   "github_checks_url": null,
   "merge_commit": null,
   "priority": "P0",
@@ -31,7 +31,7 @@
     "The `tw` profile is described as both Tiwi and Twi; language authority and migration direction are unresolved.",
     "Restricted terminology content requires source-specific license and redistribution review.",
     "Human reviewers and language-working-group approval have not been secured for a pilot.",
-    "The Phase 4 target, defaults, and provisional capacity envelope are selected, but named languages and reviewer rosters remain unset.",
+    "Spanish and Japanese are metadata-only planning preferences; no language, reviewer roster, source payload, or concept sample is approved.",
     "Upstream push, PR, preregistration, and publication require explicit maintainer approval."
   ],
   "expected_blockers": [
@@ -121,6 +121,7 @@
       "approval manifest",
       "approved Phase 4 option and progression matrix",
       "reviewer workload budget",
+      "Phase 4 candidate matrix",
       "prospective protocol freeze receipt"
     ],
     "conditional_outputs": [
@@ -182,7 +183,7 @@
     "current_permitted_route": "option_d_payload_free_stage_0_completed_no_empirical_ingress",
     "selected_target": "option_a_staged_three_language_pilot",
     "recommended_target": "option_a_staged_three_language_pilot",
-    "language_selection_rule_status": "accepted_named_languages_pending",
+    "language_selection_rule_status": "metadata_shortlist_es_ja_community_slot_unassigned_no_language_approved",
     "progression_defaults_status": "accepted_pending_g3_checksum_freeze",
     "reviewer_time_budget_minutes": 7200,
     "reviewer_time_budget_hours": 120,
@@ -192,6 +193,10 @@
     "remaining_budget_release_cap_hours": 90,
     "reviewer_time_budget_status": "provisional_g0_approved_stage_1_only_remaining_requires_observed_reforecast",
     "reviewer_time_budget_artifact": "research_validation/reviewer_workload_budget.json",
+    "candidate_matrix_artifact": "research_validation/phase_4_candidate_matrix.json",
+    "planning_primary_reviewer_count": 9,
+    "planning_independent_adjudicator_count": 3,
+    "planning_human_role_count": 12,
     "planned_fallback_order": [
       "option_b_lean_two_language_pilot",
       "option_c_single_language_measurement_pilot",
@@ -330,8 +335,8 @@
     "last_run": {
       "agent": "codex",
       "model": "GPT-5",
-      "task_id": "research_validation_20260801_phase_4_g0_reviewer_budget",
-      "prompt_version": "research-validation-phase-4-g0-budget-2026-08-02",
+      "task_id": "research_validation_20260801_phase_4_task_3_candidate_matrix",
+      "prompt_version": "research-validation-phase-4-candidate-matrix-2026-08-03",
       "hpo_release": "v2026-06-23",
       "source_versions": {
         "HP-MESH": "2026-07-19",
@@ -358,7 +363,7 @@
         ".pixi/envs/default/bin/vale.exe research_validation/README.md research_validation/stage_0/README.md conductor/tracks/research_validation_20260801/phase_4_options.md conductor/tracks/research_validation_20260801/plan.md",
         "pixi run validate-conductor"
       ],
-      "validation_result": "local_passing_57_tests_reviewer_budget_and_stage_0_verified_empirical_gates_retained",
+      "validation_result": "local_passing_61_tests_candidate_matrix_reviewer_budget_and_stage_0_verified_empirical_gates_retained",
       "conflict_count": 2,
       "open_blockers": 7
     }

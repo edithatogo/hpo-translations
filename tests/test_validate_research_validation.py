@@ -7,6 +7,7 @@ from pathlib import Path
 from scripts.validate_research_validation import (
     DEFAULT_RESEARCH_ROOT,
     load_json,
+    phase_4_candidate_matrix_errors,
     reviewer_workload_budget_errors,
     schema_errors,
     semantic_errors,
@@ -17,6 +18,38 @@ from scripts.validate_research_validation import (
 class ValidateResearchValidationTests(unittest.TestCase):
     def test_committed_contract_passes(self) -> None:
         self.assertEqual(validate_contract(), [])
+
+    def test_candidate_matrix_rejects_unresolved_tw(self) -> None:
+        matrix = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_candidate_matrix.json")
+        supplementary = load_json(DEFAULT_RESEARCH_ROOT / "supplementary_source_access_reviews.json")
+        matrix["language_slots"][0]["fallback_languages"].append("tw")
+        self.assertIn(
+            "unresolved tw must not appear in preferred or fallback language slots",
+            phase_4_candidate_matrix_errors(matrix, supplementary),
+        )
+
+    def test_candidate_matrix_rejects_approval_without_gate_evidence(self) -> None:
+        matrix = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_candidate_matrix.json")
+        supplementary = load_json(DEFAULT_RESEARCH_ROOT / "supplementary_source_access_reviews.json")
+        matrix["approved_language_count"] = 1
+        self.assertIn(
+            "Phase 4 planning matrix must record zero approved languages, payloads, and named reviewers",
+            phase_4_candidate_matrix_errors(matrix, supplementary),
+        )
+
+    def test_candidate_matrix_rejects_named_reviewer_approval(self) -> None:
+        matrix = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_candidate_matrix.json")
+        supplementary = load_json(DEFAULT_RESEARCH_ROOT / "supplementary_source_access_reviews.json")
+        matrix["named_reviewer_count"] = 1
+        self.assertTrue(phase_4_candidate_matrix_errors(matrix, supplementary))
+
+    def test_reviewer_budget_must_include_adjudicators(self) -> None:
+        budget = load_json(DEFAULT_RESEARCH_ROOT / "reviewer_workload_budget.json")
+        budget["design_snapshot"]["planning_reviewer_count"] = 9
+        self.assertIn(
+            "planning reviewer count must include primary reviewers and independent adjudicators",
+            reviewer_workload_budget_errors(budget),
+        )
 
     def test_every_schema_rejects_its_expected_failure(self) -> None:
         schema_dir = DEFAULT_RESEARCH_ROOT / "schemas"

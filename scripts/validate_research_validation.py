@@ -295,6 +295,8 @@ def reviewer_workload_budget_errors(instance: Any) -> list[str]:
                 "candidate_conditions",
                 "reviews_per_candidate",
                 "independent_judgments",
+                "primary_reviewer_count",
+                "independent_adjudicator_count",
                 "planning_reviewer_count",
             ),
         ),
@@ -351,6 +353,10 @@ def reviewer_workload_budget_errors(instance: Any) -> list[str]:
     design_judgments = design_candidate_rows * design.get("reviews_per_candidate", 0)
     if full.get("candidate_rows") != design_candidate_rows:
         errors.append("full-pilot candidate rows must match the design snapshot")
+    if design.get("planning_reviewer_count") != (
+        design.get("primary_reviewer_count", 0) + design.get("independent_adjudicator_count", 0)
+    ):
+        errors.append("planning reviewer count must include primary reviewers and independent adjudicators")
     if design.get("independent_judgments") != design_judgments or full.get("independent_judgments") != design_judgments:
         errors.append("full-pilot independent judgments must match the design snapshot")
 
@@ -430,6 +436,106 @@ def reviewer_workload_budget_errors(instance: Any) -> list[str]:
         value is not False for value in authorization.values()
     ):
         errors.append("capacity planning cannot authorize reviewer, payload, empirical, or external actions")
+    return errors
+
+
+def phase_4_candidate_matrix_errors(instance: Any, supplementary: Any) -> list[str]:
+    if not isinstance(instance, dict) or not isinstance(supplementary, dict):
+        return ["Phase 4 candidate matrix and supplementary review must be JSON objects"]
+
+    errors: list[str] = []
+    slots = instance.get("language_slots", [])
+    if not isinstance(slots, list) or len(slots) != 3:
+        return ["Phase 4 candidate matrix must define exactly three language slots"]
+
+    expected_slots = {
+        "high_resource_latin": "es",
+        "script_typology_contrast": "ja",
+        "community_governed_or_lower_resource": None,
+    }
+    observed_slots = {slot.get("slot_id"): slot.get("preferred_language") for slot in slots if isinstance(slot, dict)}
+    if observed_slots != expected_slots:
+        errors.append("Phase 4 preferred language slots must remain es, ja, and an unassigned community slot")
+
+    language_values: list[str] = []
+    pathway_ids: set[str] = set()
+    for slot in slots:
+        if not isinstance(slot, dict):
+            errors.append("each Phase 4 language slot must be an object")
+            continue
+        preferred = slot.get("preferred_language")
+        if isinstance(preferred, str):
+            language_values.append(preferred)
+        language_values.extend(value for value in slot.get("fallback_languages", []) if isinstance(value, str))
+        for pathway in slot.get("source_pathways", []):
+            if isinstance(pathway, dict) and isinstance(pathway.get("source_id"), str):
+                pathway_ids.add(pathway["source_id"])
+
+    if "tw" in language_values:
+        errors.append("unresolved tw must not appear in preferred or fallback language slots")
+    exclusions = instance.get("explicit_exclusions", [])
+    if not any(isinstance(item, dict) and item.get("language") == "tw" for item in exclusions):
+        errors.append("Phase 4 candidate matrix must explicitly exclude unresolved tw")
+
+    reviews = supplementary.get("reviews", [])
+    source_ids = {
+        review.get("source_id")
+        for review in reviews
+        if isinstance(review, dict) and isinstance(review.get("source_id"), str)
+    }
+    unknown_pathways = pathway_ids - source_ids
+    if unknown_pathways:
+        errors.append(f"Phase 4 source pathways are absent from the canonical review: {sorted(unknown_pathways)}")
+    if any(isinstance(review, dict) and review.get("payload_retrieval_allowed") for review in reviews):
+        errors.append("candidate matrix cannot proceed while the canonical review reports an allowed payload")
+
+    if any(
+        instance.get(field) != 0
+        for field in ("approved_language_count", "approved_source_payload_count", "named_reviewer_count")
+    ):
+        errors.append("Phase 4 planning matrix must record zero approved languages, payloads, and named reviewers")
+
+    reviewer_model = instance.get("reviewer_model", {})
+    if not isinstance(reviewer_model, dict):
+        errors.append("reviewer model must be an object")
+    else:
+        planned_total = reviewer_model.get("planned_primary_reviewer_count", 0) + reviewer_model.get(
+            "planned_independent_adjudicator_count", 0
+        )
+        if reviewer_model.get("planned_human_role_count") != planned_total or planned_total != 12:
+            errors.append("reviewer model must budget nine primary reviewers and three independent adjudicators")
+        if reviewer_model.get("identities_or_contact_details_permitted_in_repository") is not False:
+            errors.append("reviewer identities and contact details must remain excluded")
+        expected_roles = {
+            "target_language_terminology_reviewer",
+            "target_language_clinical_reviewer",
+            "target_language_ontology_phenotype_reviewer",
+        }
+        if set(reviewer_model.get("primary_roles", [])) != expected_roles:
+            errors.append("primary reviewer roles must cover terminology, clinical, and ontology expertise")
+        adjudicator_requirements = set(reviewer_model.get("adjudicator_requirements", []))
+        if not {
+            "independent_of_candidate_generation",
+            "not_one_of_the_three_initial_reviewers_for_the_adjudicated_item",
+            "conflict_of_interest_declaration",
+        }.issubset(adjudicator_requirements):
+            errors.append("adjudicator requirements must preserve independence and conflict review")
+
+    expected_actions = [
+        "step_down_to_option_b_with_es_and_ja",
+        "consider_option_b_with_es_and_zh_subject_to_all_gates",
+        "consider_option_b_with_fr_or_pt_and_ja_subject_to_all_gates",
+        "step_down_to_option_c",
+        "remain_at_option_d_synthetic_only",
+    ]
+    contingencies = instance.get("step_down_contingencies", [])
+    actions = [item.get("action") for item in contingencies if isinstance(item, dict)]
+    if actions != expected_actions:
+        errors.append("Phase 4 step-down contingencies must preserve the approved A-to-B-to-C-to-D order")
+
+    authorization = instance.get("authorization_boundary", {})
+    if not isinstance(authorization, dict) or any(value is not False for value in authorization.values()):
+        errors.append("all Phase 4 candidate-matrix authorization fields must remain false")
     return errors
 
 
@@ -586,6 +692,27 @@ def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[Valid
         budget = load_json(budget_path)
         for message in reviewer_workload_budget_errors(budget):
             issues.append(ValidationIssue("reviewer_budget.invalid", str(budget_path), message))
+
+    candidate_matrix_path = research_root / "phase_4_candidate_matrix.json"
+    if not candidate_matrix_path.exists():
+        issues.append(
+            ValidationIssue(
+                "phase_4_candidate_matrix.missing", str(candidate_matrix_path), "candidate matrix is required"
+            )
+        )
+    elif not supplementary_path.exists():
+        issues.append(
+            ValidationIssue(
+                "phase_4_candidate_matrix.canonical_review_missing",
+                str(candidate_matrix_path),
+                "candidate matrix requires the canonical supplementary source review",
+            )
+        )
+    else:
+        candidate_matrix = load_json(candidate_matrix_path)
+        supplementary = load_json(supplementary_path)
+        for message in phase_4_candidate_matrix_errors(candidate_matrix, supplementary):
+            issues.append(ValidationIssue("phase_4_candidate_matrix.invalid", str(candidate_matrix_path), message))
 
     probe_path = passing_dir / "translation_evaluation_item.json"
     if probe_path.exists():

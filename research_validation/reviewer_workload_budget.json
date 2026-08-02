@@ -10,7 +10,9 @@
     "candidate_conditions": 4,
     "reviews_per_candidate": 3,
     "independent_judgments": 960,
-    "planning_reviewer_count": 9
+    "primary_reviewer_count": 9,
+    "independent_adjudicator_count": 3,
+    "planning_reviewer_count": 12
   },
   "planning_assumptions": {
     "minutes_per_independent_judgment": 5,
@@ -24,9 +26,9 @@
     "independent_judgments": 144,
     "anticipated_adjudications": 12,
     "independent_review_minutes": 720,
-    "training_minutes": 540,
+    "training_minutes": 720,
     "adjudication_minutes": 120,
-    "coordination_and_contingency_minutes": 420,
+    "coordination_and_contingency_minutes": 240,
     "release_cap_minutes": 1800,
     "release_cap_hours": 30
   },
@@ -35,9 +37,9 @@
     "independent_judgments": 960,
     "anticipated_adjudications": 80,
     "independent_review_minutes": 4800,
-    "training_minutes": 540,
+    "training_minutes": 720,
     "adjudication_minutes": 800,
-    "coordination_and_contingency_minutes": 1060,
+    "coordination_and_contingency_minutes": 880,
     "ceiling_minutes": 7200,
     "ceiling_hours": 120,
     "remaining_after_stage_1_cap_minutes": 5400,
