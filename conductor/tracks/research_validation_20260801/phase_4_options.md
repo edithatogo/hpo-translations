@@ -20,7 +20,7 @@ approval. No empirical pilot is active.
 | Immediate route | Option D completed |
 | Language-selection rule | Accepted; named languages remain unselected |
 | Progression defaults | Accepted; must be checksummed again at G3 before empirical data |
-| Maximum reviewer-time budget | Pending; G0 remains partial |
+| Maximum reviewer-time budget | Provisional G0 envelope recorded: 30-hour Stage 1 cap, 120-hour full-pilot ceiling; expansion requires observed Stage 1 reforecast |
 | Stage 1 approvals | All pending in `research_validation/approval_manifest.json` |
 | External preregistration, publication, push, and PR | Not authorized |
 

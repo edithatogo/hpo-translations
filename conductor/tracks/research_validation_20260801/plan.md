@@ -42,7 +42,7 @@
 
 ## Phase 4: Prospectively Frozen Feasibility Pilot
 
-- [~] **Task 1:** Record the maintainer's G0 decision: Option A is selected as the target, Option D as the immediate route, and the language-selection rule and progression defaults are accepted. The maximum reviewer-time budget remains pending, so G0 is partial and empirical work stays blocked. (`4bfcb2b`, refinement `fdc3068`)
+- [x] **Task 1:** Record the maintainer's G0 decision: Option A is selected as the target, Option D as the immediate route, the language-selection rule and progression defaults are accepted, and the provisional 30-hour Stage 1 / 120-hour full-pilot capacity envelope is recorded. Approval gates remain pending and empirical work stays blocked. (`4bfcb2b`, `2a74f58`)
 - [x] **Task 2:** Run the 12-item, payload-free synthetic Stage 0 rehearsal for sampling, randomization, artifact-level blinding, export, adjudication, redaction, and stop-condition handling. The deterministic receipt records 48 blinded candidate rows, 144 synthetic assignments and decisions, 24 adjudications, and calculated go/revise/stop branches; it supports operational-readiness claims only. (`4bfcb2b`, refinement `fdc3068`, review fix `eb8df7b`)
 - [ ] **Task 3:** Select the permitted language slots, reviewer and adjudicator roster, source set, and stratified concepts for the approved option. Exclude `tw` until its language authority is resolved.
 - [ ] **Task 4:** Close source, license, ethics, privacy, reviewer-consent, language-working-group, and community model-use gates. Step down A → B → C → D when a required gate cannot close.
