@@ -67,6 +67,14 @@ Use a prespecified lineage ablation to compare naive source counts with independ
 
 The pilot estimates reviewer variance, event prevalence, intraclass correlation, attrition, and feasible effect size. Use those estimates to calculate the confirmatory sample size. The pilot does not stop early for apparent benefit; it may stop for safety, invalid blinding, prohibited source use, inadequate reviewer coverage, or unusable measurement reliability.
 
+## Feasibility staging and progression
+
+The Conductor [Phase 4 options and contingencies](../conductor/tracks/research_validation_20260801/phase_4_options.md) are the canonical decision record for pilot scale, progression thresholds, and fallback branches. Their recommended default is a payload-free 12-item synthetic operational rehearsal, followed by an authorized 12-concept-language-unit Stage 1 and then the remainder of the selected design only when the frozen progression criteria pass. Balance Stage 1 across approved languages and include at least two common anchors where the design is multilingual. The recommendation is not active until the maintainer records the G0 design and workload decision.
+
+Stage 0 tests only sampling, randomization, blinding, export, adjudication, redaction, and failure handling; it cannot produce empirical translation or reviewer-variance evidence. Stage 1 assesses feasibility and may trigger go, one prospective revision, or stop. Report feasibility measures and estimates with 95% uncertainty intervals. Do not use formal effectiveness hypothesis tests, significance thresholds, or apparent candidate-method benefit as progression rules.
+
+An internal checksummed freeze is mandatory before empirical work. External registration remains a maintainer-controlled action. If no immutable external registration has occurred, describe the protocol as prospectively frozen rather than preregistered.
+
 ## Downstream and temporal studies
 
 If suitable public or approved corpora exist, compare translated-text HPO extraction and phenotype-driven ranking using the frozen candidates. Keep extraction accuracy and ranking utility separate from translation acceptance. Replay at least two HPO releases to test drift prediction, and use a temporal or held-out-language split where feasible to reduce benchmark leakage.

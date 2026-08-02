@@ -40,15 +40,18 @@
 - [x] **Task 5:** Demonstrate that mirrors and aggregator-derived labels do not increase independent source counts. Four mapping families resolve to three conservative independent-evidence groups; HP–MeSH and HP–UMLS share a MedGen origin. (`3ff429e`, review fix `e410f47`)
 - [x] **Task 6:** Phase Verification & Checkpoint (Refer to workflow.md). Review completed with no blocking implementation findings; 45 tests and the research, ontology-network, Conductor, type, format, lint, and prose gates pass. Payload and authority gates remain open. (`f3a9584`)
 
-## Phase 4: Preregistered Pilot
+## Phase 4: Prospectively Frozen Feasibility Pilot
 
-- [ ] **Task 1:** Select 50 to 100 stratified terms across contrasting HPO branches and language situations.
-- [ ] **Task 2:** Obtain language-working-group, reviewer, license, ethics, and community approvals required for the selected pilot.
-- [ ] **Task 3:** Freeze candidate generators, prompts, source versions, randomization, exclusions, and analysis code.
-- [ ] **Task 4:** Run blinded independent review and adjudication.
-- [ ] **Task 5:** Estimate reviewer variance, clinically significant error prevalence, effect sizes, and the full-study sample size.
-- [ ] **Task 6:** Publish a payload-safe pilot report and decide go, revise, or stop for the full benchmark.
-- [ ] **Task 7:** Phase Verification & Checkpoint (Refer to workflow.md).
+- [ ] **Task 1:** Record the maintainer's G0 decision: Option A, B, C, or D; language-selection rule; maximum reviewer-time budget; and frozen default progression thresholds from `phase_4_options.md`.
+- [ ] **Task 2:** Run the 12-item, payload-free synthetic Stage 0 rehearsal for sampling, randomization, blinding, export, adjudication, redaction, and stop-condition handling. Record operational evidence only.
+- [ ] **Task 3:** Select the permitted language slots, reviewer and adjudicator roster, source set, and stratified concepts for the approved option. Exclude `tw` until its language authority is resolved.
+- [ ] **Task 4:** Close source, license, ethics, privacy, reviewer-consent, language-working-group, and community model-use gates. Step down A → B → C → D when a required gate cannot close.
+- [ ] **Task 5:** Freeze and checksum candidate conditions, prompts, model endpoints, source versions, randomization, exclusions, instrument, progression criteria, and analysis code. Obtain explicit maintainer approval before any external preregistration.
+- [ ] **Task 6:** Run blinded independent review and adjudication for the first 12 authorized concept-language units, balanced across approved languages and including at least two common anchors where the design is multilingual, then apply the frozen go, revise, or stop rule without testing candidate-method superiority.
+- [ ] **Task 7:** If Stage 1 passes, complete the remaining authorized sample. If it enters the revise branch, amend prospectively once and retain a feasibility-only interpretation; if it stops, preserve the failure evidence and do not replace it with a post hoc design.
+- [ ] **Task 8:** Estimate review completeness, technical-invalidity rate, workload, abstention, reviewer and concept variance, clinically significant error prevalence, measurement reliability, and the full-study sample size with 95% uncertainty intervals and no formal effectiveness hypothesis tests.
+- [ ] **Task 9:** Produce a payload-safe report with deviations and design-specific claim limits, then obtain the maintainer's go, revise, or stop decision for Phase 5.
+- [ ] **Task 10:** Phase Verification & Checkpoint (Refer to workflow.md). Confirm that external preregistration, publication, push, and PR gates remain explicit.
 
 ## Phase 5: Confirmatory and Novel Studies
 

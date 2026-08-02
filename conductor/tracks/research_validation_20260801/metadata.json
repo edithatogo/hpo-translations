@@ -3,7 +3,7 @@
   "type": "research_feature",
   "status": "in_progress",
   "created_at": "2026-08-01T00:00:00Z",
-  "updated_at": "2026-08-01T00:00:00Z",
+  "updated_at": "2026-08-02T00:00:00Z",
   "description": "Establish empirical validation for multilingual HPO translation and ontology evidence",
   "depends_on": [
     "conductor_validation_20260623",
@@ -18,7 +18,7 @@
   "ci_status": "local_passing",
   "merge_status": "not_opened",
   "last_commit": "f3a9584",
-  "phase_review_status": "codex_phase_3_source_review_completed_no_blocking_findings_payload_gates_retained",
+  "phase_review_status": "phase_4_options_ready_awaiting_maintainer_decision_and_external_gates",
   "github_checks_url": null,
   "merge_commit": null,
   "priority": "P0",
@@ -31,6 +31,7 @@
     "The `tw` profile is described as both Tiwi and Twi; language authority and migration direction are unresolved.",
     "Restricted terminology content requires source-specific license and redistribution review.",
     "Human reviewers and language-working-group approval have not been secured for a pilot.",
+    "The maintainer has not selected a Phase 4 option, language rule, reviewer-time budget, or progression thresholds.",
     "Upstream push, PR, preregistration, and publication require explicit maintainer approval."
   ],
   "expected_blockers": [
@@ -117,7 +118,10 @@
       "run manifest schema",
       "passing and expected-failure fixtures",
       "analysis plan",
-      "approval manifest"
+      "approval manifest",
+      "approved Phase 4 option and progression matrix",
+      "reviewer workload budget",
+      "prospective protocol freeze receipt"
     ],
     "conditional_outputs": [
       "candidate comparison dataset",
@@ -135,7 +139,7 @@
       "official translation promotion"
     ]
   },
-  "automation_readiness": "phase_3_source_metadata_and_access_reviews_local_passing_payload_ingress_blocked",
+  "automation_readiness": "phase_4_options_ready_synthetic_rehearsal_only_empirical_ingress_blocked",
   "source_verification": {
     "verified_at": "2026-08-01T00:00:00Z",
     "hpo_release": "v2026-06-23",
@@ -171,6 +175,89 @@
     },
     "decision_boundary": "metadata decisions only; human approval is required before payload retrieval, mapping, adaptation, redistribution, or empirical use"
   },
+  "phase_4_decision": {
+    "status": "awaiting_maintainer_g0_decision",
+    "canonical_document": "conductor/tracks/research_validation_20260801/phase_4_options.md",
+    "current_permitted_route": "option_d_payload_free_synthetic_rehearsal_only",
+    "recommended_target": "option_a_staged_three_language_pilot",
+    "planned_fallback_order": [
+      "option_b_lean_two_language_pilot",
+      "option_c_single_language_measurement_pilot",
+      "option_d_governance_only_rehearsal"
+    ],
+    "options": {
+      "A": {
+        "name": "staged_three_language_pilot",
+        "unique_concepts": 60,
+        "concept_language_units": 80,
+        "candidate_conditions": 4,
+        "reviews_per_unit": 3,
+        "nominal_independent_judgments": 960
+      },
+      "B": {
+        "name": "lean_two_language_pilot",
+        "unique_concepts": 50,
+        "concept_language_units": 60,
+        "candidate_conditions": 4,
+        "reviews_per_unit": 3,
+        "nominal_independent_judgments": 720
+      },
+      "C": {
+        "name": "single_language_measurement_pilot",
+        "unique_concepts": 50,
+        "concept_language_units": 50,
+        "candidate_conditions": 4,
+        "reviews_per_unit": 3,
+        "nominal_independent_judgments": 600
+      },
+      "D": {
+        "name": "governance_only_rehearsal",
+        "synthetic_items": 12,
+        "empirical_claims_allowed": false
+      }
+    },
+    "stage_1_authorized_concept_language_units_default": 12,
+    "stage_1_balance_rule": "balance across approved languages and include at least two common anchors when more than one language is selected",
+    "progression_defaults": {
+      "go": {
+        "minimum_independent_review_completion_percent": 90,
+        "minimum_required_adjudication_completion_percent": 90,
+        "technical_invalidity_percent_must_be_below": 10,
+        "reviewers_per_language": 3,
+        "material_governance_incidents": 0
+      },
+      "revise_once": {
+        "minimum_completion_percent": 70,
+        "completion_percent_must_be_below": 90,
+        "minimum_technical_invalidity_percent": 10,
+        "maximum_technical_invalidity_percent_inclusive": 20,
+        "minimum_reviewers_with_independent_adjudicator": 2
+      },
+      "stop": {
+        "stop_if_technical_invalidity_percent_exceeds": 20,
+        "minimum_independent_reviewers_for_empirical_language": 2,
+        "stop_on_permission_refusal_or_revocation": true,
+        "stop_on_material_governance_incident": true,
+        "stop_for_apparent_benefit": false
+      }
+    },
+    "required_gates": [
+      "G0_design_authority",
+      "G1_source_authority",
+      "G2_human_and_community_authority",
+      "G3_prospective_freeze",
+      "G4_stage_1_feasibility",
+      "G5_pilot_completion"
+    ],
+    "external_actions_not_authorized": [
+      "payload_retrieval",
+      "reviewer_recruitment_or_contact",
+      "external_preregistration",
+      "publication",
+      "push",
+      "pull_request"
+    ]
+  },
   "evidence_score_policy": {
     "candidate_only": true,
     "signals": [
@@ -204,8 +291,8 @@
     "last_run": {
       "agent": "codex",
       "model": "GPT-5",
-      "task_id": "research_validation_20260801_phase_3_source_access",
-      "prompt_version": "research-validation-supplementary-access-review-2026-08-01",
+      "task_id": "research_validation_20260801_phase_4_design_options",
+      "prompt_version": "research-validation-phase-4-options-2026-08-02",
       "hpo_release": "v2026-06-23",
       "source_versions": {
         "HP-MESH": "2026-07-19",
@@ -224,20 +311,14 @@
       "runtime_seconds": null,
       "validation_command": [
         "pixi run validate-research-validation",
-        "pixi run verify-research-source-pins",
         "pixi run test-conductor-validation",
-        "pixi run ruff-check",
-        "pixi run ruff-format",
-        "pixi run mypy-check",
         "pixi run vale-check",
-        ".pixi/envs/default/bin/vale.exe research_validation",
-        "pixi run validate-ontology-network",
-        "pixi run validate-ontology-network-artifacts",
+        ".pixi/envs/default/bin/vale.exe conductor/tracks/research_validation_20260801/phase_4_options.md conductor/tracks/research_validation_20260801/plan.md research_validation/protocol.md",
         "pixi run validate-conductor"
       ],
-      "validation_result": "local_passing_45_tests_metadata_only_payload_blocked",
+      "validation_result": "local_passing_45_tests_phase_4_options_documented_empirical_gates_retained",
       "conflict_count": 2,
-      "open_blockers": 6
+      "open_blockers": 7
     }
   },
   "human_review_handoff": [
