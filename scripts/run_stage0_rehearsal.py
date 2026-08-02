@@ -167,6 +167,24 @@ def public_packet_is_redacted(packet: list[dict[str, Any]]) -> bool:
     return not any(pattern.search(serialized) for pattern in FORBIDDEN_PUBLIC_PATTERNS)
 
 
+def randomization_was_applied(plan: dict[str, Any], packet: list[dict[str, Any]]) -> bool:
+    original_orders = {
+        item["item_id"]: [candidate["candidate_text"] for candidate in item["candidates"]] for item in plan["items"]
+    }
+    presented_orders: dict[str, list[str]] = defaultdict(list)
+    for record in packet:
+        presented_orders[str(record["item_id"])].append(str(record["candidate_text"]))
+    return any(presented_orders[item_id] != order for item_id, order in original_orders.items())
+
+
+def sampling_strata_are_exercised(plan: dict[str, Any]) -> bool:
+    required_branches = {"synthetic-branch-a", "synthetic-branch-b", "synthetic-branch-c"}
+    required_object_types = {"label", "definition", "synonym", "regional_variant", "patient_facing"}
+    recorded_strata = {str(stratum) for item in plan["items"] for stratum in item["stratum_ids"]}
+    recorded_object_types = {str(item["object_type"]) for item in plan["items"]}
+    return required_branches <= recorded_strata and required_object_types <= recorded_object_types
+
+
 def export_round_trip(artifacts: dict[str, Any]) -> dict[str, str]:
     hashes: dict[str, str] = {}
     with TemporaryDirectory(prefix="hpo-stage0-") as directory:
@@ -229,7 +247,9 @@ def build_receipt(stage0_root: Path = DEFAULT_STAGE0_ROOT) -> dict[str, Any]:
         },
         "checks": {
             "sampling_count": len(plan["items"]) == 12,
+            "sampling_strata_exercised": sampling_strata_are_exercised(plan),
             "randomization_reproducible": packet == build_review_packet(plan),
+            "randomization_applied": randomization_was_applied(plan, packet),
             "blinding": public_packet_is_blinded(packet),
             "export_round_trip": len(artifact_hashes) == 5,
             "adjudication_exercised": adjudication_counts["adjudicated"] > 0,

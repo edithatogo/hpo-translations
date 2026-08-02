@@ -24,7 +24,9 @@
   },
   "checks": {
     "sampling_count": true,
+    "sampling_strata_exercised": true,
     "randomization_reproducible": true,
+    "randomization_applied": true,
     "blinding": true,
     "export_round_trip": true,
     "adjudication_exercised": true,
