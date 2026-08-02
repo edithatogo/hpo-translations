@@ -29,6 +29,6 @@
     "LDDB": "Complete bounded diligent search, then close_no_go unless a current authority and written redistribution licence emerge; never reconstruct from historical sources."
   },
   "review_model": {"advisory_panel":"parallel subagents with independent evidence review and conflict reconciliation","accountability_gate":"explicit maintainer/licence authority approval; subagents cannot self-approve legal or redistribution terms"},
-  "restricted_access_governance": "conductor/restricted_access_governance.json",
+  "restricted_access_governance": "conductor/source_access_governance.json",
   "prohibited_without_approval": ["source labels","synonyms","definitions","crosswalks","downstream promotion"]
 }
