@@ -203,6 +203,8 @@
     "g1_route_review_status": "scope_authorized_zero_dispatches_sender_identity_required",
     "g1_internal_scope_review_artifact": "research_validation/phase_4_g1_internal_scope_review.json",
     "g1_internal_scope_review_status": "four_conditional_recommendations_human_decision_and_payload_authority_pending",
+    "g3_freeze_readiness_artifact": "research_validation/phase_4_g3_freeze_readiness.json",
+    "g3_freeze_readiness_status": "preflight_contract_ready_not_frozen_g1_g2_and_maintainer_approval_pending",
     "planning_primary_reviewer_count": 9,
     "planning_independent_adjudicator_count": 3,
     "planning_human_role_count": 12,
@@ -344,8 +346,8 @@
     "last_run": {
       "agent": "codex",
       "model": "GPT-5",
-      "task_id": "research_validation_20260801_phase_4_task_4_g1_internal_scope_review",
-      "prompt_version": "research-validation-phase-4-g1-internal-scope-review-2026-08-03",
+      "task_id": "research_validation_20260801_phase_4_task_5_g3_freeze_preflight",
+      "prompt_version": "research-validation-phase-4-g3-freeze-preflight-2026-08-03",
       "hpo_release": "v2026-06-23",
       "source_versions": {
         "HP-MESH": "2026-07-19",
@@ -372,7 +374,7 @@
         ".pixi/envs/default/bin/vale.exe research_validation/README.md research_validation/stage_0/README.md conductor/tracks/research_validation_20260801/phase_4_options.md conductor/tracks/research_validation_20260801/plan.md",
         "pixi run validate-conductor"
       ],
-      "validation_result": "local_passing_73_tests_internal_scope_recommendations_verified_g1_gate_open",
+      "validation_result": "local_passing_76_tests_g3_preflight_verified_not_frozen_g1_g2_open",
       "conflict_count": 2,
       "open_blockers": 7
     }

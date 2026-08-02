@@ -145,6 +145,8 @@ not legal advice, licence acceptance, payload authority, or a closed G1 gate.
 | **G1 — Source authority** | Selected HPO and terminology versions are pinned; source authority, access, license, permitted use, storage, and reporting decisions are approved | Omit the source or shrink the design; never substitute a mirror as new authority |
 | **G2 — Human and community authority** | Reviewer qualifications, consent, privacy, conflicts, adjudication capacity, ethics determination, language-working-group approval, and community model-use authority where applicable | Substitute an approved language or step down A → B → C → D |
 | **G3 — Prospective freeze** | Sampling frame, items, conditions, prompts, model/endpoints, versions, seeds, exclusions, instrument, progression criteria, and analysis code are checksummed before empirical data | Do not start empirical review |
+
+The machine-checkable G3 preflight is `research_validation/phase_4_g3_freeze_readiness.json`. It enumerates the complete freeze package and checksum rules, but deliberately contains no checksums, freeze identifier, or authorization. A separate freeze receipt may be created only after G1/G2 evidence and explicit maintainer approval satisfy its advance rule.
 | **G4 — Stage 1 feasibility** | The first 12 authorized concept-language units complete without a stop condition and meet the frozen progression rule | Revise once under a logged amendment, or stop |
 | **G5 — Pilot completion** | Remaining authorized sample, adjudication, descriptive analysis, deviation log, payload-safe report, and full-study sample-size recommendation are complete | Retain a feasibility-only conclusion |
 

@@ -1,0 +1,61 @@
+{
+  "schema_version": "phase-4-g3-freeze-readiness-v1",
+  "track_id": "research_validation_20260801",
+  "status": "preflight_contract_ready_not_frozen",
+  "freeze_id": null,
+  "frozen_at": null,
+  "prospective_freeze_claim_allowed": false,
+  "external_preregistration_claim_allowed": false,
+  "prerequisites": {
+    "G1_source_authority": "pending",
+    "G2_human_and_community_authority": "pending",
+    "approval_manifest_state": "stage_0_synthetic_only",
+    "approved_language_count": 0,
+    "approved_payload_source_count": 0,
+    "named_reviewer_count": 0,
+    "explicit_maintainer_freeze_approval": false
+  },
+  "required_components": [
+    "sampling_frame_and_stratified_concepts",
+    "candidate_conditions",
+    "prompts",
+    "model_endpoints",
+    "source_versions",
+    "randomization_seed_and_algorithm",
+    "exclusions",
+    "reviewer_instrument",
+    "progression_criteria",
+    "analysis_code",
+    "approval_receipts",
+    "privacy_retention_and_incident_plan"
+  ],
+  "component_status": "not_frozen",
+  "checksum_contract": {
+    "algorithm": "sha256",
+    "canonical_serialization": "UTF-8 bytes; JSON uses sorted keys and compact separators; text uses LF line endings",
+    "all_required_components_must_have_hash": true,
+    "aggregate_manifest_hash_required": true,
+    "mutable_aliases_prohibited": true,
+    "recorded_checksum_count": 0,
+    "aggregate_manifest_hash": null
+  },
+  "planning_inputs": [
+    "research_validation/protocol.md",
+    "research_validation/phase_4_candidate_matrix.json",
+    "research_validation/reviewer_workload_budget.json",
+    "research_validation/approval_manifest.json",
+    "research_validation/phase_4_gate_docket.json"
+  ],
+  "advance_rule": "Create a separate prospective freeze receipt only after G1 and G2 decisions are evidenced, every component is version-pinned and checksummed, at least one language, payload source, and named reviewer are authorized, and explicit maintainer approval is recorded.",
+  "authorization_boundary": {
+    "create_prospective_freeze_receipt": false,
+    "start_empirical_work": false,
+    "retrieve_source_payloads": false,
+    "contact_reviewers_or_language_groups": false,
+    "external_preregistration": false,
+    "publication": false,
+    "push": false,
+    "pull_request": false
+  },
+  "claims_boundary": "readiness_contract_only_no_freeze_empirical_translation_or_human_validation_evidence"
+}

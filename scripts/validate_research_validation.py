@@ -728,6 +728,67 @@ def phase_4_g1_internal_scope_review_errors(instance: Any) -> list[str]:
     return errors
 
 
+EXPECTED_G3_COMPONENTS = {
+    "sampling_frame_and_stratified_concepts",
+    "candidate_conditions",
+    "prompts",
+    "model_endpoints",
+    "source_versions",
+    "randomization_seed_and_algorithm",
+    "exclusions",
+    "reviewer_instrument",
+    "progression_criteria",
+    "analysis_code",
+    "approval_receipts",
+    "privacy_retention_and_incident_plan",
+}
+
+
+def phase_4_g3_freeze_readiness_errors(instance: Any) -> list[str]:
+    if not isinstance(instance, dict):
+        return ["Phase 4 G3 freeze readiness contract must be a JSON object"]
+    errors: list[str] = []
+    if (
+        instance.get("status") != "preflight_contract_ready_not_frozen"
+        or instance.get("freeze_id") is not None
+        or instance.get("frozen_at") is not None
+    ):
+        errors.append("G3 readiness must remain explicitly not frozen with no freeze identifier or timestamp")
+    if (
+        instance.get("prospective_freeze_claim_allowed") is not False
+        or instance.get("external_preregistration_claim_allowed") is not False
+    ):
+        errors.append("G3 readiness must not authorize freeze or preregistration claims")
+    prerequisites = instance.get("prerequisites", {})
+    if (
+        prerequisites.get("G1_source_authority") != "pending"
+        or prerequisites.get("G2_human_and_community_authority") != "pending"
+    ):
+        errors.append("G3 readiness must preserve pending G1 and G2 prerequisites")
+    if (
+        any(
+            prerequisites.get(field) != 0
+            for field in ("approved_language_count", "approved_payload_source_count", "named_reviewer_count")
+        )
+        or prerequisites.get("explicit_maintainer_freeze_approval") is not False
+    ):
+        errors.append("G3 readiness must record zero empirical approvals and no maintainer freeze approval")
+    components = instance.get("required_components", [])
+    if (
+        set(components) != EXPECTED_G3_COMPONENTS
+        or len(components) != len(EXPECTED_G3_COMPONENTS)
+        or instance.get("component_status") != "not_frozen"
+    ):
+        errors.append("G3 readiness must enumerate every required component exactly once as not frozen")
+    checksum = instance.get("checksum_contract", {})
+    if checksum.get("recorded_checksum_count") != 0 or checksum.get("aggregate_manifest_hash") is not None:
+        errors.append("G3 readiness must not record checksums before the prospective freeze")
+    authorization = instance.get("authorization_boundary", {})
+    if not authorization or any(value is not False for value in authorization.values()):
+        errors.append("all G3 readiness authorization fields must remain false")
+    return errors
+
+
 def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[ValidationIssue]:
     issues: list[ValidationIssue] = []
     schema_dir = research_root / "schemas"
@@ -980,6 +1041,20 @@ def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[Valid
             issues.append(
                 ValidationIssue("phase_4_g1_internal_scope_review.invalid", str(internal_scope_path), message)
             )
+
+    g3_readiness_path = research_root / "phase_4_g3_freeze_readiness.json"
+    if not g3_readiness_path.exists():
+        issues.append(
+            ValidationIssue(
+                "phase_4_g3_freeze_readiness.missing",
+                str(g3_readiness_path),
+                "G3 freeze readiness contract is required",
+            )
+        )
+    else:
+        g3_readiness = load_json(g3_readiness_path)
+        for message in phase_4_g3_freeze_readiness_errors(g3_readiness):
+            issues.append(ValidationIssue("phase_4_g3_freeze_readiness.invalid", str(g3_readiness_path), message))
 
     probe_path = passing_dir / "translation_evaluation_item.json"
     if probe_path.exists():

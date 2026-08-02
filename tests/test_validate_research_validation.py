@@ -11,6 +11,7 @@ from scripts.validate_research_validation import (
     phase_4_decision_receipt_template_errors,
     phase_4_g1_internal_scope_review_errors,
     phase_4_g1_route_review_errors,
+    phase_4_g3_freeze_readiness_errors,
     phase_4_gate_docket_errors,
     reviewer_workload_budget_errors,
     schema_errors,
@@ -155,6 +156,30 @@ class ValidateResearchValidationTests(unittest.TestCase):
         self.assertIn(
             "WHO ICF review must prohibit code adaptation and modified-material distribution",
             phase_4_g1_internal_scope_review_errors(review),
+        )
+
+    def test_g3_readiness_rejects_false_freeze(self) -> None:
+        readiness = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_g3_freeze_readiness.json")
+        readiness["status"] = "frozen"
+        readiness["freeze_id"] = "premature"
+        self.assertIn(
+            "G3 readiness must remain explicitly not frozen with no freeze identifier or timestamp",
+            phase_4_g3_freeze_readiness_errors(readiness),
+        )
+
+    def test_g3_readiness_rejects_premature_checksum(self) -> None:
+        readiness = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_g3_freeze_readiness.json")
+        readiness["checksum_contract"]["recorded_checksum_count"] = 1
+        self.assertIn(
+            "G3 readiness must not record checksums before the prospective freeze",
+            phase_4_g3_freeze_readiness_errors(readiness),
+        )
+
+    def test_g3_readiness_rejects_downstream_authority(self) -> None:
+        readiness = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_g3_freeze_readiness.json")
+        readiness["authorization_boundary"]["start_empirical_work"] = True
+        self.assertIn(
+            "all G3 readiness authorization fields must remain false", phase_4_g3_freeze_readiness_errors(readiness)
         )
 
     def test_every_schema_rejects_its_expected_failure(self) -> None:
