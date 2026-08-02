@@ -1,0 +1,74 @@
+{
+  "schema_version": "phase-4-g1-internal-scope-review-v1",
+  "track_id": "research_validation_20260801",
+  "reviewed_at": "2026-08-03T00:00:00Z",
+  "status": "conditional_recommendations_only_human_license_decision_pending",
+  "legal_character": "research_governance_summary_not_legal_advice_or_license_acceptance",
+  "source_reviews": [
+    {
+      "source_id": "mondo",
+      "declared_license": "CC_BY_4_0",
+      "official_source_url": "https://mondo.monarchinitiative.org/pages/download/",
+      "license_deed_url": "https://creativecommons.org/licenses/by/4.0/",
+      "recommended_decision": "conditionally_compatible_for_internal_pilot_after_human_approval",
+      "permitted_role_recommendation": "version_pinned_Japanese_disease_context_and_source_atom_provenance",
+      "prohibited_or_deferred_roles": ["counting_disease_labels_as_independent_HPO_lexical_votes", "payload_retrieval_before_explicit_approval", "official_translation_promotion"],
+      "required_controls": ["credit_creator_and_source", "link_license", "identify_version", "indicate_changes", "avoid_endorsement_implication", "preserve_source_atom_and_lineage"],
+      "payload_retrieval_allowed": false,
+      "human_license_decision_recorded": false
+    },
+    {
+      "source_id": "uberon",
+      "declared_license": "CC_BY_3_0",
+      "official_source_url": "https://obofoundry.org/ontology/uberon.html",
+      "license_deed_url": "https://creativecommons.org/licenses/by/3.0/",
+      "recommended_decision": "conditionally_compatible_for_internal_pilot_after_human_approval",
+      "permitted_role_recommendation": "version_pinned_structural_anatomy_and_hard_negative_design",
+      "prohibited_or_deferred_roles": ["lexical_vote", "payload_retrieval_before_explicit_approval", "official_translation_promotion"],
+      "required_controls": ["credit_creator_and_source", "include_title_if_supplied", "link_license", "identify_version", "indicate_derivative_changes", "avoid_endorsement_implication"],
+      "payload_retrieval_allowed": false,
+      "human_license_decision_recorded": false
+    },
+    {
+      "source_id": "pato",
+      "declared_license": "CC_BY_3_0",
+      "official_source_url": "https://obofoundry.org/ontology/pato.html",
+      "license_deed_url": "https://creativecommons.org/licenses/by/3.0/",
+      "recommended_decision": "conditionally_compatible_for_internal_pilot_after_human_approval",
+      "permitted_role_recommendation": "version_pinned_structural_quality_and_hard_negative_design",
+      "prohibited_or_deferred_roles": ["lexical_vote", "payload_retrieval_before_explicit_approval", "official_translation_promotion"],
+      "required_controls": ["credit_creator_and_source", "include_title_if_supplied", "link_license", "identify_version", "indicate_derivative_changes", "avoid_endorsement_implication"],
+      "payload_retrieval_allowed": false,
+      "human_license_decision_recorded": false
+    },
+    {
+      "source_id": "who-icf",
+      "declared_license": "CC_BY_ND_3_0_IGO",
+      "official_source_url": "https://www.who.int/about/policies/publishing/copyright",
+      "license_deed_url": "https://creativecommons.org/licenses/by-nd/3.0/igo/",
+      "recommended_decision": "conditional_internal_non_adaptive_reference_only_after_human_approval",
+      "permitted_role_recommendation": "unchanged_version_pinned_Spanish_functional_context_with_appropriate_citation",
+      "prohibited_or_deferred_roles": ["adaptation_of_codes", "distribution_of_modified_material", "lexical_vote", "payload_retrieval_before_explicit_approval", "official_translation_promotion"],
+      "required_controls": ["credit_WHO_and_source", "link_license", "identify_version", "no_endorsement_implication", "no_logo_use", "escalate_any_mapping_adaptation_or_modified_distribution_to_permissions_review"],
+      "payload_retrieval_allowed": false,
+      "human_license_decision_recorded": false
+    }
+  ],
+  "program_decision": {
+    "source_licence_gate_closed": false,
+    "recommended_internal_subset": ["mondo", "uberon", "pato", "who-icf"],
+    "external_permission_sources_still_pending": ["pro-ctcae", "decs"],
+    "overall_recommendation": "human_maintainer_or_license_owner_may_record_bounded_conditional_decisions_but_must_not_authorize_payloads_from_this_summary"
+  },
+  "authorization_boundary": {
+    "license_acceptance_authorized": false,
+    "source_payload_retrieval_authorized": false,
+    "mapping_or_adaptation_authorized": false,
+    "redistribution_authorized": false,
+    "empirical_work_authorized": false,
+    "publication_authorized": false,
+    "push_authorized": false,
+    "pull_request_authorized": false
+  },
+  "claims_boundary": "conditional_internal_scope_recommendations_only_not_legal_advice_approval_or_payload_authority"
+}

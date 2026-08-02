@@ -8,4 +8,5 @@
 - [Phase 4 External Action Pack](../../../research_validation/phase_4_external_action_pack.md)
 - [Phase 4 Decision Receipt Template](../../../research_validation/phase_4_decision_receipt.template.json)
 - [Phase 4 G1 Route Review](../../../research_validation/phase_4_g1_route_review.json)
+- [Phase 4 G1 Internal Scope Review](../../../research_validation/phase_4_g1_internal_scope_review.json)
 - [Metadata](./metadata.json)

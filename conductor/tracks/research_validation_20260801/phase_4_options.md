@@ -128,6 +128,15 @@ bounded-use decisions rather than speculative permission requests. No message
 was sent because the connected mailbox identity and repository author identity
 do not establish an authorized sender name, institution, and reply address.
 
+Conditional internal scope recommendations for Mondo, WHO ICF, Uberon, and
+PATO are recorded in
+`research_validation/phase_4_g1_internal_scope_review.json`. The Creative
+Commons attribution sources are restricted to version-pinned contextual or
+structural roles with attribution and lineage controls. WHO ICF is restricted
+to unchanged, cited reference use; adaptation, modified-material distribution,
+and lexical voting remain prohibited or deferred. This governance summary is
+not legal advice, licence acceptance, payload authority, or a closed G1 gate.
+
 ## Gate sequence
 
 | Gate | Required evidence | If the gate does not close |

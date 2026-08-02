@@ -9,6 +9,7 @@ from scripts.validate_research_validation import (
     load_json,
     phase_4_candidate_matrix_errors,
     phase_4_decision_receipt_template_errors,
+    phase_4_g1_internal_scope_review_errors,
     phase_4_g1_route_review_errors,
     phase_4_gate_docket_errors,
     reviewer_workload_budget_errors,
@@ -129,6 +130,31 @@ class ValidateResearchValidationTests(unittest.TestCase):
         self.assertIn(
             "G1 route review must cover each authorized source exactly once",
             phase_4_g1_route_review_errors(review),
+        )
+
+    def test_internal_scope_review_rejects_payload_authority(self) -> None:
+        review = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_g1_internal_scope_review.json")
+        review["source_reviews"][0]["payload_retrieval_allowed"] = True
+        self.assertIn(
+            "internal scope recommendations must not record payload authority or a human licence decision",
+            phase_4_g1_internal_scope_review_errors(review),
+        )
+
+    def test_internal_scope_review_rejects_closed_gate(self) -> None:
+        review = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_g1_internal_scope_review.json")
+        review["program_decision"]["source_licence_gate_closed"] = True
+        self.assertIn(
+            "internal recommendations must leave the source licence gate open",
+            phase_4_g1_internal_scope_review_errors(review),
+        )
+
+    def test_internal_scope_review_preserves_who_no_derivatives(self) -> None:
+        review = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_g1_internal_scope_review.json")
+        who = next(item for item in review["source_reviews"] if item["source_id"] == "who-icf")
+        who["prohibited_or_deferred_roles"].remove("adaptation_of_codes")
+        self.assertIn(
+            "WHO ICF review must prohibit code adaptation and modified-material distribution",
+            phase_4_g1_internal_scope_review_errors(review),
         )
 
     def test_every_schema_rejects_its_expected_failure(self) -> None:

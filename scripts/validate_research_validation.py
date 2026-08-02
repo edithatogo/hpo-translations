@@ -66,6 +66,7 @@ EXPECTED_PHASE_4_GATE_PACKET_IDS = {
     "g2-ethics-privacy",
 }
 EXPECTED_PHASE_4_G1_ROUTE_SOURCE_IDS = {"pro-ctcae", "decs", "mondo", "who-icf", "uberon", "pato"}
+EXPECTED_PHASE_4_INTERNAL_SCOPE_SOURCE_IDS = {"mondo", "who-icf", "uberon", "pato"}
 
 
 @dataclass(frozen=True)
@@ -683,6 +684,50 @@ def phase_4_g1_route_review_errors(instance: Any) -> list[str]:
     return errors
 
 
+def phase_4_g1_internal_scope_review_errors(instance: Any) -> list[str]:
+    if not isinstance(instance, dict):
+        return ["Phase 4 G1 internal scope review must be a JSON object"]
+    errors: list[str] = []
+    reviews = instance.get("source_reviews", [])
+    if not isinstance(reviews, list):
+        return ["Phase 4 G1 internal source reviews must be a list"]
+    source_ids = {
+        review.get("source_id")
+        for review in reviews
+        if isinstance(review, dict) and isinstance(review.get("source_id"), str)
+    }
+    if source_ids != EXPECTED_PHASE_4_INTERNAL_SCOPE_SOURCE_IDS or len(reviews) != len(source_ids):
+        errors.append("internal scope review must cover Mondo, WHO ICF, Uberon, and PATO exactly once")
+    for review in reviews:
+        if not isinstance(review, dict):
+            errors.append("each internal source review must be an object")
+            continue
+        if (
+            review.get("payload_retrieval_allowed") is not False
+            or review.get("human_license_decision_recorded") is not False
+        ):
+            errors.append(
+                "internal scope recommendations must not record payload authority or a human licence decision"
+            )
+        if not review.get("required_controls") or not review.get("prohibited_or_deferred_roles"):
+            errors.append("each internal source review requires controls and prohibited or deferred roles")
+        if review.get("source_id") == "who-icf":
+            prohibited = set(review.get("prohibited_or_deferred_roles", []))
+            if not {"adaptation_of_codes", "distribution_of_modified_material"}.issubset(prohibited):
+                errors.append("WHO ICF review must prohibit code adaptation and modified-material distribution")
+    program_decision = instance.get("program_decision", {})
+    if not isinstance(program_decision, dict) or program_decision.get("source_licence_gate_closed") is not False:
+        errors.append("internal recommendations must leave the source licence gate open")
+    authorization = instance.get("authorization_boundary", {})
+    if (
+        not isinstance(authorization, dict)
+        or not authorization
+        or any(value is not False for value in authorization.values())
+    ):
+        errors.append("all internal scope authorization fields must remain false")
+    return errors
+
+
 def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[ValidationIssue]:
     issues: list[ValidationIssue] = []
     schema_dir = research_root / "schemas"
@@ -919,6 +964,22 @@ def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[Valid
         g1_route_review = load_json(g1_route_review_path)
         for message in phase_4_g1_route_review_errors(g1_route_review):
             issues.append(ValidationIssue("phase_4_g1_route_review.invalid", str(g1_route_review_path), message))
+
+    internal_scope_path = research_root / "phase_4_g1_internal_scope_review.json"
+    if not internal_scope_path.exists():
+        issues.append(
+            ValidationIssue(
+                "phase_4_g1_internal_scope_review.missing",
+                str(internal_scope_path),
+                "G1 internal scope review is required",
+            )
+        )
+    else:
+        internal_scope = load_json(internal_scope_path)
+        for message in phase_4_g1_internal_scope_review_errors(internal_scope):
+            issues.append(
+                ValidationIssue("phase_4_g1_internal_scope_review.invalid", str(internal_scope_path), message)
+            )
 
     probe_path = passing_dir / "translation_evaluation_item.json"
     if probe_path.exists():
