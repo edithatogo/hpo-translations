@@ -1,0 +1,21 @@
+{
+  "manifest_version": "approval-manifest-v1",
+  "track_id": "research_validation_20260801",
+  "state": "stage0_synthetic_only",
+  "recommendation": "run only payload-free synthetic rehearsal until every required Stage 1 gate is explicitly approved",
+  "gates": [
+    {"gate":"language_working_group","decision":"pending","scope":null,"conditions":[],"expiry":null,"promotion_allowed":false},
+    {"gate":"domain_reviewer","decision":"pending","scope":null,"conditions":[],"expiry":null,"promotion_allowed":false},
+    {"gate":"community_authority","decision":"pending","scope":null,"conditions":[],"expiry":null,"promotion_allowed":false},
+    {"gate":"ethics_privacy","decision":"pending","scope":null,"conditions":[],"expiry":null,"promotion_allowed":false},
+    {"gate":"source_licence","decision":"pending","scope":null,"conditions":[],"expiry":null,"promotion_allowed":false},
+    {"gate":"reviewer_conflict_adjudication","decision":"pending","scope":null,"conditions":[],"expiry":null,"promotion_allowed":false}
+  ],
+  "decision_enum": ["pending","approved","conditional","rejected","expired"],
+  "panel_role": "subagent panel prepares evidence packs, checks conflicts, and recommends; it cannot approve rights, ethics, community use, or promotion",
+  "required_evidence": ["approval_id","authority_role","approver_pseudonym","evidence_uris","evidence_hashes","decision_date","scope","conditions","linked_language_ids","linked_source_ids","recheck_date","withdrawal_or_incident_contact"],
+  "reviewer_controls": {"pseudonymous_ids":true,"qualifications_local_only":true,"coi_disclosure_local_only":true,"independent_adjudicator_required":true,"adjudicator_not_candidate_generator":true,"raw_identities_not_committed":true},
+  "privacy_controls": {"identifiable_clinical_text":false,"restricted_payloads_local_only":true,"encrypted_cache_required":true,"retention_and_deletion_receipt_required":true,"incident_stop_criteria_required":true},
+  "promotion_allowed": false,
+  "reopen_or_advance_only_on": "all required gates approved or explicitly conditional with bounded scope and expiry"
+}
