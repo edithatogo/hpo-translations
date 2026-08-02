@@ -2,7 +2,7 @@
   "schema_version": "stage-0-receipt-v1",
   "run_id": "run-stage-0-synthetic-rehearsal",
   "generated_at": "2026-08-02T00:00:00Z",
-  "rehearsal_sha256": "730404515b6de21c3d4758a1d8d501b57c9dd890bac14295a63f89f81c13c267",
+  "rehearsal_sha256": "7886a22d41c44c470318f88d33e2b4d00ca4c8613cb723d75b2e26826ff7dcac",
   "manifest_sha256": "81c9cc9d69f0cd20d05efc65d6523f0abfcecea13434101f0ef751448629221b",
   "export_sha256": {
     "adjudications": "b6aa0c8957dfbfc866a1984b1f9333d4cf527696b93e02b91d1b17969dc734b9",
@@ -27,7 +27,7 @@
     "sampling_strata_exercised": true,
     "randomization_reproducible": true,
     "randomization_applied": true,
-    "blinding": true,
+    "artifact_level_blinding": true,
     "export_round_trip": true,
     "adjudication_exercised": true,
     "redaction": true,

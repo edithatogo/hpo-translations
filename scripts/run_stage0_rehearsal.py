@@ -23,15 +23,15 @@ EXPECTED_METHOD_CODES = {
     "synthetic-ontology-template",
     "synthetic-reference-template",
 }
-EXPECTED_SCENARIO_ACTIONS = {
-    "full-feasibility-success": "go",
-    "two-reviewers-with-adjudicator": "revise",
-    "one-reviewer-only": "stop",
-    "review-completion-80-percent": "revise",
-    "technical-invalidity-15-percent": "revise",
-    "technical-invalidity-25-percent": "stop",
-    "permission-revoked": "stop",
-    "material-governance-incident": "stop",
+EXPECTED_SCENARIO_IDS = {
+    "full-feasibility-success",
+    "two-reviewers-with-adjudicator",
+    "one-reviewer-only",
+    "review-completion-80-percent",
+    "technical-invalidity-15-percent",
+    "technical-invalidity-25-percent",
+    "permission-revoked",
+    "material-governance-incident",
 }
 DECISION_PATTERNS = (
     ("accept", "accept", "reject"),
@@ -185,6 +185,34 @@ def sampling_strata_are_exercised(plan: dict[str, Any]) -> bool:
     return required_branches <= recorded_strata and required_object_types <= recorded_object_types
 
 
+def progression_action(scenario: dict[str, Any]) -> str:
+    if (
+        not scenario["permissions_approved"]
+        or int(scenario["reviewer_count"]) < 2
+        or float(scenario["technical_invalidity_percent"]) > 20
+        or not scenario["blinding_viable"]
+        or scenario["material_governance_incident"]
+        or not scenario["measurement_usable"]
+    ):
+        return "stop"
+    if (
+        int(scenario["reviewer_count"]) >= 3
+        and float(scenario["review_completion_percent"]) >= 90
+        and float(scenario["adjudication_completion_percent"]) >= 90
+        and float(scenario["technical_invalidity_percent"]) < 10
+    ):
+        return "go"
+    if (
+        int(scenario["reviewer_count"]) >= 2
+        and scenario["independent_adjudicator_available"]
+        and float(scenario["review_completion_percent"]) >= 70
+        and float(scenario["adjudication_completion_percent"]) >= 70
+        and float(scenario["technical_invalidity_percent"]) <= 20
+    ):
+        return "revise"
+    return "stop"
+
+
 def export_round_trip(artifacts: dict[str, Any]) -> dict[str, str]:
     hashes: dict[str, str] = {}
     with TemporaryDirectory(prefix="hpo-stage0-") as directory:
@@ -210,11 +238,8 @@ def build_receipt(stage0_root: Path = DEFAULT_STAGE0_ROOT) -> dict[str, Any]:
     decisions = build_decisions(assignments, packet)
     adjudications = build_adjudications(decisions)
     scenarios = [
-        {
-            "scenario_id": scenario_id,
-            "action": action,
-        }
-        for scenario_id, action in sorted(EXPECTED_SCENARIO_ACTIONS.items())
+        {"scenario_id": scenario["scenario_id"], "action": progression_action(scenario)}
+        for scenario in sorted(plan["stop_condition_scenarios"], key=lambda value: value["scenario_id"])
     ]
     artifact_hashes = export_round_trip(
         {
@@ -225,7 +250,7 @@ def build_receipt(stage0_root: Path = DEFAULT_STAGE0_ROOT) -> dict[str, Any]:
             "stop_condition_results": scenarios,
         }
     )
-    action_counts = Counter(EXPECTED_SCENARIO_ACTIONS.values())
+    action_counts = Counter(scenario["action"] for scenario in scenarios)
     adjudication_counts = Counter(record["status"] for record in adjudications)
     return {
         "schema_version": "stage-0-receipt-v1",
@@ -250,7 +275,7 @@ def build_receipt(stage0_root: Path = DEFAULT_STAGE0_ROOT) -> dict[str, Any]:
             "sampling_strata_exercised": sampling_strata_are_exercised(plan),
             "randomization_reproducible": packet == build_review_packet(plan),
             "randomization_applied": randomization_was_applied(plan, packet),
-            "blinding": public_packet_is_blinded(packet),
+            "artifact_level_blinding": public_packet_is_blinded(packet),
             "export_round_trip": len(artifact_hashes) == 5,
             "adjudication_exercised": adjudication_counts["adjudicated"] > 0,
             "redaction": public_packet_is_redacted(packet),
@@ -308,16 +333,20 @@ def validate_plan_semantics(plan: dict[str, Any], path: Path) -> list[Stage0Issu
             )
 
     recorded_scenarios = {
-        scenario.get("scenario_id"): scenario.get("expected_action")
+        str(scenario.get("scenario_id")): scenario
         for scenario in plan.get("stop_condition_scenarios", [])
         if isinstance(scenario, dict)
     }
-    if recorded_scenarios != EXPECTED_SCENARIO_ACTIONS:
+    scenario_ids_match = set(recorded_scenarios) == EXPECTED_SCENARIO_IDS
+    actions_match = scenario_ids_match and all(
+        progression_action(scenario) == scenario.get("expected_action") for scenario in recorded_scenarios.values()
+    )
+    if not actions_match:
         issues.append(
             Stage0Issue(
                 "stop_conditions.mismatch",
                 str(path),
-                "Stage 0 must exercise the canonical go, revise, and stop decisions",
+                "Stage 0 scenarios must calculate the canonical go, revise, and stop decisions",
             )
         )
     return issues

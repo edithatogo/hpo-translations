@@ -1,3 +1,4 @@
+import copy
 import json
 import shutil
 import unittest
@@ -11,6 +12,7 @@ from scripts.run_stage0_rehearsal import (
     build_receipt,
     build_review_packet,
     load_json,
+    progression_action,
     public_packet_is_blinded,
     public_packet_is_redacted,
     validate_stage0_artifacts,
@@ -65,6 +67,18 @@ class Stage0RehearsalTests(unittest.TestCase):
             path.write_text(json.dumps(plan), encoding="utf-8")
             codes = {issue.code for issue in validate_stage0_artifacts(root / "stage_0")}
             self.assertIn("stop_conditions.mismatch", codes)
+
+    def test_progression_threshold_boundaries(self) -> None:
+        plan = load_json(DEFAULT_STAGE0_ROOT / "rehearsal.json")
+        successful = copy.deepcopy(plan["stop_condition_scenarios"][0])
+        self.assertEqual(progression_action(successful), "go")
+        successful["review_completion_percent"] = 89.9
+        self.assertEqual(progression_action(successful), "revise")
+        successful["review_completion_percent"] = 95
+        successful["technical_invalidity_percent"] = 20
+        self.assertEqual(progression_action(successful), "revise")
+        successful["technical_invalidity_percent"] = 20.1
+        self.assertEqual(progression_action(successful), "stop")
 
     def test_stale_receipt_is_rejected(self) -> None:
         with self.mutated_research_root() as root:

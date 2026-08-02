@@ -109,9 +109,30 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["scenario_id", "expected_action"],
+        "required": [
+          "scenario_id",
+          "permissions_approved",
+          "reviewer_count",
+          "independent_adjudicator_available",
+          "review_completion_percent",
+          "adjudication_completion_percent",
+          "technical_invalidity_percent",
+          "blinding_viable",
+          "material_governance_incident",
+          "measurement_usable",
+          "expected_action"
+        ],
         "properties": {
           "scenario_id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+          "permissions_approved": {"type": "boolean"},
+          "reviewer_count": {"type": "integer", "minimum": 0},
+          "independent_adjudicator_available": {"type": "boolean"},
+          "review_completion_percent": {"type": "number", "minimum": 0, "maximum": 100},
+          "adjudication_completion_percent": {"type": "number", "minimum": 0, "maximum": 100},
+          "technical_invalidity_percent": {"type": "number", "minimum": 0, "maximum": 100},
+          "blinding_viable": {"type": "boolean"},
+          "material_governance_incident": {"type": "boolean"},
+          "measurement_usable": {"type": "boolean"},
           "expected_action": {"enum": ["go", "revise", "stop"]}
         }
       }
