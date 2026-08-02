@@ -8,6 +8,7 @@ from scripts.validate_research_validation import (
     DEFAULT_RESEARCH_ROOT,
     load_json,
     phase_4_candidate_matrix_errors,
+    phase_4_gate_docket_errors,
     reviewer_workload_budget_errors,
     schema_errors,
     semantic_errors,
@@ -49,6 +50,36 @@ class ValidateResearchValidationTests(unittest.TestCase):
         self.assertIn(
             "planning reviewer count must include primary reviewers and independent adjudicators",
             reviewer_workload_budget_errors(budget),
+        )
+
+    def test_gate_docket_rejects_authorization(self) -> None:
+        docket = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_gate_docket.json")
+        supplementary = load_json(DEFAULT_RESEARCH_ROOT / "supplementary_source_access_reviews.json")
+        approval = load_json(DEFAULT_RESEARCH_ROOT / "approval_manifest.json")
+        docket["authorization_boundary"]["external_contact_authorized"] = True
+        self.assertIn(
+            "all Phase 4 gate-docket authorization fields must remain false",
+            phase_4_gate_docket_errors(docket, supplementary, approval),
+        )
+
+    def test_gate_docket_rejects_tw(self) -> None:
+        docket = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_gate_docket.json")
+        supplementary = load_json(DEFAULT_RESEARCH_ROOT / "supplementary_source_access_reviews.json")
+        approval = load_json(DEFAULT_RESEARCH_ROOT / "approval_manifest.json")
+        docket["decision_packets"][0]["linked_language_ids"].append("tw")
+        self.assertIn(
+            "decision packet contains an unresolved or inactive language profile",
+            phase_4_gate_docket_errors(docket, supplementary, approval),
+        )
+
+    def test_gate_docket_rejects_unrecorded_approval(self) -> None:
+        docket = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_gate_docket.json")
+        supplementary = load_json(DEFAULT_RESEARCH_ROOT / "supplementary_source_access_reviews.json")
+        approval = load_json(DEFAULT_RESEARCH_ROOT / "approval_manifest.json")
+        docket["decision_packets"][0]["decision"] = "approved"
+        self.assertIn(
+            "decision packets must remain pending until evidence is recorded in the approval manifest",
+            phase_4_gate_docket_errors(docket, supplementary, approval),
         )
 
     def test_every_schema_rejects_its_expected_failure(self) -> None:

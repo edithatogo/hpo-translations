@@ -53,6 +53,18 @@ EXPECTED_BUDGET_AUTHORIZATION_FIELDS = {
     "push_authorized",
     "pull_request_authorized",
 }
+EXPECTED_PHASE_4_GATE_PACKET_IDS = {
+    "g1-pro-ctcae",
+    "g1-decs",
+    "g1-mondo",
+    "g1-who-icf",
+    "g1-structural-sources",
+    "g2-spanish-language",
+    "g2-japanese-language",
+    "g2-community-slot",
+    "g2-reviewer-roster",
+    "g2-ethics-privacy",
+}
 
 
 @dataclass(frozen=True)
@@ -539,6 +551,63 @@ def phase_4_candidate_matrix_errors(instance: Any, supplementary: Any) -> list[s
     return errors
 
 
+def phase_4_gate_docket_errors(instance: Any, supplementary: Any, approval_manifest: Any) -> list[str]:
+    if not all(isinstance(value, dict) for value in (instance, supplementary, approval_manifest)):
+        return ["Phase 4 gate docket inputs must be JSON objects"]
+
+    errors: list[str] = []
+    packets = instance.get("decision_packets", [])
+    if not isinstance(packets, list):
+        return ["Phase 4 decision packets must be a list"]
+    packet_ids = {
+        packet.get("packet_id")
+        for packet in packets
+        if isinstance(packet, dict) and isinstance(packet.get("packet_id"), str)
+    }
+    if packet_ids != EXPECTED_PHASE_4_GATE_PACKET_IDS or len(packets) != len(packet_ids):
+        errors.append("Phase 4 gate docket must contain each canonical decision packet exactly once")
+
+    source_ids = {
+        review.get("source_id")
+        for review in supplementary.get("reviews", [])
+        if isinstance(review, dict) and isinstance(review.get("source_id"), str)
+    }
+    active_profiles = set(supplementary.get("active_translation_profiles", []))
+    for packet in packets:
+        if not isinstance(packet, dict):
+            errors.append("each Phase 4 decision packet must be an object")
+            continue
+        if packet.get("decision") != "pending":
+            errors.append("decision packets must remain pending until evidence is recorded in the approval manifest")
+        linked_sources = set(packet.get("linked_source_ids", []))
+        if not linked_sources.issubset(source_ids):
+            errors.append(f"decision packet references unknown sources: {sorted(linked_sources - source_ids)}")
+        linked_languages = set(packet.get("linked_language_ids", []))
+        if "tw" in linked_languages or not linked_languages.issubset(active_profiles):
+            errors.append("decision packet contains an unresolved or inactive language profile")
+        if (
+            not packet.get("decision_owner_role")
+            or not packet.get("required_evidence")
+            or not packet.get("if_not_approved")
+        ):
+            errors.append("each decision packet requires an owner role, evidence list, and failure action")
+
+    manifest_decisions = {gate.get("decision") for gate in approval_manifest.get("gates", []) if isinstance(gate, dict)}
+    if manifest_decisions != {"pending"} or approval_manifest.get("promotion_allowed") is not False:
+        errors.append("gate docket is valid only while the canonical approval manifest remains pending and fail-closed")
+
+    authorization = instance.get("authorization_boundary", {})
+    if (
+        not isinstance(authorization, dict)
+        or not authorization
+        or any(value is not False for value in authorization.values())
+    ):
+        errors.append("all Phase 4 gate-docket authorization fields must remain false")
+    if instance.get("advance_rule", {}).get("automatic_advancement_allowed") is not False:
+        errors.append("Phase 4 gate decisions must never advance automatically")
+    return errors
+
+
 def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[ValidationIssue]:
     issues: list[ValidationIssue] = []
     schema_dir = research_root / "schemas"
@@ -713,6 +782,25 @@ def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[Valid
         supplementary = load_json(supplementary_path)
         for message in phase_4_candidate_matrix_errors(candidate_matrix, supplementary):
             issues.append(ValidationIssue("phase_4_candidate_matrix.invalid", str(candidate_matrix_path), message))
+
+    gate_docket_path = research_root / "phase_4_gate_docket.json"
+    approval_manifest_path = research_root / "approval_manifest.json"
+    if not gate_docket_path.exists():
+        issues.append(ValidationIssue("phase_4_gate_docket.missing", str(gate_docket_path), "gate docket is required"))
+    elif not supplementary_path.exists() or not approval_manifest_path.exists():
+        issues.append(
+            ValidationIssue(
+                "phase_4_gate_docket.canonical_input_missing",
+                str(gate_docket_path),
+                "gate docket requires supplementary reviews and the approval manifest",
+            )
+        )
+    else:
+        gate_docket = load_json(gate_docket_path)
+        supplementary = load_json(supplementary_path)
+        approval_manifest = load_json(approval_manifest_path)
+        for message in phase_4_gate_docket_errors(gate_docket, supplementary, approval_manifest):
+            issues.append(ValidationIssue("phase_4_gate_docket.invalid", str(gate_docket_path), message))
 
     probe_path = passing_dir / "translation_evaluation_item.json"
     if probe_path.exists():

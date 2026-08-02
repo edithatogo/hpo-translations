@@ -103,6 +103,14 @@ changing the 30-hour Stage 1 release cap or 120-hour total ceiling. Reviewer
 identities, qualifications, conflicts, consent, and capacity remain G2 evidence
 and must not be committed as personal data.
 
+The next-step evidence requests are specified in
+`research_validation/phase_4_gate_docket.json`. Five G1 packets cover
+PRO-CTCAE, DeCS, Mondo, WHO ICF, and language-neutral structural sources. Five G2
+packets cover Spanish authority, Japanese authority, the unassigned community
+slot, reviewer/adjudicator governance, and ethics/privacy. The docket prepares
+decisions but does not authorize external contact, permission requests,
+recruitment, data collection, payload retrieval, or automatic advancement.
+
 ## Gate sequence
 
 | Gate | Required evidence | If the gate does not close |
