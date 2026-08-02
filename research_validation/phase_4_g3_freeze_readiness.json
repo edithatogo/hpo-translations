@@ -40,6 +40,7 @@
     "aggregate_manifest_hash": null
   },
   "planning_inputs": [
+    "research_validation/phase_4_g3_component_inventory.json",
     "research_validation/protocol.md",
     "research_validation/phase_4_candidate_matrix.json",
     "research_validation/reviewer_workload_budget.json",

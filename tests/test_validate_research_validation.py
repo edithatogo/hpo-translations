@@ -11,6 +11,7 @@ from scripts.validate_research_validation import (
     phase_4_decision_receipt_template_errors,
     phase_4_g1_internal_scope_review_errors,
     phase_4_g1_route_review_errors,
+    phase_4_g3_component_inventory_errors,
     phase_4_g3_freeze_readiness_errors,
     phase_4_gate_docket_errors,
     reviewer_workload_budget_errors,
@@ -165,6 +166,30 @@ class ValidateResearchValidationTests(unittest.TestCase):
         self.assertIn(
             "G3 readiness must remain explicitly not frozen with no freeze identifier or timestamp",
             phase_4_g3_freeze_readiness_errors(readiness),
+        )
+
+    def test_g3_component_inventory_rejects_hash(self) -> None:
+        inventory = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_g3_component_inventory.json")
+        inventory["components"][0]["version_or_hash"] = "sha256:premature"
+        self.assertIn(
+            "G3 planning inventory must not contain versions or hashes",
+            phase_4_g3_component_inventory_errors(inventory),
+        )
+
+    def test_g3_component_inventory_rejects_missing_component(self) -> None:
+        inventory = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_g3_component_inventory.json")
+        inventory["components"].pop()
+        self.assertIn(
+            "G3 component inventory must cover every required component exactly once",
+            phase_4_g3_component_inventory_errors(inventory),
+        )
+
+    def test_g3_component_inventory_rejects_false_readiness(self) -> None:
+        inventory = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_g3_component_inventory.json")
+        inventory["components"][0]["readiness"] = "ready"
+        self.assertIn(
+            "G3 component inventory must not claim component freeze readiness",
+            phase_4_g3_component_inventory_errors(inventory),
         )
 
     def test_g3_readiness_rejects_premature_checksum(self) -> None:

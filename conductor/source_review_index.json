@@ -34,6 +34,7 @@
   "research_validation_approval_manifest": "research_validation/approval_manifest.json",
   "research_validation_freeze_governance": "research_validation/freeze_governance.json",
   "research_validation_g3_freeze_readiness": "research_validation/phase_4_g3_freeze_readiness.json",
+  "research_validation_g3_component_inventory": "research_validation/phase_4_g3_component_inventory.json",
   "promotion_governance": "conductor/promotion_governance.json",
   "prohibited_without_approval": ["source labels","synonyms","definitions","crosswalks","downstream promotion"]
 }

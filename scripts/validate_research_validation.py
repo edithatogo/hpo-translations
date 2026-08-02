@@ -744,6 +744,44 @@ EXPECTED_G3_COMPONENTS = {
 }
 
 
+def phase_4_g3_component_inventory_errors(instance: Any) -> list[str]:
+    if not isinstance(instance, dict):
+        return ["Phase 4 G3 component inventory must be a JSON object"]
+    errors: list[str] = []
+    if instance.get("status") != "planning_inventory_only_not_frozen":
+        errors.append("G3 component inventory must remain planning-only and not frozen")
+    components = instance.get("components", [])
+    component_ids = [item.get("component_id") for item in components if isinstance(item, dict)]
+    if set(component_ids) != EXPECTED_G3_COMPONENTS or len(component_ids) != len(EXPECTED_G3_COMPONENTS):
+        errors.append("G3 component inventory must cover every required component exactly once")
+    for component in components:
+        if not isinstance(component, dict):
+            errors.append("each G3 component inventory entry must be an object")
+            continue
+        if component.get("version_or_hash") is not None:
+            errors.append("G3 planning inventory must not contain versions or hashes")
+        if (
+            not component.get("planning_source")
+            or not component.get("freeze_artifact_path")
+            or not component.get("blocker")
+        ):
+            errors.append("each G3 component requires a planning source, intended freeze path, and blocker")
+        if component.get("readiness") in {"ready", "frozen", "checksummed"}:
+            errors.append("G3 component inventory must not claim component freeze readiness")
+    summary = instance.get("summary", {})
+    if summary != {
+        "component_count": len(EXPECTED_G3_COMPONENTS),
+        "frozen_component_count": 0,
+        "checksummed_component_count": 0,
+        "ready_for_freeze_count": 0,
+    }:
+        errors.append("G3 component inventory summary must record twelve components and zero readiness")
+    authorization = instance.get("authorization_boundary", {})
+    if not authorization or any(value is not False for value in authorization.values()):
+        errors.append("all G3 component inventory authorization fields must remain false")
+    return errors
+
+
 def phase_4_g3_freeze_readiness_errors(
     instance: Any, candidate_matrix: Any | None = None, approval_manifest: Any | None = None
 ) -> list[str]:
@@ -1084,6 +1122,32 @@ def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[Valid
                 ValidationIssue("phase_4_g1_internal_scope_review.invalid", str(internal_scope_path), message)
             )
 
+    g3_inventory_path = research_root / "phase_4_g3_component_inventory.json"
+    if not g3_inventory_path.exists():
+        issues.append(
+            ValidationIssue(
+                "phase_4_g3_component_inventory.missing",
+                str(g3_inventory_path),
+                "G3 component inventory is required",
+            )
+        )
+    else:
+        g3_inventory = load_json(g3_inventory_path)
+        for message in phase_4_g3_component_inventory_errors(g3_inventory):
+            issues.append(ValidationIssue("phase_4_g3_component_inventory.invalid", str(g3_inventory_path), message))
+        for component in g3_inventory.get("components", []):
+            if not isinstance(component, dict):
+                continue
+            planning_source = component.get("planning_source")
+            if isinstance(planning_source, str) and not (ROOT / planning_source).exists():
+                issues.append(
+                    ValidationIssue(
+                        "phase_4_g3_component_inventory.planning_source_missing",
+                        str(g3_inventory_path),
+                        f"planning source does not exist: {planning_source}",
+                    )
+                )
+
     g3_readiness_path = research_root / "phase_4_g3_freeze_readiness.json"
     if not g3_readiness_path.exists():
         issues.append(
@@ -1099,6 +1163,15 @@ def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[Valid
         approval_manifest = load_json(approval_manifest_path) if approval_manifest_path.exists() else None
         for message in phase_4_g3_freeze_readiness_errors(g3_readiness, candidate_matrix, approval_manifest):
             issues.append(ValidationIssue("phase_4_g3_freeze_readiness.invalid", str(g3_readiness_path), message))
+        for planning_input in g3_readiness.get("planning_inputs", []):
+            if isinstance(planning_input, str) and not (ROOT / planning_input).exists():
+                issues.append(
+                    ValidationIssue(
+                        "phase_4_g3_freeze_readiness.planning_input_missing",
+                        str(g3_readiness_path),
+                        f"planning input does not exist: {planning_input}",
+                    )
+                )
 
     probe_path = passing_dir / "translation_evaluation_item.json"
     if probe_path.exists():
