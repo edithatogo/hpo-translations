@@ -88,6 +88,28 @@ class ValidateResearchValidationTests(unittest.TestCase):
             phase_4_gate_docket_errors(docket, supplementary, approval),
         )
 
+    def test_gate_docket_rejects_recommendation_drift(self) -> None:
+        docket = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_gate_docket.json")
+        supplementary = load_json(DEFAULT_RESEARCH_ROOT / "supplementary_source_access_reviews.json")
+        approval = load_json(DEFAULT_RESEARCH_ROOT / "approval_manifest.json")
+        docket["blocker_resolution_plan"]["options"].reverse()
+        self.assertIn(
+            "Phase 4 blocker options must preserve the recommended B-to-A dual-lane order",
+            phase_4_gate_docket_errors(docket, supplementary, approval),
+        )
+
+    def test_gate_docket_rejects_subagent_approval_authority(self) -> None:
+        docket = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_gate_docket.json")
+        supplementary = load_json(DEFAULT_RESEARCH_ROOT / "supplementary_source_access_reviews.json")
+        approval = load_json(DEFAULT_RESEARCH_ROOT / "approval_manifest.json")
+        docket["blocker_resolution_plan"]["accountability_boundary"]["advisory_subagent_panel_must_not"].remove(
+            "authorize_payload_retrieval"
+        )
+        self.assertIn(
+            "advisory subagents must not receive accountable approval or payload authority",
+            phase_4_gate_docket_errors(docket, supplementary, approval),
+        )
+
     def test_decision_receipt_template_rejects_approval(self) -> None:
         receipt = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_decision_receipt.template.json")
         receipt["decision"] = "approved"

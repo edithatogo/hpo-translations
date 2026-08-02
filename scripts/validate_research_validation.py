@@ -558,6 +558,44 @@ def phase_4_gate_docket_errors(instance: Any, supplementary: Any, approval_manif
         return ["Phase 4 gate docket inputs must be JSON objects"]
 
     errors: list[str] = []
+    if instance.get("schema_version") != "phase-4-gate-docket-v2":
+        errors.append("Phase 4 gate docket must use the blocker-resolution v2 contract")
+
+    resolution_value = instance.get("blocker_resolution_plan", {})
+    resolution = resolution_value if isinstance(resolution_value, dict) else {}
+    options = resolution.get("options", [])
+    option_ids = [option.get("option_id") for option in options if isinstance(option, dict)]
+    expected_option_ids = [
+        "minimum_viable_option_b",
+        "full_target_option_a",
+        "single_language_option_c",
+        "option_d_synthetic_only",
+    ]
+    if option_ids != expected_option_ids or resolution.get("recommended_strategy") != (
+        "dual_lane_minimum_viable_option_b_then_expand_to_option_a_only_if_optional_gates_close_before_G3"
+    ):
+        errors.append("Phase 4 blocker options must preserve the recommended B-to-A dual-lane order")
+    if any(not option.get("fallback") for option in options if isinstance(option, dict)):
+        errors.append("every Phase 4 blocker option must define a fallback")
+
+    waves = resolution.get("resolution_waves", [])
+    wave_ids = [wave.get("wave_id") for wave in waves if isinstance(wave, dict)]
+    if wave_ids != [
+        "wave_1_minimum_source_scope",
+        "wave_2_ethics_privacy_and_language_scope",
+        "wave_3_reviewer_capacity",
+        "wave_4_optional_expansion",
+        "wave_5_reconcile_and_freeze",
+    ]:
+        errors.append("Phase 4 blocker resolution waves must preserve the fail-closed dependency order")
+
+    accountability = resolution.get("accountability_boundary", {})
+    prohibited_panel_actions = set(accountability.get("advisory_subagent_panel_must_not", []))
+    if not {"accept_licence_terms", "issue_ethics_or_privacy_determinations", "authorize_payload_retrieval"}.issubset(
+        prohibited_panel_actions
+    ):
+        errors.append("advisory subagents must not receive accountable approval or payload authority")
+
     packets = instance.get("decision_packets", [])
     if not isinstance(packets, list):
         return ["Phase 4 decision packets must be a list"]

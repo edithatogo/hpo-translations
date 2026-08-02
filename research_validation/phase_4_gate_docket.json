@@ -1,9 +1,98 @@
 {
-  "schema_version": "phase-4-gate-docket-v1",
+  "schema_version": "phase-4-gate-docket-v2",
   "track_id": "research_validation_20260801",
   "status": "decision_packets_prepared_all_external_decisions_pending",
   "current_route": "option_d_synthetic_only",
   "target_route": "option_a_staged_three_language_pilot",
+  "blocker_resolution_plan": {
+    "blocker": "stage_1_cannot_start_until_scoped_G1_source_and_G2_language_reviewer_ethics_privacy_decisions_are_recorded_with_evidence_and_G3_is_prospectively_frozen",
+    "recommended_strategy": "dual_lane_minimum_viable_option_b_then_expand_to_option_a_only_if_optional_gates_close_before_G3",
+    "rationale": [
+      "a_two_language_stage_1_preserves_multilingual_and_script_contrast_while_removing_the_unassigned_community_slot_from_the_critical_path",
+      "version_pinned_open_sources_can_be_considered_before_sources_that_require_external_permission_or_a_pre_license_process",
+      "ethics_privacy_language_authority_and_reviewer_independence_remain_non_substitutable_accountable_gates",
+      "a_single_prospective_G3_freeze_prevents_optional_late_approvals_from_changing_the_design_after_empirical_ingress"
+    ],
+    "options": [
+      {
+        "option_id": "minimum_viable_option_b",
+        "recommendation": "recommended",
+        "scope": "Spanish_and_Japanese_Stage_1_with_HPO_and_only_the_bounded_source_subset_explicitly_approved_before_G3",
+        "critical_path_packets": ["g1-mondo", "g1-who-icf", "g1-structural-sources", "g2-spanish-language", "g2-japanese-language", "g2-reviewer-roster", "g2-ethics-privacy"],
+        "deferred_packets": ["g1-pro-ctcae", "g1-decs", "g2-community-slot"],
+        "benefit": "fastest_route_that_retains_a_multilingual_script_contrast_and_stage_1_measurement_value",
+        "tradeoff": "no_community_governed_language_patient_facing_PRO_CTCAE_or_DeCS_claim",
+        "fallback": "step_down_to_option_c_for_the_first_fully_approved_language_or_option_d_if_no_language_is_fully_approved"
+      },
+      {
+        "option_id": "full_target_option_a",
+        "recommendation": "expansion_lane",
+        "scope": "three_approved_languages_and_all_source_conditions_authorized_for_the_frozen_design",
+        "critical_path_packets": ["g1-pro-ctcae", "g1-decs", "g1-mondo", "g1-who-icf", "g1-structural-sources", "g2-spanish-language", "g2-japanese-language", "g2-community-slot", "g2-reviewer-roster", "g2-ethics-privacy"],
+        "deferred_packets": [],
+        "benefit": "best_alignment_with_the_selected_three_language_target",
+        "tradeoff": "slowest_and_highest_coordination_route_with_external_permission_and_community_authority_dependencies",
+        "fallback": "minimum_viable_option_b"
+      },
+      {
+        "option_id": "single_language_option_c",
+        "recommendation": "measurement_fallback",
+        "scope": "the_first_fully_approved_language_with_a_bounded_approved_source_subset",
+        "critical_path_packets": ["g2-reviewer-roster", "g2-ethics-privacy"],
+        "deferred_packets": ["g1-pro-ctcae", "g1-decs", "g2-community-slot"],
+        "benefit": "retains_instrument_reliability_and_workload_measurement",
+        "tradeoff": "cannot_support_cross_language_or_multilingual_feasibility_claims",
+        "fallback": "option_d_synthetic_only"
+      },
+      {
+        "option_id": "option_d_synthetic_only",
+        "recommendation": "fail_closed_fallback",
+        "scope": "retain_the_completed_payload_free_rehearsal_and_do_not_start_empirical_ingress",
+        "critical_path_packets": [],
+        "deferred_packets": ["g1-pro-ctcae", "g1-decs", "g1-mondo", "g1-who-icf", "g1-structural-sources", "g2-spanish-language", "g2-japanese-language", "g2-community-slot", "g2-reviewer-roster", "g2-ethics-privacy"],
+        "benefit": "requires_no_new_payload_reviewer_or_external_authority",
+        "tradeoff": "supports_operational_readiness_only",
+        "fallback": "none"
+      }
+    ],
+    "resolution_waves": [
+      {
+        "wave_id": "wave_1_minimum_source_scope",
+        "action": "record_scoped_internal_decisions_for_Mondo_WHO_ICF_Uberon_and_PATO_or_omit_each_unapproved_source",
+        "exit_evidence": "source_licence_receipts_with_version_scope_conditions_and_recheck_dates",
+        "contingency": "use_HPO_only_or_the_remaining_approved_subset_without_replacing_an_omitted_source_with_a_mirror"
+      },
+      {
+        "wave_id": "wave_2_ethics_privacy_and_language_scope",
+        "action": "obtain_the_formal_ethics_privacy_determination_and_separate_Spanish_and_Japanese_scope_decisions_after_contact_is_authorized",
+        "exit_evidence": "bounded_G2_receipts_and_a_local_only_retention_consent_withdrawal_and_incident_plan",
+        "contingency": "remove_an_unapproved_language_and_recalculate_the_route_C_or_D"
+      },
+      {
+        "wave_id": "wave_3_reviewer_capacity",
+        "action": "authorize_recruitment_then_record_a_pseudonymous_independent_reviewer_and_adjudicator_roster_in_the_local_only_evidence_store",
+        "exit_evidence": "qualification_capacity_consent_conflict_and_independence_receipts",
+        "contingency": "use_the_two_reviewer_plus_independent_adjudicator_revise_branch_or_step_down_C_or_D"
+      },
+      {
+        "wave_id": "wave_4_optional_expansion",
+        "action": "if_option_A_remains_desirable_supply_an_authorized_sender_identity_for_PRO_CTCAE_and_DeCS_and_seek_a_community_selected_third_language",
+        "exit_evidence": "written_source_permissions_and_a_bounded_community_authority_receipt",
+        "contingency": "freeze_option_B_without_these_conditions_and_make_no_claim_about_them"
+      },
+      {
+        "wave_id": "wave_5_reconcile_and_freeze",
+        "action": "reconcile_packet_receipts_into_the_canonical_approval_manifest_select_the_route_and_execute_one_checksummed_G3_freeze",
+        "exit_evidence": "no_pending_required_gate_for_the_selected_route_and_an_immutable_G3_receipt",
+        "contingency": "do_not_start_Stage_1_and_remain_at_the_highest_fully_authorized_fallback"
+      }
+    ],
+    "accountability_boundary": {
+      "advisory_subagent_panel_may": ["review_public_evidence", "identify_conflicts", "draft_scoped_options", "check_receipt_completeness"],
+      "advisory_subagent_panel_must_not": ["accept_licence_terms", "grant_community_or_language_authority", "issue_ethics_or_privacy_determinations", "consent_for_reviewers", "authorize_payload_retrieval", "promote_translations"],
+      "decision_receipts_must_be_bound_to": ["accountable_authority_role", "scope", "evidence_hash_or_payload_safe_URI", "conditions", "decision_date", "expiry_or_recheck_date"]
+    }
+  },
   "decision_packets": [
     {
       "packet_id": "g1-pro-ctcae",

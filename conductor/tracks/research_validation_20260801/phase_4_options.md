@@ -137,6 +137,47 @@ to unchanged, cited reference use; adaptation, modified-material distribution,
 and lexical voting remain prohibited or deferred. This governance summary is
 not legal advice, licence acceptance, payload authority, or a closed G1 gate.
 
+## Blocker-resolution recommendation
+
+The canonical blocker-resolution plan is embedded in
+`research_validation/phase_4_gate_docket.json`. The recommended strategy is a
+dual lane:
+
+1. make Option B the minimum viable Stage 1 route using Spanish, Japanese, HPO,
+   and only the smallest version-pinned source subset that receives bounded,
+   accountable approval before G3; and
+2. keep Option A as the expansion lane only if PRO-CTCAE, DeCS, a
+   community-selected third language, and their remaining gates close before
+   the same prospective freeze.
+
+This does not reverse the G0 selection of Option A as the target. It removes
+optional external-permission and community-selection dependencies from the
+critical path while preserving a multilingual Latin-script versus Japanese
+script/typology contrast. It also avoids generating a second freeze or adding
+conditions after empirical ingress.
+
+The ordered resolution waves are:
+
+1. record scoped licence decisions for Mondo, WHO ICF, Uberon, and PATO, omitting
+   any source that is not approved;
+2. obtain the ethics/privacy determination and separate Spanish and Japanese
+   language-scope decisions;
+3. authorize recruitment and record the pseudonymous reviewer/adjudicator
+   capacity, consent, conflict, and independence evidence in the local-only
+   store;
+4. pursue PRO-CTCAE, DeCS, and a community-governed third language only as the
+   optional Option A expansion lane; and
+5. reconcile evidence into the canonical approval manifest and execute one
+   immutable G3 freeze before Stage 1.
+
+If two languages do not close, step down to Option C for the first fully
+approved language. If no language, reviewer roster, or ethics/privacy pathway
+closes, retain Option D. An advisory subagent panel may review public evidence,
+identify conflicts, draft scoped options, and check receipt completeness. It
+cannot accept licence terms, grant language or community authority, issue an
+ethics/privacy determination, consent for reviewers, authorize payload access,
+or promote translations.
+
 ## Gate sequence
 
 | Gate | Required evidence | If the gate does not close |
