@@ -11,7 +11,7 @@
     {"track":"loinc_integration_20260623","file":"conductor/tracks/loinc_integration_20260623/maintainer_review_handoff.json","status":"awaiting_account_and_licence_review"},
     {"track":"mesh_integration_20260623","file":"conductor/tracks/mesh_integration_20260623/maintainer_review_handoff.json","status":"approved_bounded_metadata_only_sample; terms_scope_pending"},
     {"track":"orphanet_integration_20260623","file":"conductor/tracks/orphanet_integration_20260623/maintainer_review_handoff.json","status":"approved_science_product_metadata_only; product_scope_pending"},
-    {"track":"lddb_integration_20260623","file":"conductor/tracks/lddb_integration_20260623/maintainer_review_handoff.json","status":"no_go_investigation_only"}
+    {"track":"lddb_integration_20260623","file":"conductor/tracks/lddb_integration_20260623/maintainer_review_handoff.json","status":"closed_no_go"}
   ],
   "decision_options": {
     "recommended": "Approve metadata-only bounded probes with local-only cache, explicit attribution, source/version pins, and no term redistribution or promotion.",

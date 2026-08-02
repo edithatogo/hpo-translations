@@ -1,6 +1,8 @@
 {
   "track_id": "lddb_integration_20260623",
-  "status": "no_go_investigation_only",
+  "status": "closed_no_go",
+  "closure_reason": "bounded diligent search found only historical/commercial references; no current maintained authority, release, API, or redistribution licence was located",
+  "reopen_trigger": "written rights-holder confirmation of a current maintained release and redistribution scope",
   "decision_states": ["investigation_only", "candidate_authority_pending", "rights_holder_confirmation_pending", "approved_metadata_only", "approved_redistribution", "closed_no_go", "expired"],
   "recommendation": "close as closed_no_go after the bounded diligent search unless a current rights-holder and written licence emerge",
   "options": {
