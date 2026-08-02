@@ -9,6 +9,7 @@ from scripts.validate_research_validation import (
     load_json,
     phase_4_candidate_matrix_errors,
     phase_4_decision_receipt_template_errors,
+    phase_4_g1_route_review_errors,
     phase_4_gate_docket_errors,
     reviewer_workload_budget_errors,
     schema_errors,
@@ -105,6 +106,29 @@ class ValidateResearchValidationTests(unittest.TestCase):
         self.assertIn(
             "decision receipt template must not authorize downstream actions",
             phase_4_decision_receipt_template_errors(receipt),
+        )
+
+    def test_g1_route_review_rejects_false_dispatch(self) -> None:
+        review = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_g1_route_review.json")
+        review["dispatch_completed_count"] = 1
+        self.assertIn(
+            "G1 route review must record zero completed dispatches",
+            phase_4_g1_route_review_errors(review),
+        )
+
+    def test_g1_route_review_rejects_payload_authority(self) -> None:
+        review = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_g1_route_review.json")
+        review["authorization_boundary"]["source_payload_retrieval_authorized"] = True
+        self.assertTrue(
+            any("prohibited downstream authority" in error for error in phase_4_g1_route_review_errors(review))
+        )
+
+    def test_g1_route_review_rejects_missing_source(self) -> None:
+        review = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_g1_route_review.json")
+        review["routes"].pop()
+        self.assertIn(
+            "G1 route review must cover each authorized source exactly once",
+            phase_4_g1_route_review_errors(review),
         )
 
     def test_every_schema_rejects_its_expected_failure(self) -> None:

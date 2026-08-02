@@ -119,6 +119,15 @@ decision structure is maintained in
 records an approval or authorizes sending, recruitment, data collection, or
 empirical work.
 
+The current official licence and submission-route review is recorded in
+`research_validation/phase_4_g1_route_review.json`. It narrows potential
+external enquiries to PRO-CTCAE and DeCS. Mondo, Uberon, and PATO publish
+Creative Commons licences, while WHO ICF permits appropriately cited,
+non-adapted use under CC BY-ND 3.0 IGO; these four therefore require internal
+bounded-use decisions rather than speculative permission requests. No message
+was sent because the connected mailbox identity and repository author identity
+do not establish an authorized sender name, institution, and reply address.
+
 ## Gate sequence
 
 | Gate | Required evidence | If the gate does not close |

@@ -65,6 +65,7 @@ EXPECTED_PHASE_4_GATE_PACKET_IDS = {
     "g2-reviewer-roster",
     "g2-ethics-privacy",
 }
+EXPECTED_PHASE_4_G1_ROUTE_SOURCE_IDS = {"pro-ctcae", "decs", "mondo", "who-icf", "uberon", "pato"}
 
 
 @dataclass(frozen=True)
@@ -641,6 +642,47 @@ def phase_4_decision_receipt_template_errors(instance: Any) -> list[str]:
     return errors
 
 
+def phase_4_g1_route_review_errors(instance: Any) -> list[str]:
+    if not isinstance(instance, dict):
+        return ["Phase 4 G1 route review must be a JSON object"]
+    errors: list[str] = []
+    routes = instance.get("routes", [])
+    if not isinstance(routes, list):
+        return ["Phase 4 G1 routes must be a list"]
+    route_ids = {
+        route.get("source_id")
+        for route in routes
+        if isinstance(route, dict) and isinstance(route.get("source_id"), str)
+    }
+    if route_ids != EXPECTED_PHASE_4_G1_ROUTE_SOURCE_IDS or len(routes) != len(route_ids):
+        errors.append("G1 route review must cover each authorized source exactly once")
+    for route in routes:
+        if not isinstance(route, dict):
+            errors.append("each G1 source route must be an object")
+            continue
+        if (
+            not route.get("official_evidence_urls")
+            or not route.get("license_finding")
+            or not route.get("dispatch_status")
+        ):
+            errors.append("each G1 source route requires official evidence, a licence finding, and dispatch status")
+        if not str(route.get("dispatch_status", "")).startswith(("blocked_", "not_sent_")):
+            errors.append("G1 route review cannot claim a dispatch without a send receipt")
+    if instance.get("dispatch_completed_count") != 0:
+        errors.append("G1 route review must record zero completed dispatches")
+    authorization = instance.get("authorization_boundary", {})
+    if not isinstance(authorization, dict) or authorization.get("g1_external_enquiry_scope_authorized") is not True:
+        errors.append("G1 enquiry scope authorization must be recorded")
+    prohibited_true = {
+        field
+        for field, value in authorization.items()
+        if field != "g1_external_enquiry_scope_authorized" and value is not False
+    }
+    if prohibited_true:
+        errors.append(f"G1 route review grants prohibited downstream authority: {sorted(prohibited_true)}")
+    return errors
+
+
 def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[ValidationIssue]:
     issues: list[ValidationIssue] = []
     schema_dir = research_root / "schemas"
@@ -867,6 +909,16 @@ def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[Valid
         receipt_template = load_json(receipt_template_path)
         for message in phase_4_decision_receipt_template_errors(receipt_template):
             issues.append(ValidationIssue("phase_4_decision_receipt.invalid", str(receipt_template_path), message))
+
+    g1_route_review_path = research_root / "phase_4_g1_route_review.json"
+    if not g1_route_review_path.exists():
+        issues.append(
+            ValidationIssue("phase_4_g1_route_review.missing", str(g1_route_review_path), "G1 route review is required")
+        )
+    else:
+        g1_route_review = load_json(g1_route_review_path)
+        for message in phase_4_g1_route_review_errors(g1_route_review):
+            issues.append(ValidationIssue("phase_4_g1_route_review.invalid", str(g1_route_review_path), message))
 
     probe_path = passing_dir / "translation_evaluation_item.json"
     if probe_path.exists():
