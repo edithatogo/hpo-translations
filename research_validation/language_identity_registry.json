@@ -1,5 +1,5 @@
 {
-  "generated_date": "2026-08-01",
+  "generated_date": "2026-08-02",
   "policy": {
     "authority_required_for_asset_rename": true,
     "standard": "BCP 47",
@@ -21,11 +21,18 @@
         }
       ],
       "current_asset_suffix": "tw",
-      "decision": null,
+      "authority_standard": "BCP 47/IANA language subtag registry",
+      "iana_registry_uri": "https://www.iana.org/assignments/language-subtag-registry",
+      "iana_registry_retrieved_at": "2026-08-02",
+      "candidate_iso6393": {"tw": "twi", "tiw": "Tiwi"},
+      "decision": "unresolved_blocked",
+      "compatibility_alias": "tw retained as opaque legacy suffix only",
+      "migration_plan": "if Tiwi confirmed, canonicalize to tiw with explicit alias mapping; if Twi confirmed, retain tw and correct metadata; never silently reinterpret",
+      "evidence_expiry": "12 months or standards/source change",
       "issue_id": "language-identity-tw-0001",
       "required_action": "Confirm the intended language and approve a compatibility and asset-migration plan before changing identifiers or translation content.",
-      "status": "authority_review_required"
+      "status": "authority_review_required",
+      "empirical_use": "excluded_from_overlap_counts_and_pilot_claims"
     }
   ]
 }
-
