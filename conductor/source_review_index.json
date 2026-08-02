@@ -32,5 +32,6 @@
   "restricted_access_governance": "conductor/source_access_governance.json",
   "language_authority_governance": {"issue_id":"language-identity-tw-0001","state":"unresolved_blocked","recommendation":"retain tw as opaque compatibility alias, exclude from empirical claims, and have the advisory subagent panel prepare evidence for accountable HPOIE/community confirmation before canonicalization","options":{"confirm_twi":"retain tw and correct metadata","confirm_tiwi":"migrate canonically to tiw with explicit alias and checksum mapping","no_decision":"keep excluded from pilot and overlap counts"},"panel_role":"subagent panel performs standards/provenance review and drafts recommendations; accountable language/community authority and maintainer must approve identity or migration"},
   "research_validation_approval_manifest": "research_validation/approval_manifest.json",
+  "research_validation_freeze_governance": "research_validation/freeze_governance.json",
   "prohibited_without_approval": ["source labels","synonyms","definitions","crosswalks","downstream promotion"]
 }
