@@ -111,6 +111,14 @@ slot, reviewer/adjudicator governance, and ethics/privacy. The docket prepares
 decisions but does not authorize external contact, permission requests,
 recruitment, data collection, payload retrieval, or automatic advancement.
 
+Unsent source-permission, language-consultation, reviewer-interest, and
+ethics/privacy drafts are maintained in
+`research_validation/phase_4_external_action_pack.md`. A blank, fail-closed
+decision structure is maintained in
+`research_validation/phase_4_decision_receipt.template.json`. Neither artifact
+records an approval or authorizes sending, recruitment, data collection, or
+empirical work.
+
 ## Gate sequence
 
 | Gate | Required evidence | If the gate does not close |

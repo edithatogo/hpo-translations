@@ -608,6 +608,39 @@ def phase_4_gate_docket_errors(instance: Any, supplementary: Any, approval_manif
     return errors
 
 
+def phase_4_decision_receipt_template_errors(instance: Any) -> list[str]:
+    if not isinstance(instance, dict):
+        return ["Phase 4 decision receipt template must be a JSON object"]
+    errors: list[str] = []
+    if instance.get("template_only") is not True or instance.get("decision") != "pending":
+        errors.append("decision receipt must remain an unexecuted pending template")
+    for field in (
+        "packet_id",
+        "approval_manifest_gate",
+        "authority_role",
+        "approver_pseudonym",
+        "decision_date",
+        "scope",
+        "recheck_date",
+        "withdrawal_or_incident_contact_reference",
+    ):
+        if instance.get(field) is not None:
+            errors.append(f"decision receipt template field {field} must remain null")
+    for field in ("conditions", "linked_language_ids", "linked_source_ids", "evidence_uris", "evidence_sha256"):
+        if instance.get(field) != []:
+            errors.append(f"decision receipt template field {field} must remain empty")
+    authorization_fields = (
+        "payload_retrieval_allowed",
+        "reviewer_contact_allowed",
+        "reviewer_data_collection_allowed",
+        "empirical_work_allowed",
+        "promotion_allowed",
+    )
+    if any(instance.get(field) is not False for field in authorization_fields):
+        errors.append("decision receipt template must not authorize downstream actions")
+    return errors
+
+
 def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[ValidationIssue]:
     issues: list[ValidationIssue] = []
     schema_dir = research_root / "schemas"
@@ -801,6 +834,39 @@ def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[Valid
         approval_manifest = load_json(approval_manifest_path)
         for message in phase_4_gate_docket_errors(gate_docket, supplementary, approval_manifest):
             issues.append(ValidationIssue("phase_4_gate_docket.invalid", str(gate_docket_path), message))
+
+    action_pack_path = research_root / "phase_4_external_action_pack.md"
+    if not action_pack_path.exists():
+        issues.append(ValidationIssue("phase_4_action_pack.missing", str(action_pack_path), "action pack is required"))
+    else:
+        action_pack = action_pack_path.read_text(encoding="utf-8")
+        required_boundaries = (
+            "drafts only — no external action authorized",
+            "no agent may advance the study automatically",
+            "Please do not send qualifications",
+            "No reviewer data collection will begin",
+        )
+        for boundary in required_boundaries:
+            if boundary not in action_pack:
+                issues.append(
+                    ValidationIssue(
+                        "phase_4_action_pack.boundary_missing",
+                        str(action_pack_path),
+                        f"required fail-closed boundary is missing: {boundary}",
+                    )
+                )
+
+    receipt_template_path = research_root / "phase_4_decision_receipt.template.json"
+    if not receipt_template_path.exists():
+        issues.append(
+            ValidationIssue(
+                "phase_4_decision_receipt.missing", str(receipt_template_path), "receipt template is required"
+            )
+        )
+    else:
+        receipt_template = load_json(receipt_template_path)
+        for message in phase_4_decision_receipt_template_errors(receipt_template):
+            issues.append(ValidationIssue("phase_4_decision_receipt.invalid", str(receipt_template_path), message))
 
     probe_path = passing_dir / "translation_evaluation_item.json"
     if probe_path.exists():

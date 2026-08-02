@@ -8,6 +8,7 @@ from scripts.validate_research_validation import (
     DEFAULT_RESEARCH_ROOT,
     load_json,
     phase_4_candidate_matrix_errors,
+    phase_4_decision_receipt_template_errors,
     phase_4_gate_docket_errors,
     reviewer_workload_budget_errors,
     schema_errors,
@@ -80,6 +81,30 @@ class ValidateResearchValidationTests(unittest.TestCase):
         self.assertIn(
             "decision packets must remain pending until evidence is recorded in the approval manifest",
             phase_4_gate_docket_errors(docket, supplementary, approval),
+        )
+
+    def test_decision_receipt_template_rejects_approval(self) -> None:
+        receipt = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_decision_receipt.template.json")
+        receipt["decision"] = "approved"
+        self.assertIn(
+            "decision receipt must remain an unexecuted pending template",
+            phase_4_decision_receipt_template_errors(receipt),
+        )
+
+    def test_decision_receipt_template_rejects_identity(self) -> None:
+        receipt = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_decision_receipt.template.json")
+        receipt["approver_pseudonym"] = "reviewer-001"
+        self.assertIn(
+            "decision receipt template field approver_pseudonym must remain null",
+            phase_4_decision_receipt_template_errors(receipt),
+        )
+
+    def test_decision_receipt_template_rejects_downstream_authority(self) -> None:
+        receipt = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_decision_receipt.template.json")
+        receipt["reviewer_contact_allowed"] = True
+        self.assertIn(
+            "decision receipt template must not authorize downstream actions",
+            phase_4_decision_receipt_template_errors(receipt),
         )
 
     def test_every_schema_rejects_its_expected_failure(self) -> None:
