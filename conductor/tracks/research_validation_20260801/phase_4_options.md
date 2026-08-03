@@ -15,6 +15,14 @@ adaptation, redistribution, or promotion. No reviewer roster is approved,
 external preregistration requires explicit maintainer approval, and no empirical
 pilot is active.
 
+Wave 2 route verification and request preparation are now complete. The official
+Spanish and Japanese project routes and the Flinders and ISLHD/NSW Health
+ethics/governance pathways are recorded in
+`research_validation/phase_4_wave_2_authority_routes.json`. The three decisions
+remain pending and no request has been sent. Dispatch is blocked until the
+accountable sponsoring-institution route, an off-repository authorized sender
+reference, and the language contact mode are selected.
+
 ### Decision receipt
 
 | Decision | State |
@@ -164,8 +172,9 @@ The ordered resolution waves are:
 
 1. **Complete:** record scoped licence decisions for Mondo, WHO ICF, Uberon, and
    PATO, omitting any source that is not approved;
-2. obtain the ethics/privacy determination and separate Spanish and Japanese
-   language-scope decisions;
+2. **In progress:** official ethics/privacy and Spanish/Japanese routes and
+   bounded request drafts are prepared; select the sponsor route, authorize
+   dispatch, then record the three separate accountable decisions;
 3. authorize recruitment and record the pseudonymous reviewer/adjudicator
    capacity, consent, conflict, and independence evidence in the local-only
    store;

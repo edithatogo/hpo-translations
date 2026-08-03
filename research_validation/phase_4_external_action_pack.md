@@ -16,8 +16,26 @@ source payloads, or evidence that any recipient has agreed.
 4. The response is preserved in an approved evidence store. Only a payload-safe
    URI, hash, pseudonymous authority record, scope, conditions, and date may be
    copied into the approval record.
-5. A human decision owner records the outcome. No response or silence is
+5. An accountable decision owner records the outcome. No response or silence is
    approval, and no agent may advance the study automatically.
+
+## Wave 2 verified routes and dispatch hold
+
+The canonical, machine-checkable route package is
+`research_validation/phase_4_wave_2_authority_routes.json`. The Spanish HPO
+working group is still being formed, so its official project issue route is a
+request for an authority decision, not evidence of one. The Japanese HPO page
+identifies a working-group and external repository route; it likewise supplies
+no approval until a bounded response is recorded.
+
+The ethics/privacy request cannot be bound to an institution from repository
+location or local Git identity. Use Flinders ResearchNow when Flinders is the
+accountable sponsor and no NSW Health site, data, staff, or resources are in
+scope. Use ISLHD pathway advice and REGIS when NSW Health or ISLHD sponsorship,
+sites, data, staff, or resources are in scope. For cross-institutional work,
+identify the lead HREC and obtain each required site or institutional governance
+authorization. Until the maintainer selects one route and supplies an authorized
+sender reference outside Git, all three requests remain unsent.
 
 ## Draft A — source permission or licence clarification
 

@@ -10,4 +10,5 @@
 - [Phase 4 G1 Route Review](../../../research_validation/phase_4_g1_route_review.json)
 - [Phase 4 G1 Internal Scope Review](../../../research_validation/phase_4_g1_internal_scope_review.json)
 - [Phase 4 Wave 1 Source Decisions](../../../research_validation/phase_4_wave_1_source_decisions.json)
+- [Phase 4 Wave 2 Authority Routes](../../../research_validation/phase_4_wave_2_authority_routes.json)
 - [Metadata](./metadata.json)

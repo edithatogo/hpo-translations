@@ -37,6 +37,7 @@
   "research_validation_g3_component_inventory": "research_validation/phase_4_g3_component_inventory.json",
   "research_validation_g3_freeze_receipt_template": "research_validation/phase_4_g3_freeze_receipt.template.json",
   "research_validation_wave_1_source_decisions": "research_validation/phase_4_wave_1_source_decisions.json",
+  "research_validation_wave_2_authority_routes": "research_validation/phase_4_wave_2_authority_routes.json",
   "promotion_governance": "conductor/promotion_governance.json",
   "prohibited_without_approval": ["source labels","synonyms","definitions","crosswalks","downstream promotion"]
 }

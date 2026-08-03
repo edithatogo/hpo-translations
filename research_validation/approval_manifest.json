@@ -2,12 +2,12 @@
   "manifest_version": "approval-manifest-v1",
   "track_id": "research_validation_20260801",
   "state": "stage0_synthetic_only",
-  "recommendation": "Wave 1 source scopes are conditionally recorded; remain payload-free and synthetic-only until G2, payload, and G3 gates close",
+  "recommendation": "Wave 2 authority routes and request drafts are prepared; select the sponsor route and remain payload-free and synthetic-only until accountable G2, payload, and G3 gates close",
   "gates": [
-    {"gate":"language_working_group","decision":"pending","scope":null,"conditions":[],"expiry":null,"promotion_allowed":false},
+    {"gate":"language_working_group","decision":"pending","scope":null,"conditions":[],"expiry":null,"request_ref":"research_validation/phase_4_wave_2_authority_routes.json","route_status":"Spanish_and_Japanese_official_routes_verified_dispatch_blocked","promotion_allowed":false},
     {"gate":"domain_reviewer","decision":"pending","scope":null,"conditions":[],"expiry":null,"promotion_allowed":false},
     {"gate":"community_authority","decision":"pending","scope":null,"conditions":[],"expiry":null,"promotion_allowed":false},
-    {"gate":"ethics_privacy","decision":"pending","scope":null,"conditions":[],"expiry":null,"promotion_allowed":false},
+    {"gate":"ethics_privacy","decision":"pending","scope":null,"conditions":[],"expiry":null,"request_ref":"research_validation/phase_4_wave_2_authority_routes.json","route_status":"Flinders_and_ISLHD_NSW_Health_routes_verified_sponsor_selection_required","promotion_allowed":false},
     {"gate":"source_licence","decision":"conditional","approval_id":"wave-1-source-scope-2026-08-03","authority_role":"hpo_translations_repository_maintainer","approver_pseudonym":"repository-maintainer","decision_date":"2026-08-03","scope":"Mondo v2026-07-06, WHO ICF 2026-01, Uberon v2026-06-23, and PATO v2025-05-14 for the bounded internal roles recorded in phase_4_wave_1_source_decisions.json","conditions":["attribution_and_release_pins","source_specific_semantic_roles","no_payload_retrieval","no_mapping_or_adaptation","no_redistribution","no_promotion"],"evidence_uris":["research_validation/phase_4_wave_1_source_decisions.json"],"evidence_hashes":["209225d0bbe00796106570ec0ef3e85203e98c0ca4d37bfb02e4323042ee8cfc","d7dbc55467c57b8bfe6a8266c5472999b345613c99877774af39f27bf83e53b0","11621a24c3b06a5af67831d89a73be28f62b2c4b33652e40b99eab6112358073","59ffbd0e2a632727239fa6a6878551dafd2f7afaa6df54f014e595bd1184b6b4"],"linked_language_ids":["es","ja"],"linked_source_ids":["mondo","who-icf","uberon","pato"],"expiry":"2027-08-03 or earlier source, licence, semantic-role, payload, or distribution change","recheck_date":"2027-08-03","withdrawal_or_incident_contact":"repository_maintainer","promotion_allowed":false},
     {"gate":"reviewer_conflict_adjudication","decision":"pending","scope":null,"conditions":[],"expiry":null,"promotion_allowed":false}
   ],

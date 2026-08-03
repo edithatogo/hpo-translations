@@ -68,6 +68,16 @@ EXPECTED_PHASE_4_GATE_PACKET_IDS = {
 EXPECTED_PHASE_4_G1_ROUTE_SOURCE_IDS = {"pro-ctcae", "decs", "mondo", "who-icf", "uberon", "pato"}
 EXPECTED_PHASE_4_INTERNAL_SCOPE_SOURCE_IDS = {"mondo", "who-icf", "uberon", "pato"}
 EXPECTED_PHASE_4_WAVE_1_CONDITIONAL_PACKETS = {"g1-mondo", "g1-who-icf", "g1-structural-sources"}
+EXPECTED_PHASE_4_WAVE_2_PACKET_IDS = {
+    "g2-spanish-language",
+    "g2-japanese-language",
+    "g2-ethics-privacy",
+}
+EXPECTED_PHASE_4_WAVE_2_SPONSOR_ROUTE_IDS = {
+    "flinders_sponsored",
+    "nsw_health_islhd_sponsored_or_site",
+    "cross_institutional",
+}
 
 
 @dataclass(frozen=True)
@@ -555,7 +565,11 @@ def phase_4_candidate_matrix_errors(instance: Any, supplementary: Any) -> list[s
 
 
 def phase_4_gate_docket_errors(
-    instance: Any, supplementary: Any, approval_manifest: Any, wave_1_decisions: Any | None = None
+    instance: Any,
+    supplementary: Any,
+    approval_manifest: Any,
+    wave_1_decisions: Any | None = None,
+    wave_2_routes: Any | None = None,
 ) -> list[str]:
     if not all(isinstance(value, dict) for value in (instance, supplementary, approval_manifest)):
         return ["Phase 4 gate docket inputs must be JSON objects"]
@@ -591,6 +605,19 @@ def phase_4_gate_docket_errors(
         "wave_5_reconcile_and_freeze",
     ]:
         errors.append("Phase 4 blocker resolution waves must preserve the fail-closed dependency order")
+    wave_2 = next(
+        (
+            wave
+            for wave in waves
+            if isinstance(wave, dict) and wave.get("wave_id") == "wave_2_ethics_privacy_and_language_scope"
+        ),
+        {},
+    )
+    if (
+        wave_2.get("status") != "routes_verified_requests_prepared_dispatch_blocked"
+        or wave_2.get("planning_artifact") != "research_validation/phase_4_wave_2_authority_routes.json"
+    ):
+        errors.append("Wave 2 docket state must reference the prepared dispatch-blocked authority-route package")
 
     accountability = resolution.get("accountability_boundary", {})
     prohibited_panel_actions = set(accountability.get("advisory_subagent_panel_must_not", []))
@@ -671,6 +698,18 @@ def phase_4_gate_docket_errors(
         }
         if wave_1_sources != conditional_packet_sources:
             errors.append("conditional gate packets must cover exactly the Wave 1 source decisions")
+    if isinstance(wave_2_routes, dict):
+        wave_2_packet_ids = {
+            packet.get("packet_id") for packet in wave_2_routes.get("request_packets", []) if isinstance(packet, dict)
+        }
+        docket_wave_2_packets = {
+            packet.get("packet_id")
+            for packet in packets
+            if isinstance(packet, dict)
+            and packet.get("request_ref") == "research_validation/phase_4_wave_2_authority_routes.json"
+        }
+        if wave_2_packet_ids != docket_wave_2_packets:
+            errors.append("Wave 2 gate packets must reconcile with the canonical authority-route package")
 
     authorization = instance.get("authorization_boundary", {})
     if (
@@ -681,6 +720,124 @@ def phase_4_gate_docket_errors(
         errors.append("all Phase 4 gate-docket authorization fields must remain false")
     if instance.get("advance_rule", {}).get("automatic_advancement_allowed") is not False:
         errors.append("Phase 4 gate decisions must never advance automatically")
+    return errors
+
+
+def phase_4_wave_2_authority_routes_errors(instance: Any) -> list[str]:
+    if not isinstance(instance, dict):
+        return ["Phase 4 Wave 2 authority routes must be a JSON object"]
+
+    errors: list[str] = []
+    if (
+        instance.get("schema_version") != "phase-4-wave-2-authority-routes-v1"
+        or instance.get("wave_id") != "wave_2_ethics_privacy_and_language_scope"
+        or instance.get("status") != "routes_verified_requests_prepared_dispatch_blocked"
+    ):
+        errors.append("Wave 2 authority routes must remain a prepared dispatch-blocked contract")
+
+    sponsor_selection = instance.get("sponsor_route_selection", {})
+    options = sponsor_selection.get("options", []) if isinstance(sponsor_selection, dict) else []
+    route_ids = [route.get("route_id") for route in options if isinstance(route, dict)]
+    if (
+        sponsor_selection.get("decision") != "pending"
+        or sponsor_selection.get("selected_route_id") is not None
+        or set(route_ids) != EXPECTED_PHASE_4_WAVE_2_SPONSOR_ROUTE_IDS
+        or len(route_ids) != len(EXPECTED_PHASE_4_WAVE_2_SPONSOR_ROUTE_IDS)
+    ):
+        errors.append("Wave 2 must preserve three unselected sponsor routes pending an accountable choice")
+    for route in options:
+        if not isinstance(route, dict):
+            errors.append("each Wave 2 sponsor route must be an object")
+            continue
+        urls = route.get("official_routes", [])
+        if not route.get("use_when") or not route.get("pathway") or not route.get("contingency"):
+            errors.append("each Wave 2 sponsor route requires scope, pathway, and contingency")
+        if not urls or any(not isinstance(url, str) or not url.startswith("https://") for url in urls):
+            errors.append("each Wave 2 sponsor route requires official HTTPS evidence")
+
+    packets = instance.get("request_packets", [])
+    packet_ids = [packet.get("packet_id") for packet in packets if isinstance(packet, dict)]
+    if set(packet_ids) != EXPECTED_PHASE_4_WAVE_2_PACKET_IDS or len(packet_ids) != len(
+        EXPECTED_PHASE_4_WAVE_2_PACKET_IDS
+    ):
+        errors.append("Wave 2 must prepare exactly the Spanish, Japanese, and ethics/privacy request packets")
+    for packet in packets:
+        if not isinstance(packet, dict):
+            errors.append("each Wave 2 request packet must be an object")
+            continue
+        if packet.get("decision") != "pending" or any(
+            packet.get(field) is not False
+            for field in ("dispatch_authorized", "dispatch_completed", "receipt_recorded")
+        ):
+            errors.append("Wave 2 request packets must remain pending, unsent, and without receipts")
+        urls = packet.get("official_evidence_urls", [])
+        if (
+            not urls
+            or not packet.get("authority_role")
+            or not packet.get("request_scope")
+            or not packet.get("if_unavailable_or_not_approved")
+        ):
+            errors.append(
+                "each Wave 2 request packet requires official evidence, bounded scope, authority, and fallback"
+            )
+        if any(not isinstance(url, str) or not url.startswith("https://") for url in urls):
+            errors.append("Wave 2 request evidence must use HTTPS URLs")
+
+    packet_by_id = {packet.get("packet_id"): packet for packet in packets if isinstance(packet, dict)}
+    spanish = packet_by_id.get("g2-spanish-language", {})
+    japanese = packet_by_id.get("g2-japanese-language", {})
+    ethics = packet_by_id.get("g2-ethics-privacy", {})
+    if "working_group_forming" not in str(spanish.get("route_status", "")):
+        errors.append("Spanish Wave 2 route must preserve the working-group-forming limitation")
+    if "https://github.com/ogishima/HPO-Japanese" not in japanese.get("official_evidence_urls", []):
+        errors.append("Japanese Wave 2 route must retain the official external repository evidence")
+    if ethics.get("dispatch_route") is not None or "sponsor_selection_required" not in str(
+        ethics.get("route_status", "")
+    ):
+        errors.append("ethics/privacy dispatch must remain unset until sponsor-route selection")
+
+    control_plan = instance.get("local_only_control_plan", {})
+    if control_plan.get("status") != "control_skeleton_prepared_authority_determination_pending":
+        errors.append("Wave 2 local-only control plan must remain a pending authority-reviewed skeleton")
+    for field in ("retention", "consent", "withdrawal", "incident_response"):
+        control = control_plan.get(field, {}) if isinstance(control_plan, dict) else {}
+        if (
+            not isinstance(control, dict)
+            or not control.get("proposed_rule")
+            or control.get("authority_decision_required") is not True
+        ):
+            errors.append("Wave 2 retention, consent, withdrawal, and incident controls require authority decisions")
+
+    expected_inputs = {
+        "sponsoring_institution_route_selection",
+        "authorized_sender_identity_reference_kept_out_of_git",
+        "language_contact_mode_public_issue_or_authorized_private_route",
+    }
+    if set(instance.get("required_maintainer_inputs", [])) != expected_inputs:
+        errors.append("Wave 2 must retain the three dispatch inputs required from the maintainer")
+
+    panel_boundary = instance.get("advisory_panel_boundary", {})
+    if not {
+        "impersonate_an_authorized_sender",
+        "issue_an_ethics_or_privacy_determination",
+        "grant_language_or_community_authority",
+        "authorize_payload_retrieval_or_empirical_work",
+    }.issubset(set(panel_boundary.get("must_not", []))):
+        errors.append(
+            "Wave 2 advisory panel must not receive sender, ethics, language, payload, or empirical authority"
+        )
+
+    authorization = instance.get("authorization_boundary", {})
+    if (
+        not isinstance(authorization, dict)
+        or not authorization
+        or any(value is not False for value in authorization.values())
+    ):
+        errors.append("all Wave 2 authorization fields must remain false")
+
+    serialized = json.dumps(instance, ensure_ascii=False)
+    if re.search(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}", serialized):
+        errors.append("Wave 2 Git artifact must not contain email addresses")
     return errors
 
 
@@ -1232,6 +1389,21 @@ def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[Valid
                 ValidationIssue("phase_4_wave_1_source_decisions.invalid", str(wave_1_decisions_path), message)
             )
 
+    wave_2_routes_path = research_root / "phase_4_wave_2_authority_routes.json"
+    wave_2_routes = None
+    if not wave_2_routes_path.exists():
+        issues.append(
+            ValidationIssue(
+                "phase_4_wave_2_authority_routes.missing",
+                str(wave_2_routes_path),
+                "Wave 2 authority routes are required",
+            )
+        )
+    else:
+        wave_2_routes = load_json(wave_2_routes_path)
+        for message in phase_4_wave_2_authority_routes_errors(wave_2_routes):
+            issues.append(ValidationIssue("phase_4_wave_2_authority_routes.invalid", str(wave_2_routes_path), message))
+
     gate_docket_path = research_root / "phase_4_gate_docket.json"
     approval_manifest_path = research_root / "approval_manifest.json"
     if not gate_docket_path.exists():
@@ -1249,7 +1421,11 @@ def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[Valid
         supplementary = load_json(supplementary_path)
         approval_manifest = load_json(approval_manifest_path)
         for message in phase_4_gate_docket_errors(
-            gate_docket, supplementary, approval_manifest, wave_1_decisions=wave_1_decisions
+            gate_docket,
+            supplementary,
+            approval_manifest,
+            wave_1_decisions=wave_1_decisions,
+            wave_2_routes=wave_2_routes,
         ):
             issues.append(ValidationIssue("phase_4_gate_docket.invalid", str(gate_docket_path), message))
 

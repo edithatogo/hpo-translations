@@ -1,0 +1,183 @@
+{
+  "schema_version": "phase-4-wave-2-authority-routes-v1",
+  "track_id": "research_validation_20260801",
+  "wave_id": "wave_2_ethics_privacy_and_language_scope",
+  "prepared_at": "2026-08-03",
+  "status": "routes_verified_requests_prepared_dispatch_blocked",
+  "authorization_source": "user_instruction_2026-08-03_proceed_with_wave_2",
+  "scope": "payload_safe_route_verification_request_preparation_and_local_only_control_planning",
+  "sponsor_route_selection": {
+    "decision": "pending",
+    "selected_route_id": null,
+    "reason_pending": "repository_location_and_local_git_identity_do_not_establish_the_accountable_sponsoring_institution",
+    "recommended_rule": "select_the_route_matching_the_investigator_sponsor_site_data_and_reviewer_responsibilities_before_dispatch",
+    "options": [
+      {
+        "route_id": "flinders_sponsored",
+        "use_when": "Flinders_University_is_the_accountable_sponsor_and_no_NSW_Health_site_data_staff_or_resources_are_in_scope",
+        "official_routes": [
+          "https://researchnow-ethics-forms.flinders.edu.au/",
+          "https://staff.flinders.edu.au/research/integrity"
+        ],
+        "pathway": "ResearchNow_HREC_application_or_HREC_Exemption_Application_Form_as_directed_by_the_ethics_office",
+        "contingency": "if_SA_Health_or_another_health_service_is_in_scope_follow_that_service_HREC_and_governance_route"
+      },
+      {
+        "route_id": "nsw_health_islhd_sponsored_or_site",
+        "use_when": "NSW_Health_or_ISLHD_is_the_sponsor_or_ISLHD_sites_data_staff_or_resources_are_in_scope",
+        "official_routes": [
+          "https://www.islhd.health.nsw.gov.au/research/researchers/ethics",
+          "https://www.islhd.health.nsw.gov.au/research/researchers/governance",
+          "https://regis.health.nsw.gov.au/"
+        ],
+        "pathway": "seek_ISLHD_Research_Office_pathway_advice_then_use_REGIS_for_the_applicable_ethics_and_site_governance_submissions",
+        "contingency": "remain_synthetic_only_until_the_lead_HREC_and_any_site_specific_authorisation_are_confirmed"
+      },
+      {
+        "route_id": "cross_institutional",
+        "use_when": "responsibility_spans_Flinders_and_NSW_Health_or_another_institution",
+        "official_routes": [
+          "https://researchnow-ethics-forms.flinders.edu.au/",
+          "https://www.islhd.health.nsw.gov.au/research/researchers/governance",
+          "https://regis.health.nsw.gov.au/"
+        ],
+        "pathway": "identify_the_lead_HREC_and_sponsor_then_obtain_each_required_site_or_institutional_governance_authorisation",
+        "contingency": "reduce_scope_to_the_single_institution_that_can_accept_accountability_or_remain_synthetic_only"
+      }
+    ]
+  },
+  "request_packets": [
+    {
+      "packet_id": "g2-spanish-language",
+      "decision": "pending",
+      "route_status": "official_project_route_verified_working_group_forming",
+      "authority_role": "spanish_language_working_group_authority",
+      "official_evidence_urls": [
+        "https://github.com/obophenotype/hpo-translations/blob/main/docs/translations/es.md",
+        "https://github.com/obophenotype/hpo-translations/blob/main/docs/contact.md"
+      ],
+      "dispatch_route": "https://github.com/obophenotype/hpo-translations/issues",
+      "request_scope": [
+        "language_register_and_audience",
+        "candidate_generation_and_model_use",
+        "review_and_adjudication_model",
+        "attribution_restrictions_withdrawal_and_stop_authority"
+      ],
+      "request_draft_ref": "research_validation/phase_4_external_action_pack.md#draft-b--language-working-group-scope-consultation",
+      "dispatch_authorized": false,
+      "dispatch_completed": false,
+      "receipt_recorded": false,
+      "if_unavailable_or_not_approved": "remove_Spanish_and_recalculate_option_C_or_D_without_substitution_by_unapproved_content"
+    },
+    {
+      "packet_id": "g2-japanese-language",
+      "decision": "pending",
+      "route_status": "official_working_group_and_external_repository_route_verified",
+      "authority_role": "japanese_language_working_group_authority",
+      "official_evidence_urls": [
+        "https://github.com/obophenotype/hpo-translations/blob/main/docs/translations/ja.md",
+        "https://github.com/ogishima/HPO-Japanese",
+        "https://github.com/obophenotype/hpo-translations/blob/main/docs/contact.md"
+      ],
+      "dispatch_route": "https://github.com/obophenotype/hpo-translations/issues",
+      "request_scope": [
+        "language_register_and_audience",
+        "candidate_generation_and_model_use",
+        "review_and_adjudication_model",
+        "attribution_restrictions_withdrawal_and_stop_authority"
+      ],
+      "request_draft_ref": "research_validation/phase_4_external_action_pack.md#draft-b--language-working-group-scope-consultation",
+      "dispatch_authorized": false,
+      "dispatch_completed": false,
+      "receipt_recorded": false,
+      "if_unavailable_or_not_approved": "remove_Japanese_and_recalculate_option_C_or_D_without_substitution_by_unapproved_content"
+    },
+    {
+      "packet_id": "g2-ethics-privacy",
+      "decision": "pending",
+      "route_status": "institutional_routes_verified_sponsor_selection_required",
+      "authority_role": "institutional_ethics_privacy_and_governance_authority",
+      "official_evidence_urls": [
+        "https://researchnow-ethics-forms.flinders.edu.au/",
+        "https://www.islhd.health.nsw.gov.au/research/researchers/ethics",
+        "https://www.islhd.health.nsw.gov.au/research/researchers/governance",
+        "https://regis.health.nsw.gov.au/"
+      ],
+      "dispatch_route": null,
+      "request_scope": [
+        "applicable_ethics_or_exemption_pathway",
+        "reviewer_consent_and_pseudonymisation",
+        "retention_deletion_withdrawal_and_incident_response",
+        "cross_border_access_and_approved_reporting_scope"
+      ],
+      "request_draft_ref": "research_validation/phase_4_external_action_pack.md#draft-d--ethics-and-privacy-determination-cover-note",
+      "dispatch_authorized": false,
+      "dispatch_completed": false,
+      "receipt_recorded": false,
+      "if_unavailable_or_not_approved": "remain_at_option_D_synthetic_only"
+    }
+  ],
+  "local_only_control_plan": {
+    "status": "control_skeleton_prepared_authority_determination_pending",
+    "repository_content_rule": "commit_only_payload_safe_policy_metadata_and_pseudonymous_receipt_references",
+    "retention": {
+      "proposed_rule": "retain_only_the_minimum_authorized_reviewer_and_study_records_for_the_period_set_by_the_accountable_authority_then_record_verifiable_deletion",
+      "authority_decision_required": true
+    },
+    "consent": {
+      "proposed_rule": "collect_no_reviewer_information_or_decisions_before_an_approved_information_and_consent_process_exists",
+      "authority_decision_required": true
+    },
+    "withdrawal": {
+      "proposed_rule": "provide_an_approved_off_repository_contact_and_define_the_last_point_at_which_records_can_be_removed",
+      "authority_decision_required": true
+    },
+    "incident_response": {
+      "proposed_rule": "stop_collection_quarantine_affected_material_notify_the_accountable_route_and_resume_only_under_recorded_authority",
+      "authority_decision_required": true
+    },
+    "identities_qualifications_conflicts_consent_and_raw_correspondence_local_only": true,
+    "restricted_source_payloads_local_only_if_separately_approved": true
+  },
+  "required_maintainer_inputs": [
+    "sponsoring_institution_route_selection",
+    "authorized_sender_identity_reference_kept_out_of_git",
+    "language_contact_mode_public_issue_or_authorized_private_route"
+  ],
+  "recommendation": {
+    "preferred": "select_the_accountable_sponsor_route_then_dispatch_three_separate_bounded_requests_and_record_only_payload_safe_receipts",
+    "rationale": [
+      "language_authority_and_ethics_privacy_determinations_are_separate_non_substitutable_decisions",
+      "the_ethics_route_depends_on_sponsor_site_data_and_reviewer_responsibility_not_repository_location",
+      "a_single_combined_request_would_obscure_scope_conditions_and_withdrawal_authority"
+    ],
+    "fallback": "retain_Option_D_and_remove_any_language_without_a_bounded_G2_receipt"
+  },
+  "advisory_panel_boundary": {
+    "may": [
+      "verify_public_routes",
+      "draft_request_language",
+      "compare_returned_payload_safe_receipts",
+      "identify_scope_conflicts"
+    ],
+    "must_not": [
+      "impersonate_an_authorized_sender",
+      "issue_an_ethics_or_privacy_determination",
+      "grant_language_or_community_authority",
+      "consent_for_reviewers",
+      "authorize_payload_retrieval_or_empirical_work"
+    ]
+  },
+  "authorization_boundary": {
+    "external_contact_authorized": false,
+    "language_scope_approved": false,
+    "ethics_or_exemption_determination_recorded": false,
+    "privacy_plan_approved": false,
+    "reviewer_contact_authorized": false,
+    "reviewer_data_collection_authorized": false,
+    "source_payload_retrieval_authorized": false,
+    "empirical_candidate_generation_authorized": false,
+    "promotion_authorized": false
+  },
+  "claims_boundary": "routes_and_request_drafts_only_no_G2_approval_contact_reviewer_payload_empirical_or_promotion_authority"
+}

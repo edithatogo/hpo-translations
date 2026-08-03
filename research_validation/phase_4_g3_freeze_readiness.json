@@ -46,7 +46,8 @@
     "research_validation/phase_4_candidate_matrix.json",
     "research_validation/reviewer_workload_budget.json",
     "research_validation/approval_manifest.json",
-    "research_validation/phase_4_gate_docket.json"
+    "research_validation/phase_4_gate_docket.json",
+    "research_validation/phase_4_wave_2_authority_routes.json"
   ],
   "advance_rule": "Create a separate prospective freeze receipt only after G1 and G2 decisions are evidenced, every component is version-pinned and checksummed, at least one language, payload source, and named reviewer are authorized, and explicit maintainer approval is recorded.",
   "authorization_boundary": {

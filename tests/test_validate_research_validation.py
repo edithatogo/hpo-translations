@@ -16,6 +16,7 @@ from scripts.validate_research_validation import (
     phase_4_g3_freeze_receipt_template_errors,
     phase_4_gate_docket_errors,
     phase_4_wave_1_source_decisions_errors,
+    phase_4_wave_2_authority_routes_errors,
     reviewer_workload_budget_errors,
     schema_errors,
     semantic_errors,
@@ -197,6 +198,40 @@ class ValidateResearchValidationTests(unittest.TestCase):
         self.assertIn(
             "WHO ICF Wave 1 scope must prohibit adaptation, mapping, and modified distribution",
             phase_4_wave_1_source_decisions_errors(decisions),
+        )
+
+    def test_wave_2_authority_routes_reject_premature_sponsor_selection(self) -> None:
+        routes = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_wave_2_authority_routes.json")
+        routes["sponsor_route_selection"]["decision"] = "approved"
+        routes["sponsor_route_selection"]["selected_route_id"] = "flinders_sponsored"
+        self.assertIn(
+            "Wave 2 must preserve three unselected sponsor routes pending an accountable choice",
+            phase_4_wave_2_authority_routes_errors(routes),
+        )
+
+    def test_wave_2_authority_routes_reject_dispatch_authority(self) -> None:
+        routes = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_wave_2_authority_routes.json")
+        routes["request_packets"][0]["dispatch_authorized"] = True
+        self.assertIn(
+            "Wave 2 request packets must remain pending, unsent, and without receipts",
+            phase_4_wave_2_authority_routes_errors(routes),
+        )
+
+    def test_wave_2_authority_routes_reject_identity_leak(self) -> None:
+        routes = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_wave_2_authority_routes.json")
+        routes["sender_email"] = "person@example.org"
+        self.assertIn(
+            "Wave 2 Git artifact must not contain email addresses",
+            phase_4_wave_2_authority_routes_errors(routes),
+        )
+
+    def test_wave_2_authority_routes_preserve_ethics_route_hold(self) -> None:
+        routes = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_wave_2_authority_routes.json")
+        ethics = next(item for item in routes["request_packets"] if item["packet_id"] == "g2-ethics-privacy")
+        ethics["dispatch_route"] = "https://example.org/submit"
+        self.assertIn(
+            "ethics/privacy dispatch must remain unset until sponsor-route selection",
+            phase_4_wave_2_authority_routes_errors(routes),
         )
 
     def test_internal_scope_review_preserves_who_no_derivatives(self) -> None:
