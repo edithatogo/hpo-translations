@@ -44,9 +44,9 @@ This plan introduces OncoTree into the project where it can improve terminology 
   - Approved one-record opaque-code sample is recorded in `maintainer_review_handoff.json`; payload discarded.
 
 ## Phase 3: HPO Translation Use
-- [ ] **Task 1:** Identify where OncoTree helps: crosswalks, synonym review, multilingual label comparison, or domain validation.
-- [ ] **Task 2:** Add deterministic matching rules and conflict reporting.
-- [ ] **Task 3:** Ensure LLM-assisted outputs remain candidate-only and human-review-required.
+- [x] **Task 1:** Identify where OncoTree helps: tumour-domain validation and identifier conflict detection; label and synonym review remain blocked.
+- [x] **Task 2:** Add exact-identifier-only matching and candidate conflict-record rules; unresolved conflicts do not promote.
+- [x] **Task 3:** Ensure LLM-assisted outputs remain candidate-only and human-review-required.
 
 ## Phase 4: Validation and Review
 - [x] **Task 1:** Validate schema, provenance, and license metadata.

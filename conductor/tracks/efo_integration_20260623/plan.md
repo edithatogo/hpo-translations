@@ -45,9 +45,9 @@ This plan introduces EFO into the project where it can improve terminology align
   - Approved one-record opaque-identifier sample is recorded in `maintainer_review_handoff.json`; payload discarded.
 
 ## Phase 3: HPO Translation Use
-- [ ] **Task 1:** Identify where EFO helps: crosswalks, synonym review, multilingual label comparison, or domain validation.
-- [ ] **Task 2:** Add deterministic matching rules and conflict reporting.
-- [ ] **Task 3:** Ensure LLM-assisted outputs remain candidate-only and human-review-required.
+- [x] **Task 1:** Identify where EFO helps: coverage context, identifier conflict detection, and domain validation; label and synonym review remain blocked.
+- [x] **Task 2:** Add exact-identifier-only matching and candidate conflict-record rules; unresolved conflicts do not promote.
+- [x] **Task 3:** Ensure LLM-assisted outputs remain candidate-only and human-review-required.
 
 ## Phase 4: Validation and Review
 - [x] **Task 1:** Validate schema, provenance, and license metadata.

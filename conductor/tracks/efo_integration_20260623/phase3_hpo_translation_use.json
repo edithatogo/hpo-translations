@@ -1,8 +1,8 @@
 {
   "track_id": "efo_integration_20260623",
-  "status": "design_only_blocked",
+  "status": "metadata_only_identifier_context_only",
   "uses": ["coverage_context", "identifier_conflict_detection", "domain_validation"],
-  "rules": ["exact_identifier_only", "conflicts_unresolved_by_default", "llm_candidates_require_human_review"],
+  "rules": ["exact_identifier_only", "conflicts_unresolved_by_default", "emit_candidate_conflict_records", "llm_candidates_require_human_review"],
   "promotion_allowed": false,
-  "reason": "no approved source sample"
+  "reason": "approved opaque identifier sample permits metadata context only; source labels, synonyms, definitions, and crosswalk promotion remain blocked"
 }
