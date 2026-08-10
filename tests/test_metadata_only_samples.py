@@ -1,7 +1,10 @@
+import io
 import json
 import tempfile
 import unittest
+from contextlib import redirect_stderr
 from pathlib import Path
+from unittest.mock import patch
 
 from scripts.validate_metadata_only_samples import main, validate_track
 
@@ -21,6 +24,26 @@ class MetadataOnlySampleTests(unittest.TestCase):
                 validate_track(track_dir),
                 ["missing required Phase 2 artifact", "missing required Phase 4 artifact"],
             )
+
+    def test_main_rejects_incomplete_approved_handoff(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            tracks = Path(temporary_directory)
+            track_dir = tracks / "approved_incomplete"
+            track_dir.mkdir()
+            (track_dir / "maintainer_review_handoff.json").write_text(
+                json.dumps(
+                    {
+                        "status": "approved_bounded_metadata_only_sample",
+                        "approval": {},
+                        "bounded_sample": {},
+                    }
+                ),
+                encoding="utf-8",
+            )
+            errors = io.StringIO()
+            with patch("scripts.validate_metadata_only_samples.TRACKS", tracks), redirect_stderr(errors):
+                self.assertEqual(main(), 1)
+            self.assertIn("approved_incomplete: missing required Phase 2 artifact", errors.getvalue())
 
     def test_phase3_translation_use_artifacts_fail_closed(self) -> None:
         track_root = Path(__file__).resolve().parents[1] / "conductor" / "tracks"

@@ -66,7 +66,6 @@ def validate_track(track_dir: Path) -> list[str]:
 
 def main() -> int:
     track_dirs = []
-    skipped = []
     for handoff_path in sorted(TRACKS.glob("*/maintainer_review_handoff.json")):
         handoff = load_json(handoff_path)
         if (
@@ -74,15 +73,7 @@ def main() -> int:
             and isinstance(handoff.get("approval"), dict)
             and isinstance(handoff.get("bounded_sample"), dict)
         ):
-            track_dir = handoff_path.parent
-            required = [
-                track_dir / "phase2_data_access_normalization.json",
-                track_dir / "phase4_validation_review.json",
-            ]
-            if all(path.exists() for path in required):
-                track_dirs.append(track_dir)
-            else:
-                skipped.append(track_dir.name)
+            track_dirs.append(handoff_path.parent)
     if not track_dirs:
         print("No approved metadata-only samples found.", file=sys.stderr)
         return 1
@@ -93,10 +84,7 @@ def main() -> int:
             for error in errors:
                 print(f"{track}: {error}", file=sys.stderr)
         return 1
-    suffix = f"; incomplete handoffs skipped: {', '.join(skipped)}" if skipped else ""
-    print(
-        f"Metadata-only sample validation passed: {len(track_dirs)} complete sample(s); no payload terms read{suffix}."
-    )
+    print(f"Metadata-only sample validation passed: {len(track_dirs)} complete sample(s); no payload terms read.")
     return 0
 
 
