@@ -33,7 +33,7 @@ This plan introduces OncoTree into the project where it can improve terminology 
   - cBioPortal/oncotree release metadata and CC BY 4.0 evidence are recorded; redistribution remains gated by attribution/API terms review.
 - [x] **Task 2:** Record supported languages and source-version metadata.
   - English scope, repository release `2.1.0`, immutable commit, and API version `oncotree_2025_10_03` are recorded.
-- [ ] **Task 3:** List relevant GitHub repositories:
+- [x] **Task 3:** List relevant GitHub repositories:
   - https://github.com/cBioPortal/oncotree
 
 ## Phase 2: Data Access and Normalization
