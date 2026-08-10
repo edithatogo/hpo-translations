@@ -49,9 +49,9 @@ Phase 0 governance is implemented as metadata-only and remains blocked before pa
 - [x] **Task 3:** Ensure LLM-assisted outputs remain candidate-only and human-review-required; no approved source sample exists.
 
 ## Phase 4: Validation and Review
-- [ ] **Task 1:** Validate schema, provenance, and license metadata.
-- [ ] **Task 2:** Run translation-audit and import dry-run checks against sample outputs.
-- [ ] **Task 3:** Document limitations, excluded payloads, and review decisions.
+- [x] **Task 1:** Validate governance schema, provenance, and licence metadata; FMA authority and terms remain blocked.
+- [x] **Task 2:** Record translation-audit and import dry runs as not applicable without authorized source terms.
+- [x] **Task 3:** Document limitations, excluded payloads, and review decisions.
 
 ## Phase 0 Validation Evidence
 - Generated governance record: `ontology_network/p3_source_governance.json` entry for `fma_integration_20260623`.

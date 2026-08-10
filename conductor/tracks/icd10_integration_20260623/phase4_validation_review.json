@@ -1,5 +1,5 @@
 {
-  "track_id": "do_integration_20260623",
+  "track_id": "icd10_integration_20260623",
   "status": "governance_only_validated_payload_blocked",
   "checks": ["metadata_schema", "source_access", "payload_policy", "phase3_promotion_guard"],
   "validation_result": "pass_governance_only",
@@ -8,5 +8,5 @@
   "import_dry_run": "not_applicable_no_authorized_source_terms",
   "promotion_allowed": false,
   "review_required": true,
-  "reason": "Disease Ontology terms and bounded release probe remain pending"
+  "reason": "WHO terms, release channel, and national-variant scope remain unresolved"
 }

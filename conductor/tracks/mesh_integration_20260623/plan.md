@@ -47,9 +47,9 @@ This plan introduces MeSH into the project where it can improve terminology alig
 - [x] **Task 3:** Ensure LLM-assisted outputs remain candidate-only and human-review-required; no approved source sample exists.
 
 ## Phase 4: Validation and Review
-- [ ] **Task 1:** Validate schema, provenance, and license metadata.
-- [ ] **Task 2:** Run translation-audit and import dry-run checks against sample outputs.
-- [ ] **Task 3:** Document limitations, excluded payloads, and review decisions.
+- [x] **Task 1:** Validate governance schema, provenance, and licence metadata; NLM terms remain blocked.
+- [x] **Task 2:** Record translation-audit and import dry runs as not applicable without authorized source terms.
+- [x] **Task 3:** Document limitations, excluded payloads, and review decisions.
 
 ## P1 Implementation Candidate Addendum
 This track is a highest-priority P1 open/public ontology implementation candidate. Start with Phase 0 governance, source-authority confirmation, terms review, and one bounded source probe before any bulk extraction.
