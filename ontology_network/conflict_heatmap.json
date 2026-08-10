@@ -359,8 +359,8 @@
       "reviewer_action": "confirm source evidence before candidate promotion",
       "severity": "info",
       "source_ids": [
-        "snomed_ct",
-        "decipher"
+        "icd11",
+        "snomed_ct"
       ]
     },
     {
@@ -378,8 +378,8 @@
       "reviewer_action": "confirm source evidence before candidate promotion",
       "severity": "info",
       "source_ids": [
-        "meddra",
-        "snomed_ct"
+        "icd11",
+        "meddra"
       ]
     },
     {

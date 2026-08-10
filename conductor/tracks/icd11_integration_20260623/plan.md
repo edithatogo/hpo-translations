@@ -29,25 +29,39 @@ This plan introduces ICD-11 into the project where it can improve terminology al
   - Mark any LLM-assisted candidate output as candidate-only and human-review-required in the handoff pack.
 
 ## Phase 1: Source Governance
-- [ ] **Task 1:** Confirm authoritative release source, license, and redistribution constraints.
-- [ ] **Task 2:** Record supported languages and source-version metadata.
-- [ ] **Task 3:** List relevant GitHub repositories:
+- [x] **Task 1:** Confirm authoritative release source, license, and redistribution constraints.
+  - WHO ICD API is the authoritative API; ICD-11 is CC BY-ND 3.0 IGO and no adaptations or source-payload redistribution are approved.
+  - Decision recorded: metadata-only governance is approved; authenticated probing remains gated on credential custody and a later bounded-probe decision.
+- [x] **Task 2:** Record supported languages and source-version metadata.
+  - Review target is ICD-11 release `2026-01`; supported MMS languages are Arabic, Chinese, Czech, English, French, German (prerelease), Kazakh, Latin (titles only), Portuguese, Russian, Slovak, Spanish, Swedish, Turkish, and Uzbek.
+  - API access uses OAuth2 client credentials; no credential or response payload is stored in the repository.
+- [x] **Task 3:** List relevant GitHub repositories:
   - https://github.com/ICD-API
+  - The bounded authenticated probe remains a roadmap item and is not executed in this phase.
 
 ## Phase 2: Data Access and Normalization
-- [ ] **Task 1:** Define source retrieval path without committing restricted payloads.
-- [ ] **Task 2:** Normalize identifiers, preferred labels, synonyms, language tags, and provenance fields.
-- [ ] **Task 3:** Produce a bounded sample artifact for maintainer review.
+- [x] **Task 1:** Define source retrieval path without committing restricted payloads.
+  - Implemented in `phase2_data_access_normalization.json`: WHO API v2, OAuth2 client credentials, request-manifest-only retrieval, and local-only credential/response boundaries.
+- [x] **Task 2:** Normalize identifiers, preferred labels, synonyms, language tags, and provenance fields.
+  - Implemented a metadata-only normalization contract distinguishing foundation URIs from MMS linearization codes and requiring ISO 639-1 language and request-manifest provenance.
+- [x] **Task 3:** Produce a bounded sample artifact for maintainer review.
+  - `phase4_bounded_sample_metadata.json` records the successful one-entity probe without retaining source labels, synonyms, definitions, or the full response.
 
 ## Phase 3: HPO Translation Use
-- [ ] **Task 1:** Identify where ICD-11 helps: crosswalks, synonym review, multilingual label comparison, or domain validation.
-- [ ] **Task 2:** Add deterministic matching rules and conflict reporting.
-- [ ] **Task 3:** Ensure LLM-assisted outputs remain candidate-only and human-review-required.
+- [x] **Task 1:** Identify where ICD-11 helps: crosswalks, synonym review, multilingual label comparison, or domain validation.
+  - Defined crosswalk review, multilingual label comparison, and domain-validation use cases in `phase3_hpo_translation_use.json`.
+- [x] **Task 2:** Add deterministic matching rules and conflict reporting.
+  - Added exact-identifier, curated-crosswalk, language-match, and postcoordination rules with explicit conflict types and unresolved-by-default handling.
+- [x] **Task 3:** Ensure LLM-assisted outputs remain candidate-only and human-review-required.
+  - Enforced candidate-only, human-review-required, and no-approved-translation guardrails without reading source payloads.
 
 ## Phase 4: Validation and Review
-- [ ] **Task 1:** Validate schema, provenance, and license metadata.
-- [ ] **Task 2:** Run translation-audit and import dry-run checks against sample outputs.
-- [ ] **Task 3:** Document limitations, excluded payloads, and review decisions.
+- [x] **Task 1:** Validate schema, provenance, and license metadata.
+  - Recorded validation results and the CC BY-ND 3.0 IGO payload boundary in `phase4_validation_review.json`.
+- [x] **Task 2:** Run translation-audit and import dry-run checks against sample outputs.
+  - The one-entity response passed HTTP/JSON/identifier structural checks; translation audit passed against repository fixtures; no source payload was imported or retained.
+- [x] **Task 3:** Document limitations, excluded payloads, and review decisions.
+  - Recorded fail-closed limitations, excluded payload classes, candidate-only policy, and the next maintainer review gate.
 
 ## P1 Implementation Candidate Addendum
 This track is a highest-priority P1 open/public ontology implementation candidate. Start with Phase 0 governance, source-authority confirmation, terms review, and one bounded source probe before any bulk extraction.
@@ -57,10 +71,10 @@ Do not commit raw source terms, ontology labels, synonyms, definitions, full API
 ## Phase 0 Validation Evidence
 - Generated governance record: `ontology_network/p1_source_governance.json` entry for `icd11_integration_20260623`.
 - Payload status: no raw, licensed, credentialed, private, full-release, label, synonym, definition, or API-response payload is read or committed.
-- Downstream status: identifier-network, translation-use, and non-translation outputs remain blocked until source terms review and bounded source probe pass.
+- Downstream status: identifier-network, translation-use, and non-translation outputs remain blocked until maintainer review of the redacted probe result and any later source-label approval.
 
 ## Phase 0 Review Archive
 - Review status: `codex_review_completed`.
 - Fixes applied: synchronized metadata, telemetry, source-governance review result, and automation index review state.
 - Validation archive: `pixi run validate-conductor`, `pixi run validate-ontology-network`, `pixi run validate-ontology-network-artifacts`, `pixi run test-conductor-validation`, and `git diff --check`.
-- Residual blocker: downstream payload ingestion, identifier-network work, translation-use, and non-translation outputs remain blocked until source terms and bounded probes pass.
+- Residual blocker: source-label extraction and downstream promotion remain blocked pending maintainer review; the bounded structural probe has passed.

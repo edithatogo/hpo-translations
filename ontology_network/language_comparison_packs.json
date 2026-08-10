@@ -253,6 +253,7 @@
       "human_review_required": true,
       "language": "sk",
       "source_ids": [
+        "icd11",
         "snomed_ct"
       ]
     },
@@ -263,6 +264,7 @@
       "human_review_required": true,
       "language": "sv",
       "source_ids": [
+        "icd11",
         "meddra",
         "snomed_ct"
       ]

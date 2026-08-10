@@ -3,7 +3,7 @@
   "type": "feature",
   "status": "phase_0_implemented_blocked",
   "created_at": "2026-06-23T00:00:00Z",
-  "updated_at": "2026-06-25T00:00:00Z",
+  "updated_at": "2026-08-01T00:00:00Z",
   "description": "Integrate EFO into terminology and translation support",
   "depends_on": [
     "translation_agents_20260622",
@@ -71,7 +71,7 @@
       "agent": "codex",
       "model": "gpt-5",
       "task_id": "phase0_source_probe_scaffold",
-      "source_version": "not_pinned",
+      "source_version": "EFO 3.92.0 @ 704cbf64e95ac374374b309691d86d95c84dfe17",
       "validation_command": "pixi run build-ontology-network; pixi run validate-conductor; pixi run validate-ontology-network; pixi run validate-ontology-network-artifacts; pixi run test-conductor-validation; git diff --check",
       "validation_result": "passing",
       "conflict_count": 0,
@@ -151,14 +151,14 @@
   },
   "source_governance_result": {
     "phase_0_result": "implemented_governance_only",
-    "source_authority_status": "recorded_in_source_profile_terms_review_required",
-    "go_no_go": "governance_only_terms_review_required",
+    "source_authority_status": "EBI EFO repository and OLS authoritative; Apache-2.0 terms verified",
+    "go_no_go": "governance_complete_bounded_metadata_probe_passed_terms_review_required",
     "payload_commit_allowed": false,
     "metadata_only_scaffold_allowed": true,
-    "bounded_sample_allowed": false,
+    "bounded_sample_allowed": true,
     "identifier_network_allowed": false,
     "non_translation_outputs_allowed": false,
-    "next_allowed_action": "complete source terms review and bounded source probe before any payload or label extraction",
+    "next_allowed_action": "run one approved metadata-only sample; no payload or label commit",
     "review_result": "codex_review_completed_fixes_applied",
     "review_archive_status": "phase_0_review_archived"
   }

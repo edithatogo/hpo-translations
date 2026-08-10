@@ -1,0 +1,8 @@
+{
+  "track_id": "efo_integration_20260623",
+  "status": "design_only_blocked",
+  "uses": ["coverage_context", "identifier_conflict_detection", "domain_validation"],
+  "rules": ["exact_identifier_only", "conflicts_unresolved_by_default", "llm_candidates_require_human_review"],
+  "promotion_allowed": false,
+  "reason": "no approved source sample"
+}

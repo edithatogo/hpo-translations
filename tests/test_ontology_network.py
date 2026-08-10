@@ -102,8 +102,13 @@ class OntologyNetworkTests(unittest.TestCase):
             {"API-only", "investigation-only", "open", "restricted"},
         )
         release = load_json(output_dir / "release_readiness_manifest.json")
-        self.assertTrue(release["governance_artifacts_release_ready"])
+        self.assertFalse(release["overall_release_ready"])
+        self.assertEqual(release["release_scope"], "governance_scaffold_only")
+        self.assertTrue(release["governance_scaffold_release_ready"])
+        self.assertFalse(release["empirical_artifacts_release_ready"])
+        self.assertFalse(release["translation_evidence_release_ready"])
         self.assertFalse(release["source_payload_release_ready"])
+        self.assertGreaterEqual(release["unresolved_language_identity_count"], 1)
 
         p3 = load_json(output_dir / "p3_source_governance.json")
         p3_records = {record["source_id"]: record for record in p3["records"]}

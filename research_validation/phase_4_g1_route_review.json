@@ -1,0 +1,89 @@
+{
+  "schema_version": "phase-4-g1-route-review-v1",
+  "track_id": "research_validation_20260801",
+  "reviewed_at": "2026-08-03T00:00:00Z",
+  "scope": "official_metadata_and_contact_route_review_only",
+  "authorization_source": "user_response_to_scoped_g1_external_enquiry_authorization_question",
+  "sender_identity_status": "connected_mailbox_and_repository_author_identity_mismatch_requires_explicit_sender_identity",
+  "dispatch_completed_count": 0,
+  "routes": [
+    {
+      "source_id": "pro-ctcae",
+      "official_evidence_urls": [
+        "https://healthcaredelivery.cancer.gov/pro-ctcae/terms_of_use.html",
+        "https://healthcaredelivery.cancer.gov/pro-ctcae/faqs.html"
+      ],
+      "license_finding": "general_use_is_free_but_adaptation_modification_derivative_work_translation_and_third_party_distribution_require_prior_written_NCI_agreement",
+      "recommended_route": "external_written_scope_clarification",
+      "official_contact_route": "mailto:NCIInfo@nih.gov",
+      "dispatch_status": "blocked_sender_identity_required",
+      "repository_decision_change": "none_payload_remains_blocked_permission_required"
+    },
+    {
+      "source_id": "decs",
+      "official_evidence_urls": [
+        "https://decs.bvsalud.org/wp-content/uploads/2024/04/DeCS-services-EN.pdf",
+        "https://decs.bvsalud.org/I/DeCS-License-Agreement-20080801.pdf"
+      ],
+      "license_finding": "web_services_require_a_standard_pre_license_form_and_a_language_specific_time_limited_license",
+      "recommended_route": "formal_pre_license_process_after_institutional_and_sender_details_are_confirmed",
+      "official_contact_route": "provider_pre_license_form_route_documented_but_current_form_endpoint_not_verified",
+      "dispatch_status": "blocked_sender_institution_and_verified_form_endpoint_required",
+      "repository_decision_change": "none_payload_remains_blocked_permission_required"
+    },
+    {
+      "source_id": "mondo",
+      "official_evidence_urls": ["https://mondo.monarchinitiative.org/pages/download/"],
+      "license_finding": "official_download_page_declares_CC_BY_4_0_for_the_international_edition",
+      "recommended_route": "internal_bounded_use_attribution_and_source_atom_review_no_external_permission_enquiry",
+      "official_contact_route": "not_required_for_current_non_adaptive_planning_scope",
+      "dispatch_status": "not_sent_not_recommended",
+      "repository_decision_change": "none_payload_retrieval_still_requires_explicit_internal_approval"
+    },
+    {
+      "source_id": "who-icf",
+      "official_evidence_urls": [
+        "https://www.who.int/about/policies/publishing/copyright",
+        "https://www.who.int/standards/classifications/international-classification-of-functioning-disability-and-health"
+      ],
+      "license_finding": "ICF_is_CC_BY_ND_3_0_IGO_for_commercial_and_noncommercial_use_if_codes_are_not_adapted_and_are_cited",
+      "recommended_route": "internal_non_adaptation_scope_review_use_WHO_permissions_route_only_if_adaptation_is_proposed",
+      "official_contact_route": "WHO_permissions_form_or_ICF_contact_for_out_of_scope_use",
+      "dispatch_status": "not_sent_not_currently_required",
+      "repository_decision_change": "none_payload_remains_blocked_human_review_required"
+    },
+    {
+      "source_id": "uberon",
+      "official_evidence_urls": ["https://obofoundry.org/ontology/uberon.html"],
+      "license_finding": "OBO_Foundry_declares_CC_BY_3_0",
+      "recommended_route": "internal_attribution_version_and_structural_role_review_no_external_permission_enquiry",
+      "official_contact_route": "not_required_for_current_structural_planning_scope",
+      "dispatch_status": "not_sent_not_recommended",
+      "repository_decision_change": "none_payload_retrieval_still_requires_explicit_internal_approval"
+    },
+    {
+      "source_id": "pato",
+      "official_evidence_urls": ["https://obofoundry.org/ontology/pato.html"],
+      "license_finding": "OBO_Foundry_declares_CC_BY_3_0",
+      "recommended_route": "internal_attribution_version_and_structural_role_review_no_external_permission_enquiry",
+      "official_contact_route": "not_required_for_current_structural_planning_scope",
+      "dispatch_status": "not_sent_not_recommended",
+      "repository_decision_change": "none_payload_retrieval_still_requires_explicit_internal_approval"
+    }
+  ],
+  "authorization_boundary": {
+    "g1_external_enquiry_scope_authorized": true,
+    "sender_identity_inference_authorized": false,
+    "dispatch_under_mismatched_identity_authorized": false,
+    "source_payload_retrieval_authorized": false,
+    "license_acceptance_authorized": false,
+    "reviewer_or_language_authority_contact_authorized": false,
+    "empirical_work_authorized": false,
+    "financial_spend_authorized": false,
+    "publication_authorized": false,
+    "push_authorized": false,
+    "pull_request_authorized": false
+  },
+  "next_required_human_input": "sender_name_institution_and_reply_address_for_PRO_CTCAE_and_DeCS_routes",
+  "claims_boundary": "route_review_and_dispatch_readiness_only_no_permission_license_acceptance_payload_or_empirical_readiness"
+}

@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hpo-translations.example/schemas/source_catalog.schema.json",
+  "title": "Research source catalog",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["catalog_version", "generated_at", "scope", "empirical_records_ingested", "hpo_release", "mappings", "dependence_summary"],
+  "properties": {
+    "catalog_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "generated_at": {"type": "string", "format": "date-time"},
+    "scope": {"const": "governance_metadata_only"},
+    "empirical_records_ingested": {"const": 0},
+    "hpo_release": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tag", "commit_sha", "published_at", "authority", "release_url", "mapping_document_url", "mapping_document_blob_sha", "primary_asset", "license_status", "license_evidence_url", "payload_commit_allowed"],
+      "properties": {
+        "tag": {"type": "string", "pattern": "^v[0-9]{4}-[0-9]{2}-[0-9]{2}$"},
+        "commit_sha": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
+        "published_at": {"type": "string", "format": "date-time"},
+        "authority": {"type": "string", "minLength": 1},
+        "release_url": {"type": "string", "format": "uri"},
+        "mapping_document_url": {"type": "string", "format": "uri"},
+        "mapping_document_blob_sha": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
+        "primary_asset": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["name", "size_bytes", "sha256", "url"],
+          "properties": {
+            "name": {"type": "string", "minLength": 1},
+            "size_bytes": {"type": "integer", "minimum": 1},
+            "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+            "url": {"type": "string", "format": "uri"}
+          }
+        },
+        "license_status": {"type": "string", "minLength": 1},
+        "license_evidence_url": {"type": "string", "format": "uri"},
+        "payload_commit_allowed": {"const": false}
+      }
+    },
+    "mappings": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["source_id", "mapping_family", "provider", "originating_authority", "authority_role", "format", "source_release", "release_kind", "versioned_url", "mutable_alias_url", "integrity", "artifact_size_bytes", "mapping_set_id", "semantic_role", "origin_dataset", "derivation_path", "shared_lineage_cluster", "independent_evidence_group", "license_status", "license_evidence_url", "payload_commit_allowed", "metadata_commit_allowed", "active_language_overlap_status", "update_cadence", "expected_reviewer_burden", "status", "retrieved_at", "evidence_urls", "members"],
+        "properties": {
+          "source_id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+          "mapping_family": {"type": "string", "minLength": 1},
+          "provider": {"type": "string", "minLength": 1},
+          "originating_authority": {"type": "string", "minLength": 1},
+          "authority_role": {"enum": ["derived_aggregator", "generated_pipeline", "curated_collaboration"]},
+          "format": {"type": "string", "minLength": 1},
+          "source_release": {"type": "string", "minLength": 1},
+          "release_kind": {"enum": ["date_snapshot", "git_commit"]},
+          "versioned_url": {"type": "string", "format": "uri"},
+          "mutable_alias_url": {"type": ["string", "null"], "format": "uri"},
+          "integrity": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["algorithm", "value"],
+            "properties": {
+              "algorithm": {"enum": ["sha256", "git_commit"]},
+              "value": {"type": "string", "pattern": "^[a-f0-9]{40,64}$"}
+            }
+          },
+          "artifact_size_bytes": {"type": "integer", "minimum": 1},
+          "mapping_set_id": {"type": ["string", "null"], "format": "uri"},
+          "semantic_role": {"enum": ["crosswalk", "compositional"]},
+          "origin_dataset": {"type": "string", "minLength": 1},
+          "derivation_path": {"type": "array", "minItems": 2, "items": {"type": "string", "minLength": 1}},
+          "shared_lineage_cluster": {"type": "string", "minLength": 1},
+          "independent_evidence_group": {"type": "string", "minLength": 1},
+          "license_status": {"type": "string", "pattern": "review_required"},
+          "license_evidence_url": {"type": "string", "format": "uri"},
+          "payload_commit_allowed": {"const": false},
+          "metadata_commit_allowed": {"const": true},
+          "active_language_overlap_status": {"const": "not_applicable_identifier_mapping"},
+          "update_cadence": {"type": "string", "minLength": 1},
+          "expected_reviewer_burden": {"enum": ["low", "medium", "high"]},
+          "status": {"const": "metadata_verified_payload_blocked"},
+          "retrieved_at": {"type": "string", "format": "date-time"},
+          "evidence_urls": {"type": "array", "minItems": 2, "uniqueItems": true, "items": {"type": "string", "format": "uri"}},
+          "members": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["name", "size_bytes", "sha256", "declared_license", "url"],
+              "properties": {
+                "name": {"type": "string", "minLength": 1},
+                "size_bytes": {"type": "integer", "minimum": 1},
+                "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+                "declared_license": {"enum": ["CC0-1.0", "CC-BY-4.0"]},
+                "url": {"type": "string", "format": "uri"}
+              }
+            }
+          }
+        }
+      }
+    },
+    "dependence_summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["naive_mapping_family_count", "independent_evidence_group_count", "shared_origin_groups", "count_policy"],
+      "properties": {
+        "naive_mapping_family_count": {"type": "integer", "minimum": 1},
+        "independent_evidence_group_count": {"type": "integer", "minimum": 1},
+        "shared_origin_groups": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["origin_dataset", "members", "independent_evidence_group"],
+            "properties": {
+              "origin_dataset": {"type": "string", "minLength": 1},
+              "members": {"type": "array", "minItems": 2, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+              "independent_evidence_group": {"type": "string", "minLength": 1}
+            }
+          }
+        },
+        "count_policy": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

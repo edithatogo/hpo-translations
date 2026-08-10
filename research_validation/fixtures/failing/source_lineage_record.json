@@ -1,0 +1,17 @@
+{
+  "run_id": "run-invalid-restricted-input",
+  "evidence_id": "evidence-restricted-fixture",
+  "source_id": "restricted-source",
+  "source_release": "fixture-1.0",
+  "source_atom_id": "RESTRICTED:A",
+  "originating_authority": "Synthetic fixture",
+  "derivation_path": ["restricted-source"],
+  "shared_lineage_cluster": "restricted-lineage",
+  "independent_evidence_group": "restricted-group",
+  "semantic_role": "lexical",
+  "mapping_predicate": "exact",
+  "designation_role": "preferred",
+  "license_class": "restricted",
+  "payload_commit_allowed": true,
+  "provenance_id": "provenance-restricted-fixture"
+}

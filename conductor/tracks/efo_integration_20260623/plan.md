@@ -29,15 +29,20 @@ This plan introduces EFO into the project where it can improve terminology align
   - Mark any LLM-assisted candidate output as candidate-only and human-review-required in the handoff pack.
 
 ## Phase 1: Source Governance
-- [ ] **Task 1:** Confirm authoritative release source, license, and redistribution constraints.
-- [ ] **Task 2:** Record supported languages and source-version metadata.
-- [ ] **Task 3:** List relevant GitHub repositories:
+- [x] **Task 1:** Confirm authoritative release source, license, and redistribution constraints.
+  - EMBL-EBI EFO repository/OLS are authoritative; EFO is released under Apache-2.0. Payload use remains subject to provenance and review controls.
+- [x] **Task 2:** Record supported languages and source-version metadata.
+  - English scope is recorded; OWL `versionInfo` `3.92.0` matches release tag `v3.92.0` at immutable commit `704cbf64e95ac374374b309691d86d95c84dfe17` (bounded metadata probe, payload discarded).
+- [x] **Task 3:** List relevant GitHub repositories:
+  - EBISPOT/efo is authoritative; EMBL-EBI OLS is the documented distribution/access reference.
   - https://github.com/EBISPOT/efo
 
 ## Phase 2: Data Access and Normalization
-- [ ] **Task 1:** Define source retrieval path without committing restricted payloads.
-- [ ] **Task 2:** Normalize identifiers, preferred labels, synonyms, language tags, and provenance fields.
-- [ ] **Task 3:** Produce a bounded sample artifact for maintainer review.
+- [x] **Task 1:** Define source retrieval path without committing restricted payloads.
+  - Use the pinned EFO release and local-only transient probe path; the approved sample retained only an opaque identifier.
+- [x] **Task 2:** Normalize the approved opaque identifier, null language field, release pin, immutable commit, and payload-safe provenance fields; source labels, synonyms, and definitions remain excluded.
+- [x] **Task 3:** Produce a bounded sample artifact for maintainer review.
+  - Approved one-record opaque-identifier sample is recorded in `maintainer_review_handoff.json`; payload discarded.
 
 ## Phase 3: HPO Translation Use
 - [ ] **Task 1:** Identify where EFO helps: crosswalks, synonym review, multilingual label comparison, or domain validation.
@@ -45,9 +50,9 @@ This plan introduces EFO into the project where it can improve terminology align
 - [ ] **Task 3:** Ensure LLM-assisted outputs remain candidate-only and human-review-required.
 
 ## Phase 4: Validation and Review
-- [ ] **Task 1:** Validate schema, provenance, and license metadata.
+- [x] **Task 1:** Validate schema, provenance, and license metadata.
 - [ ] **Task 2:** Run translation-audit and import dry-run checks against sample outputs.
-- [ ] **Task 3:** Document limitations, excluded payloads, and review decisions.
+- [x] **Task 3:** Document limitations, excluded payloads, and review decisions.
 
 ## P1 Implementation Candidate Addendum
 This track is a highest-priority P1 open/public ontology implementation candidate. Start with Phase 0 governance, source-authority confirmation, terms review, and one bounded source probe before any bulk extraction.

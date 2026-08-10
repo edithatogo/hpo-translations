@@ -1,0 +1,258 @@
+{
+  "schema_version": "phase-4-gate-docket-v2",
+  "track_id": "research_validation_20260801",
+  "status": "wave_2_routes_verified_requests_prepared_dispatch_blocked",
+  "current_route": "option_d_synthetic_only",
+  "target_route": "option_a_staged_three_language_pilot",
+  "blocker_resolution_plan": {
+    "blocker": "stage_1_cannot_start_until_scoped_G1_source_and_G2_language_reviewer_ethics_privacy_decisions_are_recorded_with_evidence_and_G3_is_prospectively_frozen",
+    "recommended_strategy": "dual_lane_minimum_viable_option_b_then_expand_to_option_a_only_if_optional_gates_close_before_G3",
+    "rationale": [
+      "a_two_language_stage_1_preserves_multilingual_and_script_contrast_while_removing_the_unassigned_community_slot_from_the_critical_path",
+      "version_pinned_open_sources_can_be_considered_before_sources_that_require_external_permission_or_a_pre_license_process",
+      "ethics_privacy_language_authority_and_reviewer_independence_remain_non_substitutable_accountable_gates",
+      "a_single_prospective_G3_freeze_prevents_optional_late_approvals_from_changing_the_design_after_empirical_ingress"
+    ],
+    "options": [
+      {
+        "option_id": "minimum_viable_option_b",
+        "recommendation": "recommended",
+        "scope": "Spanish_and_Japanese_Stage_1_with_HPO_and_only_the_bounded_source_subset_explicitly_approved_before_G3",
+        "critical_path_packets": ["g1-mondo", "g1-who-icf", "g1-structural-sources", "g2-spanish-language", "g2-japanese-language", "g2-reviewer-roster", "g2-ethics-privacy"],
+        "deferred_packets": ["g1-pro-ctcae", "g1-decs", "g2-community-slot"],
+        "benefit": "fastest_route_that_retains_a_multilingual_script_contrast_and_stage_1_measurement_value",
+        "tradeoff": "no_community_governed_language_patient_facing_PRO_CTCAE_or_DeCS_claim",
+        "fallback": "step_down_to_option_c_for_the_first_fully_approved_language_or_option_d_if_no_language_is_fully_approved"
+      },
+      {
+        "option_id": "full_target_option_a",
+        "recommendation": "expansion_lane",
+        "scope": "three_approved_languages_and_all_source_conditions_authorized_for_the_frozen_design",
+        "critical_path_packets": ["g1-pro-ctcae", "g1-decs", "g1-mondo", "g1-who-icf", "g1-structural-sources", "g2-spanish-language", "g2-japanese-language", "g2-community-slot", "g2-reviewer-roster", "g2-ethics-privacy"],
+        "deferred_packets": [],
+        "benefit": "best_alignment_with_the_selected_three_language_target",
+        "tradeoff": "slowest_and_highest_coordination_route_with_external_permission_and_community_authority_dependencies",
+        "fallback": "minimum_viable_option_b"
+      },
+      {
+        "option_id": "single_language_option_c",
+        "recommendation": "measurement_fallback",
+        "scope": "the_first_fully_approved_language_with_a_bounded_approved_source_subset",
+        "critical_path_packets": ["g2-reviewer-roster", "g2-ethics-privacy"],
+        "deferred_packets": ["g1-pro-ctcae", "g1-decs", "g2-community-slot"],
+        "benefit": "retains_instrument_reliability_and_workload_measurement",
+        "tradeoff": "cannot_support_cross_language_or_multilingual_feasibility_claims",
+        "fallback": "option_d_synthetic_only"
+      },
+      {
+        "option_id": "option_d_synthetic_only",
+        "recommendation": "fail_closed_fallback",
+        "scope": "retain_the_completed_payload_free_rehearsal_and_do_not_start_empirical_ingress",
+        "critical_path_packets": [],
+        "deferred_packets": ["g1-pro-ctcae", "g1-decs", "g1-mondo", "g1-who-icf", "g1-structural-sources", "g2-spanish-language", "g2-japanese-language", "g2-community-slot", "g2-reviewer-roster", "g2-ethics-privacy"],
+        "benefit": "requires_no_new_payload_reviewer_or_external_authority",
+        "tradeoff": "supports_operational_readiness_only",
+        "fallback": "none"
+      }
+    ],
+    "resolution_waves": [
+      {
+        "wave_id": "wave_1_minimum_source_scope",
+        "status": "completed_scoped_decisions_recorded_payload_blocked",
+        "action": "record_scoped_internal_decisions_for_Mondo_WHO_ICF_Uberon_and_PATO_or_omit_each_unapproved_source",
+        "exit_evidence": "source_licence_receipts_with_version_scope_conditions_and_recheck_dates",
+        "contingency": "use_HPO_only_or_the_remaining_approved_subset_without_replacing_an_omitted_source_with_a_mirror"
+      },
+      {
+        "wave_id": "wave_2_ethics_privacy_and_language_scope",
+        "status": "routes_verified_requests_prepared_dispatch_blocked",
+        "planning_artifact": "research_validation/phase_4_wave_2_authority_routes.json",
+        "action": "obtain_the_formal_ethics_privacy_determination_and_separate_Spanish_and_Japanese_scope_decisions_after_contact_is_authorized",
+        "exit_evidence": "bounded_G2_receipts_and_a_local_only_retention_consent_withdrawal_and_incident_plan",
+        "contingency": "remove_an_unapproved_language_and_recalculate_the_route_C_or_D"
+      },
+      {
+        "wave_id": "wave_3_reviewer_capacity",
+        "action": "authorize_recruitment_then_record_a_pseudonymous_independent_reviewer_and_adjudicator_roster_in_the_local_only_evidence_store",
+        "exit_evidence": "qualification_capacity_consent_conflict_and_independence_receipts",
+        "contingency": "use_the_two_reviewer_plus_independent_adjudicator_revise_branch_or_step_down_C_or_D"
+      },
+      {
+        "wave_id": "wave_4_optional_expansion",
+        "action": "if_option_A_remains_desirable_supply_an_authorized_sender_identity_for_PRO_CTCAE_and_DeCS_and_seek_a_community_selected_third_language",
+        "exit_evidence": "written_source_permissions_and_a_bounded_community_authority_receipt",
+        "contingency": "freeze_option_B_without_these_conditions_and_make_no_claim_about_them"
+      },
+      {
+        "wave_id": "wave_5_reconcile_and_freeze",
+        "action": "reconcile_packet_receipts_into_the_canonical_approval_manifest_select_the_route_and_execute_one_checksummed_G3_freeze",
+        "exit_evidence": "no_pending_required_gate_for_the_selected_route_and_an_immutable_G3_receipt",
+        "contingency": "do_not_start_Stage_1_and_remain_at_the_highest_fully_authorized_fallback"
+      }
+    ],
+    "accountability_boundary": {
+      "advisory_subagent_panel_may": ["review_public_evidence", "identify_conflicts", "draft_scoped_options", "check_receipt_completeness"],
+      "advisory_subagent_panel_must_not": ["accept_licence_terms", "grant_community_or_language_authority", "issue_ethics_or_privacy_determinations", "consent_for_reviewers", "authorize_payload_retrieval", "promote_translations"],
+      "decision_receipts_must_be_bound_to": ["accountable_authority_role", "scope", "evidence_hash_or_payload_safe_URI", "conditions", "decision_date", "expiry_or_recheck_date"]
+    }
+  },
+  "decision_packets": [
+    {
+      "packet_id": "g1-pro-ctcae",
+      "gate": "G1_source_authority",
+      "priority": 1,
+      "linked_source_ids": ["pro-ctcae"],
+      "linked_language_ids": ["es", "ja"],
+      "decision_owner_role": "NCI_permission_owner_and_maintainer",
+      "decision": "pending",
+      "required_evidence": ["written_permission", "permitted_use_scope", "storage_and_reporting_conditions", "expiry_or_recheck_date"],
+      "recommended_resolution": "request_written_permission_only_after_maintainer_authorizes_external_contact",
+      "if_not_approved": "omit_patient_facing_source_condition_and_reassess_option_b"
+    },
+    {
+      "packet_id": "g1-decs",
+      "gate": "G1_source_authority",
+      "priority": 2,
+      "linked_source_ids": ["decs"],
+      "linked_language_ids": ["es"],
+      "decision_owner_role": "provider_licensing_delegate_and_maintainer",
+      "decision": "pending",
+      "required_evidence": ["written_permission", "confirmed_source_version", "adaptation_and_mapping_scope", "redistribution_conditions"],
+      "recommended_resolution": "consider_pre_license_request_only_after_maintainer_and_institutional_review",
+      "if_not_approved": "omit_decs_and_make_no_decs_triangulation_claim"
+    },
+    {
+      "packet_id": "g1-mondo",
+      "gate": "G1_source_authority",
+      "priority": 3,
+      "linked_source_ids": ["mondo"],
+      "linked_language_ids": ["ja"],
+      "decision_owner_role": "maintainer_and_source_license_owner",
+      "decision": "conditional",
+      "decision_scope": "version_pinned_Japanese_disease_context_and_source_atom_provenance_for_internal_pilot_design",
+      "decision_evidence_ref": "research_validation/phase_4_wave_1_source_decisions.json",
+      "recheck_date": "2027-08-03",
+      "required_evidence": ["license_review", "source_atom_provenance_rule", "pilot_scope", "version_pin"],
+      "recommended_resolution": "review_the_registered_version_and_source_atom_rules_before_any_payload_probe",
+      "if_not_approved": "omit_mondo_disease_context"
+    },
+    {
+      "packet_id": "g1-who-icf",
+      "gate": "G1_source_authority",
+      "priority": 4,
+      "linked_source_ids": ["who-icf"],
+      "linked_language_ids": ["es"],
+      "decision_owner_role": "maintainer_and_who_icf_license_owner",
+      "decision": "conditional",
+      "decision_scope": "unchanged_version_pinned_Spanish_functional_context_with_appropriate_citation_for_internal_pilot_design",
+      "decision_evidence_ref": "research_validation/phase_4_wave_1_source_decisions.json",
+      "recheck_date": "2027-08-03",
+      "required_evidence": ["source_specific_license_review", "version_pin", "permitted_semantic_role", "payload_storage_rule"],
+      "recommended_resolution": "treat_as_optional_functional_context_not_a_lexical_vote",
+      "if_not_approved": "omit_who_icf_context_without_substitution_by_mirror"
+    },
+    {
+      "packet_id": "g1-structural-sources",
+      "gate": "G1_source_authority",
+      "priority": 5,
+      "linked_source_ids": ["uberon", "pato"],
+      "linked_language_ids": [],
+      "decision_owner_role": "maintainer_and_structural_source_license_owners",
+      "decision": "conditional",
+      "decision_scope": "version_pinned_Uberon_and_PATO_structural_and_hard_negative_design_for_internal_pilot_design",
+      "decision_evidence_ref": "research_validation/phase_4_wave_1_source_decisions.json",
+      "recheck_date": "2027-08-03",
+      "required_evidence": ["source_specific_license_review", "version_pin", "structural_semantic_role", "payload_storage_rule"],
+      "recommended_resolution": "authorize_only_for_structural_and_hard_negative_design_not_lexical_voting",
+      "if_not_approved": "omit_each_unapproved_structural_source"
+    },
+    {
+      "packet_id": "g2-spanish-language",
+      "gate": "G2_human_and_community_authority",
+      "priority": 1,
+      "linked_source_ids": [],
+      "linked_language_ids": ["es"],
+      "decision_owner_role": "spanish_language_working_group_authority",
+      "decision": "pending",
+      "route_status": "official_project_route_verified_working_group_forming_dispatch_blocked",
+      "request_ref": "research_validation/phase_4_wave_2_authority_routes.json",
+      "required_evidence": ["language_scope_approval", "register_and_audience_scope", "model_use_decision", "withdrawal_contact"],
+      "recommended_resolution": "obtain_scope_bounded_language_authority_decision_after_contact_is_authorized",
+      "if_not_approved": "consider_fr_or_pt_only_after_separate_authority_review"
+    },
+    {
+      "packet_id": "g2-japanese-language",
+      "gate": "G2_human_and_community_authority",
+      "priority": 2,
+      "linked_source_ids": [],
+      "linked_language_ids": ["ja"],
+      "decision_owner_role": "japanese_language_working_group_authority",
+      "decision": "pending",
+      "route_status": "official_working_group_and_external_repository_route_verified_dispatch_blocked",
+      "request_ref": "research_validation/phase_4_wave_2_authority_routes.json",
+      "required_evidence": ["language_scope_approval", "register_and_audience_scope", "model_use_decision", "withdrawal_contact"],
+      "recommended_resolution": "obtain_scope_bounded_language_authority_decision_after_contact_is_authorized",
+      "if_not_approved": "consider_zh_only_after_separate_authority_review"
+    },
+    {
+      "packet_id": "g2-community-slot",
+      "gate": "G2_human_and_community_authority",
+      "priority": 3,
+      "linked_source_ids": [],
+      "linked_language_ids": [],
+      "decision_owner_role": "relevant_community_authority_and_maintainer",
+      "decision": "pending",
+      "required_evidence": ["community_selected_language", "community_model_use_permission", "consent_and_attribution_rules", "restricted_term_rules", "benefit_and_withdrawal_rules"],
+      "recommended_resolution": "leave_slot_unassigned_until_a_community_authority_selects_and_authorizes_scope",
+      "if_not_approved": "step_down_to_option_b_with_es_and_ja"
+    },
+    {
+      "packet_id": "g2-reviewer-roster",
+      "gate": "G2_human_and_community_authority",
+      "priority": 4,
+      "linked_source_ids": [],
+      "linked_language_ids": ["es", "ja"],
+      "decision_owner_role": "maintainer_and_reviewer_governance_owner",
+      "decision": "pending",
+      "required_evidence": ["nine_primary_reviewer_pseudonyms", "three_independent_adjudicator_pseudonyms", "local_only_qualification_evidence", "capacity_confirmation", "consent", "conflict_and_independence_review"],
+      "recommended_resolution": "prepare_local_only_roster_only_after_recruitment_is_authorized",
+      "if_not_approved": "apply_reviewer_contingency_or_step_down_design"
+    },
+    {
+      "packet_id": "g2-ethics-privacy",
+      "gate": "G2_human_and_community_authority",
+      "priority": 5,
+      "linked_source_ids": [],
+      "linked_language_ids": ["es", "ja"],
+      "decision_owner_role": "institutional_ethics_privacy_owner_and_maintainer",
+      "decision": "pending",
+      "route_status": "institutional_routes_verified_sponsor_selection_required_dispatch_blocked",
+      "request_ref": "research_validation/phase_4_wave_2_authority_routes.json",
+      "required_evidence": ["ethics_determination", "privacy_assessment", "retention_and_deletion_plan", "incident_and_withdrawal_process", "approved_reporting_scope"],
+      "recommended_resolution": "obtain_formal_determination_before_reviewer_data_collection",
+      "if_not_approved": "remain_at_option_d_synthetic_only"
+    }
+  ],
+  "advance_rule": {
+    "task_3_completion_requires": ["permitted_language_slots", "pseudonymous_reviewer_and_adjudicator_roster", "payload_authorized_source_set", "stratified_concept_selection_authority"],
+    "task_4_completion_requires": ["all_required_packets_approved_or_bounded_conditional", "no_expired_decision", "scope_and_evidence_hashes_recorded"],
+    "conditional_decisions_require": ["bounded_scope", "conditions", "expiry_or_recheck_date"],
+    "rejected_or_unavailable_gate_action": "apply_phase_4_candidate_matrix_step_down_contingency",
+    "automatic_advancement_allowed": false
+  },
+  "authorization_boundary": {
+    "external_contact_authorized": false,
+    "permission_request_authorized": false,
+    "reviewer_recruitment_authorized": false,
+    "reviewer_data_collection_authorized": false,
+    "source_payload_retrieval_authorized": false,
+    "concept_sampling_authorized": false,
+    "empirical_candidate_generation_authorized": false,
+    "financial_spend_authorized": false,
+    "external_preregistration_authorized": false,
+    "publication_authorized": false,
+    "push_authorized": false,
+    "pull_request_authorized": false
+  },
+  "claims_boundary": "wave_2_routes_and_requests_prepared_no_G2_approval_contact_payload_empirical_or_promotion_readiness"
+}

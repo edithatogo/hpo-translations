@@ -1,0 +1,26 @@
+{
+  "catalog_version": "1.0.0",
+  "generated_at": "2026-08-01T00:00:00Z",
+  "scope": "governance_metadata_only",
+  "empirical_records_ingested": 0,
+  "hpo_release": {
+    "tag": "v2026-06-23",
+    "commit_sha": "1366616bda33cd5eb18bb232287e139a1b075eb8",
+    "published_at": "2026-06-23T12:08:40Z",
+    "authority": "Synthetic fixture authority",
+    "release_url": "https://example.org/releases/v2026-06-23",
+    "mapping_document_url": "https://example.org/mappings",
+    "mapping_document_blob_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "primary_asset": {"name": "hp.json", "size_bytes": 1, "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "url": "https://example.org/hp.json"},
+    "license_status": "maintainer_review_required",
+    "license_evidence_url": "https://example.org/license",
+    "payload_commit_allowed": false
+  },
+  "mappings": [],
+  "dependence_summary": {
+    "naive_mapping_family_count": 2,
+    "independent_evidence_group_count": 2,
+    "shared_origin_groups": [],
+    "count_policy": "Incorrect naive counting."
+  }
+}

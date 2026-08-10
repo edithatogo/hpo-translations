@@ -33,12 +33,15 @@ Phase 0 governance is implemented as metadata-only and remains blocked before pa
 
 ## Phase 1: Source Governance
 - [ ] **Task 1:** Confirm authoritative release source, license, and redistribution constraints.
-- [ ] **Task 2:** Record supported languages and source-version metadata.
-- [ ] **Task 3:** List relevant GitHub repositories:
+- [x] **Task 2:** Record supported languages and source-version metadata.
+  - MGI/MP release `v2026-07-22` and immutable commit are recorded; release-specific licence review remains open.
+- [x] **Task 3:** List relevant GitHub repositories:
+  - `mgijax/mammalian-phenotype-ontology` is pinned as the upstream release authority.
   - https://github.com/mgijax/mammalian-phenotype-ontology
 
 ## Phase 2: Data Access and Normalization
-- [ ] **Task 1:** Define source retrieval path without committing restricted payloads.
+- [x] **Task 1:** Define source retrieval path without committing restricted payloads.
+  - Use the pinned MGI release metadata and local-only cache; do not fetch or commit term payloads before release-specific licence review.
 - [ ] **Task 2:** Normalize identifiers, preferred labels, synonyms, language tags, and provenance fields.
 - [ ] **Task 3:** Produce a bounded sample artifact for maintainer review.
 

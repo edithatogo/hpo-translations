@@ -1,0 +1,31 @@
+{
+  "track_id": "oncotree_integration_20260623",
+  "status": "approved_bounded_metadata_only_sample",
+  "prepared_at": "2026-08-01",
+  "evidence": {
+    "authority": "https://github.com/cBioPortal/oncotree",
+    "release": "2.1.0",
+    "immutable_commit": "72f5796147a49da0f05fa2fa6cdf1cac7b64fe55",
+    "license": "CC BY 4.0",
+    "api_metadata_probe": "http://oncotree.mskcc.org/api/versions returned HTTP 200; response discarded",
+    "api_schema": "repository Swagger documents /api/versions and /api/tumorTypes"
+  },
+  "decisions_requested": [
+    "Approve CC BY 4.0 OncoTree release metadata for future bounded API access",
+    "Confirm attribution and API terms requirements",
+    "Authorize a one-record non-redistributive sample, if permitted"
+  ],
+  "approval": {
+    "decision": "Approve bounded metadata-only samples for EFO and OncoTree; keep labels, crosswalks, and downstream promotion blocked.",
+    "approved_at": "2026-08-01",
+    "scope": "one-record metadata-only sample; no source-term redistribution"
+  },
+  "bounded_sample": {
+    "identifier": "KIDNEY",
+    "api_version": "oncotree_2025_10_03",
+    "http_status": 200,
+    "payload_retained": false
+  },
+  "blocked_until_approval": ["source labels", "synonyms", "definitions", "crosswalk edges", "downstream promotion"],
+  "llm_policy": "candidate_only_human_review_required"
+}

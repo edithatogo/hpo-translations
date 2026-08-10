@@ -1,0 +1,14 @@
+{
+  "track_id": "lddb_integration_20260623",
+  "status": "investigation_only_no_go",
+  "authoritative_source": null,
+  "repository": null,
+  "source_version": null,
+  "license": "unverified",
+  "supported_languages": [],
+  "payload_commit_allowed": false,
+  "credential_required": "unknown",
+  "evidence": [{"uri": "https://pubmed.ncbi.nlm.nih.gov/3656376/", "role": "historical description only", "retrieved_at": "2026-08-01"}, {"uri": "https://www.sciencedirect.com/science/article/pii/S1098360021001763", "role": "historical online-LDDB description; publisher terms apply", "retrieved_at": "2026-08-01"}],
+  "next_gate": "no current maintained public authority or redistribution licence located; require rights-holder confirmation or close as investigation-only",
+  "excluded": ["labels", "synonyms", "definitions", "full_release_payload"]
+}

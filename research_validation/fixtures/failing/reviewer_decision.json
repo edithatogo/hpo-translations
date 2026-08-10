@@ -1,0 +1,22 @@
+{
+  "run_id": "run-invalid-restricted-input",
+  "decision_id": "decision-unblinded-001",
+  "item_id": "item-synthetic-seizure",
+  "reviewer_id_pseudonym": "reviewer-synthetic-002",
+  "reviewer_roles": ["target_language"],
+  "qualification_attestation_id": "qualification-synthetic-fixture",
+  "conflict_status": "disclosed",
+  "conflict_details": null,
+  "blinded_to_candidate_method": false,
+  "decision": "accept_no_edit",
+  "edited_text": null,
+  "edit_burden": {"character_distance": 0, "normalized_character_distance": 0, "token_distance": 0, "normalized_token_distance": 0},
+  "clinically_significant_error": false,
+  "error_categories": [],
+  "error_explanation": null,
+  "review_seconds": 10,
+  "confidence": 1.2,
+  "selected_hpo_id": "HP:0001250",
+  "ontology_discrimination_correct": true,
+  "adjudication_status": "agreed"
+}

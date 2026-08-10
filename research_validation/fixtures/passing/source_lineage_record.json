@@ -1,0 +1,17 @@
+{
+  "run_id": "run-synthetic-schema-probe",
+  "evidence_id": "evidence-public-fixture-a",
+  "source_id": "synthetic-public-source",
+  "source_release": "fixture-1.0",
+  "source_atom_id": "SYNTHETIC:A",
+  "originating_authority": "HPO translations synthetic test fixture",
+  "derivation_path": ["synthetic-public-source"],
+  "shared_lineage_cluster": "fixture-lineage-a",
+  "independent_evidence_group": "fixture-independent-a",
+  "semantic_role": "lexical",
+  "mapping_predicate": "exact",
+  "designation_role": "preferred",
+  "license_class": "open",
+  "payload_commit_allowed": true,
+  "provenance_id": "provenance-fixture-a"
+}

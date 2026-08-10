@@ -33,12 +33,15 @@ Phase 0 governance is implemented as metadata-only and remains blocked before pa
 
 ## Phase 1: Source Governance
 - [ ] **Task 1:** Confirm authoritative release source, license, and redistribution constraints.
-- [ ] **Task 2:** Record supported languages and source-version metadata.
-- [ ] **Task 3:** List relevant GitHub repositories:
+- [x] **Task 2:** Record supported languages and source-version metadata.
+  - uPheno release `v2025-10-12` and immutable commit are recorded; component licence matrix review remains open.
+- [x] **Task 3:** List relevant GitHub repositories:
+  - `obophenotype/upheno` is pinned as the build/release authority; component repositories remain licence-gated.
   - https://github.com/obophenotype/upheno
 
 ## Phase 2: Data Access and Normalization
-- [ ] **Task 1:** Define source retrieval path without committing restricted payloads.
+- [x] **Task 1:** Define source retrieval path without committing restricted payloads.
+  - Use the pinned uPheno release metadata and local-only cache; component payloads remain blocked pending licence matrix review.
 - [ ] **Task 2:** Normalize identifiers, preferred labels, synonyms, language tags, and provenance fields.
 - [ ] **Task 3:** Produce a bounded sample artifact for maintainer review.
 

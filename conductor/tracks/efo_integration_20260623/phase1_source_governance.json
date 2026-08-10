@@ -1,0 +1,19 @@
+{
+  "track_id": "efo_integration_20260623",
+  "status": "metadata_only_terms_review_required",
+  "authoritative_source": "EBISPOT EFO repository and release documentation",
+  "repository": "https://github.com/EBISPOT/efo",
+  "source_version": "EFO 3.92.0 @ 704cbf64e95ac374374b309691d86d95c84dfe17",
+  "license": "Apache-2.0",
+  "supported_languages": ["en"],
+  "payload_commit_allowed": false,
+  "credential_required": false,
+  "next_gate": "complete source terms review and maintainer review; retain payload local-only until approval",
+  "evidence": {
+    "license_source": "https://www.ebi.ac.uk/efo/",
+    "release_source": "https://www.ebi.ac.uk/efo/about.html",
+    "ols_source": "https://www.ebi.ac.uk/ols4/ontologies/efo",
+    "terms_verified_at": "2026-08-01"
+  },
+  "excluded": ["labels", "synonyms", "definitions", "full_release_payload"]
+}

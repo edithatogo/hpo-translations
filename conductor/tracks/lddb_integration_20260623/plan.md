@@ -38,7 +38,8 @@ Phase 0 governance is implemented as investigation-only no-go. LDDB does not pro
   - None confirmed; document authoritative non-GitHub source instead.
 
 ## Phase 2: Data Access and Normalization
-- [ ] **Task 1:** Define source retrieval path without committing restricted payloads.
+- [x] **Task 1:** Define source retrieval path without committing restricted payloads.
+  - Investigation-only literature and rights-holder enquiry path is recorded; no payload retrieval or reconstruction is permitted absent a current authority and redistribution licence.
 - [ ] **Task 2:** Normalize identifiers, preferred labels, synonyms, language tags, and provenance fields.
 - [ ] **Task 3:** Produce a bounded sample artifact for maintainer review.
 

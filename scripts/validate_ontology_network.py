@@ -1240,7 +1240,7 @@ def summarize(
         "artifact_record_counts": artifact_counts,
         "registry_source_count": len(registry_source_ids),
         "issue_counts": dict(sorted(issue_counts.items())),
-        "release_ready": issue_counts["error"] == 0,
+        "validation_passed": issue_counts["error"] == 0,
     }
 
 
@@ -1251,7 +1251,7 @@ def render_text(report: dict[str, Any]) -> str:
     lines = [
         "# Ontology Network Validation Report",
         "",
-        f"- Release ready: {str(summary['release_ready']).lower()}",
+        f"- Validation passed: {str(summary['validation_passed']).lower()}",
         f"- Issue counts: {json.dumps(summary['issue_counts'], sort_keys=True)}",
         f"- Artifact record counts: {json.dumps(summary['artifact_record_counts'], sort_keys=True)}",
         f"- Registry source count: {summary['registry_source_count']}",

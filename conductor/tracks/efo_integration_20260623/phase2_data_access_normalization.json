@@ -1,0 +1,9 @@
+{
+  "track_id": "efo_integration_20260623",
+  "status": "metadata_only_sample_normalized_payload_free",
+  "retrieval": {"mode": "local_only_after_terms_review", "bulk_download": false, "cache": "unmaterialized"},
+  "normalization": {"identifier": "CURIE_or_URI", "language": "ISO_639_1_or_null", "provenance": ["source_uri", "release", "immutable_commit", "retrieved_at", "metadata_evidence_ref"], "source_terms_included": false},
+  "normalized_record": {"source_id": "efo", "identifier": "http://purl.obolibrary.org/obo/BFO_0000015", "identifier_type": "URI", "language": null, "source_uri": "https://github.com/EBISPOT/efo", "release": "v3.92.0", "immutable_commit": "704cbf64e95ac374374b309691d86d95c84dfe17", "retrieved_at": "2026-08-01", "metadata_evidence_ref": "maintainer_review_handoff.json#bounded_sample", "payload_retained": false},
+  "sample": {"allowed": true, "scope": "one_opaque_identifier_record_only", "authorization_ref": "maintainer_review_handoff.json#approval", "identifier": "http://purl.obolibrary.org/obo/BFO_0000015", "payload_retained": false, "source_terms_included": false},
+  "payload_commit_allowed": false
+}

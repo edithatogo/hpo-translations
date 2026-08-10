@@ -3,7 +3,7 @@
   "type": "feature",
   "status": "phase_0_implemented_blocked",
   "created_at": "2026-06-23T00:00:00Z",
-  "updated_at": "2026-06-25T00:00:00Z",
+  "updated_at": "2026-08-01T00:00:00Z",
   "description": "Integrate Disease Ontology into terminology and translation support",
   "depends_on": [
     "translation_agents_20260622",
@@ -151,14 +151,14 @@
   },
   "source_governance_result": {
     "phase_0_result": "implemented_governance_only",
-    "source_authority_status": "recorded_in_source_profile_terms_review_required",
-    "go_no_go": "governance_only_terms_review_required",
+    "source_authority_status": "Disease Ontology GitHub release and project resources authoritative; CC0-1.0 verified",
+    "go_no_go": "governance_complete_release_pinned",
     "payload_commit_allowed": false,
     "metadata_only_scaffold_allowed": true,
     "bounded_sample_allowed": false,
     "identifier_network_allowed": false,
     "non_translation_outputs_allowed": false,
-    "next_allowed_action": "complete source terms review and bounded source probe before any payload or label extraction",
+    "next_allowed_action": "run one bounded metadata probe against v2026-07-31; no payload or label commit",
     "review_result": "codex_review_completed_fixes_applied",
     "review_archive_status": "phase_0_review_archived"
   }

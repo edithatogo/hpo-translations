@@ -1,0 +1,177 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hpo-translations.example/schemas/supplementary_source_access_review.schema.json",
+  "title": "Supplementary source access review",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "review_version",
+    "generated_at",
+    "scope",
+    "payloads_retrieved",
+    "active_translation_profiles",
+    "reviews",
+    "summary"
+  ],
+  "properties": {
+    "review_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "generated_at": {"type": "string", "format": "date-time"},
+    "scope": {"const": "governance_metadata_only"},
+    "payloads_retrieved": {"const": 0},
+    "active_translation_profiles": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "pattern": "^[a-z0-9-]+$"}
+    },
+    "reviews": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "source_id",
+          "source_name",
+          "provider",
+          "authority_role",
+          "semantic_roles",
+          "source_version",
+          "access_mode",
+          "credential_requirement",
+          "source_declared_terms",
+          "license_evidence_url",
+          "adaptation_or_mapping_constraint",
+          "third_party_content_risk",
+          "active_translation_profile_overlap",
+          "excluded_overlap_reasons",
+          "repository_decision",
+          "metadata_commit_allowed",
+          "payload_retrieval_allowed",
+          "payload_commit_allowed",
+          "decision_owner",
+          "open_gates",
+          "next_safe_action",
+          "expected_reviewer_burden",
+          "proposed_pilot_use",
+          "evidence_urls",
+          "reviewed_at"
+        ],
+        "properties": {
+          "source_id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+          "source_name": {"type": "string", "minLength": 1},
+          "provider": {"type": "string", "minLength": 1},
+          "authority_role": {
+            "enum": [
+              "primary_terminology_authority",
+              "primary_measurement_system_authority",
+              "primary_classification_authority",
+              "primary_ontology_authority"
+            ]
+          },
+          "semantic_roles": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "enum": [
+                "multilingual_lexical",
+                "patient_facing_register",
+                "functional_context",
+                "disease_context",
+                "oncology_context",
+                "radiology_context",
+                "anatomical_structure",
+                "cell_type_structure",
+                "quality_structure"
+              ]
+            }
+          },
+          "source_version": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["value", "status", "commit_sha", "evidence_url"],
+            "properties": {
+              "value": {"type": ["string", "null"], "minLength": 1},
+              "status": {
+                "enum": ["exact_release_pinned", "current_service_release", "version_not_exposed_before_access"]
+              },
+              "commit_sha": {"type": ["string", "null"], "pattern": "^[a-f0-9]{40}$"},
+              "evidence_url": {"type": "string", "format": "uri"}
+            }
+          },
+          "access_mode": {
+            "enum": [
+              "public_release_download",
+              "public_web_metadata_registration_for_content",
+              "oauth2_api",
+              "public_api_and_release_download",
+              "clickthrough_download"
+            ]
+          },
+          "credential_requirement": {
+            "enum": ["none", "registration_and_terms_acceptance", "pre_license_agreement", "oauth2_client_credentials", "clickthrough_terms_acceptance"]
+          },
+          "source_declared_terms": {"type": "string", "minLength": 1},
+          "license_evidence_url": {"type": "string", "format": "uri"},
+          "adaptation_or_mapping_constraint": {"type": "string", "minLength": 1},
+          "third_party_content_risk": {"enum": ["low", "medium", "high", "not_assessed"]},
+          "active_translation_profile_overlap": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {"type": "string", "pattern": "^[a-z0-9-]+$"}
+          },
+          "excluded_overlap_reasons": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {"type": "string", "minLength": 1}
+          },
+          "repository_decision": {
+            "enum": ["metadata_probe_allowed", "payload_blocked_permission_required", "payload_blocked_human_review_required"]
+          },
+          "metadata_commit_allowed": {"const": true},
+          "payload_retrieval_allowed": {"const": false},
+          "payload_commit_allowed": {"const": false},
+          "decision_owner": {"type": "string", "minLength": 1},
+          "open_gates": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "enum": [
+                "maintainer_license_review",
+                "written_provider_permission",
+                "credential_provisioning",
+                "source_atom_attribution_review",
+                "language_identity_resolution",
+                "pilot_scope_selection"
+              ]
+            }
+          },
+          "next_safe_action": {"type": "string", "minLength": 1},
+          "expected_reviewer_burden": {"enum": ["low", "medium", "high"]},
+          "proposed_pilot_use": {"type": "string", "minLength": 1},
+          "evidence_urls": {
+            "type": "array",
+            "minItems": 2,
+            "uniqueItems": true,
+            "items": {"type": "string", "format": "uri"}
+          },
+          "reviewed_at": {"type": "string", "format": "date-time"}
+        }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_count", "metadata_probe_allowed_count", "permission_required_count", "human_review_required_count", "payload_allowed_count"],
+      "properties": {
+        "source_count": {"type": "integer", "minimum": 1},
+        "metadata_probe_allowed_count": {"type": "integer", "minimum": 0},
+        "permission_required_count": {"type": "integer", "minimum": 0},
+        "human_review_required_count": {"type": "integer", "minimum": 0},
+        "payload_allowed_count": {"const": 0}
+      }
+    }
+  }
+}

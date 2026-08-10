@@ -5,14 +5,18 @@
     "open": 9,
     "restricted": 6
   },
+  "empirical_artifacts_release_ready": false,
   "generated_date": "2026-06-23",
-  "governance_artifacts_release_ready": true,
+  "governance_scaffold_release_ready": true,
   "human_review_required": true,
   "known_blocker_count": 55,
-  "release_policy": "Payload-free registry, schemas, validation summaries, provenance, and review scaffolds are release-safe; raw, licensed, credentialed, and full-release source payloads are excluded.",
-  "release_ready": true,
+  "overall_release_ready": false,
+  "release_policy": "Payload-free registry, schemas, validation summaries, provenance, and review scaffolds are release-safe; empirical translation evidence is not release-ready until version-pinned, nonzero records pass human review; raw, licensed, credentialed, and full-release source payloads are excluded.",
+  "release_scope": "governance_scaffold_only",
   "restricted_source_count": 6,
   "source_count": 18,
   "source_payload_blocker_count": 55,
-  "source_payload_release_ready": false
+  "source_payload_release_ready": false,
+  "translation_evidence_release_ready": false,
+  "unresolved_language_identity_count": 1
 }

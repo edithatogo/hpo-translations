@@ -3,13 +3,13 @@
   "source_id": "efo",
   "source_name": "EFO",
   "phase": "phase_0_governance_source_probe",
-  "probe_status": "metadata_only_scaffolded",
-  "probe_date": "2026-06-24",
+  "probe_status": "bounded_metadata_probe_passed_payload_discarded",
+  "probe_date": "2026-08-01",
   "authoritative_source": {
     "source_type": "github_repository",
     "url": "https://github.com/EBISPOT/efo",
     "authority_status": "pending_terms_and_release_channel_review",
-    "version_pinning_strategy": "pin by upstream release tag, PURL snapshot, API version, or immutable commit before payload access",
+    "version_pinning_strategy": "upstream release tag v3.92.0 (published 2026-07-15), resolved commit 704cbf64e95ac374374b309691d86d95c84dfe17; OWL versionInfo verified as 3.92.0",
     "credential_required": false,
     "network_probe_required_before_ingestion": true
   },
@@ -94,13 +94,9 @@
     "coding_agent": "codex",
     "model": "gpt-5",
     "task_id": "phase0_source_probe_scaffold",
-    "source_version": "not_pinned",
+    "source_version": "EFO 3.92.0 @ 704cbf64e95ac374374b309691d86d95c84dfe17",
     "validation_result": "passing",
-    "open_blockers": [
-      "terms review required",
-      "release channel/version pinning required",
-      "payload handling decision required"
-    ],
+    "open_blockers": ["terms review required", "payload handling decision required"],
     "conflict_count": 0,
     "validation_command": "pixi run build-ontology-network; pixi run validate-conductor; pixi run validate-ontology-network; pixi run validate-ontology-network-artifacts; pixi run test-conductor-validation; git diff --check"
   }

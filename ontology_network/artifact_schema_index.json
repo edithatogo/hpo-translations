@@ -278,12 +278,16 @@
       "local_only": false,
       "owner": "ontology-network maintainer",
       "required_fields": [
+        "empirical_artifacts_release_ready",
         "generated_date",
-        "governance_artifacts_release_ready",
-        "release_ready",
+        "governance_scaffold_release_ready",
+        "overall_release_ready",
+        "release_scope",
         "restricted_source_count",
         "source_count",
-        "source_payload_release_ready"
+        "source_payload_release_ready",
+        "translation_evidence_release_ready",
+        "unresolved_language_identity_count"
       ],
       "safety_class": "release-safe-contract",
       "schema_path": "schemas/release_readiness_manifest.schema.json"

@@ -1,0 +1,16 @@
+{
+  "track_id": "oncotree_integration_20260623",
+  "status": "metadata_ready_release_pin_pending",
+  "authoritative_source": "cBioPortal OncoTree repository and release documentation",
+  "repository": "https://github.com/cBioPortal/oncotree",
+  "source_version": "2.1.0 @ 72f5796147a49da0f05fa2fa6cdf1cac7b64fe55",
+  "license": "CC BY 4.0",
+  "license_uri": "https://creativecommons.org/licenses/by/4.0/",
+  "evidence_uri": "https://raw.githubusercontent.com/cBioPortal/oncotree/master/README.md",
+  "retrieved_at": "2026-08-01",
+  "supported_languages": ["en"],
+  "payload_commit_allowed": false,
+  "credential_required": false,
+  "next_gate": "complete API/source terms review and maintainer review; retain payload and labels behind review gate",
+  "excluded": ["labels", "synonyms", "definitions", "full_release_payload"]
+}

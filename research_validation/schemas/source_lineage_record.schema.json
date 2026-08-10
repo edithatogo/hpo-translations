@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hpo-translations.example/schemas/source_lineage_record.schema.json",
+  "title": "Source lineage record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["run_id", "evidence_id", "source_id", "source_release", "source_atom_id", "originating_authority", "derivation_path", "shared_lineage_cluster", "independent_evidence_group", "semantic_role", "mapping_predicate", "designation_role", "license_class", "payload_commit_allowed", "provenance_id"],
+  "properties": {
+    "run_id": {"type": "string", "pattern": "^run-[a-z0-9-]+$"},
+    "evidence_id": {"type": "string", "pattern": "^evidence-[a-z0-9-]+$"},
+    "source_id": {"type": "string", "minLength": 1},
+    "source_release": {"type": "string", "minLength": 1},
+    "source_atom_id": {"type": "string", "minLength": 1},
+    "originating_authority": {"type": "string", "minLength": 1},
+    "derivation_path": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "shared_lineage_cluster": {"type": "string", "minLength": 1},
+    "independent_evidence_group": {"type": "string", "minLength": 1},
+    "semantic_role": {"enum": ["lexical", "compositional", "crosswalk", "disease_context", "usage", "patient_facing"]},
+    "mapping_predicate": {"enum": ["exact", "broad", "narrow", "related", "unmapped"]},
+    "designation_role": {"enum": ["preferred", "synonym", "definition", "acceptable", "deprecated", "not_applicable"]},
+    "license_class": {"enum": ["open", "restricted", "metadata_only", "unknown"]},
+    "payload_commit_allowed": {"type": "boolean"},
+    "provenance_id": {"type": "string", "minLength": 1}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"license_class": {"enum": ["restricted", "metadata_only", "unknown"]}}, "required": ["license_class"]},
+      "then": {"properties": {"payload_commit_allowed": {"const": false}}}
+    }
+  ]
+}

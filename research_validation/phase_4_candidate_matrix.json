@@ -1,0 +1,115 @@
+{
+  "schema_version": "phase-4-candidate-matrix-v1",
+  "track_id": "research_validation_20260801",
+  "status": "planning_shortlist_only_no_language_source_or_reviewer_approved",
+  "decision_scope": "metadata_only_phase_4_task_3_preparation",
+  "approved_language_count": 0,
+  "approved_source_payload_count": 0,
+  "named_reviewer_count": 0,
+  "target_option": "A",
+  "recommended_configuration": {
+    "high_resource_latin_slot": "es",
+    "script_typology_contrast_slot": "ja",
+    "community_governed_slot": null,
+    "reason": "Spanish and Japanese offer complementary script and typology coverage and the broadest currently registered metadata pathways; the community-governed slot cannot be assigned without an authority-approved language and reviewer pathway."
+  },
+  "language_slots": [
+    {
+      "slot_id": "high_resource_latin",
+      "preferred_language": "es",
+      "fallback_languages": ["fr", "pt"],
+      "selection_status": "shortlisted_not_permitted",
+      "rationale": "Active HPO profile with registered DeCS, PRO-CTCAE, and WHO ICF pathways; every pathway remains payload-blocked and must not be counted as empirical evidence.",
+      "source_pathways": [
+        {"source_id": "decs", "intended_role": "lexical_comparator", "required_gate": "written_payload_permission_and_version_confirmation"},
+        {"source_id": "pro-ctcae", "intended_role": "patient_facing_terminology_comparator", "required_gate": "written_nci_permission"},
+        {"source_id": "who-icf", "intended_role": "functional_context_comparator", "required_gate": "credential_license_and_scope_review"},
+        {"source_id": "uberon", "intended_role": "structural_anatomy_hard_negative_design", "required_gate": "payload_and_license_approval"},
+        {"source_id": "pato", "intended_role": "structural_quality_hard_negative_design", "required_gate": "payload_and_license_approval"}
+      ]
+    },
+    {
+      "slot_id": "script_typology_contrast",
+      "preferred_language": "ja",
+      "fallback_languages": ["zh", "ar"],
+      "selection_status": "shortlisted_not_permitted",
+      "rationale": "Active HPO profile with distinct script coverage and a versioned Mondo Japanese metadata pathway; Mondo and PRO-CTCAE payload use remain unapproved.",
+      "source_pathways": [
+        {"source_id": "mondo", "intended_role": "community_curated_disease_context", "required_gate": "maintainer_license_source_atom_and_scope_review"},
+        {"source_id": "pro-ctcae", "intended_role": "patient_facing_terminology_comparator", "required_gate": "written_nci_permission"},
+        {"source_id": "uberon", "intended_role": "structural_anatomy_hard_negative_design", "required_gate": "payload_and_license_approval"},
+        {"source_id": "pato", "intended_role": "structural_quality_hard_negative_design", "required_gate": "payload_and_license_approval"}
+      ]
+    },
+    {
+      "slot_id": "community_governed_or_lower_resource",
+      "preferred_language": null,
+      "fallback_languages": ["tr"],
+      "candidate_profiles_requiring_authority_review": ["dtp", "nna"],
+      "selection_status": "unassigned_pending_community_authority",
+      "rationale": "The repository does not yet contain evidence authorizing a community-governed pilot language, reviewer roster, or source pathway. Active profiles are not themselves evidence of community authority.",
+      "source_pathways": []
+    }
+  ],
+  "reviewer_model": {
+    "primary_reviewers_per_language": 3,
+    "independent_adjudicators_per_language": 1,
+    "planned_primary_reviewer_count": 9,
+    "planned_independent_adjudicator_count": 3,
+    "planned_human_role_count": 12,
+    "primary_roles": [
+      "target_language_terminology_reviewer",
+      "target_language_clinical_reviewer",
+      "target_language_ontology_phenotype_reviewer"
+    ],
+    "community_slot_additional_requirement": "at_least_one_reviewer_authorized_by_the_relevant_community_authority",
+    "adjudicator_requirements": [
+      "independent_of_candidate_generation",
+      "not_one_of_the_three_initial_reviewers_for_the_adjudicated_item",
+      "target_language_competence",
+      "clinical_or_ontology_competence",
+      "conflict_of_interest_declaration"
+    ],
+    "identities_or_contact_details_permitted_in_repository": false
+  },
+  "source_policy": {
+    "canonical_hpo_release_context": "v2026-06-23",
+    "source_pathways_are_planning_dependencies_not_votes": true,
+    "shared_lineage_must_not_be_counted_as_independent_evidence": true,
+    "structural_sources_must_not_be_counted_as_lexical_votes": true,
+    "metadata_probe_permission_does_not_authorize_payload_retrieval": true,
+    "all_registered_supplementary_payloads_remain_unapproved": true
+  },
+  "step_down_contingencies": [
+    {"priority": 1, "trigger": "community_slot_not_authorized_by_g2", "action": "step_down_to_option_b_with_es_and_ja"},
+    {"priority": 2, "trigger": "japanese_reviewer_or_source_pathway_not_authorized", "action": "consider_option_b_with_es_and_zh_subject_to_all_gates"},
+    {"priority": 3, "trigger": "spanish_reviewer_or_source_pathway_not_authorized", "action": "consider_option_b_with_fr_or_pt_and_ja_subject_to_all_gates"},
+    {"priority": 4, "trigger": "only_one_language_is_authorized", "action": "step_down_to_option_c"},
+    {"priority": 5, "trigger": "no_empirical_language_is_authorized", "action": "remain_at_option_d_synthetic_only"}
+  ],
+  "explicit_exclusions": [
+    {"language": "tw", "reason": "unresolved_Tiwi_Twi_authority_conflict", "applies_to": ["preferred_languages", "fallback_languages", "empirical_use"]}
+  ],
+  "remaining_gates": [
+    "language_working_group_approval",
+    "domain_reviewer_approval",
+    "community_authority_approval_where_applicable",
+    "source_license_and_payload_permission",
+    "reviewer_identity_qualification_capacity_and_conflict_review",
+    "stratified_concept_freeze",
+    "ethics_privacy_and_preregistration_decisions"
+  ],
+  "authorization_boundary": {
+    "reviewer_selection_authorized": false,
+    "reviewer_contact_authorized": false,
+    "source_payload_retrieval_authorized": false,
+    "empirical_candidate_generation_authorized": false,
+    "concept_sampling_authorized": false,
+    "financial_spend_authorized": false,
+    "external_preregistration_authorized": false,
+    "publication_authorized": false,
+    "push_authorized": false,
+    "pull_request_authorized": false
+  },
+  "claims_boundary": "planning_shortlist_and_contingencies_only_not_selection_permission_or_empirical_evidence"
+}

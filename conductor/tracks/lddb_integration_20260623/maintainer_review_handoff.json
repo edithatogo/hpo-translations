@@ -1,0 +1,33 @@
+{
+  "track_id": "lddb_integration_20260623",
+  "status": "closed_no_go",
+  "closure_reason": "bounded diligent search found only historical/commercial references; no current maintained authority, release, API, or redistribution licence was located",
+  "reopen_trigger": "written rights-holder confirmation of a current maintained release and redistribution scope",
+  "decision_states": ["investigation_only", "candidate_authority_pending", "rights_holder_confirmation_pending", "approved_metadata_only", "approved_redistribution", "closed_no_go", "expired"],
+  "recommendation": "close as closed_no_go after the bounded diligent search unless a current rights-holder and written licence emerge",
+  "options": {
+    "recommended": "complete bounded diligent search, then close no-go if no current authority or rights evidence is found",
+    "rights_holder_enquiry": "contact Oxford University Press, identified historical authors, or successor rights-holder; permit no payload until written terms",
+    "substitute": "use open rare-disease sources such as Orphanet or Disease Ontology, without representing them as LDDB"
+  },
+  "prepared_at": "2026-08-01",
+  "evidence": {
+    "search_scope": "public web, bibliographic records, historical descriptions, and source-governance registries",
+    "searched_at": "2026-08-02",
+    "current_authority": "not established",
+    "historical_references": ["https://pubmed.ncbi.nlm.nih.gov/3307585/"],
+    "redistribution_licence": "not established",
+    "rights_holder_candidates": ["Oxford University Press", "historical LDDB authors or institutional successor"],
+    "licence_status": "unverified",
+    "redistribution_scope": "prohibited"
+  },
+  "exit_conditions": ["current maintained authority", "immutable release/version", "identified rights-holder", "written redistribution permission covering intended artefacts", "terms scope and attribution", "project maintainer sign-off"],
+  "decisions_requested": [
+    "Confirm whether a current rights-holder or maintained release exists",
+    "Provide explicit redistribution permission if a source is identified",
+    "Otherwise close the investigation as no-go"
+  ],
+  "panel_role": "advisory provenance and diligence review only; cannot grant rights or override no-go",
+  "evidence_expiry": "12 months or any source/terms/release change",
+  "prohibited_until_resolution": ["payload retrieval", "reconstruction from historical papers", "labels", "crosswalks", "promotion"]
+}

@@ -116,7 +116,7 @@
       "phase_0_result": "implemented_governance_only",
       "priority": "P1",
       "provenance_id": "prov-p1-governance-icd11",
-      "source_access_status": "public_api_terms_review_required",
+      "source_access_status": "public_api_metadata_only_terms_recorded",
       "source_id": "icd11",
       "track_id": "icd11_integration_20260623"
     },

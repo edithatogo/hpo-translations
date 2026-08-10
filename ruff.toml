@@ -1,4 +1,4 @@
-extend-exclude = [".cache", "tmp_replace_tracks.py"]
+extend-exclude = [".cache", ".tmp_*", "tmp_replace_tracks.py"]
 line-length = 120
 
 [lint]

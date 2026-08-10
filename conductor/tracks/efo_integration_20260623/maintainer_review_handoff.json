@@ -1,0 +1,30 @@
+{
+  "track_id": "efo_integration_20260623",
+  "status": "approved_bounded_metadata_only_sample",
+  "prepared_at": "2026-08-01",
+  "evidence": {
+    "authority": "https://github.com/EBISPOT/efo",
+    "release": "v3.92.0",
+    "immutable_commit": "704cbf64e95ac374374b309691d86d95c84dfe17",
+    "owl_version_info": "3.92.0",
+    "license": "Apache-2.0",
+    "probe": "HTTP 200 metadata-only probe; response discarded"
+  },
+  "decisions_requested": [
+    "Approve Apache-2.0 EFO release metadata for future bounded payload access",
+    "Confirm English-only scope and provenance requirements",
+    "Authorize a one-record non-redistributive sample, if permitted"
+  ],
+  "approval": {
+    "decision": "Approve bounded metadata-only samples for EFO and OncoTree; keep labels, crosswalks, and downstream promotion blocked.",
+    "approved_at": "2026-08-01",
+    "scope": "one-record metadata-only sample; no source-term redistribution"
+  },
+  "bounded_sample": {
+    "identifier": "http://purl.obolibrary.org/obo/BFO_0000015",
+    "release": "EFO 3.92.0",
+    "payload_retained": false
+  },
+  "blocked_until_approval": ["source labels", "synonyms", "definitions", "crosswalk edges", "downstream promotion"],
+  "llm_policy": "candidate_only_human_review_required"
+}

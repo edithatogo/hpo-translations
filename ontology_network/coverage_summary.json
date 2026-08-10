@@ -1,6 +1,6 @@
 {
   "generated_date": "2026-06-23",
-  "record_count": 94,
+  "record_count": 96,
   "records": [
     {
       "coverage_id": "coverage-decipher-en",
@@ -202,6 +202,30 @@
       "language": "ru",
       "predicate": "metadata_declared_language_support",
       "provenance_id": "prov-coverage-icd11-ru",
+      "review_status": "needs_review",
+      "source_id": "icd11",
+      "total_hpo_terms": 0
+    },
+    {
+      "coverage_id": "coverage-icd11-sk",
+      "coverage_ratio": 0.0,
+      "covered_hpo_terms": 0,
+      "hpo_branch_id": "HP:0000118",
+      "language": "sk",
+      "predicate": "metadata_declared_language_support",
+      "provenance_id": "prov-coverage-icd11-sk",
+      "review_status": "needs_review",
+      "source_id": "icd11",
+      "total_hpo_terms": 0
+    },
+    {
+      "coverage_id": "coverage-icd11-sv",
+      "coverage_ratio": 0.0,
+      "covered_hpo_terms": 0,
+      "hpo_branch_id": "HP:0000118",
+      "language": "sv",
+      "predicate": "metadata_declared_language_support",
+      "provenance_id": "prov-coverage-icd11-sv",
       "review_status": "needs_review",
       "source_id": "icd11",
       "total_hpo_terms": 0

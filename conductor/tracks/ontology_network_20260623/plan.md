@@ -5,8 +5,8 @@ This plan coordinates the ontology network across UMLS, SNOMED CT, MedDRA, ICD-1
 ## Phase Dependency Note
 Phase 1 is the upstream registry contract for individual ontology tracks. Phases 3 and 4 depend on source-governance outputs from UMLS, SNOMED CT, MedDRA, ICD-10, ICD-11, LOINC, MeSH, OMIM, Orphanet, DECIPHER, FMA, PATO, MP, uPheno, EFO, DO, OncoTree, and LDDB integration tracks.
 
-## Implementation Result
-Implemented as payload-free ontology-network governance artifacts generated from Conductor track metadata. The current implementation emits source registry, source access matrix, strict schemas, payload policy, release manifest, fail-fast samples, validation fixtures, crosswalk graph, language comparison packs, conflict heatmap, coverage summary, semantic drift report, provenance graph, review workload report, language review packs, license/access report, reproducibility capsule, and validation report. Raw, licensed, credentialed, or full source payload ingestion remains gated to the individual source tracks and local-only policies.
+## Governance Scaffold Result and Empirical Boundary
+Implemented as payload-free ontology-network governance artifacts generated from Conductor track metadata. The implementation emits source registry, source access matrix, strict schemas, payload policy, scientific-readiness manifest, fail-fast samples, validation fixtures, schema-probe crosswalk graph, language inventory packs, empty-state conflict and coverage reports, provenance graph, review workload scaffold, language review-pack scaffold, license/access report, reproducibility capsule, and validation report. These outputs prove the governance and artifact contracts only. They do not contain empirical translation comparisons, validated crosswalks, coverage estimates, semantic drift scores, or reviewer outcomes. Raw, licensed, credentialed, or full source payload ingestion remains gated to the individual source tracks and local-only policies; empirical work is owned by `research_validation_20260801`.
 
 ## Phase 0: Dependency, Blocker, Source, and Automation Gates
 - [x] **Task 1:** Populate the network-level blocker registry.
@@ -38,15 +38,15 @@ Implemented as payload-free ontology-network governance artifacts generated from
 - [x] **Task 2:** Populate the registry from the individual ontology tracks.
 - [x] **Task 3:** Classify sources as open, restricted, API-only, local-only, or documentation-only.
 
-## Phase 2: Translation Triangulation
+## Phase 2: Translation Triangulation Scaffold
 - [x] **Task 1:** Define how multilingual labels and synonyms from each source can support HPO translation candidate review.
-- [x] **Task 2:** Generate language-specific comparison packs for HPO labels, HPO synonyms, ontology labels, ontology synonyms, and LLM candidates.
-- [x] **Task 3:** Report agreement, disagreement, missing source coverage, and source-specific caveats without promoting candidates automatically.
+- [x] **Task 2:** Generate payload-free language inventory records and comparison-pack schemas with zero candidates and an explicit `not_computed` state.
+- [x] **Task 3:** Define agreement, disagreement, missing-coverage, and source-caveat report contracts without computing empirical results or promoting candidates.
 
-## Phase 3: Identifier Network
-- [x] **Task 1:** Build a crosswalk graph keyed by HPO identifier, external identifier, mapping predicate, mapping source, and confidence.
-- [x] **Task 2:** Prefer existing curated mappings from HPO, UMLS, Orphanet, DO, SNOMED CT, ICD, and other authoritative sources before text matching.
-- [x] **Task 3:** Emit conflict reports for one-to-many, many-to-one, circular, deprecated, or ambiguous mappings.
+## Phase 3: Identifier Network Scaffold
+- [x] **Task 1:** Define a crosswalk-graph contract and emit a clearly labelled, non-biological schema probe keyed by HPO identifier, external identifier, mapping predicate, mapping source, and confidence.
+- [x] **Task 2:** Define precedence for existing curated mappings from HPO, UMLS, Orphanet, DO, SNOMED CT, ICD, and other authoritative sources before text matching.
+- [x] **Task 3:** Define conflict-report contracts for one-to-many, many-to-one, circular, deprecated, or ambiguous mappings without claiming empirical conflicts were computed.
 
 ## Phase 4: Non-Translation Outputs
 - [x] **Task 1:** Produce ontology coverage summaries by HPO branch, language, predicate, source, access class, and review status.
@@ -67,3 +67,7 @@ Implemented as payload-free ontology-network governance artifacts generated from
 - [x] **Task 1:** Link each individual ontology track to the shared registry and network outputs.
 - [x] **Task 2:** Link translation-agent outputs to ontology-network evidence without changing candidate review policy.
 - [x] **Task 3:** Document which ontology-network outputs are required before any candidate translation profile is submitted upstream.
+
+## Empirical Handoff
+
+`research_validation_20260801` owns source-lineage modelling, language-identity validation, version-pinned benchmark design, empirical candidate comparisons, calibrated evidence, blinded human review, downstream evaluation, and any scientific completion claim. This archived track remains the governance-scaffold dependency and must not be reopened merely to make empirical tasks appear complete.

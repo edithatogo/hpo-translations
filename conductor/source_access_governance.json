@@ -1,0 +1,20 @@
+{
+  "policy": "credentialed_and_licensed_source_access",
+  "default_state": "no_go_pending_license",
+  "decision_states": ["no_go_pending_license", "metadata_probe_only", "approved_local_only_scope", "approved_redistribution_scope", "expired_or_revoked"],
+  "recommendation": "obtain written, scope-specific approval before payload access; use encrypted local-only custody, checksum manifests, retention/deletion receipts, and redacted validation evidence",
+  "options": {"recommended":"written licence/DUA and scope approval, followed by local-only acquisition with no committed terms","lower_risk":"metadata-only reachability/status/schema probe without retaining concept, label, or full response content","not_recommended":"broad redistribution or derived mapping approval before source-specific rights and privacy review"},
+  "contingencies": {"terms_unclear":"remain no_go_pending_license and seek licensor clarification","scope_changes_or_expiry":"quarantine or delete local cache and transition to expired_or_revoked","approval_denied":"retain metadata-only governance and do not infer or reconstruct restricted terms"},
+  "panel_role": "advisory evidence review and conflict analysis only; cannot grant rights or approve redistribution",
+  "accountability_gate": "named licence holder, DAC, affiliate, maintainer, or delegated authority must approve scope and date",
+  "common_required_evidence": ["accountable owner identity", "terms/agreement URI and version/hash", "release/edition/language scope", "permitted use and redistribution clauses", "approved and prohibited fields", "local cache and encryption controls", "retention/deletion date", "redacted receipt", "approval and expiry date"],
+  "sources": {
+    "LOINC": {"recommendation":"local-only metadata probe after account/licence acceptance; no labels, long names, parts, derived rows, or redistribution","authority":"https://loinc.org/downloads/","terms":"https://loinc.org/license"},
+    "SNOMED_CT": {"recommendation":"written affiliate/member agreement first; split approval by edition/extension/map; no payload or crosswalk promotion"},
+    "UMLS": {"recommendation":"written NLM terms and per-source-vocabulary rights matrix; exclude restricted SABs; local-only cache"},
+    "OMIM": {"recommendation":"metadata-only until registration/API terms approval; secrets only in environment/secret store; no clinical synopses/genemap/morbidmap","authority":"https://api.omim.org/api/html"},
+    "DECIPHER": {"recommendation":"metadata-only until DAC/DUA/privacy approval; no patient, variant, phenotype, syndrome, or gene-review rows; no LLM transfer"},
+    "MedDRA": {"recommendation":"retain archived no-go unless subscription, language pack, local custody, and regulatory-semantics approval are documented"}
+  },
+  "prohibited_without_approval": ["raw payloads", "full API responses", "clinical or patient data", "source labels", "synonyms", "definitions", "crosswalks", "downstream promotion"]
+}

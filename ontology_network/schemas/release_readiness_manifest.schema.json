@@ -7,10 +7,13 @@
       "additionalProperties": true,
       "type": "object"
     },
+    "empirical_artifacts_release_ready": {
+      "type": "boolean"
+    },
     "generated_date": {
       "type": "string"
     },
-    "governance_artifacts_release_ready": {
+    "governance_scaffold_release_ready": {
       "type": "boolean"
     },
     "human_review_required": {
@@ -19,11 +22,14 @@
     "known_blocker_count": {
       "type": "integer"
     },
+    "overall_release_ready": {
+      "type": "boolean"
+    },
     "release_policy": {
       "type": "string"
     },
-    "release_ready": {
-      "type": "boolean"
+    "release_scope": {
+      "type": "string"
     },
     "restricted_source_count": {
       "type": "integer"
@@ -36,15 +42,25 @@
     },
     "source_payload_release_ready": {
       "type": "boolean"
+    },
+    "translation_evidence_release_ready": {
+      "type": "boolean"
+    },
+    "unresolved_language_identity_count": {
+      "type": "integer"
     }
   },
   "required": [
+    "empirical_artifacts_release_ready",
     "generated_date",
-    "governance_artifacts_release_ready",
-    "release_ready",
+    "governance_scaffold_release_ready",
+    "overall_release_ready",
+    "release_scope",
     "restricted_source_count",
     "source_count",
-    "source_payload_release_ready"
+    "source_payload_release_ready",
+    "translation_evidence_release_ready",
+    "unresolved_language_identity_count"
   ],
   "title": "release_readiness_manifest",
   "type": "object"

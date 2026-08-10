@@ -1,0 +1,10 @@
+{
+  "track": "upheno_integration_20260623",
+  "artifact_type": "metadata_only_governance_scaffold",
+  "source": {"name": "Unified Phenotype Ontology", "authority_status": "obo_foundry_build_documented", "version": "v2025-10-12 @ 6a5a3ff2fe88737f204e610ac24d7dec3e11b40c (component review target)", "release_url": "https://github.com/obophenotype/upheno/releases/tag/v2025-10-12", "license": "verify component ontology licences before redistribution"},
+  "access": {"mode": "documentation_only", "credentials_required": "none_for_documentation", "payload_accessed": false, "payload_commit_allowed": false},
+  "normalization": {"identifier": "component CURIE preserved; no term values", "language": "BCP-47 tag required", "provenance": ["component_source_uri", "release_or_commit", "retrieved_at", "license_status"]},
+  "translation_use": {"allowed": ["schema and review scaffolding", "cross-species pattern reports"], "blocked": ["labels", "synonyms", "definitions", "crosswalk promotion", "identifier-network outputs"]},
+  "review": {"required": ["component authority", "release/version pin", "per-component licence and redistribution", "payload handling"], "status": "metadata_review_required", "evidence": ["https://obophenotype.github.io/upheno/odk-workflows/RepositoryFileStructure/"]},
+  "next_allowed_action": "complete component release and licence matrix without fetching payloads"
+}

@@ -155,10 +155,10 @@
     "go_no_go": "governance_only_terms_review_required",
     "payload_commit_allowed": false,
     "metadata_only_scaffold_allowed": true,
-    "bounded_sample_allowed": false,
+    "bounded_sample_allowed": true,
     "identifier_network_allowed": false,
     "non_translation_outputs_allowed": false,
-    "next_allowed_action": "complete source terms review and bounded source probe before any payload or label extraction",
+    "next_allowed_action": "run one approved metadata-only sample; no payload or label commit",
     "review_result": "codex_review_completed_fixes_applied",
     "review_archive_status": "phase_0_review_archived"
   }

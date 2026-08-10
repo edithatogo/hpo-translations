@@ -29,13 +29,16 @@ This plan introduces Orphanet into the project where it can improve terminology 
   - Mark any LLM-assisted candidate output as candidate-only and human-review-required in the handoff pack.
 
 ## Phase 1: Source Governance
-- [ ] **Task 1:** Confirm authoritative release source, license, and redistribution constraints.
-- [ ] **Task 2:** Record supported languages and source-version metadata.
+- [x] **Task 1:** Confirm authoritative release source, license, and redistribution constraints.
+  - Orphadata Science is public CC BY 4.0; other catalogue products remain DTA/pricing gated.
+- [x] **Task 2:** Record supported languages and source-version metadata.
+  - April 2026 catalogue metadata and BCP-47 language/provenance requirements are recorded; payload access remains gated.
 - [ ] **Task 3:** List relevant GitHub repositories:
   - https://github.com/Orphanet
 
 ## Phase 2: Data Access and Normalization
-- [ ] **Task 1:** Define source retrieval path without committing restricted payloads.
+- [x] **Task 1:** Define source retrieval path without committing restricted payloads.
+  - Use the public Orphadata Science catalogue path for metadata only; DTA/pricing-gated products remain local-only and blocked.
 - [ ] **Task 2:** Normalize identifiers, preferred labels, synonyms, language tags, and provenance fields.
 - [ ] **Task 3:** Produce a bounded sample artifact for maintainer review.
 

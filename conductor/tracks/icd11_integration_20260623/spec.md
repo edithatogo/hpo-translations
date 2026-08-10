@@ -4,7 +4,7 @@
 Introduce ICD-11 as a governed terminology source for the HPO translation workflow where it improves concept alignment, multilingual review, or domain-specific validation.
 
 ## Source Profile
-- Languages: Arabic, Chinese, Czech, English, French, Portuguese, Russian, Spanish, Turkish, and Uzbek.
+- Languages: Arabic, Chinese, Czech, English, French, German (prerelease), Kazakh, Latin (titles only), Portuguese, Russian, Slovak, Spanish, Swedish, Turkish, and Uzbek.
 - GitHub repositories:
 - https://github.com/ICD-API
 - Source note: Use WHO ICD API, browser, and licensing as authority; GitHub repositories are implementation support.

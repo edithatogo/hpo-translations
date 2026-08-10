@@ -139,7 +139,7 @@ class ValidateOntologyNetworkTests(unittest.TestCase):
         self.assertEqual(issue_codes(report), set())
         summary = report["summary"]
         assert isinstance(summary, dict)
-        self.assertTrue(summary["release_ready"])
+        self.assertTrue(summary["validation_passed"])
 
     def test_generated_primary_artifacts_pass_standalone_validation(self) -> None:
         root = self.make_root()
@@ -158,7 +158,7 @@ class ValidateOntologyNetworkTests(unittest.TestCase):
         self.assertEqual(issue_codes(report), set())
         summary = report["summary"]
         assert isinstance(summary, dict)
-        self.assertTrue(summary["release_ready"])
+        self.assertTrue(summary["validation_passed"])
         self.assertEqual(summary["registry_source_count"], 18)
 
     def test_registry_blocks_restricted_payload_commit(self) -> None:
@@ -204,7 +204,7 @@ class ValidateOntologyNetworkTests(unittest.TestCase):
         self.assertIn("crosswalk.mapping_basis.nondeterministic", issue_codes(report))
         summary = report["summary"]
         assert isinstance(summary, dict)
-        self.assertTrue(summary["release_ready"])
+        self.assertTrue(summary["validation_passed"])
 
     def test_coverage_ratio_must_match_counts(self) -> None:
         root = self.make_root()

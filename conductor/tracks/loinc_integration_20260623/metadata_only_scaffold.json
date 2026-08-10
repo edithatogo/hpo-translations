@@ -1,0 +1,10 @@
+{
+  "track": "loinc_integration_20260623",
+  "mode": "metadata_only",
+  "source_access": {"status": "blocked", "reason": "account_gated_download_requires_login_and_local_terms_acceptance", "payload_fetch": false},
+  "source_evidence": {"authority_uri": "https://loinc.org/downloads/", "license_uri": "https://loinc.org/license", "observed_release": "2.82", "release_date": "2026-03-04", "md5": "84ce6d9d7cdf7cfa8759efb486fdc809", "retrieved_at": "2026-08-01", "payload_observed": false},
+  "retrieval_contract": {"credential_source": "local_environment_only", "cache": "local_only", "commit_payload": false, "request_manifest_required": true},
+  "normalization": {"identifier": "LOINC code preserved as opaque string", "language": "BCP-47 when source metadata is available", "provenance": ["source_uri", "release", "retrieved_at", "license"]},
+  "review": {"labels_synonyms_definitions": "blocked", "crosswalk": "candidate_only", "llm_output": "candidate_only_human_review_required"},
+  "validation": {"schema": "scaffold_only", "sample": "not_available", "result": "blocked_until_terms_review_and_bounded_probe"}
+}
