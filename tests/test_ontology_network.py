@@ -82,8 +82,8 @@ class OntologyNetworkTests(unittest.TestCase):
         self.assertEqual(records["efo"]["version_status"], "pinned_metadata_only_sample")
         self.assertEqual(records["oncotree"]["source_version"], "2.1.0")
         self.assertEqual(records["oncotree"]["version_status"], "pinned_metadata_only_sample")
-        self.assertEqual(records["pato"]["source_version"], "v2025-05-14")
-        self.assertEqual(records["pato"]["version_status"], "pinned_metadata_only_sample")
+        self.assertIsNone(records["pato"]["source_version"])
+        self.assertEqual(records["pato"]["version_status"], "not_pinned_in_track_metadata")
 
         with (output_dir / "source_access_matrix.tsv").open(encoding="utf-8", newline="") as handle:
             reader = csv.DictReader(handle, delimiter="\t")
@@ -136,7 +136,7 @@ class OntologyNetworkTests(unittest.TestCase):
         p1_records = {record["source_id"]: record for record in p1["records"]}
         self.assertTrue(p1_records["efo"]["bounded_sample_allowed"])
         self.assertTrue(p1_records["oncotree"]["bounded_sample_allowed"])
-        self.assertTrue(p1_records["pato"]["bounded_sample_allowed"])
+        self.assertFalse(p1_records["pato"]["bounded_sample_allowed"])
 
         self.assertIsNotNone(samples["open_source_registry_record"])
         self.assertIsNotNone(samples["restricted_source_governance_record"])

@@ -803,9 +803,9 @@
       "source_id": "pato",
       "source_payload_commit_policy": "do_not_commit_raw_source_payloads; commit only registry, schemas, provenance, bounded validation summaries, and derived reports after terms review",
       "source_payloads_can_be_committed": false,
-      "source_version": "v2025-05-14",
+      "source_version": null,
       "track_id": "pato_integration_20260623",
-      "version_status": "pinned_metadata_only_sample"
+      "version_status": "not_pinned_in_track_metadata"
     },
     {
       "access_class": "restricted",

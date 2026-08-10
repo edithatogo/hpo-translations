@@ -104,7 +104,7 @@
       "hpo_release": "not_pinned_in_track_metadata",
       "semantic_drift_score": null,
       "source_id": "pato",
-      "source_version": "v2025-05-14"
+      "source_version": "not_pinned_in_track_metadata"
     },
     {
       "drift_status": "not_computed_source_payloads_excluded",

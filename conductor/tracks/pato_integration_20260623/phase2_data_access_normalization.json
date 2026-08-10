@@ -1,6 +1,6 @@
 {
   "track_id": "pato_integration_20260623",
-  "status": "metadata_only_sample_normalized_payload_free",
+  "status": "metadata_only_sample_prepared_approval_pending",
   "retrieval": {
     "mode": "documentation_only",
     "bulk_download": false,
@@ -31,9 +31,9 @@
     "payload_retained": false
   },
   "sample": {
-    "allowed": true,
+    "allowed": false,
     "scope": "one_release_metadata_record_only",
-    "authorization_ref": "maintainer_review_handoff.json#status",
+    "authorization_ref": null,
     "identifier": "https://github.com/pato-ontology/pato/releases/tag/v2025-05-14",
     "payload_retained": false,
     "source_terms_included": false
