@@ -43,9 +43,9 @@ This plan introduces Orphanet into the project where it can improve terminology 
 - [ ] **Task 3:** Produce a bounded sample artifact for maintainer review.
 
 ## Phase 3: HPO Translation Use
-- [ ] **Task 1:** Identify where Orphanet helps: crosswalks, synonym review, multilingual label comparison, or domain validation.
-- [ ] **Task 2:** Add deterministic matching rules and conflict reporting.
-- [ ] **Task 3:** Ensure LLM-assisted outputs remain candidate-only and human-review-required.
+- [x] **Task 1:** Identify Orphanet use for rare-disease domain validation and identifier conflict detection; product terms remain blocked.
+- [x] **Task 2:** Add exact-identifier-only matching and candidate conflict-record rules; unresolved conflicts do not promote.
+- [x] **Task 3:** Ensure LLM-assisted outputs remain candidate-only and human-review-required; no approved source sample exists.
 
 ## Phase 4: Validation and Review
 - [ ] **Task 1:** Validate schema, provenance, and license metadata.

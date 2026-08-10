@@ -1,0 +1,8 @@
+{
+  "track_id": "orphanet_integration_20260623",
+  "status": "design_only_blocked",
+  "uses": ["rare_disease_domain_validation", "identifier_conflict_detection"],
+  "rules": ["exact_identifier_only", "conflicts_unresolved_by_default", "emit_candidate_conflict_records", "llm_candidates_require_human_review"],
+  "promotion_allowed": false,
+  "reason": "product-specific terms and redistribution review are pending; no approved source sample exists"
+}
