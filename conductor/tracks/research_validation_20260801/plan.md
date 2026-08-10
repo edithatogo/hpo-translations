@@ -84,3 +84,7 @@
 ## Phase 4 Stage 0 Review Fixes
 
 - [x] **Task:** Calculate progression outcomes from numeric feasibility inputs, test the 90% completion and 20% invalidity boundaries, and limit the blinding claim to the reviewer-facing artifact. (`eb8df7b`)
+
+## Local Closeout Review Fixes
+
+- [x] **Task:** Authorize the PR audit workflow to post its translation-diff receipt and ignore local Entire session metadata. (`b6d5332`)
