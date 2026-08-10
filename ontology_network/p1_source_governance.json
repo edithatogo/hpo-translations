@@ -70,7 +70,7 @@
         "Terms and payload handling must be cleared before committing ontology labels, synonyms, definitions, full responses, or release payload rows."
       ],
       "metadata_only_scaffold_allowed": true,
-      "next_allowed_action": "run the approved one-record metadata-only sample; keep source terms, labels, and payloads excluded",
+      "next_allowed_action": "retain the approved one-record metadata-only sample; complete source terms review before any source terms, labels, or payload extraction",
       "non_translation_outputs_allowed": false,
       "ontology_name": "EFO",
       "payload_commit_allowed": false,
@@ -226,7 +226,7 @@
         "Terms and payload handling must be cleared before committing ontology labels, synonyms, definitions, full responses, or release payload rows."
       ],
       "metadata_only_scaffold_allowed": true,
-      "next_allowed_action": "run the approved one-record metadata-only sample; keep source terms, labels, and payloads excluded",
+      "next_allowed_action": "retain the approved one-record metadata-only sample; complete source terms review before any source terms, labels, or payload extraction",
       "non_translation_outputs_allowed": false,
       "ontology_name": "OncoTree",
       "payload_commit_allowed": false,

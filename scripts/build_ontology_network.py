@@ -1109,7 +1109,8 @@ def p1_source_governance(registry: dict[str, Any]) -> list[dict[str, Any]]:
                 "candidate_only": True,
                 "human_review_required": True,
                 "next_allowed_action": (
-                    "run the approved one-record metadata-only sample; keep source terms, labels, and payloads excluded"
+                    "retain the approved one-record metadata-only sample; complete source terms review before any "
+                    "source terms, labels, or payload extraction"
                     if bounded_sample_allowed
                     else "complete source terms review and bounded source probe before any payload or label extraction"
                 ),
