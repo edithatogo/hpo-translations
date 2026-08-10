@@ -153,7 +153,10 @@
       "type": "boolean"
     },
     "source_version": {
-      "type": "null"
+      "type": [
+        "null",
+        "string"
+      ]
     },
     "track_id": {
       "type": "string"

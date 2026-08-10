@@ -131,9 +131,9 @@
       "source_id": "efo",
       "source_payload_commit_policy": "do_not_commit_raw_source_payloads; commit only registry, schemas, provenance, bounded validation summaries, and derived reports after terms review",
       "source_payloads_can_be_committed": false,
-      "source_version": null,
+      "source_version": "v3.92.0",
       "track_id": "efo_integration_20260623",
-      "version_status": "not_pinned_in_track_metadata"
+      "version_status": "pinned_metadata_only_sample"
     },
     {
       "access_class": "open",
@@ -695,9 +695,9 @@
       "source_id": "oncotree",
       "source_payload_commit_policy": "do_not_commit_full_api_responses; commit only schemas, request manifests, validation summaries, and redacted derived reports",
       "source_payloads_can_be_committed": false,
-      "source_version": null,
+      "source_version": "2.1.0",
       "track_id": "oncotree_integration_20260623",
-      "version_status": "not_pinned_in_track_metadata"
+      "version_status": "pinned_metadata_only_sample"
     },
     {
       "access_class": "open",

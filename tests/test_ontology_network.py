@@ -78,6 +78,11 @@ class OntologyNetworkTests(unittest.TestCase):
         )
         self.assertFalse(records["snomed_ct"]["github_repository_roles"][0]["authoritative_for_release_payload"])
         self.assertEqual(records["do"]["github_repository_roles"][0]["role"], "source_repository")
+        self.assertEqual(records["efo"]["source_version"], "v3.92.0")
+        self.assertEqual(records["efo"]["version_status"], "pinned_metadata_only_sample")
+        self.assertEqual(records["oncotree"]["source_version"], "2.1.0")
+        self.assertEqual(records["oncotree"]["version_status"], "pinned_metadata_only_sample")
+        self.assertIsNone(records["pato"]["source_version"])
 
         with (output_dir / "source_access_matrix.tsv").open(encoding="utf-8", newline="") as handle:
             reader = csv.DictReader(handle, delimiter="\t")
@@ -125,6 +130,12 @@ class OntologyNetworkTests(unittest.TestCase):
             self.assertFalse(record["non_translation_outputs_allowed"])
             self.assertTrue(record["candidate_only"])
             self.assertTrue(record["human_review_required"])
+
+        p1 = load_json(output_dir / "p1_source_governance.json")
+        p1_records = {record["source_id"]: record for record in p1["records"]}
+        self.assertTrue(p1_records["efo"]["bounded_sample_allowed"])
+        self.assertTrue(p1_records["oncotree"]["bounded_sample_allowed"])
+        self.assertFalse(p1_records["pato"]["bounded_sample_allowed"])
 
         self.assertIsNotNone(samples["open_source_registry_record"])
         self.assertIsNotNone(samples["restricted_source_governance_record"])

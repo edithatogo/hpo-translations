@@ -20,7 +20,7 @@
       "hpo_release": "not_pinned_in_track_metadata",
       "semantic_drift_score": null,
       "source_id": "efo",
-      "source_version": "not_pinned_in_track_metadata"
+      "source_version": "v3.92.0"
     },
     {
       "drift_status": "not_computed_source_payloads_excluded",
@@ -90,7 +90,7 @@
       "hpo_release": "not_pinned_in_track_metadata",
       "semantic_drift_score": null,
       "source_id": "oncotree",
-      "source_version": "not_pinned_in_track_metadata"
+      "source_version": "2.1.0"
     },
     {
       "drift_status": "not_computed_source_payloads_excluded",
