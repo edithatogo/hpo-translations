@@ -68,6 +68,25 @@ class MetadataOnlySampleTests(unittest.TestCase):
                 with self.subTest(track=plan_path.parent.name):
                     self.assertTrue((plan_path.parent / "phase3_hpo_translation_use.json").is_file())
 
+    def test_completed_phase4_plans_have_fail_closed_review_artifacts(self) -> None:
+        track_root = Path(__file__).resolve().parents[1] / "conductor" / "tracks"
+        for plan_path in sorted(track_root.glob("*/plan.md")):
+            plan = plan_path.read_text(encoding="utf-8")
+            if "## Phase 4: Validation and Review" not in plan:
+                continue
+            phase4 = plan.split("## Phase 4: Validation and Review", 1)[1].split("## ", 1)[0]
+            if phase4.count("- [x]") < 3:
+                continue
+            with self.subTest(track=plan_path.parent.name):
+                artifact_path = plan_path.parent / "phase4_validation_review.json"
+                self.assertTrue(artifact_path.is_file())
+                artifact = json.loads(artifact_path.read_text(encoding="utf-8"))
+                if artifact.get("status") == "governance_only_validated_payload_blocked":
+                    self.assertEqual(artifact.get("validation_result"), "pass_governance_only")
+                    self.assertEqual(artifact.get("payload_validation"), "not_run_no_authorized_payload")
+                    self.assertIs(artifact.get("promotion_allowed"), False)
+                    self.assertIs(artifact.get("review_required"), True)
+
 
 if __name__ == "__main__":
     unittest.main()
