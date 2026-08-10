@@ -1,0 +1,8 @@
+{
+  "track_id": "snomed_ct_integration_20260623",
+  "status": "design_only_blocked",
+  "uses": ["clinical_context_validation", "identifier_conflict_detection"],
+  "rules": ["exact_identifier_only", "conflicts_unresolved_by_default", "emit_candidate_conflict_records", "llm_candidates_require_human_review"],
+  "promotion_allowed": false,
+  "reason": "affiliate licence, MLDS, edition, extension, RF2, and cross-map terms review are pending; no source payload or bounded sample is allowed"
+}

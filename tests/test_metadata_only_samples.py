@@ -57,6 +57,17 @@ class MetadataOnlySampleTests(unittest.TestCase):
                     self.assertIs(guardrails.get("human_review_required"), True)
                     self.assertIs(guardrails.get("approved_translation"), False)
 
+    def test_completed_phase3_plans_have_contract_artifacts(self) -> None:
+        track_root = Path(__file__).resolve().parents[1] / "conductor" / "tracks"
+        for plan_path in sorted(track_root.glob("*/plan.md")):
+            plan = plan_path.read_text(encoding="utf-8")
+            if "## Phase 3: HPO Translation Use" not in plan:
+                continue
+            phase3 = plan.split("## Phase 3: HPO Translation Use", 1)[1].split("## Phase 4:", 1)[0]
+            if phase3.count("- [x]") >= 3:
+                with self.subTest(track=plan_path.parent.name):
+                    self.assertTrue((plan_path.parent / "phase3_hpo_translation_use.json").is_file())
+
 
 if __name__ == "__main__":
     unittest.main()
