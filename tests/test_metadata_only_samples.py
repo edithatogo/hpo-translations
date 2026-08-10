@@ -52,6 +52,7 @@ class MetadataOnlySampleTests(unittest.TestCase):
         for phase3_path in phase3_paths:
             with self.subTest(track=phase3_path.parent.name):
                 phase3 = json.loads(phase3_path.read_text(encoding="utf-8"))
+                self.assertIsNotNone(phase3.get("status"))
                 if "rules" in phase3:
                     rules = set(phase3["rules"])
                     self.assertIs(phase3.get("promotion_allowed"), False)
