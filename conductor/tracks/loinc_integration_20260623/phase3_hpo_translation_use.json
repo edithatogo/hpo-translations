@@ -1,0 +1,8 @@
+{
+  "track_id": "loinc_integration_20260623",
+  "status": "design_only_blocked",
+  "uses": ["laboratory_context_validation", "identifier_conflict_detection"],
+  "rules": ["exact_identifier_only", "conflicts_unresolved_by_default", "emit_candidate_conflict_records", "llm_candidates_require_human_review"],
+  "promotion_allowed": false,
+  "reason": "account/licence review is pending; no LOINC source terms or approved sample may be used"
+}
