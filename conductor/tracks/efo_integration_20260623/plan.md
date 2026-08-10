@@ -68,4 +68,7 @@ Do not commit raw source terms, ontology labels, synonyms, definitions, full API
 - Review status: `codex_review_completed`.
 - Fixes applied: synchronized metadata, telemetry, source-governance review result, and automation index review state.
 - Validation archive: `pixi run validate-conductor`, `pixi run validate-ontology-network`, `pixi run validate-ontology-network-artifacts`, `pixi run test-conductor-validation`, and `git diff --check`.
-- Residual blocker: downstream payload ingestion, identifier-network work, translation-use, and non-translation outputs remain blocked until source terms and bounded probes pass.
+  - Residual blocker: downstream payload ingestion, identifier-network work, translation-use, and non-translation outputs remain blocked until source terms and bounded probes pass.
+
+## Phase 4 Review Fixes
+- [x] **Task:** Align the approved bounded-sample receipt with the validated metadata-only status and enforce that status in the sample validator.

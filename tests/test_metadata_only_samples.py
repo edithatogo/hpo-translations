@@ -104,6 +104,12 @@ class MetadataOnlySampleTests(unittest.TestCase):
                 artifact_path = plan_path.parent / "phase4_validation_review.json"
                 self.assertTrue(artifact_path.is_file())
                 artifact = json.loads(artifact_path.read_text(encoding="utf-8"))
+                if artifact.get("status") == "metadata_only_sample_validated_payload_blocked":
+                    self.assertEqual(
+                        artifact.get("sample_validation"),
+                        "metadata_only_normalized_identifier_and_provenance_check_passed_import_dry_run_not_applicable_without_terms",
+                    )
+                    self.assertIs(artifact.get("review_required"), True)
                 if artifact.get("status") == "governance_only_validated_payload_blocked":
                     self.assertEqual(artifact.get("validation_result"), "pass_governance_only")
                     self.assertEqual(artifact.get("payload_validation"), "not_run_no_authorized_payload")

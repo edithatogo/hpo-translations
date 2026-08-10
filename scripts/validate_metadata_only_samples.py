@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 TRACKS = ROOT / "conductor" / "tracks"
 APPROVED_STATUS = "approved_bounded_metadata_only_sample"
 PHASE2_STATUS = "metadata_only_sample_normalized_payload_free"
+PHASE4_STATUS = "metadata_only_sample_validated_payload_blocked"
 PHASE4_SAMPLE_VALIDATION = (
     "metadata_only_normalized_identifier_and_provenance_check_passed_import_dry_run_not_applicable_without_terms"
 )
@@ -56,6 +57,8 @@ def validate_track(track_dir: Path) -> list[str]:
         errors.append("normalized record does not prove payload discard")
     if phase2.get("payload_commit_allowed") is not False:
         errors.append("Phase 2 allows payload commit")
+    if phase4.get("status") != PHASE4_STATUS:
+        errors.append("Phase 4 is not marked as a validated metadata-only sample with payload blocked")
     if phase4.get("sample_validation") != PHASE4_SAMPLE_VALIDATION:
         errors.append("Phase 4 does not record the metadata-only no-op import result")
     excluded = set(phase4.get("excluded_payloads", []))
