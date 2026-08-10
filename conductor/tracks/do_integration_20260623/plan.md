@@ -33,7 +33,7 @@ This plan introduces Disease Ontology into the project where it can improve term
   - Disease Ontology project resources and the pinned GitHub release `v2026-07-31` are authoritative; project data are CC0-1.0. Payload use remains subject to provenance and review controls.
 - [x] **Task 2:** Record supported languages and source-version metadata.
   - Pinned release: `v2026-07-31`; English primary, Spanish translations reported by the release; release metadata must be rechecked at probe time.
-- [ ] **Task 3:** List relevant GitHub repositories:
+- [x] **Task 3:** List relevant GitHub repositories:
   - https://github.com/DiseaseOntology/HumanDiseaseOntology
 
 ## Phase 2: Data Access and Normalization

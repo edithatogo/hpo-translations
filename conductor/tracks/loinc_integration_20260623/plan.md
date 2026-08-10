@@ -32,7 +32,7 @@ This plan introduces LOINC into the project where it can improve terminology ali
 - [ ] **Task 1:** Confirm authoritative release source, license, and redistribution constraints.
 - [x] **Task 2:** Record supported languages and source-version metadata.
   - English source scope and official LOINC release `2.82` dated 2026-03-04 are recorded; account/licence review still gates payload access.
-- [ ] **Task 3:** List relevant GitHub repositories:
+- [x] **Task 3:** List relevant GitHub repositories (reference/tooling only; account/licence review remains required):
   - https://github.com/loinc
   - https://github.com/loinc/comp-loinc
 

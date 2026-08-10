@@ -32,7 +32,7 @@ This plan introduces MeSH into the project where it can improve terminology alig
 - [ ] **Task 1:** Confirm authoritative release source, license, and redistribution constraints.
 - [x] **Task 2:** Record supported languages and source-version metadata.
   - English production release scope and 2026 production-year release metadata are recorded; NLM terms review still gates payload access.
-- [ ] **Task 3:** List relevant GitHub repositories:
+- [x] **Task 3:** List relevant GitHub repositories (reference only; NLM remains the source authority):
   - https://github.com/HHS/meshrdf
 
 ## Phase 2: Data Access and Normalization

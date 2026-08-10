@@ -33,7 +33,7 @@ This plan introduces Orphanet into the project where it can improve terminology 
   - Orphadata Science is public CC BY 4.0; other catalogue products remain DTA/pricing gated.
 - [x] **Task 2:** Record supported languages and source-version metadata.
   - April 2026 catalogue metadata and BCP-47 language/provenance requirements are recorded; payload access remains gated.
-- [ ] **Task 3:** List relevant GitHub repositories:
+- [x] **Task 3:** List relevant GitHub repositories (catalogue reference only; product-specific access remains gated):
   - https://github.com/Orphanet
 
 ## Phase 2: Data Access and Normalization

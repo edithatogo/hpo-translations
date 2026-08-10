@@ -31,7 +31,7 @@ This plan introduces ICD-10 into the project where it can improve terminology al
 ## Phase 1: Source Governance
 - [ ] **Task 1:** Confirm authoritative release source, license, and redistribution constraints.
 - [ ] **Task 2:** Record supported languages and source-version metadata.
-- [ ] **Task 3:** List relevant GitHub repositories:
+- [x] **Task 3:** List relevant GitHub repositories (tooling reference only; ICD-10 authority and terms remain unresolved):
   - https://github.com/ICD-API
 
 ## Phase 2: Data Access and Normalization
