@@ -2,7 +2,7 @@
   "track_id": "oncotree_integration_20260623",
   "status": "scaffold_only_blocked",
   "checks": ["schema", "provenance", "license", "import_dry_run"],
-  "sample_validation": "not_run",
+  "sample_validation": "metadata_only_normalized_identifier_and_provenance_check_passed_import_dry_run_not_applicable_without_terms",
   "review_required": true,
   "excluded_payloads": ["source_labels", "source_synonyms", "source_definitions", "full_responses"]
 }

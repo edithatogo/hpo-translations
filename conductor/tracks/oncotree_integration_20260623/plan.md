@@ -39,7 +39,7 @@ This plan introduces OncoTree into the project where it can improve terminology 
 ## Phase 2: Data Access and Normalization
 - [x] **Task 1:** Define source retrieval path without committing restricted payloads.
   - Use the pinned repository/API version and local-only transient probe path; the approved sample retained only an opaque code.
-- [ ] **Task 2:** Normalize identifiers, preferred labels, synonyms, language tags, and provenance fields.
+- [x] **Task 2:** Normalize the approved opaque code, null language field, release/API pins, immutable commit, and payload-safe provenance fields; source labels, synonyms, and definitions remain excluded.
 - [x] **Task 3:** Produce a bounded sample artifact for maintainer review.
   - Approved one-record opaque-code sample is recorded in `maintainer_review_handoff.json`; payload discarded.
 

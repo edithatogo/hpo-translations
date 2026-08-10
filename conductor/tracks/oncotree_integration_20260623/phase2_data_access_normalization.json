@@ -1,8 +1,9 @@
 {
   "track_id": "oncotree_integration_20260623",
-  "status": "scaffold_only_blocked",
+  "status": "metadata_only_sample_normalized_payload_free",
   "retrieval": {"mode": "local_only_after_terms_review", "bulk_download": false, "cache": "unmaterialized"},
-  "normalization": {"identifier": "OncoTree_CODE", "language": "ISO_639_1", "provenance": ["source_uri", "release", "retrieved_at", "digest"]},
-  "sample": {"allowed": false, "reason": "source terms and redistribution review pending"},
+  "normalization": {"identifier": "OncoTree_CODE", "language": "ISO_639_1_or_null", "provenance": ["source_uri", "release", "immutable_commit", "api_version", "retrieved_at", "metadata_evidence_ref"], "source_terms_included": false},
+  "normalized_record": {"source_id": "oncotree", "identifier": "KIDNEY", "identifier_type": "OncoTree_CODE", "language": null, "source_uri": "https://github.com/cBioPortal/oncotree", "release": "2.1.0", "immutable_commit": "72f5796147a49da0f05fa2fa6cdf1cac7b64fe55", "api_version": "oncotree_2025_10_03", "retrieved_at": "2026-08-01", "metadata_evidence_ref": "maintainer_review_handoff.json#bounded_sample", "payload_retained": false},
+  "sample": {"allowed": true, "scope": "one_opaque_identifier_record_only", "authorization_ref": "maintainer_review_handoff.json#approval", "identifier": "KIDNEY", "payload_retained": false, "source_terms_included": false},
   "payload_commit_allowed": false
 }
