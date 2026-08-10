@@ -1,0 +1,17 @@
+{
+  "track_id": "pato_integration_20260623",
+  "status": "metadata_only_identifier_context_only",
+  "uses": [
+    "source_authority_context",
+    "release_provenance",
+    "phenotypic_quality_governance"
+  ],
+  "rules": [
+    "release_metadata_only",
+    "no_source_terms",
+    "conflicts_unresolved_by_default",
+    "llm_candidates_require_human_review"
+  ],
+  "promotion_allowed": false,
+  "reason": "the approved metadata-only sample contains release provenance only; licence review, source terms, labels, synonyms, definitions, and crosswalk promotion remain blocked"
+}

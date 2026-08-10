@@ -399,7 +399,7 @@
     "source_access_status": "open_ontology_download_review_required",
     "source_id": "pato",
     "source_name": "PATO",
-    "source_version": "not_pinned_in_track_metadata",
+    "source_version": "v2025-05-14",
     "supported_languages": [
       "en"
     ]

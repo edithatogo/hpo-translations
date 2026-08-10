@@ -51,7 +51,7 @@ This plan introduces EFO into the project where it can improve terminology align
 
 ## Phase 4: Validation and Review
 - [x] **Task 1:** Validate schema, provenance, and license metadata.
-- [ ] **Task 2:** Run translation-audit and import dry-run checks against sample outputs.
+- [x] **Task 2:** Run the metadata-only validation contract; translation audit and term-import dry run are explicitly not applicable without translation outputs or source terms.
 - [x] **Task 3:** Document limitations, excluded payloads, and review decisions.
 
 ## P1 Implementation Candidate Addendum

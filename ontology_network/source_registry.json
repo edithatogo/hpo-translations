@@ -1830,11 +1830,11 @@
       "source_note": "OBO ontology repository with release files and editorial workflow.",
       "source_payload_commit_policy": "do_not_commit_raw_source_payloads; commit only registry, schemas, provenance, bounded validation summaries, and derived reports after terms review",
       "source_payloads_can_be_committed": false,
-      "source_version": null,
+      "source_version": "v2025-05-14",
       "track_id": "pato_integration_20260623",
       "track_status": "phase_0_implemented_blocked",
       "usefulness": "Phenotypic quality normalization and logical definition support.",
-      "version_status": "not_pinned_in_track_metadata"
+      "version_status": "pinned_metadata_only_sample"
     },
     {
       "access_class": "restricted",
