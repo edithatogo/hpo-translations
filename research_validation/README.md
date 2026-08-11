@@ -32,6 +32,7 @@ The overall source gate remains open and the track remains synthetic-only.
 
 - `protocol.md` defines the payload-safe pilot design, outcomes, agent process, and analysis gates.
 - `source_catalog.json` records pinned authoritative mapping metadata and dependence groups without mapping rows.
+- `mapping_expansion_catalog.json` covers every registered ontology source, records newly discovered authoritative map families and language editions, and preserves a payload-free admission boundary. Run `pixi run validate-mapping-expansion` after editing it.
 - `source_verification.md` documents the primary-source search and license boundary.
 - `supplementary_source_access_reviews.json` records source-specific access, overlap, licence, and human-decision gates without retrieving payloads.
 - `supplementary_source_access_review.md` summarizes the supplementary-source decisions and their interpretation boundary.

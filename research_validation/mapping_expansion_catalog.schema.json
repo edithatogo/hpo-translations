@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hpo-translations.example/mapping_expansion_catalog.schema.json",
+  "title": "Payload-safe ontology mapping expansion catalog",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "generated_at", "scope", "payload_records_committed", "registered_source_ids", "artifacts", "source_coverage", "language_findings", "admission_boundary"],
+  "properties": {
+    "schema_version": {"const": "mapping-expansion-catalog-v1"},
+    "generated_at": {"type": "string", "format": "date-time"},
+    "scope": {"const": "authoritative_mapping_and_language_metadata_only"},
+    "payload_records_committed": {"const": 0},
+    "registered_source_ids": {"type": "array", "minItems": 18, "uniqueItems": true, "items": {"type": "string", "pattern": "^[a-z0-9_]+$"}},
+    "artifacts": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["artifact_id", "name", "provider", "release", "versioned_url", "format", "mapped_namespaces", "languages", "license_status", "integrity", "lineage_group", "status", "payload_commit_allowed", "metadata_included"],
+        "properties": {
+          "artifact_id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+          "name": {"type": "string", "minLength": 1},
+          "provider": {"type": "string", "minLength": 1},
+          "release": {"type": "string", "minLength": 1},
+          "versioned_url": {"type": "string", "format": "uri"},
+          "format": {"type": "string", "minLength": 1},
+          "mapped_namespaces": {"type": "array", "minItems": 2, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+          "languages": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 2}},
+          "license_status": {"type": "string", "minLength": 1},
+          "integrity": {
+            "oneOf": [
+              {"type": "object", "additionalProperties": false, "required": ["algorithm", "value"], "properties": {"algorithm": {"enum": ["sha256", "git_commit"]}, "value": {"type": "string", "pattern": "^[a-f0-9]{40,64}$"}}},
+              {"type": "null"}
+            ]
+          },
+          "lineage_group": {"type": "string", "minLength": 1},
+          "status": {"enum": ["sourced_metadata_payload_not_committed", "metadata_registered_access_required", "metadata_registered_rights_review_required", "excluded_stale_or_non_authoritative"]},
+          "payload_commit_allowed": {"const": false},
+          "metadata_included": {"const": true}
+        }
+      }
+    },
+    "source_coverage": {
+      "type": "array", "minItems": 18,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["source_id", "artifact_ids", "additional_mapped_namespaces", "additional_languages", "decision"],
+        "properties": {
+          "source_id": {"type": "string"},
+          "artifact_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+          "additional_mapped_namespaces": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+          "additional_languages": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+          "decision": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "language_findings": {"type": "array", "items": {"type": "object"}},
+    "admission_boundary": {
+      "type": "object", "additionalProperties": false,
+      "required": ["metadata_is_not_payload_authority", "mapping_ids_are_not_translation_evidence", "restricted_payloads_excluded", "g3_reopen_required_for_empirical_use"],
+      "properties": {
+        "metadata_is_not_payload_authority": {"const": true},
+        "mapping_ids_are_not_translation_evidence": {"const": true},
+        "restricted_payloads_excluded": {"const": true},
+        "g3_reopen_required_for_empirical_use": {"const": true}
+      }
+    }
+  }
+}

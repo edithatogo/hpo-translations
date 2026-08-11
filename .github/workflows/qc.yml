@@ -77,6 +77,9 @@ jobs:
       - name: Run Conductor validation tests
         run: pixi run test-conductor-validation
 
+      - name: Validate ontology mapping expansion catalog
+        run: pixi run validate-mapping-expansion
+
       - name: Validate approved metadata-only samples
         run: pixi run validate-metadata-only-samples
 
