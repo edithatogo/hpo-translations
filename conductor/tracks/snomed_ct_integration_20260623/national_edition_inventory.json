@@ -1,0 +1,38 @@
+{
+  "schema_version": "snomed-national-edition-inventory-v1",
+  "status": "catalogued_metadata_only",
+  "official_translation_url": "https://www.implementation.snomed.org/member-translations",
+  "official_edition_uri_url": "https://docs.snomed.org/snomed-ct-practical-guides/snomed-ct-extension-guide/4-logical-design/4.4-editions/4.4.2-edition-uri-examples",
+  "payload_incorporated": false,
+  "translation_profiles": [
+    {"jurisdiction": "Austria", "languages": ["de-AT"], "edition_uri": "http://snomed.info/sct/11000234105", "reported_coverage": "selected vaccine and microbiology refsets; approximately 10 percent"},
+    {"jurisdiction": "Belgium", "languages": ["nl-BE", "fr-BE"], "edition_uri": "http://snomed.info/sct/11000172109", "reported_coverage": "preferred terms and synonyms for relevant clinical concepts; approximately 70 percent"},
+    {"jurisdiction": "Canada", "languages": ["en-CA", "fr-CA"], "edition_uri": "http://snomed.info/sct/20611000087101", "language_refsets": {"en-CA": "19491000087109", "fr-CA": "20581000087109"}, "reported_coverage": "Canadian English and French components; French FSN, preferred terms and synonyms for selected and on-demand scope; approximately 30 percent", "release_cycle": "quarterly February May August November", "authority_url": "https://infocentral.infoway-inforoute.ca/en/standards/canadian/snomed-ct"},
+    {"jurisdiction": "Denmark", "languages": ["da-DK"], "edition_uri": "http://snomed.info/sct/554471000005108", "reported_coverage": "preferred terms; approximately 80 percent; no synonyms reported"},
+    {"jurisdiction": "Estonia", "languages": ["et-EE"], "edition_uri": "http://snomed.info/sct/11000181102", "reported_coverage": "national and EU value sets plus selected diagnoses, procedures and substances; approximately 10 percent"},
+    {"jurisdiction": "Finland", "languages": ["fi-FI", "sv-FI"], "edition_uri": "http://snomed.info/sct/11000229106", "reported_coverage": "FSN, preferred terms and synonyms for selected scope; approximately 20 percent"},
+    {"jurisdiction": "France", "languages": ["fr-FR"], "edition_uri": null, "reported_coverage": "preferred terms and synonyms; full-translation program reported at approximately 58 percent", "authority_status": "edition_uri_and_current_package_unresolved"},
+    {"jurisdiction": "Germany", "languages": ["de-DE"], "edition_uri": "http://snomed.info/sct/11000274103", "reported_coverage": "preferred terms and synonyms for selected federal and legal projects; approximately 10 percent"},
+    {"jurisdiction": "Lithuania", "languages": ["lt-LT"], "edition_uri": null, "reported_coverage": "member translation exists; scope, package and refset identifiers unresolved"},
+    {"jurisdiction": "Netherlands", "languages": ["nl-NL"], "edition_uri": "http://snomed.info/sct/11000146104", "reported_coverage": "FSN, preferred terms and synonyms for relevant clinical concepts; approximately 70 percent"},
+    {"jurisdiction": "New Zealand", "languages": ["mi-NZ"], "edition_uri": "http://snomed.info/sct/21000210109", "reported_coverage": "Māori preferred terms for about 200 common conditions and interventions", "community_authority_required": true},
+    {"jurisdiction": "Norway", "languages": ["nb-NO", "nn-NO"], "edition_uri": "http://snomed.info/sct/51000202101", "reported_coverage": "Bokmål and Nynorsk preferred terms and synonyms for selected scope; approximately 30 percent"},
+    {"jurisdiction": "Sweden", "languages": ["sv-SE"], "edition_uri": "http://snomed.info/sct/45991000052106", "reported_coverage": "full Swedish preferred-term translation; no synonyms reported"}
+  ],
+  "edition_examples_without_translation_inference": [
+    {"name": "International", "edition_uri": "http://snomed.info/sct/900000000000207008", "languages": ["en-US", "en-GB"]},
+    {"name": "International Spanish", "edition_uri": "http://snomed.info/sct/449081005", "languages": ["es"]},
+    {"name": "Argentina", "edition_uri": "http://snomed.info/sct/11000221109", "languages": []},
+    {"name": "Australia", "edition_uri": "http://snomed.info/sct/32506021000036107", "languages": ["en-AU"]},
+    {"name": "India", "edition_uri": "http://snomed.info/sct/1121000189102", "languages": []},
+    {"name": "Ireland", "edition_uri": "http://snomed.info/sct/11000220105", "languages": []},
+    {"name": "South Korea", "edition_uri": "http://snomed.info/sct/11000267109", "languages": []},
+    {"name": "Spain", "edition_uri": "http://snomed.info/sct/900000001000122104", "languages": ["es-ES"]}
+  ],
+  "french_lineage": {
+    "current_authorities": ["fr-BE", "fr-CA", "fr-FR"],
+    "historical_common_french_contributors": ["Belgium", "Canada", "Switzerland", "Luxembourg", "PHAST France"],
+    "policy": "historical collaboration is not independent evidence or redistribution authority; resolve per-term module and language-refset provenance from an authorized RF2 release"
+  },
+  "admission_requirements": ["named NRC access", "SNOMED Affiliate or member licence", "NRC terms", "edition URI and module identifier", "effectiveTime and RF2 package identity", "language-refset identifiers", "redistribution permission"]
+}

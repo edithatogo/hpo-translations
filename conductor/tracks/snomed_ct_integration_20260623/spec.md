@@ -4,7 +4,7 @@
 Introduce SNOMED CT as a governed terminology source for the HPO translation workflow where it improves concept alignment, multilingual review, or domain-specific validation.
 
 ## Source Profile
-- Languages: English, Spanish, French, German, Dutch, Danish, Swedish, Norwegian, Estonian, Finnish, and Slovak.
+- Languages: Australian English, Canadian English, UK English, US English, Austrian German, German German, Belgian Dutch, Netherlands Dutch, Belgian French, Canadian French, French French, European Spanish, Spanish, Danish, Estonian, Finnish, Finnish Swedish, Lithuanian, Māori, Norwegian Bokmål, Norwegian Nynorsk, and Swedish Swedish.
 - GitHub repositories:
 - https://github.com/IHTSDO
 - https://github.com/IHTSDO/snowstorm
@@ -23,4 +23,4 @@ Clinical terminology crosswalks, post-coordination review, and clinical synonym 
 
 ## Non-Goals
 - Do not redistribute restricted terminology payloads in this repository.
-- Do not treat external labels as approved HPO translations without maintainer review.
+- Do not treat external labels as approved HPO translations without agent-panel assessment and an accountable maintainer promotion decision.

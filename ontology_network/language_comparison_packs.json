@@ -1,6 +1,6 @@
 {
   "generated_date": "2026-06-23",
-  "record_count": 32,
+  "record_count": 49,
   "records": [
     {
       "agent_panel_assessment_required": true,
@@ -55,8 +55,29 @@
         "meddra",
         "mesh",
         "orphanet",
-        "snomed_ct",
         "umls"
+      ]
+    },
+    {
+      "agent_panel_assessment_required": true,
+      "candidate_count": 0,
+      "candidate_only": true,
+      "comparison_status": "not_computed_source_payloads_excluded",
+      "language": "de-AT",
+      "maintainer_promotion_decision_required": true,
+      "source_ids": [
+        "snomed_ct"
+      ]
+    },
+    {
+      "agent_panel_assessment_required": true,
+      "candidate_count": 0,
+      "candidate_only": true,
+      "comparison_status": "not_computed_source_payloads_excluded",
+      "language": "de-DE",
+      "maintainer_promotion_decision_required": true,
+      "source_ids": [
+        "snomed_ct"
       ]
     },
     {
@@ -93,9 +114,52 @@
         "oncotree",
         "orphanet",
         "pato",
-        "snomed_ct",
         "umls",
         "upheno"
+      ]
+    },
+    {
+      "agent_panel_assessment_required": true,
+      "candidate_count": 0,
+      "candidate_only": true,
+      "comparison_status": "not_computed_source_payloads_excluded",
+      "language": "en-AU",
+      "maintainer_promotion_decision_required": true,
+      "source_ids": [
+        "snomed_ct"
+      ]
+    },
+    {
+      "agent_panel_assessment_required": true,
+      "candidate_count": 0,
+      "candidate_only": true,
+      "comparison_status": "not_computed_source_payloads_excluded",
+      "language": "en-CA",
+      "maintainer_promotion_decision_required": true,
+      "source_ids": [
+        "snomed_ct"
+      ]
+    },
+    {
+      "agent_panel_assessment_required": true,
+      "candidate_count": 0,
+      "candidate_only": true,
+      "comparison_status": "not_computed_source_payloads_excluded",
+      "language": "en-GB",
+      "maintainer_promotion_decision_required": true,
+      "source_ids": [
+        "snomed_ct"
+      ]
+    },
+    {
+      "agent_panel_assessment_required": true,
+      "candidate_count": 0,
+      "candidate_only": true,
+      "comparison_status": "not_computed_source_payloads_excluded",
+      "language": "en-US",
+      "maintainer_promotion_decision_required": true,
+      "source_ids": [
+        "snomed_ct"
       ]
     },
     {
@@ -114,6 +178,17 @@
         "orphanet",
         "snomed_ct",
         "umls"
+      ]
+    },
+    {
+      "agent_panel_assessment_required": true,
+      "candidate_count": 0,
+      "candidate_only": true,
+      "comparison_status": "not_computed_source_payloads_excluded",
+      "language": "es-ES",
+      "maintainer_promotion_decision_required": true,
+      "source_ids": [
+        "snomed_ct"
       ]
     },
     {
@@ -166,8 +241,40 @@
         "meddra",
         "mesh",
         "orphanet",
-        "snomed_ct",
         "umls"
+      ]
+    },
+    {
+      "agent_panel_assessment_required": true,
+      "candidate_count": 0,
+      "candidate_only": true,
+      "comparison_status": "not_computed_source_payloads_excluded",
+      "language": "fr-BE",
+      "maintainer_promotion_decision_required": true,
+      "source_ids": [
+        "snomed_ct"
+      ]
+    },
+    {
+      "agent_panel_assessment_required": true,
+      "candidate_count": 0,
+      "candidate_only": true,
+      "comparison_status": "not_computed_source_payloads_excluded",
+      "language": "fr-CA",
+      "maintainer_promotion_decision_required": true,
+      "source_ids": [
+        "snomed_ct"
+      ]
+    },
+    {
+      "agent_panel_assessment_required": true,
+      "candidate_count": 0,
+      "candidate_only": true,
+      "comparison_status": "not_computed_source_payloads_excluded",
+      "language": "fr-FR",
+      "maintainer_promotion_decision_required": true,
+      "source_ids": [
+        "snomed_ct"
       ]
     },
     {
@@ -264,6 +371,7 @@
       "language": "lt",
       "maintainer_promotion_decision_required": true,
       "source_ids": [
+        "snomed_ct",
         "umls"
       ]
     },
@@ -283,14 +391,68 @@
       "candidate_count": 0,
       "candidate_only": true,
       "comparison_status": "not_computed_source_payloads_excluded",
+      "language": "mi-NZ",
+      "maintainer_promotion_decision_required": true,
+      "source_ids": [
+        "snomed_ct"
+      ]
+    },
+    {
+      "agent_panel_assessment_required": true,
+      "candidate_count": 0,
+      "candidate_only": true,
+      "comparison_status": "not_computed_source_payloads_excluded",
+      "language": "nb-NO",
+      "maintainer_promotion_decision_required": true,
+      "source_ids": [
+        "snomed_ct"
+      ]
+    },
+    {
+      "agent_panel_assessment_required": true,
+      "candidate_count": 0,
+      "candidate_only": true,
+      "comparison_status": "not_computed_source_payloads_excluded",
       "language": "nl",
       "maintainer_promotion_decision_required": true,
       "source_ids": [
         "loinc",
         "meddra",
         "orphanet",
-        "snomed_ct",
         "umls"
+      ]
+    },
+    {
+      "agent_panel_assessment_required": true,
+      "candidate_count": 0,
+      "candidate_only": true,
+      "comparison_status": "not_computed_source_payloads_excluded",
+      "language": "nl-BE",
+      "maintainer_promotion_decision_required": true,
+      "source_ids": [
+        "snomed_ct"
+      ]
+    },
+    {
+      "agent_panel_assessment_required": true,
+      "candidate_count": 0,
+      "candidate_only": true,
+      "comparison_status": "not_computed_source_payloads_excluded",
+      "language": "nl-NL",
+      "maintainer_promotion_decision_required": true,
+      "source_ids": [
+        "snomed_ct"
+      ]
+    },
+    {
+      "agent_panel_assessment_required": true,
+      "candidate_count": 0,
+      "candidate_only": true,
+      "comparison_status": "not_computed_source_payloads_excluded",
+      "language": "nn-NO",
+      "maintainer_promotion_decision_required": true,
+      "source_ids": [
+        "snomed_ct"
       ]
     },
     {
@@ -301,7 +463,6 @@
       "language": "no",
       "maintainer_promotion_decision_required": true,
       "source_ids": [
-        "snomed_ct",
         "umls"
       ]
     },
@@ -360,7 +521,6 @@
       "maintainer_promotion_decision_required": true,
       "source_ids": [
         "icd11",
-        "snomed_ct",
         "umls"
       ]
     },
@@ -385,8 +545,29 @@
       "source_ids": [
         "icd11",
         "meddra",
-        "snomed_ct",
         "umls"
+      ]
+    },
+    {
+      "agent_panel_assessment_required": true,
+      "candidate_count": 0,
+      "candidate_only": true,
+      "comparison_status": "not_computed_source_payloads_excluded",
+      "language": "sv-FI",
+      "maintainer_promotion_decision_required": true,
+      "source_ids": [
+        "snomed_ct"
+      ]
+    },
+    {
+      "agent_panel_assessment_required": true,
+      "candidate_count": 0,
+      "candidate_only": true,
+      "comparison_status": "not_computed_source_payloads_excluded",
+      "language": "sv-SE",
+      "maintainer_promotion_decision_required": true,
+      "source_ids": [
+        "snomed_ct"
       ]
     },
     {

@@ -206,6 +206,10 @@ class OntologyNetworkTests(unittest.TestCase):
             records["umls"]["authoritative_endpoint_status"], "authority_described_github_not_authoritative"
         )
         self.assertFalse(records["snomed_ct"]["github_repository_roles"][0]["authoritative_for_release_payload"])
+        self.assertTrue(
+            {"en-CA", "fr-CA", "fr-BE", "fr-FR", "mi-NZ", "nb-NO", "nn-NO"}
+            <= set(records["snomed_ct"]["language_codes"])
+        )
         self.assertEqual(records["do"]["github_repository_roles"][0]["role"], "source_repository")
         self.assertEqual(records["efo"]["source_version"], "v3.92.0")
         self.assertEqual(records["efo"]["version_status"], "pinned_metadata_only_sample")
