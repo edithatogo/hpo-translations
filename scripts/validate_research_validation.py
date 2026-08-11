@@ -78,6 +78,7 @@ EXPECTED_PHASE_4_WAVE_2_SPONSOR_ROUTE_IDS = {
     "nsw_health_islhd_sponsored_or_site",
     "cross_institutional",
 }
+EXPECTED_PRIVATE_ARCHIVE_SOURCE_IDS = {"do", "mp", "pato", "upheno"}
 
 
 @dataclass(frozen=True)
@@ -1220,11 +1221,92 @@ def phase_4_g3_freeze_readiness_errors(
     return errors
 
 
+def private_source_archive_receipts_errors(instance: Any, hosting_inventory: Any) -> list[str]:
+    if not isinstance(instance, dict) or not isinstance(hosting_inventory, dict):
+        return ["private archive receipts and hosting inventory must be JSON objects"]
+
+    errors: list[str] = []
+    if (
+        instance.get("schema_version") != "source-archive-receipts-v1"
+        or instance.get("status") != "metadata_only_archive_receipts_no_payload_authority"
+        or instance.get("inventory_ref") != "conductor/source_hosting_inventory.json"
+    ):
+        errors.append("private archive receipts must use the metadata-only v1 contract")
+    hosting = hosting_inventory.get("candidate_hosting", {})
+    if instance.get("archive_target") != hosting.get("archive_target") or instance.get(
+        "archive_revision"
+    ) != hosting.get("latest_verified_archive_revision"):
+        errors.append("private archive target and revision must match the canonical hosting inventory")
+
+    receipts = instance.get("receipts", [])
+    receipt_by_id = {
+        receipt.get("source_id"): receipt
+        for receipt in receipts
+        if isinstance(receipt, dict) and isinstance(receipt.get("source_id"), str)
+    }
+    if set(receipt_by_id) != EXPECTED_PRIVATE_ARCHIVE_SOURCE_IDS or len(receipts) != len(receipt_by_id):
+        errors.append("private archive receipts must cover each archived research source exactly once")
+    inventory_by_id = {
+        source.get("source_id"): source
+        for source in hosting_inventory.get("sources", [])
+        if isinstance(source, dict) and source.get("status") == "archived_private"
+    }
+    for source_id, receipt in receipt_by_id.items():
+        inventory_source = inventory_by_id.get(source_id, {})
+        for field in ("release", "archive_path", "sha256"):
+            if receipt.get(field) != inventory_source.get(field):
+                errors.append(f"{source_id} private archive receipt {field} must match the hosting inventory")
+        if receipt.get("research_effect") != "version_and_integrity_evidence_only":
+            errors.append(f"{source_id} private archive receipt must remain version-and-integrity evidence only")
+
+    lineage = instance.get("lineage_state", {})
+    if (
+        lineage.get("source_atoms_present") is not False
+        or lineage.get("derivation_paths_computed_from_payload") is not False
+        or lineage.get("independent_evidence_groups_added") != 0
+    ):
+        errors.append("private archive receipts must not claim source-atom lineage or evidence independence")
+    authorization = instance.get("authorization_boundary", {})
+    if (
+        not isinstance(authorization, dict)
+        or not authorization
+        or any(value is not False for value in authorization.values())
+    ):
+        errors.append("private archive receipts must not authorize source, payload, empirical, or promotion actions")
+    return errors
+
+
 def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[ValidationIssue]:
     issues: list[ValidationIssue] = []
     schema_dir = research_root / "schemas"
     passing_dir = research_root / "fixtures" / "passing"
     failing_dir = research_root / "fixtures" / "failing"
+
+    archive_receipts_path = research_root / "source_archive_receipts.json"
+    hosting_inventory_path = ROOT / "conductor" / "source_hosting_inventory.json"
+    if not archive_receipts_path.exists():
+        issues.append(
+            ValidationIssue(
+                "private_source_archive_receipts.missing",
+                str(archive_receipts_path),
+                "private source archive receipts are required",
+            )
+        )
+    elif not hosting_inventory_path.exists():
+        issues.append(
+            ValidationIssue(
+                "private_source_archive_receipts.inventory_missing",
+                str(hosting_inventory_path),
+                "canonical source hosting inventory is required",
+            )
+        )
+    else:
+        archive_receipts = load_json(archive_receipts_path)
+        hosting_inventory = load_json(hosting_inventory_path)
+        for message in private_source_archive_receipts_errors(archive_receipts, hosting_inventory):
+            issues.append(
+                ValidationIssue("private_source_archive_receipts.invalid", str(archive_receipts_path), message)
+            )
 
     schemas = {path.name.removesuffix(".schema.json"): load_json(path) for path in schema_dir.glob("*.schema.json")}
     missing_schemas = EXPECTED_SCHEMA_NAMES - schemas.keys()

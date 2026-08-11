@@ -17,6 +17,7 @@ from scripts.validate_research_validation import (
     phase_4_gate_docket_errors,
     phase_4_wave_1_source_decisions_errors,
     phase_4_wave_2_authority_routes_errors,
+    private_source_archive_receipts_errors,
     reviewer_workload_budget_errors,
     schema_errors,
     semantic_errors,
@@ -27,6 +28,33 @@ from scripts.validate_research_validation import (
 class ValidateResearchValidationTests(unittest.TestCase):
     def test_committed_contract_passes(self) -> None:
         self.assertEqual(validate_contract(), [])
+
+    def test_private_archive_receipts_reject_revision_drift(self) -> None:
+        receipts = load_json(DEFAULT_RESEARCH_ROOT / "source_archive_receipts.json")
+        inventory = load_json(DEFAULT_RESEARCH_ROOT.parent / "conductor" / "source_hosting_inventory.json")
+        receipts["archive_revision"] = "0" * 40
+        self.assertIn(
+            "private archive target and revision must match the canonical hosting inventory",
+            private_source_archive_receipts_errors(receipts, inventory),
+        )
+
+    def test_private_archive_receipts_reject_payload_authority(self) -> None:
+        receipts = load_json(DEFAULT_RESEARCH_ROOT / "source_archive_receipts.json")
+        inventory = load_json(DEFAULT_RESEARCH_ROOT.parent / "conductor" / "source_hosting_inventory.json")
+        receipts["authorization_boundary"]["payload_retrieval_authorized"] = True
+        self.assertIn(
+            "private archive receipts must not authorize source, payload, empirical, or promotion actions",
+            private_source_archive_receipts_errors(receipts, inventory),
+        )
+
+    def test_private_archive_receipts_reject_false_lineage(self) -> None:
+        receipts = load_json(DEFAULT_RESEARCH_ROOT / "source_archive_receipts.json")
+        inventory = load_json(DEFAULT_RESEARCH_ROOT.parent / "conductor" / "source_hosting_inventory.json")
+        receipts["lineage_state"]["independent_evidence_groups_added"] = 4
+        self.assertIn(
+            "private archive receipts must not claim source-atom lineage or evidence independence",
+            private_source_archive_receipts_errors(receipts, inventory),
+        )
 
     def test_candidate_matrix_rejects_unresolved_tw(self) -> None:
         matrix = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_candidate_matrix.json")

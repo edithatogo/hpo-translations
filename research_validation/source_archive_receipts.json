@@ -1,0 +1,52 @@
+{
+  "schema_version": "source-archive-receipts-v1",
+  "track_id": "research_validation_20260801",
+  "status": "metadata_only_archive_receipts_no_payload_authority",
+  "inventory_ref": "conductor/source_hosting_inventory.json",
+  "archive_target": "edithatogo/hpo-licensed-ontology-archive",
+  "archive_revision": "86806ad96f88c510eb361ced5938d253e1c39b94",
+  "receipts": [
+    {
+      "source_id": "do",
+      "release": "v2026-07-31",
+      "archive_path": "releases/do/v2026-07-31/doid.obo",
+      "sha256": "5b9803aa17eeabf4c70f144c64216294d01e66335da3e560576d4eb2dc9ff490",
+      "research_effect": "version_and_integrity_evidence_only"
+    },
+    {
+      "source_id": "mp",
+      "release": "v2026-07-22",
+      "archive_path": "releases/mp/v2026-07-22/mp-base.obo",
+      "sha256": "ed94ed8a8263fa61afa3391c3e09e5c1d65c0e4ac82510a2d7e5a2d2357e1ad5",
+      "research_effect": "version_and_integrity_evidence_only"
+    },
+    {
+      "source_id": "pato",
+      "release": "v2025-05-14",
+      "archive_path": "releases/pato/v2025-05-14/pato.obo",
+      "sha256": "9b65efdf7d8d96bafd54637041cc615404ac2c88608efbcf54efa0a369bb1f75",
+      "research_effect": "version_and_integrity_evidence_only"
+    },
+    {
+      "source_id": "upheno",
+      "release": "v2025-10-12",
+      "archive_path": "releases/upheno/v2025-10-12/upheno-base.obo",
+      "sha256": "c63efe651fa34c3349879014d4298799445cd6e485a5bfde608676f4875a079d",
+      "research_effect": "version_and_integrity_evidence_only"
+    }
+  ],
+  "lineage_state": {
+    "source_atoms_present": false,
+    "derivation_paths_computed_from_payload": false,
+    "independent_evidence_groups_added": 0,
+    "next_gate": "source_specific_payload_licence_attribution_and_pilot_scope_approval"
+  },
+  "authorization_boundary": {
+    "source_use_authorized": false,
+    "payload_retrieval_authorized": false,
+    "source_atom_ingestion_authorized": false,
+    "empirical_candidate_generation_authorized": false,
+    "translation_promotion_authorized": false
+  },
+  "claims_boundary": "archive_receipts_pin_versions_and_integrity_only_no_source_content_lineage_translation_or_promotion_evidence"
+}
