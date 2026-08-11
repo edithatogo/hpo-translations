@@ -1107,7 +1107,7 @@
         "review pack structure without restricted labels"
       ],
       "credential_required": true,
-      "declared_language_count": 27,
+      "declared_language_count": 28,
       "description": "Integrate MedDRA into terminology and translation support",
       "expected_blockers": [
         "Versioned multilingual terms require specialist-agent assessment and an accountable maintainer decision before use.",
@@ -1122,45 +1122,219 @@
         "Regulatory adverse-event semantics do not always align with phenotypic description semantics.",
         "MedDRA subscription/license, MSSO/ICH release terms, language-pack terms, and redistribution constraints must be cleared before committing LLT, PT, HLT, HLGT, SOC, SMQ, multilingual terms, hierarchy rows, full API/export responses, or release payload rows."
       ],
+      "language_availability": [
+        {
+          "availability_status": "available",
+          "bcp47": "ar",
+          "name": "Arabic"
+        },
+        {
+          "availability_status": "available",
+          "bcp47": "pt-BR",
+          "name": "Brazilian Portuguese"
+        },
+        {
+          "availability_status": "available",
+          "bcp47": "zh",
+          "name": "Chinese",
+          "script_status": "not_distinguished_by_public_evidence"
+        },
+        {
+          "availability_status": "available",
+          "bcp47": "hr",
+          "name": "Croatian"
+        },
+        {
+          "availability_status": "available",
+          "bcp47": "cs",
+          "name": "Czech"
+        },
+        {
+          "availability_status": "available",
+          "bcp47": "da",
+          "name": "Danish"
+        },
+        {
+          "availability_status": "available",
+          "bcp47": "nl",
+          "name": "Dutch",
+          "region_status": "not_distinguished_by_public_evidence"
+        },
+        {
+          "availability_status": "available",
+          "bcp47": "en",
+          "name": "English",
+          "region_status": "not_distinguished_by_public_evidence"
+        },
+        {
+          "availability_status": "available",
+          "bcp47": "et",
+          "name": "Estonian"
+        },
+        {
+          "availability_status": "available",
+          "bcp47": "fi",
+          "name": "Finnish"
+        },
+        {
+          "availability_status": "available",
+          "bcp47": "fr",
+          "name": "French",
+          "region_status": "not_distinguished_by_public_evidence"
+        },
+        {
+          "availability_status": "available",
+          "bcp47": "de",
+          "name": "German",
+          "region_status": "not_distinguished_by_public_evidence"
+        },
+        {
+          "availability_status": "available",
+          "bcp47": "el",
+          "name": "Greek"
+        },
+        {
+          "availability_status": "available",
+          "bcp47": "hu",
+          "name": "Hungarian"
+        },
+        {
+          "availability_status": "available",
+          "bcp47": "is",
+          "name": "Icelandic"
+        },
+        {
+          "availability_status": "available",
+          "bcp47": "it",
+          "name": "Italian"
+        },
+        {
+          "availability_status": "available",
+          "bcp47": "ja",
+          "name": "Japanese"
+        },
+        {
+          "availability_status": "available",
+          "bcp47": "ko",
+          "name": "Korean"
+        },
+        {
+          "availability_status": "available",
+          "bcp47": "lv",
+          "name": "Latvian"
+        },
+        {
+          "availability_status": "available",
+          "bcp47": "lt",
+          "name": "Lithuanian"
+        },
+        {
+          "availability_status": "available",
+          "bcp47": "no",
+          "name": "Norwegian",
+          "variant_status": "bokmal_nynorsk_not_distinguished_by_public_evidence"
+        },
+        {
+          "availability_status": "available",
+          "bcp47": "pl",
+          "name": "Polish"
+        },
+        {
+          "availability_status": "available",
+          "bcp47": "pt",
+          "name": "Portuguese",
+          "region_status": "not_distinguished_by_public_evidence"
+        },
+        {
+          "availability_status": "available",
+          "bcp47": "ru",
+          "name": "Russian"
+        },
+        {
+          "availability_status": "available",
+          "bcp47": "sk",
+          "name": "Slovak"
+        },
+        {
+          "availability_status": "available",
+          "bcp47": "sl",
+          "name": "Slovenian"
+        },
+        {
+          "availability_status": "available",
+          "bcp47": "es",
+          "name": "Spanish",
+          "region_status": "not_distinguished_by_public_evidence"
+        },
+        {
+          "availability_status": "available",
+          "bcp47": "sv",
+          "name": "Swedish"
+        }
+      ],
       "language_codes": [
         "ar",
         "cs",
+        "da",
         "de",
+        "el",
         "en",
         "es",
+        "et",
+        "fi",
         "fr",
+        "hr",
         "hu",
+        "is",
         "it",
         "ja",
         "ko",
+        "lt",
+        "lv",
         "nl",
+        "no",
         "pl",
         "pt",
+        "pt-BR",
         "ru",
+        "sk",
+        "sl",
         "sv",
-        "tr",
         "zh"
       ],
-      "language_count": 17,
+      "language_count": 28,
+      "language_inventory_path": "conductor/tracks/meddra_integration_20260623/release_language_inventory_v29_0.json",
+      "language_inventory_release": "29.0",
       "language_normalization_status": "partial_declared_multilingual_list",
       "languages": [
-        "27 languages including English",
+        "28 languages including Arabic",
+        "Brazilian Portuguese",
+        "Chinese",
+        "Croatian",
+        "Czech",
+        "Danish",
+        "Dutch",
+        "English",
+        "Estonian",
+        "Finnish",
         "French",
         "German",
-        "Spanish",
-        "Italian",
-        "Portuguese",
-        "Japanese",
-        "Chinese",
-        "Russian",
-        "Arabic",
-        "Czech",
-        "Dutch",
+        "Greek",
         "Hungarian",
+        "Icelandic",
+        "Italian",
+        "Japanese",
         "Korean",
+        "Latvian",
+        "Lithuanian",
+        "Norwegian",
         "Polish",
-        "Swedish",
-        "Turkish"
+        "Portuguese",
+        "Russian",
+        "Slovak",
+        "Slovenian",
+        "Spanish",
+        "Swedish"
       ],
       "license_review_required": true,
       "license_status": "subscription_license_required",
@@ -1174,6 +1348,13 @@
       "maintainer_promotion_decision_required": true,
       "metadata_created_at": "2026-06-23T00:00:00Z",
       "metadata_updated_at": "2026-06-25T00:00:00Z",
+      "non_current_language_observations": [
+        {
+          "bcp47": "tr",
+          "name": "Turkish",
+          "status": "historical_or_unverified_not_listed_as_available_in_v29_public_evidence"
+        }
+      ],
       "ontology_name": "MedDRA",
       "payload_commit_allowed": false,
       "pr_safe": true,

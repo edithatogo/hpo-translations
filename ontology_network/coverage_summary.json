@@ -1,6 +1,6 @@
 {
   "generated_date": "2026-06-23",
-  "record_count": 136,
+  "record_count": 147,
   "records": [
     {
       "coverage_id": "coverage-decipher-en",
@@ -519,6 +519,18 @@
       "total_hpo_terms": 0
     },
     {
+      "coverage_id": "coverage-meddra-da",
+      "coverage_ratio": 0.0,
+      "covered_hpo_terms": 0,
+      "hpo_branch_id": "HP:0000118",
+      "language": "da",
+      "predicate": "metadata_declared_language_support",
+      "provenance_id": "prov-coverage-meddra-da",
+      "review_status": "needs_review",
+      "source_id": "meddra",
+      "total_hpo_terms": 0
+    },
+    {
       "coverage_id": "coverage-meddra-de",
       "coverage_ratio": 0.0,
       "covered_hpo_terms": 0,
@@ -526,6 +538,18 @@
       "language": "de",
       "predicate": "metadata_declared_language_support",
       "provenance_id": "prov-coverage-meddra-de",
+      "review_status": "needs_review",
+      "source_id": "meddra",
+      "total_hpo_terms": 0
+    },
+    {
+      "coverage_id": "coverage-meddra-el",
+      "coverage_ratio": 0.0,
+      "covered_hpo_terms": 0,
+      "hpo_branch_id": "HP:0000118",
+      "language": "el",
+      "predicate": "metadata_declared_language_support",
+      "provenance_id": "prov-coverage-meddra-el",
       "review_status": "needs_review",
       "source_id": "meddra",
       "total_hpo_terms": 0
@@ -555,6 +579,30 @@
       "total_hpo_terms": 0
     },
     {
+      "coverage_id": "coverage-meddra-et",
+      "coverage_ratio": 0.0,
+      "covered_hpo_terms": 0,
+      "hpo_branch_id": "HP:0000118",
+      "language": "et",
+      "predicate": "metadata_declared_language_support",
+      "provenance_id": "prov-coverage-meddra-et",
+      "review_status": "needs_review",
+      "source_id": "meddra",
+      "total_hpo_terms": 0
+    },
+    {
+      "coverage_id": "coverage-meddra-fi",
+      "coverage_ratio": 0.0,
+      "covered_hpo_terms": 0,
+      "hpo_branch_id": "HP:0000118",
+      "language": "fi",
+      "predicate": "metadata_declared_language_support",
+      "provenance_id": "prov-coverage-meddra-fi",
+      "review_status": "needs_review",
+      "source_id": "meddra",
+      "total_hpo_terms": 0
+    },
+    {
       "coverage_id": "coverage-meddra-fr",
       "coverage_ratio": 0.0,
       "covered_hpo_terms": 0,
@@ -567,6 +615,18 @@
       "total_hpo_terms": 0
     },
     {
+      "coverage_id": "coverage-meddra-hr",
+      "coverage_ratio": 0.0,
+      "covered_hpo_terms": 0,
+      "hpo_branch_id": "HP:0000118",
+      "language": "hr",
+      "predicate": "metadata_declared_language_support",
+      "provenance_id": "prov-coverage-meddra-hr",
+      "review_status": "needs_review",
+      "source_id": "meddra",
+      "total_hpo_terms": 0
+    },
+    {
       "coverage_id": "coverage-meddra-hu",
       "coverage_ratio": 0.0,
       "covered_hpo_terms": 0,
@@ -574,6 +634,18 @@
       "language": "hu",
       "predicate": "metadata_declared_language_support",
       "provenance_id": "prov-coverage-meddra-hu",
+      "review_status": "needs_review",
+      "source_id": "meddra",
+      "total_hpo_terms": 0
+    },
+    {
+      "coverage_id": "coverage-meddra-is",
+      "coverage_ratio": 0.0,
+      "covered_hpo_terms": 0,
+      "hpo_branch_id": "HP:0000118",
+      "language": "is",
+      "predicate": "metadata_declared_language_support",
+      "provenance_id": "prov-coverage-meddra-is",
       "review_status": "needs_review",
       "source_id": "meddra",
       "total_hpo_terms": 0
@@ -615,6 +687,30 @@
       "total_hpo_terms": 0
     },
     {
+      "coverage_id": "coverage-meddra-lt",
+      "coverage_ratio": 0.0,
+      "covered_hpo_terms": 0,
+      "hpo_branch_id": "HP:0000118",
+      "language": "lt",
+      "predicate": "metadata_declared_language_support",
+      "provenance_id": "prov-coverage-meddra-lt",
+      "review_status": "needs_review",
+      "source_id": "meddra",
+      "total_hpo_terms": 0
+    },
+    {
+      "coverage_id": "coverage-meddra-lv",
+      "coverage_ratio": 0.0,
+      "covered_hpo_terms": 0,
+      "hpo_branch_id": "HP:0000118",
+      "language": "lv",
+      "predicate": "metadata_declared_language_support",
+      "provenance_id": "prov-coverage-meddra-lv",
+      "review_status": "needs_review",
+      "source_id": "meddra",
+      "total_hpo_terms": 0
+    },
+    {
       "coverage_id": "coverage-meddra-nl",
       "coverage_ratio": 0.0,
       "covered_hpo_terms": 0,
@@ -622,6 +718,18 @@
       "language": "nl",
       "predicate": "metadata_declared_language_support",
       "provenance_id": "prov-coverage-meddra-nl",
+      "review_status": "needs_review",
+      "source_id": "meddra",
+      "total_hpo_terms": 0
+    },
+    {
+      "coverage_id": "coverage-meddra-no",
+      "coverage_ratio": 0.0,
+      "covered_hpo_terms": 0,
+      "hpo_branch_id": "HP:0000118",
+      "language": "no",
+      "predicate": "metadata_declared_language_support",
+      "provenance_id": "prov-coverage-meddra-no",
       "review_status": "needs_review",
       "source_id": "meddra",
       "total_hpo_terms": 0
@@ -651,6 +759,18 @@
       "total_hpo_terms": 0
     },
     {
+      "coverage_id": "coverage-meddra-pt-BR",
+      "coverage_ratio": 0.0,
+      "covered_hpo_terms": 0,
+      "hpo_branch_id": "HP:0000118",
+      "language": "pt-BR",
+      "predicate": "metadata_declared_language_support",
+      "provenance_id": "prov-coverage-meddra-pt-BR",
+      "review_status": "needs_review",
+      "source_id": "meddra",
+      "total_hpo_terms": 0
+    },
+    {
       "coverage_id": "coverage-meddra-ru",
       "coverage_ratio": 0.0,
       "covered_hpo_terms": 0,
@@ -663,6 +783,30 @@
       "total_hpo_terms": 0
     },
     {
+      "coverage_id": "coverage-meddra-sk",
+      "coverage_ratio": 0.0,
+      "covered_hpo_terms": 0,
+      "hpo_branch_id": "HP:0000118",
+      "language": "sk",
+      "predicate": "metadata_declared_language_support",
+      "provenance_id": "prov-coverage-meddra-sk",
+      "review_status": "needs_review",
+      "source_id": "meddra",
+      "total_hpo_terms": 0
+    },
+    {
+      "coverage_id": "coverage-meddra-sl",
+      "coverage_ratio": 0.0,
+      "covered_hpo_terms": 0,
+      "hpo_branch_id": "HP:0000118",
+      "language": "sl",
+      "predicate": "metadata_declared_language_support",
+      "provenance_id": "prov-coverage-meddra-sl",
+      "review_status": "needs_review",
+      "source_id": "meddra",
+      "total_hpo_terms": 0
+    },
+    {
       "coverage_id": "coverage-meddra-sv",
       "coverage_ratio": 0.0,
       "covered_hpo_terms": 0,
@@ -670,18 +814,6 @@
       "language": "sv",
       "predicate": "metadata_declared_language_support",
       "provenance_id": "prov-coverage-meddra-sv",
-      "review_status": "needs_review",
-      "source_id": "meddra",
-      "total_hpo_terms": 0
-    },
-    {
-      "coverage_id": "coverage-meddra-tr",
-      "coverage_ratio": 0.0,
-      "covered_hpo_terms": 0,
-      "hpo_branch_id": "HP:0000118",
-      "language": "tr",
-      "predicate": "metadata_declared_language_support",
-      "provenance_id": "prov-coverage-meddra-tr",
       "review_status": "needs_review",
       "source_id": "meddra",
       "total_hpo_terms": 0

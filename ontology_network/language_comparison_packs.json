@@ -1,6 +1,6 @@
 {
   "generated_date": "2026-06-23",
-  "record_count": 51,
+  "record_count": 52,
   "records": [
     {
       "agent_panel_assessment_required": true,
@@ -38,6 +38,7 @@
       "language": "da",
       "maintainer_promotion_decision_required": true,
       "source_ids": [
+        "meddra",
         "snomed_ct",
         "umls"
       ]
@@ -89,6 +90,7 @@
       "language": "el",
       "maintainer_promotion_decision_required": true,
       "source_ids": [
+        "meddra",
         "umls"
       ]
     },
@@ -204,6 +206,7 @@
       "language": "et",
       "maintainer_promotion_decision_required": true,
       "source_ids": [
+        "meddra",
         "snomed_ct",
         "umls"
       ]
@@ -227,6 +230,7 @@
       "language": "fi",
       "maintainer_promotion_decision_required": true,
       "source_ids": [
+        "meddra",
         "mesh",
         "snomed_ct",
         "umls"
@@ -303,6 +307,7 @@
       "language": "hr",
       "maintainer_promotion_decision_required": true,
       "source_ids": [
+        "meddra",
         "umls"
       ]
     },
@@ -326,6 +331,7 @@
       "language": "is",
       "maintainer_promotion_decision_required": true,
       "source_ids": [
+        "meddra",
         "umls"
       ]
     },
@@ -400,6 +406,7 @@
       "language": "lt",
       "maintainer_promotion_decision_required": true,
       "source_ids": [
+        "meddra",
         "snomed_ct",
         "umls"
       ]
@@ -412,6 +419,7 @@
       "language": "lv",
       "maintainer_promotion_decision_required": true,
       "source_ids": [
+        "meddra",
         "umls"
       ]
     },
@@ -492,6 +500,7 @@
       "language": "no",
       "maintainer_promotion_decision_required": true,
       "source_ids": [
+        "meddra",
         "umls"
       ]
     },
@@ -530,6 +539,17 @@
       "candidate_count": 0,
       "candidate_only": true,
       "comparison_status": "not_computed_source_payloads_excluded",
+      "language": "pt-BR",
+      "maintainer_promotion_decision_required": true,
+      "source_ids": [
+        "meddra"
+      ]
+    },
+    {
+      "agent_panel_assessment_required": true,
+      "candidate_count": 0,
+      "candidate_only": true,
+      "comparison_status": "not_computed_source_payloads_excluded",
       "language": "ru",
       "maintainer_promotion_decision_required": true,
       "source_ids": [
@@ -549,6 +569,7 @@
       "maintainer_promotion_decision_required": true,
       "source_ids": [
         "icd11",
+        "meddra",
         "umls"
       ]
     },
@@ -560,6 +581,7 @@
       "language": "sl",
       "maintainer_promotion_decision_required": true,
       "source_ids": [
+        "meddra",
         "umls"
       ]
     },
@@ -608,7 +630,6 @@
       "source_ids": [
         "icd11",
         "loinc",
-        "meddra",
         "umls"
       ]
     },

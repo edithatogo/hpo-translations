@@ -62,6 +62,7 @@ LANGUAGE_CODE_MAP = {
     "Austrian German": "de-AT",
     "Belgian Dutch": "nl-BE",
     "Belgian French": "fr-BE",
+    "Brazilian Portuguese": "pt-BR",
     "Canadian English": "en-CA",
     "Canadian French": "fr-CA",
     "Chinese": "zh",
@@ -218,19 +219,30 @@ def language_normalization_status(languages: list[str]) -> str:
 
 def source_language_inventory(track_dir: Path, source_id: str) -> dict[str, Any]:
     """Return payload-free release language metadata for sources that publish it."""
-    if source_id != "icd11":
-        return {}
-    inventory_path = track_dir / "who_classifications_language_inventory_2026_01.json"
-    if not inventory_path.exists():
-        return {}
-    inventory = load_json(inventory_path)
-    products = cast(list[dict[str, Any]], inventory["products"])
-    mms = next(product for product in products if product["product_id"] == "icd11-mms")
-    return {
-        "language_inventory_path": inventory_path.as_posix(),
-        "language_inventory_release": inventory["release_id"],
-        "language_availability": mms["languages"],
-    }
+    if source_id == "icd11":
+        inventory_path = track_dir / "who_classifications_language_inventory_2026_01.json"
+        if not inventory_path.exists():
+            return {}
+        inventory = load_json(inventory_path)
+        products = cast(list[dict[str, Any]], inventory["products"])
+        mms = next(product for product in products if product["product_id"] == "icd11-mms")
+        return {
+            "language_inventory_path": inventory_path.as_posix(),
+            "language_inventory_release": inventory["release_id"],
+            "language_availability": mms["languages"],
+        }
+    if source_id == "meddra":
+        inventory_path = track_dir / "release_language_inventory_v29_0.json"
+        if not inventory_path.exists():
+            return {}
+        inventory = load_json(inventory_path)
+        return {
+            "language_inventory_path": inventory_path.as_posix(),
+            "language_inventory_release": inventory["release"],
+            "language_availability": inventory["languages"],
+            "non_current_language_observations": inventory["non_current_observations"],
+        }
+    return {}
 
 
 def source_id_from_track(track_id: str) -> str:
@@ -1802,8 +1814,8 @@ def validate(output_dir: Path = DEFAULT_OUTPUT_DIR) -> list[str]:
         for record in records:
             if not record.get("language_codes"):
                 errors.append(f"{record.get('track_id')} has no normalized language codes")
-            if record.get("source_id") == "meddra" and record.get("declared_language_count") != 27:
-                errors.append("MedDRA registry record must preserve declared_language_count=27")
+            if record.get("source_id") == "meddra" and record.get("declared_language_count") != 28:
+                errors.append("MedDRA registry record must preserve declared_language_count=28")
             if record.get("access_class") == "restricted" and not record.get("restricted_sources"):
                 errors.append(f"{record.get('track_id')} is restricted but lacks restricted_sources")
             if not record.get("agent_panel_assessment_required") or not record.get(

@@ -1,6 +1,6 @@
 {
   "generated_date": "2026-06-23",
-  "record_count": 51,
+  "record_count": 52,
   "records": [
     {
       "agent_panel_action": "assess source evidence before the maintainer promotion decision",
@@ -58,8 +58,8 @@
       "resolution_status": "needs_review",
       "severity": "info",
       "source_ids": [
-        "snomed_ct",
-        "umls"
+        "meddra",
+        "snomed_ct"
       ]
     },
     {
@@ -138,8 +138,8 @@
       "resolution_status": "needs_review",
       "severity": "info",
       "source_ids": [
-        "umls",
-        "decipher"
+        "meddra",
+        "umls"
       ]
     },
     {
@@ -298,8 +298,8 @@
       "resolution_status": "needs_review",
       "severity": "info",
       "source_ids": [
-        "snomed_ct",
-        "umls"
+        "meddra",
+        "snomed_ct"
       ]
     },
     {
@@ -338,8 +338,8 @@
       "resolution_status": "needs_review",
       "severity": "info",
       "source_ids": [
-        "mesh",
-        "snomed_ct"
+        "meddra",
+        "mesh"
       ]
     },
     {
@@ -458,8 +458,8 @@
       "resolution_status": "needs_review",
       "severity": "info",
       "source_ids": [
-        "umls",
-        "decipher"
+        "meddra",
+        "umls"
       ]
     },
     {
@@ -498,8 +498,8 @@
       "resolution_status": "needs_review",
       "severity": "info",
       "source_ids": [
-        "umls",
-        "decipher"
+        "meddra",
+        "umls"
       ]
     },
     {
@@ -618,8 +618,8 @@
       "resolution_status": "needs_review",
       "severity": "info",
       "source_ids": [
-        "snomed_ct",
-        "umls"
+        "meddra",
+        "snomed_ct"
       ]
     },
     {
@@ -638,8 +638,8 @@
       "resolution_status": "needs_review",
       "severity": "info",
       "source_ids": [
-        "umls",
-        "decipher"
+        "meddra",
+        "umls"
       ]
     },
     {
@@ -778,8 +778,8 @@
       "resolution_status": "needs_review",
       "severity": "info",
       "source_ids": [
-        "umls",
-        "decipher"
+        "meddra",
+        "umls"
       ]
     },
     {
@@ -825,6 +825,26 @@
     {
       "agent_panel_action": "assess source evidence before the maintainer promotion decision",
       "agent_panel_assessment_required": true,
+      "conflict_id": "conflict-pt-BR-metadata",
+      "conflict_type": "source_disagreement",
+      "count": 0,
+      "evidence_ids": [
+        "probe-open-related-0001"
+      ],
+      "hpo_id": "HP:0000001",
+      "language": "pt-BR",
+      "maintainer_promotion_decision_required": true,
+      "provenance_id": "prov-conflict-pt-BR",
+      "resolution_status": "needs_review",
+      "severity": "info",
+      "source_ids": [
+        "meddra",
+        "decipher"
+      ]
+    },
+    {
+      "agent_panel_action": "assess source evidence before the maintainer promotion decision",
+      "agent_panel_assessment_required": true,
       "conflict_id": "conflict-ru-metadata",
       "conflict_type": "source_disagreement",
       "count": 0,
@@ -859,7 +879,7 @@
       "severity": "info",
       "source_ids": [
         "icd11",
-        "umls"
+        "meddra"
       ]
     },
     {
@@ -878,8 +898,8 @@
       "resolution_status": "needs_review",
       "severity": "info",
       "source_ids": [
-        "umls",
-        "decipher"
+        "meddra",
+        "umls"
       ]
     },
     {
