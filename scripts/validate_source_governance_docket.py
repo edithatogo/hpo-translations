@@ -75,6 +75,10 @@ def main() -> int:
         errors.append("approval packet set must remain prepared and unsent")
     if packets.get("external_contact_authorized") is not False:
         errors.append("approval packet set must not authorize external contact")
+    if packets.get("payload_terms_included") is not False:
+        errors.append("approval packet set must not include source payload terms")
+    if packets.get("promotion_authorized") is not False:
+        errors.append("approval packet set must not authorize promotion")
     packet_rows = packets.get("packets")
     if not isinstance(packet_rows, list) or {row.get("track_id") for row in packet_rows if isinstance(row, dict)} != {
         "do_integration_20260623",

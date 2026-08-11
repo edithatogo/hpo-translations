@@ -88,6 +88,33 @@ class MetadataOnlySampleTests(unittest.TestCase):
                 validate_track(track_dir),
             )
 
+    def test_validator_rejects_fabricated_approval_object(self) -> None:
+        source = Path(__file__).resolve().parents[1] / "conductor" / "tracks" / "efo_integration_20260623"
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            track_dir = Path(temporary_directory) / "efo"
+            shutil.copytree(source, track_dir)
+            handoff_path = track_dir / "maintainer_review_handoff.json"
+            handoff = json.loads(handoff_path.read_text(encoding="utf-8"))
+            handoff["approval"] = {"fabricated": True}
+            handoff_path.write_text(json.dumps(handoff), encoding="utf-8")
+            self.assertIn(
+                "handoff approval decision does not preserve the bounded metadata-only scope",
+                validate_track(track_dir),
+            )
+
+    def test_phase3_cannot_claim_approval_while_authorization_is_pending(self) -> None:
+        track_root = Path(__file__).resolve().parents[1] / "conductor" / "tracks"
+        for phase3_path in sorted(track_root.glob("*/phase3_hpo_translation_use.json")):
+            phase2_path = phase3_path.parent / "phase2_data_access_normalization.json"
+            if not phase2_path.is_file():
+                continue
+            phase2 = json.loads(phase2_path.read_text(encoding="utf-8"))
+            sample = phase2.get("sample", {})
+            if sample.get("allowed") is False or sample.get("authorization_ref") is None:
+                reason = str(json.loads(phase3_path.read_text(encoding="utf-8")).get("reason", "")).lower()
+                with self.subTest(track=phase3_path.parent.name):
+                    self.assertNotIn("the approved metadata-only sample", reason)
+
     def test_phase3_translation_use_artifacts_fail_closed(self) -> None:
         track_root = Path(__file__).resolve().parents[1] / "conductor" / "tracks"
         phase3_paths = sorted(track_root.glob("*/phase3_hpo_translation_use.json"))

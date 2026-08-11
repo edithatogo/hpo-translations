@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import sys
+from datetime import date
 from pathlib import Path
 from typing import Any
 
@@ -15,6 +16,9 @@ PHASE4_STATUS = "metadata_only_sample_validated_payload_blocked"
 PHASE4_SAMPLE_VALIDATION = (
     "metadata_only_normalized_identifier_and_provenance_check_passed_import_dry_run_not_applicable_without_terms"
 )
+APPROVAL_DECISION_PREFIX = "Approve bounded metadata-only samples"
+APPROVAL_DECISION_BLOCK = "keep labels, crosswalks, and downstream promotion blocked"
+APPROVAL_SCOPE = "one-record metadata-only sample; no source-term redistribution"
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -23,6 +27,35 @@ def load_json(path: Path) -> dict[str, Any]:
     if not isinstance(value, dict):
         raise ValueError(f"expected JSON object: {path}")
     return value
+
+
+def validate_approval_contract(handoff: dict[str, Any]) -> list[str]:
+    """Validate the bounded metadata-only decision without inferring broader authority."""
+    approval = handoff.get("approval")
+    if not isinstance(approval, dict) or not approval:
+        return ["handoff lacks structured approval evidence"]
+
+    errors: list[str] = []
+    decision = approval.get("decision")
+    if (
+        not isinstance(decision, str)
+        or not decision.startswith(APPROVAL_DECISION_PREFIX)
+        or APPROVAL_DECISION_BLOCK not in decision
+    ):
+        errors.append("handoff approval decision does not preserve the bounded metadata-only scope")
+    if approval.get("scope") != APPROVAL_SCOPE:
+        errors.append("handoff approval scope is not the approved payload-free one-record contract")
+
+    approved_at = approval.get("approved_at")
+    prepared_at = handoff.get("prepared_at")
+    try:
+        approval_date = date.fromisoformat(approved_at) if isinstance(approved_at, str) else None
+        prepared_date = date.fromisoformat(prepared_at) if isinstance(prepared_at, str) else None
+    except ValueError:
+        approval_date = prepared_date = None
+    if approval_date is None or prepared_date is None or approval_date < prepared_date:
+        errors.append("handoff approval date is missing, invalid, or predates the prepared contract")
+    return errors
 
 
 def validate_track(track_dir: Path) -> list[str]:
@@ -43,10 +76,8 @@ def validate_track(track_dir: Path) -> list[str]:
         return [f"invalid contract artifact: {error}"]
     if handoff.get("status") != APPROVED_STATUS:
         errors.append("handoff is not approved for a bounded metadata-only sample")
-    approval = handoff.get("approval")
     bounded_sample = handoff.get("bounded_sample")
-    if not isinstance(approval, dict) or not approval:
-        errors.append("handoff lacks structured approval evidence")
+    errors.extend(validate_approval_contract(handoff))
     if not isinstance(bounded_sample, dict) or not bounded_sample:
         errors.append("handoff lacks a structured bounded-sample contract")
     if phase2.get("status") != PHASE2_STATUS:

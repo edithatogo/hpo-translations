@@ -146,6 +146,21 @@ class OntologyNetworkTests(unittest.TestCase):
         )
         self.assertIsNone(approved_metadata_sample(track_dir))
 
+    def test_generator_rejects_fabricated_approval_object(self) -> None:
+        track_dir = self.make_output_dir()
+        source = Path("conductor/tracks/efo_integration_20260623")
+        for artifact_name in (
+            "maintainer_review_handoff.json",
+            "phase2_data_access_normalization.json",
+            "phase4_validation_review.json",
+        ):
+            shutil.copy2(source / artifact_name, track_dir / artifact_name)
+        handoff_path = track_dir / "maintainer_review_handoff.json"
+        handoff = load_json(handoff_path)
+        handoff["approval"] = {"fabricated": True}
+        handoff_path.write_text(json.dumps(handoff), encoding="utf-8")
+        self.assertIsNone(approved_metadata_sample(track_dir))
+
     def test_generator_rejects_identifier_provenance_mismatch(self) -> None:
         track_dir = self.make_output_dir()
         source = Path("conductor/tracks/efo_integration_20260623")

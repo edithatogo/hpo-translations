@@ -13,5 +13,5 @@
     "llm_candidates_require_human_review"
   ],
   "promotion_allowed": false,
-  "reason": "the approved metadata-only sample contains release provenance only; licence review, source terms, labels, synonyms, definitions, and crosswalk promotion remain blocked"
+  "reason": "the prepared metadata-only sample remains approval-pending and contains release provenance only; licence review, source terms, labels, synonyms, definitions, and crosswalk promotion remain blocked"
 }

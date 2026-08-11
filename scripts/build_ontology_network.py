@@ -5,6 +5,11 @@ from collections import Counter
 from pathlib import Path
 from typing import Any, cast
 
+if __package__:
+    from .validate_metadata_only_samples import validate_approval_contract
+else:  # Direct script execution adds scripts/ rather than the repository root.
+    from validate_metadata_only_samples import validate_approval_contract
+
 TRACKS_DIR = Path("conductor/tracks")
 DEFAULT_OUTPUT_DIR = Path("ontology_network")
 GENERATED_DATE = "2026-06-23"
@@ -341,9 +346,8 @@ def approved_metadata_sample(track_dir: Path) -> dict[str, Any] | None:
     phase4 = load_json(phase4_path)
     if handoff.get("status") != "approved_bounded_metadata_only_sample":
         return None
-    approval = handoff.get("approval")
     bounded_sample = handoff.get("bounded_sample")
-    if not isinstance(approval, dict) or not approval:
+    if validate_approval_contract(handoff):
         return None
     if not isinstance(bounded_sample, dict) or not bounded_sample:
         return None

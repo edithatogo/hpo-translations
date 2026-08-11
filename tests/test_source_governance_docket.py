@@ -1,6 +1,8 @@
 import json
+import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 from scripts.validate_source_governance_docket import main
 
@@ -41,6 +43,18 @@ class SourceGovernanceDocketTests(unittest.TestCase):
         )
         self.assertIs(inventory["payload_access_allowed"], False)
         self.assertIs(inventory["promotion_allowed"], False)
+
+    def test_docket_validator_rejects_payload_or_promotion_authorization(self) -> None:
+        source = Path(__file__).resolve().parents[1] / "conductor" / "source_governance_approval_packets.json"
+        original = json.loads(source.read_text(encoding="utf-8"))
+        for field in ("payload_terms_included", "promotion_authorized"):
+            with self.subTest(field=field), tempfile.TemporaryDirectory() as temporary_directory:
+                packet_path = Path(temporary_directory) / "packets.json"
+                unsafe = dict(original)
+                unsafe[field] = True
+                packet_path.write_text(json.dumps(unsafe), encoding="utf-8")
+                with patch("scripts.validate_source_governance_docket.PACKETS", packet_path):
+                    self.assertEqual(main(), 1)
 
 
 if __name__ == "__main__":
