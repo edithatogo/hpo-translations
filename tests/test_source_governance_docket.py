@@ -51,7 +51,7 @@ class SourceGovernanceDocketTests(unittest.TestCase):
         )
         self.assertEqual(
             inventory["candidate_hosting"]["repository_creation_status"],
-            "blocked_insufficient_hf_token_scope",
+            "created_private_owner_only",
         )
         self.assertTrue(inventory["candidate_hosting"]["source_archiving_authorization"])
         self.assertTrue(inventory["candidate_hosting"]["required_before_upload"])

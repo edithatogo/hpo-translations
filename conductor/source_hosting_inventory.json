@@ -14,8 +14,8 @@
     "rationale": "The private cloud environment is approved for the user's own reuse. Each ontology source still needs an authority, licence-scope, version, and provenance decision before upload.",
     "access_model": "owner-only private repository; no collaborators authorized",
     "archive_target": "edithatogo/hpo-licensed-ontology-archive",
-    "repository_creation_status": "blocked_insufficient_hf_token_scope",
-    "repository_creation_evidence": "2026-08-11: authenticated Hugging Face CLI returned HTTP 403 when creating the owner-only private dataset; the current token cannot create datasets under edithatogo.",
+    "repository_creation_status": "created_private_owner_only",
+    "repository_creation_evidence": "2026-08-11: authenticated Hugging Face CLI created edithatogo/hpo-licensed-ontology-archive and verified private=true at immutable revision d539dd0a7b4fea32674c9b1c6e6a43d36774156b.",
     "required_before_upload": [
       "source-specific rightsholder permission or licence scope covering the intended payload and private cloud hosting",
       "named Hugging Face account or organization and owner-only access confirmation",
