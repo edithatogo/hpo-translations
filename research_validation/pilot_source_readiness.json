@@ -1,0 +1,71 @@
+{
+  "schema_version": "pilot-source-readiness-v1",
+  "track_id": "research_validation_20260801",
+  "status": "planning_inventory_complete_final_source_set_not_selected",
+  "canonical_inputs": {
+    "official_mapping_catalog": "research_validation/source_catalog.json",
+    "supplementary_source_reviews": "research_validation/supplementary_source_access_reviews.json",
+    "source_archive_receipts": "research_validation/source_archive_receipts.json",
+    "approval_manifest": "research_validation/approval_manifest.json"
+  },
+  "evidence_layers": [
+    {
+      "layer": "official_hpo_mapping_families",
+      "record_count": 4,
+      "scope": "versioned_mapping_metadata_and_dependence_only",
+      "payload_or_source_atom_authority": false
+    },
+    {
+      "layer": "supplementary_source_reviews",
+      "record_count": 9,
+      "scope": "source_access_and_semantic_role_metadata_only",
+      "payload_or_source_atom_authority": false
+    },
+    {
+      "layer": "owner_only_archive_receipts",
+      "record_count": 4,
+      "scope": "version_and_integrity_receipts_only",
+      "payload_or_source_atom_authority": false
+    }
+  ],
+  "overlap_controls": [
+    {
+      "source_id": "pato",
+      "appears_in": ["supplementary_source_reviews", "owner_only_archive_receipts"],
+      "count_rule": "one_source_archive_receipt_does_not_create_independent_evidence"
+    },
+    {
+      "source_id": "upheno",
+      "appears_in": ["official_hpo_mapping_families", "owner_only_archive_receipts"],
+      "count_rule": "mapping_pipeline_and_ontology_archive_are_distinct_artifacts_not_automatic_independent_evidence"
+    },
+    {
+      "source_id": "mp",
+      "appears_in": ["official_hpo_mapping_families", "owner_only_archive_receipts"],
+      "count_rule": "curated_mapping_collection_and_ontology_archive_are_distinct_artifacts_not_automatic_independent_evidence"
+    }
+  ],
+  "decision_state": {
+    "final_pilot_source_set_selected": false,
+    "payload_authorized_source_count": 0,
+    "source_atom_ready_count": 0,
+    "independent_evidence_groups_added_from_archives": 0,
+    "g1_source_authority_closed": false,
+    "next_accountable_decision": "select_a_bounded_pilot_source_subset_only_after_source_specific_licence_payload_attribution_and_semantic_role_review"
+  },
+  "remaining_gates": [
+    "final_pilot_source_subset_selection",
+    "source_specific_licence_and_payload_permission",
+    "source_atom_attribution_review",
+    "credential_custody_where_required",
+    "decs_version_confirmation",
+    "human_scope_decision_with_expiry_or_recheck_date"
+  ],
+  "authorization_boundary": {
+    "payload_retrieval_authorized": false,
+    "source_atom_ingestion_authorized": false,
+    "candidate_generation_authorized": false,
+    "translation_promotion_authorized": false
+  },
+  "claims_boundary": "canonical_source_readiness_inventory_only_no_final_selection_payload_lineage_independence_or_translation_evidence"
+}

@@ -17,6 +17,7 @@ from scripts.validate_research_validation import (
     phase_4_gate_docket_errors,
     phase_4_wave_1_source_decisions_errors,
     phase_4_wave_2_authority_routes_errors,
+    pilot_source_readiness_errors,
     private_source_archive_receipts_errors,
     reviewer_workload_budget_errors,
     schema_errors,
@@ -54,6 +55,39 @@ class ValidateResearchValidationTests(unittest.TestCase):
         self.assertIn(
             "private archive receipts must not claim source-atom lineage or evidence independence",
             private_source_archive_receipts_errors(receipts, inventory),
+        )
+
+    def _pilot_source_inputs(self) -> tuple[dict, dict, dict, dict, dict]:
+        return (
+            load_json(DEFAULT_RESEARCH_ROOT / "pilot_source_readiness.json"),
+            load_json(DEFAULT_RESEARCH_ROOT / "source_catalog.json"),
+            load_json(DEFAULT_RESEARCH_ROOT / "supplementary_source_access_reviews.json"),
+            load_json(DEFAULT_RESEARCH_ROOT / "source_archive_receipts.json"),
+            load_json(DEFAULT_RESEARCH_ROOT / "approval_manifest.json"),
+        )
+
+    def test_pilot_source_readiness_rejects_false_selection(self) -> None:
+        readiness, catalog, supplementary, receipts, approval = self._pilot_source_inputs()
+        readiness["decision_state"]["final_pilot_source_set_selected"] = True
+        self.assertIn(
+            "pilot source readiness must not select sources or claim payload, lineage, or G1 readiness",
+            pilot_source_readiness_errors(readiness, catalog, supplementary, receipts, approval),
+        )
+
+    def test_pilot_source_readiness_rejects_archive_double_count(self) -> None:
+        readiness, catalog, supplementary, receipts, approval = self._pilot_source_inputs()
+        readiness["overlap_controls"].pop()
+        self.assertIn(
+            "pilot source readiness must preserve PATO, MP, and uPheno overlap controls",
+            pilot_source_readiness_errors(readiness, catalog, supplementary, receipts, approval),
+        )
+
+    def test_pilot_source_readiness_rejects_count_drift(self) -> None:
+        readiness, catalog, supplementary, receipts, approval = self._pilot_source_inputs()
+        readiness["evidence_layers"][0]["record_count"] += 1
+        self.assertIn(
+            "official_hpo_mapping_families readiness count must match its canonical input",
+            pilot_source_readiness_errors(readiness, catalog, supplementary, receipts, approval),
         )
 
     def test_candidate_matrix_rejects_unresolved_tw(self) -> None:

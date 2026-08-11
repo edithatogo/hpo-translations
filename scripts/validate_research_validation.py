@@ -1276,6 +1276,83 @@ def private_source_archive_receipts_errors(instance: Any, hosting_inventory: Any
     return errors
 
 
+def pilot_source_readiness_errors(
+    instance: Any,
+    source_catalog: Any,
+    supplementary: Any,
+    archive_receipts: Any,
+    approval_manifest: Any,
+) -> list[str]:
+    if not all(
+        isinstance(value, dict)
+        for value in (instance, source_catalog, supplementary, archive_receipts, approval_manifest)
+    ):
+        return ["pilot source readiness and canonical inputs must be JSON objects"]
+
+    errors: list[str] = []
+    if (
+        instance.get("schema_version") != "pilot-source-readiness-v1"
+        or instance.get("status") != "planning_inventory_complete_final_source_set_not_selected"
+    ):
+        errors.append("pilot source readiness must remain a planning-only v1 inventory")
+    expected_counts = {
+        "official_hpo_mapping_families": len(source_catalog.get("mappings", [])),
+        "supplementary_source_reviews": len(supplementary.get("reviews", [])),
+        "owner_only_archive_receipts": len(archive_receipts.get("receipts", [])),
+    }
+    layers = {
+        layer.get("layer"): layer
+        for layer in instance.get("evidence_layers", [])
+        if isinstance(layer, dict) and isinstance(layer.get("layer"), str)
+    }
+    if set(layers) != set(expected_counts):
+        errors.append("pilot source readiness must contain each canonical evidence layer exactly once")
+    for layer_id, expected_count in expected_counts.items():
+        layer = layers.get(layer_id, {})
+        if layer.get("record_count") != expected_count:
+            errors.append(f"{layer_id} readiness count must match its canonical input")
+        if layer.get("payload_or_source_atom_authority") is not False:
+            errors.append(f"{layer_id} must not claim payload or source-atom authority")
+
+    overlaps = {
+        item.get("source_id"): item
+        for item in instance.get("overlap_controls", [])
+        if isinstance(item, dict) and isinstance(item.get("source_id"), str)
+    }
+    if set(overlaps) != {"pato", "mp", "upheno"}:
+        errors.append("pilot source readiness must preserve PATO, MP, and uPheno overlap controls")
+    if any("independent_evidence" not in str(item.get("count_rule")) for item in overlaps.values()):
+        errors.append("archive overlap controls must prohibit automatic independent-evidence counting")
+
+    decision = instance.get("decision_state", {})
+    if (
+        decision.get("final_pilot_source_set_selected") is not False
+        or decision.get("payload_authorized_source_count") != 0
+        or decision.get("source_atom_ready_count") != 0
+        or decision.get("independent_evidence_groups_added_from_archives") != 0
+        or decision.get("g1_source_authority_closed") is not False
+    ):
+        errors.append("pilot source readiness must not select sources or claim payload, lineage, or G1 readiness")
+    source_gate = next(
+        (
+            gate
+            for gate in approval_manifest.get("gates", [])
+            if isinstance(gate, dict) and gate.get("gate") == "source_licence"
+        ),
+        {},
+    )
+    if source_gate.get("decision") != "conditional" or source_gate.get("promotion_allowed") is not False:
+        errors.append("pilot source readiness requires the canonical conditional fail-closed source gate")
+    authorization = instance.get("authorization_boundary", {})
+    if (
+        not isinstance(authorization, dict)
+        or not authorization
+        or any(value is not False for value in authorization.values())
+    ):
+        errors.append("pilot source readiness must not authorize payload, ingestion, candidate, or promotion actions")
+    return errors
+
+
 def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[ValidationIssue]:
     issues: list[ValidationIssue] = []
     schema_dir = research_root / "schemas"
@@ -1446,6 +1523,34 @@ def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[Valid
                             )
                         )
 
+    readiness_path = research_root / "pilot_source_readiness.json"
+    archive_receipts_path = research_root / "source_archive_receipts.json"
+    approval_manifest_path = research_root / "approval_manifest.json"
+    if not readiness_path.exists():
+        issues.append(
+            ValidationIssue("pilot_source_readiness.missing", str(readiness_path), "pilot source readiness is required")
+        )
+    elif not all(
+        path.exists() for path in (catalog_path, supplementary_path, archive_receipts_path, approval_manifest_path)
+    ):
+        issues.append(
+            ValidationIssue(
+                "pilot_source_readiness.canonical_input_missing",
+                str(readiness_path),
+                "pilot source readiness requires all canonical source and approval inputs",
+            )
+        )
+    else:
+        readiness = load_json(readiness_path)
+        for message in pilot_source_readiness_errors(
+            readiness,
+            load_json(catalog_path),
+            load_json(supplementary_path),
+            load_json(archive_receipts_path),
+            load_json(approval_manifest_path),
+        ):
+            issues.append(ValidationIssue("pilot_source_readiness.invalid", str(readiness_path), message))
+
     budget_path = research_root / "reviewer_workload_budget.json"
     if not budget_path.exists():
         issues.append(
@@ -1510,7 +1615,6 @@ def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[Valid
             issues.append(ValidationIssue("phase_4_wave_2_authority_routes.invalid", str(wave_2_routes_path), message))
 
     gate_docket_path = research_root / "phase_4_gate_docket.json"
-    approval_manifest_path = research_root / "approval_manifest.json"
     if not gate_docket_path.exists():
         issues.append(ValidationIssue("phase_4_gate_docket.missing", str(gate_docket_path), "gate docket is required"))
     elif not supplementary_path.exists() or not approval_manifest_path.exists():

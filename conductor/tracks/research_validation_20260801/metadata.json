@@ -23,6 +23,8 @@
   "merge_commit": "4b84d534050ec15decd6c34e8a4c22c82f03a1a3",
   "source_archive_receipts_artifact": "research_validation/source_archive_receipts.json",
   "source_archive_receipts_status": "four_version_and_integrity_receipts_no_payload_or_lineage_authority",
+  "pilot_source_readiness_artifact": "research_validation/pilot_source_readiness.json",
+  "pilot_source_readiness_status": "planning_inventory_complete_final_source_set_not_selected",
   "priority": "P0",
   "parallel_group": "research-validation",
   "write_owner": "codex",
