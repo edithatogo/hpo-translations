@@ -37,7 +37,12 @@ class SourceGovernanceDocketTests(unittest.TestCase):
         inventory = json.loads(path.read_text(encoding="utf-8"))
         self.assertIn(
             inventory["status"],
-            {"not_identified", "candidate_identified_authorization_pending", "authorized_local_only"},
+            {
+                "not_identified",
+                "candidate_identified_authorization_pending",
+                "authorized_local_only",
+                "authorized_private_archive_partial",
+            },
         )
         self.assertIs(inventory["payload_access_allowed"], False)
         self.assertIs(inventory["promotion_allowed"], False)
@@ -54,6 +59,8 @@ class SourceGovernanceDocketTests(unittest.TestCase):
             "created_private_owner_only",
         )
         self.assertTrue(inventory["candidate_hosting"]["source_archiving_authorization"])
+        archived = [source for source in inventory["sources"] if source["status"] == "archived_private"]
+        self.assertEqual({source["source_id"] for source in archived}, {"do", "mp", "pato", "upheno"})
         self.assertTrue(inventory["candidate_hosting"]["required_before_upload"])
 
 

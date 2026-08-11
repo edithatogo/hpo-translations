@@ -1,11 +1,46 @@
 {
   "schema_version": "1.0",
   "inventory_id": "private_ontology_sources_20260811",
-  "status": "not_identified",
+  "status": "authorized_private_archive_partial",
   "checked_at": "2026-08-11",
-  "sources": [],
-  "interpretation": "No private GitHub, Hugging Face, or equivalent source has been identified or authorized for these tracks. This is not evidence that none exists.",
-  "next_step": "For each identified source, record its authority, licence scope, immutable version, and upload decision before any payload access or upload.",
+  "sources": [
+    {
+      "source_id": "do",
+      "status": "archived_private",
+      "release": "v2026-07-31",
+      "archive_path": "releases/do/v2026-07-31/doid.obo",
+      "sha256": "5b9803aa17eeabf4c70f144c64216294d01e66335da3e560576d4eb2dc9ff490"
+    },
+    {
+      "source_id": "mp",
+      "status": "archived_private",
+      "release": "v2026-07-22",
+      "archive_path": "releases/mp/v2026-07-22/mp-base.obo",
+      "sha256": "ed94ed8a8263fa61afa3391c3e09e5c1d65c0e4ac82510a2d7e5a2d2357e1ad5"
+    },
+    {
+      "source_id": "pato",
+      "status": "archived_private",
+      "release": "v2025-05-14",
+      "archive_path": "releases/pato/v2025-05-14/pato.obo",
+      "sha256": "9b65efdf7d8d96bafd54637041cc615404ac2c88608efbcf54efa0a369bb1f75"
+    },
+    {
+      "source_id": "upheno",
+      "status": "archived_private",
+      "release": "v2025-10-12",
+      "archive_path": "releases/upheno/v2025-10-12/upheno-base.obo",
+      "sha256": "c63efe651fa34c3349879014d4298799445cd6e485a5bfde608676f4875a079d"
+    },
+    {"source_id": "fma", "status": "pending_authoritative_release_locator"},
+    {"source_id": "icd10", "status": "pending_designated_licensed_release_locator"},
+    {"source_id": "lddb", "status": "blocked_no_authoritative_source_identified"},
+    {"source_id": "loinc", "status": "pending_authenticated_download"},
+    {"source_id": "mesh", "status": "pending_authoritative_release_locator"},
+    {"source_id": "orphanet", "status": "pending_authoritative_orphadata_release_locator"}
+  ],
+  "interpretation": "Four source releases have been archived to the approved owner-only private Hugging Face dataset. The remaining entries are explicit intake states, not source-content approval or downstream promotion approval.",
+  "next_step": "Resolve each pending source's official release locator or authenticated download path, then archive one immutable release with a checksum receipt.",
   "candidate_hosting": {
     "recommended_platform": "Hugging Face private dataset repository",
     "status": "platform_authorized_source_scope_pending",
@@ -16,6 +51,7 @@
     "archive_target": "edithatogo/hpo-licensed-ontology-archive",
     "repository_creation_status": "created_private_owner_only",
     "repository_creation_evidence": "2026-08-11: authenticated Hugging Face CLI created edithatogo/hpo-licensed-ontology-archive and verified private=true at immutable revision d539dd0a7b4fea32674c9b1c6e6a43d36774156b.",
+    "latest_verified_archive_revision": "86806ad96f88c510eb361ced5938d253e1c39b94",
     "required_before_upload": [
       "source-specific rightsholder permission or licence scope covering the intended payload and private cloud hosting",
       "named Hugging Face account or organization and owner-only access confirmation",

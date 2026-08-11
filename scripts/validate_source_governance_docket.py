@@ -101,6 +101,7 @@ def main() -> int:
         "not_identified",
         "candidate_identified_authorization_pending",
         "authorized_local_only",
+        "authorized_private_archive_partial",
     }
     if private_inventory.get("status") not in allowed_hosting_states:
         errors.append("private-source inventory has an invalid status")
