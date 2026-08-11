@@ -43,7 +43,7 @@ ORPHADATA_DIFF_LANGUAGES = tuple(language for language in ORPHADATA_LANGUAGES if
 
 def hf_api(token: str) -> Any:
     """Load the upload client only when the archive command actually runs."""
-    from huggingface_hub import HfApi  # type: ignore[import-not-found]
+    from huggingface_hub import HfApi  # type: ignore[import-not-found]  # ty: ignore[unresolved-import]
 
     return HfApi(token=token)
 

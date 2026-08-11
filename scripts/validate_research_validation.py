@@ -582,13 +582,12 @@ def phase_4_candidate_matrix_errors(instance: Any, supplementary: Any) -> list[s
     if any(isinstance(review, dict) and review.get("payload_retrieval_allowed") for review in reviews):
         errors.append("candidate matrix cannot proceed while the canonical review reports an allowed payload")
 
-    if any(
-        instance.get(field) != 0
-        for field in ("approved_language_count", "approved_source_payload_count", "empirical_agent_execution_count")
+    if (
+        instance.get("approved_language_count") != 0
+        or instance.get("approved_source_payload_count") != 2
+        or instance.get("empirical_agent_execution_count") != 0
     ):
-        errors.append(
-            "Phase 4 planning matrix must record zero approved languages, payloads, and empirical agent executions"
-        )
+        errors.append("Phase 4 matrix must record two pinned payloads but zero language or empirical approvals")
 
     agent_panel_model = instance.get("agent_panel_model", {})
     if not isinstance(agent_panel_model, dict):
@@ -627,7 +626,7 @@ def phase_4_candidate_matrix_errors(instance: Any, supplementary: Any) -> list[s
     expected_actions = [
         "step_down_to_option_c_for_spanish_if_fully_authorized_otherwise_option_d",
         "step_down_to_option_c_for_japanese_if_fully_authorized_otherwise_option_d",
-        "do_not_substitute_automatically_step_down_to_the_first_fully_authorized_language_or_option_d",
+        "do_not_mutate_the_frozen_run_step_down_only_via_a_new_freeze_for_the_first_fully_authorized_language_or_option_d",
         "step_down_to_option_c",
         "remain_at_option_d_synthetic_only",
     ]
@@ -1143,6 +1142,7 @@ EXPECTED_G3_COMPONENTS = {
     "model_endpoints",
     "source_versions",
     "randomization_seed_and_algorithm",
+    "aggregation_rule",
     "exclusions",
     "agent_panel_instrument",
     "progression_criteria",
@@ -1150,14 +1150,29 @@ EXPECTED_G3_COMPONENTS = {
     "approval_receipts",
     "privacy_retention_and_incident_plan",
 }
+EXPECTED_G3_FILENAMES = {
+    "sampling_frame.json",
+    "candidate_conditions.json",
+    "prompts.manifest.json",
+    "model_endpoints.json",
+    "source_versions.json",
+    "randomization.json",
+    "aggregation.json",
+    "pre_unblinding_exclusions.json",
+    "agent_panel_instrument.json",
+    "progression_criteria.json",
+    "analysis_environment.json",
+    "approval_receipts.manifest.json",
+    "privacy_retention_incident.json",
+}
 
 
 def phase_4_g3_component_inventory_errors(instance: Any) -> list[str]:
     if not isinstance(instance, dict):
         return ["Phase 4 G3 component inventory must be a JSON object"]
     errors: list[str] = []
-    if instance.get("status") != "planning_inventory_only_not_frozen":
-        errors.append("G3 component inventory must remain planning-only and not frozen")
+    if instance.get("status") != "prospectively_frozen_execution_blocked_pending_external_preconditions":
+        errors.append("G3 component inventory must record the conditional prospective freeze")
     components = instance.get("components", [])
     component_ids = [item.get("component_id") for item in components if isinstance(item, dict)]
     if set(component_ids) != EXPECTED_G3_COMPONENTS or len(component_ids) != len(EXPECTED_G3_COMPONENTS):
@@ -1166,27 +1181,33 @@ def phase_4_g3_component_inventory_errors(instance: Any) -> list[str]:
         if not isinstance(component, dict):
             errors.append("each G3 component inventory entry must be an object")
             continue
-        if component.get("version_or_hash") is not None:
-            errors.append("G3 planning inventory must not contain versions or hashes")
+        version_or_hash = component.get("version_or_hash")
+        if not isinstance(version_or_hash, str) or re.fullmatch(r"sha256:[0-9a-f]{64}", version_or_hash) is None:
+            errors.append("each frozen G3 component must contain a SHA-256 hash")
         if (
             not component.get("planning_source")
             or not component.get("freeze_artifact_path")
             or not component.get("blocker")
         ):
             errors.append("each G3 component requires a planning source, intended freeze path, and blocker")
-        if component.get("readiness") in {"ready", "frozen", "checksummed"}:
-            errors.append("G3 component inventory must not claim component freeze readiness")
+        if component.get("readiness") != "frozen_checksummed_execution_blocked":
+            errors.append("each G3 component must be frozen and checksummed but execution-blocked")
     summary = instance.get("summary", {})
     if summary != {
         "component_count": len(EXPECTED_G3_COMPONENTS),
-        "frozen_component_count": 0,
-        "checksummed_component_count": 0,
-        "ready_for_freeze_count": 0,
+        "frozen_component_count": len(EXPECTED_G3_COMPONENTS),
+        "checksummed_component_count": len(EXPECTED_G3_COMPONENTS),
+        "ready_for_freeze_count": len(EXPECTED_G3_COMPONENTS),
     }:
-        errors.append("G3 component inventory summary must record twelve components and zero readiness")
+        errors.append("G3 component inventory summary must record all thirteen frozen components")
     authorization = instance.get("authorization_boundary", {})
-    if not authorization or any(value is not False for value in authorization.values()):
-        errors.append("all G3 component inventory authorization fields must remain false")
+    if authorization != {
+        "create_freeze_artifacts": True,
+        "assign_versions_or_hashes": True,
+        "start_empirical_work": False,
+        "external_preregistration": False,
+    }:
+        errors.append("G3 inventory authority must permit only local freeze creation and hashing")
     return errors
 
 
@@ -1227,16 +1248,16 @@ def phase_4_g3_freeze_readiness_errors(
         return ["Phase 4 G3 freeze readiness contract must be a JSON object"]
     errors: list[str] = []
     if (
-        instance.get("status") != "preflight_contract_ready_not_frozen"
-        or instance.get("freeze_id") is not None
-        or instance.get("frozen_at") is not None
+        instance.get("status") != "prospectively_frozen_execution_blocked_pending_external_preconditions"
+        or instance.get("freeze_id") != "g3-option-b-es-ja-20260812-v1"
+        or instance.get("frozen_at") != "2026-08-12"
     ):
-        errors.append("G3 readiness must remain explicitly not frozen with no freeze identifier or timestamp")
+        errors.append("G3 readiness must identify the canonical conditional prospective freeze")
     if (
-        instance.get("prospective_freeze_claim_allowed") is not False
+        instance.get("prospective_freeze_claim_allowed") is not True
         or instance.get("external_preregistration_claim_allowed") is not False
     ):
-        errors.append("G3 readiness must not authorize freeze or preregistration claims")
+        errors.append("G3 readiness may claim only the local prospective freeze, not preregistration")
     prerequisites = instance.get("prerequisites", {})
     if (
         prerequisites.get("G1_source_authority") != "conditional"
@@ -1244,26 +1265,30 @@ def phase_4_g3_freeze_readiness_errors(
     ):
         errors.append("G3 readiness must preserve conditional G1 scope and pending G2 prerequisites")
     if (
-        any(
-            prerequisites.get(field) != 0
-            for field in ("approved_language_count", "approved_payload_source_count", "empirical_agent_execution_count")
-        )
-        or prerequisites.get("explicit_maintainer_freeze_approval") is not False
+        prerequisites.get("approved_language_count") != 0
+        or prerequisites.get("approved_payload_source_count") != 2
+        or prerequisites.get("empirical_agent_execution_count") != 0
+        or prerequisites.get("explicit_maintainer_freeze_approval") is not True
     ):
-        errors.append("G3 readiness must record zero empirical approvals and no maintainer freeze approval")
+        errors.append("G3 readiness must preserve zero empirical approvals and record freeze approval")
     components = instance.get("required_components", [])
     if (
         set(components) != EXPECTED_G3_COMPONENTS
         or len(components) != len(EXPECTED_G3_COMPONENTS)
-        or instance.get("component_status") != "not_frozen"
+        or instance.get("component_status") != "frozen_checksummed_execution_blocked"
     ):
-        errors.append("G3 readiness must enumerate every required component exactly once as not frozen")
+        errors.append("G3 readiness must enumerate every required component exactly once as conditionally frozen")
     checksum = instance.get("checksum_contract", {})
-    if checksum.get("recorded_checksum_count") != 0 or checksum.get("aggregate_manifest_hash") is not None:
-        errors.append("G3 readiness must not record checksums before the prospective freeze")
+    if (
+        checksum.get("recorded_checksum_count") != len(EXPECTED_G3_COMPONENTS)
+        or re.fullmatch(r"sha256:[0-9a-f]{64}", str(checksum.get("aggregate_manifest_hash"))) is None
+    ):
+        errors.append("G3 readiness must record all component checksums and the aggregate manifest hash")
     authorization = instance.get("authorization_boundary", {})
-    if not authorization or any(value is not False for value in authorization.values()):
-        errors.append("all G3 readiness authorization fields must remain false")
+    if authorization.get("create_prospective_freeze_receipt") is not True or any(
+        value is not False for field, value in authorization.items() if field != "create_prospective_freeze_receipt"
+    ):
+        errors.append("G3 readiness authority must permit only local prospective freeze creation")
     if isinstance(candidate_matrix, dict):
         expected_counts = {
             "approved_language_count": candidate_matrix.get("approved_language_count"),
@@ -1975,6 +2000,90 @@ def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[Valid
                         f"planning source does not exist: {planning_source}",
                     )
                 )
+            artifact_path = component.get("freeze_artifact_path")
+            expected_hash = component.get("version_or_hash")
+            if isinstance(artifact_path, str) and isinstance(expected_hash, str):
+                artifact = ROOT / artifact_path
+                actual_hash = (
+                    f"sha256:{hashlib.sha256(artifact.read_bytes()).hexdigest()}" if artifact.exists() else None
+                )
+                if actual_hash != expected_hash:
+                    issues.append(
+                        ValidationIssue(
+                            "phase_4_g3_component_inventory.hash_mismatch",
+                            str(g3_inventory_path),
+                            f"freeze artifact missing or hash mismatch: {artifact_path}",
+                        )
+                    )
+
+    g3_manifest_path = research_root / "phase_4_freeze" / "component_manifest.json"
+    g3_receipt_path = research_root / "phase_4_freeze" / "freeze_receipt.json"
+    if not g3_manifest_path.exists() or not g3_receipt_path.exists():
+        issues.append(
+            ValidationIssue(
+                "phase_4_g3_freeze_package.missing",
+                str(research_root / "phase_4_freeze"),
+                "G3 component manifest and freeze receipt are required",
+            )
+        )
+    else:
+        g3_manifest = load_json(g3_manifest_path)
+        g3_receipt = load_json(g3_receipt_path)
+        manifest_hash = hashlib.sha256(g3_manifest_path.read_bytes()).hexdigest()
+        if (
+            g3_receipt.get("component_manifest_sha256") != manifest_hash
+            or g3_receipt.get("component_count") != len(EXPECTED_G3_COMPONENTS)
+            or g3_receipt.get("empirical_execution_authorized") is not False
+            or g3_receipt.get("external_preregistration_authorized") is not False
+            or g3_receipt.get("schema_version") != "phase-4-g3-freeze-receipt-v1"
+            or g3_receipt.get("freeze_id") != "g3-option-b-es-ja-20260812-v1"
+            or g3_receipt.get("run_id") != "run-phase4-option-b-es-ja-v1"
+            or g3_receipt.get("freeze_date") != "2026-08-12"
+            or g3_receipt.get("freeze_status")
+            != "prospectively_frozen_execution_blocked_pending_external_preconditions"
+            or g3_receipt.get("component_manifest") != "research_validation/phase_4_freeze/component_manifest.json"
+            or g3_receipt.get("mutation_rule") != "immutable_new_freeze_id_required_for_any_change"
+        ):
+            issues.append(
+                ValidationIssue(
+                    "phase_4_g3_freeze_package.invalid_receipt",
+                    str(g3_receipt_path),
+                    "G3 receipt must bind the 13-component manifest and preserve execution/preregistration blocks",
+                )
+            )
+        manifest_hashes = g3_manifest.get("component_hashes", {})
+        if not isinstance(manifest_hashes, dict) or set(manifest_hashes) != EXPECTED_G3_FILENAMES:
+            issues.append(
+                ValidationIssue(
+                    "phase_4_g3_freeze_package.invalid_manifest",
+                    str(g3_manifest_path),
+                    "G3 manifest must enumerate exactly 13 component hashes",
+                )
+            )
+        elif any(
+            hashlib.sha256((g3_manifest_path.parent / filename).read_bytes()).hexdigest() != expected_hash
+            for filename, expected_hash in manifest_hashes.items()
+            if (g3_manifest_path.parent / filename).exists()
+        ) or any(not (g3_manifest_path.parent / filename).exists() for filename in manifest_hashes):
+            issues.append(
+                ValidationIssue(
+                    "phase_4_g3_freeze_package.component_hash_mismatch",
+                    str(g3_manifest_path),
+                    "G3 manifest component hashes must match every frozen artifact byte-for-byte",
+                )
+            )
+        if (
+            g3_manifest.get("schema_version") != "phase-4-g3-component-manifest-v1"
+            or g3_manifest.get("freeze_id") != "g3-option-b-es-ja-20260812-v1"
+            or g3_manifest.get("run_id") != "run-phase4-option-b-es-ja-v1"
+        ):
+            issues.append(
+                ValidationIssue(
+                    "phase_4_g3_freeze_package.identity_mismatch",
+                    str(g3_manifest_path),
+                    "G3 manifest must retain the canonical schema, freeze ID, and run ID",
+                )
+            )
 
     g3_receipt_template_path = research_root / "phase_4_g3_freeze_receipt.template.json"
     freeze_governance_path = research_root / "freeze_governance.json"
@@ -2014,6 +2123,16 @@ def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[Valid
         approval_manifest = load_json(approval_manifest_path) if approval_manifest_path.exists() else None
         for message in phase_4_g3_freeze_readiness_errors(g3_readiness, candidate_matrix, approval_manifest):
             issues.append(ValidationIssue("phase_4_g3_freeze_readiness.invalid", str(g3_readiness_path), message))
+        if g3_manifest_path.exists():
+            actual_manifest_hash = f"sha256:{hashlib.sha256(g3_manifest_path.read_bytes()).hexdigest()}"
+            if g3_readiness.get("checksum_contract", {}).get("aggregate_manifest_hash") != actual_manifest_hash:
+                issues.append(
+                    ValidationIssue(
+                        "phase_4_g3_freeze_readiness.manifest_hash_mismatch",
+                        str(g3_readiness_path),
+                        "G3 readiness aggregate hash must bind the canonical component manifest",
+                    )
+                )
         for planning_input in g3_readiness.get("planning_inputs", []):
             if isinstance(planning_input, str) and not (ROOT / planning_input).exists():
                 issues.append(

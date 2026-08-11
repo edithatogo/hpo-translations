@@ -17,14 +17,17 @@
     "stage_1_concept_language_units": 12,
     "stage_1_minimum_common_anchors": 2
   },
-  "selection_status": "design_selected_execution_blocked",
-  "required_before_g3_freeze": [
-    "spanish_language_and_community_use_scope_approved",
-    "japanese_language_and_community_use_scope_approved",
-    "selected_source_versions_licences_permissions_and_payload_roles_approved",
-    "ethics_and_privacy_pathway_recorded",
+  "selection_status": "design_selected_g3_prospectively_frozen_execution_blocked_pending_g2",
+  "completed_g3_freeze_components": [
+    "selected_source_versions_licences_permissions_and_payload_roles_pinned",
     "agent_panel_models_prompts_roles_isolation_and_reproducer_pinned",
     "sampling_frame_conditions_instrument_analysis_and_progression_rules_checksummed"
+  ],
+  "required_before_empirical_execution": [
+    "spanish_language_and_community_use_scope_approved",
+    "japanese_language_and_community_use_scope_approved",
+    "ethics_and_privacy_pathway_recorded",
+    "existing_g3_freeze_receipt_and_all_component_hashes_remain_valid"
   ],
   "source_policy": {
     "hpo_required": true,
@@ -59,5 +62,5 @@
     "push_authorized": false,
     "pull_request_authorized": false
   },
-  "claims_boundary": "design_selection_only_no_source_language_community_agent_or_empirical_authority"
+  "claims_boundary": "option_b_design_and_g3_prospective_freeze_only_no_language_community_agent_execution_empirical_or_promotion_authority"
 }

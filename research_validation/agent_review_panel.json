@@ -1,7 +1,7 @@
 {
   "schema_version": "agent-review-panel-v1",
   "track_id": "research_validation_20260801",
-  "status": "canonical_design_pending_g1_and_g3",
+  "status": "canonical_design_g3_frozen_execution_blocked_g2_pending",
   "supersedes": [
     "people_based_evaluation_roster",
     "people_based_evaluation_recruitment",
@@ -74,9 +74,7 @@
     "rights_or_consent_can_be_inferred_from_panel": false
   },
   "remaining_non_review_gates": [
-    "G1_source_authority_and_licence",
     "G2_language_and_community_use_constraints_where_applicable",
-    "G3_prospective_protocol_freeze",
     "explicit_maintainer_release_authorization"
   ]
 }

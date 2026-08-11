@@ -60,7 +60,7 @@
     "Spanish_language_and_community_use_scope",
     "Japanese_language_and_community_use_scope",
     "source_atom_lineage_for_any_future_external_source",
-    "G3_payload_hash_freeze"
+    "G3_payload_hash_freeze_integrity_must_remain_valid"
   ],
   "authorization_boundary": {
     "existing_repository_payload_read_authorized": true,

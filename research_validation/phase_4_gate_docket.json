@@ -5,7 +5,7 @@
   "current_route": "option_d_synthetic_only",
   "target_route": "option_b_lean_two_language_pilot_spanish_japanese",
   "blocker_resolution_plan": {
-    "blocker": "stage_1_cannot_start_until_scoped_G1_source_and_G2_language_agent_ethics_privacy_decisions_are_recorded_with_evidence_and_G3_is_prospectively_frozen",
+    "blocker": "G3_is_prospectively_frozen_but_stage_1_cannot_start_until_G2_Spanish_Japanese_community_use_and_ethics_privacy_decisions_are_recorded_with_evidence",
     "recommended_strategy": "selected_minimum_viable_option_b_with_spanish_and_japanese_subject_to_all_required_gates",
     "rationale": [
       "a_two_language_stage_1_preserves_multilingual_and_script_contrast_while_removing_the_unassigned_community_slot_from_the_critical_path",
@@ -18,7 +18,7 @@
       {
         "option_id": "minimum_viable_option_b",
         "recommendation": "selected",
-        "scope": "Spanish_and_Japanese_Stage_1_with_HPO_and_only_the_bounded_source_subset_explicitly_approved_before_G3",
+        "scope": "Spanish_and_Japanese_Stage_1_with_HPO_and_only_the_two_content_addressed_repository_snapshots_bound_by_the_existing_G3_freeze",
         "critical_path_packets": ["g1-mondo", "g1-who-icf", "g1-structural-sources", "g2-spanish-language", "g2-japanese-language", "g0-agent-panel-protocol", "g2-ethics-privacy"],
         "deferred_packets": ["g1-pro-ctcae", "g1-decs", "g2-community-slot"],
         "benefit": "fastest_route_that_retains_a_multilingual_script_contrast_and_stage_1_measurement_value",
@@ -86,8 +86,8 @@
       },
       {
         "wave_id": "wave_5_reconcile_and_freeze",
-        "action": "reconcile_packet_receipts_into_the_canonical_approval_manifest_select_the_route_and_execute_one_checksummed_G3_freeze",
-        "exit_evidence": "no_pending_required_gate_for_the_selected_route_and_an_immutable_G3_receipt",
+        "action": "preserve_the_immutable_G3_freeze_and_reconcile_pending_G2_receipts_before_any_empirical_execution",
+        "exit_evidence": "no_pending_required_G2_gate_for_the_selected_route_and_the_existing_immutable_G3_receipt_remains_valid",
         "contingency": "do_not_start_Stage_1_and_remain_at_the_highest_fully_authorized_fallback"
       }
     ],
@@ -233,7 +233,7 @@
       "decision_owner_role": "repository_maintainer",
       "decision": "approved",
       "required_evidence": ["five_specialist_roles", "isolated_adjudicator", "non_voting_reproducibility_auditor", "pinned_models_and_prompts", "deterministic_reproducer", "zero_human_roles"],
-      "recommended_resolution": "execute_only_after_G1_G2_and_G3_close",
+      "recommended_resolution": "preserve_the_completed_G3_freeze_and_execute_only_after_the_remaining_G2_language_community_use_and_ethics_privacy_gates_close",
       "if_not_approved": "remain_at_option_d_synthetic_only"
     },
     {

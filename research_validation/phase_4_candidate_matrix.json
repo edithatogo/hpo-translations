@@ -1,10 +1,10 @@
 {
   "schema_version": "phase-4-candidate-matrix-v1",
   "track_id": "research_validation_20260801",
-  "status": "option_b_selected_conditionally_no_language_source_or_empirical_agent_execution_approved",
+  "status": "option_b_selected_sources_pinned_g3_frozen_empirical_execution_blocked_pending_g2",
   "decision_scope": "maintainer_selected_minimum_viable_option_b_subject_to_source_and_community_use_constraints",
   "approved_language_count": 0,
-  "approved_source_payload_count": 0,
+  "approved_source_payload_count": 2,
   "empirical_agent_execution_count": 0,
   "target_option": "B",
   "selected_languages": ["es", "ja"],
@@ -89,7 +89,7 @@
   "step_down_contingencies": [
     {"priority": 1, "trigger": "japanese_language_or_source_pathway_not_authorized", "action": "step_down_to_option_c_for_spanish_if_fully_authorized_otherwise_option_d"},
     {"priority": 2, "trigger": "spanish_language_or_source_pathway_not_authorized", "action": "step_down_to_option_c_for_japanese_if_fully_authorized_otherwise_option_d"},
-    {"priority": 3, "trigger": "either_selected_language_has_unresolved_community_use_constraints_at_g3", "action": "do_not_substitute_automatically_step_down_to_the_first_fully_authorized_language_or_option_d"},
+    {"priority": 3, "trigger": "either_selected_language_has_unresolved_community_use_constraints_after_g3_freeze", "action": "do_not_mutate_the_frozen_run_step_down_only_via_a_new_freeze_for_the_first_fully_authorized_language_or_option_d"},
     {"priority": 4, "trigger": "only_one_language_is_authorized", "action": "step_down_to_option_c"},
     {"priority": 5, "trigger": "no_empirical_language_is_authorized", "action": "remain_at_option_d_synthetic_only"}
   ],
@@ -98,12 +98,9 @@
   ],
   "remaining_gates": [
     "language_working_group_approval",
-    "agent_panel_protocol_freeze",
     "community_authority_approval_where_applicable",
-    "source_license_and_payload_permission",
-    "agent_model_prompt_context_isolation_and_reproducibility_review",
-    "stratified_concept_freeze",
-    "ethics_privacy_and_preregistration_decisions"
+    "ethics_privacy_decision",
+    "g3_freeze_integrity_must_remain_valid"
   ],
   "authorization_boundary": {
     "human_agent_selection_authorized": false,
@@ -117,5 +114,5 @@
     "push_authorized": false,
     "pull_request_authorized": false
   },
-  "claims_boundary": "option_b_design_selection_only_not_language_source_payload_agent_execution_or_empirical_authority"
+  "claims_boundary": "option_b_design_and_two_payload_source_set_selected_g3_prospectively_frozen_no_language_community_empirical_execution_or_promotion_authority"
 }

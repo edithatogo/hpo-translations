@@ -10,3 +10,8 @@ dependencies = [
     "linkml-runtime>=1.10",
     "setuptools<81",
 ]
+
+[tool.basedpyright]
+include = ["scripts"]
+pythonVersion = "3.14"
+typeCheckingMode = "standard"
