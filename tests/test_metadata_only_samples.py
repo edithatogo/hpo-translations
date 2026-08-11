@@ -45,6 +45,34 @@ class MetadataOnlySampleTests(unittest.TestCase):
                 self.assertEqual(main(), 1)
             self.assertIn("approved_incomplete: missing required Phase 2 artifact", errors.getvalue())
 
+    def test_main_does_not_silently_skip_approval_without_evidence(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            tracks = Path(temporary_directory)
+            track_dir = tracks / "unsupported_approval"
+            track_dir.mkdir()
+            (track_dir / "maintainer_review_handoff.json").write_text(
+                json.dumps({"status": "approved_bounded_metadata_only_sample"}),
+                encoding="utf-8",
+            )
+            (track_dir / "phase2_data_access_normalization.json").write_text("{}", encoding="utf-8")
+            (track_dir / "phase4_validation_review.json").write_text("{}", encoding="utf-8")
+            errors = io.StringIO()
+            with patch("scripts.validate_metadata_only_samples.TRACKS", tracks), redirect_stderr(errors):
+                self.assertEqual(main(), 1)
+            self.assertIn("handoff lacks structured approval evidence", errors.getvalue())
+            self.assertIn("handoff lacks a structured bounded-sample contract", errors.getvalue())
+
+    def test_main_reports_malformed_handoff(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            tracks = Path(temporary_directory)
+            track_dir = tracks / "malformed"
+            track_dir.mkdir()
+            (track_dir / "maintainer_review_handoff.json").write_text("{", encoding="utf-8")
+            errors = io.StringIO()
+            with patch("scripts.validate_metadata_only_samples.TRACKS", tracks), redirect_stderr(errors):
+                self.assertEqual(main(), 1)
+            self.assertIn("malformed: invalid handoff artifact", errors.getvalue())
+
     def test_phase3_translation_use_artifacts_fail_closed(self) -> None:
         track_root = Path(__file__).resolve().parents[1] / "conductor" / "tracks"
         phase3_paths = sorted(track_root.glob("*/phase3_hpo_translation_use.json"))

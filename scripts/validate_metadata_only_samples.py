@@ -43,6 +43,12 @@ def validate_track(track_dir: Path) -> list[str]:
         return [f"invalid contract artifact: {error}"]
     if handoff.get("status") != APPROVED_STATUS:
         errors.append("handoff is not approved for a bounded metadata-only sample")
+    approval = handoff.get("approval")
+    bounded_sample = handoff.get("bounded_sample")
+    if not isinstance(approval, dict) or not approval:
+        errors.append("handoff lacks structured approval evidence")
+    if not isinstance(bounded_sample, dict) or not bounded_sample:
+        errors.append("handoff lacks a structured bounded-sample contract")
     if phase2.get("status") != PHASE2_STATUS:
         errors.append("Phase 2 is not marked payload-free metadata-only normalization")
     sample = phase2.get("sample")
@@ -70,12 +76,12 @@ def validate_track(track_dir: Path) -> list[str]:
 def main() -> int:
     track_dirs = []
     for handoff_path in sorted(TRACKS.glob("*/maintainer_review_handoff.json")):
-        handoff = load_json(handoff_path)
-        if (
-            handoff.get("status") == APPROVED_STATUS
-            and isinstance(handoff.get("approval"), dict)
-            and isinstance(handoff.get("bounded_sample"), dict)
-        ):
+        try:
+            handoff = load_json(handoff_path)
+        except (json.JSONDecodeError, OSError, ValueError) as artifact_error:
+            print(f"{handoff_path.parent.name}: invalid handoff artifact: {artifact_error}", file=sys.stderr)
+            return 1
+        if handoff.get("status") == APPROVED_STATUS:
             track_dirs.append(handoff_path.parent)
     if not track_dirs:
         print("No approved metadata-only samples found.", file=sys.stderr)
