@@ -3,20 +3,21 @@
   "track_id": "research_validation_20260801",
   "status": "wave_2_routes_verified_requests_prepared_dispatch_blocked",
   "current_route": "option_d_synthetic_only",
-  "target_route": "option_a_staged_three_language_pilot",
+  "target_route": "option_b_lean_two_language_pilot_spanish_japanese",
   "blocker_resolution_plan": {
     "blocker": "stage_1_cannot_start_until_scoped_G1_source_and_G2_language_agent_ethics_privacy_decisions_are_recorded_with_evidence_and_G3_is_prospectively_frozen",
-    "recommended_strategy": "dual_lane_minimum_viable_option_b_then_expand_to_option_a_only_if_optional_gates_close_before_G3",
+    "recommended_strategy": "selected_minimum_viable_option_b_with_spanish_and_japanese_subject_to_all_required_gates",
     "rationale": [
       "a_two_language_stage_1_preserves_multilingual_and_script_contrast_while_removing_the_unassigned_community_slot_from_the_critical_path",
       "version_pinned_open_sources_can_be_considered_before_sources_that_require_external_permission_or_a_pre_license_process",
       "ethics_privacy_language_authority_and_agent_independence_remain_non_substitutable_accountable_gates",
-      "a_single_prospective_G3_freeze_prevents_optional_late_approvals_from_changing_the_design_after_empirical_ingress"
+      "a_single_prospective_G3_freeze_prevents_late_approvals_from_changing_the_design_after_empirical_ingress",
+      "option_a_is_not_part_of_the_selected_pilot_and_requires_a_new_prospective_decision_if_reconsidered"
     ],
     "options": [
       {
         "option_id": "minimum_viable_option_b",
-        "recommendation": "recommended",
+        "recommendation": "selected",
         "scope": "Spanish_and_Japanese_Stage_1_with_HPO_and_only_the_bounded_source_subset_explicitly_approved_before_G3",
         "critical_path_packets": ["g1-mondo", "g1-who-icf", "g1-structural-sources", "g2-spanish-language", "g2-japanese-language", "g0-agent-panel-protocol", "g2-ethics-privacy"],
         "deferred_packets": ["g1-pro-ctcae", "g1-decs", "g2-community-slot"],
@@ -26,7 +27,7 @@
       },
       {
         "option_id": "full_target_option_a",
-        "recommendation": "expansion_lane",
+        "recommendation": "not_selected_future_reconsideration_only",
         "scope": "three_approved_languages_and_all_source_conditions_authorized_for_the_frozen_design",
         "critical_path_packets": ["g1-pro-ctcae", "g1-decs", "g1-mondo", "g1-who-icf", "g1-structural-sources", "g2-spanish-language", "g2-japanese-language", "g2-community-slot", "g0-agent-panel-protocol", "g2-ethics-privacy"],
         "deferred_packets": [],
@@ -79,7 +80,7 @@
       },
       {
         "wave_id": "wave_4_optional_expansion",
-        "action": "if_option_A_remains_desirable_supply_an_authorized_sender_identity_for_PRO_CTCAE_and_DeCS_and_seek_a_community_selected_third_language",
+        "action": "defer_PRO_CTCAE_DeCS_and_any_third_language_outside_the_selected_option_B_pilot_unless_a_new_maintainer_decision_reopens_design_selection",
         "exit_evidence": "written_source_permissions_and_a_bounded_community_authority_receipt",
         "contingency": "freeze_option_B_without_these_conditions_and_make_no_claim_about_them"
       },

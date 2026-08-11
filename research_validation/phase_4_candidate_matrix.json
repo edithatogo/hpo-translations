@@ -1,12 +1,15 @@
 {
   "schema_version": "phase-4-candidate-matrix-v1",
   "track_id": "research_validation_20260801",
-  "status": "planning_shortlist_only_no_language_source_or_empirical_agent_execution_approved",
-  "decision_scope": "metadata_only_phase_4_task_3_preparation",
+  "status": "option_b_selected_conditionally_no_language_source_or_empirical_agent_execution_approved",
+  "decision_scope": "maintainer_selected_minimum_viable_option_b_subject_to_source_and_community_use_constraints",
   "approved_language_count": 0,
   "approved_source_payload_count": 0,
   "empirical_agent_execution_count": 0,
-  "target_option": "A",
+  "target_option": "B",
+  "selected_languages": ["es", "ja"],
+  "selection_effective_date": "2026-08-11",
+  "selection_authority": "repository_maintainer_user_instruction",
   "recommended_configuration": {
     "high_resource_latin_slot": "es",
     "script_typology_contrast_slot": "ja",
@@ -18,7 +21,7 @@
       "slot_id": "high_resource_latin",
       "preferred_language": "es",
       "fallback_languages": ["fr", "pt"],
-      "selection_status": "shortlisted_not_permitted",
+      "selection_status": "selected_for_option_b_not_yet_permitted",
       "rationale": "Active HPO profile with registered DeCS, PRO-CTCAE, and WHO ICF pathways; every pathway remains payload-blocked and must not be counted as empirical evidence.",
       "source_pathways": [
         {"source_id": "decs", "intended_role": "lexical_comparator", "required_gate": "written_payload_permission_and_version_confirmation"},
@@ -32,7 +35,7 @@
       "slot_id": "script_typology_contrast",
       "preferred_language": "ja",
       "fallback_languages": ["zh", "ar"],
-      "selection_status": "shortlisted_not_permitted",
+      "selection_status": "selected_for_option_b_not_yet_permitted",
       "rationale": "Active HPO profile with distinct script coverage and a versioned Mondo Japanese metadata pathway; Mondo and PRO-CTCAE payload use remain unapproved.",
       "source_pathways": [
         {"source_id": "mondo", "intended_role": "community_curated_disease_context", "required_gate": "maintainer_license_source_atom_and_scope_review"},
@@ -84,9 +87,9 @@
     "all_registered_supplementary_payloads_remain_unapproved": true
   },
   "step_down_contingencies": [
-    {"priority": 1, "trigger": "community_slot_not_authorized_by_g2", "action": "step_down_to_option_b_with_es_and_ja"},
-    {"priority": 2, "trigger": "japanese_agent_or_source_pathway_not_authorized", "action": "consider_option_b_with_es_and_zh_subject_to_all_gates"},
-    {"priority": 3, "trigger": "spanish_agent_or_source_pathway_not_authorized", "action": "consider_option_b_with_fr_or_pt_and_ja_subject_to_all_gates"},
+    {"priority": 1, "trigger": "japanese_language_or_source_pathway_not_authorized", "action": "step_down_to_option_c_for_spanish_if_fully_authorized_otherwise_option_d"},
+    {"priority": 2, "trigger": "spanish_language_or_source_pathway_not_authorized", "action": "step_down_to_option_c_for_japanese_if_fully_authorized_otherwise_option_d"},
+    {"priority": 3, "trigger": "either_selected_language_has_unresolved_community_use_constraints_at_g3", "action": "do_not_substitute_automatically_step_down_to_the_first_fully_authorized_language_or_option_d"},
     {"priority": 4, "trigger": "only_one_language_is_authorized", "action": "step_down_to_option_c"},
     {"priority": 5, "trigger": "no_empirical_language_is_authorized", "action": "remain_at_option_d_synthetic_only"}
   ],
@@ -114,5 +117,5 @@
     "push_authorized": false,
     "pull_request_authorized": false
   },
-  "claims_boundary": "planning_shortlist_and_contingencies_only_not_selection_permission_or_empirical_evidence"
+  "claims_boundary": "option_b_design_selection_only_not_language_source_payload_agent_execution_or_empirical_authority"
 }

@@ -35,7 +35,7 @@
     "The `tw` profile is described as both Tiwi and Twi; language authority and migration direction are unresolved.",
     "Restricted terminology content requires source-specific license and redistribution review.",
     "The specialist-agent panel is designed but has not run on an authorized empirical sample.",
-    "Spanish and Japanese are metadata-only planning preferences; no language, source payload, or concept sample is approved.",
+    "Spanish and Japanese are selected for the Option B design but remain unapproved for empirical use; no source payload or concept sample is approved.",
     "Wave 2 ethics/privacy sponsor route, authorized sender reference, and language contact mode are not selected; no request has been dispatched.",
     "Upstream push, PR, preregistration, and publication require explicit maintainer approval."
     ,"The code-and-run audit isolated the presumed affected remote object to receipts/loinc-2.82-multilingual.json; content verification is blocked by private-dataset read scope and remote remediation remains unauthorized."
@@ -47,7 +47,7 @@
     "Model and benchmark contamination may require temporal or held-out-language designs."
   ],
   "blocker_owner": "hpo-translations maintainer with language-working-group and source-license owners",
-  "fallback_path": "Use the validated dual-lane gate plan: minimum viable two-language Option B, then single-language Option C, then synthetic-only Option D; omit every unapproved source or language without mirror substitution or unsupported claims.",
+  "fallback_path": "Use selected two-language Option B only if Spanish and Japanese close every required gate; otherwise step down to Option C for the first fully authorized selected language, then synthetic-only Option D. Omit every unapproved source or language without automatic substitution, mirror use, or unsupported claims.",
   "source_access_status": "mixed_public_and_restricted_metadata_only",
   "local_only_artifacts": [
     "licensed terminology payloads",
@@ -186,13 +186,14 @@
     "decision_boundary": "metadata decisions only; explicit maintainer authorization is required before payload retrieval, mapping, adaptation, redistribution, or empirical use"
   },
   "phase_4_decision": {
-    "status": "g0_complete_target_a_selected_stage_0_complete_wave_2_routes_prepared_G2_pending",
+    "status": "g0_revised_option_b_spanish_japanese_selected_stage_0_complete_required_gates_pending",
     "canonical_document": "conductor/tracks/research_validation_20260801/phase_4_options.md",
-    "decision_source": "user_instruction_2026-08-02_proceed_with_recommendations",
+    "decision_source": "user_instruction_2026-08-11_select_option_b_spanish_japanese",
+    "selection_receipt": "research_validation/phase_4_option_b_selection.json",
     "current_permitted_route": "option_d_payload_free_stage_0_completed_no_empirical_ingress",
-    "selected_target": "option_a_staged_three_language_pilot",
-    "recommended_target": "option_a_staged_three_language_pilot",
-    "language_selection_rule_status": "metadata_shortlist_es_ja_community_slot_unassigned_no_language_approved",
+    "selected_target": "option_b_lean_two_language_pilot_spanish_japanese",
+    "recommended_target": "option_b_lean_two_language_pilot_spanish_japanese",
+    "language_selection_rule_status": "es_and_ja_selected_for_design_no_language_or_community_use_scope_approved",
     "progression_defaults_status": "accepted_pending_g3_checksum_freeze",
     "agent_time_budget_minutes": 7200,
     "agent_time_budget_hours": 120,
@@ -205,7 +206,7 @@
     "candidate_matrix_artifact": "research_validation/phase_4_candidate_matrix.json",
     "gate_docket_artifact": "research_validation/phase_4_gate_docket.json",
     "gate_docket_status": "wave_2_routes_verified_three_conditional_seven_pending_no_external_action_or_payload_authorized",
-    "blocker_resolution_recommendation": "minimum_viable_option_b_then_expand_to_option_a_only_if_optional_gates_close_before_G3",
+    "blocker_resolution_recommendation": "execute_selected_option_b_only_after_spanish_japanese_source_community_use_privacy_and_freeze_gates_close",
     "blocker_resolution_fallbacks": [
       "single_language_option_c",
       "option_d_synthetic_only"
@@ -232,8 +233,7 @@
     "planning_audit_agent_count": 1,
     "planning_human_role_count": 0,
     "planned_fallback_order": [
-      "option_b_lean_two_language_pilot",
-      "option_c_single_language_measurement_pilot",
+      "option_c_single_language_measurement_pilot_for_first_fully_authorized_selected_language",
       "option_d_governance_only_rehearsal"
     ],
     "options": {
@@ -242,24 +242,24 @@
         "unique_concepts": 60,
         "concept_language_units": 80,
         "candidate_conditions": 4,
-        "reviews_per_unit": 3,
-        "nominal_independent_judgments": 960
+        "specialist_agent_assessments_per_candidate": 5,
+        "nominal_independent_agent_assessments": 1600
       },
       "B": {
         "name": "lean_two_language_pilot",
         "unique_concepts": 50,
         "concept_language_units": 60,
         "candidate_conditions": 4,
-        "reviews_per_unit": 3,
-        "nominal_independent_judgments": 720
+        "specialist_agent_assessments_per_candidate": 5,
+        "nominal_independent_agent_assessments": 1200
       },
       "C": {
         "name": "single_language_measurement_pilot",
         "unique_concepts": 50,
         "concept_language_units": 50,
         "candidate_conditions": 4,
-        "reviews_per_unit": 3,
-        "nominal_independent_judgments": 600
+        "specialist_agent_assessments_per_candidate": 5,
+        "nominal_independent_agent_assessments": 1000
       },
       "D": {
         "name": "governance_only_rehearsal",

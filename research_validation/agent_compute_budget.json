@@ -2,14 +2,14 @@
   "schema_version": "agent-compute-budget-v1",
   "track_id": "research_validation_20260801",
   "status": "provisional_g0_budget_approved",
-  "decision_source": "user_instruction_2026-08-02_proceed_with_recommendation",
+  "decision_source": "user_instruction_2026-08-11_select_option_b_spanish_japanese",
   "decision_scope": "capacity_planning_only",
-  "target_option": "A",
+  "target_option": "B",
   "design_snapshot": {
-    "concept_language_units": 80,
+    "concept_language_units": 60,
     "candidate_conditions": 4,
     "evaluations_per_candidate": 5,
-    "independent_evaluations": 1600,
+    "independent_evaluations": 1200,
     "specialist_agent_count": 5,
     "adjudicator_agent_count": 1,
     "audit_agent_count": 1,
@@ -34,13 +34,13 @@
     "release_cap_hours": 30
   },
   "full_pilot_ceiling": {
-    "candidate_rows": 320,
-    "independent_evaluations": 1600,
-    "anticipated_adjudications": 80,
-    "agent_evaluation_minutes": 4800,
+    "candidate_rows": 240,
+    "independent_evaluations": 1200,
+    "anticipated_adjudications": 60,
+    "agent_evaluation_minutes": 3600,
     "initialization_minutes": 420,
-    "adjudication_minutes": 800,
-    "coordination_and_contingency_minutes": 1180,
+    "adjudication_minutes": 600,
+    "coordination_and_contingency_minutes": 2580,
     "ceiling_minutes": 7200,
     "ceiling_hours": 120,
     "remaining_after_stage_1_cap_minutes": 5400,
@@ -56,7 +56,7 @@
       "confirmed_agent_count",
       "observed_completion_and_attrition"
     ],
-    "if_projected_total_exceeds_ceiling": "revise_scope_or_step_down_to_option_b_before_new_explicit_budget_amendment",
+    "if_projected_total_exceeds_ceiling": "revise_scope_or_step_down_to_option_c_before_new_explicit_budget_amendment",
     "unused_stage_1_capacity_does_not_authorize_empirical_expansion": true
   },
   "authorization_boundary": {

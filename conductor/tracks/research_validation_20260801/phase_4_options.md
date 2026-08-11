@@ -11,9 +11,10 @@
 
 ## Decision status
 
-The user accepted the recommended path on 2026-08-02: Option A is the target,
-Option D is the immediate route, and the language-selection rule and progression
-defaults are accepted for prospective freeze. The payload-free Stage 0 rehearsal
+The user revised the design decision on 2026-08-11: **Option B is the selected
+minimum viable pilot with Spanish and Japanese**. Option D is the immediate
+route until every required source, language/community-use, privacy, agent-panel,
+and G3 freeze gate closes. The payload-free Stage 0 rehearsal
 has passed. G0 is complete with a provisional 30-hour Stage 1 release cap and a
 120-hour full-pilot ceiling. This closes design capacity planning only; it does
 not activate empirical work or authorize agent execution or expenditure.
@@ -36,9 +37,9 @@ reference, and the language contact mode are selected.
 
 | Decision | State |
 | --- | --- |
-| Target design | Option A selected |
+| Target design | Option B selected with Spanish and Japanese, conditionally |
 | Immediate route | Option D completed |
-| Language-selection rule | Accepted; named languages remain unselected |
+| Language-selection rule | Spanish and Japanese selected for the design; empirical use remains gated |
 | Progression defaults | Accepted; must be checksummed again at G3 before empirical data |
 | Maximum agent-time budget | Provisional G0 envelope recorded: 30-hour Stage 1 cap, 120-hour full-pilot ceiling; expansion requires observed Stage 1 reforecast |
 | Stage 1 approvals | Source licence is conditional for four bounded planning roles; five G2 gates remain pending in `research_validation/approval_manifest.json` |
@@ -59,62 +60,57 @@ a Phase 4 progression criterion.
 
 ## Design options
 
-Workload estimates assume four candidate conditions and three independent
-reviews for every concept-language unit. They exclude training, adjudication,
+Workload estimates assume four candidate conditions and five independent
+specialist-agent assessments for every candidate. They exclude initialization, adjudication,
 governance, and instrument-revision time. A concept-language unit is one HPO
 concept evaluated in one language across all candidate conditions.
 
-| Option | Design | Nominal independent judgments | What it can answer | Main limitation |
+| Option | Design | Nominal independent agent assessments | What it can answer | Main limitation |
 | --- | --- | ---: | --- | --- |
-| **A. Staged three-language pilot (recommended)** | 60 unique HPO concepts: 10 common anchors in all three languages plus 50 additional concept-language assignments, for 80 concept-language units | 960 | Whether the full workflow is feasible across contrasting language situations; preliminary variance, error prevalence, calibration, and workload estimates | Highest agent and approval burden; not powered for method superiority |
-| **B. Lean two-language pilot** | 50 unique concepts: 10 common anchors in both languages plus 40 additional assignments, for 60 concept-language units | 720 | Cross-language feasibility and preliminary variance with lower coordination cost | Weak evidence about resource-tier, script, and governance heterogeneity |
-| **C. Single-language measurement pilot** | 50 concepts in one approved language | 600 | Instrument reliability, agent burden, error prevalence, and workflow feasibility in that language | Cannot support multilingual or cross-language claims |
+| **A. Staged three-language pilot** | 60 unique HPO concepts: 10 common anchors in all three languages plus 50 additional concept-language assignments, for 80 concept-language units | 1,600 | Whether the full workflow is feasible across contrasting language situations; preliminary variance, error prevalence, calibration, and workload estimates | Not selected; requires a new prospective decision before reconsideration |
+| **B. Lean two-language pilot (selected)** | 50 unique concepts: 10 common anchors in both languages plus 40 additional assignments, for 60 concept-language units | 1,200 | Cross-language feasibility and preliminary variance with lower coordination cost | Evidence is limited to Spanish/Japanese and source roles authorized before freeze |
+| **C. Single-language measurement pilot** | 50 concepts in one approved language | 1,000 | Instrument reliability, agent burden, error prevalence, and workflow feasibility in that language | Cannot support multilingual or cross-language claims |
 | **D. Governance-only rehearsal** | 12 synthetic items with no source or candidate payloads | Not an empirical sample | Whether schemas, randomization, blinding, export, adjudication, redaction, and failure handling work | Produces no translation-quality or agent-variance evidence |
 
 ### Language selection rule
 
-For Option A, fill language slots only after approvals and agent capacity are
-documented:
+The selected Option B fixes two design slots, but activates them only after
+approvals and agent capacity are documented:
 
 1. one relatively high-resource language with an approved source path and
    clinical-language agents;
 2. one language with a contrasting script or typology and qualified agents;
-3. one lower-resource or community-governed language only where the relevant
-   authority approves model use and study participation.
-
-If the third slot cannot be ethically and operationally filled, use Option B or
-substitute an approved medium-resource language and narrow the inference. Do not
-select a language merely because an accessible mirror or aggregator contains
-labels. Exclude the unresolved `tw` profile until its Tiwi/Twi authority and
-migration direction are resolved.
+Do not substitute another language automatically if either selected language
+fails its gates. Step down to Option C for the first fully authorized selected
+language, or Option D if neither closes. Do not select a language merely because
+an accessible mirror or aggregator contains labels. Exclude the unresolved `tw`
+profile until its Tiwi/Twi authority and migration direction are resolved.
 
 ## Recommendation
 
-The selected path adopts **Option A as the target** and has completed **Option D
-as the immediate, payload-free Stage 0**. After the remaining gates close,
+The selected path adopts **Option B with Spanish and Japanese** and has completed
+**Option D as the immediate, payload-free Stage 0**. After the remaining gates close,
 freeze a prospective package and run an authorized 12-concept-language-unit
 Stage 1 before committing the remaining review budget. Balance those units
 across the approved languages and,
 when the design has more than one language, include at least two common anchors.
-Continue to the full Option A sample only if the prespecified progression
+Continue to the full Option B sample only if the prespecified progression
 criteria pass.
 
 This staged design preserves the scientific value of language contrast while
 limiting avoidable agent burden. The common anchors estimate cross-language
 measurement behaviour; the additional assignments broaden phenotype and
-linguistic coverage. Option B is the preferred planned fallback, Option C is a
-measurement-only fallback, and Option D remains the safe fallback if empirical
-permissions do not close.
+linguistic coverage. Option C is the measurement-only fallback, and Option D
+remains the safe fallback if empirical permissions do not close.
 
 The governed planning shortlist is recorded in
 `research_validation/phase_4_candidate_matrix.json`. It prefers Spanish for the
 high-resource Latin-script slot and Japanese for the script/typology contrast
-slot. The community-governed slot remains deliberately unassigned because an
-active translation profile is not evidence of community authority. If that
-authority is unavailable by G2, step down to Option B with Spanish and Japanese;
-the subsequent fallbacks are Spanish/Chinese, French-or-Portuguese/Japanese,
-Option C, and then synthetic-only Option D. These are planning contingencies,
-not language or source approvals.
+slot. Both are selected design languages, not approved payload or empirical
+languages. The third community-governed slot is outside the selected pilot.
+If either selected language fails its required gates, step down to Option C for
+the other only if fully authorized, then synthetic-only Option D. No automatic
+language substitution is allowed.
 
 The capacity envelope now includes nine primary agents and three independent
 adjudicators. Training/calibration time is budgeted for all 12 roles without
@@ -161,21 +157,18 @@ The payload-safe decision receipt is
 ## Blocker-resolution recommendation
 
 The canonical blocker-resolution plan is embedded in
-`research_validation/phase_4_gate_docket.json`. The recommended strategy is a
-dual lane:
+`research_validation/phase_4_gate_docket.json`. The selected strategy is:
 
-1. make Option B the minimum viable Stage 1 route using Spanish, Japanese, HPO,
+1. use Option B as the Stage 1 route with Spanish, Japanese, HPO,
    and only the smallest version-pinned source subset that receives bounded,
    accountable approval before G3; and
-2. keep Option A as the expansion lane only if PRO-CTCAE, DeCS, a
-   community-selected third language, and their remaining gates close before
-   the same prospective freeze.
+2. keep PRO-CTCAE, DeCS, and any third-language design outside this pilot unless
+   a new maintainer decision prospectively reopens design selection.
 
-This does not reverse the G0 selection of Option A as the target. It removes
-optional external-permission and community-selection dependencies from the
-critical path while preserving a multilingual Latin-script versus Japanese
-script/typology contrast. It also avoids generating a second freeze or adding
-conditions after empirical ingress.
+This revised G0 selection removes optional external-permission and third-language
+dependencies from the critical path while preserving a Spanish Latin-script
+versus Japanese script/typology contrast. It also avoids generating a second
+freeze or adding conditions after empirical ingress.
 
 The ordered resolution waves are:
 
@@ -185,10 +178,9 @@ The ordered resolution waves are:
    bounded request drafts are prepared; select the sponsor route, authorize
    dispatch, then record the three separate accountable decisions;
 3. authorize agent execution and record the pinned agent/adjudicator
-   capacity, consent, conflict, and independence evidence in the local-only
+   capacity, conflict, isolation, and independence evidence in the local-only
    store;
-4. pursue PRO-CTCAE, DeCS, and a community-governed third language only as the
-   optional Option A expansion lane; and
+4. defer PRO-CTCAE, DeCS, and any third language outside the selected pilot; and
 5. reconcile evidence into the canonical approval manifest and execute one
    immutable G3 freeze before Stage 1.
 
@@ -206,7 +198,7 @@ or promote translations.
 | --- | --- | --- |
 | **G0 — Design authority** | Maintainer records Option A, B, C, or D; language-slot rule; agent-time budget; and default progression thresholds | Remain at Option D |
 | **G1 — Source authority** | Selected HPO and terminology versions are pinned; source authority, access, license, permitted use, storage, and reporting decisions are approved | Omit the source or shrink the design; never substitute a mirror as new authority |
-| **G2 — Human and community authority** | Agent qualifications, consent, privacy, conflicts, adjudication capacity, ethics determination, language-working-group approval, and community model-use authority where applicable | Substitute an approved language or step down A → B → C → D |
+| **G2 — Language, community-use, and agent-execution authority** | Agent qualifications, privacy, conflicts, adjudication capacity, ethics determination, language-working-group approval, and community model-use authority where applicable | Do not substitute automatically; step down B → C → D |
 | **G3 — Prospective freeze** | Sampling frame, items, conditions, prompts, model/endpoints, versions, seeds, exclusions, instrument, progression criteria, and analysis code are checksummed before empirical data | Do not start empirical review |
 
 The machine-checkable G3 preflight is `research_validation/phase_4_g3_freeze_readiness.json`. It enumerates the complete freeze package and checksum rules, but deliberately contains no checksums, freeze identifier, or authorization. A separate freeze receipt may be created only after G1/G2 evidence and explicit maintainer approval satisfy its advance rule.
@@ -268,9 +260,8 @@ formal effectiveness hypothesis tests or significance-based progression.
 
 | Trigger | Response | Permitted conclusion |
 | --- | --- | --- |
-| Three approved languages and three agents per language | Option A | Multilingual feasibility across the selected language situations |
-| Two approved languages | Option B | Two-language feasibility only |
-| One approved language | Option C | Measurement and workflow feasibility in that language only |
+| Spanish and Japanese fully authorized | Option B | Two-language Spanish/Japanese feasibility only |
+| Exactly one selected language fully authorized | Option C | Measurement and workflow feasibility in that language only |
 | No approved payload, language, or agent protocol pins | Option D | Operational readiness only |
 | Two agents plus an independent adjudicator | Use the revise branch; report reduced assurance and do not estimate three-agent reliability | Feasibility only |
 | One or zero agents | Do not run empirical review | No human-validation claim |
