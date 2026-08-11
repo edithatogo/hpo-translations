@@ -195,6 +195,10 @@ class OntologyNetworkTests(unittest.TestCase):
         self.assertEqual(records["meddra"]["declared_language_count"], 27)
         self.assertIn("ar", records["meddra"]["language_codes"])
         self.assertEqual(records["omim"]["language_codes"], ["en"])
+        self.assertTrue(
+            {"en-CA", "fr-CA", "en-AU", "de-DE", "fr-FR", "es-ES", "en-GB", "en-US"}
+            <= set(records["icd10"]["language_codes"])
+        )
         self.assertEqual(records["fma"]["language_normalization_status"], "english_only")
         self.assertIn("zh", records["umls"]["language_codes"])
         self.assertEqual(records["umls"]["declared_language_count"], 31)

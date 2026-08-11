@@ -18,8 +18,8 @@
       "resolution_status": "needs_review",
       "severity": "info",
       "source_ids": [
-        "icd10",
-        "icd11"
+        "icd11",
+        "meddra"
       ]
     },
     {
@@ -118,8 +118,8 @@
       "resolution_status": "needs_review",
       "severity": "info",
       "source_ids": [
-        "snomed_ct",
-        "decipher"
+        "icd10",
+        "snomed_ct"
       ]
     },
     {
@@ -178,8 +178,8 @@
       "resolution_status": "needs_review",
       "severity": "info",
       "source_ids": [
-        "snomed_ct",
-        "decipher"
+        "icd10",
+        "snomed_ct"
       ]
     },
     {
@@ -198,8 +198,8 @@
       "resolution_status": "needs_review",
       "severity": "info",
       "source_ids": [
-        "snomed_ct",
-        "decipher"
+        "icd10",
+        "snomed_ct"
       ]
     },
     {
@@ -218,8 +218,8 @@
       "resolution_status": "needs_review",
       "severity": "info",
       "source_ids": [
-        "snomed_ct",
-        "decipher"
+        "icd10",
+        "snomed_ct"
       ]
     },
     {
@@ -238,8 +238,8 @@
       "resolution_status": "needs_review",
       "severity": "info",
       "source_ids": [
-        "snomed_ct",
-        "decipher"
+        "icd10",
+        "snomed_ct"
       ]
     },
     {
@@ -258,8 +258,8 @@
       "resolution_status": "needs_review",
       "severity": "info",
       "source_ids": [
-        "icd10",
-        "icd11"
+        "icd11",
+        "loinc"
       ]
     },
     {
@@ -278,8 +278,8 @@
       "resolution_status": "needs_review",
       "severity": "info",
       "source_ids": [
-        "snomed_ct",
-        "decipher"
+        "icd10",
+        "snomed_ct"
       ]
     },
     {
@@ -398,8 +398,8 @@
       "resolution_status": "needs_review",
       "severity": "info",
       "source_ids": [
-        "snomed_ct",
-        "decipher"
+        "icd10",
+        "snomed_ct"
       ]
     },
     {
@@ -418,8 +418,8 @@
       "resolution_status": "needs_review",
       "severity": "info",
       "source_ids": [
-        "snomed_ct",
-        "decipher"
+        "icd10",
+        "snomed_ct"
       ]
     },
     {
@@ -798,8 +798,8 @@
       "resolution_status": "needs_review",
       "severity": "info",
       "source_ids": [
-        "icd10",
-        "icd11"
+        "icd11",
+        "loinc"
       ]
     },
     {
@@ -978,8 +978,8 @@
       "resolution_status": "needs_review",
       "severity": "info",
       "source_ids": [
-        "icd10",
-        "icd11"
+        "icd11",
+        "loinc"
       ]
     }
   ]

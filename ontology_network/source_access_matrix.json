@@ -184,7 +184,7 @@
       "authoritative_endpoint": "authority_described_github_not_authoritative",
       "authoritative_endpoint_status": "authority_described_github_not_authoritative",
       "credential_required": false,
-      "declared_language_count": 6,
+      "declared_language_count": 10,
       "github_repositories": [
         "https://github.com/ICD-API"
       ],
@@ -197,21 +197,28 @@
       ],
       "known_blocker_count": 3,
       "language_codes": [
-        "ar",
+        "de-DE",
         "en",
-        "es",
+        "en-AU",
+        "en-CA",
+        "en-GB",
+        "en-US",
+        "es-ES",
         "fr",
-        "ru",
-        "zh"
+        "fr-CA",
+        "fr-FR"
       ],
       "languages": [
         "English",
         "French",
-        "Spanish",
-        "Arabic",
-        "Chinese",
-        "Russian",
-        "plus many national localized variants"
+        "US English",
+        "Canadian English",
+        "Canadian French",
+        "Australian English",
+        "German German",
+        "French French",
+        "European Spanish",
+        "UK English"
       ],
       "license_status": "terms_review_required",
       "local_only_requirements": [

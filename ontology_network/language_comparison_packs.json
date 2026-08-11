@@ -10,7 +10,6 @@
       "language": "ar",
       "maintainer_promotion_decision_required": true,
       "source_ids": [
-        "icd10",
         "icd11",
         "meddra",
         "umls"
@@ -77,6 +76,7 @@
       "language": "de-DE",
       "maintainer_promotion_decision_required": true,
       "source_ids": [
+        "icd10",
         "snomed_ct"
       ]
     },
@@ -126,6 +126,7 @@
       "language": "en-AU",
       "maintainer_promotion_decision_required": true,
       "source_ids": [
+        "icd10",
         "snomed_ct"
       ]
     },
@@ -137,6 +138,7 @@
       "language": "en-CA",
       "maintainer_promotion_decision_required": true,
       "source_ids": [
+        "icd10",
         "snomed_ct"
       ]
     },
@@ -148,6 +150,7 @@
       "language": "en-GB",
       "maintainer_promotion_decision_required": true,
       "source_ids": [
+        "icd10",
         "snomed_ct"
       ]
     },
@@ -159,6 +162,7 @@
       "language": "en-US",
       "maintainer_promotion_decision_required": true,
       "source_ids": [
+        "icd10",
         "snomed_ct"
       ]
     },
@@ -170,7 +174,6 @@
       "language": "es",
       "maintainer_promotion_decision_required": true,
       "source_ids": [
-        "icd10",
         "icd11",
         "loinc",
         "meddra",
@@ -188,6 +191,7 @@
       "language": "es-ES",
       "maintainer_promotion_decision_required": true,
       "source_ids": [
+        "icd10",
         "snomed_ct"
       ]
     },
@@ -263,6 +267,7 @@
       "language": "fr-CA",
       "maintainer_promotion_decision_required": true,
       "source_ids": [
+        "icd10",
         "snomed_ct"
       ]
     },
@@ -274,6 +279,7 @@
       "language": "fr-FR",
       "maintainer_promotion_decision_required": true,
       "source_ids": [
+        "icd10",
         "snomed_ct"
       ]
     },
@@ -504,7 +510,6 @@
       "language": "ru",
       "maintainer_promotion_decision_required": true,
       "source_ids": [
-        "icd10",
         "icd11",
         "loinc",
         "meddra",
@@ -614,7 +619,6 @@
       "language": "zh",
       "maintainer_promotion_decision_required": true,
       "source_ids": [
-        "icd10",
         "icd11",
         "loinc",
         "meddra",
