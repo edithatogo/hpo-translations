@@ -41,6 +41,8 @@ class SourceGovernanceDocketTests(unittest.TestCase):
         )
         self.assertIs(inventory["payload_access_allowed"], False)
         self.assertIs(inventory["promotion_allowed"], False)
+        self.assertEqual(inventory["candidate_hosting"]["status"], "not_authorized")
+        self.assertTrue(inventory["candidate_hosting"]["required_before_upload"])
 
 
 if __name__ == "__main__":

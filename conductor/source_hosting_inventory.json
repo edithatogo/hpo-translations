@@ -6,6 +6,17 @@
   "sources": [],
   "interpretation": "No private GitHub, Hugging Face, or equivalent source has been identified or authorized for these tracks. This is not evidence that none exists.",
   "next_step": "If a private source is identified, populate the authorization fields in the source-governance docket before any payload access.",
+  "candidate_hosting": {
+    "recommended_platform": "Hugging Face private dataset repository",
+    "status": "not_authorized",
+    "rationale": "Versioned nonpublic access can suit personally authorized ontology payloads, but uploading creates a third-party hosted copy and requires explicit rights.",
+    "required_before_upload": [
+      "rightsholder permission or licence covering private cloud hosting",
+      "named Hugging Face account or organization and access roster",
+      "no public Dataset Viewer, inference endpoint, or derivative release",
+      "immutable revision, provenance manifest, retention, deletion, and revocation plan"
+    ]
+  },
   "payload_access_allowed": false,
   "promotion_allowed": false
 }

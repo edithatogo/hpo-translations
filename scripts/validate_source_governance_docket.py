@@ -108,6 +108,11 @@ def main() -> int:
         errors.append("private-source inventory must keep payload access disabled")
     if private_inventory.get("promotion_allowed") is not False:
         errors.append("private-source inventory must keep promotion disabled")
+    candidate_hosting = private_inventory.get("candidate_hosting")
+    if not isinstance(candidate_hosting, dict) or candidate_hosting.get("status") != "not_authorized":
+        errors.append("candidate hosting must remain explicitly unauthorized")
+    if not isinstance(candidate_hosting, dict) or not candidate_hosting.get("required_before_upload"):
+        errors.append("candidate hosting must record required pre-upload controls")
     if errors:
         print("\n".join(errors), file=sys.stderr)
         return 1

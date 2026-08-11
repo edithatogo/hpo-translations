@@ -22,6 +22,20 @@
         "retention, revocation, and redistribution restrictions",
         "local-only manifest before payload access"
       ],
+      "hosting_modes": {
+        "local_only": "default for licensed, restricted, or uncertain payloads",
+        "private_remote_authorized": "permitted only when the rightsholder or licence explicitly allows third-party private cloud hosting and designated-user access",
+        "prohibited": "required where the source licence, agreement, or privacy scope excludes remote hosting"
+      },
+      "private_remote_hosting_requires": [
+        "explicit third-party cloud hosting permission",
+        "named platform and account or organization",
+        "access roster and revocation owner",
+        "immutable revision and provenance manifest",
+        "data residency, retention, deletion, and incident-response assessment",
+        "no public viewer, inference endpoint, or derivative publication"
+      ],
+      "private_remote_copy_is_not_local_only": true,
       "option_a_requires_additional": "explicit permission for repository-visible metadata and derived outputs",
       "never_infer_from": ["private URL", "successful login", "download permission", "Hugging Face or GitHub visibility"]
     },
@@ -41,9 +55,9 @@
     },
     {
       "id": "B",
-      "name": "local_only_authorized_payload",
-      "tradeoff": "enables normalization and validation but adds credential, licence, retention, and audit burden",
-      "rationale": "appropriate when a source permits access but not repository redistribution"
+      "name": "authorized_nonpublic_payload",
+      "tradeoff": "enables normalization and validation but adds cloud-hosting, credential, licence, retention, and audit burden",
+      "rationale": "appropriate when a source permits access but not public repository redistribution; remote private hosting needs separate authority"
     },
     {
       "id": "C",
