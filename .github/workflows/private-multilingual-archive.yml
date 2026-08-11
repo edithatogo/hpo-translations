@@ -1,6 +1,12 @@
 name: Private multilingual source archive
 
 on:
+  push:
+    branches:
+      - codex/post-merge-ontology-governance-20260810
+    paths:
+      - .github/workflows/private-multilingual-archive.yml
+      - scripts/cloud_archive_multilingual_sources.py
   workflow_dispatch:
     inputs:
       source:
@@ -30,24 +36,41 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 240
     environment: private-ontology-archive
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - source: orphanet
+            release: "2026-07"
+          - source: mp
+            release: "v2026-07-22"
+          - source: do
+            release: "v2026-07-31"
+          - source: mesh
+            release: "2026"
+          - source: loinc
+            release: "2.82"
     steps:
       - name: Check out governed automation
+        if: github.event_name == 'push' || matrix.source == inputs.source
         uses: actions/checkout@v4
 
       - name: Install uv
+        if: github.event_name == 'push' || matrix.source == inputs.source
         uses: astral-sh/setup-uv@v6
 
       - name: Archive directly to the private Hugging Face dataset
+        if: github.event_name == 'push' || matrix.source == inputs.source
         env:
           HF_TOKEN: ${{ secrets.HF_ARCHIVE_TOKEN }}
           LOINC_USERNAME: ${{ secrets.LOINC_USERNAME }}
           LOINC_PASSWORD: ${{ secrets.LOINC_PASSWORD }}
         run: >-
           uv run scripts/cloud_archive_multilingual_sources.py
-          --source "${{ inputs.source }}"
+          --source "${{ matrix.source }}"
           --repo-id "edithatogo/hpo-licensed-ontology-archive"
-          --release "${{ inputs.release }}"
+          --release "${{ github.event_name == 'workflow_dispatch' && inputs.release || matrix.release }}"
 
       - name: Remove any ephemeral source payloads
-        if: always()
+        if: always() && (github.event_name == 'push' || matrix.source == inputs.source)
         run: rm -rf /tmp/ontology-archive-*
