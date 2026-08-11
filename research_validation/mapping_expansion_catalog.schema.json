@@ -32,6 +32,10 @@
               {"type": "null"}
             ]
           },
+          "integrity_status": {"enum": ["verified_official_git_commit", "verified_sha256", "unresolved_aggregate_multiple_artifacts", "unresolved_retrieval_not_authorized", "unresolved_mutable_endpoint", "unresolved_third_party_rights", "unresolved_authenticated_access", "unresolved_checksum_not_published", "not_applicable_metadata_document"]},
+          "integrity_reason": {"type": "string", "minLength": 1},
+          "retrieval_gate": {"type": "string", "minLength": 1},
+          "license_gate": {"type": "string", "minLength": 1},
           "lineage_group": {"type": "string", "minLength": 1},
           "status": {"enum": ["sourced_metadata_payload_not_committed", "metadata_registered_access_required", "metadata_registered_rights_review_required", "excluded_stale_or_non_authoritative"]},
           "payload_commit_allowed": {"const": false},

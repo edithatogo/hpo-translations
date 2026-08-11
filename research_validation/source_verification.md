@@ -27,6 +27,22 @@ The HPO release repository points to a separate HPO website license explanation.
 
 Supplementary terminology and ontology access decisions are maintained separately in `supplementary_source_access_reviews.json` and `supplementary_source_access_review.md`. Those decisions do not change the independent-evidence count above and do not authorize payload retrieval.
 
+## Mapping-expansion integrity review, 2026-08-12
+
+The Mondo `v2026-08-04` official Git tag resolves to commit `2d171de47568ccf44e21632995f7c91bef97c5a4`. This pins the aggregate mapping directory without pretending that the directory has one file checksum. No mapping payload was downloaded.
+
+Seven other catalog records deliberately retain null integrity with machine-checked reasons and gates:
+
+- Orphadata Product 1 is a twelve-language, two-format aggregate with different vintages and no single immutable aggregate artifact.
+- NANDO has an exact dated URL, but its approved source review remains metadata-only and does not authorize payload retrieval for hashing.
+- LOINC Ontology requires registered download access and includes SNOMED-governed components.
+- The NCIt–ICD-O package has unresolved embedded WHO ICD-O rights and a mutable product page.
+- SNOMED map products require edition-specific Affiliate or NRC access and target-source terms.
+- `MedGenIDMappings.txt.gz` is a mutable current FTP export without a dated snapshot or provider checksum in the reviewed evidence.
+- The Canadian SNOMED CT–ICD-10-CA map is bilingual but requires both CIHI and SNOMED licences and restricted storage.
+
+These are unresolved integrity states, not failed checksum results. A digest may be added only after exact package identity, retrieval authority, and applicable licence scope are recorded. Public metadata visibility alone is insufficient authority to retrieve a payload for hashing.
+
 ## Primary sources
 
 - https://github.com/obophenotype/human-phenotype-ontology/releases/tag/v2026-06-23
