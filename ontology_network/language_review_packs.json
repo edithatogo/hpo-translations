@@ -1,6 +1,6 @@
 {
   "generated_date": "2026-06-23",
-  "record_count": 32,
+  "record_count": 49,
   "records": [
     {
       "agent_panel_assessment_required": true,
@@ -112,7 +112,6 @@
         "coverage-meddra-de",
         "coverage-mesh-de",
         "coverage-orphanet-de",
-        "coverage-snomed_ct-de",
         "coverage-umls-de"
       ],
       "crosswalk_ids": [
@@ -132,8 +131,61 @@
         "meddra",
         "mesh",
         "orphanet",
-        "snomed_ct",
         "umls"
+      ]
+    },
+    {
+      "agent_panel_assessment_required": true,
+      "agent_panel_role": "language-specialist agent panel",
+      "candidate_count": 0,
+      "candidate_only": true,
+      "conflict_ids": [
+        "conflict-de-AT-metadata"
+      ],
+      "coverage_ids": [
+        "coverage-snomed_ct-de-AT"
+      ],
+      "crosswalk_ids": [
+        "probe-open-related-0001"
+      ],
+      "hpo_ids": [
+        "HP:0000001"
+      ],
+      "language": "de-AT",
+      "maintainer_promotion_decision_required": true,
+      "pack_id": "pack-de-AT-metadata",
+      "promotion_policy": "maintainer_decision_after_agent_panel_assessment",
+      "provenance_id": "prov-review-pack-de-AT",
+      "scope": "payload-free ontology-network metadata probe",
+      "source_ids": [
+        "snomed_ct"
+      ]
+    },
+    {
+      "agent_panel_assessment_required": true,
+      "agent_panel_role": "language-specialist agent panel",
+      "candidate_count": 0,
+      "candidate_only": true,
+      "conflict_ids": [
+        "conflict-de-DE-metadata"
+      ],
+      "coverage_ids": [
+        "coverage-snomed_ct-de-DE"
+      ],
+      "crosswalk_ids": [
+        "probe-open-related-0001"
+      ],
+      "hpo_ids": [
+        "HP:0000001"
+      ],
+      "language": "de-DE",
+      "maintainer_promotion_decision_required": true,
+      "pack_id": "pack-de-DE-metadata",
+      "promotion_policy": "maintainer_decision_after_agent_panel_assessment",
+      "provenance_id": "prov-review-pack-de-DE",
+      "scope": "payload-free ontology-network metadata probe",
+      "source_ids": [
+        "snomed_ct"
       ]
     },
     {
@@ -187,7 +239,6 @@
         "coverage-oncotree-en",
         "coverage-orphanet-en",
         "coverage-pato-en",
-        "coverage-snomed_ct-en",
         "coverage-umls-en",
         "coverage-upheno-en"
       ],
@@ -219,9 +270,116 @@
         "oncotree",
         "orphanet",
         "pato",
-        "snomed_ct",
         "umls",
         "upheno"
+      ]
+    },
+    {
+      "agent_panel_assessment_required": true,
+      "agent_panel_role": "language-specialist agent panel",
+      "candidate_count": 0,
+      "candidate_only": true,
+      "conflict_ids": [
+        "conflict-en-AU-metadata"
+      ],
+      "coverage_ids": [
+        "coverage-snomed_ct-en-AU"
+      ],
+      "crosswalk_ids": [
+        "probe-open-related-0001"
+      ],
+      "hpo_ids": [
+        "HP:0000001"
+      ],
+      "language": "en-AU",
+      "maintainer_promotion_decision_required": true,
+      "pack_id": "pack-en-AU-metadata",
+      "promotion_policy": "maintainer_decision_after_agent_panel_assessment",
+      "provenance_id": "prov-review-pack-en-AU",
+      "scope": "payload-free ontology-network metadata probe",
+      "source_ids": [
+        "snomed_ct"
+      ]
+    },
+    {
+      "agent_panel_assessment_required": true,
+      "agent_panel_role": "language-specialist agent panel",
+      "candidate_count": 0,
+      "candidate_only": true,
+      "conflict_ids": [
+        "conflict-en-CA-metadata"
+      ],
+      "coverage_ids": [
+        "coverage-snomed_ct-en-CA"
+      ],
+      "crosswalk_ids": [
+        "probe-open-related-0001"
+      ],
+      "hpo_ids": [
+        "HP:0000001"
+      ],
+      "language": "en-CA",
+      "maintainer_promotion_decision_required": true,
+      "pack_id": "pack-en-CA-metadata",
+      "promotion_policy": "maintainer_decision_after_agent_panel_assessment",
+      "provenance_id": "prov-review-pack-en-CA",
+      "scope": "payload-free ontology-network metadata probe",
+      "source_ids": [
+        "snomed_ct"
+      ]
+    },
+    {
+      "agent_panel_assessment_required": true,
+      "agent_panel_role": "language-specialist agent panel",
+      "candidate_count": 0,
+      "candidate_only": true,
+      "conflict_ids": [
+        "conflict-en-GB-metadata"
+      ],
+      "coverage_ids": [
+        "coverage-snomed_ct-en-GB"
+      ],
+      "crosswalk_ids": [
+        "probe-open-related-0001"
+      ],
+      "hpo_ids": [
+        "HP:0000001"
+      ],
+      "language": "en-GB",
+      "maintainer_promotion_decision_required": true,
+      "pack_id": "pack-en-GB-metadata",
+      "promotion_policy": "maintainer_decision_after_agent_panel_assessment",
+      "provenance_id": "prov-review-pack-en-GB",
+      "scope": "payload-free ontology-network metadata probe",
+      "source_ids": [
+        "snomed_ct"
+      ]
+    },
+    {
+      "agent_panel_assessment_required": true,
+      "agent_panel_role": "language-specialist agent panel",
+      "candidate_count": 0,
+      "candidate_only": true,
+      "conflict_ids": [
+        "conflict-en-US-metadata"
+      ],
+      "coverage_ids": [
+        "coverage-snomed_ct-en-US"
+      ],
+      "crosswalk_ids": [
+        "probe-open-related-0001"
+      ],
+      "hpo_ids": [
+        "HP:0000001"
+      ],
+      "language": "en-US",
+      "maintainer_promotion_decision_required": true,
+      "pack_id": "pack-en-US-metadata",
+      "promotion_policy": "maintainer_decision_after_agent_panel_assessment",
+      "provenance_id": "prov-review-pack-en-US",
+      "scope": "payload-free ontology-network metadata probe",
+      "source_ids": [
+        "snomed_ct"
       ]
     },
     {
@@ -263,6 +421,33 @@
         "orphanet",
         "snomed_ct",
         "umls"
+      ]
+    },
+    {
+      "agent_panel_assessment_required": true,
+      "agent_panel_role": "language-specialist agent panel",
+      "candidate_count": 0,
+      "candidate_only": true,
+      "conflict_ids": [
+        "conflict-es-ES-metadata"
+      ],
+      "coverage_ids": [
+        "coverage-snomed_ct-es-ES"
+      ],
+      "crosswalk_ids": [
+        "probe-open-related-0001"
+      ],
+      "hpo_ids": [
+        "HP:0000001"
+      ],
+      "language": "es-ES",
+      "maintainer_promotion_decision_required": true,
+      "pack_id": "pack-es-ES-metadata",
+      "promotion_policy": "maintainer_decision_after_agent_panel_assessment",
+      "provenance_id": "prov-review-pack-es-ES",
+      "scope": "payload-free ontology-network metadata probe",
+      "source_ids": [
+        "snomed_ct"
       ]
     },
     {
@@ -367,7 +552,6 @@
         "coverage-meddra-fr",
         "coverage-mesh-fr",
         "coverage-orphanet-fr",
-        "coverage-snomed_ct-fr",
         "coverage-umls-fr"
       ],
       "crosswalk_ids": [
@@ -389,8 +573,88 @@
         "meddra",
         "mesh",
         "orphanet",
-        "snomed_ct",
         "umls"
+      ]
+    },
+    {
+      "agent_panel_assessment_required": true,
+      "agent_panel_role": "language-specialist agent panel",
+      "candidate_count": 0,
+      "candidate_only": true,
+      "conflict_ids": [
+        "conflict-fr-BE-metadata"
+      ],
+      "coverage_ids": [
+        "coverage-snomed_ct-fr-BE"
+      ],
+      "crosswalk_ids": [
+        "probe-open-related-0001"
+      ],
+      "hpo_ids": [
+        "HP:0000001"
+      ],
+      "language": "fr-BE",
+      "maintainer_promotion_decision_required": true,
+      "pack_id": "pack-fr-BE-metadata",
+      "promotion_policy": "maintainer_decision_after_agent_panel_assessment",
+      "provenance_id": "prov-review-pack-fr-BE",
+      "scope": "payload-free ontology-network metadata probe",
+      "source_ids": [
+        "snomed_ct"
+      ]
+    },
+    {
+      "agent_panel_assessment_required": true,
+      "agent_panel_role": "language-specialist agent panel",
+      "candidate_count": 0,
+      "candidate_only": true,
+      "conflict_ids": [
+        "conflict-fr-CA-metadata"
+      ],
+      "coverage_ids": [
+        "coverage-snomed_ct-fr-CA"
+      ],
+      "crosswalk_ids": [
+        "probe-open-related-0001"
+      ],
+      "hpo_ids": [
+        "HP:0000001"
+      ],
+      "language": "fr-CA",
+      "maintainer_promotion_decision_required": true,
+      "pack_id": "pack-fr-CA-metadata",
+      "promotion_policy": "maintainer_decision_after_agent_panel_assessment",
+      "provenance_id": "prov-review-pack-fr-CA",
+      "scope": "payload-free ontology-network metadata probe",
+      "source_ids": [
+        "snomed_ct"
+      ]
+    },
+    {
+      "agent_panel_assessment_required": true,
+      "agent_panel_role": "language-specialist agent panel",
+      "candidate_count": 0,
+      "candidate_only": true,
+      "conflict_ids": [
+        "conflict-fr-FR-metadata"
+      ],
+      "coverage_ids": [
+        "coverage-snomed_ct-fr-FR"
+      ],
+      "crosswalk_ids": [
+        "probe-open-related-0001"
+      ],
+      "hpo_ids": [
+        "HP:0000001"
+      ],
+      "language": "fr-FR",
+      "maintainer_promotion_decision_required": true,
+      "pack_id": "pack-fr-FR-metadata",
+      "promotion_policy": "maintainer_decision_after_agent_panel_assessment",
+      "provenance_id": "prov-review-pack-fr-FR",
+      "scope": "payload-free ontology-network metadata probe",
+      "source_ids": [
+        "snomed_ct"
       ]
     },
     {
@@ -609,6 +873,7 @@
         "conflict-lt-metadata"
       ],
       "coverage_ids": [
+        "coverage-snomed_ct-lt",
         "coverage-umls-lt"
       ],
       "crosswalk_ids": [
@@ -624,6 +889,7 @@
       "provenance_id": "prov-review-pack-lt",
       "scope": "payload-free ontology-network metadata probe",
       "source_ids": [
+        "snomed_ct",
         "umls"
       ]
     },
@@ -660,13 +926,66 @@
       "candidate_count": 0,
       "candidate_only": true,
       "conflict_ids": [
+        "conflict-mi-NZ-metadata"
+      ],
+      "coverage_ids": [
+        "coverage-snomed_ct-mi-NZ"
+      ],
+      "crosswalk_ids": [
+        "probe-open-related-0001"
+      ],
+      "hpo_ids": [
+        "HP:0000001"
+      ],
+      "language": "mi-NZ",
+      "maintainer_promotion_decision_required": true,
+      "pack_id": "pack-mi-NZ-metadata",
+      "promotion_policy": "maintainer_decision_after_agent_panel_assessment",
+      "provenance_id": "prov-review-pack-mi-NZ",
+      "scope": "payload-free ontology-network metadata probe",
+      "source_ids": [
+        "snomed_ct"
+      ]
+    },
+    {
+      "agent_panel_assessment_required": true,
+      "agent_panel_role": "language-specialist agent panel",
+      "candidate_count": 0,
+      "candidate_only": true,
+      "conflict_ids": [
+        "conflict-nb-NO-metadata"
+      ],
+      "coverage_ids": [
+        "coverage-snomed_ct-nb-NO"
+      ],
+      "crosswalk_ids": [
+        "probe-open-related-0001"
+      ],
+      "hpo_ids": [
+        "HP:0000001"
+      ],
+      "language": "nb-NO",
+      "maintainer_promotion_decision_required": true,
+      "pack_id": "pack-nb-NO-metadata",
+      "promotion_policy": "maintainer_decision_after_agent_panel_assessment",
+      "provenance_id": "prov-review-pack-nb-NO",
+      "scope": "payload-free ontology-network metadata probe",
+      "source_ids": [
+        "snomed_ct"
+      ]
+    },
+    {
+      "agent_panel_assessment_required": true,
+      "agent_panel_role": "language-specialist agent panel",
+      "candidate_count": 0,
+      "candidate_only": true,
+      "conflict_ids": [
         "conflict-nl-metadata"
       ],
       "coverage_ids": [
         "coverage-loinc-nl",
         "coverage-meddra-nl",
         "coverage-orphanet-nl",
-        "coverage-snomed_ct-nl",
         "coverage-umls-nl"
       ],
       "crosswalk_ids": [
@@ -685,8 +1004,88 @@
         "loinc",
         "meddra",
         "orphanet",
-        "snomed_ct",
         "umls"
+      ]
+    },
+    {
+      "agent_panel_assessment_required": true,
+      "agent_panel_role": "language-specialist agent panel",
+      "candidate_count": 0,
+      "candidate_only": true,
+      "conflict_ids": [
+        "conflict-nl-BE-metadata"
+      ],
+      "coverage_ids": [
+        "coverage-snomed_ct-nl-BE"
+      ],
+      "crosswalk_ids": [
+        "probe-open-related-0001"
+      ],
+      "hpo_ids": [
+        "HP:0000001"
+      ],
+      "language": "nl-BE",
+      "maintainer_promotion_decision_required": true,
+      "pack_id": "pack-nl-BE-metadata",
+      "promotion_policy": "maintainer_decision_after_agent_panel_assessment",
+      "provenance_id": "prov-review-pack-nl-BE",
+      "scope": "payload-free ontology-network metadata probe",
+      "source_ids": [
+        "snomed_ct"
+      ]
+    },
+    {
+      "agent_panel_assessment_required": true,
+      "agent_panel_role": "language-specialist agent panel",
+      "candidate_count": 0,
+      "candidate_only": true,
+      "conflict_ids": [
+        "conflict-nl-NL-metadata"
+      ],
+      "coverage_ids": [
+        "coverage-snomed_ct-nl-NL"
+      ],
+      "crosswalk_ids": [
+        "probe-open-related-0001"
+      ],
+      "hpo_ids": [
+        "HP:0000001"
+      ],
+      "language": "nl-NL",
+      "maintainer_promotion_decision_required": true,
+      "pack_id": "pack-nl-NL-metadata",
+      "promotion_policy": "maintainer_decision_after_agent_panel_assessment",
+      "provenance_id": "prov-review-pack-nl-NL",
+      "scope": "payload-free ontology-network metadata probe",
+      "source_ids": [
+        "snomed_ct"
+      ]
+    },
+    {
+      "agent_panel_assessment_required": true,
+      "agent_panel_role": "language-specialist agent panel",
+      "candidate_count": 0,
+      "candidate_only": true,
+      "conflict_ids": [
+        "conflict-nn-NO-metadata"
+      ],
+      "coverage_ids": [
+        "coverage-snomed_ct-nn-NO"
+      ],
+      "crosswalk_ids": [
+        "probe-open-related-0001"
+      ],
+      "hpo_ids": [
+        "HP:0000001"
+      ],
+      "language": "nn-NO",
+      "maintainer_promotion_decision_required": true,
+      "pack_id": "pack-nn-NO-metadata",
+      "promotion_policy": "maintainer_decision_after_agent_panel_assessment",
+      "provenance_id": "prov-review-pack-nn-NO",
+      "scope": "payload-free ontology-network metadata probe",
+      "source_ids": [
+        "snomed_ct"
       ]
     },
     {
@@ -698,7 +1097,6 @@
         "conflict-no-metadata"
       ],
       "coverage_ids": [
-        "coverage-snomed_ct-no",
         "coverage-umls-no"
       ],
       "crosswalk_ids": [
@@ -714,7 +1112,6 @@
       "provenance_id": "prov-review-pack-no",
       "scope": "payload-free ontology-network metadata probe",
       "source_ids": [
-        "snomed_ct",
         "umls"
       ]
     },
@@ -835,7 +1232,6 @@
       ],
       "coverage_ids": [
         "coverage-icd11-sk",
-        "coverage-snomed_ct-sk",
         "coverage-umls-sk"
       ],
       "crosswalk_ids": [
@@ -852,7 +1248,6 @@
       "scope": "payload-free ontology-network metadata probe",
       "source_ids": [
         "icd11",
-        "snomed_ct",
         "umls"
       ]
     },
@@ -894,7 +1289,6 @@
       "coverage_ids": [
         "coverage-icd11-sv",
         "coverage-meddra-sv",
-        "coverage-snomed_ct-sv",
         "coverage-umls-sv"
       ],
       "crosswalk_ids": [
@@ -912,8 +1306,61 @@
       "source_ids": [
         "icd11",
         "meddra",
-        "snomed_ct",
         "umls"
+      ]
+    },
+    {
+      "agent_panel_assessment_required": true,
+      "agent_panel_role": "language-specialist agent panel",
+      "candidate_count": 0,
+      "candidate_only": true,
+      "conflict_ids": [
+        "conflict-sv-FI-metadata"
+      ],
+      "coverage_ids": [
+        "coverage-snomed_ct-sv-FI"
+      ],
+      "crosswalk_ids": [
+        "probe-open-related-0001"
+      ],
+      "hpo_ids": [
+        "HP:0000001"
+      ],
+      "language": "sv-FI",
+      "maintainer_promotion_decision_required": true,
+      "pack_id": "pack-sv-FI-metadata",
+      "promotion_policy": "maintainer_decision_after_agent_panel_assessment",
+      "provenance_id": "prov-review-pack-sv-FI",
+      "scope": "payload-free ontology-network metadata probe",
+      "source_ids": [
+        "snomed_ct"
+      ]
+    },
+    {
+      "agent_panel_assessment_required": true,
+      "agent_panel_role": "language-specialist agent panel",
+      "candidate_count": 0,
+      "candidate_only": true,
+      "conflict_ids": [
+        "conflict-sv-SE-metadata"
+      ],
+      "coverage_ids": [
+        "coverage-snomed_ct-sv-SE"
+      ],
+      "crosswalk_ids": [
+        "probe-open-related-0001"
+      ],
+      "hpo_ids": [
+        "HP:0000001"
+      ],
+      "language": "sv-SE",
+      "maintainer_promotion_decision_required": true,
+      "pack_id": "pack-sv-SE-metadata",
+      "promotion_policy": "maintainer_decision_after_agent_panel_assessment",
+      "provenance_id": "prov-review-pack-sv-SE",
+      "scope": "payload-free ontology-network metadata probe",
+      "source_ids": [
+        "snomed_ct"
       ]
     },
     {

@@ -1,6 +1,6 @@
 {
   "generated_date": "2026-06-23",
-  "record_count": 32,
+  "record_count": 49,
   "records": [
     {
       "agent_panel_action": "assess source evidence before the maintainer promotion decision",
@@ -85,6 +85,46 @@
     {
       "agent_panel_action": "assess source evidence before the maintainer promotion decision",
       "agent_panel_assessment_required": true,
+      "conflict_id": "conflict-de-AT-metadata",
+      "conflict_type": "source_disagreement",
+      "count": 0,
+      "evidence_ids": [
+        "probe-open-related-0001"
+      ],
+      "hpo_id": "HP:0000001",
+      "language": "de-AT",
+      "maintainer_promotion_decision_required": true,
+      "provenance_id": "prov-conflict-de-AT",
+      "resolution_status": "needs_review",
+      "severity": "info",
+      "source_ids": [
+        "snomed_ct",
+        "decipher"
+      ]
+    },
+    {
+      "agent_panel_action": "assess source evidence before the maintainer promotion decision",
+      "agent_panel_assessment_required": true,
+      "conflict_id": "conflict-de-DE-metadata",
+      "conflict_type": "source_disagreement",
+      "count": 0,
+      "evidence_ids": [
+        "probe-open-related-0001"
+      ],
+      "hpo_id": "HP:0000001",
+      "language": "de-DE",
+      "maintainer_promotion_decision_required": true,
+      "provenance_id": "prov-conflict-de-DE",
+      "resolution_status": "needs_review",
+      "severity": "info",
+      "source_ids": [
+        "snomed_ct",
+        "decipher"
+      ]
+    },
+    {
+      "agent_panel_action": "assess source evidence before the maintainer promotion decision",
+      "agent_panel_assessment_required": true,
       "conflict_id": "conflict-el-metadata",
       "conflict_type": "source_disagreement",
       "count": 0,
@@ -125,6 +165,86 @@
     {
       "agent_panel_action": "assess source evidence before the maintainer promotion decision",
       "agent_panel_assessment_required": true,
+      "conflict_id": "conflict-en-AU-metadata",
+      "conflict_type": "source_disagreement",
+      "count": 0,
+      "evidence_ids": [
+        "probe-open-related-0001"
+      ],
+      "hpo_id": "HP:0000001",
+      "language": "en-AU",
+      "maintainer_promotion_decision_required": true,
+      "provenance_id": "prov-conflict-en-AU",
+      "resolution_status": "needs_review",
+      "severity": "info",
+      "source_ids": [
+        "snomed_ct",
+        "decipher"
+      ]
+    },
+    {
+      "agent_panel_action": "assess source evidence before the maintainer promotion decision",
+      "agent_panel_assessment_required": true,
+      "conflict_id": "conflict-en-CA-metadata",
+      "conflict_type": "source_disagreement",
+      "count": 0,
+      "evidence_ids": [
+        "probe-open-related-0001"
+      ],
+      "hpo_id": "HP:0000001",
+      "language": "en-CA",
+      "maintainer_promotion_decision_required": true,
+      "provenance_id": "prov-conflict-en-CA",
+      "resolution_status": "needs_review",
+      "severity": "info",
+      "source_ids": [
+        "snomed_ct",
+        "decipher"
+      ]
+    },
+    {
+      "agent_panel_action": "assess source evidence before the maintainer promotion decision",
+      "agent_panel_assessment_required": true,
+      "conflict_id": "conflict-en-GB-metadata",
+      "conflict_type": "source_disagreement",
+      "count": 0,
+      "evidence_ids": [
+        "probe-open-related-0001"
+      ],
+      "hpo_id": "HP:0000001",
+      "language": "en-GB",
+      "maintainer_promotion_decision_required": true,
+      "provenance_id": "prov-conflict-en-GB",
+      "resolution_status": "needs_review",
+      "severity": "info",
+      "source_ids": [
+        "snomed_ct",
+        "decipher"
+      ]
+    },
+    {
+      "agent_panel_action": "assess source evidence before the maintainer promotion decision",
+      "agent_panel_assessment_required": true,
+      "conflict_id": "conflict-en-US-metadata",
+      "conflict_type": "source_disagreement",
+      "count": 0,
+      "evidence_ids": [
+        "probe-open-related-0001"
+      ],
+      "hpo_id": "HP:0000001",
+      "language": "en-US",
+      "maintainer_promotion_decision_required": true,
+      "provenance_id": "prov-conflict-en-US",
+      "resolution_status": "needs_review",
+      "severity": "info",
+      "source_ids": [
+        "snomed_ct",
+        "decipher"
+      ]
+    },
+    {
+      "agent_panel_action": "assess source evidence before the maintainer promotion decision",
+      "agent_panel_assessment_required": true,
       "conflict_id": "conflict-es-metadata",
       "conflict_type": "source_disagreement",
       "count": 0,
@@ -140,6 +260,26 @@
       "source_ids": [
         "icd10",
         "icd11"
+      ]
+    },
+    {
+      "agent_panel_action": "assess source evidence before the maintainer promotion decision",
+      "agent_panel_assessment_required": true,
+      "conflict_id": "conflict-es-ES-metadata",
+      "conflict_type": "source_disagreement",
+      "count": 0,
+      "evidence_ids": [
+        "probe-open-related-0001"
+      ],
+      "hpo_id": "HP:0000001",
+      "language": "es-ES",
+      "maintainer_promotion_decision_required": true,
+      "provenance_id": "prov-conflict-es-ES",
+      "resolution_status": "needs_review",
+      "severity": "info",
+      "source_ids": [
+        "snomed_ct",
+        "decipher"
       ]
     },
     {
@@ -220,6 +360,66 @@
       "source_ids": [
         "icd10",
         "icd11"
+      ]
+    },
+    {
+      "agent_panel_action": "assess source evidence before the maintainer promotion decision",
+      "agent_panel_assessment_required": true,
+      "conflict_id": "conflict-fr-BE-metadata",
+      "conflict_type": "source_disagreement",
+      "count": 0,
+      "evidence_ids": [
+        "probe-open-related-0001"
+      ],
+      "hpo_id": "HP:0000001",
+      "language": "fr-BE",
+      "maintainer_promotion_decision_required": true,
+      "provenance_id": "prov-conflict-fr-BE",
+      "resolution_status": "needs_review",
+      "severity": "info",
+      "source_ids": [
+        "snomed_ct",
+        "decipher"
+      ]
+    },
+    {
+      "agent_panel_action": "assess source evidence before the maintainer promotion decision",
+      "agent_panel_assessment_required": true,
+      "conflict_id": "conflict-fr-CA-metadata",
+      "conflict_type": "source_disagreement",
+      "count": 0,
+      "evidence_ids": [
+        "probe-open-related-0001"
+      ],
+      "hpo_id": "HP:0000001",
+      "language": "fr-CA",
+      "maintainer_promotion_decision_required": true,
+      "provenance_id": "prov-conflict-fr-CA",
+      "resolution_status": "needs_review",
+      "severity": "info",
+      "source_ids": [
+        "snomed_ct",
+        "decipher"
+      ]
+    },
+    {
+      "agent_panel_action": "assess source evidence before the maintainer promotion decision",
+      "agent_panel_assessment_required": true,
+      "conflict_id": "conflict-fr-FR-metadata",
+      "conflict_type": "source_disagreement",
+      "count": 0,
+      "evidence_ids": [
+        "probe-open-related-0001"
+      ],
+      "hpo_id": "HP:0000001",
+      "language": "fr-FR",
+      "maintainer_promotion_decision_required": true,
+      "provenance_id": "prov-conflict-fr-FR",
+      "resolution_status": "needs_review",
+      "severity": "info",
+      "source_ids": [
+        "snomed_ct",
+        "decipher"
       ]
     },
     {
@@ -378,8 +578,8 @@
       "resolution_status": "needs_review",
       "severity": "info",
       "source_ids": [
-        "umls",
-        "decipher"
+        "snomed_ct",
+        "umls"
       ]
     },
     {
@@ -399,6 +599,46 @@
       "severity": "info",
       "source_ids": [
         "umls",
+        "decipher"
+      ]
+    },
+    {
+      "agent_panel_action": "assess source evidence before the maintainer promotion decision",
+      "agent_panel_assessment_required": true,
+      "conflict_id": "conflict-mi-NZ-metadata",
+      "conflict_type": "source_disagreement",
+      "count": 0,
+      "evidence_ids": [
+        "probe-open-related-0001"
+      ],
+      "hpo_id": "HP:0000001",
+      "language": "mi-NZ",
+      "maintainer_promotion_decision_required": true,
+      "provenance_id": "prov-conflict-mi-NZ",
+      "resolution_status": "needs_review",
+      "severity": "info",
+      "source_ids": [
+        "snomed_ct",
+        "decipher"
+      ]
+    },
+    {
+      "agent_panel_action": "assess source evidence before the maintainer promotion decision",
+      "agent_panel_assessment_required": true,
+      "conflict_id": "conflict-nb-NO-metadata",
+      "conflict_type": "source_disagreement",
+      "count": 0,
+      "evidence_ids": [
+        "probe-open-related-0001"
+      ],
+      "hpo_id": "HP:0000001",
+      "language": "nb-NO",
+      "maintainer_promotion_decision_required": true,
+      "provenance_id": "prov-conflict-nb-NO",
+      "resolution_status": "needs_review",
+      "severity": "info",
+      "source_ids": [
+        "snomed_ct",
         "decipher"
       ]
     },
@@ -425,6 +665,66 @@
     {
       "agent_panel_action": "assess source evidence before the maintainer promotion decision",
       "agent_panel_assessment_required": true,
+      "conflict_id": "conflict-nl-BE-metadata",
+      "conflict_type": "source_disagreement",
+      "count": 0,
+      "evidence_ids": [
+        "probe-open-related-0001"
+      ],
+      "hpo_id": "HP:0000001",
+      "language": "nl-BE",
+      "maintainer_promotion_decision_required": true,
+      "provenance_id": "prov-conflict-nl-BE",
+      "resolution_status": "needs_review",
+      "severity": "info",
+      "source_ids": [
+        "snomed_ct",
+        "decipher"
+      ]
+    },
+    {
+      "agent_panel_action": "assess source evidence before the maintainer promotion decision",
+      "agent_panel_assessment_required": true,
+      "conflict_id": "conflict-nl-NL-metadata",
+      "conflict_type": "source_disagreement",
+      "count": 0,
+      "evidence_ids": [
+        "probe-open-related-0001"
+      ],
+      "hpo_id": "HP:0000001",
+      "language": "nl-NL",
+      "maintainer_promotion_decision_required": true,
+      "provenance_id": "prov-conflict-nl-NL",
+      "resolution_status": "needs_review",
+      "severity": "info",
+      "source_ids": [
+        "snomed_ct",
+        "decipher"
+      ]
+    },
+    {
+      "agent_panel_action": "assess source evidence before the maintainer promotion decision",
+      "agent_panel_assessment_required": true,
+      "conflict_id": "conflict-nn-NO-metadata",
+      "conflict_type": "source_disagreement",
+      "count": 0,
+      "evidence_ids": [
+        "probe-open-related-0001"
+      ],
+      "hpo_id": "HP:0000001",
+      "language": "nn-NO",
+      "maintainer_promotion_decision_required": true,
+      "provenance_id": "prov-conflict-nn-NO",
+      "resolution_status": "needs_review",
+      "severity": "info",
+      "source_ids": [
+        "snomed_ct",
+        "decipher"
+      ]
+    },
+    {
+      "agent_panel_action": "assess source evidence before the maintainer promotion decision",
+      "agent_panel_assessment_required": true,
       "conflict_id": "conflict-no-metadata",
       "conflict_type": "source_disagreement",
       "count": 0,
@@ -438,8 +738,8 @@
       "resolution_status": "needs_review",
       "severity": "info",
       "source_ids": [
-        "snomed_ct",
-        "umls"
+        "umls",
+        "decipher"
       ]
     },
     {
@@ -519,7 +819,7 @@
       "severity": "info",
       "source_ids": [
         "icd11",
-        "snomed_ct"
+        "umls"
       ]
     },
     {
@@ -560,6 +860,46 @@
       "source_ids": [
         "icd11",
         "meddra"
+      ]
+    },
+    {
+      "agent_panel_action": "assess source evidence before the maintainer promotion decision",
+      "agent_panel_assessment_required": true,
+      "conflict_id": "conflict-sv-FI-metadata",
+      "conflict_type": "source_disagreement",
+      "count": 0,
+      "evidence_ids": [
+        "probe-open-related-0001"
+      ],
+      "hpo_id": "HP:0000001",
+      "language": "sv-FI",
+      "maintainer_promotion_decision_required": true,
+      "provenance_id": "prov-conflict-sv-FI",
+      "resolution_status": "needs_review",
+      "severity": "info",
+      "source_ids": [
+        "snomed_ct",
+        "decipher"
+      ]
+    },
+    {
+      "agent_panel_action": "assess source evidence before the maintainer promotion decision",
+      "agent_panel_assessment_required": true,
+      "conflict_id": "conflict-sv-SE-metadata",
+      "conflict_type": "source_disagreement",
+      "count": 0,
+      "evidence_ids": [
+        "probe-open-related-0001"
+      ],
+      "hpo_id": "HP:0000001",
+      "language": "sv-SE",
+      "maintainer_promotion_decision_required": true,
+      "provenance_id": "prov-conflict-sv-SE",
+      "resolution_status": "needs_review",
+      "severity": "info",
+      "source_ids": [
+        "snomed_ct",
+        "decipher"
       ]
     },
     {
