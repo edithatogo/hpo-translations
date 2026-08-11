@@ -7,6 +7,7 @@
   "status": "exact_repository_snapshot_payload_set_authorized_for_local_pilot_processing",
   "selected_option": "B",
   "selected_languages": ["es", "ja"],
+  "excluded_language_profiles": [{"asset_suffix": "tw", "scope": "all_payload_source_and_empirical_use", "reason": "unresolved_Tiwi_Twi_identity"}],
   "payloads": [
     {
       "source_id": "hpo-translation-es-repository-snapshot",

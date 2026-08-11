@@ -1582,6 +1582,25 @@ def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[Valid
             registry = load_json(registry_path)
             for message in schema_errors(registry_schema, registry):
                 issues.append(ValidationIssue("registry.invalid", str(registry_path), message))
+            tw_records = [
+                record
+                for record in registry.get("records", [])
+                if isinstance(record, dict) and record.get("current_asset_suffix") == "tw"
+            ]
+            if len(tw_records) != 1 or any(
+                record.get("status") != "excluded"
+                or record.get("empirical_use") != "excluded_from_study"
+                or record.get("exclusion_scope")
+                != "research_validation_20260801_all_stages_sources_fallbacks_analyses_and_claims"
+                for record in tw_records
+            ):
+                issues.append(
+                    ValidationIssue(
+                        "registry.tw_study_exclusion_missing",
+                        str(registry_path),
+                        "tw must remain explicitly excluded from every research-validation study use",
+                    )
+                )
 
     catalog_path = research_root / "source_catalog.json"
     catalog_schema = schemas.get("source_catalog")
@@ -1646,7 +1665,11 @@ def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[Valid
                 if registry_path.exists():
                     registry = load_json(registry_path)
                     for record in registry.get("records", []):
-                        if not isinstance(record, dict) or record.get("status") != "authority_review_required":
+                        if not isinstance(record, dict) or record.get("status") not in {
+                            "authority_review_required",
+                            "unresolved_blocked",
+                            "excluded",
+                        }:
                             continue
                         suffix = record.get("current_asset_suffix")
                         if isinstance(suffix, str):

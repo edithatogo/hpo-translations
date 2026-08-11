@@ -83,8 +83,10 @@ approvals and agent capacity are documented:
 Do not substitute another language automatically if either selected language
 fails its gates. Step down to Option C for the first fully authorized selected
 language, or Option D if neither closes. Do not select a language merely because
-an accessible mirror or aggregator contains labels. Exclude the unresolved `tw`
-profile until its Tiwi/Twi authority and migration direction are resolved.
+an accessible mirror or aggregator contains labels. The unresolved `tw` profile
+is excluded from every stage, fallback, source match, analysis, and claim in
+this study. Its identity may be resolved only through a separate future
+governance action.
 
 ## Recommendation
 
@@ -274,7 +276,7 @@ formal effectiveness hypothesis tests or significance-based progression.
 | High disagreement or abstention | Inspect only prespecified feasibility summaries, revise definitions or training prospectively, and rerun under an amendment | Measurement feasibility, not method quality |
 | Accidental unblinding or payload disclosure | Quarantine affected records, perform the incident process, and rerun only if authorization remains | Unaffected data only, with the deviation disclosed |
 | Community approval is unavailable | Substitute an approved language or step down the design | No inference to the unavailable community |
-| `tw` remains ambiguous | Exclude it | No Tiwi or Twi claim |
+| `tw` remains ambiguous | Keep it excluded from the entire study | No Tiwi or Twi claim |
 
 ## Decision record and downstream owner gates
 

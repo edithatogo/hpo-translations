@@ -33,7 +33,6 @@
   "known_blockers": [
     "Sixteen of eighteen ontology-network registry source versions remain unpinned; separate archive receipts do not substitute for registry or pilot-source approval.",
     "Current ontology-network comparison packs contain zero empirical candidates and are not computed.",
-    "The `tw` profile is described as both Tiwi and Twi; language authority and migration direction are unresolved.",
     "Restricted terminology content requires source-specific license and redistribution review.",
     "The specialist-agent panel is designed but has not run on an authorized empirical sample.",
     "Spanish and Japanese are selected for Option B; the two exact repository payload snapshots are authorized for local processing only after separate language/community-use approval, and no concept sample is approved.",

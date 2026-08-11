@@ -5,6 +5,7 @@
   "decision_source": "user_instruction_select_minimum_viable_pilot_configuration",
   "authority_role": "repository_maintainer",
   "selected_option": "B",
+  "excluded_languages": [{"asset_suffix": "tw", "scope": "all_study_use", "reason": "unresolved_Tiwi_Twi_identity_no_inference_permitted"}],
   "configuration": {
     "name": "lean_two_language_pilot",
     "languages": ["es", "ja"],

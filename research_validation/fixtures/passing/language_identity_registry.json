@@ -3,7 +3,7 @@
   "policy": {
     "authority_required_for_asset_rename": true,
     "standard": "BCP 47",
-    "translation_evidence_ready_requires_zero_unresolved_records": true
+    "translation_evidence_ready_requires_zero_unresolved_included_records": true
   },
   "records": []
 }
