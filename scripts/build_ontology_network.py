@@ -493,6 +493,23 @@ def registry_record(track_dir: Path) -> dict[str, Any]:
     endpoint_state = endpoint_status(profile)
     metadata_sample = approved_metadata_sample(track_dir)
     source_id = source_id_from_track(str(metadata["track_id"]))
+    profile_languages = cast(list[str], profile["languages"])
+    profile_language_codes = language_codes(profile_languages)
+    profile_declared_language_count = declared_language_count(profile_languages)
+    language_inventory: dict[str, Any] = {}
+    if source_id == "loinc":
+        inventory_path = track_dir / "regional_language_inventory_2_82.json"
+        inventory = load_json(inventory_path)
+        variants = cast(list[dict[str, Any]], inventory["regional_variants"])
+        profile_languages = [str(row["name"]) for row in variants]
+        profile_language_codes = [str(row["bcp47"]) for row in variants]
+        profile_declared_language_count = int(inventory["regional_variant_count"])
+        language_inventory = {
+            "language_inventory_path": inventory_path.as_posix(),
+            "language_inventory_release": inventory["package_release"],
+            "regional_language_variants": variants,
+            "translation_vintage_policy": inventory["interpretation"],
+        }
     return {
         "source_id": source_id,
         "track_id": metadata["track_id"],
@@ -511,12 +528,13 @@ def registry_record(track_dir: Path) -> dict[str, Any]:
         "license_review_required": "review_required" in source_status
         or source_class in LOCAL_ONLY_ACCESS_CLASSES
         or bool(restricted_sources),
-        "languages": profile["languages"],
-        "language_codes": language_codes(cast(list[str], profile["languages"])),
-        "declared_language_count": declared_language_count(cast(list[str], profile["languages"])),
+        "languages": profile_languages,
+        "language_codes": profile_language_codes,
+        "declared_language_count": profile_declared_language_count,
         "language_normalization_status": language_normalization_status(cast(list[str], profile["languages"])),
-        "language_count": len(language_codes(cast(list[str], profile["languages"]))),
+        "language_count": len(profile_language_codes),
         **source_language_inventory(track_dir, source_id),
+        **language_inventory,
         "github_repositories": profile["github_repositories"],
         "github_repository_count": len(profile["github_repositories"]),
         "github_repository_roles": github_repository_roles(

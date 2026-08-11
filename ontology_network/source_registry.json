@@ -958,7 +958,7 @@
         "review pack structure without restricted labels"
       ],
       "credential_required": true,
-      "declared_language_count": 11,
+      "declared_language_count": 21,
       "description": "Integrate LOINC into terminology and translation support",
       "expected_blockers": [
         "Part names, long names, and component strings may conflict as candidate evidence.",
@@ -988,32 +988,54 @@
         "LOINC account, license, and payload handling must be cleared before committing labels, long names, part names, linguistic variants, full responses, or release payload rows."
       ],
       "language_codes": [
-        "de",
-        "en",
-        "es",
-        "fr",
-        "it",
-        "ko",
-        "nl",
-        "pt",
-        "ru",
-        "tr",
-        "zh"
+        "ar-JO",
+        "cs-CZ",
+        "de-AT",
+        "de-DE",
+        "el-GR",
+        "es-AR",
+        "es-ES",
+        "es-MX",
+        "et-EE",
+        "fr-BE",
+        "fr-CA",
+        "fr-FR",
+        "it-IT",
+        "ko-KR",
+        "nl-NL",
+        "pl-PL",
+        "pt-BR",
+        "ru-RU",
+        "tr-TR",
+        "uk-UA",
+        "zh-CN"
       ],
-      "language_count": 11,
+      "language_count": 21,
+      "language_inventory_path": "conductor/tracks/loinc_integration_20260623/regional_language_inventory_2_82.json",
+      "language_inventory_release": "2.82",
       "language_normalization_status": "normalized_listed_languages",
       "languages": [
-        "English",
-        "French",
-        "German",
-        "Italian",
-        "Spanish",
-        "Chinese",
-        "Korean",
-        "Dutch",
-        "Portuguese",
-        "Russian",
-        "Turkish"
+        "Arabic (Jordan)",
+        "Czech (Czechia)",
+        "German (Austria)",
+        "German (Germany)",
+        "Greek (Greece)",
+        "Spanish (Argentina)",
+        "Spanish (Spain)",
+        "Spanish (Mexico)",
+        "Estonian (Estonia)",
+        "French (Belgium)",
+        "French (Canada)",
+        "French (France)",
+        "Italian (Italy)",
+        "Korean (Republic of Korea)",
+        "Dutch (Netherlands)",
+        "Polish (Poland)",
+        "Portuguese (Brazil)",
+        "Russian (Russian Federation)",
+        "Turkish (Turkey)",
+        "Ukrainian (Ukraine)",
+        "Chinese (China)"
       ],
       "license_review_required": true,
       "license_status": "free_account_license_review_required",
@@ -1038,6 +1060,114 @@
         "spec_path": "conductor\\tracks\\loinc_integration_20260623\\spec.md"
       },
       "redistribution_status": "restricted_no_payload_redistribution",
+      "regional_language_variants": [
+        {
+          "bcp47": "ar-JO",
+          "last_updated_in_loinc_version": "2.82",
+          "name": "Arabic (Jordan)"
+        },
+        {
+          "bcp47": "cs-CZ",
+          "last_updated_in_loinc_version": "2.82",
+          "name": "Czech (Czechia)"
+        },
+        {
+          "bcp47": "de-AT",
+          "last_updated_in_loinc_version": "2.81",
+          "name": "German (Austria)"
+        },
+        {
+          "bcp47": "de-DE",
+          "last_updated_in_loinc_version": "2.82",
+          "name": "German (Germany)"
+        },
+        {
+          "bcp47": "el-GR",
+          "last_updated_in_loinc_version": "2.81",
+          "name": "Greek (Greece)"
+        },
+        {
+          "bcp47": "es-AR",
+          "last_updated_in_loinc_version": "2.15",
+          "name": "Spanish (Argentina)"
+        },
+        {
+          "bcp47": "es-ES",
+          "last_updated_in_loinc_version": "2.82",
+          "name": "Spanish (Spain)"
+        },
+        {
+          "bcp47": "es-MX",
+          "last_updated_in_loinc_version": "2.72",
+          "name": "Spanish (Mexico)"
+        },
+        {
+          "bcp47": "et-EE",
+          "last_updated_in_loinc_version": "2.23",
+          "name": "Estonian (Estonia)"
+        },
+        {
+          "bcp47": "fr-BE",
+          "last_updated_in_loinc_version": "2.47",
+          "name": "French (Belgium)"
+        },
+        {
+          "bcp47": "fr-CA",
+          "last_updated_in_loinc_version": "2.82",
+          "name": "French (Canada)"
+        },
+        {
+          "bcp47": "fr-FR",
+          "last_updated_in_loinc_version": "2.79",
+          "name": "French (France)"
+        },
+        {
+          "bcp47": "it-IT",
+          "last_updated_in_loinc_version": "2.82",
+          "name": "Italian (Italy)"
+        },
+        {
+          "bcp47": "ko-KR",
+          "last_updated_in_loinc_version": "2.27",
+          "name": "Korean (Republic of Korea)"
+        },
+        {
+          "bcp47": "nl-NL",
+          "last_updated_in_loinc_version": "2.82",
+          "name": "Dutch (Netherlands)"
+        },
+        {
+          "bcp47": "pl-PL",
+          "last_updated_in_loinc_version": "2.81",
+          "name": "Polish (Poland)"
+        },
+        {
+          "bcp47": "pt-BR",
+          "last_updated_in_loinc_version": "2.51",
+          "name": "Portuguese (Brazil)"
+        },
+        {
+          "bcp47": "ru-RU",
+          "last_updated_in_loinc_version": "2.65",
+          "name": "Russian (Russian Federation)"
+        },
+        {
+          "bcp47": "tr-TR",
+          "last_updated_in_loinc_version": "2.56",
+          "name": "Turkish (Turkey)"
+        },
+        {
+          "bcp47": "uk-UA",
+          "last_updated_in_loinc_version": "2.79",
+          "name": "Ukrainian (Ukraine)"
+        },
+        {
+          "bcp47": "zh-CN",
+          "last_updated_in_loinc_version": "2.82",
+          "name": "Chinese (China)",
+          "script_status": "authority_uses_country_variant_not_explicit_script_tag"
+        }
+      ],
       "release_safe": false,
       "restricted_sources": [
         "LOINC"
@@ -1054,6 +1184,7 @@
       "source_version": null,
       "track_id": "loinc_integration_20260623",
       "track_status": "phase_0_implemented_blocked",
+      "translation_vintage_policy": "package_release_is_not_translation_vintage",
       "usefulness": "Laboratory and clinical observation terminology alignment.",
       "version_status": "not_pinned_in_track_metadata"
     },

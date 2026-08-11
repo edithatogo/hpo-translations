@@ -197,6 +197,9 @@ class OntologyNetworkTests(unittest.TestCase):
         self.assertIn("pt-BR", records["meddra"]["language_codes"])
         self.assertNotIn("tr", records["meddra"]["language_codes"])
         self.assertEqual(records["meddra"]["language_inventory_release"], "29.0")
+        self.assertEqual(records["loinc"]["declared_language_count"], 21)
+        self.assertTrue({"fr-CA", "es-MX", "zh-CN"} <= set(records["loinc"]["language_codes"]))
+        self.assertEqual(records["loinc"]["translation_vintage_policy"], "package_release_is_not_translation_vintage")
         self.assertEqual(records["omim"]["language_codes"], ["en"])
         self.assertTrue(
             {"en-CA", "fr-CA", "en-AU", "de-DE", "fr-FR", "es-ES", "en-GB", "en-US"}
