@@ -54,7 +54,7 @@ Establish a preregisterable, version-pinned research programme that evaluates wh
 
 - Validate language identity using BCP 47 language, script, region, and variant subtags.
 - Record terminology register and intended audience separately from language identity.
-- Treat the current `tw` Tiwi/Twi identity conflict as blocked until the language authority confirms the intended identity and migration path.
+- Exclude the unresolved `tw` profile from every stage, source match, fallback, analysis, and claim in this study. Retain its files unchanged as opaque legacy assets; identity resolution or migration requires a separate future governance action.
 - Require community authority, consent, attribution, culturally restricted-term handling, model-use permission, benefit, and withdrawal rules for community-governed languages.
 
 ## Non-Functional Requirements
@@ -91,4 +91,3 @@ Establish a preregisterable, version-pinned research programme that evaluates wh
 - DeCS, Mondo, PRO-CTCAE, WHO ICF, NCIt/NCI dictionaries, and RadLex subject to source-specific terms.
 - Uberon, Cell Ontology, GO, ChEBI, NBO, PATO, and uPheno for compositional-semantic evidence.
 - Properly licensed usage corpora for attestation and downstream evaluation.
-

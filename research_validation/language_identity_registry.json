@@ -1,9 +1,9 @@
 {
-  "generated_date": "2026-08-02",
+  "generated_date": "2026-08-11",
   "policy": {
     "authority_required_for_asset_rename": true,
     "standard": "BCP 47",
-    "translation_evidence_ready_requires_zero_unresolved_records": true
+    "translation_evidence_ready_requires_zero_unresolved_included_records": true
   },
   "records": [
     {
@@ -25,7 +25,7 @@
       "iana_registry_uri": "https://www.iana.org/assignments/language-subtag-registry",
       "iana_registry_retrieved_at": "2026-08-02",
       "candidate_iso6393": {"tw": "twi", "tiw": "Tiwi"},
-      "decision": "unresolved_blocked",
+      "decision": "excluded_from_research_validation_20260801_without_identity_inference",
       "compatibility_alias": "tw retained as opaque legacy suffix only",
       "migration_plan": "if Tiwi confirmed, canonicalize to tiw with explicit alias mapping; if Twi confirmed, retain tw and correct metadata; never silently reinterpret",
       "authority_request": {
@@ -35,9 +35,11 @@
       },
       "evidence_expiry": "12 months or standards/source change",
       "issue_id": "language-identity-tw-0001",
-      "required_action": "Confirm the intended language and approve a compatibility and asset-migration plan before changing identifiers or translation content.",
-      "status": "authority_review_required",
-      "empirical_use": "excluded_from_overlap_counts_and_pilot_claims"
+      "required_action": "Do not sample, match, rename, reinterpret, or report this profile in research_validation_20260801; resolve identity only under a separate future governance action.",
+      "status": "excluded",
+      "exclusion_scope": "research_validation_20260801_all_stages_sources_fallbacks_analyses_and_claims",
+      "exclusion_authority": "repository_maintainer_user_instruction_2026-08-11",
+      "empirical_use": "excluded_from_study"
     }
   ]
 }
