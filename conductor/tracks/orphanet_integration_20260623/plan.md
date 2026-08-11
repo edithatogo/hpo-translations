@@ -32,7 +32,7 @@ This plan introduces Orphanet into the project where it can improve terminology 
 - [x] **Task 1:** Confirm authoritative release source, license, and redistribution constraints.
   - Orphadata Science is public CC BY 4.0; other catalogue products remain DTA/pricing gated.
 - [x] **Task 2:** Record supported languages and source-version metadata.
-  - April 2026 catalogue metadata and BCP-47 language/provenance requirements are recorded; payload access remains gated.
+  - Product-scoped metadata is recorded in `product_language_inventory.json`: nine nomenclature-pack languages, twelve Product 1 alignment languages with per-language vintages, and seven Product 4 HPO-phenotype languages. Payload access and empirical use remain gated.
 - [x] **Task 3:** List relevant GitHub repositories (catalogue reference only; product-specific access remains gated):
   - https://github.com/Orphanet
 

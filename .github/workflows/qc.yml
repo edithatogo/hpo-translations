@@ -91,6 +91,9 @@ jobs:
       - name: Validate language readiness catalog
         run: pixi run validate-language-readiness
 
+      - name: Validate Orphadata product inventory
+        run: pixi run validate-orphadata-inventory
+
       - name: Validate approved metadata-only samples
         run: pixi run validate-metadata-only-samples
 
