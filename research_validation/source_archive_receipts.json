@@ -4,7 +4,7 @@
   "status": "metadata_only_archive_receipts_no_payload_authority",
   "inventory_ref": "conductor/source_hosting_inventory.json",
   "archive_target": "edithatogo/hpo-licensed-ontology-archive",
-  "archive_revision": "86806ad96f88c510eb361ced5938d253e1c39b94",
+  "archive_revision": "130c1a1b9b5ad2cf61f8b7ee0e57e3d2a8b05cd6",
   "receipts": [
     {
       "source_id": "do",
@@ -32,6 +32,27 @@
       "release": "v2025-10-12",
       "archive_path": "releases/upheno/v2025-10-12/upheno-base.obo",
       "sha256": "c63efe651fa34c3349879014d4298799445cd6e485a5bfde608676f4875a079d",
+      "research_effect": "version_and_integrity_evidence_only"
+    },
+    {
+      "source_id": "loinc",
+      "release": "2.82",
+      "archive_path": "releases/loinc/2.82/Loinc_2.82.zip",
+      "sha256": "6844c04ee57cb9b77050df54f4b0a5b82cd6be520cad9245e8de54db0638dd62",
+      "research_effect": "version_and_integrity_evidence_only"
+    },
+    {
+      "source_id": "mesh",
+      "release": "2026",
+      "archive_path": "receipts/mesh-2026.json",
+      "sha256": "d0961caeebaab3b8354eb5a7bd8cac8c839452293660c3515964b141562af49e",
+      "research_effect": "version_and_integrity_evidence_only"
+    },
+    {
+      "source_id": "orphanet",
+      "release": "2026-07",
+      "archive_path": "receipts/orphanet-2026-07-multilingual.json",
+      "sha256": "e27362fc5df271904eb7a967b627913e83d563d13a8354c0624115e0e907cd93",
       "research_effect": "version_and_integrity_evidence_only"
     }
   ],

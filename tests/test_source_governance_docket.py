@@ -60,7 +60,10 @@ class SourceGovernanceDocketTests(unittest.TestCase):
         )
         self.assertTrue(inventory["candidate_hosting"]["source_archiving_authorization"])
         archived = [source for source in inventory["sources"] if source["status"] == "archived_private"]
-        self.assertEqual({source["source_id"] for source in archived}, {"do", "mp", "pato", "upheno"})
+        self.assertEqual(
+            {source["source_id"] for source in archived},
+            {"do", "loinc", "mesh", "mp", "orphanet", "pato", "upheno"},
+        )
         self.assertTrue(inventory["candidate_hosting"]["required_before_upload"])
 
 

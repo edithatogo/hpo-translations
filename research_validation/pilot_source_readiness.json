@@ -23,7 +23,7 @@
     },
     {
       "layer": "owner_only_archive_receipts",
-      "record_count": 4,
+      "record_count": 7,
       "scope": "version_and_integrity_receipts_only",
       "payload_or_source_atom_authority": false
     }

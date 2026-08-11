@@ -35,15 +35,36 @@
     {"source_id": "fma", "status": "pending_authoritative_release_locator"},
     {"source_id": "icd10", "status": "pending_designated_licensed_release_locator"},
     {"source_id": "lddb", "status": "blocked_no_authoritative_source_identified"},
-    {"source_id": "loinc", "status": "pending_authenticated_download"},
-    {"source_id": "mesh", "status": "pending_authoritative_release_locator"},
-    {"source_id": "orphanet", "status": "pending_authoritative_orphadata_release_locator"}
+    {
+      "source_id": "loinc",
+      "status": "archived_private",
+      "release": "2.82",
+      "archive_path": "releases/loinc/2.82/Loinc_2.82.zip",
+      "sha256": "6844c04ee57cb9b77050df54f4b0a5b82cd6be520cad9245e8de54db0638dd62"
+    },
+    {
+      "source_id": "mesh",
+      "status": "archived_private",
+      "release": "2026",
+      "archive_path": "receipts/mesh-2026.json",
+      "sha256": "d0961caeebaab3b8354eb5a7bd8cac8c839452293660c3515964b141562af49e"
+    },
+    {
+      "source_id": "orphanet",
+      "status": "archived_private",
+      "release": "2026-07",
+      "archive_path": "receipts/orphanet-2026-07-multilingual.json",
+      "sha256": "e27362fc5df271904eb7a967b627913e83d563d13a8354c0624115e0e907cd93"
+    }
   ],
-  "interpretation": "Four source releases have been archived to the approved owner-only private Hugging Face dataset. The remaining entries are explicit intake states, not source-content approval or downstream promotion approval.",
-  "next_step": "Resolve each pending source's official release locator or authenticated download path, then archive one immutable release with a checksum receipt.",
+  "interpretation": "Seven source releases have been verified in the approved owner-only private Hugging Face dataset. FMA, ICD-10, and LDDB remain explicit intake states. Private archive completion is not source-content approval or downstream promotion approval.",
+  "next_step": "Resolve FMA and ICD-10 release/licence locators and retain LDDB as no-go until a maintained authority is identified. Keep archived payload use and promotion disabled pending their separate gates.",
   "multilingual_expansion": {
-    "status": "cloud_workflow_ready_external_execution_pending",
+    "status": "complete_verified",
     "prepared_at": "2026-08-11",
+    "verified_at": "2026-08-11",
+    "github_run": "https://github.com/edithatogo/hpo-translations/actions/runs/31471912686",
+    "archive_revision": "130c1a1b9b5ad2cf61f8b7ee0e57e3d2a8b05cd6",
     "workflow": ".github/workflows/private-multilingual-archive.yml",
     "implementation": "scripts/cloud_archive_multilingual_sources.py",
     "destination": "edithatogo/hpo-licensed-ontology-archive",
@@ -55,21 +76,21 @@
         "languages": ["cs", "de", "en", "es", "fr", "it", "nl", "pl", "pt", "tr", "uk", "zh"],
         "artifact_count": 34,
         "formats": {"xml": 12, "json_tar_gz": 12, "diff": 10},
-        "execution_state": "workflow_ready"
+        "execution_state": "complete_verified"
       },
       {
         "source_id": "mp",
         "release": "v2026-07-22",
         "languages": ["en", "ja"],
         "language_products": ["mp-international.owl", "mp-ja.babelon.owl", "mp-ja.babelon.tsv", "mp-ja.synonyms.tsv"],
-        "execution_state": "workflow_ready"
+        "execution_state": "complete_verified"
       },
       {
         "source_id": "do",
         "release": "v2026-07-31",
         "languages": ["en", "es"],
         "language_products": ["doid-es.obo", "doid-es.owl", "doid-international.owl", "Spanish translation working tables"],
-        "execution_state": "workflow_ready"
+        "execution_state": "complete_verified"
       },
       {
         "source_id": "pato",
@@ -89,14 +110,14 @@
         "source_id": "mesh",
         "release": "2026",
         "languages": ["en"],
-        "execution_state": "workflow_ready",
+        "execution_state": "complete_verified",
         "scope_note": "The official NLM bulk distribution is English; independently stewarded national translations require separate source records."
       },
       {
         "source_id": "loinc",
         "release": "2.82",
         "languages": ["ar-JO", "cs-CZ", "de-AT", "de-DE", "el-GR", "es-AR", "es-ES", "es-MX", "et-EE", "fr-BE", "fr-CA", "fr-FR", "it-IT", "ko-KR", "nl-NL", "pl-PL", "pt-BR", "ru-RU", "tr-TR", "uk-UA", "zh-CN"],
-        "execution_state": "workflow_ready_credentials_pending",
+        "execution_state": "complete_verified",
         "required_secrets": ["LOINC_USERNAME", "LOINC_PASSWORD"]
       }
     ],
@@ -109,8 +130,8 @@
       },
       {
         "platform": "GitHub Actions",
-        "state": "external_execution_pending",
-        "reason": "Workflow and secret must exist on the hosted repository before dispatch."
+        "state": "complete_verified",
+        "reason": "Run 31471912686 completed successfully after a failed-job-only LOINC credential normalization rerun."
       }
     ]
   },
@@ -124,7 +145,7 @@
     "archive_target": "edithatogo/hpo-licensed-ontology-archive",
     "repository_creation_status": "created_private_owner_only",
     "repository_creation_evidence": "2026-08-11: authenticated Hugging Face CLI created edithatogo/hpo-licensed-ontology-archive and verified private=true at immutable revision d539dd0a7b4fea32674c9b1c6e6a43d36774156b.",
-    "latest_verified_archive_revision": "86806ad96f88c510eb361ced5938d253e1c39b94",
+    "latest_verified_archive_revision": "130c1a1b9b5ad2cf61f8b7ee0e57e3d2a8b05cd6",
     "required_before_upload": [
       "source-specific rightsholder permission or licence scope covering the intended payload and private cloud hosting",
       "named Hugging Face account or organization and owner-only access confirmation",

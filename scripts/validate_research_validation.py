@@ -78,7 +78,15 @@ EXPECTED_PHASE_4_WAVE_2_SPONSOR_ROUTE_IDS = {
     "nsw_health_islhd_sponsored_or_site",
     "cross_institutional",
 }
-EXPECTED_PRIVATE_ARCHIVE_SOURCE_IDS = {"do", "mp", "pato", "upheno"}
+EXPECTED_PRIVATE_ARCHIVE_SOURCE_IDS = {
+    "do",
+    "loinc",
+    "mesh",
+    "mp",
+    "orphanet",
+    "pato",
+    "upheno",
+}
 
 
 @dataclass(frozen=True)
