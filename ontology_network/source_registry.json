@@ -493,7 +493,7 @@
         "review pack structure without restricted labels"
       ],
       "credential_required": false,
-      "declared_language_count": 6,
+      "declared_language_count": 10,
       "description": "Integrate ICD-10 into terminology and translation support",
       "expected_blockers": [
         "Localized variant selection must be explicit before candidate evidence is generated.",
@@ -517,23 +517,30 @@
         "Terms, national variant selection, and payload handling must be cleared before committing ICD-10 labels, synonyms, definitions, full responses, or release payload rows."
       ],
       "language_codes": [
-        "ar",
+        "de-DE",
         "en",
-        "es",
+        "en-AU",
+        "en-CA",
+        "en-GB",
+        "en-US",
+        "es-ES",
         "fr",
-        "ru",
-        "zh"
+        "fr-CA",
+        "fr-FR"
       ],
-      "language_count": 6,
-      "language_normalization_status": "partial_multilingual_declaration",
+      "language_count": 10,
+      "language_normalization_status": "normalized_listed_languages",
       "languages": [
         "English",
         "French",
-        "Spanish",
-        "Arabic",
-        "Chinese",
-        "Russian",
-        "plus many national localized variants"
+        "US English",
+        "Canadian English",
+        "Canadian French",
+        "Australian English",
+        "German German",
+        "French French",
+        "European Spanish",
+        "UK English"
       ],
       "license_review_required": true,
       "license_status": "terms_review_required",

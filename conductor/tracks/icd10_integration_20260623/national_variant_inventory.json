@@ -1,0 +1,129 @@
+{
+  "schema_version": "icd10-national-variant-inventory-v1",
+  "status": "catalogued_metadata_only",
+  "payload_incorporated": false,
+  "variant_profiles": [
+    {
+      "profile_id": "who_icd10_2019",
+      "jurisdiction": "WHO",
+      "classification": "ICD-10",
+      "release": "2019",
+      "languages": ["en"],
+      "role": "international disease classification",
+      "authority_url": "https://www.who.int/standards/classifications/classification-of-diseases/5",
+      "api_note": "official API also exposes 2016 and 2010 English and 2008 English/French",
+      "licence_gate": "WHO translation reproduction and distribution terms"
+    },
+    {
+      "profile_id": "icd10cm_us_2026",
+      "jurisdiction": "United States",
+      "classification": "ICD-10-CM",
+      "release": "FY2026 with 2026-04-01 update",
+      "languages": ["en-US"],
+      "role": "diagnosis classification",
+      "authority_url": "https://www.cdc.gov/nchs/icd/icd-10-cm/files.html",
+      "licence_gate": "CDC product and incorporated WHO content terms"
+    },
+    {
+      "profile_id": "icd10pcs_us_2026",
+      "jurisdiction": "United States",
+      "classification": "ICD-10-PCS",
+      "release": "FY2026",
+      "languages": ["en-US"],
+      "role": "inpatient procedure classification; not phenotype or disease-label evidence",
+      "authority_url": "https://www.cms.gov/medicare/coding-billing/ICD-10-codes",
+      "licence_gate": "CMS product terms"
+    },
+    {
+      "profile_id": "icd10ca_ca_2022",
+      "jurisdiction": "Canada",
+      "classification": "ICD-10-CA / CIM-10-CA",
+      "release": "v2022 frozen with controlled provisional U50-U99 updates",
+      "languages": ["en-CA", "fr-CA"],
+      "role": "Canadian morbidity classification",
+      "authority_url": "https://www.cihi.ca/en/submit-data-and-view-standards/codes-classifications-and-terminologies",
+      "licence_gate": "CIHI licence agreement; machine-readable ClaML request/contact gate"
+    },
+    {
+      "profile_id": "icd10am_au_13",
+      "jurisdiction": "Australia",
+      "classification": "ICD-10-AM with ACHI and ACS",
+      "release": "13th Edition effective 2025-07-01",
+      "languages": ["en-AU"],
+      "role": "Australian diagnosis classification paired with intervention and coding standards",
+      "authority_url": "https://www.ihacpa.gov.au/resources/icd-10-amachiacs-thirteenth-edition",
+      "licence_gate": "IHACPA product access and licence terms"
+    },
+    {
+      "profile_id": "icd10gm_de_2026",
+      "jurisdiction": "Germany",
+      "classification": "ICD-10-GM",
+      "release": "2026",
+      "languages": ["de-DE"],
+      "role": "German modification",
+      "authority_url": "https://klassifikationen.bfarm.de/icd-10-gm/kode-suche/htmlgm2026/",
+      "licence_gate": "WHO and BfArM copyright and download conditions"
+    },
+    {
+      "profile_id": "cim10fr_fr_2025",
+      "jurisdiction": "France",
+      "classification": "CIM-10-FR",
+      "release": "2025 PMSI edition",
+      "languages": ["fr-FR"],
+      "role": "French national extension",
+      "authority_url": "https://www.atih.sante.fr/sites/default/files/public/content/4901/info_maj_cim10_2025.pdf",
+      "licence_gate": "ATIH and incorporated WHO terms"
+    },
+    {
+      "profile_id": "cie10es_es_2026",
+      "jurisdiction": "Spain",
+      "classification": "CIE-10-ES",
+      "release": "6th Edition effective 2026-01-01",
+      "languages": ["es-ES"],
+      "role": "Spanish diagnosis and procedure classification",
+      "authority_url": "https://www.sanidad.gob.es/estadEstudios/estadisticas/normalizacion/home.htm",
+      "derivation": "diagnoses derived from ICD-10-CM; procedures derived from ICD-10-PCS; not an independent lineage",
+      "licence_gate": "Spanish authority and incorporated source terms"
+    },
+    {
+      "profile_id": "icd10_uk_5e_2025",
+      "jurisdiction": "United Kingdom",
+      "classification": "ICD-10 Fifth Edition",
+      "release": "Fifth Edition with annual metadata and coding updates",
+      "languages": ["en-GB"],
+      "role": "UK national standard",
+      "authority_url": "https://digital.nhs.uk/services/terminology-and-classifications",
+      "licence_gate": "WHO licence for NHS use and NHS release terms"
+    }
+  ],
+  "mapping_profiles": [
+    {
+      "map_id": "snomedctca_to_icd10ca_2026_03_25",
+      "direction": "SNOMED CT Canadian Edition to ICD-10-CA",
+      "languages": ["en-CA", "fr-CA"],
+      "reported_size": "more than 120000 rule-based mappings",
+      "release_date": "2026-03-25",
+      "authority_url": "https://www.cihi.ca/en/snomed-ct-ca-to-icd-10-ca-maps",
+      "coverage_caveat": "not every SNOMED CT CA term has a French translation",
+      "licence_gate": "both CIHI ICD-10-CA and SNOMED CT licences; restricted storage"
+    },
+    {
+      "map_id": "uk_snomedct_to_icd10",
+      "direction": "SNOMED CT UK to ICD-10",
+      "languages": ["en-GB"],
+      "release": null,
+      "authority_url": "https://digital.nhs.uk/services/terminology-and-classifications",
+      "licence_gate": "NHS terminology service and source classification terms"
+    }
+  ],
+  "discovery_candidates": [
+    {"jurisdiction": "China", "classification": "Chinese clinical modification", "status": "national_authority_release_and_rights_unverified"},
+    {"jurisdiction": "Sweden", "classification": "Swedish extensions", "status": "national_authority_release_and_rights_unverified"}
+  ],
+  "hpo_mapping_policy": {
+    "direct_official_hpo_icd10_map_found": false,
+    "umls_bridge": "HPO to UMLS CUI to exact ICD source atom is candidate evidence only; preserve SAB VSAB AUI CODE version jurisdiction and language",
+    "preferred_maps": "use authoritative national SNOMED-to-ICD maps when available",
+    "prohibited_inference": "do not collapse national variants by shared code text or UMLS CUI"
+  }
+}

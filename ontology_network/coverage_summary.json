@@ -1,6 +1,6 @@
 {
   "generated_date": "2026-06-23",
-  "record_count": 129,
+  "record_count": 133,
   "records": [
     {
       "coverage_id": "coverage-decipher-en",
@@ -51,13 +51,13 @@
       "total_hpo_terms": 0
     },
     {
-      "coverage_id": "coverage-icd10-ar",
+      "coverage_id": "coverage-icd10-de-DE",
       "coverage_ratio": 0.0,
       "covered_hpo_terms": 0,
       "hpo_branch_id": "HP:0000118",
-      "language": "ar",
+      "language": "de-DE",
       "predicate": "metadata_declared_language_support",
-      "provenance_id": "prov-coverage-icd10-ar",
+      "provenance_id": "prov-coverage-icd10-de-DE",
       "review_status": "needs_review",
       "source_id": "icd10",
       "total_hpo_terms": 0
@@ -75,13 +75,61 @@
       "total_hpo_terms": 0
     },
     {
-      "coverage_id": "coverage-icd10-es",
+      "coverage_id": "coverage-icd10-en-AU",
       "coverage_ratio": 0.0,
       "covered_hpo_terms": 0,
       "hpo_branch_id": "HP:0000118",
-      "language": "es",
+      "language": "en-AU",
       "predicate": "metadata_declared_language_support",
-      "provenance_id": "prov-coverage-icd10-es",
+      "provenance_id": "prov-coverage-icd10-en-AU",
+      "review_status": "needs_review",
+      "source_id": "icd10",
+      "total_hpo_terms": 0
+    },
+    {
+      "coverage_id": "coverage-icd10-en-CA",
+      "coverage_ratio": 0.0,
+      "covered_hpo_terms": 0,
+      "hpo_branch_id": "HP:0000118",
+      "language": "en-CA",
+      "predicate": "metadata_declared_language_support",
+      "provenance_id": "prov-coverage-icd10-en-CA",
+      "review_status": "needs_review",
+      "source_id": "icd10",
+      "total_hpo_terms": 0
+    },
+    {
+      "coverage_id": "coverage-icd10-en-GB",
+      "coverage_ratio": 0.0,
+      "covered_hpo_terms": 0,
+      "hpo_branch_id": "HP:0000118",
+      "language": "en-GB",
+      "predicate": "metadata_declared_language_support",
+      "provenance_id": "prov-coverage-icd10-en-GB",
+      "review_status": "needs_review",
+      "source_id": "icd10",
+      "total_hpo_terms": 0
+    },
+    {
+      "coverage_id": "coverage-icd10-en-US",
+      "coverage_ratio": 0.0,
+      "covered_hpo_terms": 0,
+      "hpo_branch_id": "HP:0000118",
+      "language": "en-US",
+      "predicate": "metadata_declared_language_support",
+      "provenance_id": "prov-coverage-icd10-en-US",
+      "review_status": "needs_review",
+      "source_id": "icd10",
+      "total_hpo_terms": 0
+    },
+    {
+      "coverage_id": "coverage-icd10-es-ES",
+      "coverage_ratio": 0.0,
+      "covered_hpo_terms": 0,
+      "hpo_branch_id": "HP:0000118",
+      "language": "es-ES",
+      "predicate": "metadata_declared_language_support",
+      "provenance_id": "prov-coverage-icd10-es-ES",
       "review_status": "needs_review",
       "source_id": "icd10",
       "total_hpo_terms": 0
@@ -99,25 +147,25 @@
       "total_hpo_terms": 0
     },
     {
-      "coverage_id": "coverage-icd10-ru",
+      "coverage_id": "coverage-icd10-fr-CA",
       "coverage_ratio": 0.0,
       "covered_hpo_terms": 0,
       "hpo_branch_id": "HP:0000118",
-      "language": "ru",
+      "language": "fr-CA",
       "predicate": "metadata_declared_language_support",
-      "provenance_id": "prov-coverage-icd10-ru",
+      "provenance_id": "prov-coverage-icd10-fr-CA",
       "review_status": "needs_review",
       "source_id": "icd10",
       "total_hpo_terms": 0
     },
     {
-      "coverage_id": "coverage-icd10-zh",
+      "coverage_id": "coverage-icd10-fr-FR",
       "coverage_ratio": 0.0,
       "covered_hpo_terms": 0,
       "hpo_branch_id": "HP:0000118",
-      "language": "zh",
+      "language": "fr-FR",
       "predicate": "metadata_declared_language_support",
-      "provenance_id": "prov-coverage-icd10-zh",
+      "provenance_id": "prov-coverage-icd10-fr-FR",
       "review_status": "needs_review",
       "source_id": "icd10",
       "total_hpo_terms": 0

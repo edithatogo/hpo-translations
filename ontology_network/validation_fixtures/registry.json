@@ -111,12 +111,16 @@
     "source_name": "ICD-10",
     "source_version": "not_pinned_in_track_metadata",
     "supported_languages": [
-      "ar",
+      "de-DE",
       "en",
-      "es",
+      "en-AU",
+      "en-CA",
+      "en-GB",
+      "en-US",
+      "es-ES",
       "fr",
-      "ru",
-      "zh"
+      "fr-CA",
+      "fr-FR"
     ]
   },
   {
