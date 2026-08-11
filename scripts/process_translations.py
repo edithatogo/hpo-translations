@@ -4,6 +4,7 @@ import re
 import shutil
 import subprocess
 import sys
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 BABELON_DIR = Path("babelon")
@@ -197,6 +198,36 @@ def validate_translation(lang: str) -> None:
         syn_out.unlink()
 
 
+def validation_worker_count() -> int:
+    raw = os.environ.get("HPO_VALIDATION_JOBS", "1")
+    try:
+        jobs = int(raw)
+    except ValueError as error:
+        raise ValueError("HPO_VALIDATION_JOBS must be an integer") from error
+    if jobs < 1 or jobs > 4:
+        raise ValueError("HPO_VALIDATION_JOBS must be between 1 and 4")
+    return jobs
+
+
+def validate_all(languages: list[str], jobs: int) -> None:
+    ordered_languages = sorted(languages)
+    if jobs == 1:
+        for language in ordered_languages:
+            validate_translation(language)
+        return
+
+    failures: list[str] = []
+    with ThreadPoolExecutor(max_workers=jobs, thread_name_prefix="hpo-validation") as executor:
+        futures = {language: executor.submit(validate_translation, language) for language in ordered_languages}
+        for language in ordered_languages:
+            try:
+                futures[language].result()
+            except BaseException as error:
+                failures.append(f"{language}: {error}")
+    if failures:
+        raise RuntimeError("Translation validation failed:\n" + "\n".join(failures))
+
+
 def main() -> None:
     if len(sys.argv) < 2:
         print("Usage: python process_translations.py <action> [lang]")
@@ -215,8 +246,7 @@ def main() -> None:
         for lang in MAKEFILE_SORT_CLEAN_LANGUAGES:
             clean_translation(lang)
     elif action == "validate-all":
-        for lang in get_languages():
-            validate_translation(lang)
+        validate_all(get_languages(), validation_worker_count())
     elif action == "sort":
         if len(sys.argv) < 3:
             print("Language argument missing.")
