@@ -70,4 +70,4 @@ Do not commit raw source terms, ontology labels, synonyms, definitions, full API
   - Residual blocker: downstream payload ingestion, identifier-network work, translation-use, and non-translation outputs remain blocked until source terms and bounded probes pass.
 
 ## Phase 4 Review Fixes
-- [x] **Task:** Align the approved bounded-sample receipt with the validated metadata-only status and enforce that status in the sample validator.
+- [x] **Task:** Align the approved bounded-sample receipt with the validated metadata-only status, explicit promotion block, and sample-validator contract.
