@@ -96,6 +96,23 @@
       "decision_receipts_must_be_bound_to": ["accountable_authority_role", "scope", "evidence_hash_or_payload_safe_URI", "conditions", "decision_date", "expiry_or_recheck_date"]
     }
   },
+  "private_storage_readiness": {
+    "inventory_ref": "conductor/source_hosting_inventory.json",
+    "platform_state": "created_private_owner_only",
+    "archive_target": "edithatogo/hpo-licensed-ontology-archive",
+    "infrastructure_ready": true,
+    "source_specific_cloud_hosting_permission_recorded": false,
+    "payload_upload_authorized": false,
+    "payload_retrieval_authorized": false,
+    "effect_on_gates": "infrastructure_only_no_G1_G2_or_G3_gate_closed",
+    "required_before_use": [
+      "source_specific_rightsholder_permission_or_licence_scope_for_private_cloud_hosting",
+      "version_and_payload_scope_receipt",
+      "credential_custody_and_designated_user_record",
+      "retention_deletion_and_incident_controls",
+      "explicit_maintainer_payload_action_authorization"
+    ]
+  },
   "decision_packets": [
     {
       "packet_id": "g1-pro-ctcae",

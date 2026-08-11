@@ -711,6 +711,29 @@ def phase_4_gate_docket_errors(
         if wave_2_packet_ids != docket_wave_2_packets:
             errors.append("Wave 2 gate packets must reconcile with the canonical authority-route package")
 
+    storage = instance.get("private_storage_readiness", {})
+    if (
+        not isinstance(storage, dict)
+        or storage.get("inventory_ref") != "conductor/source_hosting_inventory.json"
+        or storage.get("platform_state") != "created_private_owner_only"
+        or storage.get("infrastructure_ready") is not True
+    ):
+        errors.append("private storage readiness must reference the created owner-only archive inventory")
+    if (
+        storage.get("source_specific_cloud_hosting_permission_recorded") is not False
+        or storage.get("payload_upload_authorized") is not False
+        or storage.get("payload_retrieval_authorized") is not False
+        or storage.get("effect_on_gates") != "infrastructure_only_no_G1_G2_or_G3_gate_closed"
+    ):
+        errors.append("private storage infrastructure must not imply source, payload, human, or freeze authority")
+    required_before_use = set(storage.get("required_before_use", []))
+    if not {
+        "source_specific_rightsholder_permission_or_licence_scope_for_private_cloud_hosting",
+        "credential_custody_and_designated_user_record",
+        "explicit_maintainer_payload_action_authorization",
+    }.issubset(required_before_use):
+        errors.append("private storage readiness must retain permission, custody, and maintainer action gates")
+
     authorization = instance.get("authorization_boundary", {})
     if (
         not isinstance(authorization, dict)

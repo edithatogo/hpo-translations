@@ -112,6 +112,28 @@ class ValidateResearchValidationTests(unittest.TestCase):
             phase_4_gate_docket_errors(docket, supplementary, approval),
         )
 
+    def test_gate_docket_private_archive_does_not_authorize_payload(self) -> None:
+        docket = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_gate_docket.json")
+        supplementary = load_json(DEFAULT_RESEARCH_ROOT / "supplementary_source_access_reviews.json")
+        approval = load_json(DEFAULT_RESEARCH_ROOT / "approval_manifest.json")
+        docket["private_storage_readiness"]["payload_upload_authorized"] = True
+        self.assertIn(
+            "private storage infrastructure must not imply source, payload, human, or freeze authority",
+            phase_4_gate_docket_errors(docket, supplementary, approval),
+        )
+
+    def test_gate_docket_private_archive_retains_source_permission_gate(self) -> None:
+        docket = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_gate_docket.json")
+        supplementary = load_json(DEFAULT_RESEARCH_ROOT / "supplementary_source_access_reviews.json")
+        approval = load_json(DEFAULT_RESEARCH_ROOT / "approval_manifest.json")
+        docket["private_storage_readiness"]["required_before_use"].remove(
+            "source_specific_rightsholder_permission_or_licence_scope_for_private_cloud_hosting"
+        )
+        self.assertIn(
+            "private storage readiness must retain permission, custody, and maintainer action gates",
+            phase_4_gate_docket_errors(docket, supplementary, approval),
+        )
+
     def test_decision_receipt_template_rejects_approval(self) -> None:
         receipt = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_decision_receipt.template.json")
         receipt["decision"] = "approved"

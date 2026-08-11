@@ -3,7 +3,7 @@
 ## Phase 0: Dependency, Blocker, Source, and Automation Gates
 
 - [x] **Task 1:** Populate the blocker registry and assign owners.
-- [~] **Task 2:** Pin the HPO release and every source release selected for the pilot; complete source access, license, credential, source-authority, language, and version checks. HPO `v2026-06-23`, the four official mapping families, and public supplementary release candidates are reviewed; the final pilot source set, DeCS version, provider permissions, credentials, and human license decisions remain open. (`3ff429e`, review fix `e410f47`, `f3a9584`)
+- [~] **Task 2:** Pin the HPO release and every source release selected for the pilot; complete source access, license, credential, source-authority, language, and version checks. HPO `v2026-06-23`, the four official mapping families, and public supplementary release candidates are reviewed. An owner-only private archive now exists and is recorded as infrastructure-only readiness; it does not authorize source hosting, payload upload or retrieval, or close G1. The final pilot source set, DeCS version, provider permissions, credential custody, and human license decisions remain open. (`3ff429e`, review fix `e410f47`, `f3a9584`)
 - [x] **Task 3:** Define restricted-payload policy, local-only manifest requirements, and the commit allowlist and denylist.
 - [x] **Task 4:** Run a fail-fast benchmark fixture containing one HPO concept, one hard negative, and two independently identified evidence groups. (`57f8816`, review fix `9412ef3`)
 - [x] **Task 5:** Define the research artifact contract and downstream consumers.
