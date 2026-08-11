@@ -120,6 +120,12 @@
     "metadata_updated_at": {
       "type": "string"
     },
+    "non_current_language_observations": {
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    },
     "ontology_name": {
       "type": "string"
     },

@@ -192,8 +192,11 @@ class OntologyNetworkTests(unittest.TestCase):
         self.assertEqual(registry["record_count"], 18)
 
         records = {record["source_id"]: record for record in registry["records"]}
-        self.assertEqual(records["meddra"]["declared_language_count"], 27)
+        self.assertEqual(records["meddra"]["declared_language_count"], 28)
         self.assertIn("ar", records["meddra"]["language_codes"])
+        self.assertIn("pt-BR", records["meddra"]["language_codes"])
+        self.assertNotIn("tr", records["meddra"]["language_codes"])
+        self.assertEqual(records["meddra"]["language_inventory_release"], "29.0")
         self.assertEqual(records["omim"]["language_codes"], ["en"])
         self.assertTrue(
             {"en-CA", "fr-CA", "en-AU", "de-DE", "fr-FR", "es-ES", "en-GB", "en-US"}

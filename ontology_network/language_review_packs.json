@@ -1,6 +1,6 @@
 {
   "generated_date": "2026-06-23",
-  "record_count": 51,
+  "record_count": 52,
   "records": [
     {
       "agent_panel_assessment_required": true,
@@ -77,6 +77,7 @@
         "conflict-da-metadata"
       ],
       "coverage_ids": [
+        "coverage-meddra-da",
         "coverage-snomed_ct-da",
         "coverage-umls-da"
       ],
@@ -93,6 +94,7 @@
       "provenance_id": "prov-review-pack-da",
       "scope": "payload-free ontology-network metadata probe",
       "source_ids": [
+        "meddra",
         "snomed_ct",
         "umls"
       ]
@@ -199,6 +201,7 @@
         "conflict-el-metadata"
       ],
       "coverage_ids": [
+        "coverage-meddra-el",
         "coverage-umls-el"
       ],
       "crosswalk_ids": [
@@ -214,6 +217,7 @@
       "provenance_id": "prov-review-pack-el",
       "scope": "payload-free ontology-network metadata probe",
       "source_ids": [
+        "meddra",
         "umls"
       ]
     },
@@ -469,6 +473,7 @@
         "conflict-et-metadata"
       ],
       "coverage_ids": [
+        "coverage-meddra-et",
         "coverage-snomed_ct-et",
         "coverage-umls-et"
       ],
@@ -485,6 +490,7 @@
       "provenance_id": "prov-review-pack-et",
       "scope": "payload-free ontology-network metadata probe",
       "source_ids": [
+        "meddra",
         "snomed_ct",
         "umls"
       ]
@@ -525,6 +531,7 @@
         "conflict-fi-metadata"
       ],
       "coverage_ids": [
+        "coverage-meddra-fi",
         "coverage-mesh-fi",
         "coverage-snomed_ct-fi",
         "coverage-umls-fi"
@@ -542,6 +549,7 @@
       "provenance_id": "prov-review-pack-fi",
       "scope": "payload-free ontology-network metadata probe",
       "source_ids": [
+        "meddra",
         "mesh",
         "snomed_ct",
         "umls"
@@ -707,6 +715,7 @@
         "conflict-hr-metadata"
       ],
       "coverage_ids": [
+        "coverage-meddra-hr",
         "coverage-umls-hr"
       ],
       "crosswalk_ids": [
@@ -722,6 +731,7 @@
       "provenance_id": "prov-review-pack-hr",
       "scope": "payload-free ontology-network metadata probe",
       "source_ids": [
+        "meddra",
         "umls"
       ]
     },
@@ -763,6 +773,7 @@
         "conflict-is-metadata"
       ],
       "coverage_ids": [
+        "coverage-meddra-is",
         "coverage-umls-is"
       ],
       "crosswalk_ids": [
@@ -778,6 +789,7 @@
       "provenance_id": "prov-review-pack-is",
       "scope": "payload-free ontology-network metadata probe",
       "source_ids": [
+        "meddra",
         "umls"
       ]
     },
@@ -941,6 +953,7 @@
         "conflict-lt-metadata"
       ],
       "coverage_ids": [
+        "coverage-meddra-lt",
         "coverage-snomed_ct-lt",
         "coverage-umls-lt"
       ],
@@ -957,6 +970,7 @@
       "provenance_id": "prov-review-pack-lt",
       "scope": "payload-free ontology-network metadata probe",
       "source_ids": [
+        "meddra",
         "snomed_ct",
         "umls"
       ]
@@ -970,6 +984,7 @@
         "conflict-lv-metadata"
       ],
       "coverage_ids": [
+        "coverage-meddra-lv",
         "coverage-umls-lv"
       ],
       "crosswalk_ids": [
@@ -985,6 +1000,7 @@
       "provenance_id": "prov-review-pack-lv",
       "scope": "payload-free ontology-network metadata probe",
       "source_ids": [
+        "meddra",
         "umls"
       ]
     },
@@ -1165,6 +1181,7 @@
         "conflict-no-metadata"
       ],
       "coverage_ids": [
+        "coverage-meddra-no",
         "coverage-umls-no"
       ],
       "crosswalk_ids": [
@@ -1180,6 +1197,7 @@
       "provenance_id": "prov-review-pack-no",
       "scope": "payload-free ontology-network metadata probe",
       "source_ids": [
+        "meddra",
         "umls"
       ]
     },
@@ -1259,6 +1277,33 @@
       "candidate_count": 0,
       "candidate_only": true,
       "conflict_ids": [
+        "conflict-pt-BR-metadata"
+      ],
+      "coverage_ids": [
+        "coverage-meddra-pt-BR"
+      ],
+      "crosswalk_ids": [
+        "probe-open-related-0001"
+      ],
+      "hpo_ids": [
+        "HP:0000001"
+      ],
+      "language": "pt-BR",
+      "maintainer_promotion_decision_required": true,
+      "pack_id": "pack-pt-BR-metadata",
+      "promotion_policy": "maintainer_decision_after_agent_panel_assessment",
+      "provenance_id": "prov-review-pack-pt-BR",
+      "scope": "payload-free ontology-network metadata probe",
+      "source_ids": [
+        "meddra"
+      ]
+    },
+    {
+      "agent_panel_assessment_required": true,
+      "agent_panel_role": "language-specialist agent panel",
+      "candidate_count": 0,
+      "candidate_only": true,
+      "conflict_ids": [
         "conflict-ru-metadata"
       ],
       "coverage_ids": [
@@ -1298,6 +1343,7 @@
       ],
       "coverage_ids": [
         "coverage-icd11-sk",
+        "coverage-meddra-sk",
         "coverage-umls-sk"
       ],
       "crosswalk_ids": [
@@ -1314,6 +1360,7 @@
       "scope": "payload-free ontology-network metadata probe",
       "source_ids": [
         "icd11",
+        "meddra",
         "umls"
       ]
     },
@@ -1326,6 +1373,7 @@
         "conflict-sl-metadata"
       ],
       "coverage_ids": [
+        "coverage-meddra-sl",
         "coverage-umls-sl"
       ],
       "crosswalk_ids": [
@@ -1341,6 +1389,7 @@
       "provenance_id": "prov-review-pack-sl",
       "scope": "payload-free ontology-network metadata probe",
       "source_ids": [
+        "meddra",
         "umls"
       ]
     },
@@ -1440,7 +1489,6 @@
       "coverage_ids": [
         "coverage-icd11-tr",
         "coverage-loinc-tr",
-        "coverage-meddra-tr",
         "coverage-umls-tr"
       ],
       "crosswalk_ids": [
@@ -1458,7 +1506,6 @@
       "source_ids": [
         "icd11",
         "loinc",
-        "meddra",
         "umls"
       ]
     },

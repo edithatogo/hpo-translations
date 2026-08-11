@@ -4,7 +4,7 @@
 Introduce MedDRA as a governed terminology source for the HPO translation workflow where it improves concept alignment, multilingual review, or domain-specific validation.
 
 ## Source Profile
-- Languages: 27 languages including English, French, German, Spanish, Italian, Portuguese, Japanese, Chinese, Russian, Arabic, Czech, Dutch, Hungarian, Korean, Polish, Swedish, and Turkish.
+- Languages: 28 languages including Arabic, Brazilian Portuguese, Chinese, Croatian, Czech, Danish, Dutch, English, Estonian, Finnish, French, German, Greek, Hungarian, Icelandic, Italian, Japanese, Korean, Latvian, Lithuanian, Norwegian, Polish, Portuguese, Russian, Slovak, Slovenian, Spanish, and Swedish.
 - GitHub repositories:
 - None confirmed.
 - Source note: No official public GitHub repository confirmed; use MSSO/ICH licensed distribution channels.
