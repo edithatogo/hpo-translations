@@ -1,0 +1,70 @@
+{
+  "schema_version": "who-classifications-language-inventory-v1",
+  "release_id": "2026-01",
+  "verified_on": "2026-08-12",
+  "authority": "World Health Organization",
+  "official_language_matrix_url": "https://icd.who.int/docs/icd-api/SupportedClassifications/",
+  "license_url": "https://icd.who.int/en/docs/icd11-license.pdf",
+  "scope": "public_metadata_only",
+  "region_and_script_policy": "do_not_infer_unpublished_variants",
+  "products": [
+    {
+      "product_id": "icd11-mms",
+      "product_name": "ICD-11 for Mortality and Morbidity Statistics",
+      "language_count": 15,
+      "languages": [
+        {"bcp47": "ar", "name": "Arabic", "availability_status": "available"},
+        {"bcp47": "zh", "name": "Chinese", "availability_status": "available", "script_status": "not_distinguished_by_authority_matrix"},
+        {"bcp47": "cs", "name": "Czech", "availability_status": "available"},
+        {"bcp47": "en", "name": "English", "availability_status": "available"},
+        {"bcp47": "fr", "name": "French", "availability_status": "available"},
+        {"bcp47": "de", "name": "German", "availability_status": "prerelease"},
+        {"bcp47": "kk", "name": "Kazakh", "availability_status": "available"},
+        {"bcp47": "la", "name": "Latin", "availability_status": "titles_only"},
+        {"bcp47": "pt", "name": "Portuguese", "availability_status": "available", "region_status": "not_distinguished_by_authority_matrix"},
+        {"bcp47": "ru", "name": "Russian", "availability_status": "available"},
+        {"bcp47": "sk", "name": "Slovak", "availability_status": "available"},
+        {"bcp47": "es", "name": "Spanish", "availability_status": "available", "region_status": "not_distinguished_by_authority_matrix"},
+        {"bcp47": "sv", "name": "Swedish", "availability_status": "available"},
+        {"bcp47": "tr", "name": "Turkish", "availability_status": "available"},
+        {"bcp47": "uz", "name": "Uzbek", "availability_status": "available"}
+      ]
+    },
+    {
+      "product_id": "icf",
+      "product_name": "International Classification of Functioning, Disability and Health",
+      "language_count": 15,
+      "languages": [
+        {"bcp47": "hy", "name": "Armenian", "availability_status": "available"},
+        {"bcp47": "zh", "name": "Chinese", "availability_status": "available", "script_status": "not_distinguished_by_authority_matrix"},
+        {"bcp47": "cs", "name": "Czech", "availability_status": "available"},
+        {"bcp47": "en", "name": "English", "availability_status": "available"},
+        {"bcp47": "et", "name": "Estonian", "availability_status": "available"},
+        {"bcp47": "fi", "name": "Finnish", "availability_status": "available"},
+        {"bcp47": "fr", "name": "French", "availability_status": "available"},
+        {"bcp47": "it", "name": "Italian", "availability_status": "available"},
+        {"bcp47": "mn", "name": "Mongolian", "availability_status": "available"},
+        {"bcp47": "pt", "name": "Portuguese", "availability_status": "available", "region_status": "not_distinguished_by_authority_matrix"},
+        {"bcp47": "ru", "name": "Russian", "availability_status": "available"},
+        {"bcp47": "sk", "name": "Slovak", "availability_status": "available"},
+        {"bcp47": "es", "name": "Spanish", "availability_status": "available", "region_status": "not_distinguished_by_authority_matrix"},
+        {"bcp47": "tr", "name": "Turkish", "availability_status": "available"},
+        {"bcp47": "uk", "name": "Ukrainian", "availability_status": "available"}
+      ]
+    }
+  ],
+  "payload_policy": {
+    "payload_incorporated": false,
+    "api_payload_retrieved": false,
+    "labels_or_definitions_included": false,
+    "mapping_rows_included": false,
+    "credentials_used": false,
+    "adaptation_or_crosswalk_authorized": false,
+    "future_payload_requirements": [
+      "explicit maintainer licence decision",
+      "WHO API credentials if retrieval is approved",
+      "immutable release and response provenance",
+      "no-derivatives and mapping-use review"
+    ]
+  }
+}

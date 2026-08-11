@@ -627,7 +627,7 @@
         "review pack structure without restricted labels"
       ],
       "credential_required": false,
-      "declared_language_count": 12,
+      "declared_language_count": 15,
       "description": "Integrate ICD-11 into terminology and translation support",
       "expected_blockers": [
         "Polyhierarchy and postcoordination can create ambiguous HPO crosswalk evidence.",
@@ -650,12 +650,95 @@
         "Foundation entities and MMS codes need distinct provenance handling.",
         "Terms and payload handling must be cleared before committing ontology labels, synonyms, definitions, full responses, or release payload rows."
       ],
+      "language_availability": [
+        {
+          "availability_status": "available",
+          "bcp47": "ar",
+          "name": "Arabic"
+        },
+        {
+          "availability_status": "available",
+          "bcp47": "zh",
+          "name": "Chinese",
+          "script_status": "not_distinguished_by_authority_matrix"
+        },
+        {
+          "availability_status": "available",
+          "bcp47": "cs",
+          "name": "Czech"
+        },
+        {
+          "availability_status": "available",
+          "bcp47": "en",
+          "name": "English"
+        },
+        {
+          "availability_status": "available",
+          "bcp47": "fr",
+          "name": "French"
+        },
+        {
+          "availability_status": "prerelease",
+          "bcp47": "de",
+          "name": "German"
+        },
+        {
+          "availability_status": "available",
+          "bcp47": "kk",
+          "name": "Kazakh"
+        },
+        {
+          "availability_status": "titles_only",
+          "bcp47": "la",
+          "name": "Latin"
+        },
+        {
+          "availability_status": "available",
+          "bcp47": "pt",
+          "name": "Portuguese",
+          "region_status": "not_distinguished_by_authority_matrix"
+        },
+        {
+          "availability_status": "available",
+          "bcp47": "ru",
+          "name": "Russian"
+        },
+        {
+          "availability_status": "available",
+          "bcp47": "sk",
+          "name": "Slovak"
+        },
+        {
+          "availability_status": "available",
+          "bcp47": "es",
+          "name": "Spanish",
+          "region_status": "not_distinguished_by_authority_matrix"
+        },
+        {
+          "availability_status": "available",
+          "bcp47": "sv",
+          "name": "Swedish"
+        },
+        {
+          "availability_status": "available",
+          "bcp47": "tr",
+          "name": "Turkish"
+        },
+        {
+          "availability_status": "available",
+          "bcp47": "uz",
+          "name": "Uzbek"
+        }
+      ],
       "language_codes": [
         "ar",
         "cs",
+        "de",
         "en",
         "es",
         "fr",
+        "kk",
+        "la",
         "pt",
         "ru",
         "sk",
@@ -664,7 +747,9 @@
         "uz",
         "zh"
       ],
-      "language_count": 12,
+      "language_count": 15,
+      "language_inventory_path": "conductor/tracks/icd11_integration_20260623/who_classifications_language_inventory_2026_01.json",
+      "language_inventory_release": "2026-01",
       "language_normalization_status": "normalized_listed_languages",
       "languages": [
         "Arabic",

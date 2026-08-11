@@ -1,6 +1,6 @@
 {
   "generated_date": "2026-06-23",
-  "record_count": 49,
+  "record_count": 51,
   "records": [
     {
       "agent_panel_assessment_required": true,
@@ -106,6 +106,7 @@
         "conflict-de-metadata"
       ],
       "coverage_ids": [
+        "coverage-icd11-de",
         "coverage-loinc-de",
         "coverage-meddra-de",
         "coverage-mesh-de",
@@ -125,6 +126,7 @@
       "provenance_id": "prov-review-pack-de",
       "scope": "payload-free ontology-network metadata probe",
       "source_ids": [
+        "icd11",
         "loinc",
         "meddra",
         "mesh",
@@ -851,6 +853,33 @@
       "candidate_count": 0,
       "candidate_only": true,
       "conflict_ids": [
+        "conflict-kk-metadata"
+      ],
+      "coverage_ids": [
+        "coverage-icd11-kk"
+      ],
+      "crosswalk_ids": [
+        "probe-open-related-0001"
+      ],
+      "hpo_ids": [
+        "HP:0000001"
+      ],
+      "language": "kk",
+      "maintainer_promotion_decision_required": true,
+      "pack_id": "pack-kk-metadata",
+      "promotion_policy": "maintainer_decision_after_agent_panel_assessment",
+      "provenance_id": "prov-review-pack-kk",
+      "scope": "payload-free ontology-network metadata probe",
+      "source_ids": [
+        "icd11"
+      ]
+    },
+    {
+      "agent_panel_assessment_required": true,
+      "agent_panel_role": "language-specialist agent panel",
+      "candidate_count": 0,
+      "candidate_only": true,
+      "conflict_ids": [
         "conflict-ko-metadata"
       ],
       "coverage_ids": [
@@ -874,6 +903,33 @@
         "loinc",
         "meddra",
         "umls"
+      ]
+    },
+    {
+      "agent_panel_assessment_required": true,
+      "agent_panel_role": "language-specialist agent panel",
+      "candidate_count": 0,
+      "candidate_only": true,
+      "conflict_ids": [
+        "conflict-la-metadata"
+      ],
+      "coverage_ids": [
+        "coverage-icd11-la"
+      ],
+      "crosswalk_ids": [
+        "probe-open-related-0001"
+      ],
+      "hpo_ids": [
+        "HP:0000001"
+      ],
+      "language": "la",
+      "maintainer_promotion_decision_required": true,
+      "pack_id": "pack-la-metadata",
+      "promotion_policy": "maintainer_decision_after_agent_panel_assessment",
+      "provenance_id": "prov-review-pack-la",
+      "scope": "payload-free ontology-network metadata probe",
+      "source_ids": [
+        "icd11"
       ]
     },
     {

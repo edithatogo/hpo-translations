@@ -69,6 +69,12 @@
       },
       "type": "array"
     },
+    "language_availability": {
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    },
     "language_codes": {
       "items": {
         "type": "string"
@@ -77,6 +83,12 @@
     },
     "language_count": {
       "type": "integer"
+    },
+    "language_inventory_path": {
+      "type": "string"
+    },
+    "language_inventory_release": {
+      "type": "string"
     },
     "language_normalization_status": {
       "type": "string"

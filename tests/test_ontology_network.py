@@ -214,6 +214,13 @@ class OntologyNetworkTests(unittest.TestCase):
             {"en-CA", "fr-CA", "fr-BE", "fr-FR", "mi-NZ", "nb-NO", "nn-NO"}
             <= set(records["snomed_ct"]["language_codes"])
         )
+        self.assertEqual(records["icd11"]["declared_language_count"], 15)
+        self.assertEqual(len(records["icd11"]["language_codes"]), 15)
+        self.assertTrue({"de", "kk", "la"} <= set(records["icd11"]["language_codes"]))
+        availability = {row["bcp47"]: row for row in records["icd11"]["language_availability"]}
+        self.assertEqual(availability["de"]["availability_status"], "prerelease")
+        self.assertEqual(availability["la"]["availability_status"], "titles_only")
+        self.assertNotIn("hy", records["icd11"]["language_codes"])
         self.assertEqual(records["do"]["github_repository_roles"][0]["role"], "source_repository")
         self.assertEqual(records["efo"]["source_version"], "v3.92.0")
         self.assertEqual(records["efo"]["version_status"], "pinned_metadata_only_sample")

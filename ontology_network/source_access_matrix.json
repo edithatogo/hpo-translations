@@ -249,7 +249,7 @@
       "authoritative_endpoint": "authority_described_github_not_authoritative",
       "authoritative_endpoint_status": "authority_described_github_not_authoritative",
       "credential_required": false,
-      "declared_language_count": 12,
+      "declared_language_count": 15,
       "github_repositories": [
         "https://github.com/ICD-API"
       ],
@@ -264,9 +264,12 @@
       "language_codes": [
         "ar",
         "cs",
+        "de",
         "en",
         "es",
         "fr",
+        "kk",
+        "la",
         "pt",
         "ru",
         "sk",
