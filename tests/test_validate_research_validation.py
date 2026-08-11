@@ -19,6 +19,7 @@ from scripts.validate_research_validation import (
     phase_4_gate_docket_errors,
     phase_4_wave_1_source_decisions_errors,
     phase_4_wave_2_authority_routes_errors,
+    pilot_source_payload_manifest_errors,
     pilot_source_readiness_errors,
     private_source_archive_receipts_errors,
     schema_errors,
@@ -100,12 +101,24 @@ class ValidateResearchValidationTests(unittest.TestCase):
             load_json(DEFAULT_RESEARCH_ROOT / "approval_manifest.json"),
         )
 
-    def test_pilot_source_readiness_rejects_false_selection(self) -> None:
+    def test_pilot_source_readiness_rejects_selection_drift(self) -> None:
         readiness, catalog, supplementary, receipts, approval = self._pilot_source_inputs()
-        readiness["decision_state"]["final_pilot_source_set_selected"] = True
+        readiness["decision_state"]["payload_authorized_source_count"] = 3
         self.assertIn(
-            "pilot source readiness must not select sources or claim payload, lineage, or G1 readiness",
+            "pilot source readiness must select exactly two local snapshots without claiming overall G1 closure",
             pilot_source_readiness_errors(readiness, catalog, supplementary, receipts, approval),
+        )
+
+    def test_pilot_source_payload_manifest_hashes_pass(self) -> None:
+        manifest = load_json(DEFAULT_RESEARCH_ROOT / "pilot_source_payload_manifest.json")
+        self.assertEqual(pilot_source_payload_manifest_errors(manifest), [])
+
+    def test_pilot_source_payload_manifest_rejects_external_retrieval(self) -> None:
+        manifest = load_json(DEFAULT_RESEARCH_ROOT / "pilot_source_payload_manifest.json")
+        manifest["authorization"]["retrieve_new_external_payloads"] = True
+        self.assertIn(
+            "pilot source payload authorization boundary must remain fail-closed",
+            pilot_source_payload_manifest_errors(manifest),
         )
 
     def test_pilot_source_readiness_rejects_archive_double_count(self) -> None:

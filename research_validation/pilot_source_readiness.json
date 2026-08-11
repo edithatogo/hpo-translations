@@ -1,12 +1,13 @@
 {
   "schema_version": "pilot-source-readiness-v1",
   "track_id": "research_validation_20260801",
-  "status": "planning_inventory_complete_final_source_set_not_selected",
+  "status": "exact_local_payload_set_selected_external_sources_omitted_community_gate_pending",
   "canonical_inputs": {
     "official_mapping_catalog": "research_validation/source_catalog.json",
     "supplementary_source_reviews": "research_validation/supplementary_source_access_reviews.json",
     "source_archive_receipts": "research_validation/source_archive_receipts.json",
-    "approval_manifest": "research_validation/approval_manifest.json"
+    "approval_manifest": "research_validation/approval_manifest.json",
+    "pilot_source_payload_manifest": "research_validation/pilot_source_payload_manifest.json"
   },
   "evidence_layers": [
     {
@@ -46,26 +47,27 @@
     }
   ],
   "decision_state": {
-    "final_pilot_source_set_selected": false,
-    "payload_authorized_source_count": 0,
+    "final_pilot_source_set_selected": true,
+    "payload_authorized_source_count": 2,
     "source_atom_ready_count": 0,
     "independent_evidence_groups_added_from_archives": 0,
     "g1_source_authority_closed": false,
-    "next_accountable_decision": "select_a_bounded_pilot_source_subset_only_after_source_specific_licence_payload_attribution_and_semantic_role_review"
+    "bounded_repository_snapshot_set_selected": true,
+    "next_accountable_decision": "close_separate_Spanish_and_Japanese_language_and_community_use_constraints_before_any_empirical_agent_execution"
   },
   "remaining_gates": [
-    "final_pilot_source_subset_selection",
-    "source_specific_licence_and_payload_permission",
-    "source_atom_attribution_review",
-    "credential_custody_where_required",
-    "decs_version_confirmation",
-    "human_scope_decision_with_expiry_or_recheck_date"
+    "Spanish_language_and_community_use_scope",
+    "Japanese_language_and_community_use_scope",
+    "source_atom_lineage_for_any_future_external_source",
+    "G3_payload_hash_freeze"
   ],
   "authorization_boundary": {
-    "payload_retrieval_authorized": false,
+    "existing_repository_payload_read_authorized": true,
+    "ephemeral_local_copy_authorized": true,
+    "new_external_payload_retrieval_authorized": false,
     "source_atom_ingestion_authorized": false,
     "candidate_generation_authorized": false,
     "translation_promotion_authorized": false
   },
-  "claims_boundary": "canonical_source_readiness_inventory_only_no_final_selection_payload_lineage_independence_or_translation_evidence"
+  "claims_boundary": "two_content_addressed_repository_snapshots_selected_no_external_payload_lineage_current_release_community_or_translation_validation_claim"
 }

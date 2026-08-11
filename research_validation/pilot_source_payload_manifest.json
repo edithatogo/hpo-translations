@@ -1,0 +1,63 @@
+{
+  "schema_version": "pilot-source-payload-manifest-v1",
+  "track_id": "research_validation_20260801",
+  "decision_date": "2026-08-11",
+  "decision_source": "user_instruction_pin_and_authorize_exact_source_payload_set",
+  "authority_role": "repository_maintainer",
+  "status": "exact_repository_snapshot_payload_set_authorized_for_local_pilot_processing",
+  "selected_option": "B",
+  "selected_languages": ["es", "ja"],
+  "payloads": [
+    {
+      "source_id": "hpo-translation-es-repository-snapshot",
+      "language": "es",
+      "path": "babelon/hp-es.babelon.tsv",
+      "git_blob": "fccbbf0adb13260432c23c5d97b1387d497575e5",
+      "sha256": "00972e33775a0340ad7b45620f0ff1d2794766c45beb937a165ee86e6f16ed9a",
+      "data_rows": 19932,
+      "originating_hpo_release": null,
+      "originating_release_status": "not_declared_in_payload",
+      "version_pin": "content_addressed_repository_snapshot",
+      "authorized_role": "local_internal_reference_snapshot_and_candidate_comparison_after_language_community_use_gate",
+      "conditions": ["preserve_subject_ids_and_source_values", "do_not_claim_current_HPO_release_alignment", "do_not_promote", "do_not_redistribute_as_a_new_source_release"]
+    },
+    {
+      "source_id": "hpo-translation-ja-repository-snapshot",
+      "language": "ja",
+      "path": "babelon/hp-ja.babelon.tsv",
+      "git_blob": "e59e7f6c09e1f783fbb9f448a6bb2267e28ba9bd",
+      "sha256": "cefe15af19d988598eee0077cc75e2d488837adb746522f4cb5d1312fc343eea",
+      "data_rows": 17868,
+      "originating_hpo_release": "2023-07-21",
+      "originating_release_status": "declared_in_payload",
+      "version_pin": "content_addressed_repository_snapshot",
+      "authorized_role": "local_internal_reference_snapshot_and_candidate_comparison_after_language_community_use_gate",
+      "conditions": ["preserve_subject_ids_source_values_and_declared_source_version", "do_not_claim_current_HPO_release_alignment", "do_not_promote", "do_not_redistribute_as_a_new_source_release"]
+    }
+  ],
+  "excluded_sources": [
+    {"source_id": "decs", "reason": "no_sufficient_permission_or_exact_payload_version_evidence"},
+    {"source_id": "pro-ctcae", "reason": "written_provider_permission_absent"},
+    {"source_id": "who-icf", "reason": "credential_and_no_derivatives_mapping_scope_unresolved"},
+    {"source_id": "mondo", "reason": "optional_supplementary_context_omitted_from_minimum_viable_set"},
+    {"source_id": "uberon", "reason": "optional_structural_source_omitted_from_minimum_viable_set"},
+    {"source_id": "pato", "reason": "optional_structural_source_omitted_from_minimum_viable_set"},
+    {"source_id": "cell-ontology", "reason": "optional_structural_source_omitted_from_minimum_viable_set"},
+    {"source_id": "ncit", "reason": "source_atom_and_partner_terminology_rights_unresolved"},
+    {"source_id": "radlex", "reason": "clickthrough_terms_not_accepted_or_authorized"},
+    {"source_id": "restricted_and_archived_ontology_sources", "members": ["UMLS", "SNOMED_CT", "MedDRA", "LOINC", "OMIM", "DECIPHER"], "reason": "licence_permission_or_credential_evidence_insufficient_for_this_pilot"},
+    {"source_id": "hpo_mapping_catalog_payloads", "members": ["HP_MESH", "HP_UMLS", "HP_UPHENO", "HP_MP"], "reason": "mapping_payload_licence_or_source_atom_authority_not_closed"}
+  ],
+  "authorization": {
+    "read_existing_repository_payloads": true,
+    "copy_into_local_ephemeral_pilot_workspace": true,
+    "derive_payload_safe_aggregate_metrics": true,
+    "retrieve_new_external_payloads": false,
+    "use_before_language_community_gate": false,
+    "commit_derived_translation_candidates": false,
+    "redistribute_external_or_derived_payloads": false,
+    "promote_translations": false
+  },
+  "reopen_on": ["payload_hash_change", "language_or_community_use_decision_change", "scope_change", "external_source_addition", "redistribution_or_promotion_request"],
+  "claims_boundary": "exact_existing_repository_snapshots_only_no_current_release_alignment_community_endorsement_external_source_or_promotion_claim"
+}

@@ -1372,14 +1372,15 @@ def pilot_source_readiness_errors(
     errors: list[str] = []
     if (
         instance.get("schema_version") != "pilot-source-readiness-v1"
-        or instance.get("status") != "planning_inventory_complete_final_source_set_not_selected"
+        or instance.get("status") != "exact_local_payload_set_selected_external_sources_omitted_community_gate_pending"
     ):
-        errors.append("pilot source readiness must remain a planning-only v1 inventory")
+        errors.append("pilot source readiness must record the selected, fail-closed local payload set")
     expected_inputs = {
         "official_mapping_catalog": "research_validation/source_catalog.json",
         "supplementary_source_reviews": "research_validation/supplementary_source_access_reviews.json",
         "source_archive_receipts": "research_validation/source_archive_receipts.json",
         "approval_manifest": "research_validation/approval_manifest.json",
+        "pilot_source_payload_manifest": "research_validation/pilot_source_payload_manifest.json",
     }
     if instance.get("canonical_inputs") != expected_inputs:
         errors.append("pilot source readiness must reference every canonical input by its exact repository path")
@@ -1422,13 +1423,15 @@ def pilot_source_readiness_errors(
 
     decision = instance.get("decision_state", {})
     if (
-        decision.get("final_pilot_source_set_selected") is not False
-        or decision.get("payload_authorized_source_count") != 0
+        decision.get("final_pilot_source_set_selected") is not True
+        or decision.get("payload_authorized_source_count") != 2
         or decision.get("source_atom_ready_count") != 0
         or decision.get("independent_evidence_groups_added_from_archives") != 0
         or decision.get("g1_source_authority_closed") is not False
     ):
-        errors.append("pilot source readiness must not select sources or claim payload, lineage, or G1 readiness")
+        errors.append(
+            "pilot source readiness must select exactly two local snapshots without claiming overall G1 closure"
+        )
     source_gate = next(
         (
             gate
@@ -1440,12 +1443,63 @@ def pilot_source_readiness_errors(
     if source_gate.get("decision") != "conditional" or source_gate.get("promotion_allowed") is not False:
         errors.append("pilot source readiness requires the canonical conditional fail-closed source gate")
     authorization = instance.get("authorization_boundary", {})
-    if (
-        not isinstance(authorization, dict)
-        or not authorization
-        or any(value is not False for value in authorization.values())
+    expected_authorization = {
+        "existing_repository_payload_read_authorized": True,
+        "ephemeral_local_copy_authorized": True,
+        "new_external_payload_retrieval_authorized": False,
+        "source_atom_ingestion_authorized": False,
+        "candidate_generation_authorized": False,
+        "translation_promotion_authorized": False,
+    }
+    if authorization != expected_authorization:
+        errors.append("pilot source readiness authorization must remain limited to existing local snapshots")
+    return errors
+
+
+def pilot_source_payload_manifest_errors(instance: Any, root: Path = ROOT) -> list[str]:
+    if not isinstance(instance, dict):
+        return ["pilot source payload manifest must be a JSON object"]
+    errors: list[str] = []
+    payloads = instance.get("payloads", [])
+    expected_paths = {"babelon/hp-es.babelon.tsv", "babelon/hp-ja.babelon.tsv"}
+    observed_paths = {item.get("path") for item in payloads if isinstance(item, dict)}
+    if instance.get("selected_option") != "B" or instance.get("selected_languages") != ["es", "ja"]:
+        errors.append("pilot source payload manifest must remain scoped to Option B Spanish and Japanese")
+    if len(payloads) != 2 or observed_paths != expected_paths:
+        errors.append("pilot source payload manifest must contain exactly the Spanish and Japanese Babelon snapshots")
+    for payload in payloads:
+        if not isinstance(payload, dict) or not isinstance(payload.get("path"), str):
+            errors.append("each selected payload must be an object with a repository path")
+            continue
+        path = root / payload["path"]
+        if not path.is_file():
+            errors.append(f"selected payload is missing: {payload['path']}")
+            continue
+        digest = hashlib.sha256(path.read_bytes()).hexdigest()
+        if payload.get("sha256") != digest:
+            errors.append(f"selected payload hash drifted: {payload['path']}")
+        if payload.get("version_pin") != "content_addressed_repository_snapshot":
+            errors.append(f"selected payload must be content-addressed: {payload['path']}")
+    excluded_ids = {item.get("source_id") for item in instance.get("excluded_sources", []) if isinstance(item, dict)}
+    if not {"decs", "pro-ctcae", "who-icf", "restricted_and_archived_ontology_sources"}.issubset(excluded_ids):
+        errors.append("pilot source payload manifest must explicitly exclude unresolved restricted sources")
+    authorization = instance.get("authorization", {})
+    required_true = {
+        "read_existing_repository_payloads",
+        "copy_into_local_ephemeral_pilot_workspace",
+        "derive_payload_safe_aggregate_metrics",
+    }
+    required_false = {
+        "retrieve_new_external_payloads",
+        "use_before_language_community_gate",
+        "commit_derived_translation_candidates",
+        "redistribute_external_or_derived_payloads",
+        "promote_translations",
+    }
+    if any(authorization.get(field) is not True for field in required_true) or any(
+        authorization.get(field) is not False for field in required_false
     ):
-        errors.append("pilot source readiness must not authorize payload, ingestion, candidate, or promotion actions")
+        errors.append("pilot source payload authorization boundary must remain fail-closed")
     return errors
 
 
@@ -1620,6 +1674,7 @@ def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[Valid
                         )
 
     readiness_path = research_root / "pilot_source_readiness.json"
+    payload_manifest_path = research_root / "pilot_source_payload_manifest.json"
     archive_receipts_path = research_root / "source_archive_receipts.json"
     approval_manifest_path = research_root / "approval_manifest.json"
     if not readiness_path.exists():
@@ -1627,7 +1682,14 @@ def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[Valid
             ValidationIssue("pilot_source_readiness.missing", str(readiness_path), "pilot source readiness is required")
         )
     elif not all(
-        path.exists() for path in (catalog_path, supplementary_path, archive_receipts_path, approval_manifest_path)
+        path.exists()
+        for path in (
+            catalog_path,
+            supplementary_path,
+            archive_receipts_path,
+            approval_manifest_path,
+            payload_manifest_path,
+        )
     ):
         issues.append(
             ValidationIssue(
@@ -1646,6 +1708,8 @@ def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[Valid
             load_json(approval_manifest_path),
         ):
             issues.append(ValidationIssue("pilot_source_readiness.invalid", str(readiness_path), message))
+        for message in pilot_source_payload_manifest_errors(load_json(payload_manifest_path), research_root.parent):
+            issues.append(ValidationIssue("pilot_source_payload_manifest.invalid", str(payload_manifest_path), message))
 
     budget_path = research_root / "agent_compute_budget.json"
     if not budget_path.exists():
