@@ -96,6 +96,7 @@
 - [x] **Task:** Supersede the planned people-based evaluation and adjudication pathway with the canonical isolated specialist-agent panel in `research_validation/agent_review_panel.json`. Preserve source rights, community-use constraints, prospective freeze, and maintainer release authority as non-review gates; prohibit human-validation claims. (current continuation)
 - [x] **Task:** Reconcile schemas, fixtures, G2 packets, compute budgets, Stage 0 artifacts, prose, and validators to the canonical seven-agent panel; withdraw the obsolete expression-of-interest pathway and preserve zero people-based translation review. (current continuation)
 - [x] **Task:** Rebuild the locked Pixi environment and pass exact `pixi run qc` across all 14 translation profiles in 38 minutes 31 seconds. Audit hosted run `31471912686`: only the LOINC receipt has a complete authenticated-response sink in the pre-fix helper; private content verification is blocked by dataset read scope and remote remediation remains unauthorized. (current continuation)
+- [x] **Task:** Rebase the research continuation onto the squash-merged governance baseline without restoring the deleted credentialed archive workflow or receipt artifact. Replace archive-receipt coupling with the fail-closed source-hosting inventory, canonicalize payload hashing across Windows line endings, enforce LF for the immutable G3 JSON package, regenerate its complete checksum chain, and pass focused admission. (clean-branch merge-blocker repair)
 
 ### Review outcome
 

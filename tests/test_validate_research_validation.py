@@ -22,7 +22,6 @@ from scripts.validate_research_validation import (
     pilot_source_atom_artifacts_errors,
     pilot_source_payload_manifest_errors,
     pilot_source_readiness_errors,
-    private_source_archive_receipts_errors,
     schema_errors,
     semantic_errors,
     validate_contract,
@@ -49,56 +48,12 @@ class ValidateResearchValidationTests(unittest.TestCase):
             agent_review_panel_errors(panel),
         )
 
-    def test_private_archive_receipts_reject_revision_drift(self) -> None:
-        receipts = load_json(DEFAULT_RESEARCH_ROOT / "source_archive_receipts.json")
-        inventory = load_json(DEFAULT_RESEARCH_ROOT.parent / "conductor" / "source_hosting_inventory.json")
-        receipts["archive_revision"] = "0" * 40
-        self.assertIn(
-            "private archive target and revision must match the canonical hosting inventory",
-            private_source_archive_receipts_errors(receipts, inventory),
-        )
-
-    def test_private_archive_receipts_reject_payload_authority(self) -> None:
-        receipts = load_json(DEFAULT_RESEARCH_ROOT / "source_archive_receipts.json")
-        inventory = load_json(DEFAULT_RESEARCH_ROOT.parent / "conductor" / "source_hosting_inventory.json")
-        receipts["authorization_boundary"]["payload_retrieval_authorized"] = True
-        self.assertIn(
-            "private archive receipts must not authorize source, payload, empirical, or promotion actions",
-            private_source_archive_receipts_errors(receipts, inventory),
-        )
-
-    def test_private_archive_receipts_reject_false_lineage(self) -> None:
-        receipts = load_json(DEFAULT_RESEARCH_ROOT / "source_archive_receipts.json")
-        inventory = load_json(DEFAULT_RESEARCH_ROOT.parent / "conductor" / "source_hosting_inventory.json")
-        receipts["lineage_state"]["independent_evidence_groups_added"] = 4
-        self.assertIn(
-            "private archive receipts must not claim source-atom lineage or evidence independence",
-            private_source_archive_receipts_errors(receipts, inventory),
-        )
-
-    def test_private_archive_receipts_reject_inventory_coverage_drift(self) -> None:
-        receipts = load_json(DEFAULT_RESEARCH_ROOT / "source_archive_receipts.json")
-        inventory = load_json(DEFAULT_RESEARCH_ROOT.parent / "conductor" / "source_hosting_inventory.json")
-        inventory["sources"].append(
-            {
-                "source_id": "new-source",
-                "status": "archived_private",
-                "release": "v1",
-                "archive_path": "releases/new-source/v1/source.obo",
-                "sha256": "0" * 64,
-            }
-        )
-        self.assertIn(
-            "private archive receipts must cover the complete canonical archived-source inventory",
-            private_source_archive_receipts_errors(receipts, inventory),
-        )
-
     def _pilot_source_inputs(self) -> tuple[dict, dict, dict, dict, dict]:
         return (
             load_json(DEFAULT_RESEARCH_ROOT / "pilot_source_readiness.json"),
             load_json(DEFAULT_RESEARCH_ROOT / "source_catalog.json"),
             load_json(DEFAULT_RESEARCH_ROOT / "supplementary_source_access_reviews.json"),
-            load_json(DEFAULT_RESEARCH_ROOT / "source_archive_receipts.json"),
+            load_json(DEFAULT_RESEARCH_ROOT.parent / "conductor" / "source_hosting_inventory.json"),
             load_json(DEFAULT_RESEARCH_ROOT / "approval_manifest.json"),
         )
 
@@ -252,25 +207,13 @@ class ValidateResearchValidationTests(unittest.TestCase):
             phase_4_gate_docket_errors(docket, supplementary, approval),
         )
 
-    def test_gate_docket_private_archive_does_not_authorize_payload(self) -> None:
+    def test_gate_docket_rejects_unbacked_private_storage_readiness(self) -> None:
         docket = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_gate_docket.json")
         supplementary = load_json(DEFAULT_RESEARCH_ROOT / "supplementary_source_access_reviews.json")
         approval = load_json(DEFAULT_RESEARCH_ROOT / "approval_manifest.json")
-        docket["private_storage_readiness"]["payload_upload_authorized"] = True
+        docket["private_storage_readiness"] = {"infrastructure_ready": True}
         self.assertIn(
-            "private storage infrastructure must not imply source, payload, human, or freeze authority",
-            phase_4_gate_docket_errors(docket, supplementary, approval),
-        )
-
-    def test_gate_docket_private_archive_retains_source_permission_gate(self) -> None:
-        docket = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_gate_docket.json")
-        supplementary = load_json(DEFAULT_RESEARCH_ROOT / "supplementary_source_access_reviews.json")
-        approval = load_json(DEFAULT_RESEARCH_ROOT / "approval_manifest.json")
-        docket["private_storage_readiness"]["required_before_use"].remove(
-            "source_specific_rightsholder_permission_or_licence_scope_for_private_cloud_hosting"
-        )
-        self.assertIn(
-            "private storage readiness must retain permission, custody, and maintainer action gates",
+            "Phase 4 docket must not claim private storage readiness without an authorized source",
             phase_4_gate_docket_errors(docket, supplementary, approval),
         )
 

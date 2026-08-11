@@ -797,28 +797,8 @@ def phase_4_gate_docket_errors(
         if wave_2_packet_ids != docket_wave_2_packets:
             errors.append("Wave 2 gate packets must reconcile with the canonical authority-route package")
 
-    storage = instance.get("private_storage_readiness", {})
-    if (
-        not isinstance(storage, dict)
-        or storage.get("inventory_ref") != "conductor/source_hosting_inventory.json"
-        or storage.get("platform_state") != "created_private_owner_only"
-        or storage.get("infrastructure_ready") is not True
-    ):
-        errors.append("private storage readiness must reference the created owner-only archive inventory")
-    if (
-        storage.get("source_specific_cloud_hosting_permission_recorded") is not False
-        or storage.get("payload_upload_authorized") is not False
-        or storage.get("payload_retrieval_authorized") is not False
-        or storage.get("effect_on_gates") != "infrastructure_only_no_G1_G2_or_G3_gate_closed"
-    ):
-        errors.append("private storage infrastructure must not imply source, payload, human, or freeze authority")
-    required_before_use = set(storage.get("required_before_use", []))
-    if not {
-        "source_specific_rightsholder_permission_or_licence_scope_for_private_cloud_hosting",
-        "credential_custody_and_designated_user_record",
-        "explicit_maintainer_payload_action_authorization",
-    }.issubset(required_before_use):
-        errors.append("private storage readiness must retain permission, custody, and maintainer action gates")
+    if instance.get("private_storage_readiness") not in (None, {}):
+        errors.append("Phase 4 docket must not claim private storage readiness without an authorized source")
 
     authorization = instance.get("authorization_boundary", {})
     if (
@@ -1387,12 +1367,12 @@ def pilot_source_readiness_errors(
     instance: Any,
     source_catalog: Any,
     supplementary: Any,
-    archive_receipts: Any,
+    hosting_inventory: Any,
     approval_manifest: Any,
 ) -> list[str]:
     if not all(
         isinstance(value, dict)
-        for value in (instance, source_catalog, supplementary, archive_receipts, approval_manifest)
+        for value in (instance, source_catalog, supplementary, hosting_inventory, approval_manifest)
     ):
         return ["pilot source readiness and canonical inputs must be JSON objects"]
 
@@ -1405,7 +1385,7 @@ def pilot_source_readiness_errors(
     expected_inputs = {
         "official_mapping_catalog": "research_validation/source_catalog.json",
         "supplementary_source_reviews": "research_validation/supplementary_source_access_reviews.json",
-        "source_archive_receipts": "research_validation/source_archive_receipts.json",
+        "source_hosting_inventory": "conductor/source_hosting_inventory.json",
         "approval_manifest": "research_validation/approval_manifest.json",
         "pilot_source_payload_manifest": "research_validation/pilot_source_payload_manifest.json",
     }
@@ -1414,7 +1394,7 @@ def pilot_source_readiness_errors(
     expected_counts = {
         "official_hpo_mapping_families": len(source_catalog.get("mappings", [])),
         "supplementary_source_reviews": len(supplementary.get("reviews", [])),
-        "owner_only_archive_receipts": len(archive_receipts.get("receipts", [])),
+        "source_hosting_inventory": len(hosting_inventory.get("sources", [])),
     }
     layers = {
         layer.get("layer"): layer
@@ -1436,9 +1416,9 @@ def pilot_source_readiness_errors(
         if isinstance(item, dict) and isinstance(item.get("source_id"), str)
     }
     expected_overlap_layers = {
-        "pato": ["supplementary_source_reviews", "owner_only_archive_receipts"],
-        "mp": ["official_hpo_mapping_families", "owner_only_archive_receipts"],
-        "upheno": ["official_hpo_mapping_families", "owner_only_archive_receipts"],
+        "pato": ["supplementary_source_reviews"],
+        "mp": ["official_hpo_mapping_families"],
+        "upheno": ["official_hpo_mapping_families"],
     }
     if set(overlaps) != set(expected_overlap_layers) or len(instance.get("overlap_controls", [])) != len(overlaps):
         errors.append("pilot source readiness must preserve PATO, MP, and uPheno overlap controls")
@@ -1454,7 +1434,7 @@ def pilot_source_readiness_errors(
         or decision.get("payload_authorized_source_count") != 2
         or decision.get("source_atom_ready_count") != 37800
         or decision.get("pilot_independent_evidence_group_count") != 1
-        or decision.get("independent_evidence_groups_added_from_archives") != 0
+        or decision.get("independent_evidence_groups_added_from_hosting_inventory") != 0
         or decision.get("g1_source_authority_closed") is not False
     ):
         errors.append(
@@ -1504,7 +1484,7 @@ def pilot_source_payload_manifest_errors(instance: Any, root: Path = ROOT) -> li
         if not path.is_file():
             errors.append(f"selected payload is missing: {payload['path']}")
             continue
-        digest = hashlib.sha256(path.read_bytes()).hexdigest()
+        digest = hashlib.sha256(path.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
         if payload.get("sha256") != digest:
             errors.append(f"selected payload hash drifted: {payload['path']}")
         if payload.get("version_pin") != "content_addressed_repository_snapshot":
@@ -1586,31 +1566,15 @@ def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[Valid
     passing_dir = research_root / "fixtures" / "passing"
     failing_dir = research_root / "fixtures" / "failing"
 
-    archive_receipts_path = research_root / "source_archive_receipts.json"
     hosting_inventory_path = ROOT / "conductor" / "source_hosting_inventory.json"
-    if not archive_receipts_path.exists():
+    if not hosting_inventory_path.exists():
         issues.append(
             ValidationIssue(
-                "private_source_archive_receipts.missing",
-                str(archive_receipts_path),
-                "private source archive receipts are required",
-            )
-        )
-    elif not hosting_inventory_path.exists():
-        issues.append(
-            ValidationIssue(
-                "private_source_archive_receipts.inventory_missing",
+                "source_hosting_inventory.missing",
                 str(hosting_inventory_path),
                 "canonical source hosting inventory is required",
             )
         )
-    else:
-        archive_receipts = load_json(archive_receipts_path)
-        hosting_inventory = load_json(hosting_inventory_path)
-        for message in private_source_archive_receipts_errors(archive_receipts, hosting_inventory):
-            issues.append(
-                ValidationIssue("private_source_archive_receipts.invalid", str(archive_receipts_path), message)
-            )
 
     schemas = {path.name.removesuffix(".schema.json"): load_json(path) for path in schema_dir.glob("*.schema.json")}
     missing_schemas = EXPECTED_SCHEMA_NAMES - schemas.keys()
@@ -1775,7 +1739,7 @@ def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[Valid
 
     readiness_path = research_root / "pilot_source_readiness.json"
     payload_manifest_path = research_root / "pilot_source_payload_manifest.json"
-    archive_receipts_path = research_root / "source_archive_receipts.json"
+    hosting_inventory_path = research_root.parent / "conductor" / "source_hosting_inventory.json"
     approval_manifest_path = research_root / "approval_manifest.json"
     if not readiness_path.exists():
         issues.append(
@@ -1786,7 +1750,7 @@ def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[Valid
         for path in (
             catalog_path,
             supplementary_path,
-            archive_receipts_path,
+            hosting_inventory_path,
             approval_manifest_path,
             payload_manifest_path,
         )
@@ -1804,7 +1768,7 @@ def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[Valid
             readiness,
             load_json(catalog_path),
             load_json(supplementary_path),
-            load_json(archive_receipts_path),
+            load_json(hosting_inventory_path),
             load_json(approval_manifest_path),
         ):
             issues.append(ValidationIssue("pilot_source_readiness.invalid", str(readiness_path), message))

@@ -1,2 +1,5 @@
 # SCM syntax highlighting & preventing 3-way merges
 pixi.lock merge=binary linguist-language=YAML linguist-generated=true -diff
+research_validation/phase_4_freeze/*.json text eol=lf
+research_validation/phase_4_g3_component_inventory.json text eol=lf
+research_validation/phase_4_g3_freeze_readiness.json text eol=lf
