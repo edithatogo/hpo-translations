@@ -25,8 +25,8 @@ EXPECTED_METHOD_CODES = {
 }
 EXPECTED_SCENARIO_IDS = {
     "full-feasibility-success",
-    "two-reviewers-with-adjudicator",
-    "one-reviewer-only",
+    "two-agents-with-adjudicator",
+    "one-agent-only",
     "review-completion-80-percent",
     "technical-invalidity-15-percent",
     "technical-invalidity-25-percent",
@@ -99,13 +99,13 @@ def build_review_packet(plan: dict[str, Any]) -> list[dict[str, Any]]:
 def build_assignments(plan: dict[str, Any], packet: list[dict[str, Any]]) -> list[dict[str, Any]]:
     assignments = [
         {
-            "assignment_id": f"assignment-{candidate['candidate_id']}-{reviewer_slot}",
+            "assignment_id": f"assignment-{candidate['candidate_id']}-{agent_slot}",
             "item_id": candidate["item_id"],
             "candidate_id": candidate["candidate_id"],
-            "reviewer_slot": reviewer_slot,
+            "agent_slot": agent_slot,
         }
         for candidate in packet
-        for reviewer_slot in range(1, int(plan["reviewer_slots_per_candidate"]) + 1)
+        for agent_slot in range(1, int(plan["agent_slots_per_candidate"]) + 1)
     ]
     random.Random(int(plan["random_seed"]) + 1).shuffle(assignments)
     return assignments
@@ -116,15 +116,15 @@ def build_decisions(assignments: list[dict[str, Any]], packet: list[dict[str, An
     decisions: list[dict[str, Any]] = []
     for assignment in assignments:
         order = presentation_orders[assignment["candidate_id"]]
-        reviewer_slot = int(assignment["reviewer_slot"])
-        decision = DECISION_PATTERNS[(order - 1) % len(DECISION_PATTERNS)][reviewer_slot - 1]
+        agent_slot = int(assignment["agent_slot"])
+        decision = DECISION_PATTERNS[(order - 1) % len(DECISION_PATTERNS)][agent_slot - 1]
         decisions.append(
             {
                 "decision_id": f"decision-{assignment['assignment_id']}",
                 "assignment_id": assignment["assignment_id"],
                 "item_id": assignment["item_id"],
                 "candidate_id": assignment["candidate_id"],
-                "reviewer_slot": reviewer_slot,
+                "agent_slot": agent_slot,
                 "decision": decision,
                 "synthetic": True,
             }
@@ -188,7 +188,7 @@ def sampling_strata_are_exercised(plan: dict[str, Any]) -> bool:
 def progression_action(scenario: dict[str, Any]) -> str:
     if (
         not scenario["permissions_approved"]
-        or int(scenario["reviewer_count"]) < 2
+        or int(scenario["agent_count"]) < 2
         or float(scenario["technical_invalidity_percent"]) > 20
         or not scenario["blinding_viable"]
         or scenario["material_governance_incident"]
@@ -196,14 +196,14 @@ def progression_action(scenario: dict[str, Any]) -> str:
     ):
         return "stop"
     if (
-        int(scenario["reviewer_count"]) >= 3
+        int(scenario["agent_count"]) >= 3
         and float(scenario["review_completion_percent"]) >= 90
         and float(scenario["adjudication_completion_percent"]) >= 90
         and float(scenario["technical_invalidity_percent"]) < 10
     ):
         return "go"
     if (
-        int(scenario["reviewer_count"]) >= 2
+        int(scenario["agent_count"]) >= 2
         and scenario["independent_adjudicator_available"]
         and float(scenario["review_completion_percent"]) >= 70
         and float(scenario["adjudication_completion_percent"]) >= 70
@@ -282,9 +282,9 @@ def build_receipt(stage0_root: Path = DEFAULT_STAGE0_ROOT) -> dict[str, Any]:
             "stop_conditions_exercised": set(action_counts) == {"go", "revise", "stop"},
             "restricted_inputs_absent": manifest["restricted_inputs_present"] is False,
             "empirical_records_absent": manifest["empirical_record_count"] == 0,
-            "human_review_absent": manifest["human_reviewed_record_count"] == 0,
+            "agent_panel_evaluation_absent": manifest["agent_panel_reviewed_record_count"] == 0,
         },
-        "claims_boundary": "operational_readiness_only_no_translation_or_human_validation_evidence",
+        "claims_boundary": "operational_readiness_only_no_translation_or_external_validation_evidence",
     }
 
 
@@ -391,7 +391,7 @@ def validate_stage0_artifacts(stage0_root: Path = DEFAULT_STAGE0_ROOT) -> list[S
             issues.append(Stage0Issue("run_id.mismatch", str(paths["manifest"]), "plan and manifest run IDs differ"))
         if plan.get("random_seed") != manifest.get("random_seed"):
             issues.append(Stage0Issue("random_seed.mismatch", str(paths["manifest"]), "plan and manifest seeds differ"))
-        if manifest.get("empirical_record_count") != 0 or manifest.get("human_reviewed_record_count") != 0:
+        if manifest.get("empirical_record_count") != 0 or manifest.get("agent_panel_reviewed_record_count") != 0:
             issues.append(
                 Stage0Issue("empirical_count.nonzero", str(paths["manifest"]), "Stage 0 record counts must remain zero")
             )
@@ -442,7 +442,7 @@ def main() -> int:
         f"{counts['synthetic_assignments']} assignments, and "
         f"{counts['adjudicated_candidates']} adjudications."
     )
-    print("Operational readiness only; no translation, reviewer, safety, or empirical claim is established.")
+    print("Operational readiness only; no translation, agent, safety, or empirical claim is established.")
     return 0
 
 

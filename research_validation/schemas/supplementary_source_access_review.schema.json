@@ -52,7 +52,7 @@
           "decision_owner",
           "open_gates",
           "next_safe_action",
-          "expected_reviewer_burden",
+          "expected_agent_burden",
           "proposed_pilot_use",
           "evidence_urls",
           "reviewed_at"
@@ -127,7 +127,7 @@
             "items": {"type": "string", "minLength": 1}
           },
           "repository_decision": {
-            "enum": ["metadata_probe_allowed", "payload_blocked_permission_required", "payload_blocked_human_review_required"]
+            "enum": ["metadata_probe_allowed", "payload_blocked_permission_required", "payload_blocked_agent_panel_required"]
           },
           "metadata_commit_allowed": {"const": true},
           "payload_retrieval_allowed": {"const": false},
@@ -149,7 +149,7 @@
             }
           },
           "next_safe_action": {"type": "string", "minLength": 1},
-          "expected_reviewer_burden": {"enum": ["low", "medium", "high"]},
+          "expected_agent_burden": {"enum": ["low", "medium", "high"]},
           "proposed_pilot_use": {"type": "string", "minLength": 1},
           "evidence_urls": {
             "type": "array",
@@ -164,12 +164,12 @@
     "summary": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["source_count", "metadata_probe_allowed_count", "permission_required_count", "human_review_required_count", "payload_allowed_count"],
+      "required": ["source_count", "metadata_probe_allowed_count", "permission_required_count", "agent_panel_required_count", "payload_allowed_count"],
       "properties": {
         "source_count": {"type": "integer", "minimum": 1},
         "metadata_probe_allowed_count": {"type": "integer", "minimum": 0},
         "permission_required_count": {"type": "integer", "minimum": 0},
-        "human_review_required_count": {"type": "integer", "minimum": 0},
+        "agent_panel_required_count": {"type": "integer", "minimum": 0},
         "payload_allowed_count": {"const": 0}
       }
     }

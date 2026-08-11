@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import gzip
 import hashlib
 import json
 import re
@@ -18,7 +19,8 @@ ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_RESEARCH_ROOT = ROOT / "research_validation"
 EXPECTED_SCHEMA_NAMES = {
     "language_identity_registry",
-    "reviewer_decision",
+    "pilot_source_atom",
+    "agent_decision",
     "run_manifest",
     "source_catalog",
     "source_lineage_record",
@@ -37,14 +39,14 @@ EXPECTED_SUPPLEMENTARY_SOURCE_IDS = {
     "who-icf",
 }
 EXPECTED_REFORECAST_INPUTS = {
-    "median_minutes_per_independent_judgment",
+    "median_minutes_per_independent_evaluation",
     "observed_adjudication_fraction",
-    "observed_training_and_coordination_minutes",
-    "confirmed_reviewer_count",
+    "observed_initialization_and_coordination_minutes",
+    "confirmed_agent_count",
     "observed_completion_and_attrition",
 }
 EXPECTED_BUDGET_AUTHORIZATION_FIELDS = {
-    "reviewer_contact_authorized",
+    "agent_execution_authorized",
     "financial_spend_authorized",
     "source_payload_retrieval_authorized",
     "empirical_candidate_generation_authorized",
@@ -62,7 +64,7 @@ EXPECTED_PHASE_4_GATE_PACKET_IDS = {
     "g2-spanish-language",
     "g2-japanese-language",
     "g2-community-slot",
-    "g2-reviewer-roster",
+    "g0-agent-panel-protocol",
     "g2-ethics-privacy",
 }
 EXPECTED_PHASE_4_G1_ROUTE_SOURCE_IDS = {"pro-ctcae", "decs", "mondo", "who-icf", "uberon", "pato"}
@@ -77,6 +79,15 @@ EXPECTED_PHASE_4_WAVE_2_SPONSOR_ROUTE_IDS = {
     "flinders_sponsored",
     "nsw_health_islhd_sponsored_or_site",
     "cross_institutional",
+}
+EXPECTED_PRIVATE_ARCHIVE_SOURCE_IDS = {
+    "do",
+    "loinc",
+    "mesh",
+    "mp",
+    "orphanet",
+    "pato",
+    "upheno",
 }
 
 
@@ -115,9 +126,9 @@ def semantic_errors(schema_name: str, instance: Any) -> list[str]:
 
     if schema_name == "run_manifest":
         empirical_count = instance.get("empirical_record_count")
-        reviewed_count = instance.get("human_reviewed_record_count")
+        reviewed_count = instance.get("agent_panel_reviewed_record_count")
         if isinstance(empirical_count, int) and isinstance(reviewed_count, int) and reviewed_count > empirical_count:
-            errors.append("human_reviewed_record_count cannot exceed empirical_record_count")
+            errors.append("agent_panel_reviewed_record_count cannot exceed empirical_record_count")
 
         if instance.get("release_scope") != "schema_probe":
             approvals = instance.get("approvals", {})
@@ -136,7 +147,7 @@ def semantic_errors(schema_name: str, instance: Any) -> list[str]:
         ):
             errors.append("source_versions and source_retrieval_dates must name the same sources")
 
-    if schema_name == "reviewer_decision":
+    if schema_name == "agent_decision":
         if instance.get("clinically_significant_error") and not instance.get("error_categories"):
             errors.append("a clinically significant error requires at least one error category")
         selected_hpo_id = instance.get("selected_hpo_id")
@@ -144,7 +155,7 @@ def semantic_errors(schema_name: str, instance: Any) -> list[str]:
         if (selected_hpo_id is None) != (discrimination_correct is None):
             errors.append("ontology discrimination identifier and result must be recorded together")
         if instance.get("conflict_status") == "recused" and instance.get("decision") != "abstain":
-            errors.append("a recused reviewer must abstain")
+            errors.append("a recused agent must abstain")
 
     if schema_name == "source_catalog":
         mappings = instance.get("mappings", [])
@@ -282,8 +293,8 @@ def semantic_errors(schema_name: str, instance: Any) -> list[str]:
                     for record in reviews
                     if isinstance(record, dict)
                 ),
-                "human_review_required_count": sum(
-                    record.get("repository_decision") == "payload_blocked_human_review_required"
+                "agent_panel_required_count": sum(
+                    record.get("repository_decision") == "payload_blocked_agent_panel_required"
                     for record in reviews
                     if isinstance(record, dict)
                 ),
@@ -298,9 +309,9 @@ def semantic_errors(schema_name: str, instance: Any) -> list[str]:
     return errors
 
 
-def reviewer_workload_budget_errors(instance: Any) -> list[str]:
+def agent_compute_budget_errors(instance: Any) -> list[str]:
     if not isinstance(instance, dict):
-        return ["reviewer workload budget must be a JSON object"]
+        return ["agent compute budget must be a JSON object"]
 
     errors: list[str] = []
     design = instance.get("design_snapshot", {})
@@ -310,7 +321,7 @@ def reviewer_workload_budget_errors(instance: Any) -> list[str]:
     release_rule = instance.get("release_rule", {})
     authorization = instance.get("authorization_boundary", {})
     if not all(isinstance(value, dict) for value in (design, assumptions, stage_1, full, release_rule, authorization)):
-        return ["reviewer workload budget sections must be JSON objects"]
+        return ["agent compute budget sections must be JSON objects"]
 
     numeric_requirements = {
         "design_snapshot": (
@@ -318,18 +329,19 @@ def reviewer_workload_budget_errors(instance: Any) -> list[str]:
             (
                 "concept_language_units",
                 "candidate_conditions",
-                "reviews_per_candidate",
-                "independent_judgments",
-                "primary_reviewer_count",
-                "independent_adjudicator_count",
-                "planning_reviewer_count",
+                "evaluations_per_candidate",
+                "independent_evaluations",
+                "specialist_agent_count",
+                "adjudicator_agent_count",
+                "audit_agent_count",
+                "panel_agent_count",
             ),
         ),
         "planning_assumptions": (
             assumptions,
             (
-                "minutes_per_independent_judgment",
-                "training_minutes_per_reviewer",
+                "minutes_per_independent_evaluation",
+                "initialization_minutes_per_agent",
                 "anticipated_adjudication_fraction",
                 "minutes_per_adjudication",
             ),
@@ -339,10 +351,10 @@ def reviewer_workload_budget_errors(instance: Any) -> list[str]:
             (
                 "concept_language_units",
                 "candidate_rows",
-                "independent_judgments",
+                "independent_evaluations",
                 "anticipated_adjudications",
-                "independent_review_minutes",
-                "training_minutes",
+                "agent_evaluation_minutes",
+                "initialization_minutes",
                 "adjudication_minutes",
                 "coordination_and_contingency_minutes",
                 "release_cap_minutes",
@@ -353,10 +365,10 @@ def reviewer_workload_budget_errors(instance: Any) -> list[str]:
             full,
             (
                 "candidate_rows",
-                "independent_judgments",
+                "independent_evaluations",
                 "anticipated_adjudications",
-                "independent_review_minutes",
-                "training_minutes",
+                "agent_evaluation_minutes",
+                "initialization_minutes",
                 "adjudication_minutes",
                 "coordination_and_contingency_minutes",
                 "ceiling_minutes",
@@ -375,32 +387,40 @@ def reviewer_workload_budget_errors(instance: Any) -> list[str]:
         return errors
 
     design_candidate_rows = design.get("concept_language_units", 0) * design.get("candidate_conditions", 0)
-    design_judgments = design_candidate_rows * design.get("reviews_per_candidate", 0)
+    design_evaluations = design_candidate_rows * design.get("evaluations_per_candidate", 0)
     if full.get("candidate_rows") != design_candidate_rows:
         errors.append("full-pilot candidate rows must match the design snapshot")
-    if design.get("planning_reviewer_count") != (
-        design.get("primary_reviewer_count", 0) + design.get("independent_adjudicator_count", 0)
+    if design.get("panel_agent_count") != (
+        design.get("specialist_agent_count", 0)
+        + design.get("adjudicator_agent_count", 0)
+        + design.get("audit_agent_count", 0)
     ):
-        errors.append("planning reviewer count must include primary reviewers and independent adjudicators")
-    if design.get("independent_judgments") != design_judgments or full.get("independent_judgments") != design_judgments:
-        errors.append("full-pilot independent judgments must match the design snapshot")
+        errors.append("panel agent count must include specialist, adjudicator, and audit agents")
+    if (
+        design.get("independent_evaluations") != design_evaluations
+        or full.get("independent_evaluations") != design_evaluations
+    ):
+        errors.append("full-pilot independent evaluations must match the design snapshot")
 
     stage_1_candidate_rows = stage_1.get("concept_language_units", 0) * design.get("candidate_conditions", 0)
-    stage_1_judgments = stage_1_candidate_rows * design.get("reviews_per_candidate", 0)
+    stage_1_evaluations = stage_1_candidate_rows * design.get("evaluations_per_candidate", 0)
     if stage_1.get("candidate_rows") != stage_1_candidate_rows:
         errors.append("Stage 1 candidate rows must match its concept-language units")
-    if stage_1.get("independent_judgments") != stage_1_judgments:
-        errors.append("Stage 1 independent judgments must match its candidate rows")
+    if stage_1.get("independent_evaluations") != stage_1_evaluations:
+        errors.append("Stage 1 independent evaluations must match its candidate rows")
 
-    minutes_per_judgment = assumptions.get("minutes_per_independent_judgment", 0)
-    training_minutes = assumptions.get("training_minutes_per_reviewer", 0) * design.get("planning_reviewer_count", 0)
+    minutes_per_evaluation = assumptions.get("minutes_per_independent_evaluation", 0)
+    initialization_minutes = assumptions.get("initialization_minutes_per_agent", 0) * design.get("panel_agent_count", 0)
     minutes_per_adjudication = assumptions.get("minutes_per_adjudication", 0)
-    if stage_1.get("independent_review_minutes") != stage_1_judgments * minutes_per_judgment:
-        errors.append("Stage 1 independent-review minutes do not match the planning assumption")
-    if full.get("independent_review_minutes") != design_judgments * minutes_per_judgment:
-        errors.append("full-pilot independent-review minutes do not match the planning assumption")
-    if stage_1.get("training_minutes") != training_minutes or full.get("training_minutes") != training_minutes:
-        errors.append("training minutes must match reviewer count and the per-reviewer assumption")
+    if stage_1.get("agent_evaluation_minutes") != stage_1_evaluations * minutes_per_evaluation:
+        errors.append("Stage 1 agent-evaluation minutes do not match the planning assumption")
+    if full.get("agent_evaluation_minutes") != design_evaluations * minutes_per_evaluation:
+        errors.append("full-pilot agent-evaluation minutes do not match the planning assumption")
+    if (
+        stage_1.get("initialization_minutes") != initialization_minutes
+        or full.get("initialization_minutes") != initialization_minutes
+    ):
+        errors.append("initialization minutes must match agent count and the per-agent assumption")
     if stage_1.get("adjudication_minutes") != stage_1.get("anticipated_adjudications", 0) * minutes_per_adjudication:
         errors.append("Stage 1 adjudication minutes do not match the planning assumption")
     if full.get("adjudication_minutes") != full.get("anticipated_adjudications", 0) * minutes_per_adjudication:
@@ -409,8 +429,8 @@ def reviewer_workload_budget_errors(instance: Any) -> list[str]:
     stage_1_components = sum(
         stage_1.get(field, 0)
         for field in (
-            "independent_review_minutes",
-            "training_minutes",
+            "agent_evaluation_minutes",
+            "initialization_minutes",
             "adjudication_minutes",
             "coordination_and_contingency_minutes",
         )
@@ -418,8 +438,8 @@ def reviewer_workload_budget_errors(instance: Any) -> list[str]:
     full_components = sum(
         full.get(field, 0)
         for field in (
-            "independent_review_minutes",
-            "training_minutes",
+            "agent_evaluation_minutes",
+            "initialization_minutes",
             "adjudication_minutes",
             "coordination_and_contingency_minutes",
         )
@@ -446,9 +466,9 @@ def reviewer_workload_budget_errors(instance: Any) -> list[str]:
         errors.append("full-pilot anticipated adjudications must match the planning fraction")
 
     if instance.get("status") != "provisional_g0_budget_approved":
-        errors.append("reviewer workload budget must retain its provisional G0 status")
-    if instance.get("target_option") != "A":
-        errors.append("reviewer workload budget must remain scoped to selected Option A")
+        errors.append("agent compute budget must retain its provisional G0 status")
+    if instance.get("target_option") != "B":
+        errors.append("agent compute budget must remain scoped to selected Option B")
     if stage_1.get("release_cap_minutes") != 1800 or full.get("ceiling_minutes") != 7200:
         errors.append("approved Stage 1 and full-pilot workload ceilings cannot drift without amendment")
     if not release_rule.get("stage_1_only_initially") or not release_rule.get(
@@ -460,7 +480,55 @@ def reviewer_workload_budget_errors(instance: Any) -> list[str]:
     if set(authorization) != EXPECTED_BUDGET_AUTHORIZATION_FIELDS or any(
         value is not False for value in authorization.values()
     ):
-        errors.append("capacity planning cannot authorize reviewer, payload, empirical, or external actions")
+        errors.append("capacity planning cannot authorize agent execution, payload, empirical, or external actions")
+    return errors
+
+
+def agent_review_panel_errors(instance: Any) -> list[str]:
+    if not isinstance(instance, dict):
+        return ["agent review panel must be a JSON object"]
+    errors: list[str] = []
+    if instance.get("human_review_planned") is not False:
+        errors.append("agent review panel must prohibit planned explicit maintainer decision")
+    panel = instance.get("panel")
+    roles = panel.get("roles", []) if isinstance(panel, dict) else []
+    role_ids = {role.get("role_id") for role in roles if isinstance(role, dict)}
+    expected_roles = {
+        "target_language_semantics",
+        "clinical_safety",
+        "ontology_semantics",
+        "provenance_and_rights",
+        "adversarial_error_finder",
+    }
+    if role_ids != expected_roles:
+        errors.append("agent review panel must contain the five required independent specialist roles")
+    if not isinstance(panel, dict) or panel.get("context_isolation_required") is not True:
+        errors.append("agent review panel must require isolated initial contexts")
+    if not isinstance(panel, dict) or panel.get("candidate_generator_separated") is not True:
+        errors.append("agent review panel must remain separated from candidate generation")
+    adjudicator = panel.get("adjudicator", {}) if isinstance(panel, dict) else {}
+    if not isinstance(adjudicator, dict) or adjudicator.get("sees_initial_decisions_only_after_lock") is not True:
+        errors.append("agent adjudicator must see initial decisions only after they are locked")
+    controls = instance.get("execution_controls")
+    required_true = {
+        "model_or_endpoint_version_pinned",
+        "prompt_hash_required",
+        "independent_contexts_required",
+        "deterministic_reproducer_required_for_gate_effect",
+        "unanimous_clinical_safety_clearance_required",
+    }
+    if not isinstance(controls, dict) or any(controls.get(field) is not True for field in required_true):
+        errors.append("agent review panel must preserve pinning, isolation, reproduction, and safety controls")
+    if not isinstance(controls, dict) or controls.get("promotion_allowed") is not False:
+        errors.append("agent review panel must not authorize promotion")
+    claims = instance.get("claims_boundary")
+    prohibited_claims = {
+        "human_validation_claim_allowed",
+        "community_endorsement_claim_allowed",
+        "clinical_validation_claim_allowed",
+    }
+    if not isinstance(claims, dict) or any(claims.get(field) is not False for field in prohibited_claims):
+        errors.append("agent review panel must prohibit human, community, and clinical validation claims")
     return errors
 
 
@@ -514,49 +582,58 @@ def phase_4_candidate_matrix_errors(instance: Any, supplementary: Any) -> list[s
     if any(isinstance(review, dict) and review.get("payload_retrieval_allowed") for review in reviews):
         errors.append("candidate matrix cannot proceed while the canonical review reports an allowed payload")
 
-    if any(
-        instance.get(field) != 0
-        for field in ("approved_language_count", "approved_source_payload_count", "named_reviewer_count")
+    if (
+        instance.get("approved_language_count") != 0
+        or instance.get("approved_source_payload_count") != 2
+        or instance.get("empirical_agent_execution_count") != 0
     ):
-        errors.append("Phase 4 planning matrix must record zero approved languages, payloads, and named reviewers")
+        errors.append("Phase 4 matrix must record two pinned payloads but zero language or empirical approvals")
 
-    reviewer_model = instance.get("reviewer_model", {})
-    if not isinstance(reviewer_model, dict):
-        errors.append("reviewer model must be an object")
+    agent_panel_model = instance.get("agent_panel_model", {})
+    if not isinstance(agent_panel_model, dict):
+        errors.append("agent panel model must be an object")
     else:
-        planned_total = reviewer_model.get("planned_primary_reviewer_count", 0) + reviewer_model.get(
-            "planned_independent_adjudicator_count", 0
+        planned_total = (
+            agent_panel_model.get("planned_specialist_agent_count", 0)
+            + agent_panel_model.get("planned_adjudicator_agent_count", 0)
+            + agent_panel_model.get("planned_audit_agent_count", 0)
         )
-        if reviewer_model.get("planned_human_role_count") != planned_total or planned_total != 12:
-            errors.append("reviewer model must budget nine primary reviewers and three independent adjudicators")
-        if reviewer_model.get("identities_or_contact_details_permitted_in_repository") is not False:
-            errors.append("reviewer identities and contact details must remain excluded")
+        if agent_panel_model.get("planned_human_role_count") != 0 or planned_total != 7:
+            errors.append("agent panel must budget five specialists, one adjudicator, one auditor, and zero people")
+        if agent_panel_model.get("human_identifiers_or_contact_details_present") is not False:
+            errors.append("agent panel must contain no human identifiers or contact details")
         expected_roles = {
-            "target_language_terminology_reviewer",
-            "target_language_clinical_reviewer",
-            "target_language_ontology_phenotype_reviewer",
+            "target_language_semantics",
+            "clinical_safety",
+            "ontology_semantics",
+            "provenance_and_rights",
+            "adversarial_error_finder",
         }
-        if set(reviewer_model.get("primary_roles", [])) != expected_roles:
-            errors.append("primary reviewer roles must cover terminology, clinical, and ontology expertise")
-        adjudicator_requirements = set(reviewer_model.get("adjudicator_requirements", []))
+        if set(agent_panel_model.get("primary_roles", [])) != expected_roles:
+            errors.append("specialist roles must match the canonical five-role agent panel")
+        adjudicator_requirements = set(agent_panel_model.get("adjudicator_requirements", []))
         if not {
             "independent_of_candidate_generation",
-            "not_one_of_the_three_initial_reviewers_for_the_adjudicated_item",
-            "conflict_of_interest_declaration",
+            "separate_context_from_all_initial_agents",
+            "initial_decisions_locked_before_disclosure",
+            "deterministic_aggregation_reproducer",
         }.issubset(adjudicator_requirements):
-            errors.append("adjudicator requirements must preserve independence and conflict review")
+            errors.append("adjudicator requirements must preserve isolation, locking, and deterministic reproduction")
+
+    if instance.get("target_option") != "B" or instance.get("selected_languages") != ["es", "ja"]:
+        errors.append("Phase 4 must retain selected Option B with Spanish and Japanese")
 
     expected_actions = [
-        "step_down_to_option_b_with_es_and_ja",
-        "consider_option_b_with_es_and_zh_subject_to_all_gates",
-        "consider_option_b_with_fr_or_pt_and_ja_subject_to_all_gates",
+        "step_down_to_option_c_for_spanish_if_fully_authorized_otherwise_option_d",
+        "step_down_to_option_c_for_japanese_if_fully_authorized_otherwise_option_d",
+        "do_not_mutate_the_frozen_run_step_down_only_via_a_new_freeze_for_the_first_fully_authorized_language_or_option_d",
         "step_down_to_option_c",
         "remain_at_option_d_synthetic_only",
     ]
     contingencies = instance.get("step_down_contingencies", [])
     actions = [item.get("action") for item in contingencies if isinstance(item, dict)]
     if actions != expected_actions:
-        errors.append("Phase 4 step-down contingencies must preserve the approved A-to-B-to-C-to-D order")
+        errors.append("Phase 4 step-down contingencies must preserve the selected B-to-C-to-D order")
 
     authorization = instance.get("authorization_boundary", {})
     if not isinstance(authorization, dict) or any(value is not False for value in authorization.values()):
@@ -589,9 +666,9 @@ def phase_4_gate_docket_errors(
         "option_d_synthetic_only",
     ]
     if option_ids != expected_option_ids or resolution.get("recommended_strategy") != (
-        "dual_lane_minimum_viable_option_b_then_expand_to_option_a_only_if_optional_gates_close_before_G3"
+        "selected_minimum_viable_option_b_with_spanish_and_japanese_subject_to_all_required_gates"
     ):
-        errors.append("Phase 4 blocker options must preserve the recommended B-to-A dual-lane order")
+        errors.append("Phase 4 blocker options must preserve selected Option B and its fail-closed fallbacks")
     if any(not option.get("fallback") for option in options if isinstance(option, dict)):
         errors.append("every Phase 4 blocker option must define a fallback")
 
@@ -600,7 +677,7 @@ def phase_4_gate_docket_errors(
     if wave_ids != [
         "wave_1_minimum_source_scope",
         "wave_2_ethics_privacy_and_language_scope",
-        "wave_3_reviewer_capacity",
+        "wave_3_agent_capacity",
         "wave_4_optional_expansion",
         "wave_5_reconcile_and_freeze",
     ]:
@@ -648,7 +725,12 @@ def phase_4_gate_docket_errors(
             errors.append("each Phase 4 decision packet must be an object")
             continue
         packet_id = packet.get("packet_id")
-        expected_decision = "conditional" if packet_id in EXPECTED_PHASE_4_WAVE_1_CONDITIONAL_PACKETS else "pending"
+        if packet_id in EXPECTED_PHASE_4_WAVE_1_CONDITIONAL_PACKETS:
+            expected_decision = "conditional"
+        elif packet_id == "g0-agent-panel-protocol":
+            expected_decision = "approved"
+        else:
+            expected_decision = "pending"
         if packet.get("decision") != expected_decision:
             errors.append("decision packet state must match the recorded Wave 1 evidence and pending gate set")
         if expected_decision == "conditional" and (
@@ -676,14 +758,18 @@ def phase_4_gate_docket_errors(
         if isinstance(gate, dict) and isinstance(gate.get("gate"), str)
     }
     source_gate = manifest_gates.get("source_licence", {})
-    other_decisions = {gate.get("decision") for gate_id, gate in manifest_gates.items() if gate_id != "source_licence"}
+    pending_gate_ids = {"language_working_group", "community_authority", "ethics_privacy"}
+    pending_decisions = {manifest_gates.get(gate_id, {}).get("decision") for gate_id in pending_gate_ids}
     if (
         source_gate.get("decision") != "conditional"
-        or other_decisions != {"pending"}
+        or pending_decisions != {"pending"}
+        or manifest_gates.get("agent_panel_protocol", {}).get("decision") != "approved"
         or source_gate.get("promotion_allowed") is not False
         or approval_manifest.get("promotion_allowed") is not False
     ):
-        errors.append("gate docket requires a conditional Wave 1 source gate with all G2 gates pending and fail-closed")
+        errors.append(
+            "gate docket requires conditional source scope, pending external G2 gates, and approved agent protocol"
+        )
     if isinstance(wave_1_decisions, dict):
         wave_1_sources = {
             decision.get("source_id")
@@ -710,6 +796,9 @@ def phase_4_gate_docket_errors(
         }
         if wave_2_packet_ids != docket_wave_2_packets:
             errors.append("Wave 2 gate packets must reconcile with the canonical authority-route package")
+
+    if instance.get("private_storage_readiness") not in (None, {}):
+        errors.append("Phase 4 docket must not claim private storage readiness without an authorized source")
 
     authorization = instance.get("authorization_boundary", {})
     if (
@@ -799,14 +888,14 @@ def phase_4_wave_2_authority_routes_errors(instance: Any) -> list[str]:
     control_plan = instance.get("local_only_control_plan", {})
     if control_plan.get("status") != "control_skeleton_prepared_authority_determination_pending":
         errors.append("Wave 2 local-only control plan must remain a pending authority-reviewed skeleton")
-    for field in ("retention", "consent", "withdrawal", "incident_response"):
+    for field in ("retention", "restricted_context_handling", "deletion", "incident_response"):
         control = control_plan.get(field, {}) if isinstance(control_plan, dict) else {}
         if (
             not isinstance(control, dict)
             or not control.get("proposed_rule")
             or control.get("authority_decision_required") is not True
         ):
-            errors.append("Wave 2 retention, consent, withdrawal, and incident controls require authority decisions")
+            errors.append("Wave 2 retention, restricted-context, deletion, and incident controls require decisions")
 
     expected_inputs = {
         "sponsoring_institution_route_selection",
@@ -864,8 +953,8 @@ def phase_4_decision_receipt_template_errors(instance: Any) -> list[str]:
             errors.append(f"decision receipt template field {field} must remain empty")
     authorization_fields = (
         "payload_retrieval_allowed",
-        "reviewer_contact_allowed",
-        "reviewer_data_collection_allowed",
+        "agent_execution_allowed",
+        "agent_output_collection_allowed",
         "empirical_work_allowed",
         "promotion_allowed",
     )
@@ -1033,12 +1122,28 @@ EXPECTED_G3_COMPONENTS = {
     "model_endpoints",
     "source_versions",
     "randomization_seed_and_algorithm",
+    "aggregation_rule",
     "exclusions",
-    "reviewer_instrument",
+    "agent_panel_instrument",
     "progression_criteria",
     "analysis_code",
     "approval_receipts",
     "privacy_retention_and_incident_plan",
+}
+EXPECTED_G3_FILENAMES = {
+    "sampling_frame.json",
+    "candidate_conditions.json",
+    "prompts.manifest.json",
+    "model_endpoints.json",
+    "source_versions.json",
+    "randomization.json",
+    "aggregation.json",
+    "pre_unblinding_exclusions.json",
+    "agent_panel_instrument.json",
+    "progression_criteria.json",
+    "analysis_environment.json",
+    "approval_receipts.manifest.json",
+    "privacy_retention_incident.json",
 }
 
 
@@ -1046,8 +1151,8 @@ def phase_4_g3_component_inventory_errors(instance: Any) -> list[str]:
     if not isinstance(instance, dict):
         return ["Phase 4 G3 component inventory must be a JSON object"]
     errors: list[str] = []
-    if instance.get("status") != "planning_inventory_only_not_frozen":
-        errors.append("G3 component inventory must remain planning-only and not frozen")
+    if instance.get("status") != "prospectively_frozen_execution_blocked_pending_external_preconditions":
+        errors.append("G3 component inventory must record the conditional prospective freeze")
     components = instance.get("components", [])
     component_ids = [item.get("component_id") for item in components if isinstance(item, dict)]
     if set(component_ids) != EXPECTED_G3_COMPONENTS or len(component_ids) != len(EXPECTED_G3_COMPONENTS):
@@ -1056,27 +1161,33 @@ def phase_4_g3_component_inventory_errors(instance: Any) -> list[str]:
         if not isinstance(component, dict):
             errors.append("each G3 component inventory entry must be an object")
             continue
-        if component.get("version_or_hash") is not None:
-            errors.append("G3 planning inventory must not contain versions or hashes")
+        version_or_hash = component.get("version_or_hash")
+        if not isinstance(version_or_hash, str) or re.fullmatch(r"sha256:[0-9a-f]{64}", version_or_hash) is None:
+            errors.append("each frozen G3 component must contain a SHA-256 hash")
         if (
             not component.get("planning_source")
             or not component.get("freeze_artifact_path")
             or not component.get("blocker")
         ):
             errors.append("each G3 component requires a planning source, intended freeze path, and blocker")
-        if component.get("readiness") in {"ready", "frozen", "checksummed"}:
-            errors.append("G3 component inventory must not claim component freeze readiness")
+        if component.get("readiness") != "frozen_checksummed_execution_blocked":
+            errors.append("each G3 component must be frozen and checksummed but execution-blocked")
     summary = instance.get("summary", {})
     if summary != {
         "component_count": len(EXPECTED_G3_COMPONENTS),
-        "frozen_component_count": 0,
-        "checksummed_component_count": 0,
-        "ready_for_freeze_count": 0,
+        "frozen_component_count": len(EXPECTED_G3_COMPONENTS),
+        "checksummed_component_count": len(EXPECTED_G3_COMPONENTS),
+        "ready_for_freeze_count": len(EXPECTED_G3_COMPONENTS),
     }:
-        errors.append("G3 component inventory summary must record twelve components and zero readiness")
+        errors.append("G3 component inventory summary must record all thirteen frozen components")
     authorization = instance.get("authorization_boundary", {})
-    if not authorization or any(value is not False for value in authorization.values()):
-        errors.append("all G3 component inventory authorization fields must remain false")
+    if authorization != {
+        "create_freeze_artifacts": True,
+        "assign_versions_or_hashes": True,
+        "start_empirical_work": False,
+        "external_preregistration": False,
+    }:
+        errors.append("G3 inventory authority must permit only local freeze creation and hashing")
     return errors
 
 
@@ -1117,48 +1228,52 @@ def phase_4_g3_freeze_readiness_errors(
         return ["Phase 4 G3 freeze readiness contract must be a JSON object"]
     errors: list[str] = []
     if (
-        instance.get("status") != "preflight_contract_ready_not_frozen"
-        or instance.get("freeze_id") is not None
-        or instance.get("frozen_at") is not None
+        instance.get("status") != "prospectively_frozen_execution_blocked_pending_external_preconditions"
+        or instance.get("freeze_id") != "g3-option-b-es-ja-20260812-v1"
+        or instance.get("frozen_at") != "2026-08-12"
     ):
-        errors.append("G3 readiness must remain explicitly not frozen with no freeze identifier or timestamp")
+        errors.append("G3 readiness must identify the canonical conditional prospective freeze")
     if (
-        instance.get("prospective_freeze_claim_allowed") is not False
+        instance.get("prospective_freeze_claim_allowed") is not True
         or instance.get("external_preregistration_claim_allowed") is not False
     ):
-        errors.append("G3 readiness must not authorize freeze or preregistration claims")
+        errors.append("G3 readiness may claim only the local prospective freeze, not preregistration")
     prerequisites = instance.get("prerequisites", {})
     if (
         prerequisites.get("G1_source_authority") != "conditional"
-        or prerequisites.get("G2_human_and_community_authority") != "pending"
+        or prerequisites.get("G2_language_and_community_use_constraints") != "pending"
     ):
         errors.append("G3 readiness must preserve conditional G1 scope and pending G2 prerequisites")
     if (
-        any(
-            prerequisites.get(field) != 0
-            for field in ("approved_language_count", "approved_payload_source_count", "named_reviewer_count")
-        )
-        or prerequisites.get("explicit_maintainer_freeze_approval") is not False
+        prerequisites.get("approved_language_count") != 0
+        or prerequisites.get("approved_payload_source_count") != 2
+        or prerequisites.get("empirical_agent_execution_count") != 0
+        or prerequisites.get("explicit_maintainer_freeze_approval") is not True
     ):
-        errors.append("G3 readiness must record zero empirical approvals and no maintainer freeze approval")
+        errors.append("G3 readiness must preserve zero empirical approvals and record freeze approval")
     components = instance.get("required_components", [])
     if (
         set(components) != EXPECTED_G3_COMPONENTS
         or len(components) != len(EXPECTED_G3_COMPONENTS)
-        or instance.get("component_status") != "not_frozen"
+        or instance.get("component_status") != "frozen_checksummed_execution_blocked"
     ):
-        errors.append("G3 readiness must enumerate every required component exactly once as not frozen")
+        errors.append("G3 readiness must enumerate every required component exactly once as conditionally frozen")
     checksum = instance.get("checksum_contract", {})
-    if checksum.get("recorded_checksum_count") != 0 or checksum.get("aggregate_manifest_hash") is not None:
-        errors.append("G3 readiness must not record checksums before the prospective freeze")
+    if (
+        checksum.get("recorded_checksum_count") != len(EXPECTED_G3_COMPONENTS)
+        or re.fullmatch(r"sha256:[0-9a-f]{64}", str(checksum.get("aggregate_manifest_hash"))) is None
+    ):
+        errors.append("G3 readiness must record all component checksums and the aggregate manifest hash")
     authorization = instance.get("authorization_boundary", {})
-    if not authorization or any(value is not False for value in authorization.values()):
-        errors.append("all G3 readiness authorization fields must remain false")
+    if authorization.get("create_prospective_freeze_receipt") is not True or any(
+        value is not False for field, value in authorization.items() if field != "create_prospective_freeze_receipt"
+    ):
+        errors.append("G3 readiness authority must permit only local prospective freeze creation")
     if isinstance(candidate_matrix, dict):
         expected_counts = {
             "approved_language_count": candidate_matrix.get("approved_language_count"),
             "approved_payload_source_count": candidate_matrix.get("approved_source_payload_count"),
-            "named_reviewer_count": candidate_matrix.get("named_reviewer_count"),
+            "empirical_agent_execution_count": candidate_matrix.get("empirical_agent_execution_count"),
         }
         if any(prerequisites.get(field) != value for field, value in expected_counts.items()):
             errors.append("G3 readiness approval counts must match the canonical candidate matrix")
@@ -1178,13 +1293,7 @@ def phase_4_g3_freeze_readiness_errors(
         }
         if decisions.get("source_licence") != prerequisites.get("G1_source_authority"):
             errors.append("G3 readiness G1 state must match the canonical source-licence decision")
-        g2_gate_ids = {
-            "language_working_group",
-            "domain_reviewer",
-            "community_authority",
-            "ethics_privacy",
-            "reviewer_conflict_adjudication",
-        }
+        g2_gate_ids = {"language_working_group", "community_authority", "ethics_privacy"}
         g2_decisions = {decisions.get(gate_id) for gate_id in g2_gate_ids}
         if g2_decisions == {"pending"}:
             canonical_g2_state = "pending"
@@ -1192,8 +1301,262 @@ def phase_4_g3_freeze_readiness_errors(
             canonical_g2_state = "approved_or_conditional"
         else:
             canonical_g2_state = "mixed_or_blocked"
-        if prerequisites.get("G2_human_and_community_authority") != canonical_g2_state:
-            errors.append("G3 readiness G2 state must match the canonical human and community gate decisions")
+        if prerequisites.get("G2_language_and_community_use_constraints") != canonical_g2_state:
+            errors.append("G3 readiness G2 state must match canonical language and community-use decisions")
+    return errors
+
+
+def private_source_archive_receipts_errors(instance: Any, hosting_inventory: Any) -> list[str]:
+    if not isinstance(instance, dict) or not isinstance(hosting_inventory, dict):
+        return ["private archive receipts and hosting inventory must be JSON objects"]
+
+    errors: list[str] = []
+    if (
+        instance.get("schema_version") != "source-archive-receipts-v1"
+        or instance.get("status") != "metadata_only_archive_receipts_no_payload_authority"
+        or instance.get("inventory_ref") != "conductor/source_hosting_inventory.json"
+    ):
+        errors.append("private archive receipts must use the metadata-only v1 contract")
+    hosting = hosting_inventory.get("candidate_hosting", {})
+    if instance.get("archive_target") != hosting.get("archive_target") or instance.get(
+        "archive_revision"
+    ) != hosting.get("latest_verified_archive_revision"):
+        errors.append("private archive target and revision must match the canonical hosting inventory")
+
+    receipts = instance.get("receipts", [])
+    receipt_by_id = {
+        receipt.get("source_id"): receipt
+        for receipt in receipts
+        if isinstance(receipt, dict) and isinstance(receipt.get("source_id"), str)
+    }
+    if set(receipt_by_id) != EXPECTED_PRIVATE_ARCHIVE_SOURCE_IDS or len(receipts) != len(receipt_by_id):
+        errors.append("private archive receipts must cover each archived research source exactly once")
+    inventory_by_id = {
+        source.get("source_id"): source
+        for source in hosting_inventory.get("sources", [])
+        if isinstance(source, dict) and source.get("status") == "archived_private"
+    }
+    if set(inventory_by_id) != set(receipt_by_id):
+        errors.append("private archive receipts must cover the complete canonical archived-source inventory")
+    for source_id, receipt in receipt_by_id.items():
+        inventory_source = inventory_by_id.get(source_id, {})
+        for field in ("release", "archive_path", "sha256"):
+            if receipt.get(field) != inventory_source.get(field):
+                errors.append(f"{source_id} private archive receipt {field} must match the hosting inventory")
+        if receipt.get("research_effect") != "version_and_integrity_evidence_only":
+            errors.append(f"{source_id} private archive receipt must remain version-and-integrity evidence only")
+
+    lineage = instance.get("lineage_state", {})
+    if (
+        lineage.get("source_atoms_present") is not False
+        or lineage.get("derivation_paths_computed_from_payload") is not False
+        or lineage.get("independent_evidence_groups_added") != 0
+    ):
+        errors.append("private archive receipts must not claim source-atom lineage or evidence independence")
+    authorization = instance.get("authorization_boundary", {})
+    if (
+        not isinstance(authorization, dict)
+        or not authorization
+        or any(value is not False for value in authorization.values())
+    ):
+        errors.append("private archive receipts must not authorize source, payload, empirical, or promotion actions")
+    return errors
+
+
+def pilot_source_readiness_errors(
+    instance: Any,
+    source_catalog: Any,
+    supplementary: Any,
+    hosting_inventory: Any,
+    approval_manifest: Any,
+) -> list[str]:
+    if not all(
+        isinstance(value, dict)
+        for value in (instance, source_catalog, supplementary, hosting_inventory, approval_manifest)
+    ):
+        return ["pilot source readiness and canonical inputs must be JSON objects"]
+
+    errors: list[str] = []
+    if (
+        instance.get("schema_version") != "pilot-source-readiness-v1"
+        or instance.get("status") != "exact_local_payload_set_selected_external_sources_omitted_community_gate_pending"
+    ):
+        errors.append("pilot source readiness must record the selected, fail-closed local payload set")
+    expected_inputs = {
+        "official_mapping_catalog": "research_validation/source_catalog.json",
+        "supplementary_source_reviews": "research_validation/supplementary_source_access_reviews.json",
+        "source_hosting_inventory": "conductor/source_hosting_inventory.json",
+        "approval_manifest": "research_validation/approval_manifest.json",
+        "pilot_source_payload_manifest": "research_validation/pilot_source_payload_manifest.json",
+    }
+    if instance.get("canonical_inputs") != expected_inputs:
+        errors.append("pilot source readiness must reference every canonical input by its exact repository path")
+    expected_counts = {
+        "official_hpo_mapping_families": len(source_catalog.get("mappings", [])),
+        "supplementary_source_reviews": len(supplementary.get("reviews", [])),
+        "source_hosting_inventory": len(hosting_inventory.get("sources", [])),
+    }
+    layers = {
+        layer.get("layer"): layer
+        for layer in instance.get("evidence_layers", [])
+        if isinstance(layer, dict) and isinstance(layer.get("layer"), str)
+    }
+    if set(layers) != set(expected_counts):
+        errors.append("pilot source readiness must contain each canonical evidence layer exactly once")
+    for layer_id, expected_count in expected_counts.items():
+        layer = layers.get(layer_id, {})
+        if layer.get("record_count") != expected_count:
+            errors.append(f"{layer_id} readiness count must match its canonical input")
+        if layer.get("payload_or_source_atom_authority") is not False:
+            errors.append(f"{layer_id} must not claim payload or source-atom authority")
+
+    overlaps = {
+        item.get("source_id"): item
+        for item in instance.get("overlap_controls", [])
+        if isinstance(item, dict) and isinstance(item.get("source_id"), str)
+    }
+    expected_overlap_layers = {
+        "pato": ["supplementary_source_reviews"],
+        "mp": ["official_hpo_mapping_families"],
+        "upheno": ["official_hpo_mapping_families"],
+    }
+    if set(overlaps) != set(expected_overlap_layers) or len(instance.get("overlap_controls", [])) != len(overlaps):
+        errors.append("pilot source readiness must preserve PATO, MP, and uPheno overlap controls")
+    for source_id, expected_layers in expected_overlap_layers.items():
+        if overlaps.get(source_id, {}).get("appears_in") != expected_layers:
+            errors.append(f"{source_id} overlap control must name its exact canonical evidence layers")
+    if any("independent_evidence" not in str(item.get("count_rule")) for item in overlaps.values()):
+        errors.append("archive overlap controls must prohibit automatic independent-evidence counting")
+
+    decision = instance.get("decision_state", {})
+    if (
+        decision.get("final_pilot_source_set_selected") is not True
+        or decision.get("payload_authorized_source_count") != 2
+        or decision.get("source_atom_ready_count") != 37800
+        or decision.get("pilot_independent_evidence_group_count") != 1
+        or decision.get("independent_evidence_groups_added_from_hosting_inventory") != 0
+        or decision.get("g1_source_authority_closed") is not False
+    ):
+        errors.append(
+            "pilot source readiness must select exactly two local snapshots without claiming overall G1 closure"
+        )
+    source_gate = next(
+        (
+            gate
+            for gate in approval_manifest.get("gates", [])
+            if isinstance(gate, dict) and gate.get("gate") == "source_licence"
+        ),
+        {},
+    )
+    if source_gate.get("decision") != "conditional" or source_gate.get("promotion_allowed") is not False:
+        errors.append("pilot source readiness requires the canonical conditional fail-closed source gate")
+    authorization = instance.get("authorization_boundary", {})
+    expected_authorization = {
+        "existing_repository_payload_read_authorized": True,
+        "ephemeral_local_copy_authorized": True,
+        "new_external_payload_retrieval_authorized": False,
+        "payload_safe_source_atom_generation_authorized": True,
+        "source_payload_text_ingestion_authorized": False,
+        "candidate_generation_authorized": False,
+        "translation_promotion_authorized": False,
+    }
+    if authorization != expected_authorization:
+        errors.append("pilot source readiness authorization must remain limited to existing local snapshots")
+    return errors
+
+
+def pilot_source_payload_manifest_errors(instance: Any, root: Path = ROOT) -> list[str]:
+    if not isinstance(instance, dict):
+        return ["pilot source payload manifest must be a JSON object"]
+    errors: list[str] = []
+    payloads = instance.get("payloads", [])
+    expected_paths = {"babelon/hp-es.babelon.tsv", "babelon/hp-ja.babelon.tsv"}
+    observed_paths = {item.get("path") for item in payloads if isinstance(item, dict)}
+    if instance.get("selected_option") != "B" or instance.get("selected_languages") != ["es", "ja"]:
+        errors.append("pilot source payload manifest must remain scoped to Option B Spanish and Japanese")
+    if len(payloads) != 2 or observed_paths != expected_paths:
+        errors.append("pilot source payload manifest must contain exactly the Spanish and Japanese Babelon snapshots")
+    for payload in payloads:
+        if not isinstance(payload, dict) or not isinstance(payload.get("path"), str):
+            errors.append("each selected payload must be an object with a repository path")
+            continue
+        path = root / payload["path"]
+        if not path.is_file():
+            errors.append(f"selected payload is missing: {payload['path']}")
+            continue
+        digest = hashlib.sha256(path.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
+        if payload.get("sha256") != digest:
+            errors.append(f"selected payload hash drifted: {payload['path']}")
+        if payload.get("version_pin") != "content_addressed_repository_snapshot":
+            errors.append(f"selected payload must be content-addressed: {payload['path']}")
+    excluded_ids = {item.get("source_id") for item in instance.get("excluded_sources", []) if isinstance(item, dict)}
+    if not {"decs", "pro-ctcae", "who-icf", "restricted_and_archived_ontology_sources"}.issubset(excluded_ids):
+        errors.append("pilot source payload manifest must explicitly exclude unresolved restricted sources")
+    authorization = instance.get("authorization", {})
+    required_true = {
+        "read_existing_repository_payloads",
+        "copy_into_local_ephemeral_pilot_workspace",
+        "derive_payload_safe_aggregate_metrics",
+    }
+    required_false = {
+        "retrieve_new_external_payloads",
+        "use_before_language_community_gate",
+        "commit_derived_translation_candidates",
+        "redistribute_external_or_derived_payloads",
+        "promote_translations",
+    }
+    if any(authorization.get(field) is not True for field in required_true) or any(
+        authorization.get(field) is not False for field in required_false
+    ):
+        errors.append("pilot source payload authorization boundary must remain fail-closed")
+    return errors
+
+
+def pilot_source_atom_artifacts_errors(groups: Any, atoms_path: Path) -> list[str]:
+    if not isinstance(groups, dict):
+        return ["pilot independent-lineage groups must be a JSON object"]
+    if not atoms_path.is_file():
+        return ["pilot source atom artifact is missing"]
+    errors: list[str] = []
+    artifact_digest = hashlib.sha256(atoms_path.read_bytes()).hexdigest()
+    if groups.get("source_atom_artifact_sha256") != artifact_digest:
+        errors.append("pilot source atom artifact hash does not match its lineage-group receipt")
+    expected_group = "hpo-translations-repository-snapshots"
+    group_records = groups.get("groups", [])
+    if (
+        groups.get("independent_evidence_group_count") != 1
+        or len(group_records) != 1
+        or group_records[0].get("independent_evidence_group") != expected_group
+        or group_records[0].get("independent_vote_count") != 1
+    ):
+        errors.append("authorized snapshots must remain one conservative independent-evidence group")
+
+    source_counts: dict[str, int] = {}
+    atom_ids: set[str] = set()
+    forbidden_payload_fields = {"source_value", "translation_value", "source_text", "candidate_text"}
+    with gzip.open(atoms_path, "rt", encoding="utf-8") as handle:
+        for line_number, line in enumerate(handle, start=1):
+            atom = json.loads(line)
+            if forbidden_payload_fields & set(atom):
+                errors.append(f"pilot source atom line {line_number} retains payload text fields")
+                break
+            if atom.get("payload_text_retained") is not False or atom.get("empirical_use_authorized") is not False:
+                errors.append(f"pilot source atom line {line_number} crosses the payload or empirical-use boundary")
+                break
+            if atom.get("independent_evidence_group") != expected_group:
+                errors.append(f"pilot source atom line {line_number} invents an independent evidence group")
+                break
+            atom_id = atom.get("source_atom_id")
+            if not isinstance(atom_id, str) or atom_id in atom_ids:
+                errors.append(f"pilot source atom line {line_number} has a missing or duplicate atom ID")
+                break
+            atom_ids.add(atom_id)
+            source_id = atom.get("source_id")
+            if isinstance(source_id, str):
+                source_counts[source_id] = source_counts.get(source_id, 0) + 1
+
+    if groups.get("source_atom_count") != len(atom_ids) or groups.get("source_atom_counts") != source_counts:
+        errors.append("pilot source atom counts do not match the lineage-group receipt")
     return errors
 
 
@@ -1202,6 +1565,16 @@ def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[Valid
     schema_dir = research_root / "schemas"
     passing_dir = research_root / "fixtures" / "passing"
     failing_dir = research_root / "fixtures" / "failing"
+
+    hosting_inventory_path = ROOT / "conductor" / "source_hosting_inventory.json"
+    if not hosting_inventory_path.exists():
+        issues.append(
+            ValidationIssue(
+                "source_hosting_inventory.missing",
+                str(hosting_inventory_path),
+                "canonical source hosting inventory is required",
+            )
+        )
 
     schemas = {path.name.removesuffix(".schema.json"): load_json(path) for path in schema_dir.glob("*.schema.json")}
     missing_schemas = EXPECTED_SCHEMA_NAMES - schemas.keys()
@@ -1250,6 +1623,25 @@ def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[Valid
             registry = load_json(registry_path)
             for message in schema_errors(registry_schema, registry):
                 issues.append(ValidationIssue("registry.invalid", str(registry_path), message))
+            tw_records = [
+                record
+                for record in registry.get("records", [])
+                if isinstance(record, dict) and record.get("current_asset_suffix") == "tw"
+            ]
+            if len(tw_records) != 1 or any(
+                record.get("status") != "excluded"
+                or record.get("empirical_use") != "excluded_from_study"
+                or record.get("exclusion_scope")
+                != "research_validation_20260801_all_stages_sources_fallbacks_analyses_and_claims"
+                for record in tw_records
+            ):
+                issues.append(
+                    ValidationIssue(
+                        "registry.tw_study_exclusion_missing",
+                        str(registry_path),
+                        "tw must remain explicitly excluded from every research-validation study use",
+                    )
+                )
 
     catalog_path = research_root / "source_catalog.json"
     catalog_schema = schemas.get("source_catalog")
@@ -1314,7 +1706,11 @@ def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[Valid
                 if registry_path.exists():
                     registry = load_json(registry_path)
                     for record in registry.get("records", []):
-                        if not isinstance(record, dict) or record.get("status") != "authority_review_required":
+                        if not isinstance(record, dict) or record.get("status") not in {
+                            "authority_review_required",
+                            "unresolved_blocked",
+                            "excluded",
+                        }:
                             continue
                         suffix = record.get("current_asset_suffix")
                         if isinstance(suffix, str):
@@ -1341,15 +1737,71 @@ def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[Valid
                             )
                         )
 
-    budget_path = research_root / "reviewer_workload_budget.json"
-    if not budget_path.exists():
+    readiness_path = research_root / "pilot_source_readiness.json"
+    payload_manifest_path = research_root / "pilot_source_payload_manifest.json"
+    hosting_inventory_path = research_root.parent / "conductor" / "source_hosting_inventory.json"
+    approval_manifest_path = research_root / "approval_manifest.json"
+    if not readiness_path.exists():
         issues.append(
-            ValidationIssue("reviewer_budget.missing", str(budget_path), "reviewer workload budget is required")
+            ValidationIssue("pilot_source_readiness.missing", str(readiness_path), "pilot source readiness is required")
+        )
+    elif not all(
+        path.exists()
+        for path in (
+            catalog_path,
+            supplementary_path,
+            hosting_inventory_path,
+            approval_manifest_path,
+            payload_manifest_path,
+        )
+    ):
+        issues.append(
+            ValidationIssue(
+                "pilot_source_readiness.canonical_input_missing",
+                str(readiness_path),
+                "pilot source readiness requires all canonical source and approval inputs",
+            )
         )
     else:
+        readiness = load_json(readiness_path)
+        for message in pilot_source_readiness_errors(
+            readiness,
+            load_json(catalog_path),
+            load_json(supplementary_path),
+            load_json(hosting_inventory_path),
+            load_json(approval_manifest_path),
+        ):
+            issues.append(ValidationIssue("pilot_source_readiness.invalid", str(readiness_path), message))
+        for message in pilot_source_payload_manifest_errors(load_json(payload_manifest_path), research_root.parent):
+            issues.append(ValidationIssue("pilot_source_payload_manifest.invalid", str(payload_manifest_path), message))
+        atoms_path = research_root / "pilot_source_atoms.jsonl.gz"
+        groups_path = research_root / "pilot_independent_lineage_groups.json"
+        if not groups_path.exists():
+            issues.append(
+                ValidationIssue(
+                    "pilot_source_lineage_groups.missing",
+                    str(groups_path),
+                    "pilot independent-lineage groups are required",
+                )
+            )
+        else:
+            for message in pilot_source_atom_artifacts_errors(load_json(groups_path), atoms_path):
+                issues.append(ValidationIssue("pilot_source_atoms.invalid", str(atoms_path), message))
+
+    budget_path = research_root / "agent_compute_budget.json"
+    if not budget_path.exists():
+        issues.append(ValidationIssue("agent_budget.missing", str(budget_path), "agent compute budget is required"))
+    else:
         budget = load_json(budget_path)
-        for message in reviewer_workload_budget_errors(budget):
-            issues.append(ValidationIssue("reviewer_budget.invalid", str(budget_path), message))
+        for message in agent_compute_budget_errors(budget):
+            issues.append(ValidationIssue("agent_budget.invalid", str(budget_path), message))
+
+    agent_panel_path = research_root / "agent_review_panel.json"
+    if not agent_panel_path.exists():
+        issues.append(ValidationIssue("agent_review_panel.missing", str(agent_panel_path), "agent panel is required"))
+    else:
+        for message in agent_review_panel_errors(load_json(agent_panel_path)):
+            issues.append(ValidationIssue("agent_review_panel.invalid", str(agent_panel_path), message))
 
     candidate_matrix_path = research_root / "phase_4_candidate_matrix.json"
     if not candidate_matrix_path.exists():
@@ -1405,7 +1857,6 @@ def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[Valid
             issues.append(ValidationIssue("phase_4_wave_2_authority_routes.invalid", str(wave_2_routes_path), message))
 
     gate_docket_path = research_root / "phase_4_gate_docket.json"
-    approval_manifest_path = research_root / "approval_manifest.json"
     if not gate_docket_path.exists():
         issues.append(ValidationIssue("phase_4_gate_docket.missing", str(gate_docket_path), "gate docket is required"))
     elif not supplementary_path.exists() or not approval_manifest_path.exists():
@@ -1437,8 +1888,8 @@ def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[Valid
         required_boundaries = (
             "drafts only — no external action authorized",
             "no agent may advance the study automatically",
-            "Please do not send qualifications",
-            "No reviewer data collection will begin",
+            "The former expression-of-interest draft is withdrawn and must not be sent",
+            "No restricted context processing will begin",
         )
         for boundary in required_boundaries:
             if boundary not in action_pack:
@@ -1513,6 +1964,90 @@ def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[Valid
                         f"planning source does not exist: {planning_source}",
                     )
                 )
+            artifact_path = component.get("freeze_artifact_path")
+            expected_hash = component.get("version_or_hash")
+            if isinstance(artifact_path, str) and isinstance(expected_hash, str):
+                artifact = ROOT / artifact_path
+                actual_hash = (
+                    f"sha256:{hashlib.sha256(artifact.read_bytes()).hexdigest()}" if artifact.exists() else None
+                )
+                if actual_hash != expected_hash:
+                    issues.append(
+                        ValidationIssue(
+                            "phase_4_g3_component_inventory.hash_mismatch",
+                            str(g3_inventory_path),
+                            f"freeze artifact missing or hash mismatch: {artifact_path}",
+                        )
+                    )
+
+    g3_manifest_path = research_root / "phase_4_freeze" / "component_manifest.json"
+    g3_receipt_path = research_root / "phase_4_freeze" / "freeze_receipt.json"
+    if not g3_manifest_path.exists() or not g3_receipt_path.exists():
+        issues.append(
+            ValidationIssue(
+                "phase_4_g3_freeze_package.missing",
+                str(research_root / "phase_4_freeze"),
+                "G3 component manifest and freeze receipt are required",
+            )
+        )
+    else:
+        g3_manifest = load_json(g3_manifest_path)
+        g3_receipt = load_json(g3_receipt_path)
+        manifest_hash = hashlib.sha256(g3_manifest_path.read_bytes()).hexdigest()
+        if (
+            g3_receipt.get("component_manifest_sha256") != manifest_hash
+            or g3_receipt.get("component_count") != len(EXPECTED_G3_COMPONENTS)
+            or g3_receipt.get("empirical_execution_authorized") is not False
+            or g3_receipt.get("external_preregistration_authorized") is not False
+            or g3_receipt.get("schema_version") != "phase-4-g3-freeze-receipt-v1"
+            or g3_receipt.get("freeze_id") != "g3-option-b-es-ja-20260812-v1"
+            or g3_receipt.get("run_id") != "run-phase4-option-b-es-ja-v1"
+            or g3_receipt.get("freeze_date") != "2026-08-12"
+            or g3_receipt.get("freeze_status")
+            != "prospectively_frozen_execution_blocked_pending_external_preconditions"
+            or g3_receipt.get("component_manifest") != "research_validation/phase_4_freeze/component_manifest.json"
+            or g3_receipt.get("mutation_rule") != "immutable_new_freeze_id_required_for_any_change"
+        ):
+            issues.append(
+                ValidationIssue(
+                    "phase_4_g3_freeze_package.invalid_receipt",
+                    str(g3_receipt_path),
+                    "G3 receipt must bind the 13-component manifest and preserve execution/preregistration blocks",
+                )
+            )
+        manifest_hashes = g3_manifest.get("component_hashes", {})
+        if not isinstance(manifest_hashes, dict) or set(manifest_hashes) != EXPECTED_G3_FILENAMES:
+            issues.append(
+                ValidationIssue(
+                    "phase_4_g3_freeze_package.invalid_manifest",
+                    str(g3_manifest_path),
+                    "G3 manifest must enumerate exactly 13 component hashes",
+                )
+            )
+        elif any(
+            hashlib.sha256((g3_manifest_path.parent / filename).read_bytes()).hexdigest() != expected_hash
+            for filename, expected_hash in manifest_hashes.items()
+            if (g3_manifest_path.parent / filename).exists()
+        ) or any(not (g3_manifest_path.parent / filename).exists() for filename in manifest_hashes):
+            issues.append(
+                ValidationIssue(
+                    "phase_4_g3_freeze_package.component_hash_mismatch",
+                    str(g3_manifest_path),
+                    "G3 manifest component hashes must match every frozen artifact byte-for-byte",
+                )
+            )
+        if (
+            g3_manifest.get("schema_version") != "phase-4-g3-component-manifest-v1"
+            or g3_manifest.get("freeze_id") != "g3-option-b-es-ja-20260812-v1"
+            or g3_manifest.get("run_id") != "run-phase4-option-b-es-ja-v1"
+        ):
+            issues.append(
+                ValidationIssue(
+                    "phase_4_g3_freeze_package.identity_mismatch",
+                    str(g3_manifest_path),
+                    "G3 manifest must retain the canonical schema, freeze ID, and run ID",
+                )
+            )
 
     g3_receipt_template_path = research_root / "phase_4_g3_freeze_receipt.template.json"
     freeze_governance_path = research_root / "freeze_governance.json"
@@ -1552,6 +2087,16 @@ def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[Valid
         approval_manifest = load_json(approval_manifest_path) if approval_manifest_path.exists() else None
         for message in phase_4_g3_freeze_readiness_errors(g3_readiness, candidate_matrix, approval_manifest):
             issues.append(ValidationIssue("phase_4_g3_freeze_readiness.invalid", str(g3_readiness_path), message))
+        if g3_manifest_path.exists():
+            actual_manifest_hash = f"sha256:{hashlib.sha256(g3_manifest_path.read_bytes()).hexdigest()}"
+            if g3_readiness.get("checksum_contract", {}).get("aggregate_manifest_hash") != actual_manifest_hash:
+                issues.append(
+                    ValidationIssue(
+                        "phase_4_g3_freeze_readiness.manifest_hash_mismatch",
+                        str(g3_readiness_path),
+                        "G3 readiness aggregate hash must bind the canonical component manifest",
+                    )
+                )
         for planning_input in g3_readiness.get("planning_inputs", []):
             if isinstance(planning_input, str) and not (ROOT / planning_input).exists():
                 issues.append(
@@ -1648,17 +2193,17 @@ def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[Valid
                     )
                 )
 
-        reviewer_path = passing_dir / "reviewer_decision.json"
-        if reviewer_path.exists():
-            reviewer_decision = load_json(reviewer_path)
-            reviewer_run_mismatch = reviewer_decision.get("run_id") != probe_run_id
-            reviewer_item_mismatch = reviewer_decision.get("item_id") != probe.get("item_id")
-            if reviewer_run_mismatch or reviewer_item_mismatch:
+        agent_path = passing_dir / "agent_decision.json"
+        if agent_path.exists():
+            agent_decision = load_json(agent_path)
+            agent_run_mismatch = agent_decision.get("run_id") != probe_run_id
+            agent_item_mismatch = agent_decision.get("item_id") != probe.get("item_id")
+            if agent_run_mismatch or agent_item_mismatch:
                 issues.append(
                     ValidationIssue(
-                        "probe.reviewer_decision.link.mismatch",
-                        str(reviewer_path),
-                        "reviewer decision is not linked to the probe run and item",
+                        "probe.agent_decision.link.mismatch",
+                        str(agent_path),
+                        "agent decision is not linked to the probe run and item",
                     )
                 )
 

@@ -1,24 +1,27 @@
 {
   "schema_version": "phase-4-candidate-matrix-v1",
   "track_id": "research_validation_20260801",
-  "status": "planning_shortlist_only_no_language_source_or_reviewer_approved",
-  "decision_scope": "metadata_only_phase_4_task_3_preparation",
+  "status": "option_b_selected_sources_pinned_g3_frozen_empirical_execution_blocked_pending_g2",
+  "decision_scope": "maintainer_selected_minimum_viable_option_b_subject_to_source_and_community_use_constraints",
   "approved_language_count": 0,
-  "approved_source_payload_count": 0,
-  "named_reviewer_count": 0,
-  "target_option": "A",
+  "approved_source_payload_count": 2,
+  "empirical_agent_execution_count": 0,
+  "target_option": "B",
+  "selected_languages": ["es", "ja"],
+  "selection_effective_date": "2026-08-11",
+  "selection_authority": "repository_maintainer_user_instruction",
   "recommended_configuration": {
     "high_resource_latin_slot": "es",
     "script_typology_contrast_slot": "ja",
     "community_governed_slot": null,
-    "reason": "Spanish and Japanese offer complementary script and typology coverage and the broadest currently registered metadata pathways; the community-governed slot cannot be assigned without an authority-approved language and reviewer pathway."
+    "reason": "Spanish and Japanese offer complementary script and typology coverage and the broadest currently registered metadata pathways; the community-governed slot cannot be assigned without an authority-approved language and model-use pathway."
   },
   "language_slots": [
     {
       "slot_id": "high_resource_latin",
       "preferred_language": "es",
       "fallback_languages": ["fr", "pt"],
-      "selection_status": "shortlisted_not_permitted",
+      "selection_status": "selected_for_option_b_not_yet_permitted",
       "rationale": "Active HPO profile with registered DeCS, PRO-CTCAE, and WHO ICF pathways; every pathway remains payload-blocked and must not be counted as empirical evidence.",
       "source_pathways": [
         {"source_id": "decs", "intended_role": "lexical_comparator", "required_gate": "written_payload_permission_and_version_confirmation"},
@@ -32,7 +35,7 @@
       "slot_id": "script_typology_contrast",
       "preferred_language": "ja",
       "fallback_languages": ["zh", "ar"],
-      "selection_status": "shortlisted_not_permitted",
+      "selection_status": "selected_for_option_b_not_yet_permitted",
       "rationale": "Active HPO profile with distinct script coverage and a versioned Mondo Japanese metadata pathway; Mondo and PRO-CTCAE payload use remain unapproved.",
       "source_pathways": [
         {"source_id": "mondo", "intended_role": "community_curated_disease_context", "required_gate": "maintainer_license_source_atom_and_scope_review"},
@@ -47,30 +50,33 @@
       "fallback_languages": ["tr"],
       "candidate_profiles_requiring_authority_review": ["dtp", "nna"],
       "selection_status": "unassigned_pending_community_authority",
-      "rationale": "The repository does not yet contain evidence authorizing a community-governed pilot language, reviewer roster, or source pathway. Active profiles are not themselves evidence of community authority.",
+      "rationale": "The repository does not yet contain evidence authorizing a community-governed pilot language, agent-model-use pathway, or source pathway. Active profiles are not themselves evidence of community authority.",
       "source_pathways": []
     }
   ],
-  "reviewer_model": {
-    "primary_reviewers_per_language": 3,
-    "independent_adjudicators_per_language": 1,
-    "planned_primary_reviewer_count": 9,
-    "planned_independent_adjudicator_count": 3,
-    "planned_human_role_count": 12,
+  "agent_panel_model": {
+    "specialist_agents_per_item": 5,
+    "adjudicator_agents_per_conflict": 1,
+    "planned_specialist_agent_count": 5,
+    "planned_adjudicator_agent_count": 1,
+    "planned_audit_agent_count": 1,
+    "planned_human_role_count": 0,
     "primary_roles": [
-      "target_language_terminology_reviewer",
-      "target_language_clinical_reviewer",
-      "target_language_ontology_phenotype_reviewer"
+      "target_language_semantics",
+      "clinical_safety",
+      "ontology_semantics",
+      "provenance_and_rights",
+      "adversarial_error_finder"
     ],
-    "community_slot_additional_requirement": "at_least_one_reviewer_authorized_by_the_relevant_community_authority",
+    "community_slot_additional_requirement": "explicit_community_model_use_authority_where_applicable",
     "adjudicator_requirements": [
       "independent_of_candidate_generation",
-      "not_one_of_the_three_initial_reviewers_for_the_adjudicated_item",
-      "target_language_competence",
-      "clinical_or_ontology_competence",
-      "conflict_of_interest_declaration"
+      "separate_context_from_all_initial_agents",
+      "initial_decisions_locked_before_disclosure",
+      "pinned_model_prompt_and_inputs",
+      "deterministic_aggregation_reproducer"
     ],
-    "identities_or_contact_details_permitted_in_repository": false
+    "human_identifiers_or_contact_details_present": false
   },
   "source_policy": {
     "canonical_hpo_release_context": "v2026-06-23",
@@ -81,9 +87,9 @@
     "all_registered_supplementary_payloads_remain_unapproved": true
   },
   "step_down_contingencies": [
-    {"priority": 1, "trigger": "community_slot_not_authorized_by_g2", "action": "step_down_to_option_b_with_es_and_ja"},
-    {"priority": 2, "trigger": "japanese_reviewer_or_source_pathway_not_authorized", "action": "consider_option_b_with_es_and_zh_subject_to_all_gates"},
-    {"priority": 3, "trigger": "spanish_reviewer_or_source_pathway_not_authorized", "action": "consider_option_b_with_fr_or_pt_and_ja_subject_to_all_gates"},
+    {"priority": 1, "trigger": "japanese_language_or_source_pathway_not_authorized", "action": "step_down_to_option_c_for_spanish_if_fully_authorized_otherwise_option_d"},
+    {"priority": 2, "trigger": "spanish_language_or_source_pathway_not_authorized", "action": "step_down_to_option_c_for_japanese_if_fully_authorized_otherwise_option_d"},
+    {"priority": 3, "trigger": "either_selected_language_has_unresolved_community_use_constraints_after_g3_freeze", "action": "do_not_mutate_the_frozen_run_step_down_only_via_a_new_freeze_for_the_first_fully_authorized_language_or_option_d"},
     {"priority": 4, "trigger": "only_one_language_is_authorized", "action": "step_down_to_option_c"},
     {"priority": 5, "trigger": "no_empirical_language_is_authorized", "action": "remain_at_option_d_synthetic_only"}
   ],
@@ -92,16 +98,13 @@
   ],
   "remaining_gates": [
     "language_working_group_approval",
-    "domain_reviewer_approval",
     "community_authority_approval_where_applicable",
-    "source_license_and_payload_permission",
-    "reviewer_identity_qualification_capacity_and_conflict_review",
-    "stratified_concept_freeze",
-    "ethics_privacy_and_preregistration_decisions"
+    "ethics_privacy_decision",
+    "g3_freeze_integrity_must_remain_valid"
   ],
   "authorization_boundary": {
-    "reviewer_selection_authorized": false,
-    "reviewer_contact_authorized": false,
+    "human_agent_selection_authorized": false,
+    "agent_execution_authorized": false,
     "source_payload_retrieval_authorized": false,
     "empirical_candidate_generation_authorized": false,
     "concept_sampling_authorized": false,
@@ -111,5 +114,5 @@
     "push_authorized": false,
     "pull_request_authorized": false
   },
-  "claims_boundary": "planning_shortlist_and_contingencies_only_not_selection_permission_or_empirical_evidence"
+  "claims_boundary": "option_b_design_and_two_payload_source_set_selected_g3_prospectively_frozen_no_language_community_empirical_execution_or_promotion_authority"
 }

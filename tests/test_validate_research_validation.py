@@ -6,6 +6,8 @@ from pathlib import Path
 
 from scripts.validate_research_validation import (
     DEFAULT_RESEARCH_ROOT,
+    agent_compute_budget_errors,
+    agent_review_panel_errors,
     load_json,
     phase_4_candidate_matrix_errors,
     phase_4_decision_receipt_template_errors,
@@ -17,7 +19,9 @@ from scripts.validate_research_validation import (
     phase_4_gate_docket_errors,
     phase_4_wave_1_source_decisions_errors,
     phase_4_wave_2_authority_routes_errors,
-    reviewer_workload_budget_errors,
+    pilot_source_atom_artifacts_errors,
+    pilot_source_payload_manifest_errors,
+    pilot_source_readiness_errors,
     schema_errors,
     semantic_errors,
     validate_contract,
@@ -27,6 +31,97 @@ from scripts.validate_research_validation import (
 class ValidateResearchValidationTests(unittest.TestCase):
     def test_committed_contract_passes(self) -> None:
         self.assertEqual(validate_contract(), [])
+
+    def test_agent_panel_rejects_human_review(self) -> None:
+        panel = load_json(DEFAULT_RESEARCH_ROOT / "agent_review_panel.json")
+        panel["human_review_planned"] = True
+        self.assertIn(
+            "agent review panel must prohibit planned explicit maintainer decision",
+            agent_review_panel_errors(panel),
+        )
+
+    def test_agent_panel_rejects_non_isolated_adjudication(self) -> None:
+        panel = load_json(DEFAULT_RESEARCH_ROOT / "agent_review_panel.json")
+        panel["panel"]["adjudicator"]["sees_initial_decisions_only_after_lock"] = False
+        self.assertIn(
+            "agent adjudicator must see initial decisions only after they are locked",
+            agent_review_panel_errors(panel),
+        )
+
+    def _pilot_source_inputs(self) -> tuple[dict, dict, dict, dict, dict]:
+        return (
+            load_json(DEFAULT_RESEARCH_ROOT / "pilot_source_readiness.json"),
+            load_json(DEFAULT_RESEARCH_ROOT / "source_catalog.json"),
+            load_json(DEFAULT_RESEARCH_ROOT / "supplementary_source_access_reviews.json"),
+            load_json(DEFAULT_RESEARCH_ROOT.parent / "conductor" / "source_hosting_inventory.json"),
+            load_json(DEFAULT_RESEARCH_ROOT / "approval_manifest.json"),
+        )
+
+    def test_pilot_source_readiness_rejects_selection_drift(self) -> None:
+        readiness, catalog, supplementary, receipts, approval = self._pilot_source_inputs()
+        readiness["decision_state"]["payload_authorized_source_count"] = 3
+        self.assertIn(
+            "pilot source readiness must select exactly two local snapshots without claiming overall G1 closure",
+            pilot_source_readiness_errors(readiness, catalog, supplementary, receipts, approval),
+        )
+
+    def test_pilot_source_payload_manifest_hashes_pass(self) -> None:
+        manifest = load_json(DEFAULT_RESEARCH_ROOT / "pilot_source_payload_manifest.json")
+        self.assertEqual(pilot_source_payload_manifest_errors(manifest), [])
+
+    def test_pilot_source_payload_manifest_rejects_external_retrieval(self) -> None:
+        manifest = load_json(DEFAULT_RESEARCH_ROOT / "pilot_source_payload_manifest.json")
+        manifest["authorization"]["retrieve_new_external_payloads"] = True
+        self.assertIn(
+            "pilot source payload authorization boundary must remain fail-closed",
+            pilot_source_payload_manifest_errors(manifest),
+        )
+
+    def test_pilot_source_atom_artifacts_pass(self) -> None:
+        groups = load_json(DEFAULT_RESEARCH_ROOT / "pilot_independent_lineage_groups.json")
+        atoms_path = DEFAULT_RESEARCH_ROOT / "pilot_source_atoms.jsonl.gz"
+        self.assertEqual(pilot_source_atom_artifacts_errors(groups, atoms_path), [])
+
+    def test_pilot_source_atom_artifacts_reject_hash_drift(self) -> None:
+        groups = load_json(DEFAULT_RESEARCH_ROOT / "pilot_independent_lineage_groups.json")
+        groups["source_atom_artifact_sha256"] = "0" * 64
+        atoms_path = DEFAULT_RESEARCH_ROOT / "pilot_source_atoms.jsonl.gz"
+        self.assertIn(
+            "pilot source atom artifact hash does not match its lineage-group receipt",
+            pilot_source_atom_artifacts_errors(groups, atoms_path),
+        )
+
+    def test_pilot_source_readiness_rejects_archive_double_count(self) -> None:
+        readiness, catalog, supplementary, receipts, approval = self._pilot_source_inputs()
+        readiness["overlap_controls"].pop()
+        self.assertIn(
+            "pilot source readiness must preserve PATO, MP, and uPheno overlap controls",
+            pilot_source_readiness_errors(readiness, catalog, supplementary, receipts, approval),
+        )
+
+    def test_pilot_source_readiness_rejects_count_drift(self) -> None:
+        readiness, catalog, supplementary, receipts, approval = self._pilot_source_inputs()
+        readiness["evidence_layers"][0]["record_count"] += 1
+        self.assertIn(
+            "official_hpo_mapping_families readiness count must match its canonical input",
+            pilot_source_readiness_errors(readiness, catalog, supplementary, receipts, approval),
+        )
+
+    def test_pilot_source_readiness_rejects_overlap_layer_drift(self) -> None:
+        readiness, catalog, supplementary, receipts, approval = self._pilot_source_inputs()
+        readiness["overlap_controls"][0]["appears_in"] = ["owner_only_archive_receipts"]
+        self.assertIn(
+            "pato overlap control must name its exact canonical evidence layers",
+            pilot_source_readiness_errors(readiness, catalog, supplementary, receipts, approval),
+        )
+
+    def test_pilot_source_readiness_rejects_canonical_input_drift(self) -> None:
+        readiness, catalog, supplementary, receipts, approval = self._pilot_source_inputs()
+        readiness["canonical_inputs"]["approval_manifest"] = "research_validation/alternate.json"
+        self.assertIn(
+            "pilot source readiness must reference every canonical input by its exact repository path",
+            pilot_source_readiness_errors(readiness, catalog, supplementary, receipts, approval),
+        )
 
     def test_candidate_matrix_rejects_unresolved_tw(self) -> None:
         matrix = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_candidate_matrix.json")
@@ -42,22 +137,22 @@ class ValidateResearchValidationTests(unittest.TestCase):
         supplementary = load_json(DEFAULT_RESEARCH_ROOT / "supplementary_source_access_reviews.json")
         matrix["approved_language_count"] = 1
         self.assertIn(
-            "Phase 4 planning matrix must record zero approved languages, payloads, and named reviewers",
+            "Phase 4 matrix must record two pinned payloads but zero language or empirical approvals",
             phase_4_candidate_matrix_errors(matrix, supplementary),
         )
 
-    def test_candidate_matrix_rejects_named_reviewer_approval(self) -> None:
+    def test_candidate_matrix_rejects_named_agent_approval(self) -> None:
         matrix = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_candidate_matrix.json")
         supplementary = load_json(DEFAULT_RESEARCH_ROOT / "supplementary_source_access_reviews.json")
-        matrix["named_reviewer_count"] = 1
+        matrix["empirical_agent_execution_count"] = 1
         self.assertTrue(phase_4_candidate_matrix_errors(matrix, supplementary))
 
-    def test_reviewer_budget_must_include_adjudicators(self) -> None:
-        budget = load_json(DEFAULT_RESEARCH_ROOT / "reviewer_workload_budget.json")
-        budget["design_snapshot"]["planning_reviewer_count"] = 9
+    def test_agent_budget_must_include_adjudicators(self) -> None:
+        budget = load_json(DEFAULT_RESEARCH_ROOT / "agent_compute_budget.json")
+        budget["design_snapshot"]["panel_agent_count"] = 9
         self.assertIn(
-            "planning reviewer count must include primary reviewers and independent adjudicators",
-            reviewer_workload_budget_errors(budget),
+            "panel agent count must include specialist, adjudicator, and audit agents",
+            agent_compute_budget_errors(budget),
         )
 
     def test_gate_docket_rejects_authorization(self) -> None:
@@ -96,7 +191,7 @@ class ValidateResearchValidationTests(unittest.TestCase):
         approval = load_json(DEFAULT_RESEARCH_ROOT / "approval_manifest.json")
         docket["blocker_resolution_plan"]["options"].reverse()
         self.assertIn(
-            "Phase 4 blocker options must preserve the recommended B-to-A dual-lane order",
+            "Phase 4 blocker options must preserve selected Option B and its fail-closed fallbacks",
             phase_4_gate_docket_errors(docket, supplementary, approval),
         )
 
@@ -112,6 +207,16 @@ class ValidateResearchValidationTests(unittest.TestCase):
             phase_4_gate_docket_errors(docket, supplementary, approval),
         )
 
+    def test_gate_docket_rejects_unbacked_private_storage_readiness(self) -> None:
+        docket = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_gate_docket.json")
+        supplementary = load_json(DEFAULT_RESEARCH_ROOT / "supplementary_source_access_reviews.json")
+        approval = load_json(DEFAULT_RESEARCH_ROOT / "approval_manifest.json")
+        docket["private_storage_readiness"] = {"infrastructure_ready": True}
+        self.assertIn(
+            "Phase 4 docket must not claim private storage readiness without an authorized source",
+            phase_4_gate_docket_errors(docket, supplementary, approval),
+        )
+
     def test_decision_receipt_template_rejects_approval(self) -> None:
         receipt = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_decision_receipt.template.json")
         receipt["decision"] = "approved"
@@ -122,7 +227,7 @@ class ValidateResearchValidationTests(unittest.TestCase):
 
     def test_decision_receipt_template_rejects_identity(self) -> None:
         receipt = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_decision_receipt.template.json")
-        receipt["approver_pseudonym"] = "reviewer-001"
+        receipt["approver_pseudonym"] = "agent-001"
         self.assertIn(
             "decision receipt template field approver_pseudonym must remain null",
             phase_4_decision_receipt_template_errors(receipt),
@@ -130,7 +235,7 @@ class ValidateResearchValidationTests(unittest.TestCase):
 
     def test_decision_receipt_template_rejects_downstream_authority(self) -> None:
         receipt = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_decision_receipt.template.json")
-        receipt["reviewer_contact_allowed"] = True
+        receipt["agent_execution_allowed"] = True
         self.assertIn(
             "decision receipt template must not authorize downstream actions",
             phase_4_decision_receipt_template_errors(receipt),
@@ -243,20 +348,20 @@ class ValidateResearchValidationTests(unittest.TestCase):
             phase_4_g1_internal_scope_review_errors(review),
         )
 
-    def test_g3_readiness_rejects_false_freeze(self) -> None:
+    def test_g3_readiness_rejects_freeze_identity_drift(self) -> None:
         readiness = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_g3_freeze_readiness.json")
         readiness["status"] = "frozen"
         readiness["freeze_id"] = "premature"
         self.assertIn(
-            "G3 readiness must remain explicitly not frozen with no freeze identifier or timestamp",
+            "G3 readiness must identify the canonical conditional prospective freeze",
             phase_4_g3_freeze_readiness_errors(readiness),
         )
 
-    def test_g3_component_inventory_rejects_hash(self) -> None:
+    def test_g3_component_inventory_rejects_invalid_hash(self) -> None:
         inventory = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_g3_component_inventory.json")
         inventory["components"][0]["version_or_hash"] = "sha256:premature"
         self.assertIn(
-            "G3 planning inventory must not contain versions or hashes",
+            "each frozen G3 component must contain a SHA-256 hash",
             phase_4_g3_component_inventory_errors(inventory),
         )
 
@@ -268,11 +373,11 @@ class ValidateResearchValidationTests(unittest.TestCase):
             phase_4_g3_component_inventory_errors(inventory),
         )
 
-    def test_g3_component_inventory_rejects_false_readiness(self) -> None:
+    def test_g3_component_inventory_rejects_readiness_drift(self) -> None:
         inventory = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_g3_component_inventory.json")
         inventory["components"][0]["readiness"] = "ready"
         self.assertIn(
-            "G3 component inventory must not claim component freeze readiness",
+            "each G3 component must be frozen and checksummed but execution-blocked",
             phase_4_g3_component_inventory_errors(inventory),
         )
 
@@ -300,11 +405,11 @@ class ValidateResearchValidationTests(unittest.TestCase):
             phase_4_g3_freeze_receipt_template_errors(receipt),
         )
 
-    def test_g3_readiness_rejects_premature_checksum(self) -> None:
+    def test_g3_readiness_rejects_checksum_drift(self) -> None:
         readiness = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_g3_freeze_readiness.json")
         readiness["checksum_contract"]["recorded_checksum_count"] = 1
         self.assertIn(
-            "G3 readiness must not record checksums before the prospective freeze",
+            "G3 readiness must record all component checksums and the aggregate manifest hash",
             phase_4_g3_freeze_readiness_errors(readiness),
         )
 
@@ -312,7 +417,8 @@ class ValidateResearchValidationTests(unittest.TestCase):
         readiness = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_g3_freeze_readiness.json")
         readiness["authorization_boundary"]["start_empirical_work"] = True
         self.assertIn(
-            "all G3 readiness authorization fields must remain false", phase_4_g3_freeze_readiness_errors(readiness)
+            "G3 readiness authority must permit only local prospective freeze creation",
+            phase_4_g3_freeze_readiness_errors(readiness),
         )
 
     def test_g3_readiness_rejects_candidate_matrix_drift(self) -> None:
@@ -327,7 +433,8 @@ class ValidateResearchValidationTests(unittest.TestCase):
     def test_g3_readiness_rejects_approval_manifest_drift(self) -> None:
         readiness = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_g3_freeze_readiness.json")
         approval = load_json(DEFAULT_RESEARCH_ROOT / "approval_manifest.json")
-        approval["gates"][4]["decision"] = "approved"
+        source_gate = next(gate for gate in approval["gates"] if gate["gate"] == "source_licence")
+        source_gate["decision"] = "approved"
         self.assertIn(
             "G3 readiness G1 state must match the canonical source-licence decision",
             phase_4_g3_freeze_readiness_errors(readiness, approval_manifest=approval),
@@ -361,9 +468,9 @@ class ValidateResearchValidationTests(unittest.TestCase):
 
     def test_reviewed_count_cannot_exceed_empirical_count(self) -> None:
         manifest = load_json(DEFAULT_RESEARCH_ROOT / "fixtures" / "passing" / "run_manifest.json")
-        manifest["human_reviewed_record_count"] = 1
+        manifest["agent_panel_reviewed_record_count"] = 1
         self.assertIn(
-            "human_reviewed_record_count cannot exceed empirical_record_count",
+            "agent_panel_reviewed_record_count cannot exceed empirical_record_count",
             semantic_errors("run_manifest", manifest),
         )
 
@@ -516,7 +623,7 @@ class ValidateResearchValidationTests(unittest.TestCase):
                     destination = root / source.relative_to(DEFAULT_RESEARCH_ROOT)
                     destination.parent.mkdir(parents=True, exist_ok=True)
                     destination.write_bytes(source.read_bytes())
-            (root / "fixtures" / "passing" / "reviewer_decision.json").unlink()
+            (root / "fixtures" / "passing" / "agent_decision.json").unlink()
             codes = {issue.code for issue in validate_contract(root)}
             self.assertIn("fixture.passing.missing", codes)
 
@@ -546,20 +653,20 @@ class ValidateResearchValidationTests(unittest.TestCase):
             with self.subTest(schema=schema_path.name), schema_path.open(encoding="utf-8") as handle:
                 self.assertIsInstance(json.load(handle), dict)
 
-    def test_reviewer_workload_budget_arithmetic_passes(self) -> None:
-        budget = load_json(DEFAULT_RESEARCH_ROOT / "reviewer_workload_budget.json")
-        self.assertEqual(reviewer_workload_budget_errors(budget), [])
+    def test_agent_compute_budget_arithmetic_passes(self) -> None:
+        budget = load_json(DEFAULT_RESEARCH_ROOT / "agent_compute_budget.json")
+        self.assertEqual(agent_compute_budget_errors(budget), [])
 
-    def test_reviewer_workload_budget_rejects_inconsistent_ceiling(self) -> None:
-        budget = load_json(DEFAULT_RESEARCH_ROOT / "reviewer_workload_budget.json")
+    def test_agent_compute_budget_rejects_inconsistent_ceiling(self) -> None:
+        budget = load_json(DEFAULT_RESEARCH_ROOT / "agent_compute_budget.json")
         budget["full_pilot_ceiling"]["ceiling_minutes"] = 7100
         self.assertIn(
             "full-pilot ceiling must equal its workload components",
-            reviewer_workload_budget_errors(budget),
+            agent_compute_budget_errors(budget),
         )
 
-    def test_reviewer_workload_budget_rejects_unapproved_ceiling_drift(self) -> None:
-        budget = load_json(DEFAULT_RESEARCH_ROOT / "reviewer_workload_budget.json")
+    def test_agent_compute_budget_rejects_unapproved_ceiling_drift(self) -> None:
+        budget = load_json(DEFAULT_RESEARCH_ROOT / "agent_compute_budget.json")
         budget["full_pilot_ceiling"]["coordination_and_contingency_minutes"] += 60
         budget["full_pilot_ceiling"]["ceiling_minutes"] += 60
         budget["full_pilot_ceiling"]["ceiling_hours"] = 121
@@ -567,15 +674,15 @@ class ValidateResearchValidationTests(unittest.TestCase):
         budget["full_pilot_ceiling"]["remaining_after_stage_1_cap_hours"] = 91
         self.assertIn(
             "approved Stage 1 and full-pilot workload ceilings cannot drift without amendment",
-            reviewer_workload_budget_errors(budget),
+            agent_compute_budget_errors(budget),
         )
 
-    def test_reviewer_workload_budget_cannot_authorize_external_action(self) -> None:
-        budget = load_json(DEFAULT_RESEARCH_ROOT / "reviewer_workload_budget.json")
-        budget["authorization_boundary"]["reviewer_contact_authorized"] = True
+    def test_agent_compute_budget_cannot_authorize_external_action(self) -> None:
+        budget = load_json(DEFAULT_RESEARCH_ROOT / "agent_compute_budget.json")
+        budget["authorization_boundary"]["agent_execution_authorized"] = True
         self.assertIn(
-            "capacity planning cannot authorize reviewer, payload, empirical, or external actions",
-            reviewer_workload_budget_errors(budget),
+            "capacity planning cannot authorize agent execution, payload, empirical, or external actions",
+            agent_compute_budget_errors(budget),
         )
 
 

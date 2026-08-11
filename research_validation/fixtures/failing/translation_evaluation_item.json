@@ -13,7 +13,7 @@
   "evidence_ids": ["evidence-public-fixture-a"],
   "independent_evidence_groups": ["fixture-independent-a"],
   "candidate_only": false,
-  "human_review_required": false,
+  "agent_panel_required": false,
   "license_status": "approved_for_fixture",
   "provenance_id": "provenance-invalid-item"
 }

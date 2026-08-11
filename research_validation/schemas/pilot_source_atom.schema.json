@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hpo-translations.example/schemas/pilot_source_atom.schema.json",
+  "title": "Payload-safe pilot source atom",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "source_atom_id", "source_id", "language", "subject_id", "predicate_id", "designation_role", "source_snapshot_sha256", "source_data_row_number", "source_row_sha256", "derivation_path", "shared_lineage_cluster", "independent_evidence_group", "payload_text_retained", "empirical_use_authorized"],
+  "properties": {
+    "schema_version": {"const": "pilot-source-atom-v1"},
+    "source_atom_id": {"type": "string", "pattern": "^atom-[a-f0-9]{64}$"},
+    "source_id": {"enum": ["hpo-translation-es-repository-snapshot", "hpo-translation-ja-repository-snapshot"]},
+    "language": {"enum": ["es", "ja"]},
+    "subject_id": {"type": "string", "pattern": "^HP:[0-9]{7}$"},
+    "predicate_id": {"type": "string", "minLength": 1},
+    "designation_role": {"enum": ["preferred", "not_applicable"]},
+    "source_snapshot_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "source_data_row_number": {"type": "integer", "minimum": 1},
+    "source_row_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "derivation_path": {"type": "array", "minItems": 2, "items": {"type": "string", "minLength": 1}},
+    "shared_lineage_cluster": {"type": "string", "minLength": 1},
+    "independent_evidence_group": {"const": "hpo-translations-repository-snapshots"},
+    "payload_text_retained": {"const": false},
+    "empirical_use_authorized": {"const": false}
+  }
+}

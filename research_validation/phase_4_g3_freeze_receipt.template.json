@@ -3,6 +3,7 @@
   "template_only": true,
   "track_id": "research_validation_20260801",
   "execution_state": "unexecuted_not_frozen",
+  "canonical_freeze_state": "completed_in_research_validation/phase_4_freeze/freeze_receipt.json",
   "freeze_fields": {
     "run_id": null,
     "freeze_id": null,
@@ -19,7 +20,7 @@
     "retrieval_tool_versions": null,
     "randomization_code_seed_and_assignment_hash": null,
     "pre_unblinding_exclusion_log": null,
-    "reviewer_instrument_hash": null,
+    "agent_panel_instrument_hash": null,
     "analysis_commit_lockfile_runtime_hash": null,
     "approval_manifest": null,
     "environment_receipt": null
@@ -29,6 +30,6 @@
   "maintainer_approval_receipt": null,
   "external_registration": {"authorized":false,"provider":null,"identifier":null,"registered_at":null},
   "authorization_boundary": {"prospective_freeze_claim":false,"empirical_work":false,"external_preregistration":false,"publication":false,"push":false,"pull_request":false},
-  "execution_rule": "copy_to_a_new_immutable_receipt_only_after_all_g1_g2_components_checksums_and_explicit_maintainer_approval_are_complete",
-  "claims_boundary": "unexecuted_template_only_not_a_freeze_preregistration_or_empirical_authorization"
+  "execution_rule": "retained_blank_template_only_do_not_populate_or_treat_as_the_canonical_receipt_use_research_validation/phase_4_freeze/freeze_receipt.json",
+  "claims_boundary": "retained_unexecuted_blank_template_only_the_canonical_g3_freeze_exists_separately_no_preregistration_or_empirical_authorization"
 }

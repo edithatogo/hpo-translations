@@ -1,45 +1,46 @@
 {
-  "schema_version": "reviewer-workload-budget-v1",
+  "schema_version": "agent-compute-budget-v1",
   "track_id": "research_validation_20260801",
   "status": "provisional_g0_budget_approved",
-  "decision_source": "user_instruction_2026-08-02_proceed_with_recommendation",
+  "decision_source": "user_instruction_2026-08-11_select_option_b_spanish_japanese",
   "decision_scope": "capacity_planning_only",
-  "target_option": "A",
+  "target_option": "B",
   "design_snapshot": {
-    "concept_language_units": 80,
+    "concept_language_units": 60,
     "candidate_conditions": 4,
-    "reviews_per_candidate": 3,
-    "independent_judgments": 960,
-    "primary_reviewer_count": 9,
-    "independent_adjudicator_count": 3,
-    "planning_reviewer_count": 12
+    "evaluations_per_candidate": 5,
+    "independent_evaluations": 1200,
+    "specialist_agent_count": 5,
+    "adjudicator_agent_count": 1,
+    "audit_agent_count": 1,
+    "panel_agent_count": 7
   },
   "planning_assumptions": {
-    "minutes_per_independent_judgment": 5,
-    "training_minutes_per_reviewer": 60,
+    "minutes_per_independent_evaluation": 3,
+    "initialization_minutes_per_agent": 60,
     "anticipated_adjudication_fraction": 0.25,
     "minutes_per_adjudication": 10
   },
   "stage_1_release": {
     "concept_language_units": 12,
     "candidate_rows": 48,
-    "independent_judgments": 144,
+    "independent_evaluations": 240,
     "anticipated_adjudications": 12,
-    "independent_review_minutes": 720,
-    "training_minutes": 720,
+    "agent_evaluation_minutes": 720,
+    "initialization_minutes": 420,
     "adjudication_minutes": 120,
-    "coordination_and_contingency_minutes": 240,
+    "coordination_and_contingency_minutes": 540,
     "release_cap_minutes": 1800,
     "release_cap_hours": 30
   },
   "full_pilot_ceiling": {
-    "candidate_rows": 320,
-    "independent_judgments": 960,
-    "anticipated_adjudications": 80,
-    "independent_review_minutes": 4800,
-    "training_minutes": 720,
-    "adjudication_minutes": 800,
-    "coordination_and_contingency_minutes": 880,
+    "candidate_rows": 240,
+    "independent_evaluations": 1200,
+    "anticipated_adjudications": 60,
+    "agent_evaluation_minutes": 3600,
+    "initialization_minutes": 420,
+    "adjudication_minutes": 600,
+    "coordination_and_contingency_minutes": 2580,
     "ceiling_minutes": 7200,
     "ceiling_hours": 120,
     "remaining_after_stage_1_cap_minutes": 5400,
@@ -49,17 +50,17 @@
     "stage_1_only_initially": true,
     "remaining_budget_requires_observed_stage_1_data": true,
     "required_reforecast_inputs": [
-      "median_minutes_per_independent_judgment",
+      "median_minutes_per_independent_evaluation",
       "observed_adjudication_fraction",
-      "observed_training_and_coordination_minutes",
-      "confirmed_reviewer_count",
+      "observed_initialization_and_coordination_minutes",
+      "confirmed_agent_count",
       "observed_completion_and_attrition"
     ],
-    "if_projected_total_exceeds_ceiling": "revise_scope_or_step_down_to_option_b_before_new_explicit_budget_amendment",
+    "if_projected_total_exceeds_ceiling": "revise_scope_or_step_down_to_option_c_before_new_explicit_budget_amendment",
     "unused_stage_1_capacity_does_not_authorize_empirical_expansion": true
   },
   "authorization_boundary": {
-    "reviewer_contact_authorized": false,
+    "agent_execution_authorized": false,
     "financial_spend_authorized": false,
     "source_payload_retrieval_authorized": false,
     "empirical_candidate_generation_authorized": false,
@@ -68,5 +69,5 @@
     "push_authorized": false,
     "pull_request_authorized": false
   },
-  "claims_boundary": "provisional_capacity_envelope_not_observed_reviewer_time_or_financial_authorization"
+  "claims_boundary": "provisional_agent_compute_envelope_not_observed_runtime_or_financial_authorization"
 }

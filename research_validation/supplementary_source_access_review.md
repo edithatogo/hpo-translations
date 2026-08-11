@@ -2,16 +2,16 @@
 
 ## Decision
 
-Nine supplementary sources were reviewed on 2026-08-01 using provider or primary project material. Metadata may be committed, but no terminology, translation, instrument, classification, or ontology payload was retrieved for this review. Every future payload request remains subject to the named human gate in `supplementary_source_access_reviews.json`.
+Nine supplementary sources were reviewed on 2026-08-01 using provider or primary project material. Metadata may be committed, but no terminology, translation, instrument, classification, or ontology payload was retrieved for this review. Every future payload request remains subject to the named accountable gate in `supplementary_source_access_reviews.json`.
 
 | Source | Proposed role | Active profile overlap | Repository decision |
 | --- | --- | --- | --- |
 | DeCS | Multilingual biomedical lexicon | `es`, `fr`, `pt` | Provider agreement required |
 | Mondo international | Disease context and Japanese labels | `ja` | Metadata probe allowed; payload review open |
 | PRO-CTCAE | Patient-facing and regional register | `ar`, `cs`, `de`, `es`, `fr`, `it`, `ja`, `nl`, `pt`, `tr`, `zh` | Written NCI permission required |
-| WHO ICF | Functional and disability context | `cs`, `es`, `fr`, `it`, `pt`, `tr`, `zh` | Human licence review and credentials required |
+| WHO ICF | Functional and disability context | `cs`, `es`, `fr`, `it`, `pt`, `tr`, `zh` | Maintainer licence decision and credentials required |
 | NCI Thesaurus | Oncology and disease context | None established | Metadata probe allowed; source-atom review open |
-| RadLex | Radiology context | None established | Human clickthrough review required |
+| RadLex | Radiology context | None established | Maintainer clickthrough decision required |
 | Uberon | Anatomy structure | Not lexical | Metadata probe allowed; payload review open |
 | Cell Ontology | Cell-type structure | Not lexical | Metadata probe allowed; payload review open |
 | PATO | Quality structure | Not lexical | Metadata probe allowed; payload review open |

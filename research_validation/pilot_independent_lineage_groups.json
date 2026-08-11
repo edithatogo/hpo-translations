@@ -1,0 +1,26 @@
+{
+  "schema_version": "pilot-independent-lineage-groups-v1",
+  "track_id": "research_validation_20260801",
+  "source_atom_artifact": "research_validation/pilot_source_atoms.jsonl.gz",
+  "source_atom_artifact_sha256": "2c4651d0918a5a367ef5aa12400fade4b631c54987757bf8fc4285ba93159bb9",
+  "source_atom_count": 37800,
+  "source_atom_counts": {
+    "hpo-translation-es-repository-snapshot": 19932,
+    "hpo-translation-ja-repository-snapshot": 17868
+  },
+  "groups": [
+    {
+      "independent_evidence_group": "hpo-translations-repository-snapshots",
+      "member_source_ids": [
+        "hpo-translation-es-repository-snapshot",
+        "hpo-translation-ja-repository-snapshot"
+      ],
+      "independent_vote_count": 1,
+      "rationale": "Both language snapshots share the HPO translations repository provenance boundary; no evidence supports treating them as independent votes."
+    }
+  ],
+  "independent_evidence_group_count": 1,
+  "payload_text_retained": false,
+  "empirical_use_authorized": false,
+  "claims_boundary": "lineage_inventory_only_no_translation_text_independent_language_authority_empirical_or_promotion_claim"
+}
