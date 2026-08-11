@@ -1,6 +1,6 @@
 {
   "generated_date": "2026-06-23",
-  "record_count": 23,
+  "record_count": 32,
   "records": [
     {
       "agent_panel_action": "assess source evidence before the maintainer promotion decision",
@@ -59,7 +59,7 @@
       "severity": "info",
       "source_ids": [
         "snomed_ct",
-        "decipher"
+        "umls"
       ]
     },
     {
@@ -80,6 +80,26 @@
       "source_ids": [
         "loinc",
         "meddra"
+      ]
+    },
+    {
+      "agent_panel_action": "assess source evidence before the maintainer promotion decision",
+      "agent_panel_assessment_required": true,
+      "conflict_id": "conflict-el-metadata",
+      "conflict_type": "source_disagreement",
+      "count": 0,
+      "evidence_ids": [
+        "probe-open-related-0001"
+      ],
+      "hpo_id": "HP:0000001",
+      "language": "el",
+      "maintainer_promotion_decision_required": true,
+      "provenance_id": "prov-conflict-el",
+      "resolution_status": "needs_review",
+      "severity": "info",
+      "source_ids": [
+        "umls",
+        "decipher"
       ]
     },
     {
@@ -139,6 +159,26 @@
       "severity": "info",
       "source_ids": [
         "snomed_ct",
+        "umls"
+      ]
+    },
+    {
+      "agent_panel_action": "assess source evidence before the maintainer promotion decision",
+      "agent_panel_assessment_required": true,
+      "conflict_id": "conflict-eu-metadata",
+      "conflict_type": "source_disagreement",
+      "count": 0,
+      "evidence_ids": [
+        "probe-open-related-0001"
+      ],
+      "hpo_id": "HP:0000001",
+      "language": "eu",
+      "maintainer_promotion_decision_required": true,
+      "provenance_id": "prov-conflict-eu",
+      "resolution_status": "needs_review",
+      "severity": "info",
+      "source_ids": [
+        "umls",
         "decipher"
       ]
     },
@@ -185,6 +225,46 @@
     {
       "agent_panel_action": "assess source evidence before the maintainer promotion decision",
       "agent_panel_assessment_required": true,
+      "conflict_id": "conflict-he-metadata",
+      "conflict_type": "source_disagreement",
+      "count": 0,
+      "evidence_ids": [
+        "probe-open-related-0001"
+      ],
+      "hpo_id": "HP:0000001",
+      "language": "he",
+      "maintainer_promotion_decision_required": true,
+      "provenance_id": "prov-conflict-he",
+      "resolution_status": "needs_review",
+      "severity": "info",
+      "source_ids": [
+        "umls",
+        "decipher"
+      ]
+    },
+    {
+      "agent_panel_action": "assess source evidence before the maintainer promotion decision",
+      "agent_panel_assessment_required": true,
+      "conflict_id": "conflict-hr-metadata",
+      "conflict_type": "source_disagreement",
+      "count": 0,
+      "evidence_ids": [
+        "probe-open-related-0001"
+      ],
+      "hpo_id": "HP:0000001",
+      "language": "hr",
+      "maintainer_promotion_decision_required": true,
+      "provenance_id": "prov-conflict-hr",
+      "resolution_status": "needs_review",
+      "severity": "info",
+      "source_ids": [
+        "umls",
+        "decipher"
+      ]
+    },
+    {
+      "agent_panel_action": "assess source evidence before the maintainer promotion decision",
+      "agent_panel_assessment_required": true,
       "conflict_id": "conflict-hu-metadata",
       "conflict_type": "source_disagreement",
       "count": 0,
@@ -199,6 +279,26 @@
       "severity": "info",
       "source_ids": [
         "meddra",
+        "umls"
+      ]
+    },
+    {
+      "agent_panel_action": "assess source evidence before the maintainer promotion decision",
+      "agent_panel_assessment_required": true,
+      "conflict_id": "conflict-is-metadata",
+      "conflict_type": "source_disagreement",
+      "count": 0,
+      "evidence_ids": [
+        "probe-open-related-0001"
+      ],
+      "hpo_id": "HP:0000001",
+      "language": "is",
+      "maintainer_promotion_decision_required": true,
+      "provenance_id": "prov-conflict-is",
+      "resolution_status": "needs_review",
+      "severity": "info",
+      "source_ids": [
+        "umls",
         "decipher"
       ]
     },
@@ -265,6 +365,46 @@
     {
       "agent_panel_action": "assess source evidence before the maintainer promotion decision",
       "agent_panel_assessment_required": true,
+      "conflict_id": "conflict-lt-metadata",
+      "conflict_type": "source_disagreement",
+      "count": 0,
+      "evidence_ids": [
+        "probe-open-related-0001"
+      ],
+      "hpo_id": "HP:0000001",
+      "language": "lt",
+      "maintainer_promotion_decision_required": true,
+      "provenance_id": "prov-conflict-lt",
+      "resolution_status": "needs_review",
+      "severity": "info",
+      "source_ids": [
+        "umls",
+        "decipher"
+      ]
+    },
+    {
+      "agent_panel_action": "assess source evidence before the maintainer promotion decision",
+      "agent_panel_assessment_required": true,
+      "conflict_id": "conflict-lv-metadata",
+      "conflict_type": "source_disagreement",
+      "count": 0,
+      "evidence_ids": [
+        "probe-open-related-0001"
+      ],
+      "hpo_id": "HP:0000001",
+      "language": "lv",
+      "maintainer_promotion_decision_required": true,
+      "provenance_id": "prov-conflict-lv",
+      "resolution_status": "needs_review",
+      "severity": "info",
+      "source_ids": [
+        "umls",
+        "decipher"
+      ]
+    },
+    {
+      "agent_panel_action": "assess source evidence before the maintainer promotion decision",
+      "agent_panel_assessment_required": true,
       "conflict_id": "conflict-nl-metadata",
       "conflict_type": "source_disagreement",
       "count": 0,
@@ -299,7 +439,7 @@
       "severity": "info",
       "source_ids": [
         "snomed_ct",
-        "decipher"
+        "umls"
       ]
     },
     {
@@ -385,6 +525,26 @@
     {
       "agent_panel_action": "assess source evidence before the maintainer promotion decision",
       "agent_panel_assessment_required": true,
+      "conflict_id": "conflict-sl-metadata",
+      "conflict_type": "source_disagreement",
+      "count": 0,
+      "evidence_ids": [
+        "probe-open-related-0001"
+      ],
+      "hpo_id": "HP:0000001",
+      "language": "sl",
+      "maintainer_promotion_decision_required": true,
+      "provenance_id": "prov-conflict-sl",
+      "resolution_status": "needs_review",
+      "severity": "info",
+      "source_ids": [
+        "umls",
+        "decipher"
+      ]
+    },
+    {
+      "agent_panel_action": "assess source evidence before the maintainer promotion decision",
+      "agent_panel_assessment_required": true,
       "conflict_id": "conflict-sv-metadata",
       "conflict_type": "source_disagreement",
       "count": 0,
@@ -420,6 +580,26 @@
       "source_ids": [
         "icd11",
         "loinc"
+      ]
+    },
+    {
+      "agent_panel_action": "assess source evidence before the maintainer promotion decision",
+      "agent_panel_assessment_required": true,
+      "conflict_id": "conflict-uk-metadata",
+      "conflict_type": "source_disagreement",
+      "count": 0,
+      "evidence_ids": [
+        "probe-open-related-0001"
+      ],
+      "hpo_id": "HP:0000001",
+      "language": "uk",
+      "maintainer_promotion_decision_required": true,
+      "provenance_id": "prov-conflict-uk",
+      "resolution_status": "needs_review",
+      "severity": "info",
+      "source_ids": [
+        "umls",
+        "decipher"
       ]
     },
     {

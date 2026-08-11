@@ -1,6 +1,6 @@
 {
   "generated_date": "2026-06-23",
-  "record_count": 23,
+  "record_count": 32,
   "records": [
     {
       "agent_panel_assessment_required": true,
@@ -27,7 +27,8 @@
         "icd11",
         "meddra",
         "mesh",
-        "orphanet"
+        "orphanet",
+        "umls"
       ]
     },
     {
@@ -38,7 +39,8 @@
       "language": "da",
       "maintainer_promotion_decision_required": true,
       "source_ids": [
-        "snomed_ct"
+        "snomed_ct",
+        "umls"
       ]
     },
     {
@@ -54,6 +56,17 @@
         "mesh",
         "orphanet",
         "snomed_ct",
+        "umls"
+      ]
+    },
+    {
+      "agent_panel_assessment_required": true,
+      "candidate_count": 0,
+      "candidate_only": true,
+      "comparison_status": "not_computed_source_payloads_excluded",
+      "language": "el",
+      "maintainer_promotion_decision_required": true,
+      "source_ids": [
         "umls"
       ]
     },
@@ -81,6 +94,7 @@
         "orphanet",
         "pato",
         "snomed_ct",
+        "umls",
         "upheno"
       ]
     },
@@ -110,7 +124,19 @@
       "language": "et",
       "maintainer_promotion_decision_required": true,
       "source_ids": [
-        "snomed_ct"
+        "snomed_ct",
+        "umls"
+      ]
+    },
+    {
+      "agent_panel_assessment_required": true,
+      "candidate_count": 0,
+      "candidate_only": true,
+      "comparison_status": "not_computed_source_payloads_excluded",
+      "language": "eu",
+      "maintainer_promotion_decision_required": true,
+      "source_ids": [
+        "umls"
       ]
     },
     {
@@ -122,7 +148,8 @@
       "maintainer_promotion_decision_required": true,
       "source_ids": [
         "mesh",
-        "snomed_ct"
+        "snomed_ct",
+        "umls"
       ]
     },
     {
@@ -148,10 +175,44 @@
       "candidate_count": 0,
       "candidate_only": true,
       "comparison_status": "not_computed_source_payloads_excluded",
+      "language": "he",
+      "maintainer_promotion_decision_required": true,
+      "source_ids": [
+        "umls"
+      ]
+    },
+    {
+      "agent_panel_assessment_required": true,
+      "candidate_count": 0,
+      "candidate_only": true,
+      "comparison_status": "not_computed_source_payloads_excluded",
+      "language": "hr",
+      "maintainer_promotion_decision_required": true,
+      "source_ids": [
+        "umls"
+      ]
+    },
+    {
+      "agent_panel_assessment_required": true,
+      "candidate_count": 0,
+      "candidate_only": true,
+      "comparison_status": "not_computed_source_payloads_excluded",
       "language": "hu",
       "maintainer_promotion_decision_required": true,
       "source_ids": [
-        "meddra"
+        "meddra",
+        "umls"
+      ]
+    },
+    {
+      "agent_panel_assessment_required": true,
+      "candidate_count": 0,
+      "candidate_only": true,
+      "comparison_status": "not_computed_source_payloads_excluded",
+      "language": "is",
+      "maintainer_promotion_decision_required": true,
+      "source_ids": [
+        "umls"
       ]
     },
     {
@@ -191,7 +252,30 @@
       "maintainer_promotion_decision_required": true,
       "source_ids": [
         "loinc",
-        "meddra"
+        "meddra",
+        "umls"
+      ]
+    },
+    {
+      "agent_panel_assessment_required": true,
+      "candidate_count": 0,
+      "candidate_only": true,
+      "comparison_status": "not_computed_source_payloads_excluded",
+      "language": "lt",
+      "maintainer_promotion_decision_required": true,
+      "source_ids": [
+        "umls"
+      ]
+    },
+    {
+      "agent_panel_assessment_required": true,
+      "candidate_count": 0,
+      "candidate_only": true,
+      "comparison_status": "not_computed_source_payloads_excluded",
+      "language": "lv",
+      "maintainer_promotion_decision_required": true,
+      "source_ids": [
+        "umls"
       ]
     },
     {
@@ -205,7 +289,8 @@
         "loinc",
         "meddra",
         "orphanet",
-        "snomed_ct"
+        "snomed_ct",
+        "umls"
       ]
     },
     {
@@ -216,7 +301,8 @@
       "language": "no",
       "maintainer_promotion_decision_required": true,
       "source_ids": [
-        "snomed_ct"
+        "snomed_ct",
+        "umls"
       ]
     },
     {
@@ -229,7 +315,8 @@
       "source_ids": [
         "meddra",
         "mesh",
-        "orphanet"
+        "orphanet",
+        "umls"
       ]
     },
     {
@@ -273,7 +360,19 @@
       "maintainer_promotion_decision_required": true,
       "source_ids": [
         "icd11",
-        "snomed_ct"
+        "snomed_ct",
+        "umls"
+      ]
+    },
+    {
+      "agent_panel_assessment_required": true,
+      "candidate_count": 0,
+      "candidate_only": true,
+      "comparison_status": "not_computed_source_payloads_excluded",
+      "language": "sl",
+      "maintainer_promotion_decision_required": true,
+      "source_ids": [
+        "umls"
       ]
     },
     {
@@ -286,7 +385,8 @@
       "source_ids": [
         "icd11",
         "meddra",
-        "snomed_ct"
+        "snomed_ct",
+        "umls"
       ]
     },
     {
@@ -299,7 +399,19 @@
       "source_ids": [
         "icd11",
         "loinc",
-        "meddra"
+        "meddra",
+        "umls"
+      ]
+    },
+    {
+      "agent_panel_assessment_required": true,
+      "candidate_count": 0,
+      "candidate_only": true,
+      "comparison_status": "not_computed_source_payloads_excluded",
+      "language": "uk",
+      "maintainer_promotion_decision_required": true,
+      "source_ids": [
+        "umls"
       ]
     },
     {
