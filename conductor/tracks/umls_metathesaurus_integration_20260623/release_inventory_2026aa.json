@@ -1,0 +1,71 @@
+{
+  "schema_version": "umls-public-metadata-inventory-v1",
+  "release": "2026AA",
+  "release_date": "2026-05-04",
+  "status": "metadata_inventory_complete_payload_not_ingested",
+  "authority": "US National Library of Medicine",
+  "official_statistics_url": "https://www.nlm.nih.gov/research/umls/knowledge_sources/metathesaurus/release/statistics.html",
+  "official_appendix_url": "https://www.nlm.nih.gov/research/umls/knowledge_sources/metathesaurus/release/license_agreement_appendix.html",
+  "source_vocabulary_count": 195,
+  "source_family_by_language_count": 176,
+  "language_count": 31,
+  "languages": [
+    {"umls_code": "ARA", "bcp47": "ar", "name": "Arabic"},
+    {"umls_code": "BAQ", "bcp47": "eu", "name": "Basque"},
+    {"umls_code": "CHI", "bcp47": "zh", "name": "Chinese", "script_status": "not_resolved_by_aggregate_statistics"},
+    {"umls_code": "CZE", "bcp47": "cs", "name": "Czech"},
+    {"umls_code": "DAN", "bcp47": "da", "name": "Danish"},
+    {"umls_code": "DUT", "bcp47": "nl", "name": "Dutch"},
+    {"umls_code": "ENG", "bcp47": "en", "name": "English"},
+    {"umls_code": "EST", "bcp47": "et", "name": "Estonian"},
+    {"umls_code": "FIN", "bcp47": "fi", "name": "Finnish"},
+    {"umls_code": "FRE", "bcp47": "fr", "name": "French"},
+    {"umls_code": "GER", "bcp47": "de", "name": "German"},
+    {"umls_code": "GRE", "bcp47": "el", "name": "Greek"},
+    {"umls_code": "HEB", "bcp47": "he", "name": "Hebrew"},
+    {"umls_code": "HUN", "bcp47": "hu", "name": "Hungarian"},
+    {"umls_code": "ISL", "bcp47": "is", "name": "Icelandic"},
+    {"umls_code": "ITA", "bcp47": "it", "name": "Italian"},
+    {"umls_code": "JPN", "bcp47": "ja", "name": "Japanese"},
+    {"umls_code": "KOR", "bcp47": "ko", "name": "Korean"},
+    {"umls_code": "LAV", "bcp47": "lv", "name": "Latvian"},
+    {"umls_code": "LIT", "bcp47": "lt", "name": "Lithuanian"},
+    {"umls_code": "NOR", "bcp47": "no", "name": "Norwegian", "variant_status": "aggregate_code_does_not_distinguish_bokmal_nynorsk"},
+    {"umls_code": "POL", "bcp47": "pl", "name": "Polish"},
+    {"umls_code": "POR", "bcp47": "pt", "name": "Portuguese"},
+    {"umls_code": "RUS", "bcp47": "ru", "name": "Russian"},
+    {"umls_code": "SCR", "bcp47": "hr", "name": "Croatian"},
+    {"umls_code": "SLK", "bcp47": "sk", "name": "Slovak"},
+    {"umls_code": "SLV", "bcp47": "sl", "name": "Slovenian"},
+    {"umls_code": "SPA", "bcp47": "es", "name": "Spanish"},
+    {"umls_code": "SWE", "bcp47": "sv", "name": "Swedish"},
+    {"umls_code": "TUR", "bcp47": "tr", "name": "Turkish"},
+    {"umls_code": "UKR", "bcp47": "uk", "name": "Ukrainian"}
+  ],
+  "regional_loinc_2_82_editions": [
+    "ar-JO", "cs-CZ", "de-AT", "de-DE", "el-GR", "es-AR", "es-ES", "es-MX",
+    "et-EE", "fr-BE", "fr-CA", "fr-FR", "it-IT", "ko-KR", "nl-NL", "pl-PL",
+    "pt-BR", "ru-RU", "tr-TR", "uk-UA", "zh-CN"
+  ],
+  "canadian_french_source": {
+    "source_version": "LNC-FR-CA_282",
+    "language": "fr-CA",
+    "producer": "Canada Health Infoway",
+    "scope": "LOINC linguistic variant only; not general Canadian-French phenotype terminology"
+  },
+  "hpo_relevant_source_families": [
+    "HPO", "OMIM", "ORPHANET", "NCI", "FMA", "GO", "MeSH", "MedDRA",
+    "MedlinePlus", "SNOMED CT", "ICD-10", "ICD-10-CM", "ICD-10-PCS", "LOINC"
+  ],
+  "mapping_policy": {
+    "cui_co_membership": "candidate_alignment_not_exact_mapping_or_independent_evidence",
+    "mrrel": "require_REL_RELA_and_source_attribution",
+    "mrmap_mrsmap": "preserve_map_set_direction_and_source_versions",
+    "source_lineage": "preserve_SAB_VSAB_AUI_CODE_and_deduplicate_shared_origins"
+  },
+  "payload_policy": {
+    "payload_incorporated": false,
+    "restricted_payloads": ["MRCONSO", "MRREL", "MRMAP", "MRSMAP", "MRSAB rows", "CUI/AUI/code/labels", "subsets", "API responses", "release archives"],
+    "requirements": ["active UMLS licence", "valid UTS account", "per-source Appendix restrictions", "direct-source permission review"]
+  }
+}

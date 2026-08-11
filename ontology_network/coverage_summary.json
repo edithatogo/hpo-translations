@@ -1,6 +1,6 @@
 {
   "generated_date": "2026-06-23",
-  "record_count": 96,
+  "record_count": 118,
   "records": [
     {
       "coverage_id": "coverage-decipher-en",
@@ -1047,6 +1047,30 @@
       "total_hpo_terms": 0
     },
     {
+      "coverage_id": "coverage-umls-cs",
+      "coverage_ratio": 0.0,
+      "covered_hpo_terms": 0,
+      "hpo_branch_id": "HP:0000118",
+      "language": "cs",
+      "predicate": "metadata_declared_language_support",
+      "provenance_id": "prov-coverage-umls-cs",
+      "review_status": "needs_review",
+      "source_id": "umls",
+      "total_hpo_terms": 0
+    },
+    {
+      "coverage_id": "coverage-umls-da",
+      "coverage_ratio": 0.0,
+      "covered_hpo_terms": 0,
+      "hpo_branch_id": "HP:0000118",
+      "language": "da",
+      "predicate": "metadata_declared_language_support",
+      "provenance_id": "prov-coverage-umls-da",
+      "review_status": "needs_review",
+      "source_id": "umls",
+      "total_hpo_terms": 0
+    },
+    {
       "coverage_id": "coverage-umls-de",
       "coverage_ratio": 0.0,
       "covered_hpo_terms": 0,
@@ -1054,6 +1078,30 @@
       "language": "de",
       "predicate": "metadata_declared_language_support",
       "provenance_id": "prov-coverage-umls-de",
+      "review_status": "needs_review",
+      "source_id": "umls",
+      "total_hpo_terms": 0
+    },
+    {
+      "coverage_id": "coverage-umls-el",
+      "coverage_ratio": 0.0,
+      "covered_hpo_terms": 0,
+      "hpo_branch_id": "HP:0000118",
+      "language": "el",
+      "predicate": "metadata_declared_language_support",
+      "provenance_id": "prov-coverage-umls-el",
+      "review_status": "needs_review",
+      "source_id": "umls",
+      "total_hpo_terms": 0
+    },
+    {
+      "coverage_id": "coverage-umls-en",
+      "coverage_ratio": 0.0,
+      "covered_hpo_terms": 0,
+      "hpo_branch_id": "HP:0000118",
+      "language": "en",
+      "predicate": "metadata_declared_language_support",
+      "provenance_id": "prov-coverage-umls-en",
       "review_status": "needs_review",
       "source_id": "umls",
       "total_hpo_terms": 0
@@ -1071,6 +1119,42 @@
       "total_hpo_terms": 0
     },
     {
+      "coverage_id": "coverage-umls-et",
+      "coverage_ratio": 0.0,
+      "covered_hpo_terms": 0,
+      "hpo_branch_id": "HP:0000118",
+      "language": "et",
+      "predicate": "metadata_declared_language_support",
+      "provenance_id": "prov-coverage-umls-et",
+      "review_status": "needs_review",
+      "source_id": "umls",
+      "total_hpo_terms": 0
+    },
+    {
+      "coverage_id": "coverage-umls-eu",
+      "coverage_ratio": 0.0,
+      "covered_hpo_terms": 0,
+      "hpo_branch_id": "HP:0000118",
+      "language": "eu",
+      "predicate": "metadata_declared_language_support",
+      "provenance_id": "prov-coverage-umls-eu",
+      "review_status": "needs_review",
+      "source_id": "umls",
+      "total_hpo_terms": 0
+    },
+    {
+      "coverage_id": "coverage-umls-fi",
+      "coverage_ratio": 0.0,
+      "covered_hpo_terms": 0,
+      "hpo_branch_id": "HP:0000118",
+      "language": "fi",
+      "predicate": "metadata_declared_language_support",
+      "provenance_id": "prov-coverage-umls-fi",
+      "review_status": "needs_review",
+      "source_id": "umls",
+      "total_hpo_terms": 0
+    },
+    {
       "coverage_id": "coverage-umls-fr",
       "coverage_ratio": 0.0,
       "covered_hpo_terms": 0,
@@ -1078,6 +1162,54 @@
       "language": "fr",
       "predicate": "metadata_declared_language_support",
       "provenance_id": "prov-coverage-umls-fr",
+      "review_status": "needs_review",
+      "source_id": "umls",
+      "total_hpo_terms": 0
+    },
+    {
+      "coverage_id": "coverage-umls-he",
+      "coverage_ratio": 0.0,
+      "covered_hpo_terms": 0,
+      "hpo_branch_id": "HP:0000118",
+      "language": "he",
+      "predicate": "metadata_declared_language_support",
+      "provenance_id": "prov-coverage-umls-he",
+      "review_status": "needs_review",
+      "source_id": "umls",
+      "total_hpo_terms": 0
+    },
+    {
+      "coverage_id": "coverage-umls-hr",
+      "coverage_ratio": 0.0,
+      "covered_hpo_terms": 0,
+      "hpo_branch_id": "HP:0000118",
+      "language": "hr",
+      "predicate": "metadata_declared_language_support",
+      "provenance_id": "prov-coverage-umls-hr",
+      "review_status": "needs_review",
+      "source_id": "umls",
+      "total_hpo_terms": 0
+    },
+    {
+      "coverage_id": "coverage-umls-hu",
+      "coverage_ratio": 0.0,
+      "covered_hpo_terms": 0,
+      "hpo_branch_id": "HP:0000118",
+      "language": "hu",
+      "predicate": "metadata_declared_language_support",
+      "provenance_id": "prov-coverage-umls-hu",
+      "review_status": "needs_review",
+      "source_id": "umls",
+      "total_hpo_terms": 0
+    },
+    {
+      "coverage_id": "coverage-umls-is",
+      "coverage_ratio": 0.0,
+      "covered_hpo_terms": 0,
+      "hpo_branch_id": "HP:0000118",
+      "language": "is",
+      "predicate": "metadata_declared_language_support",
+      "provenance_id": "prov-coverage-umls-is",
       "review_status": "needs_review",
       "source_id": "umls",
       "total_hpo_terms": 0
@@ -1107,6 +1239,78 @@
       "total_hpo_terms": 0
     },
     {
+      "coverage_id": "coverage-umls-ko",
+      "coverage_ratio": 0.0,
+      "covered_hpo_terms": 0,
+      "hpo_branch_id": "HP:0000118",
+      "language": "ko",
+      "predicate": "metadata_declared_language_support",
+      "provenance_id": "prov-coverage-umls-ko",
+      "review_status": "needs_review",
+      "source_id": "umls",
+      "total_hpo_terms": 0
+    },
+    {
+      "coverage_id": "coverage-umls-lt",
+      "coverage_ratio": 0.0,
+      "covered_hpo_terms": 0,
+      "hpo_branch_id": "HP:0000118",
+      "language": "lt",
+      "predicate": "metadata_declared_language_support",
+      "provenance_id": "prov-coverage-umls-lt",
+      "review_status": "needs_review",
+      "source_id": "umls",
+      "total_hpo_terms": 0
+    },
+    {
+      "coverage_id": "coverage-umls-lv",
+      "coverage_ratio": 0.0,
+      "covered_hpo_terms": 0,
+      "hpo_branch_id": "HP:0000118",
+      "language": "lv",
+      "predicate": "metadata_declared_language_support",
+      "provenance_id": "prov-coverage-umls-lv",
+      "review_status": "needs_review",
+      "source_id": "umls",
+      "total_hpo_terms": 0
+    },
+    {
+      "coverage_id": "coverage-umls-nl",
+      "coverage_ratio": 0.0,
+      "covered_hpo_terms": 0,
+      "hpo_branch_id": "HP:0000118",
+      "language": "nl",
+      "predicate": "metadata_declared_language_support",
+      "provenance_id": "prov-coverage-umls-nl",
+      "review_status": "needs_review",
+      "source_id": "umls",
+      "total_hpo_terms": 0
+    },
+    {
+      "coverage_id": "coverage-umls-no",
+      "coverage_ratio": 0.0,
+      "covered_hpo_terms": 0,
+      "hpo_branch_id": "HP:0000118",
+      "language": "no",
+      "predicate": "metadata_declared_language_support",
+      "provenance_id": "prov-coverage-umls-no",
+      "review_status": "needs_review",
+      "source_id": "umls",
+      "total_hpo_terms": 0
+    },
+    {
+      "coverage_id": "coverage-umls-pl",
+      "coverage_ratio": 0.0,
+      "covered_hpo_terms": 0,
+      "hpo_branch_id": "HP:0000118",
+      "language": "pl",
+      "predicate": "metadata_declared_language_support",
+      "provenance_id": "prov-coverage-umls-pl",
+      "review_status": "needs_review",
+      "source_id": "umls",
+      "total_hpo_terms": 0
+    },
+    {
       "coverage_id": "coverage-umls-pt",
       "coverage_ratio": 0.0,
       "covered_hpo_terms": 0,
@@ -1126,6 +1330,66 @@
       "language": "ru",
       "predicate": "metadata_declared_language_support",
       "provenance_id": "prov-coverage-umls-ru",
+      "review_status": "needs_review",
+      "source_id": "umls",
+      "total_hpo_terms": 0
+    },
+    {
+      "coverage_id": "coverage-umls-sk",
+      "coverage_ratio": 0.0,
+      "covered_hpo_terms": 0,
+      "hpo_branch_id": "HP:0000118",
+      "language": "sk",
+      "predicate": "metadata_declared_language_support",
+      "provenance_id": "prov-coverage-umls-sk",
+      "review_status": "needs_review",
+      "source_id": "umls",
+      "total_hpo_terms": 0
+    },
+    {
+      "coverage_id": "coverage-umls-sl",
+      "coverage_ratio": 0.0,
+      "covered_hpo_terms": 0,
+      "hpo_branch_id": "HP:0000118",
+      "language": "sl",
+      "predicate": "metadata_declared_language_support",
+      "provenance_id": "prov-coverage-umls-sl",
+      "review_status": "needs_review",
+      "source_id": "umls",
+      "total_hpo_terms": 0
+    },
+    {
+      "coverage_id": "coverage-umls-sv",
+      "coverage_ratio": 0.0,
+      "covered_hpo_terms": 0,
+      "hpo_branch_id": "HP:0000118",
+      "language": "sv",
+      "predicate": "metadata_declared_language_support",
+      "provenance_id": "prov-coverage-umls-sv",
+      "review_status": "needs_review",
+      "source_id": "umls",
+      "total_hpo_terms": 0
+    },
+    {
+      "coverage_id": "coverage-umls-tr",
+      "coverage_ratio": 0.0,
+      "covered_hpo_terms": 0,
+      "hpo_branch_id": "HP:0000118",
+      "language": "tr",
+      "predicate": "metadata_declared_language_support",
+      "provenance_id": "prov-coverage-umls-tr",
+      "review_status": "needs_review",
+      "source_id": "umls",
+      "total_hpo_terms": 0
+    },
+    {
+      "coverage_id": "coverage-umls-uk",
+      "coverage_ratio": 0.0,
+      "covered_hpo_terms": 0,
+      "hpo_branch_id": "HP:0000118",
+      "language": "uk",
+      "predicate": "metadata_declared_language_support",
+      "provenance_id": "prov-coverage-umls-uk",
       "review_status": "needs_review",
       "source_id": "umls",
       "total_hpo_terms": 0
