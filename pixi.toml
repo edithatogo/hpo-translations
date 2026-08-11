@@ -16,12 +16,14 @@ ruff-format = { cmd = ".pixi/envs/default/Scripts/ruff.exe format --no-cache --c
 vale-check = { cmd = ".pixi/envs/default/bin/vale.exe README.md docs/", inputs = ["README.md", "docs/**/*.md", ".vale.ini"] }
 ty-check = { cmd = ".pixi/envs/default/Scripts/ty.exe check --python .pixi/envs/default/python.exe scripts/", inputs = ["scripts/**/*.py", "pyproject.toml", "pixi.lock"] }
 basedpyright-check = { cmd = ".pixi/envs/default/Scripts/basedpyright.exe scripts/", inputs = ["scripts/**/*.py", "pyproject.toml"] }
+typing-fast = { depends-on = ["ty-check"] }
+typing-canonical = { depends-on = ["basedpyright-check"] }
 actionlint-check = "actionlint"
 lint = { depends-on = ["actionlint-check", "ruff-check", "ruff-format", "vale-check", "ty-check", "basedpyright-check"] }
 just = ".pixi/envs/default/bin/just.exe"
 cz = ".pixi/envs/default/Scripts/cz.exe"
-pre-commit-install = { cmd = ".pixi/envs/default/Scripts/pre-commit.exe install --install-hooks --hook-type pre-commit --hook-type commit-msg", env = { PRE_COMMIT_HOME = "C:/tmp/hpo-translations-pre-commit" } }
-pre-commit-run = { cmd = ".pixi/envs/default/Scripts/pre-commit.exe run --all-files", env = { PRE_COMMIT_HOME = "C:/tmp/hpo-translations-pre-commit" } }
+pre-commit-install = { depends-on = ["prek-install"] }
+pre-commit-run = { depends-on = ["prek-run"] }
 prek-install = { cmd = "prek install --hook-type pre-commit --hook-type commit-msg", env = { PREK_HOME = "C:/tmp/hpo-translations-prek" } }
 prek-run = { cmd = "prek run --all-files --show-diff-on-failure", env = { PREK_HOME = "C:/tmp/hpo-translations-prek" } }
 package = ".pixi/envs/default/python.exe scripts/package_translations.py"
@@ -58,7 +60,6 @@ ruff = ">=0.15.18,<0.16"
 vale = ">=3.15.1,<4"
 ty = "*"
 basedpyright = "*"
-pre-commit = ">=4.6.0,<5"
 just = ">=1.43.1,<2"
 actionlint = ">=1.7.12,<1.8"
 prek = ">=0.4.13,<0.5"
