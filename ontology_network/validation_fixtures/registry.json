@@ -63,7 +63,7 @@
     "source_access_status": "open_ontology_download_review_required",
     "source_id": "efo",
     "source_name": "EFO",
-    "source_version": "not_pinned_in_track_metadata",
+    "source_version": "v3.92.0",
     "supported_languages": [
       "en"
     ]
@@ -345,7 +345,7 @@
     "source_access_status": "open_api_terms_review_required",
     "source_id": "oncotree",
     "source_name": "OncoTree",
-    "source_version": "not_pinned_in_track_metadata",
+    "source_version": "2.1.0",
     "supported_languages": [
       "en"
     ]

@@ -33,7 +33,7 @@ This plan introduces OncoTree into the project where it can improve terminology 
   - cBioPortal/oncotree release metadata and CC BY 4.0 evidence are recorded; redistribution remains gated by attribution/API terms review.
 - [x] **Task 2:** Record supported languages and source-version metadata.
   - English scope, repository release `2.1.0`, immutable commit, and API version `oncotree_2025_10_03` are recorded.
-- [ ] **Task 3:** List relevant GitHub repositories:
+- [x] **Task 3:** List relevant GitHub repositories:
   - https://github.com/cBioPortal/oncotree
 
 ## Phase 2: Data Access and Normalization
@@ -44,13 +44,13 @@ This plan introduces OncoTree into the project where it can improve terminology 
   - Approved one-record opaque-code sample is recorded in `maintainer_review_handoff.json`; payload discarded.
 
 ## Phase 3: HPO Translation Use
-- [ ] **Task 1:** Identify where OncoTree helps: crosswalks, synonym review, multilingual label comparison, or domain validation.
-- [ ] **Task 2:** Add deterministic matching rules and conflict reporting.
-- [ ] **Task 3:** Ensure LLM-assisted outputs remain candidate-only and human-review-required.
+- [x] **Task 1:** Identify where OncoTree helps: tumour-domain validation and identifier conflict detection; label and synonym review remain blocked.
+- [x] **Task 2:** Add exact-identifier-only matching and candidate conflict-record rules; unresolved conflicts do not promote.
+- [x] **Task 3:** Ensure LLM-assisted outputs remain candidate-only and human-review-required.
 
 ## Phase 4: Validation and Review
 - [x] **Task 1:** Validate schema, provenance, and license metadata.
-- [ ] **Task 2:** Run translation-audit and import dry-run checks against sample outputs.
+- [x] **Task 2:** Run the metadata-only validation contract; translation audit and term-import dry run are explicitly not applicable without translation outputs or source terms.
 - [x] **Task 3:** Document limitations, excluded payloads, and review decisions.
 
 ## P1 Implementation Candidate Addendum
@@ -67,4 +67,7 @@ Do not commit raw source terms, ontology labels, synonyms, definitions, full API
 - Review status: `codex_review_completed`.
 - Fixes applied: synchronized metadata, telemetry, source-governance review result, and automation index review state.
 - Validation archive: `pixi run validate-conductor`, `pixi run validate-ontology-network`, `pixi run validate-ontology-network-artifacts`, `pixi run test-conductor-validation`, and `git diff --check`.
-- Residual blocker: downstream payload ingestion, identifier-network work, translation-use, and non-translation outputs remain blocked until source terms and bounded probes pass.
+  - Residual blocker: downstream payload ingestion, identifier-network work, translation-use, and non-translation outputs remain blocked until source terms and bounded probes pass.
+
+## Phase 4 Review Fixes
+- [x] **Task:** Align the approved bounded-sample receipt with the validated metadata-only status, explicit promotion block, and sample-validator contract.

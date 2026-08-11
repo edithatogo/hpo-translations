@@ -77,6 +77,12 @@ jobs:
       - name: Run Conductor validation tests
         run: pixi run test-conductor-validation
 
+      - name: Validate approved metadata-only samples
+        run: pixi run validate-metadata-only-samples
+
+      - name: Validate source governance decision docket
+        run: pixi run validate-source-governance-docket
+
       - name: Build ontology network artifacts
         run: pixi run ontology-network
 

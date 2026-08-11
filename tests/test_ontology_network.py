@@ -1,10 +1,11 @@
 import csv
+import json
 import shutil
 import unittest
 import uuid
 from pathlib import Path
 
-from scripts.build_ontology_network import build, load_json, validate
+from scripts.build_ontology_network import approved_metadata_sample, build, load_json, validate
 
 TEST_TMP = Path(".cache/ontology-network-tests")
 
@@ -52,6 +53,114 @@ class OntologyNetworkTests(unittest.TestCase):
         self.addCleanup(lambda: shutil.rmtree(output_dir, ignore_errors=True))
         return output_dir
 
+    def test_generator_rejects_empty_approval_evidence(self) -> None:
+        track_dir = self.make_output_dir()
+        (track_dir / "maintainer_review_handoff.json").write_text(
+            json.dumps(
+                {
+                    "status": "approved_bounded_metadata_only_sample",
+                    "approval": {},
+                    "bounded_sample": {},
+                }
+            ),
+            encoding="utf-8",
+        )
+        (track_dir / "phase2_data_access_normalization.json").write_text(
+            json.dumps(
+                {
+                    "status": "metadata_only_sample_normalized_payload_free",
+                    "normalization": {"source_terms_included": False},
+                    "sample": {
+                        "allowed": True,
+                        "payload_retained": False,
+                        "source_terms_included": False,
+                    },
+                    "normalized_record": {
+                        "release": "test-release",
+                        "immutable_commit": "0" * 40,
+                        "payload_retained": False,
+                    },
+                    "payload_commit_allowed": False,
+                }
+            ),
+            encoding="utf-8",
+        )
+        (track_dir / "phase4_validation_review.json").write_text(
+            json.dumps(
+                {
+                    "status": "metadata_only_sample_validated_payload_blocked",
+                    "promotion_allowed": False,
+                    "review_required": True,
+                }
+            ),
+            encoding="utf-8",
+        )
+        self.assertIsNone(approved_metadata_sample(track_dir))
+
+    def test_generator_rejects_payload_commit_permission(self) -> None:
+        track_dir = self.make_output_dir()
+        (track_dir / "maintainer_review_handoff.json").write_text(
+            json.dumps(
+                {
+                    "status": "approved_bounded_metadata_only_sample",
+                    "approval": {"decision": "test-only approval"},
+                    "bounded_sample": {"identifier": "TEST:1"},
+                    "evidence": {"release": "test-release", "immutable_commit": "0" * 40},
+                }
+            ),
+            encoding="utf-8",
+        )
+        (track_dir / "phase2_data_access_normalization.json").write_text(
+            json.dumps(
+                {
+                    "status": "metadata_only_sample_normalized_payload_free",
+                    "normalization": {"source_terms_included": False},
+                    "sample": {
+                        "allowed": True,
+                        "identifier": "TEST:1",
+                        "authorization_ref": "maintainer_review_handoff.json#approval",
+                        "payload_retained": False,
+                        "source_terms_included": False,
+                    },
+                    "normalized_record": {
+                        "release": "test-release",
+                        "immutable_commit": "0" * 40,
+                        "identifier": "TEST:1",
+                        "metadata_evidence_ref": "maintainer_review_handoff.json#bounded_sample",
+                        "payload_retained": False,
+                    },
+                    "payload_commit_allowed": True,
+                }
+            ),
+            encoding="utf-8",
+        )
+        (track_dir / "phase4_validation_review.json").write_text(
+            json.dumps(
+                {
+                    "status": "metadata_only_sample_validated_payload_blocked",
+                    "promotion_allowed": False,
+                    "review_required": True,
+                }
+            ),
+            encoding="utf-8",
+        )
+        self.assertIsNone(approved_metadata_sample(track_dir))
+
+    def test_generator_rejects_identifier_provenance_mismatch(self) -> None:
+        track_dir = self.make_output_dir()
+        source = Path("conductor/tracks/efo_integration_20260623")
+        for artifact_name in (
+            "maintainer_review_handoff.json",
+            "phase2_data_access_normalization.json",
+            "phase4_validation_review.json",
+        ):
+            shutil.copy2(source / artifact_name, track_dir / artifact_name)
+        phase2_path = track_dir / "phase2_data_access_normalization.json"
+        phase2 = load_json(phase2_path)
+        phase2["normalized_record"]["identifier"] = "MISMATCH:1"
+        phase2_path.write_text(json.dumps(phase2), encoding="utf-8")
+        self.assertIsNone(approved_metadata_sample(track_dir))
+
     def test_build_and_validate_registry_artifacts(self) -> None:
         output_dir = self.make_output_dir()
         written = build(output_dir)
@@ -78,6 +187,12 @@ class OntologyNetworkTests(unittest.TestCase):
         )
         self.assertFalse(records["snomed_ct"]["github_repository_roles"][0]["authoritative_for_release_payload"])
         self.assertEqual(records["do"]["github_repository_roles"][0]["role"], "source_repository")
+        self.assertEqual(records["efo"]["source_version"], "v3.92.0")
+        self.assertEqual(records["efo"]["version_status"], "pinned_metadata_only_sample")
+        self.assertEqual(records["oncotree"]["source_version"], "2.1.0")
+        self.assertEqual(records["oncotree"]["version_status"], "pinned_metadata_only_sample")
+        self.assertIsNone(records["pato"]["source_version"])
+        self.assertEqual(records["pato"]["version_status"], "not_pinned_in_track_metadata")
 
         with (output_dir / "source_access_matrix.tsv").open(encoding="utf-8", newline="") as handle:
             reader = csv.DictReader(handle, delimiter="\t")
@@ -125,6 +240,12 @@ class OntologyNetworkTests(unittest.TestCase):
             self.assertFalse(record["non_translation_outputs_allowed"])
             self.assertTrue(record["candidate_only"])
             self.assertTrue(record["human_review_required"])
+
+        p1 = load_json(output_dir / "p1_source_governance.json")
+        p1_records = {record["source_id"]: record for record in p1["records"]}
+        self.assertTrue(p1_records["efo"]["bounded_sample_allowed"])
+        self.assertTrue(p1_records["oncotree"]["bounded_sample_allowed"])
+        self.assertFalse(p1_records["pato"]["bounded_sample_allowed"])
 
         self.assertIsNotNone(samples["open_source_registry_record"])
         self.assertIsNotNone(samples["restricted_source_governance_record"])

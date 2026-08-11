@@ -1,0 +1,167 @@
+{
+  "schema_version": "1.0",
+  "docket_id": "ontology_source_authority_licence_20260811",
+  "prepared_at": "2026-08-11",
+  "scope": "pending ontology source authority, licence, redistribution, and maintainer gates",
+  "policy": {
+    "risk_appetite": "reasonable_but_fail_closed_on_rights_and_promotion",
+    "no_approval_granted": true,
+    "metadata_only_default": true,
+    "payload_commit_default": false,
+    "promotion_default": false,
+    "external_contact_or_submission": false,
+    "private_source_protocol": {
+      "private_hosting_is_not_authority": true,
+      "private_hosting_is_not_a_licence": true,
+      "default_option_when_found": "C",
+      "option_b_requires": [
+        "owner_or_rightsholder_identity",
+        "written permission or licence covering intended use",
+        "immutable commit or release pin",
+        "credential/access scope and custody record",
+        "retention, revocation, and redistribution restrictions",
+        "local-only manifest before payload access"
+      ],
+      "option_a_requires_additional": "explicit permission for repository-visible metadata and derived outputs",
+      "never_infer_from": ["private URL", "successful login", "download permission", "Hugging Face or GitHub visibility"]
+    },
+    "maintainer_decision_required_before": [
+      "source-term retrieval",
+      "redistributable payload commit",
+      "labels, synonyms, definitions, or crosswalk publication",
+      "downstream promotion"
+    ]
+  },
+  "decision_options": [
+    {
+      "id": "A",
+      "name": "metadata_only_probe",
+      "tradeoff": "fastest evidence gain with no source-term redistribution; still requires maintainer approval",
+      "rationale": "reduces uncertainty while preserving the repository payload boundary"
+    },
+    {
+      "id": "B",
+      "name": "local_only_authorized_payload",
+      "tradeoff": "enables normalization and validation but adds credential, licence, retention, and audit burden",
+      "rationale": "appropriate when a source permits access but not repository redistribution"
+    },
+    {
+      "id": "C",
+      "name": "no_go_pending_authority",
+      "tradeoff": "slowest and least informative, but avoids relying on an unverified mirror or licence interpretation",
+      "rationale": "required where authority, release identity, or redistribution rights are unresolved"
+    }
+  ],
+  "tracks": [
+    {
+      "track_id": "do_integration_20260623",
+      "source": "Disease Ontology",
+      "authority": {"status": "confirmed_conditional", "source": "https://github.com/DiseaseOntology/HumanDiseaseOntology", "evidence": "https://disease-ontology.org/resources/do-resources/"},
+      "licence": {"status": "CC0_evidence_confirmed", "evidence": "https://disease-ontology.org/resources/do-resources/"},
+      "recommended_option": "A",
+      "recommendation": "approve one opaque metadata-only probe against a pinned monthly release; defer terms and crosswalk payloads until maintainer sign-off",
+      "maintainer_gate": "confirm release pin, CC0 scope, attribution preference, and bounded probe",
+      "contingency": "if release or licence evidence changes, revert to C and retain governance metadata only",
+      "decision_state": "evidence_ready_maintainer_pending"
+    },
+    {
+      "track_id": "fma_integration_20260623",
+      "source": "Foundational Model of Anatomy",
+      "authority": {"status": "unresolved", "source": "https://bioportal.bioontology.org/ontologies/FMA/", "evidence": "BioPortal exposes an old 5.1.0 record but no licence field"},
+      "licence": {"status": "unresolved", "evidence": "https://si.washington.edu/projects/fma"},
+      "recommended_option": "C",
+      "recommendation": "remain no-go for terms; request written authority, current release, licence, and derivative-use confirmation before any probe",
+      "maintainer_gate": "confirm Washington SIG authority and exact current release/licence",
+      "contingency": "if only identifier metadata is confirmed, use A without labels or crosswalks",
+      "decision_state": "authority_and_licence_pending"
+    },
+    {
+      "track_id": "icd10_integration_20260623",
+      "source": "WHO ICD-10",
+      "authority": {"status": "confirmed_conditional", "source": "https://www.who.int/standards/classifications/classification-of-diseases", "evidence": "WHO official classification and update pages"},
+      "licence": {"status": "licence_required", "evidence": "https://cdn.who.int/media/docs/default-source/publishing-policies/copyright/who-faq-licensing-icd-10.pdf"},
+      "recommended_option": "C",
+      "recommendation": "do not retrieve or redistribute ICD-10 descriptions; pursue a WHO licence decision for the exact internal/research use",
+      "maintainer_gate": "confirm intended jurisdiction, language, internal/research scope, and licence route",
+      "contingency": "if licensed for local use only, use B with a local-only manifest and no repository payload",
+      "decision_state": "authority_confirmed_licence_pending"
+    },
+    {
+      "track_id": "lddb_integration_20260623",
+      "source": "LDDB",
+      "authority": {"status": "unresolved", "source": null, "evidence": "no maintained authoritative source identified"},
+      "licence": {"status": "unresolved", "evidence": null},
+      "recommended_option": "C",
+      "recommendation": "keep investigation-only/no-go; do not infer authority from mirrors or historical references",
+      "maintainer_gate": "identify a maintained authority, release channel, and redistribution terms",
+      "contingency": "if no authority is identified, archive as a documented no-go dependency",
+      "decision_state": "no_go_investigation_only"
+    },
+    {
+      "track_id": "loinc_integration_20260623",
+      "source": "LOINC",
+      "authority": {"status": "confirmed", "source": "https://loinc.org/downloads/", "evidence": "official 2.82 release/download page"},
+      "licence": {"status": "open_with_conditions", "evidence": "https://loinc.org/license"},
+      "recommended_option": "A",
+      "recommendation": "approve a metadata-only probe after recording required notices, identifier/display-name coupling, and third-party-content handling",
+      "maintainer_gate": "confirm intended use is compatible with the LOINC licence and third-party fields are excluded or separately cleared",
+      "contingency": "if display names or third-party content are needed, use B locally or stop; do not create a competing vocabulary",
+      "decision_state": "licence_evidence_ready_maintainer_pending"
+    },
+    {
+      "track_id": "mesh_integration_20260623",
+      "source": "MeSH",
+      "authority": {"status": "confirmed", "source": "https://meshb.nlm.nih.gov/", "evidence": "official NLM MeSH browser"},
+      "licence": {"status": "scope_confirmation_required", "evidence": "https://www.nlm.nih.gov/mesh/"},
+      "recommended_option": "A",
+      "recommendation": "request maintainer confirmation of current descriptor-data copyright/redistribution scope, then use an identifier-only probe",
+      "maintainer_gate": "confirm whether the intended fields and derived crosswalks are permitted",
+      "contingency": "if scope is unclear, remain metadata-only and exclude descriptor text",
+      "decision_state": "authority_ready_scope_pending"
+    },
+    {
+      "track_id": "mp_integration_20260623",
+      "source": "Mammalian Phenotype Ontology",
+      "authority": {"status": "confirmed_conditional", "source": "https://github.com/mgijax/mammalian-phenotype-ontology", "evidence": "MGI ontology licensing and maintainer pages"},
+      "licence": {"status": "CC_BY_4.0_evidence_ready", "evidence": "https://www.informatics.jax.org/mgihome/other/Ontology_Licenses.shtml"},
+      "recommended_option": "A",
+      "recommendation": "approve one metadata-only sample with version/date, attribution, and coordinated-change requirements recorded",
+      "maintainer_gate": "confirm release-specific licence and attribution/derivative handling",
+      "contingency": "if release components differ, retain only identifier/provenance metadata",
+      "decision_state": "licence_evidence_ready_maintainer_pending"
+    },
+    {
+      "track_id": "orphanet_integration_20260623",
+      "source": "Orphanet / Orphadata",
+      "authority": {"status": "confirmed_conditional", "source": "https://www.orphadata.com/", "evidence": "https://www.orphadata.com/docs/Catalogue_Orphadata.pdf"},
+      "licence": {"status": "product_scope_required", "evidence": "https://www.orphadata.com/docs/ORPHAnomenclaturexmlcontent.pdf"},
+      "recommended_option": "A",
+      "recommendation": "select the Science product only, record CC BY 4.0 attribution, and approve one opaque metadata-only probe",
+      "maintainer_gate": "confirm Science product scope, attribution, and no use of DTA/pricing-gated products",
+      "contingency": "if product scope or redistribution differs, use C and retain only catalogue metadata",
+      "decision_state": "product_scope_licence_pending"
+    },
+    {
+      "track_id": "pato_integration_20260623",
+      "source": "PATO",
+      "authority": {"status": "confirmed_conditional", "source": "https://github.com/pato-ontology/pato", "evidence": "pinned repository release and immutable commit"},
+      "licence": {"status": "BSD_3_CLAUSE_repository_evidence", "evidence": "https://github.com/pato-ontology/pato/blob/master/LICENSE"},
+      "recommended_option": "A",
+      "recommendation": "approve one opaque metadata-only probe after confirming the pinned release artifact uses the repository licence and preserves notices",
+      "maintainer_gate": "confirm release-artifact licence and whether imports/components introduce additional terms",
+      "contingency": "if release components differ, remain documentation-only and do not admit terms",
+      "decision_state": "release_artifact_confirmation_pending"
+    },
+    {
+      "track_id": "upheno_integration_20260623",
+      "source": "uPheno",
+      "authority": {"status": "confirmed_conditional", "source": "https://github.com/obophenotype/upheno", "evidence": "official uPheno repository documentation"},
+      "licence": {"status": "component_matrix_unresolved", "evidence": "https://obophenotype.github.io/upheno/odk-workflows/RepositoryFileStructure/"},
+      "recommended_option": "C",
+      "recommendation": "do not admit component terms until every release component/import has a source and licence mapping; permit only metadata scaffolding",
+      "maintainer_gate": "confirm component ontology matrix, release artefact scope, and derivative/redistribution terms",
+      "contingency": "if the matrix is complete, use A for one opaque identifier sample before any cross-species mapping",
+      "decision_state": "component_licence_pending"
+    }
+  ]
+}

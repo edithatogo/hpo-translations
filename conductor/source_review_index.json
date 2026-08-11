@@ -4,7 +4,7 @@
   "handoffs": [
     {"track":"efo_integration_20260623","file":"conductor/tracks/efo_integration_20260623/maintainer_review_handoff.json","status":"approved_bounded_metadata_only_sample"},
     {"track":"oncotree_integration_20260623","file":"conductor/tracks/oncotree_integration_20260623/maintainer_review_handoff.json","status":"approved_bounded_metadata_only_sample"},
-    {"track":"pato_integration_20260623","file":"conductor/tracks/pato_integration_20260623/maintainer_review_handoff.json","status":"approved_bounded_metadata_only_sample"},
+    {"track":"pato_integration_20260623","file":"conductor/tracks/pato_integration_20260623/maintainer_review_handoff.json","status":"prepared_bounded_metadata_only_sample_pending_approval"},
     {"track":"mp_integration_20260623","file":"conductor/tracks/mp_integration_20260623/maintainer_review_handoff.json","status":"approved_bounded_metadata_only_sample; licence_review_pending"},
     {"track":"upheno_integration_20260623","file":"conductor/tracks/upheno_integration_20260623/maintainer_review_handoff.json","status":"approved_release_manifest_only; component_licence_review_pending"},
     {"track":"fma_integration_20260623","file":"conductor/tracks/fma_integration_20260623/maintainer_review_handoff.json","status":"awaiting_authority_and_licence_review"},

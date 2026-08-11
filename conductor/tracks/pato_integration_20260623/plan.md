@@ -70,3 +70,6 @@ Do not commit raw source terms, ontology labels, synonyms, definitions, full API
 - Fixes applied: synchronized metadata, telemetry, source-governance review result, and automation index review state.
 - Validation archive: `pixi run validate-conductor`, `pixi run validate-ontology-network`, `pixi run validate-ontology-network-artifacts`, `pixi run test-conductor-validation`, and `git diff --check`.
 - Residual blocker: downstream payload ingestion, identifier-network work, translation-use, and non-translation outputs remain blocked until source terms and bounded probes pass.
+
+## Phase 4 Review Fixes
+- [x] **Task:** Add an explicit promotion block to the unadmitted metadata-only scaffold receipt.

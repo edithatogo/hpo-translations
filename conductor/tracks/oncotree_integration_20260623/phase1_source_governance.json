@@ -1,6 +1,6 @@
 {
   "track_id": "oncotree_integration_20260623",
-  "status": "metadata_ready_release_pin_pending",
+  "status": "metadata_only_terms_review_required",
   "authoritative_source": "cBioPortal OncoTree repository and release documentation",
   "repository": "https://github.com/cBioPortal/oncotree",
   "source_version": "2.1.0 @ 72f5796147a49da0f05fa2fa6cdf1cac7b64fe55",

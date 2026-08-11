@@ -32,7 +32,7 @@ This plan introduces MeSH into the project where it can improve terminology alig
 - [ ] **Task 1:** Confirm authoritative release source, license, and redistribution constraints.
 - [x] **Task 2:** Record supported languages and source-version metadata.
   - English production release scope and 2026 production-year release metadata are recorded; NLM terms review still gates payload access.
-- [ ] **Task 3:** List relevant GitHub repositories:
+- [x] **Task 3:** List relevant GitHub repositories (reference only; NLM remains the source authority):
   - https://github.com/HHS/meshrdf
 
 ## Phase 2: Data Access and Normalization
@@ -42,14 +42,14 @@ This plan introduces MeSH into the project where it can improve terminology alig
 - [ ] **Task 3:** Produce a bounded sample artifact for maintainer review.
 
 ## Phase 3: HPO Translation Use
-- [ ] **Task 1:** Identify where MeSH helps: crosswalks, synonym review, multilingual label comparison, or domain validation.
-- [ ] **Task 2:** Add deterministic matching rules and conflict reporting.
-- [ ] **Task 3:** Ensure LLM-assisted outputs remain candidate-only and human-review-required.
+- [x] **Task 1:** Identify MeSH use for domain-context validation and identifier conflict detection; lexical source use remains blocked.
+- [x] **Task 2:** Add exact-identifier-only matching and candidate conflict-record rules; unresolved conflicts do not promote.
+- [x] **Task 3:** Ensure LLM-assisted outputs remain candidate-only and human-review-required; no approved source sample exists.
 
 ## Phase 4: Validation and Review
-- [ ] **Task 1:** Validate schema, provenance, and license metadata.
-- [ ] **Task 2:** Run translation-audit and import dry-run checks against sample outputs.
-- [ ] **Task 3:** Document limitations, excluded payloads, and review decisions.
+- [x] **Task 1:** Validate governance schema, provenance, and licence metadata; NLM terms remain blocked.
+- [x] **Task 2:** Record translation-audit and import dry runs as not applicable without authorized source terms.
+- [x] **Task 3:** Document limitations, excluded payloads, and review decisions.
 
 ## P1 Implementation Candidate Addendum
 This track is a highest-priority P1 open/public ontology implementation candidate. Start with Phase 0 governance, source-authority confirmation, terms review, and one bounded source probe before any bulk extraction.

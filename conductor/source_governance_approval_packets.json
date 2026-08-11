@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "packet_set_id": "ontology_metadata_only_maintainer_packets_20260811",
+  "prepared_at": "2026-08-11",
+  "dispatch_status": "prepared_unsent",
+  "sender": null,
+  "recipient": null,
+  "external_contact_authorized": false,
+  "payload_terms_included": false,
+  "promotion_authorized": false,
+  "packets": [
+    {
+      "packet_id": "do_metadata_only_20260811",
+      "track_id": "do_integration_20260623",
+      "recommended_option": "A",
+      "scope": "one opaque release identifier and provenance record only",
+      "evidence_refs": ["https://disease-ontology.org/resources/do-resources/", "https://github.com/DiseaseOntology/HumanDiseaseOntology"],
+      "approval_questions": ["confirm the pinned monthly release", "confirm CC0 scope and citation preference", "approve one metadata-only probe"],
+      "blocked_outputs": ["labels", "synonyms", "definitions", "crosswalks", "promotion"],
+      "contingency": "revert to documentation-only if release or licence evidence changes"
+    },
+    {
+      "packet_id": "loinc_metadata_only_20260811",
+      "track_id": "loinc_integration_20260623",
+      "recommended_option": "A",
+      "scope": "one opaque LOINC identifier and provenance record only; no display name or third-party field",
+      "evidence_refs": ["https://loinc.org/downloads/", "https://loinc.org/license"],
+      "approval_questions": ["confirm account and terms acceptance", "confirm notice and third-party-content handling", "approve one metadata-only probe"],
+      "blocked_outputs": ["LOINC payload", "labels", "synonyms", "crosswalks", "promotion"],
+      "contingency": "use local-only handling if display names or third-party content are required"
+    },
+    {
+      "packet_id": "mesh_metadata_only_20260811",
+      "track_id": "mesh_integration_20260623",
+      "recommended_option": "A",
+      "scope": "one opaque MeSH identifier and provenance record only",
+      "evidence_refs": ["https://meshb.nlm.nih.gov/", "https://www.nlm.nih.gov/mesh/"],
+      "approval_questions": ["confirm current NLM terms and descriptor-data scope", "confirm redistribution treatment", "approve one metadata-only probe"],
+      "blocked_outputs": ["MeSH payload", "labels", "synonyms", "crosswalks", "promotion"],
+      "contingency": "remain identifier-only if descriptor-text scope is unclear"
+    },
+    {
+      "packet_id": "mp_metadata_only_20260811",
+      "track_id": "mp_integration_20260623",
+      "recommended_option": "A",
+      "scope": "one opaque MP identifier and provenance record only",
+      "evidence_refs": ["https://github.com/mgijax/mammalian-phenotype-ontology", "https://www.informatics.jax.org/mgihome/other/Ontology_Licenses.shtml"],
+      "approval_questions": ["confirm release-specific CC BY 4.0 terms", "confirm attribution and coordinated-change requirements", "approve one metadata-only probe"],
+      "blocked_outputs": ["term payload", "labels", "synonyms", "crosswalks", "promotion"],
+      "contingency": "retain only identifier and provenance metadata if release components differ"
+    },
+    {
+      "packet_id": "orphanet_metadata_only_20260811",
+      "track_id": "orphanet_integration_20260623",
+      "recommended_option": "A",
+      "scope": "one opaque Orphadata Science-product identifier and provenance record only",
+      "evidence_refs": ["https://www.orphadata.com/", "https://www.orphadata.com/docs/ORPHAnomenclaturexmlcontent.pdf"],
+      "approval_questions": ["select Science product scope", "confirm CC BY 4.0 attribution", "approve one metadata-only probe"],
+      "blocked_outputs": ["Orphanet payload", "labels", "synonyms", "crosswalks", "promotion"],
+      "contingency": "exclude DTA/pricing-gated products and fall back to catalogue metadata"
+    },
+    {
+      "packet_id": "pato_metadata_only_20260811",
+      "track_id": "pato_integration_20260623",
+      "recommended_option": "A",
+      "scope": "one opaque PATO release identifier and provenance record only",
+      "evidence_refs": ["https://github.com/pato-ontology/pato", "https://github.com/pato-ontology/pato/blob/master/LICENSE"],
+      "approval_questions": ["confirm release-artifact BSD-3-Clause applicability", "confirm import/component terms", "approve one metadata-only probe"],
+      "blocked_outputs": ["term payload", "labels", "synonyms", "crosswalks", "promotion"],
+      "contingency": "remain documentation-only if release components introduce different terms"
+    }
+  ]
+}

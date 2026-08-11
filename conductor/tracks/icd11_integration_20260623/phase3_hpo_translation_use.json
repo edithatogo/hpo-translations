@@ -1,8 +1,10 @@
 {
   "track_id": "icd11_integration_20260623",
+  "status": "design_only_blocked",
   "phase": "phase_3_hpo_translation_use",
   "source_id": "icd11",
   "payload_policy": "metadata_only_until_authenticated_probe_and_terms_gate",
+  "promotion_allowed": false,
   "use_cases": [
     {
       "id": "crosswalk_review",

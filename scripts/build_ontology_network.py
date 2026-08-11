@@ -323,6 +323,78 @@ def ontology_name(metadata: dict[str, Any], spec_text: str) -> str:
     )
 
 
+def approved_metadata_sample(track_dir: Path) -> dict[str, Any] | None:
+    """Return a validated bounded metadata-only sample, if one is approved.
+
+    The sample is intentionally derived only from Conductor governance records.
+    A source term, label, synonym, definition, or response body is never read
+    into the generated ontology artifacts.
+    """
+
+    handoff_path = track_dir / "maintainer_review_handoff.json"
+    phase2_path = track_dir / "phase2_data_access_normalization.json"
+    phase4_path = track_dir / "phase4_validation_review.json"
+    if not handoff_path.exists() or not phase2_path.exists() or not phase4_path.exists():
+        return None
+    handoff = load_json(handoff_path)
+    phase2 = load_json(phase2_path)
+    phase4 = load_json(phase4_path)
+    if handoff.get("status") != "approved_bounded_metadata_only_sample":
+        return None
+    approval = handoff.get("approval")
+    bounded_sample = handoff.get("bounded_sample")
+    if not isinstance(approval, dict) or not approval:
+        return None
+    if not isinstance(bounded_sample, dict) or not bounded_sample:
+        return None
+    if phase2.get("status") != "metadata_only_sample_normalized_payload_free":
+        return None
+    sample = phase2.get("sample")
+    normalized = phase2.get("normalized_record")
+    normalization = phase2.get("normalization")
+    if not isinstance(sample, dict) or not isinstance(normalized, dict) or not isinstance(normalization, dict):
+        return None
+    if (
+        sample.get("allowed") is not True
+        or sample.get("payload_retained") is not False
+        or sample.get("source_terms_included") is not False
+        or normalization.get("source_terms_included") is not False
+        or normalized.get("payload_retained") is not False
+        or phase2.get("payload_commit_allowed") is not False
+    ):
+        return None
+    evidence = handoff.get("evidence")
+    if not isinstance(evidence, dict):
+        return None
+    identifier = bounded_sample.get("identifier")
+    if not isinstance(identifier, str) or not identifier:
+        return None
+    if sample.get("identifier") != identifier or normalized.get("identifier") != identifier:
+        return None
+    if sample.get("authorization_ref") != "maintainer_review_handoff.json#approval":
+        return None
+    if normalized.get("metadata_evidence_ref") != "maintainer_review_handoff.json#bounded_sample":
+        return None
+    if (
+        phase4.get("status") != "metadata_only_sample_validated_payload_blocked"
+        or phase4.get("promotion_allowed") is not False
+        or phase4.get("review_required") is not True
+    ):
+        return None
+    release = normalized.get("release")
+    immutable_commit = normalized.get("immutable_commit")
+    if not isinstance(release, str) or not release or not isinstance(immutable_commit, str) or not immutable_commit:
+        return None
+    if evidence.get("release") != release or evidence.get("immutable_commit") != immutable_commit:
+        return None
+    return {
+        "release": release,
+        "immutable_commit": immutable_commit,
+        "identifier": normalized.get("identifier"),
+        "authorization_ref": sample.get("authorization_ref"),
+    }
+
+
 def access_class(source_access_status: str) -> str:
     if source_access_status == "source_authority_and_access_unknown":
         return "investigation-only"
@@ -347,6 +419,7 @@ def registry_record(track_dir: Path) -> dict[str, Any]:
     restricted_sources = cast(list[Any], metadata.get("restricted_sources", []))
     source_class = access_class(source_status)
     endpoint_state = endpoint_status(profile)
+    metadata_sample = approved_metadata_sample(track_dir)
     return {
         "source_id": source_id_from_track(str(metadata["track_id"])),
         "track_id": metadata["track_id"],
@@ -356,8 +429,8 @@ def registry_record(track_dir: Path) -> dict[str, Any]:
         "track_status": metadata.get("status"),
         "metadata_created_at": metadata.get("created_at"),
         "metadata_updated_at": metadata.get("updated_at"),
-        "source_version": None,
-        "version_status": "not_pinned_in_track_metadata",
+        "source_version": metadata_sample["release"] if metadata_sample else None,
+        "version_status": "pinned_metadata_only_sample" if metadata_sample else "not_pinned_in_track_metadata",
         "source_access_status": source_status,
         "access_class": source_class,
         "access_mode": access_mode(source_status),
@@ -1047,6 +1120,7 @@ def p1_source_governance(registry: dict[str, Any]) -> list[dict[str, Any]]:
     governance: list[dict[str, Any]] = []
     for record in sorted(records, key=lambda row: str(row["source_id"])):
         source_id = str(record["source_id"])
+        bounded_sample_allowed = record.get("version_status") == "pinned_metadata_only_sample"
         governance.append(
             {
                 "source_id": source_id,
@@ -1058,13 +1132,16 @@ def p1_source_governance(registry: dict[str, Any]) -> list[dict[str, Any]]:
                 "go_no_go": "governance_only_terms_review_required",
                 "payload_commit_allowed": False,
                 "metadata_only_scaffold_allowed": True,
-                "bounded_sample_allowed": False,
+                "bounded_sample_allowed": bounded_sample_allowed,
                 "identifier_network_allowed": False,
                 "non_translation_outputs_allowed": False,
                 "candidate_only": True,
                 "human_review_required": True,
                 "next_allowed_action": (
-                    "complete source terms review and bounded source probe before any payload or label extraction"
+                    "retain the approved one-record metadata-only sample; complete source terms review before any "
+                    "source terms, labels, or payload extraction"
+                    if bounded_sample_allowed
+                    else "complete source terms review and bounded source probe before any payload or label extraction"
                 ),
                 "blocked_payload_classes": [
                     "source_labels",
