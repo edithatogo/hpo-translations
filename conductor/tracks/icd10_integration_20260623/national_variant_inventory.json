@@ -112,6 +112,7 @@
       "direction": "SNOMED CT UK to ICD-10",
       "languages": ["en-GB"],
       "release": null,
+      "release_status": "current_package_identity_unresolved",
       "authority_url": "https://digital.nhs.uk/services/terminology-and-classifications",
       "licence_gate": "NHS terminology service and source classification terms"
     }
