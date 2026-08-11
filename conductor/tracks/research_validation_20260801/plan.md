@@ -50,7 +50,7 @@
 - [ ] **Task 6:** Run five context-isolated specialist agent assessments and independent agent adjudication for the first 12 authorized concept-language units, balanced across approved languages and including at least two common anchors where the design is multilingual, then reproduce the deterministic aggregation and apply the frozen go, revise, or stop rule without testing candidate-method superiority. Do not recruit people or describe the result as human, community, or clinical validation.
 - [ ] **Task 7:** If Stage 1 passes, complete the remaining authorized sample. If it enters the revise branch, amend prospectively once and retain a feasibility-only interpretation; if it stops, preserve the failure evidence and do not replace it with a post hoc design.
 - [ ] **Task 8:** Estimate review completeness, technical-invalidity rate, workload, abstention, agent and concept variance, clinically significant error prevalence, measurement reliability, and the full-study sample size with 95% uncertainty intervals and no formal effectiveness hypothesis tests.
-- [ ] **Task 9:** Produce a payload-safe report with deviations and design-specific claim limits, then obtain the maintainer's go, revise, or stop decision for Phase 5.
+- [~] **Task 9:** Produce a payload-safe report with deviations and design-specific claim limits, then obtain the maintainer's go, revise, or stop decision for Phase 5. An interim blocked-state report now records the G3 evidence, zero empirical records, unresolved G2 gates, non-evaluable progression decision, and prohibited claims; the empirical report and Phase 5 decision remain pending.
 - [ ] **Task 10:** Phase Verification & Checkpoint (Refer to workflow.md). Confirm that external preregistration, publication, push, and PR gates remain explicit.
 
 ## Phase 5: Confirmatory and Novel Studies
@@ -70,7 +70,7 @@
 - [x] **Task 2:** Rerun validation and record review, telemetry, unresolved blockers, and local-only artifact changes. At exact reviewed head `913cbda`, research, Conductor, ontology-network, 122-test, Ruff, and the then-current typing gate passed, and all 14 translation profiles passed when run in bounded parallel batches. Sequential `pixi run qc` exceeded 30 minutes because individual profiles took approximately 68–311 seconds; this is a runtime limitation, not a profile failure. At the later reviewed local head, 123 tests and all non-translation gates pass. No restricted local-only artifact was read or committed. (`30cc5a2`, review receipts `913cbda`, `8c572c0`)
 - [ ] **Task 3:** Obtain explicit maintainer approval before push, PR creation, preregistration, publication, or release.
 - [ ] **Task 4:** Verify required GitHub checks and merge state before marking the track complete.
-- [ ] **Task 5:** Record downstream handoff to language working groups and ontology maintainers.
+- [~] **Task 5:** Record downstream handoff to language working groups and ontology maintainers. A payload-safe ontology-maintainer handoff now records `hold_no_promotion`, safe artifacts, mutation rules, and evidence required before any future release. Language-working-group handoff remains blocked until an authorized G2 route and sender exist.
 - [ ] **Task 6:** Phase Verification & Checkpoint (Refer to workflow.md).
 
 ## Phase 1-2 Review Fixes
