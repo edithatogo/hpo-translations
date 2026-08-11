@@ -57,3 +57,6 @@ Phase 0 governance is implemented as investigation-only no-go. LDDB does not pro
 - Generated governance record: `ontology_network/p3_source_governance.json` entry for `lddb_integration_20260623`.
 - Payload status: no raw, licensed, credentialed, private, full-release, label, synonym, or API-response payload is read or committed.
 - Downstream status: Phase 3 identifier-network and Phase 4 non-translation outputs remain blocked until source authority and terms review pass.
+
+## Phase 4 Review Fixes
+- [x] **Task:** Add an explicit promotion block to the not-run investigation-only receipt.

@@ -2,7 +2,7 @@
   "track_id": "do_integration_20260623",
   "status": "scaffold_only_blocked",
   "retrieval": {"mode": "local_only_after_terms_review", "bulk_download": false, "cache": "unmaterialized"},
-  "normalization": {"identifier": "DOID_URI", "language": "ISO_639_1", "provenance": ["source_uri", "release", "retrieved_at", "digest"]},
+  "normalization": {"identifier": "DOID_URI", "language": "ISO_639_1", "provenance": ["source_uri", "release", "retrieved_at", "digest"], "source_terms_included": false},
   "sample": {"allowed": false, "reason": "source terms and redistribution review pending"},
   "payload_commit_allowed": false
 }

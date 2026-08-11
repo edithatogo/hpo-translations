@@ -1,0 +1,8 @@
+{
+  "track_id": "omim_integration_20260623",
+  "status": "design_only_blocked",
+  "uses": ["disease_gene_context_validation", "identifier_conflict_detection"],
+  "rules": ["exact_identifier_only", "conflicts_unresolved_by_default", "emit_candidate_conflict_records", "llm_candidates_require_human_review"],
+  "promotion_allowed": false,
+  "reason": "registration, credentials, API terms, licence, and redistribution review are pending; no source payload or bounded sample is allowed"
+}

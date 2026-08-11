@@ -11,7 +11,7 @@
   "source_versions": {
     "decipher": "not_pinned_in_track_metadata",
     "do": "not_pinned_in_track_metadata",
-    "efo": "not_pinned_in_track_metadata",
+    "efo": "v3.92.0",
     "fma": "not_pinned_in_track_metadata",
     "icd10": "not_pinned_in_track_metadata",
     "icd11": "not_pinned_in_track_metadata",
@@ -21,7 +21,7 @@
     "mesh": "not_pinned_in_track_metadata",
     "mp": "not_pinned_in_track_metadata",
     "omim": "not_pinned_in_track_metadata",
-    "oncotree": "not_pinned_in_track_metadata",
+    "oncotree": "2.1.0",
     "orphanet": "not_pinned_in_track_metadata",
     "pato": "not_pinned_in_track_metadata",
     "snomed_ct": "not_pinned_in_track_metadata",

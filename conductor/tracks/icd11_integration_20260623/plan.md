@@ -78,3 +78,6 @@ Do not commit raw source terms, ontology labels, synonyms, definitions, full API
 - Fixes applied: synchronized metadata, telemetry, source-governance review result, and automation index review state.
 - Validation archive: `pixi run validate-conductor`, `pixi run validate-ontology-network`, `pixi run validate-ontology-network-artifacts`, `pixi run test-conductor-validation`, and `git diff --check`.
 - Residual blocker: source-label extraction and downstream promotion remain blocked pending maintainer review; the bounded structural probe has passed.
+
+## Phase 4 Review Fixes
+- [x] **Task:** Normalize ICD-11 Phase 3/4 receipt status fields and preserve the redacted structural probe as governance-only and non-promotable.

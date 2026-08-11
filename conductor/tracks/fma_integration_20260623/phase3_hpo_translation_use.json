@@ -1,0 +1,8 @@
+{
+  "track_id": "fma_integration_20260623",
+  "status": "design_only_blocked",
+  "uses": ["anatomy_consistency_validation", "identifier_conflict_detection"],
+  "rules": ["exact_identifier_only", "conflicts_unresolved_by_default", "emit_candidate_conflict_records", "llm_candidates_require_human_review"],
+  "promotion_allowed": false,
+  "reason": "authoritative release, maintenance status, and licence remain unresolved; no source sample or label use is allowed"
+}

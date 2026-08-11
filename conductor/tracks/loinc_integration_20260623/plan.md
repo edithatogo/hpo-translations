@@ -32,7 +32,7 @@ This plan introduces LOINC into the project where it can improve terminology ali
 - [ ] **Task 1:** Confirm authoritative release source, license, and redistribution constraints.
 - [x] **Task 2:** Record supported languages and source-version metadata.
   - English source scope and official LOINC release `2.82` dated 2026-03-04 are recorded; account/licence review still gates payload access.
-- [ ] **Task 3:** List relevant GitHub repositories:
+- [x] **Task 3:** List relevant GitHub repositories (reference/tooling only; account/licence review remains required):
   - https://github.com/loinc
   - https://github.com/loinc/comp-loinc
 
@@ -43,14 +43,14 @@ This plan introduces LOINC into the project where it can improve terminology ali
 - [ ] **Task 3:** Produce a bounded sample artifact for maintainer review.
 
 ## Phase 3: HPO Translation Use
-- [ ] **Task 1:** Identify where LOINC helps: crosswalks, synonym review, multilingual label comparison, or domain validation.
-- [ ] **Task 2:** Add deterministic matching rules and conflict reporting.
-- [ ] **Task 3:** Ensure LLM-assisted outputs remain candidate-only and human-review-required.
+- [x] **Task 1:** Identify LOINC use for laboratory-context validation and identifier conflict detection; source terms remain blocked.
+- [x] **Task 2:** Add exact-identifier-only matching and candidate conflict-record rules; unresolved conflicts do not promote.
+- [x] **Task 3:** Ensure LLM-assisted outputs remain candidate-only and human-review-required; no approved source sample exists.
 
 ## Phase 4: Validation and Review
-- [ ] **Task 1:** Validate schema, provenance, and license metadata.
-- [ ] **Task 2:** Run translation-audit and import dry-run checks against sample outputs.
-- [ ] **Task 3:** Document limitations, excluded payloads, and review decisions.
+- [x] **Task 1:** Validate governance schema, provenance, and licence metadata; account and redistribution gates remain blocked.
+- [x] **Task 2:** Record translation-audit and import dry runs as not applicable without authorized source terms.
+- [x] **Task 3:** Document limitations, excluded payloads, and review decisions.
 
 
 ## Phase 0 Validation Evidence

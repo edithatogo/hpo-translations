@@ -1,0 +1,42 @@
+{
+  "track_id": "pato_integration_20260623",
+  "status": "metadata_only_sample_prepared_approval_pending",
+  "retrieval": {
+    "mode": "documentation_only",
+    "bulk_download": false,
+    "cache": "unmaterialized"
+  },
+  "normalization": {
+    "identifier": "release_URI",
+    "language": null,
+    "provenance": [
+      "source_uri",
+      "release",
+      "immutable_commit",
+      "retrieved_at",
+      "metadata_evidence_ref"
+    ],
+    "source_terms_included": false
+  },
+  "normalized_record": {
+    "source_id": "pato",
+    "identifier": "https://github.com/pato-ontology/pato/releases/tag/v2025-05-14",
+    "identifier_type": "release_URI",
+    "language": null,
+    "source_uri": "https://github.com/pato-ontology/pato",
+    "release": "v2025-05-14",
+    "immutable_commit": "3c8f76d30e446a621932c84260d0a3887e73dc54",
+    "retrieved_at": "2026-08-01",
+    "metadata_evidence_ref": "maintainer_review_handoff.json#evidence",
+    "payload_retained": false
+  },
+  "sample": {
+    "allowed": false,
+    "scope": "one_release_metadata_record_only",
+    "authorization_ref": null,
+    "identifier": "https://github.com/pato-ontology/pato/releases/tag/v2025-05-14",
+    "payload_retained": false,
+    "source_terms_included": false
+  },
+  "payload_commit_allowed": false
+}

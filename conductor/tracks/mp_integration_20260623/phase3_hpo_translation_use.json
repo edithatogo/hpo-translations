@@ -1,0 +1,8 @@
+{
+  "track_id": "mp_integration_20260623",
+  "status": "design_only_blocked",
+  "uses": ["phenotype_domain_validation", "identifier_conflict_detection", "cross_species_context"],
+  "rules": ["exact_identifier_only", "conflicts_unresolved_by_default", "emit_candidate_conflict_records", "llm_candidates_require_human_review"],
+  "promotion_allowed": false,
+  "reason": "source terms and redistribution review are pending; no approved source sample exists"
+}

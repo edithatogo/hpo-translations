@@ -50,7 +50,7 @@
         "full_api_responses",
         "release_payload_rows"
       ],
-      "bounded_sample_allowed": false,
+      "bounded_sample_allowed": true,
       "candidate_only": true,
       "commit_safe_artifacts": [
         "registry records",
@@ -70,7 +70,7 @@
         "Terms and payload handling must be cleared before committing ontology labels, synonyms, definitions, full responses, or release payload rows."
       ],
       "metadata_only_scaffold_allowed": true,
-      "next_allowed_action": "complete source terms review and bounded source probe before any payload or label extraction",
+      "next_allowed_action": "retain the approved one-record metadata-only sample; complete source terms review before any source terms, labels, or payload extraction",
       "non_translation_outputs_allowed": false,
       "ontology_name": "EFO",
       "payload_commit_allowed": false,
@@ -206,7 +206,7 @@
         "full_api_responses",
         "release_payload_rows"
       ],
-      "bounded_sample_allowed": false,
+      "bounded_sample_allowed": true,
       "candidate_only": true,
       "commit_safe_artifacts": [
         "registry records",
@@ -226,7 +226,7 @@
         "Terms and payload handling must be cleared before committing ontology labels, synonyms, definitions, full responses, or release payload rows."
       ],
       "metadata_only_scaffold_allowed": true,
-      "next_allowed_action": "complete source terms review and bounded source probe before any payload or label extraction",
+      "next_allowed_action": "retain the approved one-record metadata-only sample; complete source terms review before any source terms, labels, or payload extraction",
       "non_translation_outputs_allowed": false,
       "ontology_name": "OncoTree",
       "payload_commit_allowed": false,

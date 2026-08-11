@@ -1,0 +1,8 @@
+{
+  "track_id": "umls_metathesaurus_integration_20260623",
+  "status": "design_only_blocked",
+  "uses": ["terminology_source_context", "identifier_conflict_detection"],
+  "rules": ["exact_identifier_only", "conflicts_unresolved_by_default", "emit_candidate_conflict_records", "llm_candidates_require_human_review"],
+  "promotion_allowed": false,
+  "reason": "licence, API key, release terms, and source-vocabulary restrictions remain unresolved; no source payload or bounded sample is allowed"
+}
