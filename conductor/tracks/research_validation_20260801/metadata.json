@@ -396,7 +396,7 @@
         ".pixi/envs/default/bin/vale.exe research_validation/README.md research_validation/stage_0/README.md conductor/tracks/research_validation_20260801/phase_4_options.md conductor/tracks/research_validation_20260801/plan.md",
         "pixi run validate-conductor"
       ],
-      "validation_result": "local_passing_122_tests_review_fixes_applied_zero_G2_payload_lineage_freeze_or_promotion_authority",
+      "validation_result": "exact_head_local_passing_122_tests_14_translation_profiles_review_fixes_applied_zero_G2_payload_lineage_freeze_or_promotion_authority_qc_aggregate_exceeded_30_minutes",
       "conflict_count": 2,
       "open_blockers": 8
     }

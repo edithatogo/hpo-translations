@@ -67,7 +67,7 @@
 ## Phase 6: Review, Delivery, and Completion Gates
 
 - [x] **Task 1:** Run `conductor-review` for the full track and treat findings as blocking work. Review found incomplete archive-inventory coverage enforcement, weak overlap-layer binding, stale lifecycle evidence, and repository-wide formatting/type failures; fixes were applied without changing any accountable gate. (`30cc5a2`)
-- [x] **Task 2:** Rerun validation and record review, telemetry, unresolved blockers, and local-only artifact changes. Research, Conductor, ontology-network, 122-test, lint, and focused formatting gates pass; no restricted local-only artifact was read or changed. Full working-tree formatting and typing remain affected by an unrelated untracked archive helper, which is excluded from this track and preserved. (`30cc5a2`)
+- [x] **Task 2:** Rerun validation and record review, telemetry, unresolved blockers, and local-only artifact changes. At exact reviewed head `913cbda`, research, Conductor, ontology-network, 122-test, Ruff, and mypy gates pass, and all 14 translation profiles pass when run in bounded parallel batches. Sequential `pixi run qc` exceeded 30 minutes because individual profiles took approximately 68–311 seconds; this is a runtime limitation, not a profile failure. No restricted local-only artifact was read or committed. An unrelated untracked archive helper remains preserved outside the reviewed commit. (`30cc5a2`, review receipt `913cbda`)
 - [ ] **Task 3:** Obtain explicit maintainer approval before push, PR creation, preregistration, publication, or release.
 - [ ] **Task 4:** Verify required GitHub checks and merge state before marking the track complete.
 - [ ] **Task 5:** Record downstream handoff to language working groups and ontology maintainers.
