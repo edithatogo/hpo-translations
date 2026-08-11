@@ -42,6 +42,7 @@ def main() -> int:
     if option_ids != {"A", "B", "C"}:
         errors.append("decision options A, B, and C are required")
     tracks = docket.get("tracks")
+    track_count = len(tracks) if isinstance(tracks, list) else 0
     if not isinstance(tracks, list) or {item.get("track_id") for item in tracks if isinstance(item, dict)} != TRACKS:
         errors.append("docket track set does not match pending ontology tracks")
     for item in tracks if isinstance(tracks, list) else []:
@@ -117,8 +118,7 @@ def main() -> int:
         errors.append("candidate hosting must record platform authorization while source scope remains pending")
     if (
         not isinstance(candidate_hosting, dict)
-        or candidate_hosting.get("access_model")
-        != "owner-only private repository; no collaborators authorized"
+        or candidate_hosting.get("access_model") != "owner-only private repository; no collaborators authorized"
     ):
         errors.append("candidate hosting must record the owner-only access model")
     if not isinstance(candidate_hosting, dict) or candidate_hosting.get("source_archiving_authorization") is None:
@@ -133,7 +133,7 @@ def main() -> int:
     if errors:
         print("\n".join(errors), file=sys.stderr)
         return 1
-    print(f"Source governance docket validation passed: {len(tracks)} tracks; no approvals inferred.")
+    print(f"Source governance docket validation passed: {track_count} tracks; no approvals inferred.")
     return 0
 
 

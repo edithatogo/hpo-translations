@@ -57,6 +57,23 @@ class ValidateResearchValidationTests(unittest.TestCase):
             private_source_archive_receipts_errors(receipts, inventory),
         )
 
+    def test_private_archive_receipts_reject_inventory_coverage_drift(self) -> None:
+        receipts = load_json(DEFAULT_RESEARCH_ROOT / "source_archive_receipts.json")
+        inventory = load_json(DEFAULT_RESEARCH_ROOT.parent / "conductor" / "source_hosting_inventory.json")
+        inventory["sources"].append(
+            {
+                "source_id": "new-source",
+                "status": "archived_private",
+                "release": "v1",
+                "archive_path": "releases/new-source/v1/source.obo",
+                "sha256": "0" * 64,
+            }
+        )
+        self.assertIn(
+            "private archive receipts must cover the complete canonical archived-source inventory",
+            private_source_archive_receipts_errors(receipts, inventory),
+        )
+
     def _pilot_source_inputs(self) -> tuple[dict, dict, dict, dict, dict]:
         return (
             load_json(DEFAULT_RESEARCH_ROOT / "pilot_source_readiness.json"),
@@ -87,6 +104,22 @@ class ValidateResearchValidationTests(unittest.TestCase):
         readiness["evidence_layers"][0]["record_count"] += 1
         self.assertIn(
             "official_hpo_mapping_families readiness count must match its canonical input",
+            pilot_source_readiness_errors(readiness, catalog, supplementary, receipts, approval),
+        )
+
+    def test_pilot_source_readiness_rejects_overlap_layer_drift(self) -> None:
+        readiness, catalog, supplementary, receipts, approval = self._pilot_source_inputs()
+        readiness["overlap_controls"][0]["appears_in"] = ["owner_only_archive_receipts"]
+        self.assertIn(
+            "pato overlap control must name its exact canonical evidence layers",
+            pilot_source_readiness_errors(readiness, catalog, supplementary, receipts, approval),
+        )
+
+    def test_pilot_source_readiness_rejects_canonical_input_drift(self) -> None:
+        readiness, catalog, supplementary, receipts, approval = self._pilot_source_inputs()
+        readiness["canonical_inputs"]["approval_manifest"] = "research_validation/alternate.json"
+        self.assertIn(
+            "pilot source readiness must reference every canonical input by its exact repository path",
             pilot_source_readiness_errors(readiness, catalog, supplementary, receipts, approval),
         )
 

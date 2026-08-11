@@ -1251,6 +1251,8 @@ def private_source_archive_receipts_errors(instance: Any, hosting_inventory: Any
         for source in hosting_inventory.get("sources", [])
         if isinstance(source, dict) and source.get("status") == "archived_private"
     }
+    if set(inventory_by_id) != set(receipt_by_id):
+        errors.append("private archive receipts must cover the complete canonical archived-source inventory")
     for source_id, receipt in receipt_by_id.items():
         inventory_source = inventory_by_id.get(source_id, {})
         for field in ("release", "archive_path", "sha256"):
@@ -1295,6 +1297,14 @@ def pilot_source_readiness_errors(
         or instance.get("status") != "planning_inventory_complete_final_source_set_not_selected"
     ):
         errors.append("pilot source readiness must remain a planning-only v1 inventory")
+    expected_inputs = {
+        "official_mapping_catalog": "research_validation/source_catalog.json",
+        "supplementary_source_reviews": "research_validation/supplementary_source_access_reviews.json",
+        "source_archive_receipts": "research_validation/source_archive_receipts.json",
+        "approval_manifest": "research_validation/approval_manifest.json",
+    }
+    if instance.get("canonical_inputs") != expected_inputs:
+        errors.append("pilot source readiness must reference every canonical input by its exact repository path")
     expected_counts = {
         "official_hpo_mapping_families": len(source_catalog.get("mappings", [])),
         "supplementary_source_reviews": len(supplementary.get("reviews", [])),
@@ -1319,8 +1329,16 @@ def pilot_source_readiness_errors(
         for item in instance.get("overlap_controls", [])
         if isinstance(item, dict) and isinstance(item.get("source_id"), str)
     }
-    if set(overlaps) != {"pato", "mp", "upheno"}:
+    expected_overlap_layers = {
+        "pato": ["supplementary_source_reviews", "owner_only_archive_receipts"],
+        "mp": ["official_hpo_mapping_families", "owner_only_archive_receipts"],
+        "upheno": ["official_hpo_mapping_families", "owner_only_archive_receipts"],
+    }
+    if set(overlaps) != set(expected_overlap_layers) or len(instance.get("overlap_controls", [])) != len(overlaps):
         errors.append("pilot source readiness must preserve PATO, MP, and uPheno overlap controls")
+    for source_id, expected_layers in expected_overlap_layers.items():
+        if overlaps.get(source_id, {}).get("appears_in") != expected_layers:
+            errors.append(f"{source_id} overlap control must name its exact canonical evidence layers")
     if any("independent_evidence" not in str(item.get("count_rule")) for item in overlaps.values()):
         errors.append("archive overlap controls must prohibit automatic independent-evidence counting")
 
