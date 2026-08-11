@@ -66,6 +66,28 @@ def validate_track(track_dir: Path) -> list[str]:
         errors.append("Phase 2 normalization does not exclude source terms")
     if phase2.get("payload_commit_allowed") is not False:
         errors.append("Phase 2 allows payload commit")
+    evidence = handoff.get("evidence")
+    identifier = bounded_sample.get("identifier") if isinstance(bounded_sample, dict) else None
+    if not isinstance(evidence, dict):
+        errors.append("handoff lacks structured release evidence")
+    if not isinstance(identifier, str) or not identifier:
+        errors.append("handoff bounded sample lacks an identifier")
+    if not isinstance(sample, dict) or sample.get("identifier") != identifier:
+        errors.append("Phase 2 sample identifier does not match the approved bounded sample")
+    if not isinstance(normalized, dict) or normalized.get("identifier") != identifier:
+        errors.append("normalized identifier does not match the approved bounded sample")
+    if not isinstance(sample, dict) or sample.get("authorization_ref") != "maintainer_review_handoff.json#approval":
+        errors.append("Phase 2 sample does not reference its approval evidence")
+    if (
+        not isinstance(normalized, dict)
+        or normalized.get("metadata_evidence_ref") != "maintainer_review_handoff.json#bounded_sample"
+    ):
+        errors.append("normalized record does not reference its bounded-sample evidence")
+    if isinstance(evidence, dict) and isinstance(normalized, dict):
+        if normalized.get("release") != evidence.get("release"):
+            errors.append("normalized release does not match handoff evidence")
+        if normalized.get("immutable_commit") != evidence.get("immutable_commit"):
+            errors.append("normalized immutable commit does not match handoff evidence")
     if phase4.get("status") != PHASE4_STATUS:
         errors.append("Phase 4 is not marked as a validated metadata-only sample with payload blocked")
     if phase4.get("sample_validation") != PHASE4_SAMPLE_VALIDATION:

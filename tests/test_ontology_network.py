@@ -105,6 +105,7 @@ class OntologyNetworkTests(unittest.TestCase):
                     "status": "approved_bounded_metadata_only_sample",
                     "approval": {"decision": "test-only approval"},
                     "bounded_sample": {"identifier": "TEST:1"},
+                    "evidence": {"release": "test-release", "immutable_commit": "0" * 40},
                 }
             ),
             encoding="utf-8",
@@ -116,12 +117,16 @@ class OntologyNetworkTests(unittest.TestCase):
                     "normalization": {"source_terms_included": False},
                     "sample": {
                         "allowed": True,
+                        "identifier": "TEST:1",
+                        "authorization_ref": "maintainer_review_handoff.json#approval",
                         "payload_retained": False,
                         "source_terms_included": False,
                     },
                     "normalized_record": {
                         "release": "test-release",
                         "immutable_commit": "0" * 40,
+                        "identifier": "TEST:1",
+                        "metadata_evidence_ref": "maintainer_review_handoff.json#bounded_sample",
                         "payload_retained": False,
                     },
                     "payload_commit_allowed": True,
@@ -139,6 +144,21 @@ class OntologyNetworkTests(unittest.TestCase):
             ),
             encoding="utf-8",
         )
+        self.assertIsNone(approved_metadata_sample(track_dir))
+
+    def test_generator_rejects_identifier_provenance_mismatch(self) -> None:
+        track_dir = self.make_output_dir()
+        source = Path("conductor/tracks/efo_integration_20260623")
+        for artifact_name in (
+            "maintainer_review_handoff.json",
+            "phase2_data_access_normalization.json",
+            "phase4_validation_review.json",
+        ):
+            shutil.copy2(source / artifact_name, track_dir / artifact_name)
+        phase2_path = track_dir / "phase2_data_access_normalization.json"
+        phase2 = load_json(phase2_path)
+        phase2["normalized_record"]["identifier"] = "MISMATCH:1"
+        phase2_path.write_text(json.dumps(phase2), encoding="utf-8")
         self.assertIsNone(approved_metadata_sample(track_dir))
 
     def test_build_and_validate_registry_artifacts(self) -> None:

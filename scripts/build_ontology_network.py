@@ -363,6 +363,18 @@ def approved_metadata_sample(track_dir: Path) -> dict[str, Any] | None:
         or phase2.get("payload_commit_allowed") is not False
     ):
         return None
+    evidence = handoff.get("evidence")
+    if not isinstance(evidence, dict):
+        return None
+    identifier = bounded_sample.get("identifier")
+    if not isinstance(identifier, str) or not identifier:
+        return None
+    if sample.get("identifier") != identifier or normalized.get("identifier") != identifier:
+        return None
+    if sample.get("authorization_ref") != "maintainer_review_handoff.json#approval":
+        return None
+    if normalized.get("metadata_evidence_ref") != "maintainer_review_handoff.json#bounded_sample":
+        return None
     if (
         phase4.get("status") != "metadata_only_sample_validated_payload_blocked"
         or phase4.get("promotion_allowed") is not False
@@ -372,6 +384,8 @@ def approved_metadata_sample(track_dir: Path) -> dict[str, Any] | None:
     release = normalized.get("release")
     immutable_commit = normalized.get("immutable_commit")
     if not isinstance(release, str) or not release or not isinstance(immutable_commit, str) or not immutable_commit:
+        return None
+    if evidence.get("release") != release or evidence.get("immutable_commit") != immutable_commit:
         return None
     return {
         "release": release,

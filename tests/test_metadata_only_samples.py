@@ -1,5 +1,6 @@
 import io
 import json
+import shutil
 import tempfile
 import unittest
 from contextlib import redirect_stderr
@@ -72,6 +73,20 @@ class MetadataOnlySampleTests(unittest.TestCase):
             with patch("scripts.validate_metadata_only_samples.TRACKS", tracks), redirect_stderr(errors):
                 self.assertEqual(main(), 1)
             self.assertIn("malformed: invalid handoff artifact", errors.getvalue())
+
+    def test_validator_rejects_identifier_provenance_mismatch(self) -> None:
+        source = Path(__file__).resolve().parents[1] / "conductor" / "tracks" / "efo_integration_20260623"
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            track_dir = Path(temporary_directory) / "efo"
+            shutil.copytree(source, track_dir)
+            phase2_path = track_dir / "phase2_data_access_normalization.json"
+            phase2 = json.loads(phase2_path.read_text(encoding="utf-8"))
+            phase2["normalized_record"]["identifier"] = "MISMATCH:1"
+            phase2_path.write_text(json.dumps(phase2), encoding="utf-8")
+            self.assertIn(
+                "normalized identifier does not match the approved bounded sample",
+                validate_track(track_dir),
+            )
 
     def test_phase3_translation_use_artifacts_fail_closed(self) -> None:
         track_root = Path(__file__).resolve().parents[1] / "conductor" / "tracks"
