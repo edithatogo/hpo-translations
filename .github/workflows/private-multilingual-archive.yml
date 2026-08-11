@@ -1,0 +1,53 @@
+name: Private multilingual source archive
+
+on:
+  workflow_dispatch:
+    inputs:
+      source:
+        description: Governed source catalog to archive
+        required: true
+        type: choice
+        options:
+          - orphanet
+          - loinc
+          - mesh
+          - mp
+          - do
+      release:
+        description: Release identifier (required for Orphanet)
+        required: false
+        default: "2026-07"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: private-multilingual-archive-${{ inputs.source }}
+  cancel-in-progress: false
+
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    environment: private-ontology-archive
+    steps:
+      - name: Check out governed automation
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+
+      - name: Archive directly to the private Hugging Face dataset
+        env:
+          HF_TOKEN: ${{ secrets.HF_ARCHIVE_TOKEN }}
+          LOINC_USERNAME: ${{ secrets.LOINC_USERNAME }}
+          LOINC_PASSWORD: ${{ secrets.LOINC_PASSWORD }}
+        run: >-
+          uv run scripts/cloud_archive_multilingual_sources.py
+          --source "${{ inputs.source }}"
+          --repo-id "edithatogo/hpo-licensed-ontology-archive"
+          --release "${{ inputs.release }}"
+
+      - name: Remove any ephemeral source payloads
+        if: always()
+        run: rm -rf /tmp/ontology-archive-*
