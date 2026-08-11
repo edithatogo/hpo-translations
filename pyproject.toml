@@ -8,7 +8,7 @@ dependencies = [
     "tsvalid>=0.0.5",
     "linkml>=1.10",
     "linkml-runtime>=1.10",
-    "setuptools<81",
+    "setuptools>=83,<84",
 ]
 
 [tool.basedpyright]
