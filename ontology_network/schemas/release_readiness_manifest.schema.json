@@ -7,6 +7,9 @@
       "additionalProperties": true,
       "type": "object"
     },
+    "agent_panel_assessment_required": {
+      "type": "boolean"
+    },
     "empirical_artifacts_release_ready": {
       "type": "boolean"
     },
@@ -16,11 +19,11 @@
     "governance_scaffold_release_ready": {
       "type": "boolean"
     },
-    "human_review_required": {
-      "type": "boolean"
-    },
     "known_blocker_count": {
       "type": "integer"
+    },
+    "maintainer_promotion_decision_required": {
+      "type": "boolean"
     },
     "overall_release_ready": {
       "type": "boolean"
@@ -63,5 +66,6 @@
     "unresolved_language_identity_count"
   ],
   "title": "release_readiness_manifest",
-  "type": "object"
+  "type": "object",
+  "x-schema-version": "2.0.0"
 }

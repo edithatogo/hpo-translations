@@ -2,7 +2,7 @@
   "track_id": "do_integration_20260623",
   "status": "design_only_blocked",
   "uses": ["disease-domain-validation", "identifier-conflict-detection"],
-  "rules": ["exact_identifier_only", "conflicts_unresolved_by_default", "emit_candidate_conflict_records", "llm_candidates_require_human_review"],
+  "rules": ["exact_identifier_only", "conflicts_unresolved_by_default", "emit_candidate_conflict_records", "agent_panel_assessment_required_and_maintainer_promotion_decision_required"],
   "promotion_allowed": false,
   "reason": "no approved source sample"
 }

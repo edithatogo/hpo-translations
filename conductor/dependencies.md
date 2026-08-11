@@ -8,20 +8,20 @@
 - Each ontology integration track depends on ontology_network_20260623 Phase 1 for registry schema and governance rules before source-specific implementation begins.
 - Language profile candidate tracks depend on translation_agents_20260622 and may depend on ontology_network_20260623 when ontology triangulation evidence is required before upstream submission.
 - research_validation_20260801 depends on the ontology-network registry contract, translation-agent candidate workflow, and Conductor validation. It provides the scientific-readiness manifest, source-lineage contract, benchmark protocol, language-identity gate, empirical validation, and calibrated evidence required before ontology-supported translation evidence can be described as validated.
-- Language profile candidate tracks that use ontology or model evidence depend on research_validation_20260801 Phase 2 before a pilot and on its applicable human-review phase before upstream submission.
+- Language profile candidate tracks that use ontology or model evidence depend on `research_validation_20260801` Phase 2 before a pilot and on its applicable agent-panel assessment plus accountable-maintainer promotion decision before upstream submission.
 
 ## Readiness States
 - `planned`: track exists but Phase 0 gates are incomplete.
 - `ready`: blocker registry, source access, restricted payload policy, fail-fast probe, artifact contract, write owner, validation command, and branch/PR target are documented.
 - `in_progress`: at least one ready task is being implemented.
-- `blocked`: implementation cannot continue because a named blocker lacks owner, permission, source access, CI availability, or reviewer decision.
+- `blocked`: implementation cannot continue because a named blocker lacks an owner, permission, source access, CI availability, or accountable authority decision.
 - `complete`: implementation, local validation, conductor-review, push, GitHub Actions, PR, merge verification, and downstream handoff are complete.
 - `legacy_complete`: completed before the current lifecycle contract and retained as an upstream dependency with legacy verification notes.
 
 ## Blocker Registry Requirements
 Every active track must record:
 - Known blockers: concrete issues already present, such as missing source credentials, unclear license, private data, or CI failure.
-- Expected blockers: likely risks, such as schema drift, large payloads, source rate limits, mapping ambiguity, and reviewer capacity.
+- Expected blockers: likely risks, such as schema drift, large payloads, source rate limits, mapping ambiguity, and agent-panel capacity.
 - Owner: person, agent, or track responsible for resolving or escalating the blocker.
 - Fallback path: what can still be delivered if the blocker persists, such as metadata-only registry, documentation-only source, or local-only validation.
 - Go/no-go decision: whether source ingestion, generated artifacts, PR opening, or merge may proceed.
@@ -47,13 +47,13 @@ Every active track must record:
 - Probe failure updates the blocker registry and prevents bulk extraction, PR-safe artifact generation, or downstream phase completion.
 
 ## Artifact Contracts
-Each track must define committed, generated, local-only, reviewer-only, PR-safe, and release-safe outputs. Common ontology-network artifacts include:
+Each track must define committed, generated, local-only, assessment-only, PR-safe, and release-safe outputs. Common ontology-network artifacts include:
 - Source registry records with license, access, language, version, repository, and endpoint fields.
 - Crosswalk edges keyed by HPO id, external id, mapping predicate, mapping source, confidence, and caveats.
 - Multilingual comparison packs for HPO labels, HPO synonyms, source labels, source synonyms, and LLM candidates.
 - Conflict reports for ambiguous, circular, deprecated, one-to-many, many-to-one, and language-specific disagreements.
 - Coverage summaries by HPO branch, source, language, predicate, and review status.
-- Provenance manifests, validation fixtures, local-only manifests, and human review handoff packs.
+- Provenance manifests, validation fixtures, local-only manifests, and agent-panel assessment packs.
 
 ## Parallelization Groups
 - `foundation`: environment, package, and shared workflow tracks. These must finish before dependent automation.
@@ -85,7 +85,7 @@ Each track must define committed, generated, local-only, reviewer-only, PR-safe,
 - Add semantic drift reports comparing ontology release changes against the HPO release used for translation candidates.
 - Add evidence scoring that separates curated mappings, exact identifiers, preferred labels, synonyms, multilingual agreement, LLM agreement, and conflicts.
 - Add provenance graph exports so maintainers can trace every candidate, crosswalk, conflict, and coverage count to source release, model run, and commit.
-- Add conflict heatmaps and reviewer workload estimates to prioritize human review where ontology and LLM signals disagree.
+- Add conflict heatmaps and agent-panel workload estimates to prioritize specialist assessment where ontology and LLM signals disagree.
 - Add reproducibility capsules with commands, source versions, permitted checksums, local-only manifests, and validation outputs.
 - Add agent performance telemetry across Codex, opencode, agy, cline, mimo, local LLMs, and Hugging Face models where available, while avoiding repeated use of the same model beyond the defined triangulation cap.
-- Add release-readiness scoring that fails tracks with missing source governance, blocked payload policy, stale validation, unmerged PRs, or absent human-review handoff.
+- Add release-readiness scoring that fails tracks with missing source governance, blocked payload policy, stale validation, unmerged PRs, or absent agent-panel assessment or accountable-maintainer decision record.

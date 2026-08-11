@@ -33,16 +33,17 @@
     "The authenticated response was read in memory for structural validation and discarded; no response was committed.",
     "Only a redacted metadata sample is available; source terms remain excluded pending maintainer review.",
     "Foundation polyhierarchy and MMS linearization semantics require separate provenance.",
-    "Postcoordination cannot be flattened into an HPO assertion without human review.",
+    "Postcoordination cannot be flattened into an HPO assertion without specialist-agent assessment and an accountable maintainer promotion decision.",
     "Language availability is release-specific and must be rechecked at probe time."
   ],
   "review_decisions": {
     "candidate_only": true,
-    "human_review_required": true,
+    "agent_panel_assessment_required": true, "maintainer_promotion_decision_required": true,
     "approved_translation": false,
     "identifier_network_allowed": false,
     "next_review_gate": "maintainer review of the redacted metadata sample"
   },
   "promotion_allowed": false,
-  "review_required": true
+  "agent_panel_assessment_required": true,
+  "maintainer_promotion_decision_required": true
 }

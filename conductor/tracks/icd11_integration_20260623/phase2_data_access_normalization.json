@@ -35,7 +35,7 @@
       "linearization",
       "request_manifest_digest"
     ],
-    "candidate_policy": "all HPO crosswalk or LLM-assisted outputs remain candidate-only and require human review"
+    "candidate_policy": "all HPO crosswalk or LLM-assisted outputs remain candidate-only; agent_panel_assessment_required and maintainer_promotion_decision_required"
   },
   "declared_languages": [
     {"name": "Arabic", "code": "ar"},

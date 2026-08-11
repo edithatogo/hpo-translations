@@ -5,13 +5,13 @@
     {
       "access_class": "restricted",
       "access_mode": "permissioned_api_or_terms_gated_access",
+      "agent_panel_assessment_required": true,
       "authoritative_endpoint": "non_github_authority_required",
       "authoritative_endpoint_status": "non_github_authority_required",
       "credential_required": true,
       "declared_language_count": 1,
       "github_repositories": [],
       "github_repository_roles": [],
-      "human_review_required": true,
       "known_blocker_count": 3,
       "language_codes": [
         "en"
@@ -27,6 +27,7 @@
         "raw downloads",
         "source-specific extraction outputs remain local-only until access and redistribution terms pass review"
       ],
+      "maintainer_promotion_decision_required": true,
       "ontology_name": "DECIPHER",
       "payload_commit_allowed": false,
       "pr_safe": true,
@@ -46,6 +47,7 @@
     {
       "access_class": "open",
       "access_mode": "open_ontology_download_review_required",
+      "agent_panel_assessment_required": true,
       "authoritative_endpoint": "repository_recorded_authority_review_required",
       "authoritative_endpoint_status": "repository_recorded_authority_review_required",
       "credential_required": false,
@@ -60,7 +62,6 @@
           "url": "https://github.com/DiseaseOntology/HumanDiseaseOntology"
         }
       ],
-      "human_review_required": true,
       "known_blocker_count": 3,
       "language_codes": [
         "en"
@@ -75,6 +76,7 @@
         "licensed payloads",
         "raw downloads"
       ],
+      "maintainer_promotion_decision_required": true,
       "ontology_name": "Disease Ontology",
       "payload_commit_allowed": false,
       "pr_safe": true,
@@ -92,6 +94,7 @@
     {
       "access_class": "open",
       "access_mode": "open_ontology_download_review_required",
+      "agent_panel_assessment_required": true,
       "authoritative_endpoint": "repository_recorded_authority_review_required",
       "authoritative_endpoint_status": "repository_recorded_authority_review_required",
       "credential_required": false,
@@ -106,7 +109,6 @@
           "url": "https://github.com/EBISPOT/efo"
         }
       ],
-      "human_review_required": true,
       "known_blocker_count": 3,
       "language_codes": [
         "en"
@@ -121,6 +123,7 @@
         "licensed payloads",
         "raw downloads"
       ],
+      "maintainer_promotion_decision_required": true,
       "ontology_name": "EFO",
       "payload_commit_allowed": false,
       "pr_safe": true,
@@ -138,13 +141,13 @@
     {
       "access_class": "open",
       "access_mode": "public_ontology_terms_review_required",
+      "agent_panel_assessment_required": true,
       "authoritative_endpoint": "non_github_authority_required",
       "authoritative_endpoint_status": "non_github_authority_required",
       "credential_required": false,
       "declared_language_count": 1,
       "github_repositories": [],
       "github_repository_roles": [],
-      "human_review_required": true,
       "known_blocker_count": 3,
       "language_codes": [
         "en"
@@ -159,6 +162,7 @@
         "licensed payloads",
         "raw downloads"
       ],
+      "maintainer_promotion_decision_required": true,
       "ontology_name": "FMA",
       "payload_commit_allowed": false,
       "pr_safe": true,
@@ -176,6 +180,7 @@
     {
       "access_class": "open",
       "access_mode": "public_or_national_variant_download",
+      "agent_panel_assessment_required": true,
       "authoritative_endpoint": "authority_described_github_not_authoritative",
       "authoritative_endpoint_status": "authority_described_github_not_authoritative",
       "credential_required": false,
@@ -190,7 +195,6 @@
           "url": "https://github.com/ICD-API"
         }
       ],
-      "human_review_required": true,
       "known_blocker_count": 3,
       "language_codes": [
         "ar",
@@ -216,6 +220,7 @@
         "licensed payloads",
         "raw downloads"
       ],
+      "maintainer_promotion_decision_required": true,
       "ontology_name": "ICD-10",
       "payload_commit_allowed": false,
       "pr_safe": true,
@@ -233,6 +238,7 @@
     {
       "access_class": "API-only",
       "access_mode": "public_api_terms_review_required",
+      "agent_panel_assessment_required": true,
       "authoritative_endpoint": "authority_described_github_not_authoritative",
       "authoritative_endpoint_status": "authority_described_github_not_authoritative",
       "credential_required": false,
@@ -247,7 +253,6 @@
           "url": "https://github.com/ICD-API"
         }
       ],
-      "human_review_required": true,
       "known_blocker_count": 3,
       "language_codes": [
         "ar",
@@ -288,6 +293,7 @@
         "raw downloads",
         "source-specific extraction outputs remain local-only until access and redistribution terms pass review"
       ],
+      "maintainer_promotion_decision_required": true,
       "ontology_name": "ICD-11",
       "payload_commit_allowed": false,
       "pr_safe": true,
@@ -305,13 +311,13 @@
     {
       "access_class": "investigation-only",
       "access_mode": "source_authority_investigation",
+      "agent_panel_assessment_required": true,
       "authoritative_endpoint": "non_github_authority_required",
       "authoritative_endpoint_status": "non_github_authority_required",
       "credential_required": false,
       "declared_language_count": 1,
       "github_repositories": [],
       "github_repository_roles": [],
-      "human_review_required": true,
       "known_blocker_count": 2,
       "language_codes": [
         "en"
@@ -327,6 +333,7 @@
         "raw downloads",
         "source-specific extraction outputs remain local-only until access and redistribution terms pass review"
       ],
+      "maintainer_promotion_decision_required": true,
       "ontology_name": "LDDB",
       "payload_commit_allowed": false,
       "pr_safe": true,
@@ -346,6 +353,7 @@
     {
       "access_class": "restricted",
       "access_mode": "account_gated_download",
+      "agent_panel_assessment_required": true,
       "authoritative_endpoint": "repository_recorded_authority_review_required",
       "authoritative_endpoint_status": "repository_recorded_authority_review_required",
       "credential_required": true,
@@ -366,7 +374,6 @@
           "url": "https://github.com/loinc/comp-loinc"
         }
       ],
-      "human_review_required": true,
       "known_blocker_count": 3,
       "language_codes": [
         "de",
@@ -402,6 +409,7 @@
         "raw downloads",
         "source-specific extraction outputs remain local-only until access and redistribution terms pass review"
       ],
+      "maintainer_promotion_decision_required": true,
       "ontology_name": "LOINC",
       "payload_commit_allowed": false,
       "pr_safe": true,
@@ -421,13 +429,13 @@
     {
       "access_class": "restricted",
       "access_mode": "licensed_release_download",
+      "agent_panel_assessment_required": true,
       "authoritative_endpoint": "non_github_authority_required",
       "authoritative_endpoint_status": "non_github_authority_required",
       "credential_required": true,
       "declared_language_count": 27,
       "github_repositories": [],
       "github_repository_roles": [],
-      "human_review_required": true,
       "known_blocker_count": 3,
       "language_codes": [
         "ar",
@@ -475,6 +483,7 @@
         "raw downloads",
         "source-specific extraction outputs remain local-only until access and redistribution terms pass review"
       ],
+      "maintainer_promotion_decision_required": true,
       "ontology_name": "MedDRA",
       "payload_commit_allowed": false,
       "pr_safe": true,
@@ -494,6 +503,7 @@
     {
       "access_class": "open",
       "access_mode": "public_download_terms_review_required",
+      "agent_panel_assessment_required": true,
       "authoritative_endpoint": "repository_recorded_authority_review_required",
       "authoritative_endpoint_status": "repository_recorded_authority_review_required",
       "credential_required": false,
@@ -508,7 +518,6 @@
           "url": "https://github.com/HHS/meshrdf"
         }
       ],
-      "human_review_required": true,
       "known_blocker_count": 3,
       "language_codes": [
         "cs",
@@ -543,6 +552,7 @@
         "licensed payloads",
         "raw downloads"
       ],
+      "maintainer_promotion_decision_required": true,
       "ontology_name": "MeSH",
       "payload_commit_allowed": false,
       "pr_safe": true,
@@ -560,6 +570,7 @@
     {
       "access_class": "open",
       "access_mode": "open_ontology_download_review_required",
+      "agent_panel_assessment_required": true,
       "authoritative_endpoint": "repository_recorded_authority_review_required",
       "authoritative_endpoint_status": "repository_recorded_authority_review_required",
       "credential_required": false,
@@ -574,7 +585,6 @@
           "url": "https://github.com/mgijax/mammalian-phenotype-ontology"
         }
       ],
-      "human_review_required": true,
       "known_blocker_count": 3,
       "language_codes": [
         "en"
@@ -589,6 +599,7 @@
         "licensed payloads",
         "raw downloads"
       ],
+      "maintainer_promotion_decision_required": true,
       "ontology_name": "Mammalian Phenotype Ontology",
       "payload_commit_allowed": false,
       "pr_safe": true,
@@ -606,6 +617,7 @@
     {
       "access_class": "restricted",
       "access_mode": "credentialed_api_or_download",
+      "agent_panel_assessment_required": true,
       "authoritative_endpoint": "authority_described_github_not_authoritative",
       "authoritative_endpoint_status": "authority_described_github_not_authoritative",
       "credential_required": true,
@@ -620,7 +632,6 @@
           "url": "https://github.com/OMIM-org"
         }
       ],
-      "human_review_required": true,
       "known_blocker_count": 3,
       "language_codes": [
         "en"
@@ -636,6 +647,7 @@
         "raw downloads",
         "source-specific extraction outputs remain local-only until access and redistribution terms pass review"
       ],
+      "maintainer_promotion_decision_required": true,
       "ontology_name": "OMIM",
       "payload_commit_allowed": false,
       "pr_safe": true,
@@ -655,6 +667,7 @@
     {
       "access_class": "API-only",
       "access_mode": "public_api_terms_review_required",
+      "agent_panel_assessment_required": true,
       "authoritative_endpoint": "repository_recorded_authority_review_required",
       "authoritative_endpoint_status": "repository_recorded_authority_review_required",
       "credential_required": false,
@@ -669,7 +682,6 @@
           "url": "https://github.com/cBioPortal/oncotree"
         }
       ],
-      "human_review_required": true,
       "known_blocker_count": 3,
       "language_codes": [
         "en"
@@ -685,6 +697,7 @@
         "raw downloads",
         "source-specific extraction outputs remain local-only until access and redistribution terms pass review"
       ],
+      "maintainer_promotion_decision_required": true,
       "ontology_name": "OncoTree",
       "payload_commit_allowed": false,
       "pr_safe": true,
@@ -702,6 +715,7 @@
     {
       "access_class": "open",
       "access_mode": "public_download_terms_review_required",
+      "agent_panel_assessment_required": true,
       "authoritative_endpoint": "authority_described_github_not_authoritative",
       "authoritative_endpoint_status": "authority_described_github_not_authoritative",
       "credential_required": false,
@@ -716,7 +730,6 @@
           "url": "https://github.com/Orphanet"
         }
       ],
-      "human_review_required": true,
       "known_blocker_count": 3,
       "language_codes": [
         "cs",
@@ -747,6 +760,7 @@
         "licensed payloads",
         "raw downloads"
       ],
+      "maintainer_promotion_decision_required": true,
       "ontology_name": "Orphanet",
       "payload_commit_allowed": false,
       "pr_safe": true,
@@ -764,6 +778,7 @@
     {
       "access_class": "open",
       "access_mode": "open_ontology_download_review_required",
+      "agent_panel_assessment_required": true,
       "authoritative_endpoint": "repository_recorded_authority_review_required",
       "authoritative_endpoint_status": "repository_recorded_authority_review_required",
       "credential_required": false,
@@ -778,7 +793,6 @@
           "url": "https://github.com/pato-ontology/pato"
         }
       ],
-      "human_review_required": true,
       "known_blocker_count": 3,
       "language_codes": [
         "en"
@@ -793,6 +807,7 @@
         "licensed payloads",
         "raw downloads"
       ],
+      "maintainer_promotion_decision_required": true,
       "ontology_name": "PATO",
       "payload_commit_allowed": false,
       "pr_safe": true,
@@ -810,6 +825,7 @@
     {
       "access_class": "restricted",
       "access_mode": "licensed_release_download",
+      "agent_panel_assessment_required": true,
       "authoritative_endpoint": "authority_described_github_not_authoritative",
       "authoritative_endpoint_status": "authority_described_github_not_authoritative",
       "credential_required": true,
@@ -836,7 +852,6 @@
           "url": "https://github.com/IHTSDO/snomed-owl-toolkit"
         }
       ],
-      "human_review_required": true,
       "known_blocker_count": 4,
       "language_codes": [
         "da",
@@ -872,6 +887,7 @@
         "raw downloads",
         "source-specific extraction outputs remain local-only until access and redistribution terms pass review"
       ],
+      "maintainer_promotion_decision_required": true,
       "ontology_name": "SNOMED CT",
       "payload_commit_allowed": false,
       "pr_safe": true,
@@ -891,6 +907,7 @@
     {
       "access_class": "restricted",
       "access_mode": "licensed_download_or_api",
+      "agent_panel_assessment_required": true,
       "authoritative_endpoint": "authority_described_github_not_authoritative",
       "authoritative_endpoint_status": "authority_described_github_not_authoritative",
       "credential_required": true,
@@ -905,7 +922,6 @@
           "url": "https://github.com/HHS/uts-rest-api"
         }
       ],
-      "human_review_required": true,
       "known_blocker_count": 4,
       "language_codes": [
         "ar",
@@ -938,6 +954,7 @@
         "raw downloads",
         "source-specific extraction outputs remain local-only until access and redistribution terms pass review"
       ],
+      "maintainer_promotion_decision_required": true,
       "ontology_name": "UMLS Metathesaurus",
       "payload_commit_allowed": false,
       "pr_safe": true,
@@ -957,6 +974,7 @@
     {
       "access_class": "open",
       "access_mode": "open_ontology_download_review_required",
+      "agent_panel_assessment_required": true,
       "authoritative_endpoint": "repository_recorded_authority_review_required",
       "authoritative_endpoint_status": "repository_recorded_authority_review_required",
       "credential_required": false,
@@ -971,7 +989,6 @@
           "url": "https://github.com/obophenotype/upheno"
         }
       ],
-      "human_review_required": true,
       "known_blocker_count": 3,
       "language_codes": [
         "en"
@@ -986,6 +1003,7 @@
         "licensed payloads",
         "raw downloads"
       ],
+      "maintainer_promotion_decision_required": true,
       "ontology_name": "uPheno",
       "payload_commit_allowed": false,
       "pr_safe": true,

@@ -3,6 +3,12 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "properties": {
+    "agent_panel_action": {
+      "type": "string"
+    },
+    "agent_panel_assessment_required": {
+      "type": "boolean"
+    },
     "conflict_id": {
       "type": "string"
     },
@@ -24,16 +30,13 @@
     "language": {
       "type": "string"
     },
+    "maintainer_promotion_decision_required": {
+      "type": "boolean"
+    },
     "provenance_id": {
       "type": "string"
     },
     "resolution_status": {
-      "type": "string"
-    },
-    "review_required": {
-      "type": "boolean"
-    },
-    "reviewer_action": {
       "type": "string"
     },
     "severity": {
@@ -47,16 +50,17 @@
     }
   },
   "required": [
+    "agent_panel_action",
     "conflict_id",
     "conflict_type",
     "evidence_ids",
     "hpo_id",
     "provenance_id",
     "resolution_status",
-    "reviewer_action",
     "severity",
     "source_ids"
   ],
   "title": "conflict_report_row",
-  "type": "object"
+  "type": "object",
+  "x-schema-version": "2.0.0"
 }

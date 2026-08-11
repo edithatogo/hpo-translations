@@ -136,7 +136,7 @@
       "proposed_rule": "stop_collection_quarantine_affected_material_notify_the_accountable_route_and_resume_only_under_recorded_authority",
       "authority_decision_required": true
     },
-    "identities_qualifications_conflicts_consent_and_raw_correspondence_local_only": true,
+    "agent_execution_attestations_and_raw_correspondence_local_only": true,
     "restricted_source_payloads_local_only_if_separately_approved": true
   },
   "required_maintainer_inputs": [

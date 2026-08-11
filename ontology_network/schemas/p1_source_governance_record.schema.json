@@ -3,6 +3,9 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "properties": {
+    "agent_panel_assessment_required": {
+      "type": "boolean"
+    },
     "blocked_payload_classes": {
       "items": {
         "type": "string"
@@ -24,9 +27,6 @@
     "go_no_go": {
       "type": "string"
     },
-    "human_review_required": {
-      "type": "boolean"
-    },
     "identifier_network_allowed": {
       "type": "boolean"
     },
@@ -35,6 +35,9 @@
         "type": "string"
       },
       "type": "array"
+    },
+    "maintainer_promotion_decision_required": {
+      "type": "boolean"
     },
     "metadata_only_scaffold_allowed": {
       "type": "boolean"
@@ -71,14 +74,15 @@
     }
   },
   "required": [
+    "agent_panel_assessment_required",
     "blocked_payload_classes",
     "bounded_sample_allowed",
     "candidate_only",
     "commit_safe_artifacts",
     "go_no_go",
-    "human_review_required",
     "identifier_network_allowed",
     "known_blockers",
+    "maintainer_promotion_decision_required",
     "metadata_only_scaffold_allowed",
     "next_allowed_action",
     "non_translation_outputs_allowed",
@@ -92,5 +96,6 @@
     "track_id"
   ],
   "title": "p1_source_governance_record",
-  "type": "object"
+  "type": "object",
+  "x-schema-version": "2.0.0"
 }

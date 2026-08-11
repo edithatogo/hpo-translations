@@ -52,7 +52,8 @@ def crosswalk_record(source_id: str = "mesh") -> dict[str, object]:
         "provenance_id": "prov-crosswalk-1",
         "review_status": "needs_review",
         "candidate_only": True,
-        "human_review_required": True,
+        "agent_panel_assessment_required": True,
+        "maintainer_promotion_decision_required": True,
     }
 
 
@@ -65,7 +66,9 @@ def conflict_record() -> dict[str, object]:
         "source_ids": ["mesh", "orphanet"],
         "evidence_ids": ["edge-1", "edge-2"],
         "resolution_status": "needs_review",
-        "reviewer_action": "review divergent external labels before candidate promotion",
+        "agent_panel_action": "assess divergent external labels before candidate promotion",
+        "agent_panel_assessment_required": True,
+        "maintainer_promotion_decision_required": True,
         "provenance_id": "prov-conflict-1",
     }
 
@@ -97,9 +100,10 @@ def review_pack_record() -> dict[str, object]:
         "coverage_ids": ["coverage-1"],
         "candidate_count": 3,
         "candidate_only": True,
-        "human_review_required": True,
-        "promotion_policy": "manual_review_only",
-        "reviewer_role": "language reviewer",
+        "agent_panel_assessment_required": True,
+        "maintainer_promotion_decision_required": True,
+        "promotion_policy": "maintainer_decision_after_agent_panel_assessment",
+        "agent_panel_role": "language specialist agent",
         "provenance_id": "prov-pack-1",
     }
 
@@ -179,7 +183,7 @@ class ValidateOntologyNetworkTests(unittest.TestCase):
         registry = write_json(root, "registry.json", [registry_record()])
         bad_crosswalk = crosswalk_record("missing-source")
         bad_crosswalk["candidate_only"] = False
-        bad_crosswalk["human_review_required"] = False
+        bad_crosswalk["agent_panel_assessment_required"] = False
         crosswalk = write_json(root, "crosswalk.json", [bad_crosswalk])
 
         report = validate_artifacts(
@@ -189,7 +193,7 @@ class ValidateOntologyNetworkTests(unittest.TestCase):
         codes = issue_codes(report)
         self.assertIn("crosswalk.source_id.unknown", codes)
         self.assertIn("crosswalk.candidate_only.required", codes)
-        self.assertIn("crosswalk.human_review_required.required", codes)
+        self.assertIn("crosswalk.agent_panel_assessment_required.required", codes)
 
     def test_crosswalk_warns_on_nondeterministic_mapping_basis(self) -> None:
         root = self.make_root()
@@ -218,10 +222,10 @@ class ValidateOntologyNetworkTests(unittest.TestCase):
 
         self.assertIn("coverage.coverage_ratio.mismatch", issue_codes(report))
 
-    def test_review_pack_requires_human_review_and_evidence_links(self) -> None:
+    def test_review_pack_requires_agent_panel_assessment_and_evidence_links(self) -> None:
         root = self.make_root()
         review_pack_row = review_pack_record()
-        review_pack_row["human_review_required"] = False
+        review_pack_row["agent_panel_assessment_required"] = False
         review_pack_row["crosswalk_ids"] = []
         review_pack_row["coverage_ids"] = []
         review_pack = write_json(root, "review_pack.json", [review_pack_row])
@@ -231,8 +235,22 @@ class ValidateOntologyNetworkTests(unittest.TestCase):
         )
 
         codes = issue_codes(report)
-        self.assertIn("review_pack.human_review_required.required", codes)
+        self.assertIn("review_pack.agent_panel_assessment_required.required", codes)
         self.assertIn("review_pack.evidence_links.missing", codes)
+
+    def test_legacy_human_review_fields_are_rejected(self) -> None:
+        root = self.make_root()
+        legacy_crosswalk = crosswalk_record()
+        legacy_crosswalk["human_review_required"] = legacy_crosswalk.pop("agent_panel_assessment_required")
+        crosswalk = write_json(root, "crosswalk.json", [legacy_crosswalk])
+
+        report = validate_artifacts(
+            {"registry": [], "crosswalk": [crosswalk], "conflict": [], "coverage": [], "review_pack": []}
+        )
+
+        codes = issue_codes(report)
+        self.assertIn("crosswalk.legacy_human_review_required.forbidden", codes)
+        self.assertIn("crosswalk.agent_panel_assessment_required.required", codes)
 
     def test_schema_output_writes_generated_record_contracts(self) -> None:
         root = self.make_root()

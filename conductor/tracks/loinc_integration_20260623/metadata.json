@@ -54,7 +54,7 @@
       "source conflict",
       "license caveat"
     ],
-    "promotion_rule": "no ontology or LLM signal promotes a translation without human review"
+    "promotion_rule": "agent_panel_assessment_required; maintainer_promotion_decision_required"
   },
   "agent_telemetry": {
     "record_required": true,
@@ -80,7 +80,7 @@
       "open_blockers": 3
     }
   },
-  "human_review_handoff": [
+  "review_handoff": [
     "changed records",
     "source evidence",
     "model evidence",

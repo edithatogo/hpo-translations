@@ -81,12 +81,12 @@
       "source authority and license state recorded",
       "payload handling path classified as commit-safe or local-only",
       "schema validation passes",
-      "review handoff remains candidate-only and human-review-required"
+      "review handoff remains candidate-only and agent-panel-assessment-required and maintainer-promotion-decision-required"
     ]
   },
-  "human_review_and_llm_policy": {
+  "candidate_assessment_and_promotion_policy": {
     "candidate_only": true,
-    "human_review_required": true,
+    "agent_panel_assessment_required": true, "maintainer_promotion_decision_required": true,
     "llm_output_allowed": "metadata and review-assistance only until source terms are cleared",
     "promotion_policy": "manual_review_only"
   },

@@ -2,7 +2,7 @@
   "track_id": "lddb_integration_20260623",
   "status": "not_started_blocked",
   "uses": [],
-  "rules": ["conflicts_unresolved_by_default", "llm_candidates_require_human_review"],
+  "rules": ["conflicts_unresolved_by_default", "agent_panel_assessment_required_and_maintainer_promotion_decision_required"],
   "promotion_allowed": false,
   "reason": "no authoritative source or approved sample"
 }

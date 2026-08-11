@@ -17,7 +17,7 @@ Experimental factor, disease, trait, and assay context for biomedical mappings.
 - Capture source version, source URL, retrieval date, and any access constraints in generated artifacts.
 - Keep external terminology labels separate from HPO translation candidates unless reviewed and explicitly imported.
 - Prefer deterministic crosswalks and exact identifiers over free-text matching.
-- Mark any LLM-assisted normalization or translation as candidate-only and human-review-required.
+- Mark any LLM-assisted normalization or translation as candidate-only and agent-panel-assessment-required and maintainer-promotion-decision-required.
 
 ## Non-Goals
 - Do not redistribute restricted terminology payloads in this repository.

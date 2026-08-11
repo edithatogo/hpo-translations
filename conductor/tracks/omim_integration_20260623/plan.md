@@ -26,14 +26,14 @@ This plan introduces OMIM into the project where it can improve terminology alig
   - For each ready task, run the implementation workflow, validate locally, commit after completion, run conductor-review after each phase, apply authorized fixes, push after each phase, verify GitHub Actions on the pushed commit and PR head, and verify PR merge before marking complete.
 - [x] **Task 8:** Start performance, evidence, and model telemetry.
   - Record coding agent, model, task id, source version, runtime, validation result, conflict count, and unresolved blockers.
-  - Mark any LLM-assisted candidate output as candidate-only and human-review-required in the handoff pack.
+  - Mark any LLM-assisted candidate output as candidate-only and agent-panel-assessment-required and maintainer-promotion-decision-required in the handoff pack.
 
 ## Phase 0 Validation Evidence
 - Source authority: official OMIM site, API/download routes, GitHub organization, and sample parser repository were recorded; headless HTTP encountered a browser challenge, so no payload download or API call was attempted.
 - Repository evidence: `https://github.com/OMIM-org` and `https://github.com/OMIM-org/genemap2-parser` are support references only, not authoritative release payload channels.
 - Payload status: no OMIM labels, clinical synopsis text, genemap2 rows, morbidmap rows, gene-disease rows, API responses, credentials, or release payload fragments were fetched or committed.
 - Governance decision: Phase 0 is implemented as metadata-only and blocked before ingestion until registration, credential, API/download terms, redistribution, and version-pinning requirements pass review.
-- Review policy: any future OMIM-assisted comparison, crosswalk, or LLM-assisted output remains candidate-only and human-review-required.
+- Review policy: any future OMIM-assisted comparison, crosswalk, or LLM-assisted output remains candidate-only and agent-panel-assessment-required and maintainer-promotion-decision-required.
 
 ## Phase 1: Source Governance
 - [x] **Task 1:** Confirm authoritative release source, license, and redistribution constraints.
@@ -49,7 +49,7 @@ This plan introduces OMIM into the project where it can improve terminology alig
 ## Phase 3: HPO Translation Use
 - [x] **Task 1:** Identify where OMIM helps: crosswalks, synonym review, multilingual label comparison, or domain validation.
 - [x] **Task 2:** Add deterministic matching rules and conflict reporting.
-- [x] **Task 3:** Ensure LLM-assisted outputs remain candidate-only and human-review-required.
+- [x] **Task 3:** Ensure LLM-assisted outputs remain candidate-only and agent-panel-assessment-required and maintainer-promotion-decision-required.
 
 ## Phase 4: Validation and Review
 - [x] **Task 1:** Validate schema, provenance, and license metadata.

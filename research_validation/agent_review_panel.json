@@ -7,9 +7,11 @@
     "people_based_evaluation_recruitment",
     "people_based_evaluation_consent",
     "people_based_evaluation_workload_budget",
-    "human_adjudication"
+    "person_based_adjudication"
   ],
-  "human_review_planned": false,
+  "person_participation_planned": false,
+  "agent_panel_assessment_required": true,
+  "maintainer_promotion_decision_required": true,
   "panel": {
     "candidate_generator_separated": true,
     "context_isolation_required": true,

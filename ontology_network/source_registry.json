@@ -6,6 +6,7 @@
     {
       "access_class": "restricted",
       "access_mode": "permissioned_api_or_terms_gated_access",
+      "agent_panel_assessment_required": true,
       "artifact_contract": {
         "conditional_outputs": [
           "language_comparison_pack",
@@ -59,7 +60,6 @@
       "github_repositories": [],
       "github_repository_count": 0,
       "github_repository_roles": [],
-      "human_review_required": true,
       "known_blockers": [
         "DECIPHER may include sensitive case-level or consent-governed content.",
         "API or data-use terms must be reviewed before any automated extraction.",
@@ -82,6 +82,7 @@
         "raw downloads",
         "source-specific extraction outputs remain local-only until access and redistribution terms pass review"
       ],
+      "maintainer_promotion_decision_required": true,
       "metadata_created_at": "2026-06-23T00:00:00Z",
       "metadata_updated_at": "2026-06-25T00:00:00Z",
       "ontology_name": "DECIPHER",
@@ -117,6 +118,7 @@
     {
       "access_class": "open",
       "access_mode": "open_ontology_download_review_required",
+      "agent_panel_assessment_required": true,
       "artifact_contract": {
         "conditional_outputs": [
           "language_comparison_pack",
@@ -177,7 +179,6 @@
           "url": "https://github.com/DiseaseOntology/HumanDiseaseOntology"
         }
       ],
-      "human_review_required": true,
       "known_blockers": [
         "Disease entities are not phenotype labels and require mapping caveats.",
         "Disease-to-HPO links should prefer curated mappings over text similarity.",
@@ -199,6 +200,7 @@
         "licensed payloads",
         "raw downloads"
       ],
+      "maintainer_promotion_decision_required": true,
       "metadata_created_at": "2026-06-23T00:00:00Z",
       "metadata_updated_at": "2026-08-01T00:00:00Z",
       "ontology_name": "Disease Ontology",
@@ -232,6 +234,7 @@
     {
       "access_class": "open",
       "access_mode": "open_ontology_download_review_required",
+      "agent_panel_assessment_required": true,
       "artifact_contract": {
         "conditional_outputs": [
           "language_comparison_pack",
@@ -292,7 +295,6 @@
           "url": "https://github.com/EBISPOT/efo"
         }
       ],
-      "human_review_required": true,
       "known_blockers": [
         "EFO integrates many domains, so source-specific provenance and subsets matter.",
         "Experimental factor semantics may not directly map to phenotypes.",
@@ -314,6 +316,7 @@
         "licensed payloads",
         "raw downloads"
       ],
+      "maintainer_promotion_decision_required": true,
       "metadata_created_at": "2026-06-23T00:00:00Z",
       "metadata_updated_at": "2026-08-01T00:00:00Z",
       "ontology_name": "EFO",
@@ -347,6 +350,7 @@
     {
       "access_class": "open",
       "access_mode": "public_ontology_terms_review_required",
+      "agent_panel_assessment_required": true,
       "artifact_contract": {
         "conditional_outputs": [
           "language_comparison_pack",
@@ -391,7 +395,6 @@
       "github_repositories": [],
       "github_repository_count": 0,
       "github_repository_roles": [],
-      "human_review_required": true,
       "known_blockers": [
         "FMA release location, active maintenance status, and license terms must be verified before payload ingestion.",
         "FMA can support anatomy consistency checks, but identifier-network and translation-use outputs remain blocked until terms review passes.",
@@ -413,6 +416,7 @@
         "licensed payloads",
         "raw downloads"
       ],
+      "maintainer_promotion_decision_required": true,
       "metadata_created_at": "2026-06-23T00:00:00Z",
       "metadata_updated_at": "2026-06-24T00:00:00Z",
       "ontology_name": "FMA",
@@ -446,6 +450,7 @@
     {
       "access_class": "open",
       "access_mode": "public_or_national_variant_download",
+      "agent_panel_assessment_required": true,
       "artifact_contract": {
         "conditional_outputs": [
           "language_comparison_pack",
@@ -506,7 +511,6 @@
           "url": "https://github.com/ICD-API"
         }
       ],
-      "human_review_required": true,
       "known_blockers": [
         "National ICD-10 variants have different terms, languages, and license rules.",
         "Diagnostic classification granularity is often broader than HPO phenotypes.",
@@ -539,6 +543,7 @@
         "licensed payloads",
         "raw downloads"
       ],
+      "maintainer_promotion_decision_required": true,
       "metadata_created_at": "2026-06-23T00:00:00Z",
       "metadata_updated_at": "2026-06-25T00:00:00Z",
       "ontology_name": "ICD-10",
@@ -572,6 +577,7 @@
     {
       "access_class": "API-only",
       "access_mode": "public_api_terms_review_required",
+      "agent_panel_assessment_required": true,
       "artifact_contract": {
         "conditional_outputs": [
           "language_comparison_pack",
@@ -632,7 +638,6 @@
           "url": "https://github.com/ICD-API"
         }
       ],
-      "human_review_required": true,
       "known_blockers": [
         "ICD-11 API terms and rate limits must be documented before automation.",
         "Foundation entities and MMS codes need distinct provenance handling.",
@@ -680,6 +685,7 @@
         "raw downloads",
         "source-specific extraction outputs remain local-only until access and redistribution terms pass review"
       ],
+      "maintainer_promotion_decision_required": true,
       "metadata_created_at": "2026-06-23T00:00:00Z",
       "metadata_updated_at": "2026-08-01T00:00:00Z",
       "ontology_name": "ICD-11",
@@ -713,6 +719,7 @@
     {
       "access_class": "investigation-only",
       "access_mode": "source_authority_investigation",
+      "agent_panel_assessment_required": true,
       "artifact_contract": {
         "conditional_outputs": [
           "language_comparison_pack",
@@ -757,7 +764,6 @@
       "github_repositories": [],
       "github_repository_count": 0,
       "github_repository_roles": [],
-      "human_review_required": true,
       "known_blockers": [
         "LDDB source authority, maintenance status, license, and access path require confirmation.",
         "No payload, derived evidence, identifier mapping, or translation comparison should be planned until the authoritative source is identified."
@@ -779,6 +785,7 @@
         "raw downloads",
         "source-specific extraction outputs remain local-only until access and redistribution terms pass review"
       ],
+      "maintainer_promotion_decision_required": true,
       "metadata_created_at": "2026-06-23T00:00:00Z",
       "metadata_updated_at": "2026-06-24T00:00:00Z",
       "ontology_name": "LDDB",
@@ -814,6 +821,7 @@
     {
       "access_class": "restricted",
       "access_mode": "account_gated_download",
+      "agent_panel_assessment_required": true,
       "artifact_contract": {
         "conditional_outputs": [
           "language_comparison_pack",
@@ -882,7 +890,6 @@
           "url": "https://github.com/loinc/comp-loinc"
         }
       ],
-      "human_review_required": true,
       "known_blockers": [
         "LOINC access requires license/account review before download automation.",
         "Laboratory-observation semantics are not direct phenotype labels and need context fields.",
@@ -925,6 +932,7 @@
         "raw downloads",
         "source-specific extraction outputs remain local-only until access and redistribution terms pass review"
       ],
+      "maintainer_promotion_decision_required": true,
       "metadata_created_at": "2026-06-23T00:00:00Z",
       "metadata_updated_at": "2026-06-25T00:00:00Z",
       "ontology_name": "LOINC",
@@ -960,6 +968,7 @@
     {
       "access_class": "restricted",
       "access_mode": "licensed_release_download",
+      "agent_panel_assessment_required": true,
       "artifact_contract": {
         "conditional_outputs": [
           "language_comparison_pack",
@@ -1009,14 +1018,13 @@
       "declared_language_count": 27,
       "description": "Integrate MedDRA into terminology and translation support",
       "expected_blockers": [
-        "Versioned multilingual terms may require reviewer confirmation before use.",
+        "Versioned multilingual terms require specialist-agent assessment and an accountable maintainer decision before use.",
         "Redistribution-safe artifacts may be limited to manifests, counts, and non-sensitive derived validation summaries."
       ],
       "fallback_path": "Keep MedDRA as metadata-only governance with payload-free review-pack schemas until MSSO/ICH subscription/license, release, multilingual pack, and redistribution terms are confirmed.",
       "github_repositories": [],
       "github_repository_count": 0,
       "github_repository_roles": [],
-      "human_review_required": true,
       "known_blockers": [
         "MedDRA is subscription/licensed terminology and payloads must remain local-only.",
         "Regulatory adverse-event semantics do not always align with phenotypic description semantics.",
@@ -1071,6 +1079,7 @@
         "raw downloads",
         "source-specific extraction outputs remain local-only until access and redistribution terms pass review"
       ],
+      "maintainer_promotion_decision_required": true,
       "metadata_created_at": "2026-06-23T00:00:00Z",
       "metadata_updated_at": "2026-06-25T00:00:00Z",
       "ontology_name": "MedDRA",
@@ -1106,6 +1115,7 @@
     {
       "access_class": "open",
       "access_mode": "public_download_terms_review_required",
+      "agent_panel_assessment_required": true,
       "artifact_contract": {
         "conditional_outputs": [
           "language_comparison_pack",
@@ -1166,7 +1176,6 @@
           "url": "https://github.com/HHS/meshrdf"
         }
       ],
-      "human_review_required": true,
       "known_blockers": [
         "Descriptor, concept, term, and supplementary-record layers need separate provenance.",
         "Tree-number changes can create semantic drift across releases.",
@@ -1208,6 +1217,7 @@
         "licensed payloads",
         "raw downloads"
       ],
+      "maintainer_promotion_decision_required": true,
       "metadata_created_at": "2026-06-23T00:00:00Z",
       "metadata_updated_at": "2026-06-25T00:00:00Z",
       "ontology_name": "MeSH",
@@ -1241,6 +1251,7 @@
     {
       "access_class": "open",
       "access_mode": "open_ontology_download_review_required",
+      "agent_panel_assessment_required": true,
       "artifact_contract": {
         "conditional_outputs": [
           "language_comparison_pack",
@@ -1301,7 +1312,6 @@
           "url": "https://github.com/mgijax/mammalian-phenotype-ontology"
         }
       ],
-      "human_review_required": true,
       "known_blockers": [
         "Mouse phenotype terms are model-organism evidence and require species-context caveats.",
         "Mammalian phenotype mappings to HPO can be indirect or evidence-specific.",
@@ -1323,6 +1333,7 @@
         "licensed payloads",
         "raw downloads"
       ],
+      "maintainer_promotion_decision_required": true,
       "metadata_created_at": "2026-06-23T00:00:00Z",
       "metadata_updated_at": "2026-06-25T00:00:00Z",
       "ontology_name": "Mammalian Phenotype Ontology",
@@ -1356,6 +1367,7 @@
     {
       "access_class": "restricted",
       "access_mode": "credentialed_api_or_download",
+      "agent_panel_assessment_required": true,
       "artifact_contract": {
         "conditional_outputs": [
           "language_comparison_pack",
@@ -1419,7 +1431,6 @@
           "url": "https://github.com/OMIM-org"
         }
       ],
-      "human_review_required": true,
       "known_blockers": [
         "OMIM API/download access is licensed and requires credentials.",
         "Narrative clinical synopses and identifiers must not be redistributed beyond allowed terms.",
@@ -1442,6 +1453,7 @@
         "raw downloads",
         "source-specific extraction outputs remain local-only until access and redistribution terms pass review"
       ],
+      "maintainer_promotion_decision_required": true,
       "metadata_created_at": "2026-06-23T00:00:00Z",
       "metadata_updated_at": "2026-06-25T00:00:00Z",
       "ontology_name": "OMIM",
@@ -1477,6 +1489,7 @@
     {
       "access_class": "API-only",
       "access_mode": "public_api_terms_review_required",
+      "agent_panel_assessment_required": true,
       "artifact_contract": {
         "conditional_outputs": [
           "language_comparison_pack",
@@ -1537,7 +1550,6 @@
           "url": "https://github.com/cBioPortal/oncotree"
         }
       ],
-      "human_review_required": true,
       "known_blockers": [
         "Cancer classification scope is narrow relative to HPO.",
         "API or release terms and version pinning must be documented.",
@@ -1560,6 +1572,7 @@
         "raw downloads",
         "source-specific extraction outputs remain local-only until access and redistribution terms pass review"
       ],
+      "maintainer_promotion_decision_required": true,
       "metadata_created_at": "2026-06-23T00:00:00Z",
       "metadata_updated_at": "2026-06-25T00:00:00Z",
       "ontology_name": "OncoTree",
@@ -1593,6 +1606,7 @@
     {
       "access_class": "open",
       "access_mode": "public_download_terms_review_required",
+      "agent_panel_assessment_required": true,
       "artifact_contract": {
         "conditional_outputs": [
           "language_comparison_pack",
@@ -1653,7 +1667,6 @@
           "url": "https://github.com/Orphanet"
         }
       ],
-      "human_review_required": true,
       "known_blockers": [
         "Orphanet disease entities and HPO phenotype terms operate at different granularities.",
         "Download terms and versioned XML schemas must be captured before ingestion.",
@@ -1691,6 +1704,7 @@
         "licensed payloads",
         "raw downloads"
       ],
+      "maintainer_promotion_decision_required": true,
       "metadata_created_at": "2026-06-23T00:00:00Z",
       "metadata_updated_at": "2026-06-25T00:00:00Z",
       "ontology_name": "Orphanet",
@@ -1724,6 +1738,7 @@
     {
       "access_class": "open",
       "access_mode": "open_ontology_download_review_required",
+      "agent_panel_assessment_required": true,
       "artifact_contract": {
         "conditional_outputs": [
           "language_comparison_pack",
@@ -1784,7 +1799,6 @@
           "url": "https://github.com/pato-ontology/pato"
         }
       ],
-      "human_review_required": true,
       "known_blockers": [
         "Quality terms require composition handling before they can explain HPO labels.",
         "OBO release drift must be pinned by version or PURL snapshot.",
@@ -1806,6 +1820,7 @@
         "licensed payloads",
         "raw downloads"
       ],
+      "maintainer_promotion_decision_required": true,
       "metadata_created_at": "2026-06-23T00:00:00Z",
       "metadata_updated_at": "2026-06-25T00:00:00Z",
       "ontology_name": "PATO",
@@ -1839,6 +1854,7 @@
     {
       "access_class": "restricted",
       "access_mode": "licensed_release_download",
+      "agent_panel_assessment_required": true,
       "artifact_contract": {
         "conditional_outputs": [
           "language_comparison_pack",
@@ -1914,7 +1930,6 @@
           "url": "https://github.com/IHTSDO/snomed-owl-toolkit"
         }
       ],
-      "human_review_required": true,
       "known_blockers": [
         "SNOMED CT release access depends on national or affiliate license terms.",
         "RF2 payloads must not be committed unless redistribution permission is explicit.",
@@ -1958,6 +1973,7 @@
         "raw downloads",
         "source-specific extraction outputs remain local-only until access and redistribution terms pass review"
       ],
+      "maintainer_promotion_decision_required": true,
       "metadata_created_at": "2026-06-23T00:00:00Z",
       "metadata_updated_at": "2026-06-25T00:00:00Z",
       "ontology_name": "SNOMED CT",
@@ -1993,6 +2009,7 @@
     {
       "access_class": "restricted",
       "access_mode": "licensed_download_or_api",
+      "agent_panel_assessment_required": true,
       "artifact_contract": {
         "conditional_outputs": [
           "language_comparison_pack",
@@ -2057,7 +2074,6 @@
           "url": "https://github.com/HHS/uts-rest-api"
         }
       ],
-      "human_review_required": true,
       "known_blockers": [
         "UMLS UTS license and credentials are required before any payload access.",
         "Metathesaurus source files and CUIs may be redistribution-restricted.",
@@ -2098,6 +2114,7 @@
         "raw downloads",
         "source-specific extraction outputs remain local-only until access and redistribution terms pass review"
       ],
+      "maintainer_promotion_decision_required": true,
       "metadata_created_at": "2026-06-23T00:00:00Z",
       "metadata_updated_at": "2026-06-25T00:00:00Z",
       "ontology_name": "UMLS Metathesaurus",
@@ -2133,6 +2150,7 @@
     {
       "access_class": "open",
       "access_mode": "open_ontology_download_review_required",
+      "agent_panel_assessment_required": true,
       "artifact_contract": {
         "conditional_outputs": [
           "language_comparison_pack",
@@ -2193,7 +2211,6 @@
           "url": "https://github.com/obophenotype/upheno"
         }
       ],
-      "human_review_required": true,
       "known_blockers": [
         "uPheno depends on upstream ontology build products and may change with source releases.",
         "Cross-species phenotype patterns require explicit evidence and predicate fields.",
@@ -2215,6 +2232,7 @@
         "licensed payloads",
         "raw downloads"
       ],
+      "maintainer_promotion_decision_required": true,
       "metadata_created_at": "2026-06-23T00:00:00Z",
       "metadata_updated_at": "2026-06-25T00:00:00Z",
       "ontology_name": "uPheno",

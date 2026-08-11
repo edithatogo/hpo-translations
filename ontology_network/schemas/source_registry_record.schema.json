@@ -9,6 +9,9 @@
     "access_mode": {
       "type": "string"
     },
+    "agent_panel_assessment_required": {
+      "type": "boolean"
+    },
     "artifact_contract": {
       "additionalProperties": true,
       "type": "object"
@@ -60,9 +63,6 @@
       "items": {},
       "type": "array"
     },
-    "human_review_required": {
-      "type": "boolean"
-    },
     "known_blockers": {
       "items": {
         "type": "string"
@@ -98,6 +98,9 @@
         "type": "string"
       },
       "type": "array"
+    },
+    "maintainer_promotion_decision_required": {
+      "type": "boolean"
     },
     "metadata_created_at": {
       "type": "string"
@@ -173,12 +176,13 @@
   },
   "required": [
     "access_class",
+    "agent_panel_assessment_required",
     "authoritative_endpoint_status",
     "declared_language_count",
     "github_repository_roles",
-    "human_review_required",
     "language_codes",
     "license_status",
+    "maintainer_promotion_decision_required",
     "ontology_name",
     "payload_commit_allowed",
     "pr_safe",
@@ -191,5 +195,6 @@
     "version_status"
   ],
   "title": "source_registry_record",
-  "type": "object"
+  "type": "object",
+  "x-schema-version": "2.0.0"
 }

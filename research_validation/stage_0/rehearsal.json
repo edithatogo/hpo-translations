@@ -12,7 +12,8 @@
   "agent_slots_per_candidate": 3,
   "source_payloads_used": false,
   "real_translations_used": false,
-  "human_review_used": false,
+  "agent_panel_assessment_used": false,
+  "maintainer_promotion_decision_required": true,
   "external_actions_performed": [],
   "items": [
     {

@@ -16,7 +16,7 @@ Use this template when creating or revising tracks. Replace bracketed placeholde
 - `source_access_status`: open, restricted, API-only, local-only, documentation-only, investigation-only, not_applicable, or a source-specific review state such as license_required.
 - `restricted_payload_policy`: commit allowlist, denylist, local-only artifacts, blocked patterns, and proof required before commit.
 - `fail_fast_probe`: smallest source or automation probe that must pass before batch work.
-- `artifact_contract`: committed, generated, local-only, reviewer-only, PR-safe, and release-safe outputs with schemas and validation commands.
+- `artifact_contract`: committed, generated, local-only, assessment-only, PR-safe, and release-safe outputs with schemas and validation commands.
 - `priority`, `parallel_group`, `write_owner`, `merge_owner`: scheduling and concurrency controls.
 - `automation_readiness`, `evidence_score_policy`, `agent_telemetry`, `review_handoff`: automation and review intelligence.
 
@@ -55,5 +55,5 @@ Use this template when creating or revising tracks. Replace bracketed placeholde
 - Semantic drift detection between source releases and HPO release versions.
 - Conflict heatmaps for one-to-many, many-to-one, deprecated, circular, and language-specific disagreements.
 - Reproducibility capsules containing commands, source versions, checksums when allowed, local-only manifests, and validation outputs.
-- Reviewer workload estimation and active-learning queues ordered by impact, disagreement, and source coverage.
+- Agent-panel workload estimation and active-learning queues ordered by impact, disagreement, and source coverage.
 - Agent telemetry comparing coding agent, model, runtime, validation reliability, and conflict-resolution performance.

@@ -9,6 +9,9 @@
     "access_mode": {
       "type": "string"
     },
+    "agent_panel_assessment_required": {
+      "type": "boolean"
+    },
     "authoritative_endpoint": {
       "type": "string"
     },
@@ -28,9 +31,6 @@
     "github_repository_roles": {
       "items": {},
       "type": "array"
-    },
-    "human_review_required": {
-      "type": "boolean"
     },
     "known_blocker_count": {
       "type": "integer"
@@ -55,6 +55,9 @@
         "type": "string"
       },
       "type": "array"
+    },
+    "maintainer_promotion_decision_required": {
+      "type": "boolean"
     },
     "ontology_name": {
       "type": "string"
@@ -115,5 +118,6 @@
     "track_id"
   ],
   "title": "source_access_record",
-  "type": "object"
+  "type": "object",
+  "x-schema-version": "2.0.0"
 }

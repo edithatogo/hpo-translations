@@ -26,14 +26,14 @@ This plan introduces UMLS Metathesaurus into the project where it can improve te
   - For each ready task, run the implementation workflow, validate locally, commit after completion, run conductor-review after each phase, apply authorized fixes, push after each phase, verify GitHub Actions on the pushed commit and PR head, and verify PR merge before marking complete.
 - [x] **Task 8:** Start performance, evidence, and model telemetry.
   - Record coding agent, model, task id, source version, runtime, validation result, conflict count, and unresolved blockers.
-  - Mark any LLM-assisted candidate output as candidate-only and human-review-required in the handoff pack.
+  - Mark any LLM-assisted candidate output as candidate-only and agent-panel-assessment-required and maintainer-promotion-decision-required in the handoff pack.
 
 ## Phase 0 Validation Evidence
 - Source authority: official NLM UMLS 2026AA download, release-documentation, license, and REST API documentation were recorded.
 - Access gate: UMLS remains license/API-key gated; the API base URI and download pages were identified, but no release files, API responses, CUI/AUI atoms, labels, relationships, or source-vocabulary payload rows were fetched.
 - Payload status: no MRCONSO, MRREL, MRSAB, full release archive, Metathesaurus subset, API response, credential, or redistributable payload fragment was committed.
 - Governance decision: Phase 0 is implemented as metadata-only and blocked before ingestion until UMLS license, UTS API key, release-file terms, source-vocabulary restrictions, checksum/version pinning, and local-only cache policy pass review.
-- Review policy: any future UMLS-assisted comparison, crosswalk, multilingual signal, or LLM-assisted output remains candidate-only and human-review-required.
+- Review policy: any future UMLS-assisted comparison, crosswalk, multilingual signal, or LLM-assisted output remains candidate-only and agent-panel-assessment-required and maintainer-promotion-decision-required.
 
 ## Phase 1: Source Governance
 - [x] **Task 1:** Confirm authoritative release source, license, and redistribution constraints.
@@ -49,7 +49,7 @@ This plan introduces UMLS Metathesaurus into the project where it can improve te
 ## Phase 3: HPO Translation Use
 - [x] **Task 1:** Identify where UMLS Metathesaurus helps: crosswalks, synonym review, multilingual label comparison, or domain validation.
 - [x] **Task 2:** Add deterministic matching rules and conflict reporting.
-- [x] **Task 3:** Ensure LLM-assisted outputs remain candidate-only and human-review-required.
+- [x] **Task 3:** Ensure LLM-assisted outputs remain candidate-only and agent-panel-assessment-required and maintainer-promotion-decision-required.
 
 ## Phase 4: Validation and Review
 - [x] **Task 1:** Validate schema, provenance, and license metadata.

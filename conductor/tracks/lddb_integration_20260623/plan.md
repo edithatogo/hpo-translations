@@ -29,7 +29,7 @@ Phase 0 governance is implemented as investigation-only no-go. LDDB does not pro
   - For each ready task, run the implementation workflow, validate locally, commit after completion, run conductor-review after each phase, apply authorized fixes, push after each phase, verify GitHub Actions on the pushed commit and PR head, and verify PR merge before marking complete.
 - [x] **Task 8:** Start performance, evidence, and model telemetry.
   - Record coding agent, model, task id, source version, runtime, validation result, conflict count, and unresolved blockers.
-  - Mark any LLM-assisted candidate output as candidate-only and human-review-required in the handoff pack.
+  - Mark any LLM-assisted candidate output as candidate-only and agent-panel-assessment-required and maintainer-promotion-decision-required in the handoff pack.
 
 ## Phase 1: Source Governance
 - [ ] **Task 1:** Confirm authoritative release source, license, and redistribution constraints.
@@ -46,7 +46,7 @@ Phase 0 governance is implemented as investigation-only no-go. LDDB does not pro
 ## Phase 3: HPO Translation Use
 - [ ] **Task 1:** Identify where LDDB helps: crosswalks, synonym review, multilingual label comparison, or domain validation.
 - [ ] **Task 2:** Add deterministic matching rules and conflict reporting.
-- [ ] **Task 3:** Ensure LLM-assisted outputs remain candidate-only and human-review-required.
+- [ ] **Task 3:** Ensure LLM-assisted outputs remain candidate-only and agent-panel-assessment-required and maintainer-promotion-decision-required.
 
 ## Phase 4: Validation and Review
 - [ ] **Task 1:** Validate schema, provenance, and license metadata.

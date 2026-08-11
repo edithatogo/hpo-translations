@@ -19,5 +19,6 @@
     "type"
   ],
   "title": "provenance_graph_node",
-  "type": "object"
+  "type": "object",
+  "x-schema-version": "2.0.0"
 }

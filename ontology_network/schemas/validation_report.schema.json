@@ -26,5 +26,6 @@
     "validation_result"
   ],
   "title": "validation_report",
-  "type": "object"
+  "type": "object",
+  "x-schema-version": "2.0.0"
 }

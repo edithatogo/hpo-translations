@@ -46,7 +46,7 @@
       "format": "SSSOM TSV",
       "mapped_namespaces": ["MONDO", "HP"],
       "languages": ["en"],
-      "license_status": "CC0-1.0; candidate mappings explicitly not human reviewed",
+      "license_status": "CC0-1.0; candidate mappings not assessed by the canonical agent panel or approved for promotion",
       "integrity": {"algorithm": "sha256", "value": "8a99400c40dde58edb9f043a801e0ea130a0cd98419b79ae0919642e92ee3f14"},
       "lineage_group": "mondo-hp-lexical-pipeline",
       "status": "sourced_metadata_payload_not_committed",

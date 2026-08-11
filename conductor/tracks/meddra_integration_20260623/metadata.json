@@ -42,7 +42,7 @@
                            "MedDRA subscription/license, MSSO/ICH release terms, language-pack terms, and redistribution constraints must be cleared before committing LLT, PT, HLT, HLGT, SOC, SMQ, multilingual terms, hierarchy rows, full API/export responses, or release payload rows."
                        ],
     "expected_blockers":  [
-                              "Versioned multilingual terms may require reviewer confirmation before use.",
+                              "Versioned multilingual terms require specialist-agent assessment and an accountable maintainer decision before use.",
                               "Redistribution-safe artifacts may be limited to manifests, counts, and non-sensitive derived validation summaries."
                           ],
     "blocker_owner":  "track implementer until reassigned in Phase 0",
@@ -63,7 +63,7 @@
                                                   "source conflict",
                                                   "license caveat"
                                               ],
-                                  "promotion_rule":  "no ontology or LLM signal promotes a translation without human review"
+                                  "promotion_rule":  "agent_panel_assessment_required; maintainer_promotion_decision_required"
                               },
     "agent_telemetry":  {
                             "record_required":  true,
@@ -91,11 +91,11 @@
                                                                    "MedDRA subscription/license review required",
                                                                    "MSSO/ICH release and redistribution terms review required",
                                                                    "multilingual language-pack terms review required",
-                                                                   "regulatory adverse-event semantics require human review before HPO translation use"
+                                                                   "regulatory adverse-event semantics require specialist-agent assessment and an accountable maintainer promotion decision before HPO translation use"
                                                                ]
                                          }
                         },
-    "human_review_handoff":  [
+    "review_handoff":  [
                                  "changed records",
                                  "source evidence",
                                  "model evidence",

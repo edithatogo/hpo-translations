@@ -13,7 +13,7 @@ Create an automated validation track that turns the Conductor lifecycle rules in
 ## Out of Scope
 - Reading, downloading, or committing licensed ontology payloads.
 - Deciding legal license interpretation beyond recording required review status and blocking unsafe payload handling.
-- Replacing human translation review.
+- Replacing canonical specialist-agent assessment, independent agent adjudication, or accountable-maintainer promotion decisions.
 
 ## Acceptance Criteria
 - The validator can identify missing required metadata fields across all tracks.

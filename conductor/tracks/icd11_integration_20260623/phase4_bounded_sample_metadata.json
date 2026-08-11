@@ -30,5 +30,5 @@
       "response discarded"
     ]
   },
-  "review_status": "candidate_only_human_review_required"
+  "review_status": "candidate_only_agent_panel_assessment_and_maintainer_promotion_decision_required"
 }

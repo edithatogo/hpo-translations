@@ -10,6 +10,7 @@ from typing import Any, cast
 TRACKS_DIR = Path("conductor/tracks")
 DEFAULT_OUTPUT_DIR = Path("ontology_network")
 GENERATED_DATE = "2026-06-23"
+ONTOLOGY_NETWORK_SCHEMA_VERSION = "2.0.0"
 ONTOLOGY_TRACK_SUFFIX = "_integration_20260623"
 RESTRICTED_STATUS_MARKERS = (
     "api_key",
@@ -390,7 +391,8 @@ def approved_metadata_sample(track_dir: Path) -> dict[str, Any] | None:
     if (
         phase4.get("status") != "metadata_only_sample_validated_payload_blocked"
         or phase4.get("promotion_allowed") is not False
-        or phase4.get("review_required") is not True
+        or phase4.get("agent_panel_assessment_required") is not True
+        or phase4.get("maintainer_promotion_decision_required") is not True
     ):
         return None
     release = normalized.get("release")
@@ -487,7 +489,8 @@ def registry_record(track_dir: Path) -> dict[str, Any]:
         "fallback_path": metadata.get("fallback_path"),
         "artifact_contract": metadata.get("artifact_contract"),
         "candidate_only": metadata.get("evidence_score_policy", {}).get("candidate_only", True),
-        "human_review_required": True,
+        "agent_panel_assessment_required": True,
+        "maintainer_promotion_decision_required": True,
         "provenance": {
             "method": "conductor_track_metadata_parse",
             "generated_date": GENERATED_DATE,
@@ -522,6 +525,7 @@ def schema(name: str, required: list[str], properties: dict[str, Any]) -> dict[s
     return {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "$id": f"https://example.org/hpo-translations/ontology-network/{name}.schema.json",
+        "x-schema-version": ONTOLOGY_NETWORK_SCHEMA_VERSION,
         "title": name,
         "type": "object",
         "required": required,
@@ -605,7 +609,8 @@ SCHEMA_REQUIRED_FIELDS: dict[str, set[str]] = {
         "pr_safe",
         "release_safe",
         "redistribution_status",
-        "human_review_required",
+        "agent_panel_assessment_required",
+        "maintainer_promotion_decision_required",
     },
     "source_access_record": {
         "source_id",
@@ -630,10 +635,17 @@ SCHEMA_REQUIRED_FIELDS: dict[str, set[str]] = {
         "confidence",
         "review_status",
         "candidate_only",
-        "human_review_required",
+        "agent_panel_assessment_required",
+        "maintainer_promotion_decision_required",
         "provenance_id",
     },
-    "language_comparison_row": {"language", "source_ids", "candidate_only", "human_review_required"},
+    "language_comparison_row": {
+        "language",
+        "source_ids",
+        "candidate_only",
+        "agent_panel_assessment_required",
+        "maintainer_promotion_decision_required",
+    },
     "conflict_report_row": {
         "conflict_id",
         "conflict_type",
@@ -642,7 +654,7 @@ SCHEMA_REQUIRED_FIELDS: dict[str, set[str]] = {
         "source_ids",
         "evidence_ids",
         "resolution_status",
-        "reviewer_action",
+        "agent_panel_action",
         "provenance_id",
     },
     "coverage_summary_row": {
@@ -667,7 +679,8 @@ SCHEMA_REQUIRED_FIELDS: dict[str, set[str]] = {
         "conflict_ids",
         "coverage_ids",
         "candidate_only",
-        "human_review_required",
+        "agent_panel_assessment_required",
+        "maintainer_promotion_decision_required",
         "promotion_policy",
         "provenance_id",
     },
@@ -689,7 +702,8 @@ SCHEMA_REQUIRED_FIELDS: dict[str, set[str]] = {
         "source_id",
         "registry_record_present",
         "payload_commit_allowed",
-        "human_review_required",
+        "agent_panel_assessment_required",
+        "maintainer_promotion_decision_required",
         "validation_status",
     },
     "p3_source_governance_record": {
@@ -713,7 +727,8 @@ SCHEMA_REQUIRED_FIELDS: dict[str, set[str]] = {
         "commit_safe_artifacts",
         "local_only_requirements",
         "known_blockers",
-        "human_review_required",
+        "agent_panel_assessment_required",
+        "maintainer_promotion_decision_required",
         "candidate_only",
         "provenance_id",
     },
@@ -731,7 +746,8 @@ SCHEMA_REQUIRED_FIELDS: dict[str, set[str]] = {
         "identifier_network_allowed",
         "non_translation_outputs_allowed",
         "candidate_only",
-        "human_review_required",
+        "agent_panel_assessment_required",
+        "maintainer_promotion_decision_required",
         "next_allowed_action",
         "blocked_payload_classes",
         "commit_safe_artifacts",
@@ -890,7 +906,8 @@ def source_access_records(registry: dict[str, Any]) -> list[dict[str, Any]]:
             "source_payload_commit_policy": record["source_payload_commit_policy"],
             "restricted_sources": record["restricted_sources"],
             "known_blocker_count": len(cast(list[Any], record.get("known_blockers", []))),
-            "human_review_required": record["human_review_required"],
+            "agent_panel_assessment_required": record["agent_panel_assessment_required"],
+            "maintainer_promotion_decision_required": record["maintainer_promotion_decision_required"],
         }
         for record in records
     ]
@@ -943,7 +960,8 @@ def source_access_matrix(registry: dict[str, Any]) -> str:
         "source_payloads_can_be_committed",
         "restricted_sources",
         "known_blocker_count",
-        "human_review_required",
+        "agent_panel_assessment_required",
+        "maintainer_promotion_decision_required",
     ]
     rows = ["\t".join(columns)]
     for record in source_access_records(registry):
@@ -1038,12 +1056,14 @@ def release_manifest(registry: dict[str, Any]) -> dict[str, Any]:
         "source_payload_blocker_count": blockers,
         "unresolved_language_identity_count": unresolved_language_identities,
         "release_policy": (
-            "Payload-free registry, schemas, validation summaries, provenance, and review scaffolds are release-safe; "
-            "empirical translation evidence is not release-ready until version-pinned, nonzero records pass human "
-            "review; "
+            "Payload-free registry, schemas, validation summaries, provenance, and assessment scaffolds are "
+            "release-safe; "
+            "empirical translation evidence is not release-ready until version-pinned, nonzero records pass "
+            "agent-panel assessment and receive an accountable maintainer promotion decision; "
             "raw, licensed, credentialed, and full-release source payloads are excluded."
         ),
-        "human_review_required": True,
+        "agent_panel_assessment_required": True,
+        "maintainer_promotion_decision_required": True,
     }
 
 
@@ -1064,7 +1084,8 @@ def source_class_probes(registry: dict[str, Any]) -> list[dict[str, Any]]:
                 "pr_safe": record["pr_safe"],
                 "release_safe": record["release_safe"],
                 "local_only_required": bool(record["local_only_requirements"]),
-                "human_review_required": True,
+                "agent_panel_assessment_required": True,
+                "maintainer_promotion_decision_required": True,
                 "validation_status": "metadata_probe_passed_payload_excluded",
                 "provenance_id": f"prov-source-class-{access_class_name}",
             }
@@ -1119,7 +1140,8 @@ def p3_source_governance(registry: dict[str, Any]) -> list[dict[str, Any]]:
                 "commit_safe_artifacts": record["commit_safe_artifacts"],
                 "local_only_requirements": record["local_only_requirements"],
                 "known_blockers": record["known_blockers"],
-                "human_review_required": True,
+                "agent_panel_assessment_required": True,
+                "maintainer_promotion_decision_required": True,
                 "candidate_only": True,
                 "provenance_id": f"prov-p3-governance-{source_id}",
             }
@@ -1148,7 +1170,8 @@ def p1_source_governance(registry: dict[str, Any]) -> list[dict[str, Any]]:
                 "identifier_network_allowed": False,
                 "non_translation_outputs_allowed": False,
                 "candidate_only": True,
-                "human_review_required": True,
+                "agent_panel_assessment_required": True,
+                "maintainer_promotion_decision_required": True,
                 "next_allowed_action": (
                     "retain the approved one-record metadata-only sample; complete source terms review before any "
                     "source terms, labels, or payload extraction"
@@ -1197,7 +1220,8 @@ def fail_fast_samples(registry: dict[str, Any]) -> dict[str, Any]:
             "confidence": 0.0,
             "review_status": "needs_review",
             "candidate_only": True,
-            "human_review_required": True,
+            "agent_panel_assessment_required": True,
+            "maintainer_promotion_decision_required": True,
             "provenance_id": "prov-crosswalk-probe-2026-06-23",
             "caveat": "Schema-only fail-fast probe; not a biological assertion.",
         },
@@ -1206,13 +1230,15 @@ def fail_fast_samples(registry: dict[str, Any]) -> dict[str, Any]:
             "conflict_type": "schema_probe",
             "sources": [open_record["source_id"], restricted_record["source_id"]],
             "severity": "info",
-            "review_required": True,
+            "agent_panel_assessment_required": True,
+            "maintainer_promotion_decision_required": True,
         },
         "review_pack_record": {
             "language": "en",
             "hpo_id": "HP:0000001",
             "candidate_only": True,
-            "human_review_required": True,
+            "agent_panel_assessment_required": True,
+            "maintainer_promotion_decision_required": True,
             "evidence": ["schema-only probe"],
         },
     }
@@ -1242,7 +1268,8 @@ def network_outputs(registry: dict[str, Any]) -> dict[Path, dict[str, Any]]:
         "confidence": 0.0,
         "review_status": "needs_review",
         "candidate_only": True,
-        "human_review_required": True,
+        "agent_panel_assessment_required": True,
+        "maintainer_promotion_decision_required": True,
         "provenance_id": "prov-crosswalk-probe-2026-06-23",
     }
     comparisons: list[dict[str, Any]] = [
@@ -1251,7 +1278,8 @@ def network_outputs(registry: dict[str, Any]) -> dict[Path, dict[str, Any]]:
             "source_ids": sources,
             "candidate_count": 0,
             "candidate_only": True,
-            "human_review_required": True,
+            "agent_panel_assessment_required": True,
+            "maintainer_promotion_decision_required": True,
             "comparison_status": "not_computed_source_payloads_excluded",
         }
         for lang, sources in by_lang.items()
@@ -1274,11 +1302,12 @@ def network_outputs(registry: dict[str, Any]) -> dict[Path, dict[str, Any]]:
                 "source_ids": conflict_sources,
                 "evidence_ids": [edge["edge_id"]],
                 "resolution_status": "needs_review",
-                "reviewer_action": "confirm source evidence before candidate promotion",
+                "agent_panel_action": "assess source evidence before the maintainer promotion decision",
                 "provenance_id": f"prov-conflict-{row['language']}",
                 "language": row["language"],
                 "count": 0,
-                "review_required": True,
+                "agent_panel_assessment_required": True,
+                "maintainer_promotion_decision_required": True,
             }
         )
     coverage: list[dict[str, Any]] = [
@@ -1311,9 +1340,10 @@ def network_outputs(registry: dict[str, Any]) -> dict[Path, dict[str, Any]]:
             ],
             "candidate_count": 0,
             "candidate_only": True,
-            "human_review_required": True,
-            "promotion_policy": "manual_review_only",
-            "reviewer_role": "language reviewer",
+            "agent_panel_assessment_required": True,
+            "maintainer_promotion_decision_required": True,
+            "promotion_policy": "maintainer_decision_after_agent_panel_assessment",
+            "agent_panel_role": "language-specialist agent panel",
             "provenance_id": f"prov-review-pack-{row['language']}",
         }
         for row in comparisons
@@ -1323,7 +1353,8 @@ def network_outputs(registry: dict[str, Any]) -> dict[Path, dict[str, Any]]:
             "generated_date": GENERATED_DATE,
             "edge_count": 1,
             "candidate_only": True,
-            "human_review_required": True,
+            "agent_panel_assessment_required": True,
+            "maintainer_promotion_decision_required": True,
             "edges": [edge],
         },
         Path("language_comparison_packs.json"): {
@@ -1371,7 +1402,7 @@ def network_outputs(registry: dict[str, Any]) -> dict[Path, dict[str, Any]]:
                     "candidate_count": 0,
                     "conflict_count": 0,
                     "coverage_gap_count": 0,
-                    "reviewer_role": "language reviewer",
+                    "agent_panel_role": "language-specialist agent panel",
                 }
                 for lang, sources in by_lang.items()
             ],
@@ -1495,7 +1526,8 @@ def write_validation_fixtures(output_dir: Path, registry: dict[str, Any]) -> lis
                 "provenance_id": "prov-crosswalk-probe-2026-06-23",
                 "review_status": "needs_review",
                 "candidate_only": True,
-                "human_review_required": True,
+                "agent_panel_assessment_required": True,
+                "maintainer_promotion_decision_required": True,
             }
         ],
     )
@@ -1510,7 +1542,7 @@ def write_validation_fixtures(output_dir: Path, registry: dict[str, Any]) -> lis
                 "source_ids": [open_record["source_id"], restricted_record["source_id"]],
                 "evidence_ids": ["probe-open-related-0001"],
                 "resolution_status": "needs_review",
-                "reviewer_action": "confirm source evidence before candidate promotion",
+                "agent_panel_action": "assess source evidence before the maintainer promotion decision",
                 "provenance_id": "prov-conflict-fail-fast",
             }
         ],
@@ -1546,9 +1578,10 @@ def write_validation_fixtures(output_dir: Path, registry: dict[str, Any]) -> lis
                 "coverage_ids": ["coverage-fail-fast-1"],
                 "candidate_count": 0,
                 "candidate_only": True,
-                "human_review_required": True,
-                "promotion_policy": "manual_review_only",
-                "reviewer_role": "language reviewer",
+                "agent_panel_assessment_required": True,
+                "maintainer_promotion_decision_required": True,
+                "promotion_policy": "maintainer_decision_after_agent_panel_assessment",
+                "agent_panel_role": "language-specialist agent panel",
                 "provenance_id": "prov-review-pack-fail-fast",
             }
         ],
@@ -1725,8 +1758,12 @@ def validate(output_dir: Path = DEFAULT_OUTPUT_DIR) -> list[str]:
                 errors.append("MedDRA registry record must preserve declared_language_count=27")
             if record.get("access_class") == "restricted" and not record.get("restricted_sources"):
                 errors.append(f"{record.get('track_id')} is restricted but lacks restricted_sources")
-            if not record.get("human_review_required"):
-                errors.append(f"{record.get('track_id')} must require human review")
+            if not record.get("agent_panel_assessment_required") or not record.get(
+                "maintainer_promotion_decision_required"
+            ):
+                errors.append(
+                    f"{record.get('track_id')} must require agent-panel assessment and a maintainer promotion decision"
+                )
 
         samples = load_json(output_dir / "fail_fast_samples.json")
         for key in ("open_source_registry_record", "restricted_source_governance_record", "crosswalk_edge"):
@@ -1746,9 +1783,14 @@ def validate(output_dir: Path = DEFAULT_OUTPUT_DIR) -> list[str]:
                 errors.append(
                     f"{record.get('source_id')} P3 governance must keep payload and identifier-network work blocked"
                 )
-            if not record.get("human_review_required") or not record.get("candidate_only"):
+            if (
+                not record.get("agent_panel_assessment_required")
+                or not record.get("maintainer_promotion_decision_required")
+                or not record.get("candidate_only")
+            ):
                 errors.append(
-                    f"{record.get('source_id')} P3 governance must stay candidate-only and human-review-required"
+                    f"{record.get('source_id')} P3 governance must stay candidate-only and require agent-panel "
+                    "assessment plus a maintainer source-governance decision"
                 )
         p1 = load_json(output_dir / "p1_source_governance.json")
         p1_records = cast(list[dict[str, Any]], p1.get("records", []))
@@ -1760,9 +1802,14 @@ def validate(output_dir: Path = DEFAULT_OUTPUT_DIR) -> list[str]:
                 errors.append(
                     f"{record.get('source_id')} P1 governance must keep payload and identifier-network work blocked"
                 )
-            if not record.get("human_review_required") or not record.get("candidate_only"):
+            if (
+                not record.get("agent_panel_assessment_required")
+                or not record.get("maintainer_promotion_decision_required")
+                or not record.get("candidate_only")
+            ):
                 errors.append(
-                    f"{record.get('source_id')} P1 governance must stay candidate-only and human-review-required"
+                    f"{record.get('source_id')} P1 governance must stay candidate-only and require agent-panel "
+                    "assessment plus a maintainer source-governance decision"
                 )
         errors.extend(schema_shape_errors(output_dir, schemas))
 

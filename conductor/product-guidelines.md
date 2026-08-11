@@ -18,5 +18,5 @@
 
 ## 4. Automated Fix Policy
 - Automated fixes are allowed for formatting, schema, documentation, and deterministic workflow issues inside the declared write scope.
-- Automated fixes are not allowed for license classification, source-authority decisions, or semantic translation changes without explicit human approval.
+- Automated fixes are not allowed for licence classification, source-authority decisions, or semantic translation promotion without an explicit decision by the accountable maintainer or relevant external authority.
 - Every automated fix must be followed by validation, `conductor-review`, and a separate commit when it is not part of the original task commit.

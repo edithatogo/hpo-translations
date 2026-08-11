@@ -26,14 +26,14 @@ This plan introduces DECIPHER into the project where it can improve terminology 
   - For each ready task, run the implementation workflow, validate locally, commit after completion, run conductor-review after each phase, apply authorized fixes, push after each phase, verify GitHub Actions on the pushed commit and PR head, and verify PR merge before marking complete.
 - [x] **Task 8:** Start performance, evidence, and model telemetry.
   - Record coding agent, model, task id, source version, runtime, validation result, conflict count, and unresolved blockers.
-  - Mark any LLM-assisted candidate output as candidate-only and human-review-required in the handoff pack.
+  - Mark any LLM-assisted candidate output as candidate-only and agent-panel-assessment-required and maintainer-promotion-decision-required in the handoff pack.
 
 ## Phase 0 Validation Evidence
 - Source authority: legacy `https://decipher.sanger.ac.uk/` returned `410 Gone` and points to `https://www.deciphergenomics.org/`; current EMBL-EBI endpoint responded with `DECIPHER v11.39`.
 - Access gate: current public page exposes join/login, data-file, privacy, data-sharing, and Terms of Use surfaces; ingestion remains blocked pending explicit terms, privacy, consent, API, and data-file review.
 - Payload status: no patient records, variant records, phenotype records, syndrome/gene-review data files, API responses, credentialed exports, or consent-governed content were fetched or committed.
 - Governance decision: Phase 0 is implemented as metadata-only and blocked before ingestion until source terms, consent/privacy scope, data-file/API access, redistribution, and version-pinning requirements pass review.
-- Review policy: any future DECIPHER-assisted comparison, crosswalk, or LLM-assisted output remains candidate-only and human-review-required.
+- Review policy: any future DECIPHER-assisted comparison, crosswalk, or LLM-assisted output remains candidate-only and agent-panel-assessment-required and maintainer-promotion-decision-required.
 
 ## Phase 1: Source Governance
 - [x] **Task 1:** Confirm authoritative release source, license, and redistribution constraints.
@@ -49,7 +49,7 @@ This plan introduces DECIPHER into the project where it can improve terminology 
 ## Phase 3: HPO Translation Use
 - [x] **Task 1:** Identify where DECIPHER helps: crosswalks, synonym review, multilingual label comparison, or domain validation.
 - [x] **Task 2:** Add deterministic matching rules and conflict reporting.
-- [x] **Task 3:** Ensure LLM-assisted outputs remain candidate-only and human-review-required.
+- [x] **Task 3:** Ensure LLM-assisted outputs remain candidate-only and agent-panel-assessment-required and maintainer-promotion-decision-required.
 
 ## Phase 4: Validation and Review
 - [x] **Task 1:** Validate schema, provenance, and license metadata.

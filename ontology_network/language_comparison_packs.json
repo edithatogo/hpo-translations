@@ -3,11 +3,12 @@
   "record_count": 23,
   "records": [
     {
+      "agent_panel_assessment_required": true,
       "candidate_count": 0,
       "candidate_only": true,
       "comparison_status": "not_computed_source_payloads_excluded",
-      "human_review_required": true,
       "language": "ar",
+      "maintainer_promotion_decision_required": true,
       "source_ids": [
         "icd10",
         "icd11",
@@ -16,11 +17,12 @@
       ]
     },
     {
+      "agent_panel_assessment_required": true,
       "candidate_count": 0,
       "candidate_only": true,
       "comparison_status": "not_computed_source_payloads_excluded",
-      "human_review_required": true,
       "language": "cs",
+      "maintainer_promotion_decision_required": true,
       "source_ids": [
         "icd11",
         "meddra",
@@ -29,21 +31,23 @@
       ]
     },
     {
+      "agent_panel_assessment_required": true,
       "candidate_count": 0,
       "candidate_only": true,
       "comparison_status": "not_computed_source_payloads_excluded",
-      "human_review_required": true,
       "language": "da",
+      "maintainer_promotion_decision_required": true,
       "source_ids": [
         "snomed_ct"
       ]
     },
     {
+      "agent_panel_assessment_required": true,
       "candidate_count": 0,
       "candidate_only": true,
       "comparison_status": "not_computed_source_payloads_excluded",
-      "human_review_required": true,
       "language": "de",
+      "maintainer_promotion_decision_required": true,
       "source_ids": [
         "loinc",
         "meddra",
@@ -54,11 +58,12 @@
       ]
     },
     {
+      "agent_panel_assessment_required": true,
       "candidate_count": 0,
       "candidate_only": true,
       "comparison_status": "not_computed_source_payloads_excluded",
-      "human_review_required": true,
       "language": "en",
+      "maintainer_promotion_decision_required": true,
       "source_ids": [
         "decipher",
         "do",
@@ -80,11 +85,12 @@
       ]
     },
     {
+      "agent_panel_assessment_required": true,
       "candidate_count": 0,
       "candidate_only": true,
       "comparison_status": "not_computed_source_payloads_excluded",
-      "human_review_required": true,
       "language": "es",
+      "maintainer_promotion_decision_required": true,
       "source_ids": [
         "icd10",
         "icd11",
@@ -97,32 +103,35 @@
       ]
     },
     {
+      "agent_panel_assessment_required": true,
       "candidate_count": 0,
       "candidate_only": true,
       "comparison_status": "not_computed_source_payloads_excluded",
-      "human_review_required": true,
       "language": "et",
+      "maintainer_promotion_decision_required": true,
       "source_ids": [
         "snomed_ct"
       ]
     },
     {
+      "agent_panel_assessment_required": true,
       "candidate_count": 0,
       "candidate_only": true,
       "comparison_status": "not_computed_source_payloads_excluded",
-      "human_review_required": true,
       "language": "fi",
+      "maintainer_promotion_decision_required": true,
       "source_ids": [
         "mesh",
         "snomed_ct"
       ]
     },
     {
+      "agent_panel_assessment_required": true,
       "candidate_count": 0,
       "candidate_only": true,
       "comparison_status": "not_computed_source_payloads_excluded",
-      "human_review_required": true,
       "language": "fr",
+      "maintainer_promotion_decision_required": true,
       "source_ids": [
         "icd10",
         "icd11",
@@ -135,21 +144,23 @@
       ]
     },
     {
+      "agent_panel_assessment_required": true,
       "candidate_count": 0,
       "candidate_only": true,
       "comparison_status": "not_computed_source_payloads_excluded",
-      "human_review_required": true,
       "language": "hu",
+      "maintainer_promotion_decision_required": true,
       "source_ids": [
         "meddra"
       ]
     },
     {
+      "agent_panel_assessment_required": true,
       "candidate_count": 0,
       "candidate_only": true,
       "comparison_status": "not_computed_source_payloads_excluded",
-      "human_review_required": true,
       "language": "it",
+      "maintainer_promotion_decision_required": true,
       "source_ids": [
         "loinc",
         "meddra",
@@ -159,11 +170,12 @@
       ]
     },
     {
+      "agent_panel_assessment_required": true,
       "candidate_count": 0,
       "candidate_only": true,
       "comparison_status": "not_computed_source_payloads_excluded",
-      "human_review_required": true,
       "language": "ja",
+      "maintainer_promotion_decision_required": true,
       "source_ids": [
         "meddra",
         "mesh",
@@ -171,22 +183,24 @@
       ]
     },
     {
+      "agent_panel_assessment_required": true,
       "candidate_count": 0,
       "candidate_only": true,
       "comparison_status": "not_computed_source_payloads_excluded",
-      "human_review_required": true,
       "language": "ko",
+      "maintainer_promotion_decision_required": true,
       "source_ids": [
         "loinc",
         "meddra"
       ]
     },
     {
+      "agent_panel_assessment_required": true,
       "candidate_count": 0,
       "candidate_only": true,
       "comparison_status": "not_computed_source_payloads_excluded",
-      "human_review_required": true,
       "language": "nl",
+      "maintainer_promotion_decision_required": true,
       "source_ids": [
         "loinc",
         "meddra",
@@ -195,21 +209,23 @@
       ]
     },
     {
+      "agent_panel_assessment_required": true,
       "candidate_count": 0,
       "candidate_only": true,
       "comparison_status": "not_computed_source_payloads_excluded",
-      "human_review_required": true,
       "language": "no",
+      "maintainer_promotion_decision_required": true,
       "source_ids": [
         "snomed_ct"
       ]
     },
     {
+      "agent_panel_assessment_required": true,
       "candidate_count": 0,
       "candidate_only": true,
       "comparison_status": "not_computed_source_payloads_excluded",
-      "human_review_required": true,
       "language": "pl",
+      "maintainer_promotion_decision_required": true,
       "source_ids": [
         "meddra",
         "mesh",
@@ -217,11 +233,12 @@
       ]
     },
     {
+      "agent_panel_assessment_required": true,
       "candidate_count": 0,
       "candidate_only": true,
       "comparison_status": "not_computed_source_payloads_excluded",
-      "human_review_required": true,
       "language": "pt",
+      "maintainer_promotion_decision_required": true,
       "source_ids": [
         "icd11",
         "loinc",
@@ -232,11 +249,12 @@
       ]
     },
     {
+      "agent_panel_assessment_required": true,
       "candidate_count": 0,
       "candidate_only": true,
       "comparison_status": "not_computed_source_payloads_excluded",
-      "human_review_required": true,
       "language": "ru",
+      "maintainer_promotion_decision_required": true,
       "source_ids": [
         "icd10",
         "icd11",
@@ -247,22 +265,24 @@
       ]
     },
     {
+      "agent_panel_assessment_required": true,
       "candidate_count": 0,
       "candidate_only": true,
       "comparison_status": "not_computed_source_payloads_excluded",
-      "human_review_required": true,
       "language": "sk",
+      "maintainer_promotion_decision_required": true,
       "source_ids": [
         "icd11",
         "snomed_ct"
       ]
     },
     {
+      "agent_panel_assessment_required": true,
       "candidate_count": 0,
       "candidate_only": true,
       "comparison_status": "not_computed_source_payloads_excluded",
-      "human_review_required": true,
       "language": "sv",
+      "maintainer_promotion_decision_required": true,
       "source_ids": [
         "icd11",
         "meddra",
@@ -270,11 +290,12 @@
       ]
     },
     {
+      "agent_panel_assessment_required": true,
       "candidate_count": 0,
       "candidate_only": true,
       "comparison_status": "not_computed_source_payloads_excluded",
-      "human_review_required": true,
       "language": "tr",
+      "maintainer_promotion_decision_required": true,
       "source_ids": [
         "icd11",
         "loinc",
@@ -282,21 +303,23 @@
       ]
     },
     {
+      "agent_panel_assessment_required": true,
       "candidate_count": 0,
       "candidate_only": true,
       "comparison_status": "not_computed_source_payloads_excluded",
-      "human_review_required": true,
       "language": "uz",
+      "maintainer_promotion_decision_required": true,
       "source_ids": [
         "icd11"
       ]
     },
     {
+      "agent_panel_assessment_required": true,
       "candidate_count": 0,
       "candidate_only": true,
       "comparison_status": "not_computed_source_payloads_excluded",
-      "human_review_required": true,
       "language": "zh",
+      "maintainer_promotion_decision_required": true,
       "source_ids": [
         "icd10",
         "icd11",

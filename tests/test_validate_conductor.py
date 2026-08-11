@@ -56,7 +56,7 @@ def write_track(
             "success_criteria": ["validator reports expected result"],
         },
         "artifact_contract": {
-            "required_before_phase_1_completion": ["human_report"],
+            "required_before_phase_1_completion": ["agent_panel_report"],
             "conditional_outputs": ["json_report"],
             "excluded_until_policy_allows": ["raw_payload"],
         },
@@ -72,7 +72,7 @@ def write_track(
             "record_required": True,
             "fields": ["agent", "model"],
         },
-        "human_review_handoff": [],
+        "review_handoff": [],
     }
     if metadata_updates:
         metadata.update(metadata_updates)

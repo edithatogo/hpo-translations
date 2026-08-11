@@ -125,8 +125,12 @@ def validate_track(track_dir: Path) -> list[str]:
         errors.append("Phase 4 does not record the metadata-only no-op import result")
     if phase4.get("promotion_allowed") is not False:
         errors.append("Phase 4 does not explicitly prohibit promotion")
-    if phase4.get("review_required") is not True:
-        errors.append("Phase 4 does not require human review")
+    if phase4.get("agent_panel_assessment_required") is not True:
+        errors.append("Phase 4 does not require agent-panel assessment")
+    if phase4.get("maintainer_promotion_decision_required") is not True:
+        errors.append("Phase 4 does not require an accountable maintainer promotion decision")
+    if "review_required" in phase4:
+        errors.append("Phase 4 uses the retired ambiguous review gate")
     excluded = set(phase4.get("excluded_payloads", []))
     if not {"source_labels", "source_synonyms", "source_definitions", "full_responses"}.issubset(excluded):
         errors.append("Phase 4 excluded-payload list is incomplete")

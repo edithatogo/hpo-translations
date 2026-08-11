@@ -60,7 +60,7 @@
     "record_required": false,
     "fields": []
   },
-  "human_review_handoff": [],
+  "review_handoff": [],
   "legacy_review_archive": {
     "reviewed_at": "2026-06-25T00:00:00Z",
     "review_result": "codex_legacy_review_completed",

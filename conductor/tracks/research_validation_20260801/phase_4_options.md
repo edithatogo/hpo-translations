@@ -117,8 +117,10 @@ language substitution is allowed.
 The capacity envelope now includes nine primary agents and three independent
 adjudicators. Training/calibration time is budgeted for all 12 roles without
 changing the 30-hour Stage 1 release cap or 120-hour total ceiling. Agent
-identities, qualifications, conflicts, consent, and capacity remain G2 evidence
-and must not be committed as restricted execution metadata.
+model identities, pinned prompts, role qualifications, conflict checks,
+protocol attestations, and capacity remain G2 execution evidence and must not be
+committed when they contain restricted execution metadata. Agents do not grant
+consent or external authority.
 
 The next-step evidence requests are specified in
 `research_validation/phase_4_gate_docket.json`. Five G1 packets cover
@@ -180,7 +182,7 @@ The ordered resolution waves are:
    bounded request drafts are prepared; select the sponsor route, authorize
    dispatch, then record the three separate accountable decisions;
 3. authorize agent execution and record the pinned agent/adjudicator
-   capacity, conflict, isolation, and independence evidence in the local-only
+   capacity, conflict-check, protocol-attestation, isolation, and independence evidence in the local-only
    store;
 4. defer PRO-CTCAE, DeCS, and any third language outside the selected pilot; and
 5. reconcile evidence into the canonical approval manifest and execute one
@@ -191,7 +193,7 @@ approved language. If no language, agent protocol pins, or ethics/privacy pathwa
 closes, retain Option D. An advisory subagent panel may review public evidence,
 identify conflicts, draft scoped options, and check receipt completeness. It
 cannot accept licence terms, grant language or community authority, issue an
-ethics/privacy determination, consent for agents, authorize payload access,
+ethics/privacy determination, authorize agent execution or payload access,
 or promote translations.
 
 ## Gate sequence
