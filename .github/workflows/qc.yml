@@ -85,6 +85,9 @@ jobs:
       - name: Validate ontology mapping expansion catalog
         run: pixi run validate-mapping-expansion
 
+      - name: Validate open mapping rights matrix
+        run: pixi run validate-open-mapping-rights
+
       - name: Validate terminology metadata inventories
         run: pixi run validate-terminology-inventories
 

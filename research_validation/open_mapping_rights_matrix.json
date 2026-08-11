@@ -1,0 +1,104 @@
+{
+  "schema_version": "open-mapping-rights-matrix-v1",
+  "generated_at": "2026-08-12T00:00:00Z",
+  "scope": "repository_and_file_metadata_only",
+  "payload_files_retrieved": 0,
+  "mapping_rows_committed": 0,
+  "families": [
+    {
+      "family_id": "upheno-components",
+      "repository_url": "https://github.com/obophenotype/upheno",
+      "commit": "be7de68aa093886f8047ab3226a83780725381c0",
+      "repository_license_spdx": "CC0-1.0",
+      "repository_license_evidence_url": "https://github.com/obophenotype/upheno/blob/be7de68aa093886f8047ab3226a83780725381c0/LICENSE",
+      "files": [
+        {"path":"src/mapping/apo-go.sssom.tsv","role":"mapping_source","declared_license":"CC0-1.0 repository licence","lineage_group":"upheno-source-components","generates_or_duplicates":[],"target_namespaces":["APO","GO"],"target_source_review_required":true,"restricted_target_included":false,"payload_included":false,"metadata_included":true},
+        {"path":"src/mapping/apo-oba.sssom.tsv","role":"mapping_source","declared_license":"CC0-1.0 repository licence","lineage_group":"upheno-source-components","generates_or_duplicates":[],"target_namespaces":["APO","OBA"],"target_source_review_required":true,"restricted_target_included":false,"payload_included":false,"metadata_included":true},
+        {"path":"src/mapping/apo-pato.sssom.tsv","role":"mapping_source","declared_license":"CC0-1.0 repository licence","lineage_group":"upheno-source-components","generates_or_duplicates":[],"target_namespaces":["APO","PATO"],"target_source_review_required":true,"restricted_target_included":false,"payload_included":false,"metadata_included":true},
+        {"path":"src/mapping/nbo-go.sssom.tsv","role":"mapping_source","declared_license":"CC0-1.0 repository licence","lineage_group":"upheno-source-components","generates_or_duplicates":[],"target_namespaces":["NBO","GO"],"target_source_review_required":true,"restricted_target_included":false,"payload_included":false,"metadata_included":true},
+        {"path":"src/mapping/uberon.sssom.tsv","role":"mapping_source","declared_license":"CC0-1.0 repository licence; target terms separate","lineage_group":"upheno-source-components","generates_or_duplicates":[],"target_namespaces":["UPHENO","UBERON"],"target_source_review_required":true,"restricted_target_included":false,"payload_included":false,"metadata_included":true},
+        {"path":"src/mapping/upheno-species-independent-manual.sssom.tsv","role":"mapping_source","declared_license":"CC0-1.0 repository licence","lineage_group":"upheno-manual-source","generates_or_duplicates":[],"target_namespaces":["UPHENO","HP","MP","ZP","WBPhenotype"],"target_source_review_required":true,"restricted_target_included":false,"payload_included":false,"metadata_included":true},
+        {"path":"src/mapping/upheno-cross-species.sssom.tsv","role":"generated_output","declared_license":"CC0-1.0 repository licence; constituent provenance retained","lineage_group":"upheno-generated-cross-species","generates_or_duplicates":["src/ontology/components/cross-species-mapping.owl"],"target_namespaces":["UPHENO","HP","MP","ZP","WBPhenotype"],"target_source_review_required":true,"restricted_target_included":false,"payload_included":false,"metadata_included":true},
+        {"path":"src/mapping/upheno-lexical.sssom.tsv","role":"generated_output","declared_license":"CC0-1.0 repository licence; lexical candidates are not curated mappings","lineage_group":"upheno-generated-lexical","generates_or_duplicates":["src/scripts/lexical_mapping.py and constituent labels"],"target_namespaces":["UPHENO","constituent phenotype ontologies"],"target_source_review_required":true,"restricted_target_included":false,"payload_included":false,"metadata_included":true},
+        {"path":"src/mapping/upheno-oba.sssom.tsv","role":"generated_output","declared_license":"CC0-1.0 repository licence; OBA target terms separate","lineage_group":"upheno-generated-oba","generates_or_duplicates":["OBA and uPheno build inputs"],"target_namespaces":["UPHENO","OBA"],"target_source_review_required":true,"restricted_target_included":false,"payload_included":false,"metadata_included":true},
+        {"path":"src/mapping/upheno-species-independent-eq.sssom.tsv","role":"generated_output","declared_license":"CC0-1.0 repository licence; constituent provenance retained","lineage_group":"upheno-generated-species-independent","generates_or_duplicates":["src/mapping/upheno-species-independent.sssom.tsv"],"target_namespaces":["UPHENO","PATO","UBERON","GO"],"target_source_review_required":true,"restricted_target_included":false,"payload_included":false,"metadata_included":true},
+        {"path":"src/mapping/upheno-species-independent.sssom.tsv","role":"generated_output","declared_license":"CC0-1.0 repository licence; manual and generated inputs must be deduplicated","lineage_group":"upheno-generated-species-independent","generates_or_duplicates":["src/mapping/upheno-species-independent-manual.sssom.tsv"],"target_namespaces":["UPHENO","HP","MP","ZP","WBPhenotype"],"target_source_review_required":true,"restricted_target_included":false,"payload_included":false,"metadata_included":true}
+      ]
+    },
+    {
+      "family_id": "pato-qudt-and-imports",
+      "repository_url": "https://github.com/pato-ontology/pato",
+      "commit": "83ec8697a02e3ef07beb9f5ea0256670ab1a4b15",
+      "repository_license_spdx": "BSD-3-Clause",
+      "repository_license_evidence_url": "https://github.com/pato-ontology/pato/blob/83ec8697a02e3ef07beb9f5ea0256670ab1a4b15/LICENSE",
+      "files": [
+        {"path":"src/mappings/pato-to-qudt-quantitykind.sssom.tsv","role":"mapping_source","declared_license":"BSD-3-Clause repository licence; mapping-level declaration not separately verified","lineage_group":"pato-qudt-source-mapping","generates_or_duplicates":[],"target_namespaces":["PATO","QUDTQK"],"target_source_review_required":true,"restricted_target_included":false,"payload_included":false,"metadata_included":true},
+        {"path":"src/ontology/import/chebi_import.owl","role":"import_snapshot","declared_license":null,"lineage_group":"pato-import-chebi","generates_or_duplicates":["import/chebi_import.owl"],"target_namespaces":["CHEBI"],"target_source_review_required":true,"restricted_target_included":false,"payload_included":false,"metadata_included":true},
+        {"path":"src/ontology/import/go_import.owl","role":"import_snapshot","declared_license":null,"lineage_group":"pato-import-go","generates_or_duplicates":["import/go_import.owl"],"target_namespaces":["GO"],"target_source_review_required":true,"restricted_target_included":false,"payload_included":false,"metadata_included":true},
+        {"path":"src/ontology/import/pco_import.owl","role":"import_snapshot","declared_license":null,"lineage_group":"pato-import-pco","generates_or_duplicates":["import/pco_import.owl"],"target_namespaces":["PCO"],"target_source_review_required":true,"restricted_target_included":false,"payload_included":false,"metadata_included":true},
+        {"path":"src/ontology/import/ro_import.owl","role":"import_snapshot","declared_license":null,"lineage_group":"pato-import-ro","generates_or_duplicates":["import/ro_import.owl"],"target_namespaces":["RO"],"target_source_review_required":true,"restricted_target_included":false,"payload_included":false,"metadata_included":true},
+        {"path":"src/ontology/import/uberon_import.owl","role":"import_snapshot","declared_license":null,"lineage_group":"pato-import-uberon","generates_or_duplicates":["import/uberon_import.owl"],"target_namespaces":["UBERON"],"target_source_review_required":true,"restricted_target_included":false,"payload_included":false,"metadata_included":true}
+      ]
+    },
+    {
+      "family_id": "mp-hp-mapping-files",
+      "repository_url": "https://github.com/mgijax/mammalian-phenotype-ontology",
+      "commit": "1d60761bd8a9d7a4fd38ccb2b9419908abba1619",
+      "repository_license_spdx": "CC-BY-4.0",
+      "repository_license_evidence_url": "https://github.com/mgijax/mammalian-phenotype-ontology/blob/1d60761bd8a9d7a4fd38ccb2b9419908abba1619/LICENSE",
+      "files": [
+        {"path":"mappings/MP_HP_upper_level_SSSOM.tsv","role":"mapping_source","declared_license":"CC-BY-4.0 repository licence; file-level declaration not separately verified","lineage_group":"mp-hp-upper-level","generates_or_duplicates":["MHMI manual collection may overlap; deduplicate by subject predicate object and provenance"],"target_namespaces":["MP","HP"],"target_source_review_required":true,"restricted_target_included":false,"payload_included":false,"metadata_included":true},
+        {"path":"mappings/MGI_COVIDSymptom_MP_HPO_3way.tsv","role":"mapping_source","declared_license":"CC-BY-4.0 repository licence; file-level declaration not separately verified","lineage_group":"mgi-covid-symptom-three-way","generates_or_duplicates":["MP-HP pairs may overlap upper-level or MHMI manual mappings"],"target_namespaces":["COVID symptom terms","MP","HP"],"target_source_review_required":true,"restricted_target_included":false,"payload_included":false,"metadata_included":true}
+      ]
+    },
+    {
+      "family_id": "mhmi-manual-mp-hp",
+      "repository_url": "https://github.com/mapping-commons/mh_mapping_initiative",
+      "commit": "1ed989cc6d367890f16ce6ee43d4d257d6615137",
+      "repository_license_spdx": null,
+      "repository_license_evidence_url": "https://github.com/mapping-commons/mh_mapping_initiative/blob/1ed989cc6d367890f16ce6ee43d4d257d6615137/registry.yml",
+      "files": [
+        {"path":"mappings/mp_hp_eye_impc.sssom.tsv","role":"mapping_source","declared_license":"CC0-1.0","lineage_group":"mhmi-curation-collection","generates_or_duplicates":[],"target_namespaces":["MP","HP"],"target_source_review_required":true,"restricted_target_included":false,"payload_included":false,"metadata_included":true},
+        {"path":"mappings/mp_hp_hwt_impc.sssom.tsv","role":"mapping_source","declared_license":"CC0-1.0","lineage_group":"mhmi-curation-collection","generates_or_duplicates":[],"target_namespaces":["MP","HP"],"target_source_review_required":true,"restricted_target_included":false,"payload_included":false,"metadata_included":true},
+        {"path":"mappings/mp_hp_mgi_all.sssom.tsv","role":"mapping_source","declared_license":"CC-BY-4.0","lineage_group":"mhmi-curation-collection","generates_or_duplicates":["MP upper-level mapping overlap review required"],"target_namespaces":["MP","HP"],"target_source_review_required":true,"restricted_target_included":false,"payload_included":false,"metadata_included":true},
+        {"path":"mappings/mp_hp_owt_impc.sssom.tsv","role":"mapping_source","declared_license":"CC0-1.0","lineage_group":"mhmi-curation-collection","generates_or_duplicates":[],"target_namespaces":["MP","HP"],"target_source_review_required":true,"restricted_target_included":false,"payload_included":false,"metadata_included":true},
+        {"path":"mappings/mp_hp_pat_impc.sssom.tsv","role":"mapping_source","declared_license":"CC0-1.0","lineage_group":"mhmi-curation-collection","generates_or_duplicates":[],"target_namespaces":["MP","HP"],"target_source_review_required":true,"restricted_target_included":false,"payload_included":false,"metadata_included":true},
+        {"path":"mappings/mp_hp_pistoia.sssom.tsv","role":"mapping_source","declared_license":"CC0-1.0","lineage_group":"mhmi-curation-collection","generates_or_duplicates":[],"target_namespaces":["MP","HP"],"target_source_review_required":true,"restricted_target_included":false,"payload_included":false,"metadata_included":true},
+        {"path":"mappings/mp_hp_xry_impc.sssom.tsv","role":"mapping_source","declared_license":"CC0-1.0","lineage_group":"mhmi-curation-collection","generates_or_duplicates":[],"target_namespaces":["MP","HP"],"target_source_review_required":true,"restricted_target_included":false,"payload_included":false,"metadata_included":true}
+      ]
+    },
+    {
+      "family_id": "uberon-cl-bridge-families",
+      "repository_url": "https://github.com/obophenotype/uberon",
+      "commit": "802a2e5e8db187af5a8cf6e007fa10e779e37e06",
+      "repository_license_spdx": null,
+      "repository_license_evidence_url": "https://github.com/obophenotype/uberon/blob/802a2e5e8db187af5a8cf6e007fa10e779e37e06/LICENSE",
+      "files": [
+        {"path":"src/ontology/bridge/uberon-bridge-to-fma.owl","role":"generated_output","declared_license":"repository SPDX unresolved; project registry reports CC-BY-3.0","lineage_group":"uberon-generated-bridge-family","generates_or_duplicates":["bridge rules and imported FMA terms"],"target_namespaces":["UBERON","FMA"],"target_source_review_required":true,"restricted_target_included":false,"payload_included":false,"metadata_included":true},
+        {"path":"src/ontology/bridge/uberon-bridge-to-ncit.owl","role":"generated_output","declared_license":"repository SPDX unresolved; NCIt atoms require separate review","lineage_group":"uberon-generated-bridge-family","generates_or_duplicates":["bridge rules and imported NCIt terms"],"target_namespaces":["UBERON","NCIT"],"target_source_review_required":true,"restricted_target_included":false,"payload_included":false,"metadata_included":true},
+        {"path":"src/ontology/bridge/uberon-bridge-to-sctid.owl","role":"generated_output","declared_license":"repository SPDX unresolved; SNOMED CT content remains restricted","lineage_group":"uberon-generated-bridge-family","generates_or_duplicates":["bridge rules and licensed SNOMED CT target content"],"target_namespaces":["UBERON","SCTID"],"target_source_review_required":true,"restricted_target_included":false,"payload_included":false,"metadata_included":true},
+        {"path":"src/ontology/bridge/cl-bridge-to-fma.owl","role":"generated_output","declared_license":"repository SPDX unresolved; FMA target terms require review","lineage_group":"uberon-generated-cl-bridge-family","generates_or_duplicates":["CL and Uberon bridge rules plus FMA imports"],"target_namespaces":["CL","FMA"],"target_source_review_required":true,"restricted_target_included":false,"payload_included":false,"metadata_included":true},
+        {"path":"src/ontology/bridge/cl-bridge-to-ncit.owl","role":"generated_output","declared_license":"repository SPDX unresolved; NCIt atoms require separate review","lineage_group":"uberon-generated-cl-bridge-family","generates_or_duplicates":["CL and Uberon bridge rules plus NCIt imports"],"target_namespaces":["CL","NCIT"],"target_source_review_required":true,"restricted_target_included":false,"payload_included":false,"metadata_included":true},
+        {"path":"src/ontology/bridge/cl-bridge-to-sctid.owl","role":"generated_output","declared_license":"repository SPDX unresolved; SNOMED CT content remains restricted","lineage_group":"uberon-generated-cl-bridge-family","generates_or_duplicates":["CL and Uberon bridge rules plus licensed SNOMED CT target content"],"target_namespaces":["CL","SCTID"],"target_source_review_required":true,"restricted_target_included":false,"payload_included":false,"metadata_included":true}
+      ]
+    },
+    {
+      "family_id": "cell-ontology-uberon-bridge",
+      "repository_url": "https://github.com/obophenotype/cell-ontology",
+      "commit": "8e7c8d7d24b59691cb3c7bbe059cbc4b6ec3d1ab",
+      "repository_license_spdx": "CC-BY-4.0",
+      "repository_license_evidence_url": "https://github.com/obophenotype/cell-ontology/blob/8e7c8d7d24b59691cb3c7bbe059cbc4b6ec3d1ab/LICENSE",
+      "files": [
+        {"path":"src/ontology/bridge/cl-bridge-to-uberon.owl","role":"generated_output","declared_license":"CC-BY-4.0 repository licence; Uberon target rights separate","lineage_group":"cell-ontology-generated-uberon-bridge","generates_or_duplicates":["src/ontology/components/mappings.owl"],"target_namespaces":["CL","UBERON"],"target_source_review_required":true,"restricted_target_included":false,"payload_included":false,"metadata_included":true},
+        {"path":"src/mappings/fbbt.sssom.tsv","role":"mapping_source","declared_license":"CC-BY-4.0 repository licence; FBbt target rights separate","lineage_group":"cell-ontology-source-mappings","generates_or_duplicates":["src/ontology/components/mappings.owl"],"target_namespaces":["CL","FBbt"],"target_source_review_required":true,"restricted_target_included":false,"payload_included":false,"metadata_included":true},
+        {"path":"src/mappings/zfa.sssom.tsv","role":"mapping_source","declared_license":"CC-BY-4.0 repository licence; ZFA target rights separate","lineage_group":"cell-ontology-source-mappings","generates_or_duplicates":["src/ontology/components/mappings.owl"],"target_namespaces":["CL","ZFA"],"target_source_review_required":true,"restricted_target_included":false,"payload_included":false,"metadata_included":true}
+      ]
+    }
+  ],
+  "admission_boundary": {
+    "repository_license_does_not_override_target_rights": true,
+    "generated_outputs_do_not_create_independent_lineage": true,
+    "restricted_target_payloads_excluded": true,
+    "metadata_does_not_authorize_mapping_payload_retrieval": true
+  }
+}
