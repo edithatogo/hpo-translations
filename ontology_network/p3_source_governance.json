@@ -5,6 +5,7 @@
   "records": [
     {
       "access_class": "open",
+      "agent_panel_assessment_required": true,
       "authority_status": "non_github_authority_required",
       "blocked_downstream_outputs": [
         "ontology_network_20260623:phase_3_identifier_network",
@@ -21,7 +22,6 @@
         "review pack structure without restricted labels"
       ],
       "go_no_go": "governance_only_terms_review_required",
-      "human_review_required": true,
       "identifier_network_allowed": false,
       "implementation_scope": "anatomy_identifier_governance_only",
       "known_blockers": [
@@ -35,6 +35,7 @@
         "licensed payloads",
         "raw downloads"
       ],
+      "maintainer_promotion_decision_required": true,
       "next_allowed_action": "complete public ontology terms review before any source payload or label extraction",
       "non_translation_outputs_allowed": false,
       "ontology_name": "FMA",
@@ -49,6 +50,7 @@
     },
     {
       "access_class": "investigation-only",
+      "agent_panel_assessment_required": true,
       "authority_status": "unknown_authority_and_access",
       "blocked_downstream_outputs": [
         "ontology_network_20260623:phase_3_identifier_network",
@@ -65,7 +67,6 @@
         "review pack structure without restricted labels"
       ],
       "go_no_go": "no_go_authority_unknown",
-      "human_review_required": true,
       "identifier_network_allowed": false,
       "implementation_scope": "documentation_only_investigation",
       "known_blockers": [
@@ -79,6 +80,7 @@
         "raw downloads",
         "source-specific extraction outputs remain local-only until access and redistribution terms pass review"
       ],
+      "maintainer_promotion_decision_required": true,
       "next_allowed_action": "identify authoritative LDDB source, maintenance status, access path, and redistribution terms",
       "non_translation_outputs_allowed": false,
       "ontology_name": "LDDB",

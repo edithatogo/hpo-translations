@@ -90,7 +90,8 @@ class OntologyNetworkTests(unittest.TestCase):
                 {
                     "status": "metadata_only_sample_validated_payload_blocked",
                     "promotion_allowed": False,
-                    "review_required": True,
+                    "agent_panel_assessment_required": True,
+                    "maintainer_promotion_decision_required": True,
                 }
             ),
             encoding="utf-8",
@@ -139,7 +140,8 @@ class OntologyNetworkTests(unittest.TestCase):
                 {
                     "status": "metadata_only_sample_validated_payload_blocked",
                     "promotion_allowed": False,
-                    "review_required": True,
+                    "agent_panel_assessment_required": True,
+                    "maintainer_promotion_decision_required": True,
                 }
             ),
             encoding="utf-8",
@@ -254,7 +256,8 @@ class OntologyNetworkTests(unittest.TestCase):
             self.assertFalse(record["identifier_network_allowed"])
             self.assertFalse(record["non_translation_outputs_allowed"])
             self.assertTrue(record["candidate_only"])
-            self.assertTrue(record["human_review_required"])
+            self.assertTrue(record["agent_panel_assessment_required"])
+            self.assertTrue(record["maintainer_promotion_decision_required"])
 
         p1 = load_json(output_dir / "p1_source_governance.json")
         p1_records = {record["source_id"]: record for record in p1["records"]}
@@ -266,8 +269,12 @@ class OntologyNetworkTests(unittest.TestCase):
         self.assertIsNotNone(samples["restricted_source_governance_record"])
         self.assertNotEqual(samples["review_pack_record"]["language"], "example")
         self.assertTrue(samples["review_pack_record"]["candidate_only"])
-        self.assertTrue(samples["review_pack_record"]["human_review_required"])
-        self.assertTrue(samples["crosswalk_edge"]["human_review_required"])
+        self.assertTrue(samples["review_pack_record"]["agent_panel_assessment_required"])
+        self.assertTrue(samples["review_pack_record"]["maintainer_promotion_decision_required"])
+        self.assertTrue(samples["crosswalk_edge"]["agent_panel_assessment_required"])
+        self.assertTrue(samples["crosswalk_edge"]["maintainer_promotion_decision_required"])
+        self.assertTrue(samples["conflict_report_row"]["agent_panel_assessment_required"])
+        self.assertTrue(samples["conflict_report_row"]["maintainer_promotion_decision_required"])
         self.assertIn(
             samples["open_source_registry_record"]["source_id"],
             samples["crosswalk_edge"]["external_source_id"],
@@ -282,8 +289,9 @@ class OntologyNetworkTests(unittest.TestCase):
         self.assertEqual(fixture_conflict[0]["conflict_type"], "source_disagreement")
         self.assertGreaterEqual(len(set(fixture_conflict[0]["source_ids"])), 2)
         self.assertEqual(fixture_review_pack[0]["language"], "en")
-        self.assertEqual(fixture_review_pack[0]["promotion_policy"], "manual_review_only")
-        self.assertTrue(fixture_review_pack[0]["human_review_required"])
+        self.assertEqual(fixture_review_pack[0]["promotion_policy"], "maintainer_decision_after_agent_panel_assessment")
+        self.assertTrue(fixture_review_pack[0]["agent_panel_assessment_required"])
+        self.assertTrue(fixture_review_pack[0]["maintainer_promotion_decision_required"])
 
 
 if __name__ == "__main__":

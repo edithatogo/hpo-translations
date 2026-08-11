@@ -4,9 +4,10 @@
   "records": [
     {
       "access_class": "API-only",
+      "agent_panel_assessment_required": true,
       "credential_required": false,
-      "human_review_required": true,
       "local_only_required": true,
+      "maintainer_promotion_decision_required": true,
       "ontology_name": "ICD-11",
       "payload_commit_allowed": false,
       "pr_safe": true,
@@ -19,9 +20,10 @@
     },
     {
       "access_class": "investigation-only",
+      "agent_panel_assessment_required": true,
       "credential_required": false,
-      "human_review_required": true,
       "local_only_required": true,
+      "maintainer_promotion_decision_required": true,
       "ontology_name": "LDDB",
       "payload_commit_allowed": false,
       "pr_safe": true,
@@ -34,9 +36,10 @@
     },
     {
       "access_class": "open",
+      "agent_panel_assessment_required": true,
       "credential_required": false,
-      "human_review_required": true,
       "local_only_required": true,
+      "maintainer_promotion_decision_required": true,
       "ontology_name": "Disease Ontology",
       "payload_commit_allowed": false,
       "pr_safe": true,
@@ -49,9 +52,10 @@
     },
     {
       "access_class": "restricted",
+      "agent_panel_assessment_required": true,
       "credential_required": true,
-      "human_review_required": true,
       "local_only_required": true,
+      "maintainer_promotion_decision_required": true,
       "ontology_name": "DECIPHER",
       "payload_commit_allowed": false,
       "pr_safe": true,

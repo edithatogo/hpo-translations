@@ -43,5 +43,6 @@
     "owner"
   ],
   "title": "artifact_schema_index_record",
-  "type": "object"
+  "type": "object",
+  "x-schema-version": "2.0.0"
 }

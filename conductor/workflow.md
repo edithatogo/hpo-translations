@@ -12,7 +12,7 @@
 - Source access must be classified before ingestion as open, restricted, API-only, local-only, documentation-only, or investigation-only.
 - License, credential, source authority, supported-language, and version-pinning status must be recorded before any batch extraction.
 - Restricted payloads, credentials, private data, licensed release archives, and full API responses stay outside committed artifacts unless the source terms explicitly allow redistribution.
-- Local-only artifacts must be recorded in metadata or a manifest so reviewers can reproduce the workflow without accidentally committing restricted data.
+- Local-only artifacts must be recorded in metadata or a manifest so the reproducibility auditor can reproduce the workflow without accidentally committing restricted data.
 
 ## 3. Fail-Fast Probe and Artifact Contract
 - Every source or automation track must run a fail-fast probe before bulk work.
@@ -41,7 +41,7 @@
 ## 6. Track Completion, Pull Request, and Merge Verification
 - A track is complete only after all phases are complete, `conductor-review` has passed at track scope, all required local checks pass, and the artifact contract is satisfied.
 - Open or update a pull request for every track branch before requesting merge.
-- The pull request must include implementation scope, dependencies, validation evidence, review status, CI status, known limitations, restricted-payload handling, and reviewer handoff notes.
+- The pull request must include implementation scope, dependencies, validation evidence, agent-panel assessment status, CI status, known limitations, restricted-payload handling, and maintainer handoff notes.
 - Check that GitHub Actions pass on the PR head commit before merge.
 - Verify the PR is merged upstream before marking the track complete in `conductor/tracks.md` or metadata.
 - Merge verification must confirm PR state is `MERGED`, record the merge commit, and verify the merge commit is reachable from the target branch.
@@ -61,8 +61,8 @@
 - Scheduled audits should continue to check all language profiles, ontology source metadata, workflow metadata, and restricted-payload patterns so schema or dependency changes do not silently break the project.
 
 ## 9. Advanced Outputs and Review Intelligence
-- Ontology work should produce more than translation evidence: identifier networks, coverage maps, conflict reports, semantic drift alerts, provenance graphs, source-license reports, reviewer workload estimates, and release-readiness manifests.
-- LLM-assisted translation evidence must remain candidate-only and human-review-required.
+- Ontology work should produce more than translation evidence: identifier networks, coverage maps, conflict reports, semantic drift alerts, provenance graphs, source-license reports, agent-panel workload estimates, and release-readiness manifests.
+- LLM-assisted translation evidence must remain candidate-only and agent-panel-assessment-required and maintainer-promotion-decision-required.
 - Candidate review packs should expose model agreement, ontology agreement, source conflicts, coverage gaps, and license caveats without promoting candidates automatically.
 - Performance records should capture model or agent used, runtime, validation command, validation result, conflict count, and unresolved blocker count so future tracks can select faster or more reliable agents.
 

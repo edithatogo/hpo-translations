@@ -488,8 +488,12 @@ def agent_review_panel_errors(instance: Any) -> list[str]:
     if not isinstance(instance, dict):
         return ["agent review panel must be a JSON object"]
     errors: list[str] = []
-    if instance.get("human_review_planned") is not False:
-        errors.append("agent review panel must prohibit planned explicit maintainer decision")
+    if instance.get("person_participation_planned") is not False:
+        errors.append("agent review panel must prohibit planned person participation")
+    if instance.get("agent_panel_assessment_required") is not True:
+        errors.append("agent review panel must require agent-panel assessment")
+    if instance.get("maintainer_promotion_decision_required") is not True:
+        errors.append("agent review panel must require an accountable maintainer promotion decision")
     panel = instance.get("panel")
     roles = panel.get("roles", []) if isinstance(panel, dict) else []
     role_ids = {role.get("role_id") for role in roles if isinstance(role, dict)}

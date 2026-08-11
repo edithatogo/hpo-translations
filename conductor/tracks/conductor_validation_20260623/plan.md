@@ -37,7 +37,7 @@ This plan adds repository-local validation for the Conductor track lifecycle so 
 ## Phase 5: Review Automation and Advanced Reporting
 - [x] **Task 1:** Add conductor-review prompts or report sections for automated fix application after each phase.
 - [x] **Task 2:** Add summaries for blocker age, source access state, payload risk, artifact readiness, conflict count, and agent/model telemetry.
-- [x] **Task 3:** Add release-readiness scoring for tracks that combines validation, review, CI, PR, merge, source-governance, and human-review handoff state.
+- [x] **Task 3:** Add release-readiness scoring for tracks that combines validation, agent-panel assessment, accountable-maintainer decision, CI, PR, merge, and source-governance state.
 
 
 ## Implementation Evidence

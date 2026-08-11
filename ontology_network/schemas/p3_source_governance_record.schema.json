@@ -6,6 +6,9 @@
     "access_class": {
       "type": "string"
     },
+    "agent_panel_assessment_required": {
+      "type": "boolean"
+    },
     "authority_status": {
       "type": "string"
     },
@@ -30,9 +33,6 @@
     "go_no_go": {
       "type": "string"
     },
-    "human_review_required": {
-      "type": "boolean"
-    },
     "identifier_network_allowed": {
       "type": "boolean"
     },
@@ -50,6 +50,9 @@
         "type": "string"
       },
       "type": "array"
+    },
+    "maintainer_promotion_decision_required": {
+      "type": "boolean"
     },
     "next_allowed_action": {
       "type": "string"
@@ -87,17 +90,18 @@
   },
   "required": [
     "access_class",
+    "agent_panel_assessment_required",
     "authority_status",
     "blocked_downstream_outputs",
     "bounded_sample_allowed",
     "candidate_only",
     "commit_safe_artifacts",
     "go_no_go",
-    "human_review_required",
     "identifier_network_allowed",
     "implementation_scope",
     "known_blockers",
     "local_only_requirements",
+    "maintainer_promotion_decision_required",
     "next_allowed_action",
     "non_translation_outputs_allowed",
     "ontology_name",
@@ -111,5 +115,6 @@
     "track_id"
   ],
   "title": "p3_source_governance_record",
-  "type": "object"
+  "type": "object",
+  "x-schema-version": "2.0.0"
 }

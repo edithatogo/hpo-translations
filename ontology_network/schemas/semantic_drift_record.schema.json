@@ -26,5 +26,6 @@
     "source_version"
   ],
   "title": "semantic_drift_record",
-  "type": "object"
+  "type": "object",
+  "x-schema-version": "2.0.0"
 }

@@ -3,6 +3,9 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "properties": {
+    "agent_panel_assessment_required": {
+      "type": "boolean"
+    },
     "candidate_count": {
       "type": "integer"
     },
@@ -12,11 +15,11 @@
     "comparison_status": {
       "type": "string"
     },
-    "human_review_required": {
-      "type": "boolean"
-    },
     "language": {
       "type": "string"
+    },
+    "maintainer_promotion_decision_required": {
+      "type": "boolean"
     },
     "source_ids": {
       "items": {
@@ -26,11 +29,13 @@
     }
   },
   "required": [
+    "agent_panel_assessment_required",
     "candidate_only",
-    "human_review_required",
     "language",
+    "maintainer_promotion_decision_required",
     "source_ids"
   ],
   "title": "language_comparison_row",
-  "type": "object"
+  "type": "object",
+  "x-schema-version": "2.0.0"
 }

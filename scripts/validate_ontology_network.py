@@ -12,7 +12,7 @@ from pathlib import Path
 from typing import Any, Literal, cast
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from scripts.build_ontology_network import schema_definitions
+from scripts.build_ontology_network import ONTOLOGY_NETWORK_SCHEMA_VERSION, schema_definitions
 
 Severity = Literal["error", "warning", "info"]
 ArtifactKind = Literal["registry", "crosswalk", "conflict", "coverage", "review_pack"]
@@ -69,7 +69,7 @@ CONFLICT_TYPES = {
 }
 CONFLICT_SEVERITIES = {"info", "low", "medium", "high", "blocking"}
 CONFLICT_RESOLUTION_STATUSES = {"open", "needs_review", "resolved", "accepted_risk", "rejected"}
-PROMOTION_POLICIES = {"manual_review_only", "human_review_required", "candidate_only"}
+PROMOTION_POLICIES = {"maintainer_decision_after_agent_panel_assessment", "candidate_only"}
 
 ACCESS_MODE_ALIASES = {
     "API-only": "api_only",
@@ -111,7 +111,8 @@ REQUIRED_FIELDS: dict[ArtifactKind, set[str]] = {
         "provenance_id",
         "review_status",
         "candidate_only",
-        "human_review_required",
+        "agent_panel_assessment_required",
+        "maintainer_promotion_decision_required",
     },
     "conflict": {
         "conflict_id",
@@ -121,7 +122,9 @@ REQUIRED_FIELDS: dict[ArtifactKind, set[str]] = {
         "source_ids",
         "evidence_ids",
         "resolution_status",
-        "reviewer_action",
+        "agent_panel_action",
+        "agent_panel_assessment_required",
+        "maintainer_promotion_decision_required",
         "provenance_id",
     },
     "coverage": {
@@ -147,9 +150,10 @@ REQUIRED_FIELDS: dict[ArtifactKind, set[str]] = {
         "coverage_ids",
         "candidate_count",
         "candidate_only",
-        "human_review_required",
+        "agent_panel_assessment_required",
+        "maintainer_promotion_decision_required",
         "promotion_policy",
-        "reviewer_role",
+        "agent_panel_role",
         "provenance_id",
     },
 }
@@ -202,7 +206,8 @@ SCHEMA_ARTIFACTS: dict[ArtifactKind, dict[str, Any]] = {
             "provenance_id": {"type": "string", "minLength": 1},
             "review_status": {"type": "string", "enum": sorted(REVIEW_STATUSES)},
             "candidate_only": {"type": "boolean", "const": True},
-            "human_review_required": {"type": "boolean", "const": True},
+            "agent_panel_assessment_required": {"type": "boolean", "const": True},
+            "maintainer_promotion_decision_required": {"type": "boolean", "const": True},
         },
         "x-rules": [
             "external_source_id should exist in the source registry when registry records are supplied",
@@ -224,7 +229,9 @@ SCHEMA_ARTIFACTS: dict[ArtifactKind, dict[str, Any]] = {
             "source_ids": {"type": "array", "items": {"type": "string"}, "minItems": 1},
             "evidence_ids": {"type": "array", "items": {"type": "string"}, "minItems": 1},
             "resolution_status": {"type": "string", "enum": sorted(CONFLICT_RESOLUTION_STATUSES)},
-            "reviewer_action": {"type": "string", "minLength": 1},
+            "agent_panel_action": {"type": "string", "minLength": 1},
+            "agent_panel_assessment_required": {"type": "boolean", "const": True},
+            "maintainer_promotion_decision_required": {"type": "boolean", "const": True},
             "provenance_id": {"type": "string", "minLength": 1},
         },
     },
@@ -265,17 +272,22 @@ SCHEMA_ARTIFACTS: dict[ArtifactKind, dict[str, Any]] = {
             "coverage_ids": {"type": "array", "items": {"type": "string"}},
             "candidate_count": {"type": "integer", "minimum": 0},
             "candidate_only": {"type": "boolean", "const": True},
-            "human_review_required": {"type": "boolean", "const": True},
+            "agent_panel_assessment_required": {"type": "boolean", "const": True},
+            "maintainer_promotion_decision_required": {"type": "boolean", "const": True},
             "promotion_policy": {"type": "string", "enum": sorted(PROMOTION_POLICIES)},
-            "reviewer_role": {"type": "string", "minLength": 1},
+            "agent_panel_role": {"type": "string", "minLength": 1},
             "provenance_id": {"type": "string", "minLength": 1},
         },
         "x-rules": [
-            "review packs must remain candidate-only and human-review-required",
+            "review packs must remain candidate-only and require agent-panel assessment plus a maintainer "
+            "promotion decision",
             "at least one crosswalk, conflict, or coverage evidence id must be present",
         ],
     },
 }
+
+for _artifact_schema in SCHEMA_ARTIFACTS.values():
+    _artifact_schema["x-schema-version"] = ONTOLOGY_NETWORK_SCHEMA_VERSION
 
 
 @dataclass(frozen=True)
@@ -314,20 +326,33 @@ def _record_id(record: Record, fallback: str) -> str:
 
 
 def _missing_required(kind: ArtifactKind, record: Record, path: Path, index: int) -> list[Issue]:
-    missing = sorted(field for field in REQUIRED_FIELDS[kind] if field not in record)
-    if not missing:
-        return []
-    return [
-        Issue(
-            "error",
-            f"{kind}.missing_required_fields",
-            f"Missing required fields: {', '.join(missing)}.",
-            _location(path, index),
-            kind,
-            _record_id(record, f"record-{index + 1}"),
-            remediation=f"Add {', '.join(missing)} to the {kind} record.",
+    issues: list[Issue] = []
+    if "human_review_required" in record:
+        issues.append(
+            Issue(
+                "error",
+                f"{kind}.legacy_human_review_required.forbidden",
+                "Legacy `human_review_required` is forbidden; use the versioned agent-panel and "
+                "maintainer-decision fields.",
+                _location(path, index),
+                kind,
+                _record_id(record, f"record-{index + 1}"),
+            )
         )
-    ]
+    missing = sorted(field for field in REQUIRED_FIELDS[kind] if field not in record)
+    if missing:
+        issues.append(
+            Issue(
+                "error",
+                f"{kind}.missing_required_fields",
+                f"Missing required fields: {', '.join(missing)}.",
+                _location(path, index),
+                kind,
+                _record_id(record, f"record-{index + 1}"),
+                remediation=f"Add {', '.join(missing)} to the {kind} record.",
+            )
+        )
+    return issues
 
 
 def _string(record: Record, field: str) -> str | None:
@@ -809,7 +834,7 @@ def validate_crosswalk(loaded: LoadedRecords, context: ValidationContext) -> lis
                 )
             )
 
-        for field in ("candidate_only", "human_review_required"):
+        for field in ("candidate_only", "agent_panel_assessment_required", "maintainer_promotion_decision_required"):
             issue = _bool_issue("crosswalk", record, loaded.path, index, field)
             if issue is not None:
                 issues.append(issue)
@@ -824,12 +849,23 @@ def validate_crosswalk(loaded: LoadedRecords, context: ValidationContext) -> lis
                     _record_id(record, f"record-{index + 1}"),
                 )
             )
-        if _bool(record, "human_review_required") is not True:
+        if _bool(record, "agent_panel_assessment_required") is not True:
             issues.append(
                 Issue(
                     "error",
-                    "crosswalk.human_review_required.required",
-                    "Crosswalk evidence must require human review before promotion.",
+                    "crosswalk.agent_panel_assessment_required.required",
+                    "Crosswalk evidence must require agent-panel assessment before promotion.",
+                    _location(loaded.path, index),
+                    "crosswalk",
+                    _record_id(record, f"record-{index + 1}"),
+                )
+            )
+        if _bool(record, "maintainer_promotion_decision_required") is not True:
+            issues.append(
+                Issue(
+                    "error",
+                    "crosswalk.maintainer_promotion_decision_required.required",
+                    "Crosswalk evidence must require an accountable maintainer promotion decision.",
                     _location(loaded.path, index),
                     "crosswalk",
                     _record_id(record, f"record-{index + 1}"),
@@ -881,10 +917,25 @@ def validate_conflict(loaded: LoadedRecords, context: ValidationContext) -> list
     seen_ids: set[str] = set()
     for index, record in enumerate(loaded.records):
         issues.extend(_missing_required("conflict", record, loaded.path, index))
-        for field in ("conflict_id", "reviewer_action", "provenance_id"):
+        for field in ("conflict_id", "agent_panel_action", "provenance_id"):
             issue = _issue_empty_string("conflict", record, loaded.path, index, field)
             if issue is not None:
                 issues.append(issue)
+        for field in ("agent_panel_assessment_required", "maintainer_promotion_decision_required"):
+            issue = _bool_issue("conflict", record, loaded.path, index, field)
+            if issue is not None:
+                issues.append(issue)
+            if _bool(record, field) is not True:
+                issues.append(
+                    Issue(
+                        "error",
+                        f"conflict.{field}.required",
+                        f"Conflict evidence must set `{field}=true` before promotion.",
+                        _location(loaded.path, index),
+                        "conflict",
+                        _record_id(record, f"record-{index + 1}"),
+                    )
+                )
 
         for field, allowed in (
             ("conflict_type", CONFLICT_TYPES),
@@ -1063,7 +1114,7 @@ def validate_review_pack(loaded: LoadedRecords, context: ValidationContext) -> l
     seen_ids: set[str] = set()
     for index, record in enumerate(loaded.records):
         issues.extend(_missing_required("review_pack", record, loaded.path, index))
-        for field in ("pack_id", "language", "scope", "reviewer_role", "provenance_id"):
+        for field in ("pack_id", "language", "scope", "agent_panel_role", "provenance_id"):
             issue = _issue_empty_string("review_pack", record, loaded.path, index, field)
             if issue is not None:
                 issues.append(issue)
@@ -1141,7 +1192,7 @@ def validate_review_pack(loaded: LoadedRecords, context: ValidationContext) -> l
                 )
             )
 
-        for field in ("candidate_only", "human_review_required"):
+        for field in ("candidate_only", "agent_panel_assessment_required", "maintainer_promotion_decision_required"):
             issue = _bool_issue("review_pack", record, loaded.path, index, field)
             if issue is not None:
                 issues.append(issue)
@@ -1156,12 +1207,23 @@ def validate_review_pack(loaded: LoadedRecords, context: ValidationContext) -> l
                     _record_id(record, f"record-{index + 1}"),
                 )
             )
-        if _bool(record, "human_review_required") is not True:
+        if _bool(record, "agent_panel_assessment_required") is not True:
             issues.append(
                 Issue(
                     "error",
-                    "review_pack.human_review_required.required",
-                    "Review packs must require human review.",
+                    "review_pack.agent_panel_assessment_required.required",
+                    "Review packs must require agent-panel assessment before a maintainer promotion decision.",
+                    _location(loaded.path, index),
+                    "review_pack",
+                    _record_id(record, f"record-{index + 1}"),
+                )
+            )
+        if _bool(record, "maintainer_promotion_decision_required") is not True:
+            issues.append(
+                Issue(
+                    "error",
+                    "review_pack.maintainer_promotion_decision_required.required",
+                    "Review packs must require an accountable maintainer promotion decision.",
                     _location(loaded.path, index),
                     "review_pack",
                     _record_id(record, f"record-{index + 1}"),

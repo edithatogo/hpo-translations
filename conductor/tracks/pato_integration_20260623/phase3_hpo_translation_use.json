@@ -10,7 +10,7 @@
     "release_metadata_only",
     "no_source_terms",
     "conflicts_unresolved_by_default",
-    "llm_candidates_require_human_review"
+    "agent_panel_assessment_required_and_maintainer_promotion_decision_required"
   ],
   "promotion_allowed": false,
   "reason": "the prepared metadata-only sample remains approval-pending and contains release provenance only; licence review, source terms, labels, synonyms, definitions, and crosswalk promotion remain blocked"

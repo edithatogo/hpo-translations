@@ -7,6 +7,7 @@
   "translation_audit": "not_applicable_no_translation_outputs",
   "import_dry_run": "not_applicable_no_authorized_source_terms",
   "promotion_allowed": false,
-  "review_required": true,
+  "agent_panel_assessment_required": true,
+  "maintainer_promotion_decision_required": true,
   "reason": "subscription, licence, release, language-pack, and redistribution review remain unresolved"
 }

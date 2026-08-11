@@ -4,6 +4,7 @@
   "record_count": 9,
   "records": [
     {
+      "agent_panel_assessment_required": true,
       "blocked_payload_classes": [
         "source_labels",
         "source_synonyms",
@@ -23,13 +24,13 @@
         "reviewer handoff skeletons"
       ],
       "go_no_go": "governance_only_terms_review_required",
-      "human_review_required": true,
       "identifier_network_allowed": false,
       "known_blockers": [
         "Disease entities are not phenotype labels and require mapping caveats.",
         "Disease-to-HPO links should prefer curated mappings over text similarity.",
         "Terms and payload handling must be cleared before committing ontology labels, synonyms, definitions, full responses, or release payload rows."
       ],
+      "maintainer_promotion_decision_required": true,
       "metadata_only_scaffold_allowed": true,
       "next_allowed_action": "complete source terms review and bounded source probe before any payload or label extraction",
       "non_translation_outputs_allowed": false,
@@ -43,6 +44,7 @@
       "track_id": "do_integration_20260623"
     },
     {
+      "agent_panel_assessment_required": true,
       "blocked_payload_classes": [
         "source_labels",
         "source_synonyms",
@@ -62,13 +64,13 @@
         "reviewer handoff skeletons"
       ],
       "go_no_go": "governance_only_terms_review_required",
-      "human_review_required": true,
       "identifier_network_allowed": false,
       "known_blockers": [
         "EFO integrates many domains, so source-specific provenance and subsets matter.",
         "Experimental factor semantics may not directly map to phenotypes.",
         "Terms and payload handling must be cleared before committing ontology labels, synonyms, definitions, full responses, or release payload rows."
       ],
+      "maintainer_promotion_decision_required": true,
       "metadata_only_scaffold_allowed": true,
       "next_allowed_action": "retain the approved one-record metadata-only sample; complete source terms review before any source terms, labels, or payload extraction",
       "non_translation_outputs_allowed": false,
@@ -82,6 +84,7 @@
       "track_id": "efo_integration_20260623"
     },
     {
+      "agent_panel_assessment_required": true,
       "blocked_payload_classes": [
         "source_labels",
         "source_synonyms",
@@ -101,13 +104,13 @@
         "reviewer handoff skeletons"
       ],
       "go_no_go": "governance_only_terms_review_required",
-      "human_review_required": true,
       "identifier_network_allowed": false,
       "known_blockers": [
         "ICD-11 API terms and rate limits must be documented before automation.",
         "Foundation entities and MMS codes need distinct provenance handling.",
         "Terms and payload handling must be cleared before committing ontology labels, synonyms, definitions, full responses, or release payload rows."
       ],
+      "maintainer_promotion_decision_required": true,
       "metadata_only_scaffold_allowed": true,
       "next_allowed_action": "complete source terms review and bounded source probe before any payload or label extraction",
       "non_translation_outputs_allowed": false,
@@ -121,6 +124,7 @@
       "track_id": "icd11_integration_20260623"
     },
     {
+      "agent_panel_assessment_required": true,
       "blocked_payload_classes": [
         "source_labels",
         "source_synonyms",
@@ -140,13 +144,13 @@
         "reviewer handoff skeletons"
       ],
       "go_no_go": "governance_only_terms_review_required",
-      "human_review_required": true,
       "identifier_network_allowed": false,
       "known_blockers": [
         "Descriptor, concept, term, and supplementary-record layers need separate provenance.",
         "Tree-number changes can create semantic drift across releases.",
         "Terms and payload handling must be cleared before committing ontology labels, synonyms, definitions, full responses, or release payload rows."
       ],
+      "maintainer_promotion_decision_required": true,
       "metadata_only_scaffold_allowed": true,
       "next_allowed_action": "complete source terms review and bounded source probe before any payload or label extraction",
       "non_translation_outputs_allowed": false,
@@ -160,6 +164,7 @@
       "track_id": "mesh_integration_20260623"
     },
     {
+      "agent_panel_assessment_required": true,
       "blocked_payload_classes": [
         "source_labels",
         "source_synonyms",
@@ -179,13 +184,13 @@
         "reviewer handoff skeletons"
       ],
       "go_no_go": "governance_only_terms_review_required",
-      "human_review_required": true,
       "identifier_network_allowed": false,
       "known_blockers": [
         "Mouse phenotype terms are model-organism evidence and require species-context caveats.",
         "Mammalian phenotype mappings to HPO can be indirect or evidence-specific.",
         "Terms and payload handling must be cleared before committing ontology labels, synonyms, definitions, full responses, or release payload rows."
       ],
+      "maintainer_promotion_decision_required": true,
       "metadata_only_scaffold_allowed": true,
       "next_allowed_action": "complete source terms review and bounded source probe before any payload or label extraction",
       "non_translation_outputs_allowed": false,
@@ -199,6 +204,7 @@
       "track_id": "mp_integration_20260623"
     },
     {
+      "agent_panel_assessment_required": true,
       "blocked_payload_classes": [
         "source_labels",
         "source_synonyms",
@@ -218,13 +224,13 @@
         "reviewer handoff skeletons"
       ],
       "go_no_go": "governance_only_terms_review_required",
-      "human_review_required": true,
       "identifier_network_allowed": false,
       "known_blockers": [
         "Cancer classification scope is narrow relative to HPO.",
         "API or release terms and version pinning must be documented.",
         "Terms and payload handling must be cleared before committing ontology labels, synonyms, definitions, full responses, or release payload rows."
       ],
+      "maintainer_promotion_decision_required": true,
       "metadata_only_scaffold_allowed": true,
       "next_allowed_action": "retain the approved one-record metadata-only sample; complete source terms review before any source terms, labels, or payload extraction",
       "non_translation_outputs_allowed": false,
@@ -238,6 +244,7 @@
       "track_id": "oncotree_integration_20260623"
     },
     {
+      "agent_panel_assessment_required": true,
       "blocked_payload_classes": [
         "source_labels",
         "source_synonyms",
@@ -257,13 +264,13 @@
         "reviewer handoff skeletons"
       ],
       "go_no_go": "governance_only_terms_review_required",
-      "human_review_required": true,
       "identifier_network_allowed": false,
       "known_blockers": [
         "Orphanet disease entities and HPO phenotype terms operate at different granularities.",
         "Download terms and versioned XML schemas must be captured before ingestion.",
         "Terms and payload handling must be cleared before committing ontology labels, synonyms, definitions, full responses, or release payload rows."
       ],
+      "maintainer_promotion_decision_required": true,
       "metadata_only_scaffold_allowed": true,
       "next_allowed_action": "complete source terms review and bounded source probe before any payload or label extraction",
       "non_translation_outputs_allowed": false,
@@ -277,6 +284,7 @@
       "track_id": "orphanet_integration_20260623"
     },
     {
+      "agent_panel_assessment_required": true,
       "blocked_payload_classes": [
         "source_labels",
         "source_synonyms",
@@ -296,13 +304,13 @@
         "reviewer handoff skeletons"
       ],
       "go_no_go": "governance_only_terms_review_required",
-      "human_review_required": true,
       "identifier_network_allowed": false,
       "known_blockers": [
         "Quality terms require composition handling before they can explain HPO labels.",
         "OBO release drift must be pinned by version or PURL snapshot.",
         "Terms and payload handling must be cleared before committing ontology labels, synonyms, definitions, full responses, or release payload rows."
       ],
+      "maintainer_promotion_decision_required": true,
       "metadata_only_scaffold_allowed": true,
       "next_allowed_action": "complete source terms review and bounded source probe before any payload or label extraction",
       "non_translation_outputs_allowed": false,
@@ -316,6 +324,7 @@
       "track_id": "pato_integration_20260623"
     },
     {
+      "agent_panel_assessment_required": true,
       "blocked_payload_classes": [
         "source_labels",
         "source_synonyms",
@@ -335,13 +344,13 @@
         "reviewer handoff skeletons"
       ],
       "go_no_go": "governance_only_terms_review_required",
-      "human_review_required": true,
       "identifier_network_allowed": false,
       "known_blockers": [
         "uPheno depends on upstream ontology build products and may change with source releases.",
         "Cross-species phenotype patterns require explicit evidence and predicate fields.",
         "Terms and payload handling must be cleared before committing ontology labels, synonyms, definitions, full responses, or release payload rows."
       ],
+      "maintainer_promotion_decision_required": true,
       "metadata_only_scaffold_allowed": true,
       "next_allowed_action": "complete source terms review and bounded source probe before any payload or label extraction",
       "non_translation_outputs_allowed": false,

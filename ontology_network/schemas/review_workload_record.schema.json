@@ -3,6 +3,9 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "properties": {
+    "agent_panel_role": {
+      "type": "string"
+    },
     "candidate_count": {
       "type": "integer"
     },
@@ -13,9 +16,6 @@
       "type": "integer"
     },
     "language": {
-      "type": "string"
-    },
-    "reviewer_role": {
       "type": "string"
     },
     "source_count": {
@@ -30,5 +30,6 @@
     "source_count"
   ],
   "title": "review_workload_record",
-  "type": "object"
+  "type": "object",
+  "x-schema-version": "2.0.0"
 }

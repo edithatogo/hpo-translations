@@ -62,7 +62,7 @@
   "expected_blockers": [
     "Different ontology licenses and access modes will limit which network artifacts are PR-safe or release-safe.",
     "Cross-ontology mappings will create one-to-many, many-to-one, deprecated, circular, and language-specific conflicts.",
-    "Reviewer capacity may become the bottleneck once conflict heatmaps and comparison packs are generated."
+    "Agent-panel assessment capacity may become the bottleneck once conflict heatmaps and comparison packs are generated."
   ],
   "blocker_owner": "ontology-network maintainer",
   "fallback_path": "Deliver registry schema, source access matrix, artifact contracts, and conflict-report interfaces even if restricted source payloads remain local-only.",
@@ -138,7 +138,7 @@
       "source conflict",
       "license caveat"
     ],
-    "promotion_rule": "no ontology or LLM signal promotes a translation without human review"
+    "promotion_rule": "agent_panel_assessment_required; maintainer_promotion_decision_required"
   },
   "agent_telemetry": {
     "record_required": true,
@@ -154,7 +154,7 @@
       "open_blockers"
     ]
   },
-  "human_review_handoff": [
+  "review_handoff": [
     "changed records",
     "source evidence",
     "model evidence",

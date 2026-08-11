@@ -9,7 +9,7 @@
     {
       "id": "crosswalk_review",
       "purpose": "review candidate ICD-11-to-HPO relationships",
-      "promotion": "human_review_required"
+      "promotion": "agent_panel_assessment_required_and_maintainer_promotion_decision_required"
     },
     {
       "id": "multilingual_label_comparison",
@@ -41,7 +41,7 @@
     {
       "id": "postcoordination",
       "rule": "do not flatten postcoordination or polyhierarchy into a single HPO assertion",
-      "decision": "manual_review_required"
+      "decision": "agent_panel_assessment_and_maintainer_promotion_decision_required"
     }
   ],
   "conflict_reporting": {
@@ -62,11 +62,11 @@
       "postcoordination_not_representable",
       "candidate_label_disagreement"
     ],
-    "default_resolution": "unresolved_until_human_review"
+    "default_resolution": "unresolved_until_agent_panel_assessment_and_maintainer_promotion_decision"
   },
   "llm_guardrails": {
     "candidate_only": true,
-    "human_review_required": true,
+    "agent_panel_assessment_required": true, "maintainer_promotion_decision_required": true,
     "approved_translation": false,
     "source_payload_read": false,
     "source_payload_committed": false

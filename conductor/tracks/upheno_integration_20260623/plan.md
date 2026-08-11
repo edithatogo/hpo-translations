@@ -29,7 +29,7 @@ Phase 0 governance is implemented as metadata-only and remains blocked before pa
   - For each ready task, run the implementation workflow, validate locally, commit after completion, run conductor-review after each phase, apply authorized fixes, push after each phase, verify GitHub Actions on the pushed commit and PR head, and verify PR merge before marking complete.
 - [x] **Task 8:** Start performance, evidence, and model telemetry.
   - Record coding agent, model, task id, source version, runtime, validation result, conflict count, and unresolved blockers.
-  - Mark any LLM-assisted candidate output as candidate-only and human-review-required in the handoff pack.
+  - Mark any LLM-assisted candidate output as candidate-only and agent-panel-assessment-required and maintainer-promotion-decision-required in the handoff pack.
 
 ## Phase 1: Source Governance
 - [ ] **Task 1:** Confirm authoritative release source, license, and redistribution constraints.
@@ -48,7 +48,7 @@ Phase 0 governance is implemented as metadata-only and remains blocked before pa
 ## Phase 3: HPO Translation Use
 - [x] **Task 1:** Identify uPheno use for cross-species pattern validation and identifier conflict detection; source terms remain blocked.
 - [x] **Task 2:** Add exact-identifier-only matching and candidate conflict-record rules; unresolved conflicts do not promote.
-- [x] **Task 3:** Ensure LLM-assisted outputs remain candidate-only and human-review-required; no approved source sample exists.
+- [x] **Task 3:** Ensure LLM-assisted outputs remain candidate-only and agent-panel-assessment-required and maintainer-promotion-decision-required; no approved source sample exists.
 
 ## Phase 4: Validation and Review
 - [x] **Task 1:** Validate governance schema, provenance, and licence metadata; component terms remain blocked.
@@ -57,7 +57,7 @@ Phase 0 governance is implemented as metadata-only and remains blocked before pa
 
 ## P1 Implementation Candidate Addendum
 This track is a highest-priority P1 open/public ontology implementation candidate. Start with Phase 0 governance, source-authority confirmation, terms review, and one bounded source probe before any bulk extraction.
-Until source terms and payload handling are cleared, commit metadata-only scaffolding only: registry records, source-access records, provenance shells, local-only manifest references, schemas, validation summaries, and reviewer handoff skeletons.
+Until source terms and payload handling are cleared, commit metadata-only scaffolding only: registry records, source-access records, provenance shells, local-only manifest references, schemas, validation summaries, agent-panel assessment packs, and accountable-maintainer decision records.
 Do not commit raw source terms, ontology labels, synonyms, definitions, full API responses, release payload rows, credentials, or redistributable payload fragments unless redistribution permission is explicitly recorded.
 
 ## Phase 0 Validation Evidence

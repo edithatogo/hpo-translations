@@ -47,5 +47,6 @@
     "total_hpo_terms"
   ],
   "title": "coverage_summary_row",
-  "type": "object"
+  "type": "object",
+  "x-schema-version": "2.0.0"
 }

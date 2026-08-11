@@ -127,25 +127,27 @@ class MetadataOnlySampleTests(unittest.TestCase):
                 if "rules" in phase3:
                     rules = set(phase3["rules"])
                     self.assertIs(phase3.get("promotion_allowed"), False)
-                    self.assertIn("llm_candidates_require_human_review", rules)
+                    self.assertIn("agent_panel_assessment_required_and_maintainer_promotion_decision_required", rules)
                     if "exact_identifier_only" in rules:
                         self.assertIn("conflicts_unresolved_by_default", rules)
                         self.assertIn("emit_candidate_conflict_records", rules)
                 elif "llm_guardrails" in phase3:
                     guardrails = phase3.get("llm_guardrails", {})
                     self.assertIs(guardrails.get("candidate_only"), True)
-                    self.assertIs(guardrails.get("human_review_required"), True)
+                    self.assertIs(guardrails.get("agent_panel_assessment_required"), True)
+                    self.assertIs(guardrails.get("maintainer_promotion_decision_required"), True)
                     self.assertIs(guardrails.get("approved_translation"), False)
                 else:
                     self.assertTrue(phase3.get("deterministic_matching_rules"))
                     self.assertTrue(phase3.get("conflict_reporting"))
                     self.assertEqual(
                         phase3["conflict_reporting"].get("default_resolution"),
-                        "unresolved_until_human_review",
+                        "unresolved_until_agent_panel_assessment_and_maintainer_promotion_decision",
                     )
                     guardrails = phase3.get("llm_guardrails", {})
                     self.assertIs(guardrails.get("candidate_only"), True)
-                    self.assertIs(guardrails.get("human_review_required"), True)
+                    self.assertIs(guardrails.get("agent_panel_assessment_required"), True)
+                    self.assertIs(guardrails.get("maintainer_promotion_decision_required"), True)
                     self.assertIs(guardrails.get("approved_translation"), False)
 
     def test_phase2_receipts_are_payload_free(self) -> None:
@@ -195,12 +197,14 @@ class MetadataOnlySampleTests(unittest.TestCase):
                         artifact.get("sample_validation"),
                         "metadata_only_normalized_identifier_and_provenance_check_passed_import_dry_run_not_applicable_without_terms",
                     )
-                    self.assertIs(artifact.get("review_required"), True)
+                    self.assertIs(artifact.get("agent_panel_assessment_required"), True)
+                    self.assertIs(artifact.get("maintainer_promotion_decision_required"), True)
                 if artifact.get("status") == "governance_only_validated_payload_blocked":
                     self.assertEqual(artifact.get("validation_result"), "pass_governance_only")
                     self.assertEqual(artifact.get("payload_validation"), "not_run_no_authorized_payload")
                     self.assertIs(artifact.get("promotion_allowed"), False)
-                    self.assertIs(artifact.get("review_required"), True)
+                    self.assertIs(artifact.get("agent_panel_assessment_required"), True)
+                    self.assertIs(artifact.get("maintainer_promotion_decision_required"), True)
 
     def test_all_phase4_receipts_block_promotion(self) -> None:
         track_root = Path(__file__).resolve().parents[1] / "conductor" / "tracks"
@@ -208,7 +212,8 @@ class MetadataOnlySampleTests(unittest.TestCase):
             with self.subTest(track=artifact_path.parent.name):
                 artifact = json.loads(artifact_path.read_text(encoding="utf-8"))
                 self.assertIs(artifact.get("promotion_allowed"), False)
-                self.assertIs(artifact.get("review_required"), True)
+                self.assertIs(artifact.get("agent_panel_assessment_required"), True)
+                self.assertIs(artifact.get("maintainer_promotion_decision_required"), True)
 
 
 if __name__ == "__main__":

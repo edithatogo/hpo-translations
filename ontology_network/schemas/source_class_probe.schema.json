@@ -6,13 +6,16 @@
     "access_class": {
       "type": "string"
     },
+    "agent_panel_assessment_required": {
+      "type": "boolean"
+    },
     "credential_required": {
       "type": "boolean"
     },
-    "human_review_required": {
+    "local_only_required": {
       "type": "boolean"
     },
-    "local_only_required": {
+    "maintainer_promotion_decision_required": {
       "type": "boolean"
     },
     "ontology_name": {
@@ -45,7 +48,8 @@
   },
   "required": [
     "access_class",
-    "human_review_required",
+    "agent_panel_assessment_required",
+    "maintainer_promotion_decision_required",
     "payload_commit_allowed",
     "probe_id",
     "registry_record_present",
@@ -53,5 +57,6 @@
     "validation_status"
   ],
   "title": "source_class_probe",
-  "type": "object"
+  "type": "object",
+  "x-schema-version": "2.0.0"
 }

@@ -2,7 +2,7 @@
   "track_id": "meddra_integration_20260623",
   "status": "design_only_blocked",
   "uses": ["adverse_event_context_validation", "identifier_conflict_detection"],
-  "rules": ["exact_identifier_only", "conflicts_unresolved_by_default", "emit_candidate_conflict_records", "llm_candidates_require_human_review"],
+  "rules": ["exact_identifier_only", "conflicts_unresolved_by_default", "emit_candidate_conflict_records", "agent_panel_assessment_required_and_maintainer_promotion_decision_required"],
   "promotion_allowed": false,
   "reason": "subscription, licence, release, language-pack, and redistribution review are pending; no source payload or bounded sample is allowed"
 }

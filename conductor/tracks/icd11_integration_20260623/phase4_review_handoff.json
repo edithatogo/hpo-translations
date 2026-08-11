@@ -25,6 +25,6 @@
     "identifier_network": "blocked",
     "non_translation_outputs": "blocked"
   },
-  "reviewer_role": "ontology-network maintainer",
+  "accountable_promotion_role": "ontology-network maintainer",
   "next_action": "review redacted metadata result before any future source-label or crosswalk work"
 }

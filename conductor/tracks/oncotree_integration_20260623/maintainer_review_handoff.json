@@ -27,5 +27,5 @@
     "payload_retained": false
   },
   "blocked_until_approval": ["source labels", "synonyms", "definitions", "crosswalk edges", "downstream promotion"],
-  "llm_policy": "candidate_only_human_review_required"
+  "llm_policy": "candidate_only_agent_panel_assessment_and_maintainer_promotion_decision_required"
 }

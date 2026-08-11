@@ -44,7 +44,7 @@ Disagreements proceed to documented adjudication by an authorized agent who has 
 
 ## Error taxonomy
 
-Prespecify these non-exclusive categories: polarity or negation; anatomy or body site; laterality; severity or frequency; onset or temporal course; inheritance or causal implication; granularity; omission; addition; ambiguity; misleading cognate; terminology register; regional mismatch; grammar; and other with a mandatory explanation. Clinically significant error is a separate binary outcome and requires clinical adjudication.
+Prespecify these non-exclusive categories: polarity or negation; anatomy or body site; laterality; severity or frequency; onset or temporal course; inheritance or causal implication; granularity; omission; addition; ambiguity; misleading cognate; terminology register; regional mismatch; grammar; and other with a mandatory explanation. Clinically significant error is a separate binary outcome and requires the isolated clinical-safety specialist plus independent agent adjudication. This assessment does not constitute clinical validation or promotion authority.
 
 ## Outcomes
 

@@ -5,6 +5,6 @@
   "source_evidence": {"authority_uri": "https://www.orphadata.com/", "catalogue_uri": "https://www.orphadata.com/docs/Catalogue_Orphadata.pdf", "observed_catalogue": "April 2026", "science_product_license": "CC BY 4.0", "science_product_access": "public no-fee XML/JSON", "other_products_access": "data-transfer agreement or pricing", "retrieved_at": "2026-08-01", "payload_observed": false},
   "retrieval_contract": {"credential_source": "none_or_local_environment_only", "cache": "local_only", "commit_payload": false, "request_manifest_required": true},
   "normalization": {"identifier": "Orphanet ORPHAcode as opaque string", "language": "BCP-47 when source metadata is available", "provenance": ["source_uri", "release", "retrieved_at", "license"]},
-  "review": {"labels_synonyms_definitions": "blocked", "crosswalk": "candidate_only", "llm_output": "candidate_only_human_review_required"},
+  "review": {"labels_synonyms_definitions": "blocked", "crosswalk": "candidate_only", "llm_output": "candidate_only_agent_panel_assessment_and_maintainer_promotion_decision_required"},
   "validation": {"schema": "scaffold_only", "sample": "not_available", "result": "blocked_until_terms_review_and_bounded_probe"}
 }

@@ -96,12 +96,12 @@
       "MedDRA authority, subscription gate, release path, and license state recorded",
       "payload handling path classified as commit-safe or local-only",
       "schema validation passes",
-      "review handoff remains candidate-only and human-review-required"
+      "review handoff remains candidate-only and agent-panel-assessment-required and maintainer-promotion-decision-required"
     ]
   },
-  "human_review_and_llm_policy": {
+  "candidate_assessment_and_promotion_policy": {
     "candidate_only": true,
-    "human_review_required": true,
+    "agent_panel_assessment_required": true, "maintainer_promotion_decision_required": true,
     "llm_output_allowed": "metadata and review-assistance only until MedDRA subscription/license, language-pack, and redistribution terms are cleared",
     "promotion_policy": "manual_review_only"
   },
@@ -118,7 +118,7 @@
       "MedDRA subscription/license review required",
       "MSSO/ICH release and redistribution terms review required",
       "multilingual language-pack terms review required",
-      "regulatory adverse-event semantics require human review before HPO translation use"
+      "regulatory adverse-event semantics require specialist-agent assessment and an accountable maintainer promotion decision before HPO translation use"
     ]
   }
 }

@@ -84,6 +84,6 @@
     "push_authorized": false,
     "pull_request_authorized": false
   },
-  "next_required_human_input": "sender_name_institution_and_reply_address_for_PRO_CTCAE_and_DeCS_routes",
+  "next_required_accountable_maintainer_input": "sender_name_institution_and_reply_address_for_PRO_CTCAE_and_DeCS_routes",
   "claims_boundary": "route_review_and_dispatch_readiness_only_no_permission_license_acceptance_payload_or_empirical_readiness"
 }

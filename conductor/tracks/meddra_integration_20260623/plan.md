@@ -26,14 +26,14 @@ This plan introduces MedDRA into the project where it can improve terminology al
   - For each ready task, run the implementation workflow, validate locally, commit after completion, run conductor-review after each phase, apply authorized fixes, push after each phase, verify GitHub Actions on the pushed commit and PR head, and verify PR merge before marking complete.
 - [x] **Task 8:** Start performance, evidence, and model telemetry.
   - Record coding agent, model, task id, source version, runtime, validation result, conflict count, and unresolved blockers.
-  - Mark any LLM-assisted candidate output as candidate-only and human-review-required in the handoff pack.
+  - Mark any LLM-assisted candidate output as candidate-only and agent-panel-assessment-required and maintainer-promotion-decision-required in the handoff pack.
 
 ## Phase 0 Validation Evidence
 - Source authority: official MedDRA site, support-documentation route, and subscription route were recorded; no official public GitHub repository was confirmed.
 - Access gate: MedDRA remains subscription/license gated; release, language-pack, redistribution, and checksum/version pinning requirements must be reviewed before ingestion.
 - Payload status: no LLT, PT, HLT, HLGT, SOC, SMQ, multilingual term, hierarchy, API response, credential, release archive, or redistributable payload fragment was fetched or committed.
 - Governance decision: Phase 0 is implemented as metadata-only and blocked before ingestion until MSSO/ICH subscription/license, release, language-pack, and redistribution terms pass review.
-- Review policy: any future MedDRA-assisted comparison, crosswalk, multilingual signal, or LLM-assisted output remains candidate-only and human-review-required.
+- Review policy: any future MedDRA-assisted comparison, crosswalk, multilingual signal, or LLM-assisted output remains candidate-only and agent-panel-assessment-required and maintainer-promotion-decision-required.
 
 ## Phase 1: Source Governance
 - [x] **Task 1:** Confirm authoritative release source, license, and redistribution constraints.
@@ -49,7 +49,7 @@ This plan introduces MedDRA into the project where it can improve terminology al
 ## Phase 3: HPO Translation Use
 - [x] **Task 1:** Identify where MedDRA helps: crosswalks, synonym review, multilingual label comparison, or domain validation.
 - [x] **Task 2:** Add deterministic matching rules and conflict reporting.
-- [x] **Task 3:** Ensure LLM-assisted outputs remain candidate-only and human-review-required.
+- [x] **Task 3:** Ensure LLM-assisted outputs remain candidate-only and agent-panel-assessment-required and maintainer-promotion-decision-required.
 
 ## Phase 4: Validation and Review
 - [x] **Task 1:** Validate schema, provenance, and license metadata.

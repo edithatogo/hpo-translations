@@ -42,7 +42,7 @@ The network should support multilingual candidate review by comparing HPO labels
 - Do not commit restricted ontology payloads.
 - Treat external labels as evidence, not automatic approved translations.
 - Preserve language tags, source identifiers, source versions, retrieval dates, and method provenance.
-- Keep LLM-assisted output marked candidate-only and human-review-required.
+- Keep LLM-assisted output marked candidate-only and agent-panel-assessment-required and maintainer-promotion-decision-required.
 - Prefer deterministic identifier mappings over text-only similarity when available.
 - Emit reviewable deltas rather than silently overwriting HPO translation files.
 

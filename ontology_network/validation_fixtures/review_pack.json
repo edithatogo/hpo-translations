@@ -1,5 +1,7 @@
 [
   {
+    "agent_panel_assessment_required": true,
+    "agent_panel_role": "language-specialist agent panel",
     "candidate_count": 0,
     "candidate_only": true,
     "conflict_ids": [
@@ -14,12 +16,11 @@
     "hpo_ids": [
       "HP:0000001"
     ],
-    "human_review_required": true,
     "language": "en",
+    "maintainer_promotion_decision_required": true,
     "pack_id": "pack-en-fail-fast",
-    "promotion_policy": "manual_review_only",
+    "promotion_policy": "maintainer_decision_after_agent_panel_assessment",
     "provenance_id": "prov-review-pack-fail-fast",
-    "reviewer_role": "language reviewer",
     "scope": "ontology-network fail-fast metadata probe",
     "source_ids": [
       "do",

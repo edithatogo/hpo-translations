@@ -2,7 +2,7 @@
   "schema_version": "stage-0-receipt-v1",
   "run_id": "run-stage-0-synthetic-rehearsal",
   "generated_at": "2026-08-02T00:00:00Z",
-  "rehearsal_sha256": "76b9b7f13c5c9ce2d2b90d12c968f6c504596b396b6aeea8a71158998215f445",
+  "rehearsal_sha256": "67acbaabd240228e7bad454fd5cedb8ce05636a21b3a67f247f89064d5ef6677",
   "manifest_sha256": "855ddd1a879e7ae8270b79dd16546b7194dbf0081a6d27d67f2f746b8c3f8139",
   "export_sha256": {
     "adjudications": "b6aa0c8957dfbfc866a1984b1f9333d4cf527696b93e02b91d1b17969dc734b9",

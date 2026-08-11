@@ -241,8 +241,6 @@ def validate_metadata(tracks: list[Track]) -> list[Issue]:
         seen_ids.add(track.track_id)
 
         present_fields = set(metadata)
-        if "human_review_handoff" in metadata:
-            present_fields.add("review_handoff")
         missing = sorted(REQUIRED_METADATA_FIELDS - present_fields)
         if missing:
             issues.append(
@@ -283,8 +281,6 @@ def validate_metadata(tracks: list[Track]) -> list[Issue]:
 
         for field in ("known_blockers", "expected_blockers", "review_handoff"):
             value = metadata.get(field)
-            if field == "review_handoff" and value is None:
-                value = metadata.get("human_review_handoff")
             if value is not None and not isinstance(value, list):
                 issues.append(
                     Issue(

@@ -2,7 +2,7 @@
   "track_id": "icd10_integration_20260623",
   "status": "design_only_blocked",
   "uses": ["disease_classification_context", "identifier_conflict_detection", "language_coverage_review"],
-  "rules": ["preserve_who_uri_and_mms_code_separately", "conflicts_unresolved_by_default", "emit_candidate_conflict_records", "llm_candidates_require_human_review"],
+  "rules": ["preserve_who_uri_and_mms_code_separately", "conflicts_unresolved_by_default", "emit_candidate_conflict_records", "agent_panel_assessment_required_and_maintainer_promotion_decision_required"],
   "promotion_allowed": false,
   "reason": "WHO terms, release channel, and national-variant scope review are pending; no approved source sample exists"
 }

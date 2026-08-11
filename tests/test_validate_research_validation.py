@@ -32,11 +32,19 @@ class ValidateResearchValidationTests(unittest.TestCase):
     def test_committed_contract_passes(self) -> None:
         self.assertEqual(validate_contract(), [])
 
-    def test_agent_panel_rejects_human_review(self) -> None:
+    def test_agent_panel_rejects_person_participation(self) -> None:
         panel = load_json(DEFAULT_RESEARCH_ROOT / "agent_review_panel.json")
-        panel["human_review_planned"] = True
+        panel["person_participation_planned"] = True
         self.assertIn(
-            "agent review panel must prohibit planned explicit maintainer decision",
+            "agent review panel must prohibit planned person participation",
+            agent_review_panel_errors(panel),
+        )
+
+    def test_agent_panel_requires_maintainer_promotion_decision(self) -> None:
+        panel = load_json(DEFAULT_RESEARCH_ROOT / "agent_review_panel.json")
+        panel["maintainer_promotion_decision_required"] = False
+        self.assertIn(
+            "agent review panel must require an accountable maintainer promotion decision",
             agent_review_panel_errors(panel),
         )
 

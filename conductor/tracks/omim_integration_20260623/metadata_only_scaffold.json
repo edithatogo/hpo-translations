@@ -4,6 +4,6 @@
   "source_access": {"status": "blocked", "reason": "registration_api_terms_redistribution_review_required", "payload_fetch": false},
   "retrieval_contract": {"credential_source": "local_environment_only", "cache": "local_only", "commit_payload": false, "request_manifest_required": true},
   "normalization": {"identifier": "OMIM entry number as opaque string", "language": "BCP-47 when source metadata is available", "provenance": ["source_uri", "release", "retrieved_at", "license"]},
-  "review": {"labels_synonyms_definitions": "blocked", "crosswalk": "candidate_only", "llm_output": "candidate_only_human_review_required"},
+  "review": {"labels_synonyms_definitions": "blocked", "crosswalk": "candidate_only", "llm_output": "candidate_only_agent_panel_assessment_and_maintainer_promotion_decision_required"},
   "validation": {"schema": "scaffold_only", "sample": "not_available", "result": "blocked_until_registration_terms_review_and_bounded_probe"}
 }
