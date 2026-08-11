@@ -65,6 +65,21 @@ def validation_errors(
         errors.append("every mapping artifact must remain payload-commit blocked")
 
     for artifact in catalog.get("artifacts", []):
+        integrity = artifact.get("integrity")
+        integrity_status = artifact.get("integrity_status")
+        if integrity is None:
+            if not str(integrity_status).startswith("unresolved_"):
+                errors.append(f"{artifact.get('artifact_id')} null integrity requires explicit unresolved status")
+            for field in ("integrity_reason", "retrieval_gate", "license_gate"):
+                if not str(artifact.get(field, "")).strip():
+                    errors.append(f"{artifact.get('artifact_id')} null integrity requires {field}")
+        elif integrity_status is not None:
+            expected = {
+                "git_commit": "verified_official_git_commit",
+                "sha256": "verified_sha256",
+            }.get(integrity.get("algorithm"))
+            if integrity_status != expected:
+                errors.append(f"{artifact.get('artifact_id')} integrity status does not match its algorithm")
         for language in artifact.get("languages", []):
             if not isinstance(language, str) or not LANGUAGE_TAG.fullmatch(language):
                 errors.append(f"{artifact.get('artifact_id')} has invalid BCP 47 language tag: {language!r}")

@@ -99,6 +99,24 @@ class MappingExpansionTests(unittest.TestCase):
             self.errors(mutated),
         )
 
+    def test_null_integrity_requires_explicit_gate_metadata(self) -> None:
+        mutated = copy.deepcopy(self.catalog)
+        artifact = next(item for item in mutated["artifacts"] if item["artifact_id"] == "medgen-id-mappings")
+        artifact.pop("retrieval_gate")
+        self.assertIn("medgen-id-mappings null integrity requires retrieval_gate", self.errors(mutated))
+
+    def test_null_integrity_cannot_claim_verification(self) -> None:
+        mutated = copy.deepcopy(self.catalog)
+        artifact = next(item for item in mutated["artifacts"] if item["artifact_id"] == "nando-ontology")
+        artifact["integrity_status"] = "verified_sha256"
+        self.assertIn("nando-ontology null integrity requires explicit unresolved status", self.errors(mutated))
+
+    def test_integrity_algorithm_and_status_must_agree(self) -> None:
+        mutated = copy.deepcopy(self.catalog)
+        artifact = next(item for item in mutated["artifacts"] if item["artifact_id"] == "mondo-disease-spine")
+        artifact["integrity_status"] = "verified_sha256"
+        self.assertIn("mondo-disease-spine integrity status does not match its algorithm", self.errors(mutated))
+
 
 if __name__ == "__main__":
     unittest.main()
