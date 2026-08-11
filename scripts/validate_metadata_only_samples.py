@@ -53,6 +53,7 @@ def validate_track(track_dir: Path) -> list[str]:
         errors.append("Phase 2 is not marked payload-free metadata-only normalization")
     sample = phase2.get("sample")
     normalized = phase2.get("normalized_record")
+    normalization = phase2.get("normalization")
     if not isinstance(sample, dict) or sample.get("allowed") is not True:
         errors.append("Phase 2 sample is not explicitly allowed")
     if not isinstance(sample, dict) or sample.get("payload_retained") is not False:
@@ -61,12 +62,18 @@ def validate_track(track_dir: Path) -> list[str]:
         errors.append("Phase 2 sample does not exclude source terms")
     if not isinstance(normalized, dict) or normalized.get("payload_retained") is not False:
         errors.append("normalized record does not prove payload discard")
+    if not isinstance(normalization, dict) or normalization.get("source_terms_included") is not False:
+        errors.append("Phase 2 normalization does not exclude source terms")
     if phase2.get("payload_commit_allowed") is not False:
         errors.append("Phase 2 allows payload commit")
     if phase4.get("status") != PHASE4_STATUS:
         errors.append("Phase 4 is not marked as a validated metadata-only sample with payload blocked")
     if phase4.get("sample_validation") != PHASE4_SAMPLE_VALIDATION:
         errors.append("Phase 4 does not record the metadata-only no-op import result")
+    if phase4.get("promotion_allowed") is not False:
+        errors.append("Phase 4 does not explicitly prohibit promotion")
+    if phase4.get("review_required") is not True:
+        errors.append("Phase 4 does not require human review")
     excluded = set(phase4.get("excluded_payloads", []))
     if not {"source_labels", "source_synonyms", "source_definitions", "full_responses"}.issubset(excluded):
         errors.append("Phase 4 excluded-payload list is incomplete")

@@ -333,10 +333,12 @@ def approved_metadata_sample(track_dir: Path) -> dict[str, Any] | None:
 
     handoff_path = track_dir / "maintainer_review_handoff.json"
     phase2_path = track_dir / "phase2_data_access_normalization.json"
-    if not handoff_path.exists() or not phase2_path.exists():
+    phase4_path = track_dir / "phase4_validation_review.json"
+    if not handoff_path.exists() or not phase2_path.exists() or not phase4_path.exists():
         return None
     handoff = load_json(handoff_path)
     phase2 = load_json(phase2_path)
+    phase4 = load_json(phase4_path)
     if handoff.get("status") != "approved_bounded_metadata_only_sample":
         return None
     approval = handoff.get("approval")
@@ -358,6 +360,13 @@ def approved_metadata_sample(track_dir: Path) -> dict[str, Any] | None:
         or sample.get("source_terms_included") is not False
         or normalization.get("source_terms_included") is not False
         or normalized.get("payload_retained") is not False
+        or phase2.get("payload_commit_allowed") is not False
+    ):
+        return None
+    if (
+        phase4.get("status") != "metadata_only_sample_validated_payload_blocked"
+        or phase4.get("promotion_allowed") is not False
+        or phase4.get("review_required") is not True
     ):
         return None
     release = normalized.get("release")

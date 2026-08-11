@@ -80,6 +80,61 @@ class OntologyNetworkTests(unittest.TestCase):
                         "immutable_commit": "0" * 40,
                         "payload_retained": False,
                     },
+                    "payload_commit_allowed": False,
+                }
+            ),
+            encoding="utf-8",
+        )
+        (track_dir / "phase4_validation_review.json").write_text(
+            json.dumps(
+                {
+                    "status": "metadata_only_sample_validated_payload_blocked",
+                    "promotion_allowed": False,
+                    "review_required": True,
+                }
+            ),
+            encoding="utf-8",
+        )
+        self.assertIsNone(approved_metadata_sample(track_dir))
+
+    def test_generator_rejects_payload_commit_permission(self) -> None:
+        track_dir = self.make_output_dir()
+        (track_dir / "maintainer_review_handoff.json").write_text(
+            json.dumps(
+                {
+                    "status": "approved_bounded_metadata_only_sample",
+                    "approval": {"decision": "test-only approval"},
+                    "bounded_sample": {"identifier": "TEST:1"},
+                }
+            ),
+            encoding="utf-8",
+        )
+        (track_dir / "phase2_data_access_normalization.json").write_text(
+            json.dumps(
+                {
+                    "status": "metadata_only_sample_normalized_payload_free",
+                    "normalization": {"source_terms_included": False},
+                    "sample": {
+                        "allowed": True,
+                        "payload_retained": False,
+                        "source_terms_included": False,
+                    },
+                    "normalized_record": {
+                        "release": "test-release",
+                        "immutable_commit": "0" * 40,
+                        "payload_retained": False,
+                    },
+                    "payload_commit_allowed": True,
+                }
+            ),
+            encoding="utf-8",
+        )
+        (track_dir / "phase4_validation_review.json").write_text(
+            json.dumps(
+                {
+                    "status": "metadata_only_sample_validated_payload_blocked",
+                    "promotion_allowed": False,
+                    "review_required": True,
                 }
             ),
             encoding="utf-8",
