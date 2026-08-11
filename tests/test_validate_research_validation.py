@@ -6,6 +6,7 @@ from pathlib import Path
 
 from scripts.validate_research_validation import (
     DEFAULT_RESEARCH_ROOT,
+    agent_review_panel_errors,
     load_json,
     phase_4_candidate_matrix_errors,
     phase_4_decision_receipt_template_errors,
@@ -29,6 +30,22 @@ from scripts.validate_research_validation import (
 class ValidateResearchValidationTests(unittest.TestCase):
     def test_committed_contract_passes(self) -> None:
         self.assertEqual(validate_contract(), [])
+
+    def test_agent_panel_rejects_human_review(self) -> None:
+        panel = load_json(DEFAULT_RESEARCH_ROOT / "agent_review_panel.json")
+        panel["human_review_planned"] = True
+        self.assertIn(
+            "agent review panel must prohibit planned human review",
+            agent_review_panel_errors(panel),
+        )
+
+    def test_agent_panel_rejects_non_isolated_adjudication(self) -> None:
+        panel = load_json(DEFAULT_RESEARCH_ROOT / "agent_review_panel.json")
+        panel["panel"]["adjudicator"]["sees_initial_decisions_only_after_lock"] = False
+        self.assertIn(
+            "agent adjudicator must see initial decisions only after they are locked",
+            agent_review_panel_errors(panel),
+        )
 
     def test_private_archive_receipts_reject_revision_drift(self) -> None:
         receipts = load_json(DEFAULT_RESEARCH_ROOT / "source_archive_receipts.json")

@@ -473,6 +473,54 @@ def reviewer_workload_budget_errors(instance: Any) -> list[str]:
     return errors
 
 
+def agent_review_panel_errors(instance: Any) -> list[str]:
+    if not isinstance(instance, dict):
+        return ["agent review panel must be a JSON object"]
+    errors: list[str] = []
+    if instance.get("human_review_planned") is not False:
+        errors.append("agent review panel must prohibit planned human review")
+    panel = instance.get("panel")
+    roles = panel.get("roles", []) if isinstance(panel, dict) else []
+    role_ids = {role.get("role_id") for role in roles if isinstance(role, dict)}
+    expected_roles = {
+        "target_language_semantics",
+        "clinical_safety",
+        "ontology_semantics",
+        "provenance_and_rights",
+        "adversarial_error_finder",
+    }
+    if role_ids != expected_roles:
+        errors.append("agent review panel must contain the five required independent specialist roles")
+    if not isinstance(panel, dict) or panel.get("context_isolation_required") is not True:
+        errors.append("agent review panel must require isolated initial contexts")
+    if not isinstance(panel, dict) or panel.get("candidate_generator_separated") is not True:
+        errors.append("agent review panel must remain separated from candidate generation")
+    adjudicator = panel.get("adjudicator", {}) if isinstance(panel, dict) else {}
+    if not isinstance(adjudicator, dict) or adjudicator.get("sees_initial_decisions_only_after_lock") is not True:
+        errors.append("agent adjudicator must see initial decisions only after they are locked")
+    controls = instance.get("execution_controls")
+    required_true = {
+        "model_or_endpoint_version_pinned",
+        "prompt_hash_required",
+        "independent_contexts_required",
+        "deterministic_reproducer_required_for_gate_effect",
+        "unanimous_clinical_safety_clearance_required",
+    }
+    if not isinstance(controls, dict) or any(controls.get(field) is not True for field in required_true):
+        errors.append("agent review panel must preserve pinning, isolation, reproduction, and safety controls")
+    if not isinstance(controls, dict) or controls.get("promotion_allowed") is not False:
+        errors.append("agent review panel must not authorize promotion")
+    claims = instance.get("claims_boundary")
+    prohibited_claims = {
+        "human_validation_claim_allowed",
+        "community_endorsement_claim_allowed",
+        "clinical_validation_claim_allowed",
+    }
+    if not isinstance(claims, dict) or any(claims.get(field) is not False for field in prohibited_claims):
+        errors.append("agent review panel must prohibit human, community, and clinical validation claims")
+    return errors
+
+
 def phase_4_candidate_matrix_errors(instance: Any, supplementary: Any) -> list[str]:
     if not isinstance(instance, dict) or not isinstance(supplementary, dict):
         return ["Phase 4 candidate matrix and supplementary review must be JSON objects"]
@@ -1586,6 +1634,13 @@ def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[Valid
         budget = load_json(budget_path)
         for message in reviewer_workload_budget_errors(budget):
             issues.append(ValidationIssue("reviewer_budget.invalid", str(budget_path), message))
+
+    agent_panel_path = research_root / "agent_review_panel.json"
+    if not agent_panel_path.exists():
+        issues.append(ValidationIssue("agent_review_panel.missing", str(agent_panel_path), "agent panel is required"))
+    else:
+        for message in agent_review_panel_errors(load_json(agent_panel_path)):
+            issues.append(ValidationIssue("agent_review_panel.invalid", str(agent_panel_path), message))
 
     candidate_matrix_path = research_root / "phase_4_candidate_matrix.json"
     if not candidate_matrix_path.exists():

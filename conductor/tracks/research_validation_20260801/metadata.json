@@ -18,7 +18,7 @@
   "ci_status": "local_passing_unpublished_continuation",
   "merge_status": "prior_batch_merged_current_continuation_unpublished",
   "last_commit": "8c572c0",
-  "phase_review_status": "codex_track_review_completed_local_fixes_applied_external_empirical_and_archive_audit_gates_block_completion",
+  "phase_review_status": "codex_track_review_completed_agent_panel_substituted_external_empirical_and_archive_audit_gates_block_completion",
   "github_checks_url": "https://github.com/edithatogo/hpo-translations/pull/1/checks",
   "merge_commit": "4b84d534050ec15decd6c34e8a4c22c82f03a1a3",
   "source_archive_receipts_artifact": "research_validation/source_archive_receipts.json",
@@ -34,15 +34,15 @@
     "Current ontology-network comparison packs contain zero empirical candidates and are not computed.",
     "The `tw` profile is described as both Tiwi and Twi; language authority and migration direction are unresolved.",
     "Restricted terminology content requires source-specific license and redistribution review.",
-    "Human reviewers and language-working-group approval have not been secured for a pilot.",
-    "Spanish and Japanese are metadata-only planning preferences; no language, reviewer roster, source payload, or concept sample is approved.",
+    "The specialist-agent panel is designed but has not run on an authorized empirical sample.",
+    "Spanish and Japanese are metadata-only planning preferences; no language, source payload, or concept sample is approved.",
     "Wave 2 ethics/privacy sponsor route, authorized sender reference, and language contact mode are not selected; no request has been dispatched.",
     "Upstream push, PR, preregistration, and publication require explicit maintainer approval."
     ,"The already-executed credentialed archive run requires authorized receipt-content audit and possible remote remediation; automatic push execution is now disabled locally."
   ],
   "expected_blockers": [
     "Source dependence may reduce the number of genuinely independent terminology signals.",
-    "Reviewer availability and adjudication capacity may determine feasible sample size.",
+    "Agent context isolation, reproducibility, and adjudication cost may determine feasible sample size.",
     "Community-governed languages may prohibit or constrain automated model use.",
     "Model and benchmark contamination may require temporal or held-out-language designs."
   ],
@@ -52,7 +52,7 @@
   "local_only_artifacts": [
     "licensed terminology payloads",
     "credentialed API responses",
-    "raw reviewer data containing personal information",
+    "raw agent reasoning traces or restricted evaluation contexts",
     "identifiable clinical text",
     "unredistributable model outputs"
   ],
@@ -70,7 +70,7 @@
     "local_only_artifacts": [
       "licensed terminology payloads",
       "credentialed API responses",
-      "raw reviewer data",
+      "raw agent reasoning traces or restricted evaluation contexts",
       "identifiable clinical text",
       "full restricted model contexts"
     ],
@@ -88,7 +88,7 @@
       "source and license classification",
       "local-only manifest for restricted inputs",
       "redaction or exclusion proof",
-      "reviewer consent and privacy assessment",
+      "agent-panel isolation, reproducibility, and restricted-context assessment",
       "community model-use authority where applicable"
     ]
   },
@@ -101,7 +101,7 @@
       "dependent sources share an evidence group",
       "restricted text is absent",
       "candidate remains candidate-only",
-      "human review is required",
+      "the independent specialist-agent panel and deterministic reproducer are required",
       "passing and expected-failure fixtures behave deterministically"
     ]
   },
@@ -129,6 +129,7 @@
       "reviewer workload budget",
       "Phase 4 candidate matrix",
       "prospective protocol freeze receipt"
+      ,"canonical specialist-agent review panel"
     ],
     "conditional_outputs": [
       "candidate comparison dataset",
@@ -142,7 +143,7 @@
       "restricted source text",
       "identifiable clinical records",
       "unapproved community language content",
-      "raw reviewer personal data",
+      "raw restricted agent contexts",
       "official translation promotion"
     ]
   },
@@ -225,9 +226,10 @@
     "g3_component_inventory_status": "twelve_components_mapped_zero_ready_checksummed_or_frozen",
     "g3_freeze_receipt_template_artifact": "research_validation/phase_4_g3_freeze_receipt.template.json",
     "g3_freeze_receipt_template_status": "unexecuted_all_canonical_freeze_fields_null_no_authority",
-    "planning_primary_reviewer_count": 9,
-    "planning_independent_adjudicator_count": 3,
-    "planning_human_role_count": 12,
+    "planning_primary_agent_count": 5,
+    "planning_independent_adjudicator_agent_count": 1,
+    "planning_audit_agent_count": 1,
+    "planning_human_role_count": 0,
     "planned_fallback_order": [
       "option_b_lean_two_language_pilot",
       "option_c_single_language_measurement_pilot",
@@ -292,7 +294,7 @@
     "required_gates": [
       "G0_design_authority",
       "G1_source_authority",
-      "G2_human_and_community_authority",
+      "G2_language_and_community_use_constraints",
       "G3_prospective_freeze",
       "G4_stage_1_feasibility",
       "G5_pilot_completion"
@@ -324,7 +326,7 @@
     },
     "external_actions_not_authorized": [
       "payload_retrieval",
-      "reviewer_recruitment_or_contact",
+      "human_reviewer_recruitment_or_contact",
       "financial_spend",
       "empirical_candidate_generation",
       "external_preregistration",
@@ -342,7 +344,7 @@
       "designation role",
       "compositional semantic agreement",
       "ontology discrimination",
-      "human adjudication",
+      "independent agent adjudication",
       "clinical error severity",
       "license caveat"
     ],
@@ -410,7 +412,7 @@
     "candidate provenance",
     "independent evidence groups",
     "source and license caveats",
-    "blinded reviewer instrument",
+    "blinded agent-panel instrument",
     "adjudication record",
     "validation output",
     "Wave 2 authority routes and dispatch hold",

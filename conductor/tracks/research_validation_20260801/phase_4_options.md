@@ -1,5 +1,14 @@
 # Phase 4 Options, Contingencies, and Recommendation
 
+> **Protocol amendment — 2026-08-11:** The human-review, recruitment, consent,
+> reviewer-roster, and human-adjudication elements below are superseded by the
+> canonical specialist-agent design in
+> `research_validation/agent_review_panel.json`. They remain in this document
+> only as historical decision context and must not be executed. Empirical work
+> uses five isolated specialist agents, a separately isolated adjudication
+> agent, and a non-voting reproducibility auditor. Outputs support agent-panel
+> evaluation claims only, never human, community, or clinical validation.
+
 ## Decision status
 
 The user accepted the recommended path on 2026-08-02: Option A is the target,

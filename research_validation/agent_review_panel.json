@@ -1,0 +1,82 @@
+{
+  "schema_version": "agent-review-panel-v1",
+  "track_id": "research_validation_20260801",
+  "status": "canonical_design_pending_g1_and_g3",
+  "supersedes": [
+    "human_reviewer_roster",
+    "human_reviewer_recruitment",
+    "human_reviewer_consent",
+    "human_reviewer_workload_budget",
+    "human_adjudication"
+  ],
+  "human_review_planned": false,
+  "panel": {
+    "candidate_generator_separated": true,
+    "context_isolation_required": true,
+    "independent_initial_reviews": 5,
+    "roles": [
+      {
+        "role_id": "target_language_semantics",
+        "mandate": "assess denotation, grammar, register, regional fit, ambiguity, and misleading cognates",
+        "candidate_generation_access": false
+      },
+      {
+        "role_id": "clinical_safety",
+        "mandate": "identify clinically significant polarity, anatomy, laterality, severity, frequency, temporal, and causality errors",
+        "candidate_generation_access": false
+      },
+      {
+        "role_id": "ontology_semantics",
+        "mandate": "assess HPO identity, granularity, compositional semantics, and hard-negative discrimination",
+        "candidate_generation_access": false
+      },
+      {
+        "role_id": "provenance_and_rights",
+        "mandate": "verify source lineage, permitted scope, licence constraints, attribution, and independence groups",
+        "candidate_generation_access": false
+      },
+      {
+        "role_id": "adversarial_error_finder",
+        "mandate": "seek counterexamples, hidden ambiguity, cultural or regional mismatch, and unsupported confidence",
+        "candidate_generation_access": false
+      }
+    ],
+    "adjudicator": {
+      "role_id": "independent_adjudicator",
+      "sees_initial_decisions_only_after_lock": true,
+      "candidate_generation_access": false,
+      "must_resolve": ["decision_conflict", "material_edit_conflict", "clinical_safety_conflict", "ontology_identity_conflict"]
+    },
+    "audit_agent": {
+      "role_id": "reproducibility_auditor",
+      "participates_in_vote": false,
+      "checks": ["model_and_prompt_pins", "input_checksums", "context_isolation", "decision_completeness", "aggregation_reproduction"]
+    }
+  },
+  "execution_controls": {
+    "model_or_endpoint_version_pinned": true,
+    "prompt_hash_required": true,
+    "temperature_zero_unless_prespecified": true,
+    "independent_contexts_required": true,
+    "raw_outputs_retained_local_only": true,
+    "deterministic_reproducer_required_for_gate_effect": true,
+    "unanimous_clinical_safety_clearance_required": true,
+    "majority_acceptance_threshold": 4,
+    "abstention_counts_as_non_acceptance": true,
+    "unresolved_material_conflict_action": "reject_or_hold",
+    "promotion_allowed": false
+  },
+  "claims_boundary": {
+    "human_validation_claim_allowed": false,
+    "community_endorsement_claim_allowed": false,
+    "clinical_validation_claim_allowed": false,
+    "permitted_claim": "agent-panel evaluation under the pinned protocol",
+    "rights_or_consent_can_be_inferred_from_panel": false
+  },
+  "remaining_non_review_gates": [
+    "G1_source_authority_and_licence",
+    "G2_language_and_community_use_constraints_where_applicable",
+    "G3_prospective_protocol_freeze",
+    "explicit_maintainer_release_authorization"
+  ]
+}
