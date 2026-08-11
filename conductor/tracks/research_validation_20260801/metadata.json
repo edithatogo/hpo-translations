@@ -17,12 +17,12 @@
   "pr_url": "https://github.com/edithatogo/hpo-translations/pull/1",
   "ci_status": "local_passing_unpublished_continuation",
   "merge_status": "prior_batch_merged_current_continuation_unpublished",
-  "last_commit": "30cc5a2",
-  "phase_review_status": "codex_track_review_completed_fixes_applied_external_empirical_gates_block_completion",
+  "last_commit": "8c572c0",
+  "phase_review_status": "codex_track_review_completed_local_fixes_applied_external_empirical_and_archive_audit_gates_block_completion",
   "github_checks_url": "https://github.com/edithatogo/hpo-translations/pull/1/checks",
   "merge_commit": "4b84d534050ec15decd6c34e8a4c22c82f03a1a3",
   "source_archive_receipts_artifact": "research_validation/source_archive_receipts.json",
-  "source_archive_receipts_status": "four_version_and_integrity_receipts_no_payload_or_lineage_authority",
+  "source_archive_receipts_status": "seven_version_and_integrity_receipts_no_payload_or_lineage_authority",
   "pilot_source_readiness_artifact": "research_validation/pilot_source_readiness.json",
   "pilot_source_readiness_status": "planning_inventory_complete_final_source_set_not_selected",
   "priority": "P0",
@@ -38,6 +38,7 @@
     "Spanish and Japanese are metadata-only planning preferences; no language, reviewer roster, source payload, or concept sample is approved.",
     "Wave 2 ethics/privacy sponsor route, authorized sender reference, and language contact mode are not selected; no request has been dispatched.",
     "Upstream push, PR, preregistration, and publication require explicit maintainer approval."
+    ,"The already-executed credentialed archive run requires authorized receipt-content audit and possible remote remediation; automatic push execution is now disabled locally."
   ],
   "expected_blockers": [
     "Source dependence may reduce the number of genuinely independent terminology signals.",
@@ -384,6 +385,9 @@
         "Disease Ontology archive receipt": "v2026-07-31",
         "MP archive receipt": "v2026-07-22",
         "uPheno archive receipt": "v2025-10-12"
+        ,"LOINC archive receipt": "2.82"
+        ,"MeSH archive receipt": "2026"
+        ,"Orphanet archive receipt": "2026-07"
       },
       "runtime_seconds": null,
       "validation_command": [
@@ -396,7 +400,7 @@
         ".pixi/envs/default/bin/vale.exe research_validation/README.md research_validation/stage_0/README.md conductor/tracks/research_validation_20260801/phase_4_options.md conductor/tracks/research_validation_20260801/plan.md",
         "pixi run validate-conductor"
       ],
-      "validation_result": "exact_head_local_passing_122_tests_14_translation_profiles_review_fixes_applied_zero_G2_payload_lineage_freeze_or_promotion_authority_qc_aggregate_exceeded_30_minutes",
+      "validation_result": "reviewed_local_passing_123_tests_14_translation_profiles_manual_archive_dispatch_enforced_zero_G2_payload_lineage_freeze_or_promotion_authority_qc_aggregate_exceeded_30_minutes",
       "conflict_count": 2,
       "open_blockers": 8
     }
