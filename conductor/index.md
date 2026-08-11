@@ -15,3 +15,4 @@
 
 - [Tracks Registry](./tracks.md)
 - [Tracks Directory](./tracks/)
+- [Source Governance Decision Docket](./source_governance_decision_docket.json)
