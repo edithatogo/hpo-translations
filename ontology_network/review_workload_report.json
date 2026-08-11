@@ -14,8 +14,24 @@
       "candidate_count": 0,
       "conflict_count": 0,
       "coverage_gap_count": 0,
+      "language": "ar-JO",
+      "source_count": 1
+    },
+    {
+      "agent_panel_role": "language-specialist agent panel",
+      "candidate_count": 0,
+      "conflict_count": 0,
+      "coverage_gap_count": 0,
       "language": "cs",
       "source_count": 5
+    },
+    {
+      "agent_panel_role": "language-specialist agent panel",
+      "candidate_count": 0,
+      "conflict_count": 0,
+      "coverage_gap_count": 0,
+      "language": "cs-CZ",
+      "source_count": 1
     },
     {
       "agent_panel_role": "language-specialist agent panel",
@@ -31,7 +47,7 @@
       "conflict_count": 0,
       "coverage_gap_count": 0,
       "language": "de",
-      "source_count": 6
+      "source_count": 5
     },
     {
       "agent_panel_role": "language-specialist agent panel",
@@ -39,7 +55,7 @@
       "conflict_count": 0,
       "coverage_gap_count": 0,
       "language": "de-AT",
-      "source_count": 1
+      "source_count": 2
     },
     {
       "agent_panel_role": "language-specialist agent panel",
@@ -47,7 +63,7 @@
       "conflict_count": 0,
       "coverage_gap_count": 0,
       "language": "de-DE",
-      "source_count": 2
+      "source_count": 3
     },
     {
       "agent_panel_role": "language-specialist agent panel",
@@ -62,8 +78,16 @@
       "candidate_count": 0,
       "conflict_count": 0,
       "coverage_gap_count": 0,
+      "language": "el-GR",
+      "source_count": 1
+    },
+    {
+      "agent_panel_role": "language-specialist agent panel",
+      "candidate_count": 0,
+      "conflict_count": 0,
+      "coverage_gap_count": 0,
       "language": "en",
-      "source_count": 17
+      "source_count": 16
     },
     {
       "agent_panel_role": "language-specialist agent panel",
@@ -103,7 +127,15 @@
       "conflict_count": 0,
       "coverage_gap_count": 0,
       "language": "es",
-      "source_count": 7
+      "source_count": 6
+    },
+    {
+      "agent_panel_role": "language-specialist agent panel",
+      "candidate_count": 0,
+      "conflict_count": 0,
+      "coverage_gap_count": 0,
+      "language": "es-AR",
+      "source_count": 1
     },
     {
       "agent_panel_role": "language-specialist agent panel",
@@ -111,7 +143,15 @@
       "conflict_count": 0,
       "coverage_gap_count": 0,
       "language": "es-ES",
-      "source_count": 2
+      "source_count": 3
+    },
+    {
+      "agent_panel_role": "language-specialist agent panel",
+      "candidate_count": 0,
+      "conflict_count": 0,
+      "coverage_gap_count": 0,
+      "language": "es-MX",
+      "source_count": 1
     },
     {
       "agent_panel_role": "language-specialist agent panel",
@@ -120,6 +160,14 @@
       "coverage_gap_count": 0,
       "language": "et",
       "source_count": 3
+    },
+    {
+      "agent_panel_role": "language-specialist agent panel",
+      "candidate_count": 0,
+      "conflict_count": 0,
+      "coverage_gap_count": 0,
+      "language": "et-EE",
+      "source_count": 1
     },
     {
       "agent_panel_role": "language-specialist agent panel",
@@ -143,7 +191,7 @@
       "conflict_count": 0,
       "coverage_gap_count": 0,
       "language": "fr",
-      "source_count": 7
+      "source_count": 6
     },
     {
       "agent_panel_role": "language-specialist agent panel",
@@ -151,7 +199,7 @@
       "conflict_count": 0,
       "coverage_gap_count": 0,
       "language": "fr-BE",
-      "source_count": 1
+      "source_count": 2
     },
     {
       "agent_panel_role": "language-specialist agent panel",
@@ -159,7 +207,7 @@
       "conflict_count": 0,
       "coverage_gap_count": 0,
       "language": "fr-CA",
-      "source_count": 2
+      "source_count": 3
     },
     {
       "agent_panel_role": "language-specialist agent panel",
@@ -167,7 +215,7 @@
       "conflict_count": 0,
       "coverage_gap_count": 0,
       "language": "fr-FR",
-      "source_count": 2
+      "source_count": 3
     },
     {
       "agent_panel_role": "language-specialist agent panel",
@@ -207,7 +255,15 @@
       "conflict_count": 0,
       "coverage_gap_count": 0,
       "language": "it",
-      "source_count": 5
+      "source_count": 4
+    },
+    {
+      "agent_panel_role": "language-specialist agent panel",
+      "candidate_count": 0,
+      "conflict_count": 0,
+      "coverage_gap_count": 0,
+      "language": "it-IT",
+      "source_count": 1
     },
     {
       "agent_panel_role": "language-specialist agent panel",
@@ -231,7 +287,15 @@
       "conflict_count": 0,
       "coverage_gap_count": 0,
       "language": "ko",
-      "source_count": 3
+      "source_count": 2
+    },
+    {
+      "agent_panel_role": "language-specialist agent panel",
+      "candidate_count": 0,
+      "conflict_count": 0,
+      "coverage_gap_count": 0,
+      "language": "ko-KR",
+      "source_count": 1
     },
     {
       "agent_panel_role": "language-specialist agent panel",
@@ -279,7 +343,7 @@
       "conflict_count": 0,
       "coverage_gap_count": 0,
       "language": "nl",
-      "source_count": 4
+      "source_count": 3
     },
     {
       "agent_panel_role": "language-specialist agent panel",
@@ -295,7 +359,7 @@
       "conflict_count": 0,
       "coverage_gap_count": 0,
       "language": "nl-NL",
-      "source_count": 1
+      "source_count": 2
     },
     {
       "agent_panel_role": "language-specialist agent panel",
@@ -326,15 +390,7 @@
       "candidate_count": 0,
       "conflict_count": 0,
       "coverage_gap_count": 0,
-      "language": "pt",
-      "source_count": 6
-    },
-    {
-      "agent_panel_role": "language-specialist agent panel",
-      "candidate_count": 0,
-      "conflict_count": 0,
-      "coverage_gap_count": 0,
-      "language": "pt-BR",
+      "language": "pl-PL",
       "source_count": 1
     },
     {
@@ -342,8 +398,32 @@
       "candidate_count": 0,
       "conflict_count": 0,
       "coverage_gap_count": 0,
-      "language": "ru",
+      "language": "pt",
       "source_count": 5
+    },
+    {
+      "agent_panel_role": "language-specialist agent panel",
+      "candidate_count": 0,
+      "conflict_count": 0,
+      "coverage_gap_count": 0,
+      "language": "pt-BR",
+      "source_count": 2
+    },
+    {
+      "agent_panel_role": "language-specialist agent panel",
+      "candidate_count": 0,
+      "conflict_count": 0,
+      "coverage_gap_count": 0,
+      "language": "ru",
+      "source_count": 4
+    },
+    {
+      "agent_panel_role": "language-specialist agent panel",
+      "candidate_count": 0,
+      "conflict_count": 0,
+      "coverage_gap_count": 0,
+      "language": "ru-RU",
+      "source_count": 1
     },
     {
       "agent_panel_role": "language-specialist agent panel",
@@ -391,7 +471,15 @@
       "conflict_count": 0,
       "coverage_gap_count": 0,
       "language": "tr",
-      "source_count": 3
+      "source_count": 2
+    },
+    {
+      "agent_panel_role": "language-specialist agent panel",
+      "candidate_count": 0,
+      "conflict_count": 0,
+      "coverage_gap_count": 0,
+      "language": "tr-TR",
+      "source_count": 1
     },
     {
       "agent_panel_role": "language-specialist agent panel",
@@ -399,6 +487,14 @@
       "conflict_count": 0,
       "coverage_gap_count": 0,
       "language": "uk",
+      "source_count": 1
+    },
+    {
+      "agent_panel_role": "language-specialist agent panel",
+      "candidate_count": 0,
+      "conflict_count": 0,
+      "coverage_gap_count": 0,
+      "language": "uk-UA",
       "source_count": 1
     },
     {
@@ -415,7 +511,15 @@
       "conflict_count": 0,
       "coverage_gap_count": 0,
       "language": "zh",
-      "source_count": 4
+      "source_count": 3
+    },
+    {
+      "agent_panel_role": "language-specialist agent panel",
+      "candidate_count": 0,
+      "conflict_count": 0,
+      "coverage_gap_count": 0,
+      "language": "zh-CN",
+      "source_count": 1
     }
   ]
 }

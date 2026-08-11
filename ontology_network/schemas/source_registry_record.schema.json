@@ -145,6 +145,12 @@
     "redistribution_status": {
       "type": "string"
     },
+    "regional_language_variants": {
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    },
     "release_safe": {
       "type": "boolean"
     },
@@ -183,6 +189,9 @@
       "type": "string"
     },
     "track_status": {
+      "type": "string"
+    },
+    "translation_vintage_policy": {
       "type": "string"
     },
     "usefulness": {
