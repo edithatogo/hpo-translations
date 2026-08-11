@@ -12,6 +12,7 @@
   "translation_audit": "not_applicable_without_translation_outputs",
   "import_dry_run": "not_applicable_without_terms",
   "sample_validation": "metadata_only_identifier_and_provenance_prepared_not_admitted_release_artifact_review_pending",
+  "promotion_allowed": false,
   "review_required": true,
   "excluded_payloads": [
     "source_labels",

@@ -118,6 +118,14 @@ class MetadataOnlySampleTests(unittest.TestCase):
                     self.assertIs(artifact.get("promotion_allowed"), False)
                     self.assertIs(artifact.get("review_required"), True)
 
+    def test_all_phase4_receipts_block_promotion(self) -> None:
+        track_root = Path(__file__).resolve().parents[1] / "conductor" / "tracks"
+        for artifact_path in sorted(track_root.glob("*/phase4_validation_review.json")):
+            with self.subTest(track=artifact_path.parent.name):
+                artifact = json.loads(artifact_path.read_text(encoding="utf-8"))
+                self.assertIs(artifact.get("promotion_allowed"), False)
+                self.assertIs(artifact.get("review_required"), True)
+
 
 if __name__ == "__main__":
     unittest.main()
