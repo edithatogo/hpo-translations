@@ -31,6 +31,7 @@ EXPECTED_SUPPLEMENTARY_SOURCE_IDS = {
     "cell-ontology",
     "decs",
     "mondo",
+    "nando",
     "ncit",
     "pato",
     "pro-ctcae",
