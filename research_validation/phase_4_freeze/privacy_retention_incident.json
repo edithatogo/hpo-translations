@@ -1,0 +1,1 @@
+{"authority_status":"pending_external_precondition","identifiable_clinical_text_allowed":false,"incident_action":"stop_quarantine_rotate_if_needed_and_invalidate_freeze_if_inputs_or_blinding_affected","raw_agent_outputs":"local_only","retention":"until aggregate validation and incident window close; deletion receipt required"}

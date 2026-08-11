@@ -14,8 +14,9 @@ update = { depends-on = ["sort-all", "clean-all", "validate-all"] }
 ruff-check = { cmd = ".pixi/envs/default/Scripts/ruff.exe check --no-cache .", inputs = ["scripts/**/*.py", "ruff.toml"] }
 ruff-format = { cmd = ".pixi/envs/default/Scripts/ruff.exe format --no-cache --check .", inputs = ["scripts/**/*.py", "ruff.toml"] }
 vale-check = { cmd = ".pixi/envs/default/bin/vale.exe README.md docs/", inputs = ["README.md", "docs/**/*.md", ".vale.ini"] }
-mypy-check = { cmd = ".pixi/envs/default/Scripts/mypy.exe --strict scripts/", inputs = ["scripts/**/*.py"] }
-lint = { depends-on = ["ruff-check", "ruff-format", "vale-check", "mypy-check"] }
+ty-check = { cmd = ".pixi/envs/default/Scripts/ty.exe check --python .pixi/envs/default/python.exe scripts/", inputs = ["scripts/**/*.py", "pyproject.toml", "pixi.lock"] }
+basedpyright-check = { cmd = ".pixi/envs/default/Scripts/basedpyright.exe scripts/", inputs = ["scripts/**/*.py", "pyproject.toml"] }
+lint = { depends-on = ["ruff-check", "ruff-format", "vale-check", "ty-check", "basedpyright-check"] }
 just = ".pixi/envs/default/bin/just.exe"
 cz = ".pixi/envs/default/Scripts/cz.exe"
 pre-commit-install = { cmd = ".pixi/envs/default/Scripts/pre-commit.exe install --install-hooks --hook-type pre-commit --hook-type commit-msg", env = { PRE_COMMIT_HOME = "C:/tmp/hpo-translations-pre-commit" } }
@@ -43,13 +44,15 @@ test-research-validation = ".pixi/envs/default/python.exe -m unittest discover -
 verify-research-source-pins = ".pixi/envs/default/python.exe -u scripts/verify_research_sources.py"
 run-stage-0-rehearsal = ".pixi/envs/default/python.exe -u scripts/run_stage0_rehearsal.py"
 generate-pilot-source-atoms = { cmd = ".pixi/envs/default/python.exe -u scripts/generate_pilot_source_atoms.py", inputs = ["research_validation/pilot_source_payload_manifest.json", "babelon/hp-es.babelon.tsv", "babelon/hp-ja.babelon.tsv", "scripts/generate_pilot_source_atoms.py"], outputs = ["research_validation/pilot_source_atoms.jsonl.gz", "research_validation/pilot_independent_lineage_groups.json"] }
+freeze-phase4-g3 = { cmd = ".pixi/envs/default/python.exe -u scripts/freeze_phase4_g3.py", inputs = ["scripts/freeze_phase4_g3.py", "scripts/analyze_phase4_pilot.py", "pixi.lock", "research_validation/agent_review_panel.json", "research_validation/approval_manifest.json", "research_validation/pilot_source_payload_manifest.json", "research_validation/pilot_source_atoms.jsonl.gz", "babelon/hp-es.babelon.tsv", "babelon/hp-ja.babelon.tsv"], outputs = ["research_validation/phase_4_freeze/component_manifest.json", "research_validation/phase_4_freeze/freeze_receipt.json"] }
 
 [dependencies]
 python = ">=3.14.6,<3.15"
 setuptools = ">=82.0.1,<83"
 ruff = ">=0.15.18,<0.16"
 vale = ">=3.15.1,<4"
-mypy = ">=1.15.0,<2"
+ty = "*"
+basedpyright = "*"
 pre-commit = ">=4.6.0,<5"
 just = ">=1.43.1,<2"
 

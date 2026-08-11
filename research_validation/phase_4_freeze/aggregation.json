@@ -1,0 +1,1 @@
+{"abstention_counts_as_non_acceptance":true,"acceptance_threshold":4,"adjudicate_on":["decision_conflict","material_edit_conflict","clinical_safety_conflict","ontology_identity_conflict"],"automatic_promotion_allowed":false,"specialist_roles_required":5,"unanimous_clinical_safety_clearance_required":true,"unresolved_material_conflict_action":"reject_or_hold"}

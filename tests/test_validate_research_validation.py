@@ -182,7 +182,7 @@ class ValidateResearchValidationTests(unittest.TestCase):
         supplementary = load_json(DEFAULT_RESEARCH_ROOT / "supplementary_source_access_reviews.json")
         matrix["approved_language_count"] = 1
         self.assertIn(
-            "Phase 4 planning matrix must record zero approved languages, payloads, and empirical agent executions",
+            "Phase 4 matrix must record two pinned payloads but zero language or empirical approvals",
             phase_4_candidate_matrix_errors(matrix, supplementary),
         )
 
@@ -405,20 +405,20 @@ class ValidateResearchValidationTests(unittest.TestCase):
             phase_4_g1_internal_scope_review_errors(review),
         )
 
-    def test_g3_readiness_rejects_false_freeze(self) -> None:
+    def test_g3_readiness_rejects_freeze_identity_drift(self) -> None:
         readiness = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_g3_freeze_readiness.json")
         readiness["status"] = "frozen"
         readiness["freeze_id"] = "premature"
         self.assertIn(
-            "G3 readiness must remain explicitly not frozen with no freeze identifier or timestamp",
+            "G3 readiness must identify the canonical conditional prospective freeze",
             phase_4_g3_freeze_readiness_errors(readiness),
         )
 
-    def test_g3_component_inventory_rejects_hash(self) -> None:
+    def test_g3_component_inventory_rejects_invalid_hash(self) -> None:
         inventory = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_g3_component_inventory.json")
         inventory["components"][0]["version_or_hash"] = "sha256:premature"
         self.assertIn(
-            "G3 planning inventory must not contain versions or hashes",
+            "each frozen G3 component must contain a SHA-256 hash",
             phase_4_g3_component_inventory_errors(inventory),
         )
 
@@ -430,11 +430,11 @@ class ValidateResearchValidationTests(unittest.TestCase):
             phase_4_g3_component_inventory_errors(inventory),
         )
 
-    def test_g3_component_inventory_rejects_false_readiness(self) -> None:
+    def test_g3_component_inventory_rejects_readiness_drift(self) -> None:
         inventory = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_g3_component_inventory.json")
         inventory["components"][0]["readiness"] = "ready"
         self.assertIn(
-            "G3 component inventory must not claim component freeze readiness",
+            "each G3 component must be frozen and checksummed but execution-blocked",
             phase_4_g3_component_inventory_errors(inventory),
         )
 
@@ -462,11 +462,11 @@ class ValidateResearchValidationTests(unittest.TestCase):
             phase_4_g3_freeze_receipt_template_errors(receipt),
         )
 
-    def test_g3_readiness_rejects_premature_checksum(self) -> None:
+    def test_g3_readiness_rejects_checksum_drift(self) -> None:
         readiness = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_g3_freeze_readiness.json")
         readiness["checksum_contract"]["recorded_checksum_count"] = 1
         self.assertIn(
-            "G3 readiness must not record checksums before the prospective freeze",
+            "G3 readiness must record all component checksums and the aggregate manifest hash",
             phase_4_g3_freeze_readiness_errors(readiness),
         )
 
@@ -474,7 +474,8 @@ class ValidateResearchValidationTests(unittest.TestCase):
         readiness = load_json(DEFAULT_RESEARCH_ROOT / "phase_4_g3_freeze_readiness.json")
         readiness["authorization_boundary"]["start_empirical_work"] = True
         self.assertIn(
-            "all G3 readiness authorization fields must remain false", phase_4_g3_freeze_readiness_errors(readiness)
+            "G3 readiness authority must permit only local prospective freeze creation",
+            phase_4_g3_freeze_readiness_errors(readiness),
         )
 
     def test_g3_readiness_rejects_candidate_matrix_drift(self) -> None:

@@ -1,0 +1,1 @@
+{"algorithm":"sha256_counter_order_v1","blinding":["candidate_condition","source_popularity","other_agent_decisions_before_lock"],"ordering_rule":"sort by sha256(seed NUL run_id NUL item_id NUL candidate_condition NUL agent_role)","seed":"research-validation-option-b-g3-20260812-v1"}
