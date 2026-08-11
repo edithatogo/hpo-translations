@@ -42,6 +42,7 @@ validate-research-validation = ".pixi/envs/default/python.exe -u -m scripts.vali
 test-research-validation = ".pixi/envs/default/python.exe -m unittest discover -s tests -p test_validate_research_validation.py"
 verify-research-source-pins = ".pixi/envs/default/python.exe -u scripts/verify_research_sources.py"
 run-stage-0-rehearsal = ".pixi/envs/default/python.exe -u scripts/run_stage0_rehearsal.py"
+generate-pilot-source-atoms = { cmd = ".pixi/envs/default/python.exe -u scripts/generate_pilot_source_atoms.py", inputs = ["research_validation/pilot_source_payload_manifest.json", "babelon/hp-es.babelon.tsv", "babelon/hp-ja.babelon.tsv", "scripts/generate_pilot_source_atoms.py"], outputs = ["research_validation/pilot_source_atoms.jsonl.gz", "research_validation/pilot_independent_lineage_groups.json"] }
 
 [dependencies]
 python = ">=3.14.6,<3.15"

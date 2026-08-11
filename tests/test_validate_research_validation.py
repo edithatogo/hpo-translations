@@ -19,6 +19,7 @@ from scripts.validate_research_validation import (
     phase_4_gate_docket_errors,
     phase_4_wave_1_source_decisions_errors,
     phase_4_wave_2_authority_routes_errors,
+    pilot_source_atom_artifacts_errors,
     pilot_source_payload_manifest_errors,
     pilot_source_readiness_errors,
     private_source_archive_receipts_errors,
@@ -119,6 +120,20 @@ class ValidateResearchValidationTests(unittest.TestCase):
         self.assertIn(
             "pilot source payload authorization boundary must remain fail-closed",
             pilot_source_payload_manifest_errors(manifest),
+        )
+
+    def test_pilot_source_atom_artifacts_pass(self) -> None:
+        groups = load_json(DEFAULT_RESEARCH_ROOT / "pilot_independent_lineage_groups.json")
+        atoms_path = DEFAULT_RESEARCH_ROOT / "pilot_source_atoms.jsonl.gz"
+        self.assertEqual(pilot_source_atom_artifacts_errors(groups, atoms_path), [])
+
+    def test_pilot_source_atom_artifacts_reject_hash_drift(self) -> None:
+        groups = load_json(DEFAULT_RESEARCH_ROOT / "pilot_independent_lineage_groups.json")
+        groups["source_atom_artifact_sha256"] = "0" * 64
+        atoms_path = DEFAULT_RESEARCH_ROOT / "pilot_source_atoms.jsonl.gz"
+        self.assertIn(
+            "pilot source atom artifact hash does not match its lineage-group receipt",
+            pilot_source_atom_artifacts_errors(groups, atoms_path),
         )
 
     def test_pilot_source_readiness_rejects_archive_double_count(self) -> None:
