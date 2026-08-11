@@ -5,6 +5,7 @@ Introduce Orphanet as a governed terminology source for the HPO translation work
 
 ## Source Profile
 - Languages: English, French, Spanish, Italian, German, Dutch, Portuguese, Czech, and Polish.
+- Product coverage is narrower or broader by artifact: Product 1 alignments add stale Turkish, Ukrainian, and Chinese vintages, while Product 4 HPO phenotype annotations have seven languages. See `product_language_inventory.json`.
 - GitHub repositories:
 - https://github.com/Orphanet
 - Source note: GitHub organization exists; verify authoritative Orphadata release channels and licenses before ingest.

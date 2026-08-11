@@ -1,0 +1,70 @@
+{
+  "schema_version": "orphadata-product-language-inventory-v1",
+  "observed_at": "2026-08-12",
+  "authority": "Orphadata Science, INSERM",
+  "authority_root": "https://sciences.orphadata.com/",
+  "license": "CC-BY-4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "payload_incorporated": false,
+  "promotion_status": "product_metadata_only_no_payload_or_translation_promotion",
+  "products": [
+    {
+      "product_id": "nomenclature-pack",
+      "name": "Orphanet Nomenclature Pack for Coding",
+      "authority_url": "https://sciences.orphadata.com/_pack-nomenclature/",
+      "release": "2024 latest package table exposed by authority page observed 2026-08-12",
+      "cadence": "annual",
+      "format": "ZIP containing XML, XLSX and PDF",
+      "language_count": 9,
+      "languages": ["cs", "de", "en", "es", "fr", "it", "nl", "pl", "pt"],
+      "vintage_status": "authority_page_lags_current_knowledge_base_release",
+      "scope": "coding nomenclature pack; not Orphadata product9 epidemiology or natural-history files",
+      "payload_incorporated": false
+    },
+    {
+      "product_id": "product1-alignments",
+      "name": "Rare diseases aligned with terminologies and databases",
+      "authority_url": "https://sciences.orphadata.com/alignments/",
+      "knowledge_base_release": "July 2026",
+      "mapped_targets": ["ICD-10", "ICD-11", "OMIM", "UMLS", "MONDO", "MeSH", "MedDRA", "GARD"],
+      "formats": ["XML", "JSON"],
+      "language_count": 12,
+      "language_vintages": [
+        {"language": "en", "file_stem": "en_product1", "record_count": 11645, "release_date": "2026-06-23", "cadence": "biannual", "vintage_status": "current"},
+        {"language": "cs", "file_stem": "cs_product1", "record_count": 11645, "release_date": "2026-06-23", "cadence": "biannual", "vintage_status": "current"},
+        {"language": "nl", "file_stem": "nl_product1", "record_count": 11645, "release_date": "2026-06-23", "cadence": "biannual", "vintage_status": "current"},
+        {"language": "fr", "file_stem": "fr_product1", "record_count": 11645, "release_date": "2026-06-23", "cadence": "biannual", "vintage_status": "current"},
+        {"language": "de", "file_stem": "de_product1", "record_count": 11645, "release_date": "2026-06-23", "cadence": "biannual", "vintage_status": "current"},
+        {"language": "it", "file_stem": "it_product1", "record_count": 11645, "release_date": "2026-06-23", "cadence": "biannual", "vintage_status": "current"},
+        {"language": "es", "file_stem": "es_product1", "record_count": 11645, "release_date": "2026-06-23", "cadence": "biannual", "vintage_status": "current"},
+        {"language": "pl", "file_stem": "pl_product1", "record_count": 11645, "release_date": "2026-06-23", "cadence": "biannual", "vintage_status": "current"},
+        {"language": "pt", "file_stem": "pt_product1", "record_count": 11645, "release_date": "2026-06-23", "cadence": "biannual", "vintage_status": "current"},
+        {"language": "tr", "file_stem": "tr_product1", "record_count": 10572, "release_date": "2021-09-01", "cadence": "annual", "vintage_status": "stale_legacy_do_not_compare_as_current"},
+        {"language": "uk", "file_stem": "uk_product1", "record_count": 11023, "release_date": "2024-07-03", "cadence": "annual", "vintage_status": "stale_do_not_compare_as_current"},
+        {"language": "zh", "file_stem": "zh_product1", "record_count": 10563, "release_date": "2020-06-01", "cadence": "annual", "vintage_status": "stale_legacy_do_not_compare_as_current"}
+      ],
+      "payload_incorporated": false
+    },
+    {
+      "product_id": "product4-phenotypes-hpo",
+      "name": "Phenotypes associated with rare disorders",
+      "authority_url": "https://sciences.orphadata.com/phenotypes/",
+      "knowledge_base_release": "July 2026",
+      "format": "XML",
+      "language_count": 7,
+      "languages": ["de", "en", "es", "fr", "it", "nl", "pt"],
+      "file_pattern": "{language}_product4.xml",
+      "record_count": 4357,
+      "release_date": "2026-06-23",
+      "vintage_status": "current",
+      "scope": "ORPHA disorder-to-HPO annotations with frequency and diagnostic metadata; not independent HPO lexical translation evidence",
+      "payload_incorporated": false
+    }
+  ],
+  "admission_boundary": {
+    "metadata_does_not_authorize_payload_ingestion": true,
+    "language_availability_does_not_establish_translation_independence": true,
+    "stale_languages_must_not_be_compared_as_current": true,
+    "product_scopes_must_not_be_collapsed": true
+  }
+}

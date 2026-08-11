@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["schema_version", "observed_at", "authority", "authority_root", "license", "license_url", "payload_incorporated", "promotion_status", "products", "admission_boundary"],
+  "properties": {
+    "schema_version": {"const": "orphadata-product-language-inventory-v1"},
+    "observed_at": {"type": "string", "format": "date"},
+    "authority_root": {"type": "string", "format": "uri", "pattern": "^https://sciences\\.orphadata\\.com/"},
+    "license": {"const": "CC-BY-4.0"},
+    "license_url": {"const": "https://creativecommons.org/licenses/by/4.0/"},
+    "payload_incorporated": {"const": false},
+    "promotion_status": {"const": "product_metadata_only_no_payload_or_translation_promotion"},
+    "products": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"type": "object", "required": ["product_id", "name", "authority_url", "language_count", "payload_incorporated"], "properties": {"product_id": {"enum": ["nomenclature-pack", "product1-alignments", "product4-phenotypes-hpo"]}, "authority_url": {"type": "string", "format": "uri", "pattern": "^https://sciences\\.orphadata\\.com/"}, "language_count": {"type": "integer", "minimum": 1}, "payload_incorporated": {"const": false}}}},
+    "admission_boundary": {"type": "object", "required": ["metadata_does_not_authorize_payload_ingestion", "language_availability_does_not_establish_translation_independence", "stale_languages_must_not_be_compared_as_current", "product_scopes_must_not_be_collapsed"], "additionalProperties": {"const": true}}
+  }
+}
