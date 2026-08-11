@@ -1,0 +1,29 @@
+{
+  "schema_version": "hpo-babelon-language-inventory-v1",
+  "observed_at_commit": "867bac79330658e9199b618b4cd57f873f258568",
+  "upstream_main_observed_commit": "62f1d254f93e47d87e874783019ccd7480400e76",
+  "scope": "tracked_local_files_only_no_translation_rows_added",
+  "profile_count": 14,
+  "profiles": [
+    {"code":"ar","babelon_rows":0,"synonym_rows":0,"babelon_blob":"e4e46a3b56e175ad2c37add1c20e37a203eba4a7","synonym_blob":"02bdbc0c2e42e0d4ca0d828ec87004e827f68c79","babelon_commit":"0ccc4fd469de2e78951a3667dfaacbce4bab3207","synonym_commit":"fc5c49a7290db58c2609316299302ed6bb50b8ad","status":"empty_scaffold_not_admitted"},
+    {"code":"cs","babelon_rows":31102,"synonym_rows":18811,"babelon_blob":"0d60f35dd9e0b1785255bb59ac637d9c0328029d","synonym_blob":"3a7e072cc503df543293b9c6330093e09bf16bc4","babelon_commit":"068b0993c215b5fdf6b1b57c0c58814d4c0153be","synonym_commit":"fc5c49a7290db58c2609316299302ed6bb50b8ad","status":"tracked_local_content"},
+    {"code":"de","babelon_rows":3488,"synonym_rows":414,"babelon_blob":"4cd471453c6d001dbf9d655f9ed6bbfe0d975313","synonym_blob":"00060b9ccca8496193b00019f8b293bc5cbb55ce","babelon_commit":"02798acfadcdc9bb7f6926702a9c38795c420766","synonym_commit":"3c842975cebc719ccfa29b9b914553d36f5fedce","status":"tracked_local_content"},
+    {"code":"dtp","babelon_rows":13,"synonym_rows":0,"babelon_blob":"de2a295cd3d379206bab2aff7ac257f3ceec2da4","synonym_blob":"96ead66fc270f1c2c9c18b4223187d986213685b","babelon_commit":"fc5c49a7290db58c2609316299302ed6bb50b8ad","synonym_commit":"fc5c49a7290db58c2609316299302ed6bb50b8ad","status":"low_resource_separate_governance_required"},
+    {"code":"es","babelon_rows":19932,"synonym_rows":0,"babelon_blob":"fccbbf0adb13260432c23c5d97b1387d497575e5","synonym_blob":"cd1c176fbbb43a452f8dae597e9270ce17c6e1bf","babelon_commit":"69f7f96fba5ae4c1b999028991510088f3480487","synonym_commit":"3c842975cebc719ccfa29b9b914553d36f5fedce","status":"tracked_local_content"},
+    {"code":"fr","babelon_rows":14693,"synonym_rows":11815,"babelon_blob":"9d37453279a95f6159edd7683437babb21916b44","synonym_blob":"c9274dc40a1789bc6542a66dbb8da5de3b616d41","babelon_commit":"d03e80b2020dafce2d65b7726061bb7cd72bc962","synonym_commit":"9619aa97636c2957be902056f5788b1ed8078e7c","status":"tracked_local_content_upstream_diverged_babelon_only","upstream_babelon_blob":"8f77d05d1a10c0bf1e86c851f140d954f9f05a87","upstream_synonym_blob":"c9274dc40a1789bc6542a66dbb8da5de3b616d41"},
+    {"code":"it","babelon_rows":3488,"synonym_rows":21,"babelon_blob":"cb2cfae10d5e279d01af334aa758a6c776837962","synonym_blob":"3580995343d8544333abbb33ac11859b37d56f62","babelon_commit":"e57258ff2a1d0a79330d94c562dd13a185a0ecee","synonym_commit":"3c842975cebc719ccfa29b9b914553d36f5fedce","status":"tracked_local_content"},
+    {"code":"ja","babelon_rows":17868,"synonym_rows":0,"babelon_blob":"e59e7f6c09e1f783fbb9f448a6bb2267e28ba9bd","synonym_blob":"01ab701e83e5b2d6bf168d1701c5ac2b594c16fa","babelon_commit":"6ad591cb5ae56c6e5e3ceb12f3bba9e63b8998a5","synonym_commit":"fc5c49a7290db58c2609316299302ed6bb50b8ad","status":"tracked_local_content"},
+    {"code":"nl","babelon_rows":31171,"synonym_rows":20735,"babelon_blob":"04523ff7b76356d6e756e7b9b06e24618ff3e4ac","synonym_blob":"b0160b981ece5934b0eaf86ec952819f67197d0c","babelon_commit":"0f0bb5df356e6d93fdbd5b66996744268ccb6d3f","synonym_commit":"5ee580e143d88dbafba8631c281182cfbed91e8a","status":"tracked_local_content"},
+    {"code":"nna","babelon_rows":201,"synonym_rows":0,"babelon_blob":"fad7a38591cf02ce08f7ba644618a288a1fb3e31","synonym_blob":"d3a890b258e2d5a4f830333a841ffc90c7632297","babelon_commit":"fc5c49a7290db58c2609316299302ed6bb50b8ad","synonym_commit":"dce70273f1a0f1be5c833f1e8ed7164cecdb7372","status":"low_resource_separate_governance_required"},
+    {"code":"pt","babelon_rows":7214,"synonym_rows":0,"babelon_blob":"f50e82bc8551c4ce63f978e7917160ccfe01e003","synonym_blob":"e77134e38c2fe5bbf624f6c08d771518e57fc1b7","babelon_commit":"1c5effaab1108524e67fca837894f94b20b5e701","synonym_commit":"446a961fae0c3a08020f1b7a511ac6821e514327","status":"language_identity_gate_region_unspecified"},
+    {"code":"tr","babelon_rows":31102,"synonym_rows":18706,"babelon_blob":"22d6e72d92e63bedba4e9ebfd8b325b34ba5a788","synonym_blob":"44c3f898249c653ee75c7b0a291f07ddb3754474","babelon_commit":"fc20f13f536dad928567da22fffc0f801f98418e","synonym_commit":"dce70273f1a0f1be5c833f1e8ed7164cecdb7372","status":"tracked_local_content_upstream_diverged_babelon_only","upstream_babelon_blob":"77748ec2f18d5a87281220029f57f39ddeb58dd5","upstream_synonym_blob":"44c3f898249c653ee75c7b0a291f07ddb3754474"},
+    {"code":"tw","babelon_rows":83,"synonym_rows":0,"babelon_blob":"09d95fdee5e0a7c3bd066d6204d2152066128c2f","synonym_blob":"41c31bc8b64999d56eaefee49ff1f2e9c5f07915","babelon_commit":"dce70273f1a0f1be5c833f1e8ed7164cecdb7372","synonym_commit":"dce70273f1a0f1be5c833f1e8ed7164cecdb7372","status":"excluded_unresolved_tiwi_twi_identity"},
+    {"code":"zh","babelon_rows":18988,"synonym_rows":0,"babelon_blob":"ee6d1a768c27015a0a175c3096829698262a3128","synonym_blob":"e72269a9c75cfc4c12afb3d22b4256cd18fee504","babelon_commit":"5e2649d2837635b551a9b699358517030113dead","synonym_commit":"dce70273f1a0f1be5c833f1e8ed7164cecdb7372","status":"language_identity_gate_script_region_unspecified"}
+  ],
+  "documentation_only_leads": [
+    {"code":"fi","status":"documentation_exists_payload_absent_not_admitted","path":"docs/translations/fi.md"},
+    {"code":"th","status":"documentation_exists_payload_absent_not_admitted","path":"docs/translations/th.md"}
+  ],
+  "archaeology_leads": [{"code":"hi","name":"Hindi","status":"legacy_reference_only_not_admitted_no_current_payload"}],
+  "payload_policy": {"translation_rows_added":false,"external_payload_retrieved":false,"restricted_payload_included":false}
+}

@@ -50,6 +50,7 @@ validate-mapping-expansion = ".pixi/envs/default/python.exe -u -m scripts.valida
 validate-terminology-inventories = ".pixi/envs/default/python.exe -u -m scripts.validate_terminology_inventories"
 validate-language-readiness = ".pixi/envs/default/python.exe -u -m scripts.validate_language_readiness"
 validate-orphadata-inventory = ".pixi/envs/default/python.exe -u -m scripts.validate_orphadata_inventory"
+validate-hpo-language-inventory = ".pixi/envs/default/python.exe -u scripts/validate_hpo_language_inventory.py"
 test-research-validation = ".pixi/envs/default/python.exe -m unittest discover -s tests -p test_validate_research_validation.py"
 verify-research-source-pins = ".pixi/envs/default/python.exe -u scripts/verify_research_sources.py"
 run-stage-0-rehearsal = ".pixi/envs/default/python.exe -u scripts/run_stage0_rehearsal.py"
