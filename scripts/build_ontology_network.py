@@ -2,13 +2,10 @@ import argparse
 import json
 import re
 from collections import Counter
+from collections.abc import Callable
+from importlib import import_module
 from pathlib import Path
 from typing import Any, cast
-
-if __package__:
-    from .validate_metadata_only_samples import validate_approval_contract
-else:  # Direct script execution adds scripts/ rather than the repository root.
-    from validate_metadata_only_samples import validate_approval_contract
 
 TRACKS_DIR = Path("conductor/tracks")
 DEFAULT_OUTPUT_DIR = Path("ontology_network")
@@ -46,6 +43,17 @@ BLOCKED_PATH_PARTS = {
     ".ruff_cache",
     "__pycache__",
 }
+
+
+def approval_contract_errors(handoff: dict[str, Any]) -> list[str]:
+    """Load the shared validator in both package and direct-script execution modes."""
+    module_name = "scripts.validate_metadata_only_samples" if __package__ else "validate_metadata_only_samples"
+    validator = cast(
+        Callable[[dict[str, Any]], list[str]],
+        import_module(module_name).validate_approval_contract,
+    )
+    return validator(handoff)
+
 
 LANGUAGE_CODE_MAP = {
     "Arabic": "ar",
@@ -347,7 +355,7 @@ def approved_metadata_sample(track_dir: Path) -> dict[str, Any] | None:
     if handoff.get("status") != "approved_bounded_metadata_only_sample":
         return None
     bounded_sample = handoff.get("bounded_sample")
-    if validate_approval_contract(handoff):
+    if approval_contract_errors(handoff):
         return None
     if not isinstance(bounded_sample, dict) or not bounded_sample:
         return None
