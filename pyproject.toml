@@ -27,4 +27,5 @@ strict = [
     "scripts/render_synonyms_owl.py",
     "scripts/translation_workflows.py",
     "scripts/verify_research_sources.py",
+    "scripts/validate_open_mapping_rights.py",
 ]

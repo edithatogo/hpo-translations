@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hpo-translations.example/open_mapping_rights_matrix.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version","generated_at","scope","payload_files_retrieved","mapping_rows_committed","families","admission_boundary"],
+  "properties": {
+    "schema_version": {"const":"open-mapping-rights-matrix-v1"},
+    "generated_at": {"type":"string","format":"date-time"},
+    "scope": {"const":"repository_and_file_metadata_only"},
+    "payload_files_retrieved": {"const":0},
+    "mapping_rows_committed": {"const":0},
+    "families": {"type":"array","minItems":6,"items":{"type":"object","additionalProperties":false,"required":["family_id","repository_url","commit","repository_license_spdx","repository_license_evidence_url","files"],"properties":{"family_id":{"type":"string","pattern":"^[a-z0-9-]+$"},"repository_url":{"type":"string","format":"uri"},"commit":{"type":"string","pattern":"^[a-f0-9]{40}$"},"repository_license_spdx":{"type":["string","null"]},"repository_license_evidence_url":{"type":"string","format":"uri"},"files":{"type":"array","minItems":1,"items":{"$ref":"#/$defs/fileRecord"}}}}},
+    "admission_boundary": {"type":"object","additionalProperties":false,"required":["repository_license_does_not_override_target_rights","generated_outputs_do_not_create_independent_lineage","restricted_target_payloads_excluded","metadata_does_not_authorize_mapping_payload_retrieval"],"properties":{"repository_license_does_not_override_target_rights":{"const":true},"generated_outputs_do_not_create_independent_lineage":{"const":true},"restricted_target_payloads_excluded":{"const":true},"metadata_does_not_authorize_mapping_payload_retrieval":{"const":true}}}
+  },
+  "$defs": {
+    "fileRecord": {"type":"object","additionalProperties":false,"required":["path","role","declared_license","lineage_group","generates_or_duplicates","target_namespaces","target_source_review_required","restricted_target_included","payload_included","metadata_included"],"properties":{"path":{"type":"string","minLength":1},"role":{"enum":["mapping_source","generated_output","import_snapshot"]},"declared_license":{"type":["string","null"]},"lineage_group":{"type":"string","minLength":1},"generates_or_duplicates":{"type":"array","uniqueItems":true,"items":{"type":"string","minLength":1}},"target_namespaces":{"type":"array","minItems":1,"uniqueItems":true,"items":{"type":"string","minLength":1}},"target_source_review_required":{"const":true},"restricted_target_included":{"const":false},"payload_included":{"const":false},"metadata_included":{"const":true}}}
+  }
+}
