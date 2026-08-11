@@ -1,0 +1,17 @@
+{
+  "schema_version": "pilot-source-atom-v1",
+  "source_atom_id": "atom-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "source_id": "hpo-translation-es-repository-snapshot",
+  "language": "es",
+  "subject_id": "HP:0000001",
+  "predicate_id": "rdfs:label",
+  "designation_role": "preferred",
+  "source_snapshot_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "source_data_row_number": 1,
+  "source_row_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+  "derivation_path": ["babelon/hp-es.babelon.tsv", "data-row-1"],
+  "shared_lineage_cluster": "hpo-translation-es-repository-snapshot-content-addressed-snapshot",
+  "independent_evidence_group": "hpo-translations-repository-snapshots",
+  "payload_text_retained": false,
+  "empirical_use_authorized": false
+}

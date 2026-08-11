@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import gzip
 import hashlib
 import json
 import re
@@ -18,6 +19,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_RESEARCH_ROOT = ROOT / "research_validation"
 EXPECTED_SCHEMA_NAMES = {
     "language_identity_registry",
+    "pilot_source_atom",
     "agent_decision",
     "run_manifest",
     "source_catalog",
@@ -1425,7 +1427,8 @@ def pilot_source_readiness_errors(
     if (
         decision.get("final_pilot_source_set_selected") is not True
         or decision.get("payload_authorized_source_count") != 2
-        or decision.get("source_atom_ready_count") != 0
+        or decision.get("source_atom_ready_count") != 37800
+        or decision.get("pilot_independent_evidence_group_count") != 1
         or decision.get("independent_evidence_groups_added_from_archives") != 0
         or decision.get("g1_source_authority_closed") is not False
     ):
@@ -1447,7 +1450,8 @@ def pilot_source_readiness_errors(
         "existing_repository_payload_read_authorized": True,
         "ephemeral_local_copy_authorized": True,
         "new_external_payload_retrieval_authorized": False,
-        "source_atom_ingestion_authorized": False,
+        "payload_safe_source_atom_generation_authorized": True,
+        "source_payload_text_ingestion_authorized": False,
         "candidate_generation_authorized": False,
         "translation_promotion_authorized": False,
     }
@@ -1500,6 +1504,54 @@ def pilot_source_payload_manifest_errors(instance: Any, root: Path = ROOT) -> li
         authorization.get(field) is not False for field in required_false
     ):
         errors.append("pilot source payload authorization boundary must remain fail-closed")
+    return errors
+
+
+def pilot_source_atom_artifacts_errors(groups: Any, atoms_path: Path) -> list[str]:
+    if not isinstance(groups, dict):
+        return ["pilot independent-lineage groups must be a JSON object"]
+    if not atoms_path.is_file():
+        return ["pilot source atom artifact is missing"]
+    errors: list[str] = []
+    artifact_digest = hashlib.sha256(atoms_path.read_bytes()).hexdigest()
+    if groups.get("source_atom_artifact_sha256") != artifact_digest:
+        errors.append("pilot source atom artifact hash does not match its lineage-group receipt")
+    expected_group = "hpo-translations-repository-snapshots"
+    group_records = groups.get("groups", [])
+    if (
+        groups.get("independent_evidence_group_count") != 1
+        or len(group_records) != 1
+        or group_records[0].get("independent_evidence_group") != expected_group
+        or group_records[0].get("independent_vote_count") != 1
+    ):
+        errors.append("authorized snapshots must remain one conservative independent-evidence group")
+
+    source_counts: dict[str, int] = {}
+    atom_ids: set[str] = set()
+    forbidden_payload_fields = {"source_value", "translation_value", "source_text", "candidate_text"}
+    with gzip.open(atoms_path, "rt", encoding="utf-8") as handle:
+        for line_number, line in enumerate(handle, start=1):
+            atom = json.loads(line)
+            if forbidden_payload_fields & set(atom):
+                errors.append(f"pilot source atom line {line_number} retains payload text fields")
+                break
+            if atom.get("payload_text_retained") is not False or atom.get("empirical_use_authorized") is not False:
+                errors.append(f"pilot source atom line {line_number} crosses the payload or empirical-use boundary")
+                break
+            if atom.get("independent_evidence_group") != expected_group:
+                errors.append(f"pilot source atom line {line_number} invents an independent evidence group")
+                break
+            atom_id = atom.get("source_atom_id")
+            if not isinstance(atom_id, str) or atom_id in atom_ids:
+                errors.append(f"pilot source atom line {line_number} has a missing or duplicate atom ID")
+                break
+            atom_ids.add(atom_id)
+            source_id = atom.get("source_id")
+            if isinstance(source_id, str):
+                source_counts[source_id] = source_counts.get(source_id, 0) + 1
+
+    if groups.get("source_atom_count") != len(atom_ids) or groups.get("source_atom_counts") != source_counts:
+        errors.append("pilot source atom counts do not match the lineage-group receipt")
     return errors
 
 
@@ -1733,6 +1785,19 @@ def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[Valid
             issues.append(ValidationIssue("pilot_source_readiness.invalid", str(readiness_path), message))
         for message in pilot_source_payload_manifest_errors(load_json(payload_manifest_path), research_root.parent):
             issues.append(ValidationIssue("pilot_source_payload_manifest.invalid", str(payload_manifest_path), message))
+        atoms_path = research_root / "pilot_source_atoms.jsonl.gz"
+        groups_path = research_root / "pilot_independent_lineage_groups.json"
+        if not groups_path.exists():
+            issues.append(
+                ValidationIssue(
+                    "pilot_source_lineage_groups.missing",
+                    str(groups_path),
+                    "pilot independent-lineage groups are required",
+                )
+            )
+        else:
+            for message in pilot_source_atom_artifacts_errors(load_json(groups_path), atoms_path):
+                issues.append(ValidationIssue("pilot_source_atoms.invalid", str(atoms_path), message))
 
     budget_path = research_root / "agent_compute_budget.json"
     if not budget_path.exists():
