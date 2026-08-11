@@ -23,7 +23,6 @@ from pathlib import Path
 from typing import Any
 
 import httpx
-from huggingface_hub import HfApi
 
 ORPHADATA_LANGUAGES = (
     "cs",
@@ -40,6 +39,14 @@ ORPHADATA_LANGUAGES = (
     "zh",
 )
 ORPHADATA_DIFF_LANGUAGES = tuple(language for language in ORPHADATA_LANGUAGES if language not in {"tr", "zh"})
+
+
+def hf_api(token: str) -> Any:
+    """Load the upload client only when the archive command actually runs."""
+    from huggingface_hub import HfApi  # type: ignore[import-not-found]
+
+    return HfApi(token=token)
+
 
 GITHUB_MULTILINGUAL_CATALOGS: dict[str, dict[str, Any]] = {
     "do": {
@@ -218,7 +225,7 @@ def download(client: httpx.Client, url: str, destination: Path) -> tuple[str, in
 
 
 def upload_receipt(
-    api: HfApi,
+    api: Any,
     repo_id: str,
     receipt: dict[str, Any],
     receipt_path: str,
@@ -234,7 +241,7 @@ def upload_receipt(
 
 
 def archive_orphanet(repo_id: str, release: str, token: str) -> None:
-    api = HfApi(token=token)
+    api = hf_api(token)
     info = api.repo_info(repo_id=repo_id, repo_type="dataset")
     if not info.private:
         raise RuntimeError(f"refusing to archive restricted sources to public repo {repo_id}")
@@ -308,7 +315,7 @@ def archive_github_catalog(repo_id: str, source: str, token: str) -> None:
     catalog = GITHUB_MULTILINGUAL_CATALOGS[source]
     release = catalog["release"]
     artifacts = github_catalog_artifacts(source)
-    api = HfApi(token=token)
+    api = hf_api(token)
     info = api.repo_info(repo_id=repo_id, repo_type="dataset")
     if not info.private:
         raise RuntimeError(f"refusing to archive governed sources to public repo {repo_id}")
@@ -380,7 +387,7 @@ def archive_github_catalog(repo_id: str, source: str, token: str) -> None:
 
 def archive_mesh(repo_id: str, release: str, token: str) -> None:
     artifacts = mesh_artifacts(release)
-    api = HfApi(token=token)
+    api = hf_api(token)
     info = api.repo_info(repo_id=repo_id, repo_type="dataset")
     if not info.private:
         raise RuntimeError(f"refusing to archive governed sources to public repo {repo_id}")
@@ -444,7 +451,7 @@ def archive_loinc(repo_id: str, release: str, token: str) -> None:
     password = os.environ.get("LOINC_PASSWORD")
     if not username or not password:
         raise RuntimeError("LOINC_USERNAME and LOINC_PASSWORD must be supplied as Job secrets")
-    api = HfApi(token=token)
+    api = hf_api(token)
     info = api.repo_info(repo_id=repo_id, repo_type="dataset")
     if not info.private:
         raise RuntimeError(f"refusing to archive licensed LOINC to public repo {repo_id}")
@@ -464,6 +471,8 @@ def archive_loinc(repo_id: str, release: str, token: str) -> None:
         metadata_response = client.get(metadata_url)
         metadata_response.raise_for_status()
         release_metadata = metadata_response.json()
+        if not isinstance(release_metadata, dict):
+            raise RuntimeError("release metadata response must be a JSON object")
         local_path = Path(temporary) / f"Loinc_{release}.zip"
         sha256, size = download(client, download_url, local_path)
         with zipfile.ZipFile(local_path) as archive:
@@ -493,7 +502,7 @@ def archive_loinc(repo_id: str, release: str, token: str) -> None:
             "downstream_promotion": "blocked",
             "status": "complete",
             "completed_at": utc_now(),
-            "release_metadata": release_metadata,
+            "release_metadata_verified": True,
             "languages": list(LOINC_282_VARIANTS),
             "zip_member_count": len(members),
             "artifact": {

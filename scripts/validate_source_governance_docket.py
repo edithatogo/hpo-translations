@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DOCKET = ROOT / "conductor" / "source_governance_decision_docket.json"
 PACKETS = ROOT / "conductor" / "source_governance_approval_packets.json"
 PRIVATE_INVENTORY = ROOT / "conductor" / "source_hosting_inventory.json"
+ARCHIVE_WORKFLOW = ROOT / ".github" / "workflows" / "governed-multilingual-archive.yml"
 TRACKS = {
     "do_integration_20260623",
     "fma_integration_20260623",
@@ -130,6 +131,20 @@ def main() -> int:
         errors.append("candidate hosting must record the private archive repository state")
     if not isinstance(candidate_hosting, dict) or not candidate_hosting.get("required_before_upload"):
         errors.append("candidate hosting must record required pre-upload controls")
+    multilingual_expansion = private_inventory.get("multilingual_expansion")
+    if not isinstance(multilingual_expansion, dict) or multilingual_expansion.get("workflow") != str(
+        ARCHIVE_WORKFLOW.relative_to(ROOT)
+    ).replace("\\", "/"):
+        errors.append("candidate hosting must reference the governed archive workflow")
+    try:
+        archive_workflow = ARCHIVE_WORKFLOW.read_text(encoding="utf-8")
+    except OSError as error:
+        errors.append(f"invalid governed archive workflow: {error}")
+    else:
+        if "\n  workflow_dispatch:" not in archive_workflow:
+            errors.append("governed archive workflow must require manual dispatch")
+        if "\n  push:" in archive_workflow:
+            errors.append("governed archive workflow must not run on push")
     if errors:
         print("\n".join(errors), file=sys.stderr)
         return 1

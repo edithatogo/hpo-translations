@@ -66,6 +66,14 @@ class SourceGovernanceDocketTests(unittest.TestCase):
         )
         self.assertTrue(inventory["candidate_hosting"]["required_before_upload"])
 
+    def test_archive_workflow_requires_manual_dispatch(self) -> None:
+        root = Path(__file__).resolve().parents[1]
+        workflow_path = root / ".github" / "workflows" / "governed-multilingual-archive.yml"
+        workflow = workflow_path.read_text(encoding="utf-8")
+        self.assertIn("\n  workflow_dispatch:", workflow)
+        self.assertNotIn("\n  push:", workflow)
+        self.assertFalse((workflow_path.parent / "private-multilingual-archive.yml").exists())
+
 
 if __name__ == "__main__":
     unittest.main()

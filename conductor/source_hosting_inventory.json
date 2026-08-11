@@ -65,7 +65,7 @@
     "verified_at": "2026-08-11",
     "github_run": "https://github.com/edithatogo/hpo-translations/actions/runs/31471912686",
     "archive_revision": "130c1a1b9b5ad2cf61f8b7ee0e57e3d2a8b05cd6",
-    "workflow": ".github/workflows/private-multilingual-archive.yml",
+    "workflow": ".github/workflows/governed-multilingual-archive.yml",
     "implementation": "scripts/cloud_archive_multilingual_sources.py",
     "destination": "edithatogo/hpo-licensed-ontology-archive",
     "cloud_only_payload_handling": true,
