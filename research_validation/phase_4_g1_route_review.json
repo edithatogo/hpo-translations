@@ -50,7 +50,7 @@
       "recommended_route": "internal_non_adaptation_scope_review_use_WHO_permissions_route_only_if_adaptation_is_proposed",
       "official_contact_route": "WHO_permissions_form_or_ICF_contact_for_out_of_scope_use",
       "dispatch_status": "not_sent_not_currently_required",
-      "repository_decision_change": "none_payload_remains_blocked_human_review_required"
+      "repository_decision_change": "none_payload_remains_blocked_agent_panel_required"
     },
     {
       "source_id": "uberon",
@@ -77,7 +77,7 @@
     "dispatch_under_mismatched_identity_authorized": false,
     "source_payload_retrieval_authorized": false,
     "license_acceptance_authorized": false,
-    "reviewer_or_language_authority_contact_authorized": false,
+    "agent_or_language_authority_contact_authorized": false,
     "empirical_work_authorized": false,
     "financial_spend_authorized": false,
     "publication_authorized": false,

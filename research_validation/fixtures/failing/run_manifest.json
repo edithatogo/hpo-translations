@@ -14,7 +14,7 @@
   "restricted_inputs_present": true,
   "local_only_manifest": null,
   "empirical_record_count": 1,
-  "human_reviewed_record_count": 2,
+  "agent_panel_reviewed_record_count": 2,
   "approvals": {"license": "pending", "ethics": "pending", "community": "pending", "language_working_group": "pending"},
   "release_scope": "pilot",
   "promotion_policy": "automatic"

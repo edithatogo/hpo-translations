@@ -10,9 +10,9 @@ The ontology-network build may read these files to determine scientific readines
 Run it with `pixi run run-stage-0-rehearsal`. Its receipt covers synthetic
 sampling, blinding, randomization, export, adjudication, redaction, and
 go/revise/stop handling. A passing receipt establishes operational readiness
-only; it does not create empirical translation or human-review evidence.
+only; it does not create empirical translation or agent-panel evidence.
 
-`reviewer_workload_budget.json` records the provisional G0 capacity envelope.
+`agent_compute_budget.json` records the provisional G0 capacity envelope.
 Only the 30-hour Stage 1 cap is initially releasable; the remaining capacity up
 to the 120-hour pilot ceiling requires a reforecast from observed Stage 1 timing,
 adjudication, completion, attrition, and roster data. It authorizes no contact,
@@ -30,7 +30,7 @@ The overall source gate remains open and the track remains synthetic-only.
 
 ## Benchmark contract
 
-- `protocol.md` defines the payload-safe pilot design, outcomes, reviewer process, and analysis gates.
+- `protocol.md` defines the payload-safe pilot design, outcomes, agent process, and analysis gates.
 - `source_catalog.json` records pinned authoritative mapping metadata and dependence groups without mapping rows.
 - `source_verification.md` documents the primary-source search and license boundary.
 - `supplementary_source_access_reviews.json` records source-specific access, overlap, licence, and human-decision gates without retrieving payloads.

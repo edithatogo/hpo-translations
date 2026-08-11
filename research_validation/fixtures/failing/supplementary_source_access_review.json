@@ -9,7 +9,7 @@
     "source_count": 1,
     "metadata_probe_allowed_count": 0,
     "permission_required_count": 0,
-    "human_review_required_count": 0,
+    "agent_panel_required_count": 0,
     "payload_allowed_count": 1
   }
 }

@@ -4,7 +4,7 @@
   "title": "Translation evaluation item",
   "type": "object",
   "additionalProperties": false,
-  "required": ["run_id", "item_id", "hpo_id", "hpo_release", "language_tag", "object_type", "source_text", "source_text_sha256", "candidate_text", "candidate_method", "hard_negative_hpo_ids", "evidence_ids", "independent_evidence_groups", "candidate_only", "human_review_required", "license_status", "provenance_id"],
+  "required": ["run_id", "item_id", "hpo_id", "hpo_release", "language_tag", "object_type", "source_text", "source_text_sha256", "candidate_text", "candidate_method", "hard_negative_hpo_ids", "evidence_ids", "independent_evidence_groups", "candidate_only", "agent_panel_required", "license_status", "provenance_id"],
   "properties": {
     "run_id": {"type": "string", "pattern": "^run-[a-z0-9-]+$"},
     "item_id": {"type": "string", "pattern": "^item-[a-z0-9-]+$"},
@@ -20,7 +20,7 @@
     "evidence_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^evidence-[a-z0-9-]+$"}},
     "independent_evidence_groups": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
     "candidate_only": {"const": true},
-    "human_review_required": {"const": true},
+    "agent_panel_required": {"const": true},
     "license_status": {"enum": ["approved_for_fixture", "approved_for_study", "pending", "blocked"]},
     "provenance_id": {"type": "string", "minLength": 1}
   }

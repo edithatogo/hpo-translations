@@ -5,12 +5,12 @@
   "current_route": "option_d_synthetic_only",
   "target_route": "option_a_staged_three_language_pilot",
   "blocker_resolution_plan": {
-    "blocker": "stage_1_cannot_start_until_scoped_G1_source_and_G2_language_reviewer_ethics_privacy_decisions_are_recorded_with_evidence_and_G3_is_prospectively_frozen",
+    "blocker": "stage_1_cannot_start_until_scoped_G1_source_and_G2_language_agent_ethics_privacy_decisions_are_recorded_with_evidence_and_G3_is_prospectively_frozen",
     "recommended_strategy": "dual_lane_minimum_viable_option_b_then_expand_to_option_a_only_if_optional_gates_close_before_G3",
     "rationale": [
       "a_two_language_stage_1_preserves_multilingual_and_script_contrast_while_removing_the_unassigned_community_slot_from_the_critical_path",
       "version_pinned_open_sources_can_be_considered_before_sources_that_require_external_permission_or_a_pre_license_process",
-      "ethics_privacy_language_authority_and_reviewer_independence_remain_non_substitutable_accountable_gates",
+      "ethics_privacy_language_authority_and_agent_independence_remain_non_substitutable_accountable_gates",
       "a_single_prospective_G3_freeze_prevents_optional_late_approvals_from_changing_the_design_after_empirical_ingress"
     ],
     "options": [
@@ -18,7 +18,7 @@
         "option_id": "minimum_viable_option_b",
         "recommendation": "recommended",
         "scope": "Spanish_and_Japanese_Stage_1_with_HPO_and_only_the_bounded_source_subset_explicitly_approved_before_G3",
-        "critical_path_packets": ["g1-mondo", "g1-who-icf", "g1-structural-sources", "g2-spanish-language", "g2-japanese-language", "g2-reviewer-roster", "g2-ethics-privacy"],
+        "critical_path_packets": ["g1-mondo", "g1-who-icf", "g1-structural-sources", "g2-spanish-language", "g2-japanese-language", "g0-agent-panel-protocol", "g2-ethics-privacy"],
         "deferred_packets": ["g1-pro-ctcae", "g1-decs", "g2-community-slot"],
         "benefit": "fastest_route_that_retains_a_multilingual_script_contrast_and_stage_1_measurement_value",
         "tradeoff": "no_community_governed_language_patient_facing_PRO_CTCAE_or_DeCS_claim",
@@ -28,7 +28,7 @@
         "option_id": "full_target_option_a",
         "recommendation": "expansion_lane",
         "scope": "three_approved_languages_and_all_source_conditions_authorized_for_the_frozen_design",
-        "critical_path_packets": ["g1-pro-ctcae", "g1-decs", "g1-mondo", "g1-who-icf", "g1-structural-sources", "g2-spanish-language", "g2-japanese-language", "g2-community-slot", "g2-reviewer-roster", "g2-ethics-privacy"],
+        "critical_path_packets": ["g1-pro-ctcae", "g1-decs", "g1-mondo", "g1-who-icf", "g1-structural-sources", "g2-spanish-language", "g2-japanese-language", "g2-community-slot", "g0-agent-panel-protocol", "g2-ethics-privacy"],
         "deferred_packets": [],
         "benefit": "best_alignment_with_the_selected_three_language_target",
         "tradeoff": "slowest_and_highest_coordination_route_with_external_permission_and_community_authority_dependencies",
@@ -38,7 +38,7 @@
         "option_id": "single_language_option_c",
         "recommendation": "measurement_fallback",
         "scope": "the_first_fully_approved_language_with_a_bounded_approved_source_subset",
-        "critical_path_packets": ["g2-reviewer-roster", "g2-ethics-privacy"],
+        "critical_path_packets": ["g0-agent-panel-protocol", "g2-ethics-privacy"],
         "deferred_packets": ["g1-pro-ctcae", "g1-decs", "g2-community-slot"],
         "benefit": "retains_instrument_reliability_and_workload_measurement",
         "tradeoff": "cannot_support_cross_language_or_multilingual_feasibility_claims",
@@ -49,8 +49,8 @@
         "recommendation": "fail_closed_fallback",
         "scope": "retain_the_completed_payload_free_rehearsal_and_do_not_start_empirical_ingress",
         "critical_path_packets": [],
-        "deferred_packets": ["g1-pro-ctcae", "g1-decs", "g1-mondo", "g1-who-icf", "g1-structural-sources", "g2-spanish-language", "g2-japanese-language", "g2-community-slot", "g2-reviewer-roster", "g2-ethics-privacy"],
-        "benefit": "requires_no_new_payload_reviewer_or_external_authority",
+        "deferred_packets": ["g1-pro-ctcae", "g1-decs", "g1-mondo", "g1-who-icf", "g1-structural-sources", "g2-spanish-language", "g2-japanese-language", "g2-community-slot", "g0-agent-panel-protocol", "g2-ethics-privacy"],
+        "benefit": "requires_no_new_payload_agent_or_external_authority",
         "tradeoff": "supports_operational_readiness_only",
         "fallback": "none"
       }
@@ -72,10 +72,10 @@
         "contingency": "remove_an_unapproved_language_and_recalculate_the_route_C_or_D"
       },
       {
-        "wave_id": "wave_3_reviewer_capacity",
-        "action": "authorize_recruitment_then_record_a_pseudonymous_independent_reviewer_and_adjudicator_roster_in_the_local_only_evidence_store",
-        "exit_evidence": "qualification_capacity_consent_conflict_and_independence_receipts",
-        "contingency": "use_the_two_reviewer_plus_independent_adjudicator_revise_branch_or_step_down_C_or_D"
+        "wave_id": "wave_3_agent_capacity",
+        "action": "pin_the_five_specialist_agents_independent_adjudicator_and_reproducibility_auditor_with_isolated_contexts",
+        "exit_evidence": "model_prompt_role_context_and_deterministic_reproducer_receipts",
+        "contingency": "remain_at_option_D_if_the_complete_seven_agent_protocol_cannot_be_reproduced"
       },
       {
         "wave_id": "wave_4_optional_expansion",
@@ -92,7 +92,7 @@
     ],
     "accountability_boundary": {
       "advisory_subagent_panel_may": ["review_public_evidence", "identify_conflicts", "draft_scoped_options", "check_receipt_completeness"],
-      "advisory_subagent_panel_must_not": ["accept_licence_terms", "grant_community_or_language_authority", "issue_ethics_or_privacy_determinations", "consent_for_reviewers", "authorize_payload_retrieval", "promote_translations"],
+      "advisory_subagent_panel_must_not": ["accept_licence_terms", "grant_community_or_language_authority", "issue_ethics_or_privacy_determinations", "authorize_agent_execution", "authorize_payload_retrieval", "promote_translations"],
       "decision_receipts_must_be_bound_to": ["accountable_authority_role", "scope", "evidence_hash_or_payload_safe_URI", "conditions", "decision_date", "expiry_or_recheck_date"]
     }
   },
@@ -168,7 +168,7 @@
     },
     {
       "packet_id": "g2-spanish-language",
-      "gate": "G2_human_and_community_authority",
+      "gate": "G2_language_and_community_use_constraints",
       "priority": 1,
       "linked_source_ids": [],
       "linked_language_ids": ["es"],
@@ -182,7 +182,7 @@
     },
     {
       "packet_id": "g2-japanese-language",
-      "gate": "G2_human_and_community_authority",
+      "gate": "G2_language_and_community_use_constraints",
       "priority": 2,
       "linked_source_ids": [],
       "linked_language_ids": ["ja"],
@@ -196,7 +196,7 @@
     },
     {
       "packet_id": "g2-community-slot",
-      "gate": "G2_human_and_community_authority",
+      "gate": "G2_language_and_community_use_constraints",
       "priority": 3,
       "linked_source_ids": [],
       "linked_language_ids": [],
@@ -207,20 +207,20 @@
       "if_not_approved": "step_down_to_option_b_with_es_and_ja"
     },
     {
-      "packet_id": "g2-reviewer-roster",
-      "gate": "G2_human_and_community_authority",
+      "packet_id": "g0-agent-panel-protocol",
+      "gate": "G0_agent_panel_protocol",
       "priority": 4,
       "linked_source_ids": [],
       "linked_language_ids": ["es", "ja"],
-      "decision_owner_role": "maintainer_and_reviewer_governance_owner",
-      "decision": "pending",
-      "required_evidence": ["nine_primary_reviewer_pseudonyms", "three_independent_adjudicator_pseudonyms", "local_only_qualification_evidence", "capacity_confirmation", "consent", "conflict_and_independence_review"],
-      "recommended_resolution": "prepare_local_only_roster_only_after_recruitment_is_authorized",
-      "if_not_approved": "apply_reviewer_contingency_or_step_down_design"
+      "decision_owner_role": "repository_maintainer",
+      "decision": "approved",
+      "required_evidence": ["five_specialist_roles", "isolated_adjudicator", "non_voting_reproducibility_auditor", "pinned_models_and_prompts", "deterministic_reproducer", "zero_human_roles"],
+      "recommended_resolution": "execute_only_after_G1_G2_and_G3_close",
+      "if_not_approved": "remain_at_option_d_synthetic_only"
     },
     {
       "packet_id": "g2-ethics-privacy",
-      "gate": "G2_human_and_community_authority",
+      "gate": "G2_language_and_community_use_constraints",
       "priority": 5,
       "linked_source_ids": [],
       "linked_language_ids": ["es", "ja"],
@@ -229,12 +229,12 @@
       "route_status": "institutional_routes_verified_sponsor_selection_required_dispatch_blocked",
       "request_ref": "research_validation/phase_4_wave_2_authority_routes.json",
       "required_evidence": ["ethics_determination", "privacy_assessment", "retention_and_deletion_plan", "incident_and_withdrawal_process", "approved_reporting_scope"],
-      "recommended_resolution": "obtain_formal_determination_before_reviewer_data_collection",
+      "recommended_resolution": "obtain_formal_determination_before_agent_data_collection",
       "if_not_approved": "remain_at_option_d_synthetic_only"
     }
   ],
   "advance_rule": {
-    "task_3_completion_requires": ["permitted_language_slots", "pseudonymous_reviewer_and_adjudicator_roster", "payload_authorized_source_set", "stratified_concept_selection_authority"],
+    "task_3_completion_requires": ["permitted_language_slots", "canonical_agent_panel_protocol", "payload_authorized_source_set", "stratified_concept_selection_authority"],
     "task_4_completion_requires": ["all_required_packets_approved_or_bounded_conditional", "no_expired_decision", "scope_and_evidence_hashes_recorded"],
     "conditional_decisions_require": ["bounded_scope", "conditions", "expiry_or_recheck_date"],
     "rejected_or_unavailable_gate_action": "apply_phase_4_candidate_matrix_step_down_contingency",
@@ -243,8 +243,8 @@
   "authorization_boundary": {
     "external_contact_authorized": false,
     "permission_request_authorized": false,
-    "reviewer_recruitment_authorized": false,
-    "reviewer_data_collection_authorized": false,
+    "agent_execution_authorized": false,
+    "agent_data_collection_authorized": false,
     "source_payload_retrieval_authorized": false,
     "concept_sampling_authorized": false,
     "empirical_candidate_generation_authorized": false,

@@ -21,7 +21,7 @@
   "restricted_inputs_present": false,
   "local_only_manifest": null,
   "empirical_record_count": 0,
-  "human_reviewed_record_count": 0,
+  "agent_panel_reviewed_record_count": 0,
   "approvals": {
     "license": "not_required",
     "ethics": "not_required",
@@ -29,5 +29,5 @@
     "language_working_group": "not_required"
   },
   "release_scope": "schema_probe",
-  "promotion_policy": "human_authorization_required"
+  "promotion_policy": "explicit_maintainer_release_authorization_required"
 }

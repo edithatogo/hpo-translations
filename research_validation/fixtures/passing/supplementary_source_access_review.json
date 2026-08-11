@@ -21,7 +21,7 @@
       "credential_requirement": "none",
       "source_declared_terms": "Synthetic fixture terms.",
       "license_evidence_url": "https://example.org/license",
-      "adaptation_or_mapping_constraint": "Human review is required before payload retrieval.",
+      "adaptation_or_mapping_constraint": "Explicit maintainer decision is required before payload retrieval.",
       "third_party_content_risk": "low",
       "active_translation_profile_overlap": ["ja"],
       "excluded_overlap_reasons": ["The unresolved tw profile is not counted."],
@@ -32,7 +32,7 @@
       "decision_owner": "fixture maintainer",
       "open_gates": ["maintainer_license_review"],
       "next_safe_action": "Review metadata only.",
-      "expected_reviewer_burden": "low",
+      "expected_agent_burden": "low",
       "proposed_pilot_use": "Synthetic metadata test only.",
       "evidence_urls": ["https://example.org/license", "https://example.org/releases/v2026-01-01"],
       "reviewed_at": "2026-08-01T00:00:00Z"
@@ -42,7 +42,7 @@
     "source_count": 1,
     "metadata_probe_allowed_count": 1,
     "permission_required_count": 0,
-    "human_review_required_count": 0,
+    "agent_panel_required_count": 0,
     "payload_allowed_count": 0
   }
 }

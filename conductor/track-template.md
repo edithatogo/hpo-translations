@@ -18,7 +18,7 @@ Use this template when creating or revising tracks. Replace bracketed placeholde
 - `fail_fast_probe`: smallest source or automation probe that must pass before batch work.
 - `artifact_contract`: committed, generated, local-only, reviewer-only, PR-safe, and release-safe outputs with schemas and validation commands.
 - `priority`, `parallel_group`, `write_owner`, `merge_owner`: scheduling and concurrency controls.
-- `automation_readiness`, `evidence_score_policy`, `agent_telemetry`, `human_review_handoff`: automation and review intelligence.
+- `automation_readiness`, `evidence_score_policy`, `agent_telemetry`, `review_handoff`: automation and review intelligence.
 
 ## Required Plan Sections
 

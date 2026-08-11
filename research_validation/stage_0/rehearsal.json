@@ -6,10 +6,10 @@
   "decision_source": "user_instruction_2026-08-02_proceed_with_recommendations",
   "language_selection_rule_accepted": true,
   "progression_defaults_accepted": true,
-  "reviewer_time_budget_minutes": null,
+  "agent_time_budget_minutes": null,
   "random_seed": 20260802,
   "candidate_condition_count": 4,
-  "reviewer_slots_per_candidate": 3,
+  "agent_slots_per_candidate": 3,
   "source_payloads_used": false,
   "real_translations_used": false,
   "human_review_used": false,
@@ -212,7 +212,7 @@
     {
       "scenario_id": "full-feasibility-success",
       "permissions_approved": true,
-      "reviewer_count": 3,
+      "agent_count": 3,
       "independent_adjudicator_available": true,
       "review_completion_percent": 90,
       "adjudication_completion_percent": 90,
@@ -223,9 +223,9 @@
       "expected_action": "go"
     },
     {
-      "scenario_id": "two-reviewers-with-adjudicator",
+      "scenario_id": "two-agents-with-adjudicator",
       "permissions_approved": true,
-      "reviewer_count": 2,
+      "agent_count": 2,
       "independent_adjudicator_available": true,
       "review_completion_percent": 95,
       "adjudication_completion_percent": 95,
@@ -236,9 +236,9 @@
       "expected_action": "revise"
     },
     {
-      "scenario_id": "one-reviewer-only",
+      "scenario_id": "one-agent-only",
       "permissions_approved": true,
-      "reviewer_count": 1,
+      "agent_count": 1,
       "independent_adjudicator_available": true,
       "review_completion_percent": 95,
       "adjudication_completion_percent": 95,
@@ -251,7 +251,7 @@
     {
       "scenario_id": "review-completion-80-percent",
       "permissions_approved": true,
-      "reviewer_count": 3,
+      "agent_count": 3,
       "independent_adjudicator_available": true,
       "review_completion_percent": 80,
       "adjudication_completion_percent": 80,
@@ -264,7 +264,7 @@
     {
       "scenario_id": "technical-invalidity-15-percent",
       "permissions_approved": true,
-      "reviewer_count": 3,
+      "agent_count": 3,
       "independent_adjudicator_available": true,
       "review_completion_percent": 95,
       "adjudication_completion_percent": 95,
@@ -277,7 +277,7 @@
     {
       "scenario_id": "technical-invalidity-25-percent",
       "permissions_approved": true,
-      "reviewer_count": 3,
+      "agent_count": 3,
       "independent_adjudicator_available": true,
       "review_completion_percent": 95,
       "adjudication_completion_percent": 95,
@@ -290,7 +290,7 @@
     {
       "scenario_id": "permission-revoked",
       "permissions_approved": false,
-      "reviewer_count": 3,
+      "agent_count": 3,
       "independent_adjudicator_available": true,
       "review_completion_percent": 95,
       "adjudication_completion_percent": 95,
@@ -303,7 +303,7 @@
     {
       "scenario_id": "material-governance-incident",
       "permissions_approved": true,
-      "reviewer_count": 3,
+      "agent_count": 3,
       "independent_adjudicator_available": true,
       "review_completion_percent": 95,
       "adjudication_completion_percent": 95,
@@ -317,7 +317,7 @@
   "claims_allowed": ["operational_readiness_only"],
   "claims_prohibited": [
     "translation_quality",
-    "reviewer_variance",
+    "agent_variance",
     "clinical_safety",
     "candidate_method_superiority",
     "official_translation_status"
