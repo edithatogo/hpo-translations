@@ -29,15 +29,19 @@ This plan introduces ICD-10 into the project where it can improve terminology al
   - Mark any LLM-assisted candidate output as candidate-only and agent-panel-assessment-required and maintainer-promotion-decision-required in the handoff pack.
 
 ## Phase 1: Source Governance
-- [ ] **Task 1:** Confirm authoritative release source, license, and redistribution constraints.
-- [ ] **Task 2:** Record supported languages and source-version metadata.
-- [x] **Task 3:** List relevant GitHub repositories (tooling reference only; ICD-10 authority and terms remain unresolved):
+- [x] **Task 1:** Catalog authoritative public release channels and jurisdiction-specific licence or terms-review requirements as metadata.
+- [x] **Task 2:** Record publicly documented national variants, languages, release labels, and mapping products without retrieving payloads.
+- [ ] **Task 3:** Authorize the exact release payload, licence, redistribution scope, and immutable checksum for each admitted jurisdiction.
+  - WHO and each national variant remain separate gates; cataloged metadata is not payload authority.
+- [x] **Task 4:** List relevant GitHub repositories (tooling reference only; ICD-10 authority and terms remain unresolved):
   - https://github.com/ICD-API
 
 ## Phase 2: Data Access and Normalization
-- [ ] **Task 1:** Define source retrieval path without committing restricted payloads.
-- [ ] **Task 2:** Normalize identifiers, preferred labels, synonyms, language tags, and provenance fields.
-- [ ] **Task 3:** Produce a bounded sample artifact for maintainer review.
+- [x] **Task 1:** Define jurisdiction-specific retrieval and local-only handling paths without committing source payloads.
+- [x] **Task 2:** Define the payload-free normalization contract for variant identifiers, codes, language tags, mapping provenance, and jurisdiction.
+- [x] **Task 3:** Publish the payload-free national-variant and mapping inventory for agent-panel assessment.
+- [ ] **Task 4:** Normalize an authorized bounded source sample for each selected jurisdiction.
+  - Blocked until the exact variant payload, licence or terms, version, checksum, and local-only controls are authorized.
 
 ## Phase 3: HPO Translation Use
 - [x] **Task 1:** Identify ICD-10 use for disease-classification context, identifier conflict detection, and language-coverage review; terms remain blocked.
