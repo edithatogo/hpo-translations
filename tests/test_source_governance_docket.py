@@ -21,6 +21,17 @@ class SourceGovernanceDocketTests(unittest.TestCase):
             self.assertTrue(track["contingency"])
             self.assertTrue(track["maintainer_gate"])
 
+    def test_approval_packets_are_unsent_and_payload_free(self) -> None:
+        path = Path(__file__).resolve().parents[1] / "conductor" / "source_governance_approval_packets.json"
+        packets = json.loads(path.read_text(encoding="utf-8"))
+        self.assertEqual(packets["dispatch_status"], "prepared_unsent")
+        self.assertIs(packets["external_contact_authorized"], False)
+        self.assertIs(packets["payload_terms_included"], False)
+        self.assertIs(packets["promotion_authorized"], False)
+        for packet in packets["packets"]:
+            self.assertEqual(packet["recommended_option"], "A")
+            self.assertTrue(packet["approval_questions"])
+
 
 if __name__ == "__main__":
     unittest.main()
