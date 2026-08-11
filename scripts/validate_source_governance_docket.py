@@ -109,8 +109,10 @@ def main() -> int:
     if private_inventory.get("promotion_allowed") is not False:
         errors.append("private-source inventory must keep promotion disabled")
     candidate_hosting = private_inventory.get("candidate_hosting")
-    if not isinstance(candidate_hosting, dict) or candidate_hosting.get("status") != "not_authorized":
-        errors.append("candidate hosting must remain explicitly unauthorized")
+    if not isinstance(candidate_hosting, dict) or candidate_hosting.get("status") != "platform_authorized_source_scope_pending":
+        errors.append("candidate hosting must record platform authorization while source scope remains pending")
+    if not isinstance(candidate_hosting, dict) or candidate_hosting.get("access_model") != "owner-only private repository; no collaborators authorized":
+        errors.append("candidate hosting must record the owner-only access model")
     if not isinstance(candidate_hosting, dict) or not candidate_hosting.get("required_before_upload"):
         errors.append("candidate hosting must record required pre-upload controls")
     if errors:

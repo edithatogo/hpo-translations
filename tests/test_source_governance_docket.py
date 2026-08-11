@@ -41,7 +41,14 @@ class SourceGovernanceDocketTests(unittest.TestCase):
         )
         self.assertIs(inventory["payload_access_allowed"], False)
         self.assertIs(inventory["promotion_allowed"], False)
-        self.assertEqual(inventory["candidate_hosting"]["status"], "not_authorized")
+        self.assertEqual(
+            inventory["candidate_hosting"]["status"],
+            "platform_authorized_source_scope_pending",
+        )
+        self.assertEqual(
+            inventory["candidate_hosting"]["access_model"],
+            "owner-only private repository; no collaborators authorized",
+        )
         self.assertTrue(inventory["candidate_hosting"]["required_before_upload"])
 
 
