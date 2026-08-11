@@ -10,6 +10,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 DOCKET = ROOT / "conductor" / "source_governance_decision_docket.json"
 PACKETS = ROOT / "conductor" / "source_governance_approval_packets.json"
+PRIVATE_INVENTORY = ROOT / "conductor" / "source_hosting_inventory.json"
 TRACKS = {
     "do_integration_20260623",
     "fma_integration_20260623",
@@ -91,6 +92,22 @@ def main() -> int:
         for key in ("packet_id", "track_id", "scope", "approval_questions", "blocked_outputs", "contingency"):
             if not row.get(key):
                 errors.append(f"{row.get('track_id', '<unknown>')}: approval packet missing {key}")
+    try:
+        private_inventory: dict[str, Any] = json.loads(PRIVATE_INVENTORY.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as error:
+        errors.append(f"invalid private-source inventory: {error}")
+        private_inventory = {}
+    allowed_hosting_states = {
+        "not_identified",
+        "candidate_identified_authorization_pending",
+        "authorized_local_only",
+    }
+    if private_inventory.get("status") not in allowed_hosting_states:
+        errors.append("private-source inventory has an invalid status")
+    if private_inventory.get("payload_access_allowed") is not False:
+        errors.append("private-source inventory must keep payload access disabled")
+    if private_inventory.get("promotion_allowed") is not False:
+        errors.append("private-source inventory must keep promotion disabled")
     if errors:
         print("\n".join(errors), file=sys.stderr)
         return 1

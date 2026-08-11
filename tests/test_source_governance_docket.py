@@ -32,6 +32,16 @@ class SourceGovernanceDocketTests(unittest.TestCase):
             self.assertEqual(packet["recommended_option"], "A")
             self.assertTrue(packet["approval_questions"])
 
+    def test_private_source_inventory_is_fail_closed(self) -> None:
+        path = Path(__file__).resolve().parents[1] / "conductor" / "source_hosting_inventory.json"
+        inventory = json.loads(path.read_text(encoding="utf-8"))
+        self.assertIn(
+            inventory["status"],
+            {"not_identified", "candidate_identified_authorization_pending", "authorized_local_only"},
+        )
+        self.assertIs(inventory["payload_access_allowed"], False)
+        self.assertIs(inventory["promotion_allowed"], False)
+
 
 if __name__ == "__main__":
     unittest.main()
