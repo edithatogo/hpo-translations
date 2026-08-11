@@ -77,6 +77,7 @@ LANGUAGE_CODE_MAP = {
     "French": "fr",
     "French French": "fr-FR",
     "German": "de",
+    "German (prerelease)": "de",
     "German German": "de-DE",
     "Greek": "el",
     "Hebrew": "he",
@@ -84,9 +85,11 @@ LANGUAGE_CODE_MAP = {
     "Italian": "it",
     "Icelandic": "is",
     "Japanese": "ja",
+    "Kazakh": "kk",
     "Korean": "ko",
     "Croatian": "hr",
     "Latvian": "lv",
+    "Latin (titles only)": "la",
     "Lithuanian": "lt",
     "Māori": "mi-NZ",
     "Norwegian": "no",
@@ -211,6 +214,23 @@ def language_normalization_status(languages: list[str]) -> str:
     if "localized" in joined or "Multilingual" in joined:
         return "partial_multilingual_declaration"
     return "normalized_listed_languages"
+
+
+def source_language_inventory(track_dir: Path, source_id: str) -> dict[str, Any]:
+    """Return payload-free release language metadata for sources that publish it."""
+    if source_id != "icd11":
+        return {}
+    inventory_path = track_dir / "who_classifications_language_inventory_2026_01.json"
+    if not inventory_path.exists():
+        return {}
+    inventory = load_json(inventory_path)
+    products = cast(list[dict[str, Any]], inventory["products"])
+    mms = next(product for product in products if product["product_id"] == "icd11-mms")
+    return {
+        "language_inventory_path": inventory_path.as_posix(),
+        "language_inventory_release": inventory["release_id"],
+        "language_availability": mms["languages"],
+    }
 
 
 def source_id_from_track(track_id: str) -> str:
@@ -460,8 +480,9 @@ def registry_record(track_dir: Path) -> dict[str, Any]:
     source_class = access_class(source_status)
     endpoint_state = endpoint_status(profile)
     metadata_sample = approved_metadata_sample(track_dir)
+    source_id = source_id_from_track(str(metadata["track_id"]))
     return {
-        "source_id": source_id_from_track(str(metadata["track_id"])),
+        "source_id": source_id,
         "track_id": metadata["track_id"],
         "ontology_name": ontology_name(metadata, spec_text),
         "description": metadata.get("description"),
@@ -483,6 +504,7 @@ def registry_record(track_dir: Path) -> dict[str, Any]:
         "declared_language_count": declared_language_count(cast(list[str], profile["languages"])),
         "language_normalization_status": language_normalization_status(cast(list[str], profile["languages"])),
         "language_count": len(language_codes(cast(list[str], profile["languages"]))),
+        **source_language_inventory(track_dir, source_id),
         "github_repositories": profile["github_repositories"],
         "github_repository_count": len(profile["github_repositories"]),
         "github_repository_roles": github_repository_roles(

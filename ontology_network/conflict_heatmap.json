@@ -1,6 +1,6 @@
 {
   "generated_date": "2026-06-23",
-  "record_count": 49,
+  "record_count": 51,
   "records": [
     {
       "agent_panel_action": "assess source evidence before the maintainer promotion decision",
@@ -78,8 +78,8 @@
       "resolution_status": "needs_review",
       "severity": "info",
       "source_ids": [
-        "loinc",
-        "meddra"
+        "icd11",
+        "loinc"
       ]
     },
     {
@@ -545,6 +545,26 @@
     {
       "agent_panel_action": "assess source evidence before the maintainer promotion decision",
       "agent_panel_assessment_required": true,
+      "conflict_id": "conflict-kk-metadata",
+      "conflict_type": "source_disagreement",
+      "count": 0,
+      "evidence_ids": [
+        "probe-open-related-0001"
+      ],
+      "hpo_id": "HP:0000001",
+      "language": "kk",
+      "maintainer_promotion_decision_required": true,
+      "provenance_id": "prov-conflict-kk",
+      "resolution_status": "needs_review",
+      "severity": "info",
+      "source_ids": [
+        "icd11",
+        "decipher"
+      ]
+    },
+    {
+      "agent_panel_action": "assess source evidence before the maintainer promotion decision",
+      "agent_panel_assessment_required": true,
       "conflict_id": "conflict-ko-metadata",
       "conflict_type": "source_disagreement",
       "count": 0,
@@ -560,6 +580,26 @@
       "source_ids": [
         "loinc",
         "meddra"
+      ]
+    },
+    {
+      "agent_panel_action": "assess source evidence before the maintainer promotion decision",
+      "agent_panel_assessment_required": true,
+      "conflict_id": "conflict-la-metadata",
+      "conflict_type": "source_disagreement",
+      "count": 0,
+      "evidence_ids": [
+        "probe-open-related-0001"
+      ],
+      "hpo_id": "HP:0000001",
+      "language": "la",
+      "maintainer_promotion_decision_required": true,
+      "provenance_id": "prov-conflict-la",
+      "resolution_status": "needs_review",
+      "severity": "info",
+      "source_ids": [
+        "icd11",
+        "decipher"
       ]
     },
     {

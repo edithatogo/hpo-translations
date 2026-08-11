@@ -1,6 +1,6 @@
 {
   "generated_date": "2026-06-23",
-  "record_count": 133,
+  "record_count": 136,
   "records": [
     {
       "coverage_id": "coverage-decipher-en",
@@ -195,6 +195,18 @@
       "total_hpo_terms": 0
     },
     {
+      "coverage_id": "coverage-icd11-de",
+      "coverage_ratio": 0.0,
+      "covered_hpo_terms": 0,
+      "hpo_branch_id": "HP:0000118",
+      "language": "de",
+      "predicate": "metadata_declared_language_support",
+      "provenance_id": "prov-coverage-icd11-de",
+      "review_status": "needs_review",
+      "source_id": "icd11",
+      "total_hpo_terms": 0
+    },
+    {
       "coverage_id": "coverage-icd11-en",
       "coverage_ratio": 0.0,
       "covered_hpo_terms": 0,
@@ -226,6 +238,30 @@
       "language": "fr",
       "predicate": "metadata_declared_language_support",
       "provenance_id": "prov-coverage-icd11-fr",
+      "review_status": "needs_review",
+      "source_id": "icd11",
+      "total_hpo_terms": 0
+    },
+    {
+      "coverage_id": "coverage-icd11-kk",
+      "coverage_ratio": 0.0,
+      "covered_hpo_terms": 0,
+      "hpo_branch_id": "HP:0000118",
+      "language": "kk",
+      "predicate": "metadata_declared_language_support",
+      "provenance_id": "prov-coverage-icd11-kk",
+      "review_status": "needs_review",
+      "source_id": "icd11",
+      "total_hpo_terms": 0
+    },
+    {
+      "coverage_id": "coverage-icd11-la",
+      "coverage_ratio": 0.0,
+      "covered_hpo_terms": 0,
+      "hpo_branch_id": "HP:0000118",
+      "language": "la",
+      "predicate": "metadata_declared_language_support",
+      "provenance_id": "prov-coverage-icd11-la",
       "review_status": "needs_review",
       "source_id": "icd11",
       "total_hpo_terms": 0

@@ -1,6 +1,6 @@
 {
   "generated_date": "2026-06-23",
-  "record_count": 49,
+  "record_count": 51,
   "records": [
     {
       "agent_panel_assessment_required": true,
@@ -50,6 +50,7 @@
       "language": "de",
       "maintainer_promotion_decision_required": true,
       "source_ids": [
+        "icd11",
         "loinc",
         "meddra",
         "mesh",
@@ -361,12 +362,34 @@
       "candidate_count": 0,
       "candidate_only": true,
       "comparison_status": "not_computed_source_payloads_excluded",
+      "language": "kk",
+      "maintainer_promotion_decision_required": true,
+      "source_ids": [
+        "icd11"
+      ]
+    },
+    {
+      "agent_panel_assessment_required": true,
+      "candidate_count": 0,
+      "candidate_only": true,
+      "comparison_status": "not_computed_source_payloads_excluded",
       "language": "ko",
       "maintainer_promotion_decision_required": true,
       "source_ids": [
         "loinc",
         "meddra",
         "umls"
+      ]
+    },
+    {
+      "agent_panel_assessment_required": true,
+      "candidate_count": 0,
+      "candidate_only": true,
+      "comparison_status": "not_computed_source_payloads_excluded",
+      "language": "la",
+      "maintainer_promotion_decision_required": true,
+      "source_ids": [
+        "icd11"
       ]
     },
     {
