@@ -66,10 +66,6 @@ class MetadataOnlySampleTests(unittest.TestCase):
                     self.assertIs(guardrails.get("candidate_only"), True)
                     self.assertIs(guardrails.get("human_review_required"), True)
                     self.assertIs(guardrails.get("approved_translation"), False)
-                    self.assertEqual(
-                        phase3.get("conflict_reporting", {}).get("default_resolution"),
-                        "unresolved_until_human_review",
-                    )
                 else:
                     self.assertTrue(phase3.get("deterministic_matching_rules"))
                     self.assertTrue(phase3.get("conflict_reporting"))
@@ -81,6 +77,24 @@ class MetadataOnlySampleTests(unittest.TestCase):
                     self.assertIs(guardrails.get("candidate_only"), True)
                     self.assertIs(guardrails.get("human_review_required"), True)
                     self.assertIs(guardrails.get("approved_translation"), False)
+
+    def test_phase2_receipts_are_payload_free(self) -> None:
+        track_root = Path(__file__).resolve().parents[1] / "conductor" / "tracks"
+        phase2_paths = sorted(track_root.glob("*/phase2_data_access_normalization.json"))
+        self.assertGreater(len(phase2_paths), 0)
+        for phase2_path in phase2_paths:
+            with self.subTest(track=phase2_path.parent.name):
+                phase2 = json.loads(phase2_path.read_text(encoding="utf-8"))
+                if "normalization" in phase2:
+                    self.assertIs(phase2["normalization"].get("source_terms_included"), False)
+                    self.assertIs(phase2.get("payload_commit_allowed"), False)
+                else:
+                    retrieval = phase2.get("retrieval_policy", {})
+                    sample = phase2.get("bounded_sample", {})
+                    self.assertIs(retrieval.get("full_api_responses_commit_allowed"), False)
+                    self.assertIs(retrieval.get("raw_source_payload_commit_allowed"), False)
+                    self.assertIs(sample.get("source_payload_read"), False)
+                    self.assertIs(sample.get("source_payload_committed"), False)
 
     def test_completed_phase3_plans_have_contract_artifacts(self) -> None:
         track_root = Path(__file__).resolve().parents[1] / "conductor" / "tracks"

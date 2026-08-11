@@ -2,7 +2,7 @@
   "track_id": "lddb_integration_20260623",
   "status": "blocked_no_authoritative_source",
   "retrieval": {"mode": "not_defined", "bulk_download": false, "cache": "unmaterialized"},
-  "normalization": {"identifier": "pending_source_definition", "language": "ISO_639_1_when_available", "provenance": ["source_uri", "release", "retrieved_at", "digest"]},
+  "normalization": {"identifier": "pending_source_definition", "language": "ISO_639_1_when_available", "provenance": ["source_uri", "release", "retrieved_at", "digest"], "source_terms_included": false},
   "sample": {"allowed": false, "reason": "authoritative source and terms are unverified"},
   "payload_commit_allowed": false
 }
