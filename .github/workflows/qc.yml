@@ -94,6 +94,9 @@ jobs:
       - name: Validate Orphadata product inventory
         run: pixi run validate-orphadata-inventory
 
+      - name: Validate HPO language inventory
+        run: pixi run validate-hpo-language-inventory
+
       - name: Validate approved metadata-only samples
         run: pixi run validate-metadata-only-samples
 
