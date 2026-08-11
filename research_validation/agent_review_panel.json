@@ -3,10 +3,10 @@
   "track_id": "research_validation_20260801",
   "status": "canonical_design_pending_g1_and_g3",
   "supersedes": [
-    "human_reviewer_roster",
-    "human_reviewer_recruitment",
-    "human_reviewer_consent",
-    "human_reviewer_workload_budget",
+    "people_based_evaluation_roster",
+    "people_based_evaluation_recruitment",
+    "people_based_evaluation_consent",
+    "people_based_evaluation_workload_budget",
     "human_adjudication"
   ],
   "human_review_planned": false,

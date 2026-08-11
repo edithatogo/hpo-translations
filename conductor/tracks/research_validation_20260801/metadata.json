@@ -38,7 +38,7 @@
     "Spanish and Japanese are metadata-only planning preferences; no language, source payload, or concept sample is approved.",
     "Wave 2 ethics/privacy sponsor route, authorized sender reference, and language contact mode are not selected; no request has been dispatched.",
     "Upstream push, PR, preregistration, and publication require explicit maintainer approval."
-    ,"The already-executed credentialed archive run requires authorized receipt-content audit and possible remote remediation; automatic push execution is now disabled locally."
+    ,"The code-and-run audit isolated the presumed affected remote object to receipts/loinc-2.82-multilingual.json; content verification is blocked by private-dataset read scope and remote remediation remains unauthorized."
   ],
   "expected_blockers": [
     "Source dependence may reduce the number of genuinely independent terminology signals.",
@@ -120,21 +120,22 @@
       "authoritative source catalog",
       "source verification report",
       "supplementary source access register and review",
-      "reviewer decision schema",
+      "agent decision schema",
       "run manifest schema",
       "passing and expected-failure fixtures",
       "analysis plan",
       "approval manifest",
       "approved Phase 4 option and progression matrix",
-      "reviewer workload budget",
+      "agent workload budget",
       "Phase 4 candidate matrix",
       "prospective protocol freeze receipt"
       ,"canonical specialist-agent review panel"
+      ,"archive receipt audit"
     ],
     "conditional_outputs": [
       "candidate comparison dataset",
       "lineage-aware calibration report",
-      "reviewer trial report",
+      "agent trial report",
       "ontology discrimination benchmark",
       "downstream utility report",
       "drift and active-learning reports"
@@ -167,7 +168,7 @@
     "source_count": 9,
     "metadata_probe_allowed_count": 5,
     "permission_required_count": 2,
-    "human_review_required_count": 2,
+    "agent_panel_required_count": 2,
     "payloads_retrieved": 0,
     "payload_retrieval_allowed_count": 0,
     "unresolved_language_profiles_counted": 0,
@@ -182,7 +183,7 @@
       "Cell Ontology": "v2026-06-08",
       "PATO": "v2025-05-14"
     },
-    "decision_boundary": "metadata decisions only; human approval is required before payload retrieval, mapping, adaptation, redistribution, or empirical use"
+    "decision_boundary": "metadata decisions only; explicit maintainer authorization is required before payload retrieval, mapping, adaptation, redistribution, or empirical use"
   },
   "phase_4_decision": {
     "status": "g0_complete_target_a_selected_stage_0_complete_wave_2_routes_prepared_G2_pending",
@@ -193,14 +194,14 @@
     "recommended_target": "option_a_staged_three_language_pilot",
     "language_selection_rule_status": "metadata_shortlist_es_ja_community_slot_unassigned_no_language_approved",
     "progression_defaults_status": "accepted_pending_g3_checksum_freeze",
-    "reviewer_time_budget_minutes": 7200,
-    "reviewer_time_budget_hours": 120,
+    "agent_time_budget_minutes": 7200,
+    "agent_time_budget_hours": 120,
     "stage_1_release_cap_minutes": 1800,
     "stage_1_release_cap_hours": 30,
     "remaining_budget_release_cap_minutes": 5400,
     "remaining_budget_release_cap_hours": 90,
-    "reviewer_time_budget_status": "provisional_g0_approved_stage_1_only_remaining_requires_observed_reforecast",
-    "reviewer_time_budget_artifact": "research_validation/reviewer_workload_budget.json",
+    "agent_time_budget_status": "provisional_g0_approved_stage_1_only_remaining_requires_observed_reforecast",
+    "agent_time_budget_artifact": "research_validation/agent_compute_budget.json",
     "candidate_matrix_artifact": "research_validation/phase_4_candidate_matrix.json",
     "gate_docket_artifact": "research_validation/phase_4_gate_docket.json",
     "gate_docket_status": "wave_2_routes_verified_three_conditional_seven_pending_no_external_action_or_payload_authorized",
@@ -273,7 +274,7 @@
         "minimum_independent_review_completion_percent": 90,
         "minimum_required_adjudication_completion_percent": 90,
         "technical_invalidity_percent_must_be_below": 10,
-        "reviewers_per_language": 3,
+        "agents_per_language": 3,
         "material_governance_incidents": 0
       },
       "revise_once": {
@@ -281,11 +282,11 @@
         "completion_percent_must_be_below": 90,
         "minimum_technical_invalidity_percent": 10,
         "maximum_technical_invalidity_percent_inclusive": 20,
-        "minimum_reviewers_with_independent_adjudicator": 2
+        "minimum_agents_with_independent_adjudicator": 2
       },
       "stop": {
         "stop_if_technical_invalidity_percent_exceeds": 20,
-        "minimum_independent_reviewers_for_empirical_language": 2,
+        "minimum_independent_agents_for_empirical_language": 2,
         "stop_on_permission_refusal_or_revocation": true,
         "stop_on_material_governance_incident": true,
         "stop_for_apparent_benefit": false
@@ -320,13 +321,13 @@
       "stop_scenarios": 4,
       "all_checks_passed": true,
       "empirical_record_count": 0,
-      "human_reviewed_record_count": 0,
+      "agent_panel_reviewed_record_count": 0,
       "restricted_inputs_present": false,
       "claims_boundary": "operational_readiness_only_no_translation_or_human_validation_evidence"
     },
     "external_actions_not_authorized": [
       "payload_retrieval",
-      "human_reviewer_recruitment_or_contact",
+      "human_human_agent execution_or_contact",
       "financial_spend",
       "empirical_candidate_generation",
       "external_preregistration",
@@ -348,7 +349,7 @@
       "clinical error severity",
       "license caveat"
     ],
-    "promotion_rule": "no score, source count, ontology agreement, or model agreement promotes a translation without authorized human approval"
+    "promotion_rule": "no score, source count, ontology agreement, or model agreement promotes a translation without authorized explicit maintainer authorization"
   },
   "agent_telemetry": {
     "record_required": true,
@@ -407,7 +408,7 @@
       "open_blockers": 8
     }
   },
-  "human_review_handoff": [
+  "review_handoff": [
     "benchmark item and hard negatives",
     "candidate provenance",
     "independent evidence groups",

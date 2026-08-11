@@ -44,7 +44,7 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["source_id", "mapping_family", "provider", "originating_authority", "authority_role", "format", "source_release", "release_kind", "versioned_url", "mutable_alias_url", "integrity", "artifact_size_bytes", "mapping_set_id", "semantic_role", "origin_dataset", "derivation_path", "shared_lineage_cluster", "independent_evidence_group", "license_status", "license_evidence_url", "payload_commit_allowed", "metadata_commit_allowed", "active_language_overlap_status", "update_cadence", "expected_reviewer_burden", "status", "retrieved_at", "evidence_urls", "members"],
+        "required": ["source_id", "mapping_family", "provider", "originating_authority", "authority_role", "format", "source_release", "release_kind", "versioned_url", "mutable_alias_url", "integrity", "artifact_size_bytes", "mapping_set_id", "semantic_role", "origin_dataset", "derivation_path", "shared_lineage_cluster", "independent_evidence_group", "license_status", "license_evidence_url", "payload_commit_allowed", "metadata_commit_allowed", "active_language_overlap_status", "update_cadence", "expected_agent_burden", "status", "retrieved_at", "evidence_urls", "members"],
         "properties": {
           "source_id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
           "mapping_family": {"type": "string", "minLength": 1},
@@ -78,7 +78,7 @@
           "metadata_commit_allowed": {"const": true},
           "active_language_overlap_status": {"const": "not_applicable_identifier_mapping"},
           "update_cadence": {"type": "string", "minLength": 1},
-          "expected_reviewer_burden": {"enum": ["low", "medium", "high"]},
+          "expected_agent_burden": {"enum": ["low", "medium", "high"]},
           "status": {"const": "metadata_verified_payload_blocked"},
           "retrieved_at": {"type": "string", "format": "date-time"},
           "evidence_urls": {"type": "array", "minItems": 2, "uniqueItems": true, "items": {"type": "string", "format": "uri"}},

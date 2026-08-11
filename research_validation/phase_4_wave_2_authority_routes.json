@@ -10,7 +10,7 @@
     "decision": "pending",
     "selected_route_id": null,
     "reason_pending": "repository_location_and_local_git_identity_do_not_establish_the_accountable_sponsoring_institution",
-    "recommended_rule": "select_the_route_matching_the_investigator_sponsor_site_data_and_reviewer_responsibilities_before_dispatch",
+    "recommended_rule": "select_the_route_matching_the_investigator_sponsor_site_data_and_agent_responsibilities_before_dispatch",
     "options": [
       {
         "route_id": "flinders_sponsored",
@@ -106,7 +106,7 @@
       "dispatch_route": null,
       "request_scope": [
         "applicable_ethics_or_exemption_pathway",
-        "reviewer_consent_and_pseudonymisation",
+        "restricted_context_and_agent_output_privacy_classification",
         "retention_deletion_withdrawal_and_incident_response",
         "cross_border_access_and_approved_reporting_scope"
       ],
@@ -121,15 +121,15 @@
     "status": "control_skeleton_prepared_authority_determination_pending",
     "repository_content_rule": "commit_only_payload_safe_policy_metadata_and_pseudonymous_receipt_references",
     "retention": {
-      "proposed_rule": "retain_only_the_minimum_authorized_reviewer_and_study_records_for_the_period_set_by_the_accountable_authority_then_record_verifiable_deletion",
+      "proposed_rule": "retain_only_the_minimum_authorized_agent_and_study_records_for_the_period_set_by_the_accountable_authority_then_record_verifiable_deletion",
       "authority_decision_required": true
     },
-    "consent": {
-      "proposed_rule": "collect_no_reviewer_information_or_decisions_before_an_approved_information_and_consent_process_exists",
+    "restricted_context_handling": {
+      "proposed_rule": "retain_no_restricted_context_or_raw_agent_output_beyond_the_approved_local_only_scope",
       "authority_decision_required": true
     },
-    "withdrawal": {
-      "proposed_rule": "provide_an_approved_off_repository_contact_and_define_the_last_point_at_which_records_can_be_removed",
+    "deletion": {
+      "proposed_rule": "record_verifiable_deletion_for_ephemeral_restricted_contexts_and_raw_agent_outputs",
       "authority_decision_required": true
     },
     "incident_response": {
@@ -148,7 +148,7 @@
     "preferred": "select_the_accountable_sponsor_route_then_dispatch_three_separate_bounded_requests_and_record_only_payload_safe_receipts",
     "rationale": [
       "language_authority_and_ethics_privacy_determinations_are_separate_non_substitutable_decisions",
-      "the_ethics_route_depends_on_sponsor_site_data_and_reviewer_responsibility_not_repository_location",
+      "the_ethics_route_depends_on_sponsor_site_data_and_agent_responsibility_not_repository_location",
       "a_single_combined_request_would_obscure_scope_conditions_and_withdrawal_authority"
     ],
     "fallback": "retain_Option_D_and_remove_any_language_without_a_bounded_G2_receipt"
@@ -164,7 +164,7 @@
       "impersonate_an_authorized_sender",
       "issue_an_ethics_or_privacy_determination",
       "grant_language_or_community_authority",
-      "consent_for_reviewers",
+      "authorize_agent_execution",
       "authorize_payload_retrieval_or_empirical_work"
     ]
   },
@@ -173,11 +173,11 @@
     "language_scope_approved": false,
     "ethics_or_exemption_determination_recorded": false,
     "privacy_plan_approved": false,
-    "reviewer_contact_authorized": false,
-    "reviewer_data_collection_authorized": false,
+    "agent_execution_authorized": false,
+    "agent_data_collection_authorized": false,
     "source_payload_retrieval_authorized": false,
     "empirical_candidate_generation_authorized": false,
     "promotion_authorized": false
   },
-  "claims_boundary": "routes_and_request_drafts_only_no_G2_approval_contact_reviewer_payload_empirical_or_promotion_authority"
+  "claims_boundary": "routes_and_request_drafts_only_no_G2_approval_contact_agent_payload_empirical_or_promotion_authority"
 }

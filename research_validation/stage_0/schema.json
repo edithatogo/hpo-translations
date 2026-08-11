@@ -12,10 +12,10 @@
     "decision_source",
     "language_selection_rule_accepted",
     "progression_defaults_accepted",
-    "reviewer_time_budget_minutes",
+    "agent_time_budget_minutes",
     "random_seed",
     "candidate_condition_count",
-    "reviewer_slots_per_candidate",
+    "agent_slots_per_candidate",
     "source_payloads_used",
     "real_translations_used",
     "human_review_used",
@@ -33,10 +33,10 @@
     "decision_source": {"const": "user_instruction_2026-08-02_proceed_with_recommendations"},
     "language_selection_rule_accepted": {"const": true},
     "progression_defaults_accepted": {"const": true},
-    "reviewer_time_budget_minutes": {"type": "null"},
+    "agent_time_budget_minutes": {"type": "null"},
     "random_seed": {"type": "integer", "minimum": 0},
     "candidate_condition_count": {"const": 4},
-    "reviewer_slots_per_candidate": {"const": 3},
+    "agent_slots_per_candidate": {"const": 3},
     "source_payloads_used": {"const": false},
     "real_translations_used": {"const": false},
     "human_review_used": {"const": false},
@@ -112,7 +112,7 @@
         "required": [
           "scenario_id",
           "permissions_approved",
-          "reviewer_count",
+          "agent_count",
           "independent_adjudicator_available",
           "review_completion_percent",
           "adjudication_completion_percent",
@@ -125,7 +125,7 @@
         "properties": {
           "scenario_id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
           "permissions_approved": {"type": "boolean"},
-          "reviewer_count": {"type": "integer", "minimum": 0},
+          "agent_count": {"type": "integer", "minimum": 0},
           "independent_adjudicator_available": {"type": "boolean"},
           "review_completion_percent": {"type": "number", "minimum": 0, "maximum": 100},
           "adjudication_completion_percent": {"type": "number", "minimum": 0, "maximum": 100},
@@ -141,7 +141,7 @@
     "claims_prohibited": {
       "const": [
         "translation_quality",
-        "reviewer_variance",
+        "agent_variance",
         "clinical_safety",
         "candidate_method_superiority",
         "official_translation_status"

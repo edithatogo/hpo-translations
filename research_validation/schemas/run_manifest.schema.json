@@ -4,7 +4,7 @@
   "title": "Research run manifest",
   "type": "object",
   "additionalProperties": false,
-  "required": ["run_id", "protocol_version", "hpo_release", "source_versions", "source_retrieval_dates", "model_runs", "random_seed", "sampling_code_commit", "instrument_version", "analysis_code_commit", "generated_at", "validation_commands", "restricted_inputs_present", "local_only_manifest", "empirical_record_count", "human_reviewed_record_count", "approvals", "release_scope", "promotion_policy"],
+  "required": ["run_id", "protocol_version", "hpo_release", "source_versions", "source_retrieval_dates", "model_runs", "random_seed", "sampling_code_commit", "instrument_version", "analysis_code_commit", "generated_at", "validation_commands", "restricted_inputs_present", "local_only_manifest", "empirical_record_count", "agent_panel_reviewed_record_count", "approvals", "release_scope", "promotion_policy"],
   "properties": {
     "run_id": {"type": "string", "pattern": "^run-[a-z0-9-]+$"},
     "protocol_version": {"type": "string", "minLength": 1},
@@ -35,7 +35,7 @@
     "restricted_inputs_present": {"type": "boolean"},
     "local_only_manifest": {"type": ["string", "null"]},
     "empirical_record_count": {"type": "integer", "minimum": 0},
-    "human_reviewed_record_count": {"type": "integer", "minimum": 0},
+    "agent_panel_reviewed_record_count": {"type": "integer", "minimum": 0},
     "approvals": {
       "type": "object",
       "additionalProperties": false,
@@ -48,7 +48,7 @@
       }
     },
     "release_scope": {"enum": ["schema_probe", "pilot", "confirmatory"]},
-    "promotion_policy": {"const": "human_authorization_required"}
+    "promotion_policy": {"const": "explicit_maintainer_release_authorization_required"}
   },
   "allOf": [
     {

@@ -17,8 +17,8 @@
   "recheck_date": null,
   "withdrawal_or_incident_contact_reference": null,
   "payload_retrieval_allowed": false,
-  "reviewer_contact_allowed": false,
-  "reviewer_data_collection_allowed": false,
+  "agent_execution_allowed": false,
+  "agent_output_collection_allowed": false,
   "empirical_work_allowed": false,
   "promotion_allowed": false,
   "recording_rule": "populate_only_from_an_accountable_authority_decision_and_commit_only_payload_safe_pseudonymous_metadata"

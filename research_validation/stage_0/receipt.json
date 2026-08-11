@@ -2,14 +2,14 @@
   "schema_version": "stage-0-receipt-v1",
   "run_id": "run-stage-0-synthetic-rehearsal",
   "generated_at": "2026-08-02T00:00:00Z",
-  "rehearsal_sha256": "7886a22d41c44c470318f88d33e2b4d00ca4c8613cb723d75b2e26826ff7dcac",
-  "manifest_sha256": "81c9cc9d69f0cd20d05efc65d6523f0abfcecea13434101f0ef751448629221b",
+  "rehearsal_sha256": "76b9b7f13c5c9ce2d2b90d12c968f6c504596b396b6aeea8a71158998215f445",
+  "manifest_sha256": "855ddd1a879e7ae8270b79dd16546b7194dbf0081a6d27d67f2f746b8c3f8139",
   "export_sha256": {
     "adjudications": "b6aa0c8957dfbfc866a1984b1f9333d4cf527696b93e02b91d1b17969dc734b9",
-    "assignments": "e8f317f6c806b0063236dd58ec84da09f504e310efd314b6221826279aa414bf",
-    "decisions": "49dcc50357648709e03f7f04f7ace8dbfb173a5e950ac9801ecc48f739e383ee",
+    "assignments": "a5ac4a904496b52060b8be556fdae7791569a90bbfa57d53b7791d235316f6c6",
+    "decisions": "09cba321b41a1c11bbed0d04e51aba2ac39975f45bb0376a6dee73043034b529",
     "review_packet": "ba83d7adcbffa247391df0a34dc9aca57cec9b37fbd2b2ac4ae9909b7f4ce2f5",
-    "stop_condition_results": "4877d331e3ba39eb9146c8ce298ebc49f7bc5e58f19101118a6dea704ab048be"
+    "stop_condition_results": "f1c5400d05a0254c211edd5994bfa021e54100e49a910c69b4a519e0e1e09ab8"
   },
   "counts": {
     "synthetic_items": 12,
@@ -34,7 +34,7 @@
     "stop_conditions_exercised": true,
     "restricted_inputs_absent": true,
     "empirical_records_absent": true,
-    "human_review_absent": true
+    "agent_panel_evaluation_absent": true
   },
-  "claims_boundary": "operational_readiness_only_no_translation_or_human_validation_evidence"
+  "claims_boundary": "operational_readiness_only_no_translation_or_external_validation_evidence"
 }

@@ -1,0 +1,38 @@
+{
+  "schema_version": "archive-receipt-audit-v1",
+  "track_id": "research_validation_20260801",
+  "audited_at": "2026-08-11",
+  "audit_scope": {
+    "github_run_id": 31471912686,
+    "workflow_head_commit": "565a18ddd28bed608ab5b0a7b3f978812d1e97a0",
+    "destination": "edithatogo/hpo-licensed-ontology-archive",
+    "method": ["read_only_github_actions_log_review", "immutable_pre_fix_helper_review", "attempted_private_dataset_receipt_enumeration"]
+  },
+  "content_verification": {
+    "status": "blocked_private_dataset_read_scope_unavailable",
+    "http_result": 404,
+    "credential_value_recorded": false,
+    "restricted_payload_read": false
+  },
+  "findings": [
+    {
+      "receipt_path": "receipts/loinc-2.82-multilingual.json",
+      "source": "LOINC",
+      "status": "presumed_affected_requires_authorized_remote_remediation",
+      "evidence": "The exact hosted helper assigned the complete authenticated metadata_response.json() object to release_metadata and uploaded the receipt; the LOINC job completed successfully.",
+      "risk": "The receipt may retain provider response fields beyond the payload-safe provenance allowlist.",
+      "current_local_control": "Future receipts retain only release_metadata_verified=true; complete metadata responses are discarded."
+    },
+    {
+      "receipt_paths": ["receipts/orphanet-2026-07-multilingual.json", "receipts/do-v2026-07-31-multilingual.json", "receipts/mp-v2026-07-22-multilingual.json", "receipts/mesh-2026.json"],
+      "status": "no_complete_authenticated_response_sink_found",
+      "evidence": "The exact hosted helper constructed these receipts from explicit provenance, artifact, checksum, status, language, and failure fields."
+    }
+  ],
+  "recommended_remediation": {
+    "external_action_authorized": false,
+    "required_action": "With explicit authorization and a token that can read and write the private dataset, inspect only the LOINC receipt keys, replace it with an allowlisted receipt if release_metadata is present, and record the resulting dataset revision.",
+    "delete_source_payloads": false
+  },
+  "claims_boundary": "Code-and-run audit only; remote LOINC receipt content was not readable with the available token."
+}

@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_RESEARCH_ROOT = ROOT / "research_validation"
 EXPECTED_SCHEMA_NAMES = {
     "language_identity_registry",
-    "reviewer_decision",
+    "agent_decision",
     "run_manifest",
     "source_catalog",
     "source_lineage_record",
@@ -37,14 +37,14 @@ EXPECTED_SUPPLEMENTARY_SOURCE_IDS = {
     "who-icf",
 }
 EXPECTED_REFORECAST_INPUTS = {
-    "median_minutes_per_independent_judgment",
+    "median_minutes_per_independent_evaluation",
     "observed_adjudication_fraction",
-    "observed_training_and_coordination_minutes",
-    "confirmed_reviewer_count",
+    "observed_initialization_and_coordination_minutes",
+    "confirmed_agent_count",
     "observed_completion_and_attrition",
 }
 EXPECTED_BUDGET_AUTHORIZATION_FIELDS = {
-    "reviewer_contact_authorized",
+    "agent_execution_authorized",
     "financial_spend_authorized",
     "source_payload_retrieval_authorized",
     "empirical_candidate_generation_authorized",
@@ -62,7 +62,7 @@ EXPECTED_PHASE_4_GATE_PACKET_IDS = {
     "g2-spanish-language",
     "g2-japanese-language",
     "g2-community-slot",
-    "g2-reviewer-roster",
+    "g0-agent-panel-protocol",
     "g2-ethics-privacy",
 }
 EXPECTED_PHASE_4_G1_ROUTE_SOURCE_IDS = {"pro-ctcae", "decs", "mondo", "who-icf", "uberon", "pato"}
@@ -124,9 +124,9 @@ def semantic_errors(schema_name: str, instance: Any) -> list[str]:
 
     if schema_name == "run_manifest":
         empirical_count = instance.get("empirical_record_count")
-        reviewed_count = instance.get("human_reviewed_record_count")
+        reviewed_count = instance.get("agent_panel_reviewed_record_count")
         if isinstance(empirical_count, int) and isinstance(reviewed_count, int) and reviewed_count > empirical_count:
-            errors.append("human_reviewed_record_count cannot exceed empirical_record_count")
+            errors.append("agent_panel_reviewed_record_count cannot exceed empirical_record_count")
 
         if instance.get("release_scope") != "schema_probe":
             approvals = instance.get("approvals", {})
@@ -145,7 +145,7 @@ def semantic_errors(schema_name: str, instance: Any) -> list[str]:
         ):
             errors.append("source_versions and source_retrieval_dates must name the same sources")
 
-    if schema_name == "reviewer_decision":
+    if schema_name == "agent_decision":
         if instance.get("clinically_significant_error") and not instance.get("error_categories"):
             errors.append("a clinically significant error requires at least one error category")
         selected_hpo_id = instance.get("selected_hpo_id")
@@ -153,7 +153,7 @@ def semantic_errors(schema_name: str, instance: Any) -> list[str]:
         if (selected_hpo_id is None) != (discrimination_correct is None):
             errors.append("ontology discrimination identifier and result must be recorded together")
         if instance.get("conflict_status") == "recused" and instance.get("decision") != "abstain":
-            errors.append("a recused reviewer must abstain")
+            errors.append("a recused agent must abstain")
 
     if schema_name == "source_catalog":
         mappings = instance.get("mappings", [])
@@ -291,8 +291,8 @@ def semantic_errors(schema_name: str, instance: Any) -> list[str]:
                     for record in reviews
                     if isinstance(record, dict)
                 ),
-                "human_review_required_count": sum(
-                    record.get("repository_decision") == "payload_blocked_human_review_required"
+                "agent_panel_required_count": sum(
+                    record.get("repository_decision") == "payload_blocked_agent_panel_required"
                     for record in reviews
                     if isinstance(record, dict)
                 ),
@@ -307,9 +307,9 @@ def semantic_errors(schema_name: str, instance: Any) -> list[str]:
     return errors
 
 
-def reviewer_workload_budget_errors(instance: Any) -> list[str]:
+def agent_compute_budget_errors(instance: Any) -> list[str]:
     if not isinstance(instance, dict):
-        return ["reviewer workload budget must be a JSON object"]
+        return ["agent compute budget must be a JSON object"]
 
     errors: list[str] = []
     design = instance.get("design_snapshot", {})
@@ -319,7 +319,7 @@ def reviewer_workload_budget_errors(instance: Any) -> list[str]:
     release_rule = instance.get("release_rule", {})
     authorization = instance.get("authorization_boundary", {})
     if not all(isinstance(value, dict) for value in (design, assumptions, stage_1, full, release_rule, authorization)):
-        return ["reviewer workload budget sections must be JSON objects"]
+        return ["agent compute budget sections must be JSON objects"]
 
     numeric_requirements = {
         "design_snapshot": (
@@ -327,18 +327,19 @@ def reviewer_workload_budget_errors(instance: Any) -> list[str]:
             (
                 "concept_language_units",
                 "candidate_conditions",
-                "reviews_per_candidate",
-                "independent_judgments",
-                "primary_reviewer_count",
-                "independent_adjudicator_count",
-                "planning_reviewer_count",
+                "evaluations_per_candidate",
+                "independent_evaluations",
+                "specialist_agent_count",
+                "adjudicator_agent_count",
+                "audit_agent_count",
+                "panel_agent_count",
             ),
         ),
         "planning_assumptions": (
             assumptions,
             (
-                "minutes_per_independent_judgment",
-                "training_minutes_per_reviewer",
+                "minutes_per_independent_evaluation",
+                "initialization_minutes_per_agent",
                 "anticipated_adjudication_fraction",
                 "minutes_per_adjudication",
             ),
@@ -348,10 +349,10 @@ def reviewer_workload_budget_errors(instance: Any) -> list[str]:
             (
                 "concept_language_units",
                 "candidate_rows",
-                "independent_judgments",
+                "independent_evaluations",
                 "anticipated_adjudications",
-                "independent_review_minutes",
-                "training_minutes",
+                "agent_evaluation_minutes",
+                "initialization_minutes",
                 "adjudication_minutes",
                 "coordination_and_contingency_minutes",
                 "release_cap_minutes",
@@ -362,10 +363,10 @@ def reviewer_workload_budget_errors(instance: Any) -> list[str]:
             full,
             (
                 "candidate_rows",
-                "independent_judgments",
+                "independent_evaluations",
                 "anticipated_adjudications",
-                "independent_review_minutes",
-                "training_minutes",
+                "agent_evaluation_minutes",
+                "initialization_minutes",
                 "adjudication_minutes",
                 "coordination_and_contingency_minutes",
                 "ceiling_minutes",
@@ -384,32 +385,40 @@ def reviewer_workload_budget_errors(instance: Any) -> list[str]:
         return errors
 
     design_candidate_rows = design.get("concept_language_units", 0) * design.get("candidate_conditions", 0)
-    design_judgments = design_candidate_rows * design.get("reviews_per_candidate", 0)
+    design_evaluations = design_candidate_rows * design.get("evaluations_per_candidate", 0)
     if full.get("candidate_rows") != design_candidate_rows:
         errors.append("full-pilot candidate rows must match the design snapshot")
-    if design.get("planning_reviewer_count") != (
-        design.get("primary_reviewer_count", 0) + design.get("independent_adjudicator_count", 0)
+    if design.get("panel_agent_count") != (
+        design.get("specialist_agent_count", 0)
+        + design.get("adjudicator_agent_count", 0)
+        + design.get("audit_agent_count", 0)
     ):
-        errors.append("planning reviewer count must include primary reviewers and independent adjudicators")
-    if design.get("independent_judgments") != design_judgments or full.get("independent_judgments") != design_judgments:
-        errors.append("full-pilot independent judgments must match the design snapshot")
+        errors.append("panel agent count must include specialist, adjudicator, and audit agents")
+    if (
+        design.get("independent_evaluations") != design_evaluations
+        or full.get("independent_evaluations") != design_evaluations
+    ):
+        errors.append("full-pilot independent evaluations must match the design snapshot")
 
     stage_1_candidate_rows = stage_1.get("concept_language_units", 0) * design.get("candidate_conditions", 0)
-    stage_1_judgments = stage_1_candidate_rows * design.get("reviews_per_candidate", 0)
+    stage_1_evaluations = stage_1_candidate_rows * design.get("evaluations_per_candidate", 0)
     if stage_1.get("candidate_rows") != stage_1_candidate_rows:
         errors.append("Stage 1 candidate rows must match its concept-language units")
-    if stage_1.get("independent_judgments") != stage_1_judgments:
-        errors.append("Stage 1 independent judgments must match its candidate rows")
+    if stage_1.get("independent_evaluations") != stage_1_evaluations:
+        errors.append("Stage 1 independent evaluations must match its candidate rows")
 
-    minutes_per_judgment = assumptions.get("minutes_per_independent_judgment", 0)
-    training_minutes = assumptions.get("training_minutes_per_reviewer", 0) * design.get("planning_reviewer_count", 0)
+    minutes_per_evaluation = assumptions.get("minutes_per_independent_evaluation", 0)
+    initialization_minutes = assumptions.get("initialization_minutes_per_agent", 0) * design.get("panel_agent_count", 0)
     minutes_per_adjudication = assumptions.get("minutes_per_adjudication", 0)
-    if stage_1.get("independent_review_minutes") != stage_1_judgments * minutes_per_judgment:
-        errors.append("Stage 1 independent-review minutes do not match the planning assumption")
-    if full.get("independent_review_minutes") != design_judgments * minutes_per_judgment:
-        errors.append("full-pilot independent-review minutes do not match the planning assumption")
-    if stage_1.get("training_minutes") != training_minutes or full.get("training_minutes") != training_minutes:
-        errors.append("training minutes must match reviewer count and the per-reviewer assumption")
+    if stage_1.get("agent_evaluation_minutes") != stage_1_evaluations * minutes_per_evaluation:
+        errors.append("Stage 1 agent-evaluation minutes do not match the planning assumption")
+    if full.get("agent_evaluation_minutes") != design_evaluations * minutes_per_evaluation:
+        errors.append("full-pilot agent-evaluation minutes do not match the planning assumption")
+    if (
+        stage_1.get("initialization_minutes") != initialization_minutes
+        or full.get("initialization_minutes") != initialization_minutes
+    ):
+        errors.append("initialization minutes must match agent count and the per-agent assumption")
     if stage_1.get("adjudication_minutes") != stage_1.get("anticipated_adjudications", 0) * minutes_per_adjudication:
         errors.append("Stage 1 adjudication minutes do not match the planning assumption")
     if full.get("adjudication_minutes") != full.get("anticipated_adjudications", 0) * minutes_per_adjudication:
@@ -418,8 +427,8 @@ def reviewer_workload_budget_errors(instance: Any) -> list[str]:
     stage_1_components = sum(
         stage_1.get(field, 0)
         for field in (
-            "independent_review_minutes",
-            "training_minutes",
+            "agent_evaluation_minutes",
+            "initialization_minutes",
             "adjudication_minutes",
             "coordination_and_contingency_minutes",
         )
@@ -427,8 +436,8 @@ def reviewer_workload_budget_errors(instance: Any) -> list[str]:
     full_components = sum(
         full.get(field, 0)
         for field in (
-            "independent_review_minutes",
-            "training_minutes",
+            "agent_evaluation_minutes",
+            "initialization_minutes",
             "adjudication_minutes",
             "coordination_and_contingency_minutes",
         )
@@ -455,9 +464,9 @@ def reviewer_workload_budget_errors(instance: Any) -> list[str]:
         errors.append("full-pilot anticipated adjudications must match the planning fraction")
 
     if instance.get("status") != "provisional_g0_budget_approved":
-        errors.append("reviewer workload budget must retain its provisional G0 status")
+        errors.append("agent compute budget must retain its provisional G0 status")
     if instance.get("target_option") != "A":
-        errors.append("reviewer workload budget must remain scoped to selected Option A")
+        errors.append("agent compute budget must remain scoped to selected Option A")
     if stage_1.get("release_cap_minutes") != 1800 or full.get("ceiling_minutes") != 7200:
         errors.append("approved Stage 1 and full-pilot workload ceilings cannot drift without amendment")
     if not release_rule.get("stage_1_only_initially") or not release_rule.get(
@@ -469,7 +478,7 @@ def reviewer_workload_budget_errors(instance: Any) -> list[str]:
     if set(authorization) != EXPECTED_BUDGET_AUTHORIZATION_FIELDS or any(
         value is not False for value in authorization.values()
     ):
-        errors.append("capacity planning cannot authorize reviewer, payload, empirical, or external actions")
+        errors.append("capacity planning cannot authorize agent execution, payload, empirical, or external actions")
     return errors
 
 
@@ -478,7 +487,7 @@ def agent_review_panel_errors(instance: Any) -> list[str]:
         return ["agent review panel must be a JSON object"]
     errors: list[str] = []
     if instance.get("human_review_planned") is not False:
-        errors.append("agent review panel must prohibit planned human review")
+        errors.append("agent review panel must prohibit planned explicit maintainer decision")
     panel = instance.get("panel")
     roles = panel.get("roles", []) if isinstance(panel, dict) else []
     role_ids = {role.get("role_id") for role in roles if isinstance(role, dict)}
@@ -573,35 +582,42 @@ def phase_4_candidate_matrix_errors(instance: Any, supplementary: Any) -> list[s
 
     if any(
         instance.get(field) != 0
-        for field in ("approved_language_count", "approved_source_payload_count", "named_reviewer_count")
+        for field in ("approved_language_count", "approved_source_payload_count", "empirical_agent_execution_count")
     ):
-        errors.append("Phase 4 planning matrix must record zero approved languages, payloads, and named reviewers")
-
-    reviewer_model = instance.get("reviewer_model", {})
-    if not isinstance(reviewer_model, dict):
-        errors.append("reviewer model must be an object")
-    else:
-        planned_total = reviewer_model.get("planned_primary_reviewer_count", 0) + reviewer_model.get(
-            "planned_independent_adjudicator_count", 0
+        errors.append(
+            "Phase 4 planning matrix must record zero approved languages, payloads, and empirical agent executions"
         )
-        if reviewer_model.get("planned_human_role_count") != planned_total or planned_total != 12:
-            errors.append("reviewer model must budget nine primary reviewers and three independent adjudicators")
-        if reviewer_model.get("identities_or_contact_details_permitted_in_repository") is not False:
-            errors.append("reviewer identities and contact details must remain excluded")
+
+    agent_panel_model = instance.get("agent_panel_model", {})
+    if not isinstance(agent_panel_model, dict):
+        errors.append("agent panel model must be an object")
+    else:
+        planned_total = (
+            agent_panel_model.get("planned_specialist_agent_count", 0)
+            + agent_panel_model.get("planned_adjudicator_agent_count", 0)
+            + agent_panel_model.get("planned_audit_agent_count", 0)
+        )
+        if agent_panel_model.get("planned_human_role_count") != 0 or planned_total != 7:
+            errors.append("agent panel must budget five specialists, one adjudicator, one auditor, and zero people")
+        if agent_panel_model.get("human_identifiers_or_contact_details_present") is not False:
+            errors.append("agent panel must contain no human identifiers or contact details")
         expected_roles = {
-            "target_language_terminology_reviewer",
-            "target_language_clinical_reviewer",
-            "target_language_ontology_phenotype_reviewer",
+            "target_language_semantics",
+            "clinical_safety",
+            "ontology_semantics",
+            "provenance_and_rights",
+            "adversarial_error_finder",
         }
-        if set(reviewer_model.get("primary_roles", [])) != expected_roles:
-            errors.append("primary reviewer roles must cover terminology, clinical, and ontology expertise")
-        adjudicator_requirements = set(reviewer_model.get("adjudicator_requirements", []))
+        if set(agent_panel_model.get("primary_roles", [])) != expected_roles:
+            errors.append("specialist roles must match the canonical five-role agent panel")
+        adjudicator_requirements = set(agent_panel_model.get("adjudicator_requirements", []))
         if not {
             "independent_of_candidate_generation",
-            "not_one_of_the_three_initial_reviewers_for_the_adjudicated_item",
-            "conflict_of_interest_declaration",
+            "separate_context_from_all_initial_agents",
+            "initial_decisions_locked_before_disclosure",
+            "deterministic_aggregation_reproducer",
         }.issubset(adjudicator_requirements):
-            errors.append("adjudicator requirements must preserve independence and conflict review")
+            errors.append("adjudicator requirements must preserve isolation, locking, and deterministic reproduction")
 
     expected_actions = [
         "step_down_to_option_b_with_es_and_ja",
@@ -657,7 +673,7 @@ def phase_4_gate_docket_errors(
     if wave_ids != [
         "wave_1_minimum_source_scope",
         "wave_2_ethics_privacy_and_language_scope",
-        "wave_3_reviewer_capacity",
+        "wave_3_agent_capacity",
         "wave_4_optional_expansion",
         "wave_5_reconcile_and_freeze",
     ]:
@@ -705,7 +721,12 @@ def phase_4_gate_docket_errors(
             errors.append("each Phase 4 decision packet must be an object")
             continue
         packet_id = packet.get("packet_id")
-        expected_decision = "conditional" if packet_id in EXPECTED_PHASE_4_WAVE_1_CONDITIONAL_PACKETS else "pending"
+        if packet_id in EXPECTED_PHASE_4_WAVE_1_CONDITIONAL_PACKETS:
+            expected_decision = "conditional"
+        elif packet_id == "g0-agent-panel-protocol":
+            expected_decision = "approved"
+        else:
+            expected_decision = "pending"
         if packet.get("decision") != expected_decision:
             errors.append("decision packet state must match the recorded Wave 1 evidence and pending gate set")
         if expected_decision == "conditional" and (
@@ -733,14 +754,18 @@ def phase_4_gate_docket_errors(
         if isinstance(gate, dict) and isinstance(gate.get("gate"), str)
     }
     source_gate = manifest_gates.get("source_licence", {})
-    other_decisions = {gate.get("decision") for gate_id, gate in manifest_gates.items() if gate_id != "source_licence"}
+    pending_gate_ids = {"language_working_group", "community_authority", "ethics_privacy"}
+    pending_decisions = {manifest_gates.get(gate_id, {}).get("decision") for gate_id in pending_gate_ids}
     if (
         source_gate.get("decision") != "conditional"
-        or other_decisions != {"pending"}
+        or pending_decisions != {"pending"}
+        or manifest_gates.get("agent_panel_protocol", {}).get("decision") != "approved"
         or source_gate.get("promotion_allowed") is not False
         or approval_manifest.get("promotion_allowed") is not False
     ):
-        errors.append("gate docket requires a conditional Wave 1 source gate with all G2 gates pending and fail-closed")
+        errors.append(
+            "gate docket requires conditional source scope, pending external G2 gates, and approved agent protocol"
+        )
     if isinstance(wave_1_decisions, dict):
         wave_1_sources = {
             decision.get("source_id")
@@ -879,14 +904,14 @@ def phase_4_wave_2_authority_routes_errors(instance: Any) -> list[str]:
     control_plan = instance.get("local_only_control_plan", {})
     if control_plan.get("status") != "control_skeleton_prepared_authority_determination_pending":
         errors.append("Wave 2 local-only control plan must remain a pending authority-reviewed skeleton")
-    for field in ("retention", "consent", "withdrawal", "incident_response"):
+    for field in ("retention", "restricted_context_handling", "deletion", "incident_response"):
         control = control_plan.get(field, {}) if isinstance(control_plan, dict) else {}
         if (
             not isinstance(control, dict)
             or not control.get("proposed_rule")
             or control.get("authority_decision_required") is not True
         ):
-            errors.append("Wave 2 retention, consent, withdrawal, and incident controls require authority decisions")
+            errors.append("Wave 2 retention, restricted-context, deletion, and incident controls require decisions")
 
     expected_inputs = {
         "sponsoring_institution_route_selection",
@@ -944,8 +969,8 @@ def phase_4_decision_receipt_template_errors(instance: Any) -> list[str]:
             errors.append(f"decision receipt template field {field} must remain empty")
     authorization_fields = (
         "payload_retrieval_allowed",
-        "reviewer_contact_allowed",
-        "reviewer_data_collection_allowed",
+        "agent_execution_allowed",
+        "agent_output_collection_allowed",
         "empirical_work_allowed",
         "promotion_allowed",
     )
@@ -1114,7 +1139,7 @@ EXPECTED_G3_COMPONENTS = {
     "source_versions",
     "randomization_seed_and_algorithm",
     "exclusions",
-    "reviewer_instrument",
+    "agent_panel_instrument",
     "progression_criteria",
     "analysis_code",
     "approval_receipts",
@@ -1210,13 +1235,13 @@ def phase_4_g3_freeze_readiness_errors(
     prerequisites = instance.get("prerequisites", {})
     if (
         prerequisites.get("G1_source_authority") != "conditional"
-        or prerequisites.get("G2_human_and_community_authority") != "pending"
+        or prerequisites.get("G2_language_and_community_use_constraints") != "pending"
     ):
         errors.append("G3 readiness must preserve conditional G1 scope and pending G2 prerequisites")
     if (
         any(
             prerequisites.get(field) != 0
-            for field in ("approved_language_count", "approved_payload_source_count", "named_reviewer_count")
+            for field in ("approved_language_count", "approved_payload_source_count", "empirical_agent_execution_count")
         )
         or prerequisites.get("explicit_maintainer_freeze_approval") is not False
     ):
@@ -1238,7 +1263,7 @@ def phase_4_g3_freeze_readiness_errors(
         expected_counts = {
             "approved_language_count": candidate_matrix.get("approved_language_count"),
             "approved_payload_source_count": candidate_matrix.get("approved_source_payload_count"),
-            "named_reviewer_count": candidate_matrix.get("named_reviewer_count"),
+            "empirical_agent_execution_count": candidate_matrix.get("empirical_agent_execution_count"),
         }
         if any(prerequisites.get(field) != value for field, value in expected_counts.items()):
             errors.append("G3 readiness approval counts must match the canonical candidate matrix")
@@ -1258,13 +1283,7 @@ def phase_4_g3_freeze_readiness_errors(
         }
         if decisions.get("source_licence") != prerequisites.get("G1_source_authority"):
             errors.append("G3 readiness G1 state must match the canonical source-licence decision")
-        g2_gate_ids = {
-            "language_working_group",
-            "domain_reviewer",
-            "community_authority",
-            "ethics_privacy",
-            "reviewer_conflict_adjudication",
-        }
+        g2_gate_ids = {"language_working_group", "community_authority", "ethics_privacy"}
         g2_decisions = {decisions.get(gate_id) for gate_id in g2_gate_ids}
         if g2_decisions == {"pending"}:
             canonical_g2_state = "pending"
@@ -1272,8 +1291,8 @@ def phase_4_g3_freeze_readiness_errors(
             canonical_g2_state = "approved_or_conditional"
         else:
             canonical_g2_state = "mixed_or_blocked"
-        if prerequisites.get("G2_human_and_community_authority") != canonical_g2_state:
-            errors.append("G3 readiness G2 state must match the canonical human and community gate decisions")
+        if prerequisites.get("G2_language_and_community_use_constraints") != canonical_g2_state:
+            errors.append("G3 readiness G2 state must match canonical language and community-use decisions")
     return errors
 
 
@@ -1625,15 +1644,13 @@ def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[Valid
         ):
             issues.append(ValidationIssue("pilot_source_readiness.invalid", str(readiness_path), message))
 
-    budget_path = research_root / "reviewer_workload_budget.json"
+    budget_path = research_root / "agent_compute_budget.json"
     if not budget_path.exists():
-        issues.append(
-            ValidationIssue("reviewer_budget.missing", str(budget_path), "reviewer workload budget is required")
-        )
+        issues.append(ValidationIssue("agent_budget.missing", str(budget_path), "agent compute budget is required"))
     else:
         budget = load_json(budget_path)
-        for message in reviewer_workload_budget_errors(budget):
-            issues.append(ValidationIssue("reviewer_budget.invalid", str(budget_path), message))
+        for message in agent_compute_budget_errors(budget):
+            issues.append(ValidationIssue("agent_budget.invalid", str(budget_path), message))
 
     agent_panel_path = research_root / "agent_review_panel.json"
     if not agent_panel_path.exists():
@@ -1727,8 +1744,8 @@ def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[Valid
         required_boundaries = (
             "drafts only — no external action authorized",
             "no agent may advance the study automatically",
-            "Please do not send qualifications",
-            "No reviewer data collection will begin",
+            "The former expression-of-interest draft is withdrawn and must not be sent",
+            "No restricted context processing will begin",
         )
         for boundary in required_boundaries:
             if boundary not in action_pack:
@@ -1938,17 +1955,17 @@ def validate_contract(research_root: Path = DEFAULT_RESEARCH_ROOT) -> list[Valid
                     )
                 )
 
-        reviewer_path = passing_dir / "reviewer_decision.json"
-        if reviewer_path.exists():
-            reviewer_decision = load_json(reviewer_path)
-            reviewer_run_mismatch = reviewer_decision.get("run_id") != probe_run_id
-            reviewer_item_mismatch = reviewer_decision.get("item_id") != probe.get("item_id")
-            if reviewer_run_mismatch or reviewer_item_mismatch:
+        agent_path = passing_dir / "agent_decision.json"
+        if agent_path.exists():
+            agent_decision = load_json(agent_path)
+            agent_run_mismatch = agent_decision.get("run_id") != probe_run_id
+            agent_item_mismatch = agent_decision.get("item_id") != probe.get("item_id")
+            if agent_run_mismatch or agent_item_mismatch:
                 issues.append(
                     ValidationIssue(
-                        "probe.reviewer_decision.link.mismatch",
-                        str(reviewer_path),
-                        "reviewer decision is not linked to the probe run and item",
+                        "probe.agent_decision.link.mismatch",
+                        str(agent_path),
+                        "agent decision is not linked to the probe run and item",
                     )
                 )
 

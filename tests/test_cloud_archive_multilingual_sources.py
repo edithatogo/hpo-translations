@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from scripts.cloud_archive_multilingual_sources import (
     LOINC_282_VARIANTS,
     github_catalog_artifacts,
@@ -60,3 +62,11 @@ def test_mesh_catalog_is_the_complete_official_nlm_xml_set() -> None:
 def test_loinc_catalog_tracks_all_release_282_linguistic_variants() -> None:
     assert len(LOINC_282_VARIANTS) == 21
     assert {"ar-JO", "de-DE", "es-MX", "uk-UA", "zh-CN"} <= set(LOINC_282_VARIANTS)
+
+
+def test_loinc_receipt_does_not_persist_complete_metadata_response() -> None:
+    helper = (Path(__file__).resolve().parents[1] / "scripts" / "cloud_archive_multilingual_sources.py").read_text(
+        encoding="utf-8"
+    )
+    assert '"release_metadata": release_metadata' not in helper
+    assert '"release_metadata_verified": True' in helper

@@ -19,7 +19,7 @@
     "retrieval_tool_versions": null,
     "randomization_code_seed_and_assignment_hash": null,
     "pre_unblinding_exclusion_log": null,
-    "reviewer_instrument_hash": null,
+    "agent_panel_instrument_hash": null,
     "analysis_commit_lockfile_runtime_hash": null,
     "approval_manifest": null,
     "environment_receipt": null

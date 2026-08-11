@@ -4,7 +4,7 @@ Status: **drafts only — no external action authorized**
 
 This pack converts the Phase 4 gate docket into messages and decision records
 that may be used only after the maintainer explicitly authorizes the named
-external action. It contains no addresses, reviewer identities, credentials,
+external action. It contains no addresses, model and role identifiers, credentials,
 source payloads, or evidence that any recipient has agreed.
 
 ## Required authorization sequence
@@ -93,7 +93,7 @@ Subject: Request for a scope decision on a feasibility pilot for [language]
 > culturally restricted terms, withdrawal arrangements, and the authority that
 > may approve or stop the work.
 >
-> We will not recruit reviewers or begin candidate generation unless the
+> We will not execute agents or begin candidate generation unless the
 > relevant governance gates are separately approved.
 >
 > Kind regards,
@@ -103,33 +103,13 @@ Spanish and Japanese require separate decisions. The community-governed slot
 must remain unassigned until the relevant community selects the language and
 defines consent, attribution, restriction, benefit, and withdrawal rules.
 
-## Draft C — reviewer expression of interest
+## Withdrawn Draft C — no people-based review
 
-Subject: Expression of interest — blinded multilingual HPO feasibility review
-
-> Dear [prospective reviewer],
->
-> Subject to ethics, privacy, language-authority, and source approvals, we are
-> assessing availability for a blinded feasibility review in [language]. This
-> message is an expression-of-interest request, not an appointment or request to
-> review material.
->
-> The planning estimate is up to [bounded minutes] in Stage 1, including
-> training. Roles require target-language terminology, clinical, or
-> ontology/phenotype expertise. Independent adjudicators must not generate
-> candidates or serve as an initial reviewer for adjudicated items.
->
-> Before any participation, the project would provide an approved information
-> statement covering consent, privacy, conflicts, retention, withdrawal,
-> attribution, workload, and any compensation. Please do not send qualifications
-> or personal information until an approved secure collection route is supplied.
->
-> Kind regards,
-> [authorized sender]
-
-The repository must retain pseudonyms only. Qualifications, identities, contact
-details, consent records, and conflict disclosures remain in the approved
-local-only evidence store.
+The former expression-of-interest draft is withdrawn and must not be sent.
+Translation assessment uses the canonical specialist-agent panel. No people are
+recruited, no evaluation roster is collected, and no consent, qualification,
+conflict, workload, compensation, or personal-contact records are required for
+translation review.
 
 ## Draft D — ethics and privacy determination cover note
 
@@ -138,15 +118,15 @@ Subject: Determination request — multilingual HPO terminology feasibility pilo
 > Dear [ethics or privacy authority role],
 >
 > We request a determination for a bounded terminology feasibility pilot using
-> non-identifiable ontology concepts and blinded human review. The study will not
+> non-identifiable ontology concepts and an isolated specialist-agent panel. The study will not
 > use clinical records, make clinical-effectiveness claims, or promote official
 > translations. Some terminology sources may be licensed or credentialed and
 > will remain local-only if approved.
 >
-> Please advise the applicable review pathway and requirements for reviewer
-> consent, pseudonymisation, conflicts, time data, retention/deletion, incident
-> response, withdrawal, cross-border access, reporting, and any community
-> governance. No reviewer data collection will begin before a formal
+> Please advise whether any privacy or governance pathway applies to restricted
+> source contexts, raw agent outputs, retention/deletion, incident response,
+> cross-border compute, reporting, or community-governed model use.
+> No restricted context processing will begin before any required formal
 > determination and all other gates are satisfied.
 >
 > Kind regards,
