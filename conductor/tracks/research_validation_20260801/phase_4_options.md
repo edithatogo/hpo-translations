@@ -289,8 +289,11 @@ remain pending:
 4. go, revise, and stop thresholds;
 5. whether two agents plus an adjudicator is an acceptable feasibility-only
    fallback;
-6. **Partially complete G1:** four bounded licence scopes are conditional;
-   payload authority, exact source atoms, PRO-CTCAE, and DeCS remain pending;
+6. **Bounded Option B payload decision complete:** the two content-addressed
+   Spanish/Japanese repository snapshots are selected for local processing after
+   their language/community-use gates close; DeCS, PRO-CTCAE, and every other
+   external or restricted payload are omitted, and no current-release alignment
+   or external source-atom claim is permitted;
 7. **Pending G2:** ethics, privacy, agent-execution, and community-approval
    owners; and
 8. **Not authorized:** external preregistration after the prospective freeze.

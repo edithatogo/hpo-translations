@@ -24,7 +24,8 @@
   "source_archive_receipts_artifact": "research_validation/source_archive_receipts.json",
   "source_archive_receipts_status": "seven_version_and_integrity_receipts_no_payload_or_lineage_authority",
   "pilot_source_readiness_artifact": "research_validation/pilot_source_readiness.json",
-  "pilot_source_readiness_status": "planning_inventory_complete_final_source_set_not_selected",
+  "pilot_source_readiness_status": "two_content_addressed_local_snapshots_selected_external_payloads_omitted_community_gate_pending",
+  "pilot_source_payload_manifest": "research_validation/pilot_source_payload_manifest.json",
   "priority": "P0",
   "parallel_group": "research-validation",
   "write_owner": "codex",
@@ -35,7 +36,7 @@
     "The `tw` profile is described as both Tiwi and Twi; language authority and migration direction are unresolved.",
     "Restricted terminology content requires source-specific license and redistribution review.",
     "The specialist-agent panel is designed but has not run on an authorized empirical sample.",
-    "Spanish and Japanese are selected for the Option B design but remain unapproved for empirical use; no source payload or concept sample is approved.",
+    "Spanish and Japanese are selected for Option B; the two exact repository payload snapshots are authorized for local processing only after separate language/community-use approval, and no concept sample is approved.",
     "Wave 2 ethics/privacy sponsor route, authorized sender reference, and language contact mode are not selected; no request has been dispatched.",
     "Upstream push, PR, preregistration, and publication require explicit maintainer approval."
     ,"The code-and-run audit isolated the presumed affected remote object to receipts/loinc-2.82-multilingual.json; content verification is blocked by private-dataset read scope and remote remediation remains unauthorized."
