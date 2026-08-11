@@ -2,7 +2,7 @@
 
 ## Decision
 
-Nine supplementary sources were reviewed on 2026-08-01 using provider or primary project material. Metadata may be committed, but no terminology, translation, instrument, classification, or ontology payload was retrieved for this review. Every future payload request remains subject to the named accountable gate in `supplementary_source_access_reviews.json`.
+Nine supplementary sources were reviewed on 2026-08-01 and NANDO was added on 2026-08-12 using provider or primary project material. Metadata may be committed, but no terminology, translation, instrument, classification, or ontology payload was retrieved for this review. Every future payload request remains subject to the named accountable gate in `supplementary_source_access_reviews.json`.
 
 | Source | Proposed role | Active profile overlap | Repository decision |
 | --- | --- | --- | --- |
@@ -14,6 +14,7 @@ Nine supplementary sources were reviewed on 2026-08-01 using provider or primary
 | RadLex | Radiology context | None established | Maintainer clickthrough decision required |
 | Uberon | Anatomy structure | Not lexical | Metadata probe allowed; payload review open |
 | Cell Ontology | Cell-type structure | Not lexical | Metadata probe allowed; payload review open |
+| NANDO | Japanese rare-disease context | `ja` | Metadata probe allowed; attribution and imported-lineage review open |
 | PATO | Quality structure | Not lexical | Metadata probe allowed; payload review open |
 
 The `tw` profile is deliberately excluded from the PRO-CTCAE overlap count. PRO-CTCAE lists Twi, but this repository still has an unresolved authority record for whether `tw` means Twi or Tiwi. The validator fails if any supplementary review counts an unresolved profile as overlap.
@@ -34,4 +35,5 @@ The `tw` profile is deliberately excluded from the PRO-CTCAE overlap count. PRO-
 - WHO ICF releases, authentication, and licence: https://icd.who.int/docs/icd-api/SupportedClassifications/, https://icd.who.int/docs/icd-api/API-Authentication/, and https://icd.who.int/en/docs/icd11-license.pdf
 - NCI EVS and NCIt terms: https://www.cancer.gov/about-nci/organization/cbiit/vocabulary, https://api-evsrest.nci.nih.gov/api/v1/metadata/terminologies, and https://evs.nci.nih.gov/ftp1/NCI_Thesaurus/ThesaurusTermsofUse.pdf
 - RadLex official browser: https://radlex.org/RID/RID992
+- NANDO ontology and pinned release: https://nanbyodata.jp/ontology/ and https://nanbyodata.jp/ontology/2025-08-26/nando.ttl
 - Structural ontology registries and releases: https://obofoundry.org/ontology/uberon.html, https://obofoundry.org/ontology/cl.html, https://obofoundry.org/ontology/pato.html, and the release URLs recorded in the JSON register.

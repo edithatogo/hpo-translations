@@ -291,6 +291,41 @@
       "reviewed_at": "2026-08-01T00:00:00Z"
     },
     {
+      "source_id": "nando",
+      "source_name": "Nanbyo Disease Ontology",
+      "provider": "Database Center for Life Science",
+      "authority_role": "primary_ontology_authority",
+      "semantic_roles": ["disease_context", "multilingual_lexical"],
+      "source_version": {
+        "value": "2025-08-26",
+        "status": "exact_release_pinned",
+        "commit_sha": null,
+        "evidence_url": "https://nanbyodata.jp/ontology/2025-08-26/nando.ttl"
+      },
+      "access_mode": "public_release_download",
+      "credential_requirement": "none",
+      "source_declared_terms": "NANDO is published by DBCLS under CC BY 4.0 with attribution required.",
+      "license_evidence_url": "https://nanbyodata.jp/ontology/",
+      "adaptation_or_mapping_constraint": "Preserve DBCLS attribution, Japanese script tags, release identity, and imported MONDO, Orphanet, and MedGen lineage before any lexical use.",
+      "third_party_content_risk": "medium",
+      "active_translation_profile_overlap": ["ja"],
+      "excluded_overlap_reasons": ["Japanese Hiragana labels are script-specific context and are not a separate language or independent source."],
+      "repository_decision": "metadata_probe_allowed",
+      "metadata_commit_allowed": true,
+      "payload_retrieval_allowed": false,
+      "payload_commit_allowed": false,
+      "decision_owner": "maintainer",
+      "open_gates": ["maintainer_license_review", "source_atom_attribution_review", "pilot_scope_selection"],
+      "next_safe_action": "Review a payload-free Japanese and Hiragana coverage manifest and imported-source lineage before requesting any bounded ontology slice.",
+      "expected_agent_burden": "medium",
+      "proposed_pilot_use": "Provide Japanese rare-disease context while keeping imported mappings and script variants within one conservative evidence lineage.",
+      "evidence_urls": [
+        "https://nanbyodata.jp/ontology/",
+        "https://nanbyodata.jp/ontology/2025-08-26/nando.ttl"
+      ],
+      "reviewed_at": "2026-08-12T00:00:00Z"
+    },
+    {
       "source_id": "pato",
       "source_name": "Phenotype And Trait Ontology",
       "provider": "PATO maintainers",
@@ -327,8 +362,8 @@
     }
   ],
   "summary": {
-    "source_count": 9,
-    "metadata_probe_allowed_count": 5,
+    "source_count": 10,
+    "metadata_probe_allowed_count": 6,
     "permission_required_count": 2,
     "agent_panel_required_count": 2,
     "payload_allowed_count": 0

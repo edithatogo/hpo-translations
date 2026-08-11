@@ -18,7 +18,7 @@
     },
     {
       "layer": "supplementary_source_reviews",
-      "record_count": 9,
+      "record_count": 10,
       "scope": "source_access_and_semantic_role_metadata_only",
       "payload_or_source_atom_authority": false
     },
