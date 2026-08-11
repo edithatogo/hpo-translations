@@ -16,20 +16,20 @@ This file tracks all major tracks for the project. Each track has its own detail
 | `snomed_ct_integration_20260623` | `archived` | `P2` | `license_or_affiliate_release_required` | `translation_agents_20260622, ontology_network_20260623:phase_1_registry_schema` | `ontology_network_20260623:phase_3_identifier_network, ontology_network_20260623:phase_4_non_translation_outputs` | `ontology-source-governance` | `not_applicable` | `archive_review_completed` | `not_applicable` |
 | `meddra_integration_20260623` | `archived` | `P2` | `subscription_or_license_required` | `translation_agents_20260622, ontology_network_20260623:phase_1_registry_schema` | `ontology_network_20260623:phase_3_identifier_network, ontology_network_20260623:phase_4_non_translation_outputs` | `ontology-source-governance` | `not_applicable` | `archive_review_completed` | `not_applicable` |
 | `icd10_integration_20260623` | `archived` | `P2` | `public_or_national_variant_review_required` | `translation_agents_20260622, ontology_network_20260623:phase_1_registry_schema` | `ontology_network_20260623:phase_3_identifier_network, ontology_network_20260623:phase_4_non_translation_outputs` | `ontology-source-governance` | `not_applicable` | `archive_review_completed` | `not_applicable` |
-| `icd11_integration_20260623` | `phase_0_implemented_blocked` | `P1` | `public_api_terms_review_required` | `translation_agents_20260622, ontology_network_20260623:phase_1_registry_schema` | `ontology_network_20260623:phase_3_identifier_network, ontology_network_20260623:phase_4_non_translation_outputs` | `ontology-source-governance` | `local_passing` | `codex_review_completed` | `not_opened` |
-| `loinc_integration_20260623` | `phase_0_implemented_blocked` | `P2` | `free_account_license_review_required` | `translation_agents_20260622, ontology_network_20260623:phase_1_registry_schema` | `ontology_network_20260623:phase_3_identifier_network, ontology_network_20260623:phase_4_non_translation_outputs` | `ontology-source-governance` | `local_passing` | `codex_review_completed` | `not_opened` |
-| `mesh_integration_20260623` | `phase_0_implemented_blocked` | `P1` | `public_download_terms_review_required` | `translation_agents_20260622, ontology_network_20260623:phase_1_registry_schema` | `ontology_network_20260623:phase_3_identifier_network, ontology_network_20260623:phase_4_non_translation_outputs` | `ontology-source-governance` | `local_passing` | `codex_review_completed` | `not_opened` |
-| `orphanet_integration_20260623` | `phase_0_implemented_blocked` | `P1` | `public_download_terms_review_required` | `translation_agents_20260622, ontology_network_20260623:phase_1_registry_schema` | `ontology_network_20260623:phase_3_identifier_network, ontology_network_20260623:phase_4_non_translation_outputs` | `ontology-source-governance` | `local_passing` | `codex_review_completed` | `not_opened` |
-| `omim_integration_20260623` | `phase_0_implemented_blocked` | `P2` | `api_key_or_license_required` | `translation_agents_20260622, ontology_network_20260623:phase_1_registry_schema` | `ontology_network_20260623:phase_3_identifier_network, ontology_network_20260623:phase_4_non_translation_outputs` | `ontology-source-governance` | `local_passing` | `codex_review_completed` | `not_opened` |
-| `decipher_integration_20260623` | `phase_0_implemented_blocked` | `P2` | `permission_or_api_terms_required` | `translation_agents_20260622, ontology_network_20260623:phase_1_registry_schema` | `ontology_network_20260623:phase_3_identifier_network, ontology_network_20260623:phase_4_non_translation_outputs` | `ontology-source-governance` | `local_passing` | `codex_review_completed` | `not_opened` |
-| `fma_integration_20260623` | `phase_0_implemented_blocked` | `P3` | `public_ontology_terms_review_required` | `translation_agents_20260622, ontology_network_20260623:phase_1_registry_schema` | `ontology_network_20260623:phase_3_identifier_network, ontology_network_20260623:phase_4_non_translation_outputs` | `ontology-source-governance` | `local_passing` | `subagent_review_completed_fixes_applied` | `not_opened` |
-| `pato_integration_20260623` | `phase_0_implemented_blocked` | `P1` | `open_ontology_download_review_required` | `translation_agents_20260622, ontology_network_20260623:phase_1_registry_schema` | `ontology_network_20260623:phase_3_identifier_network, ontology_network_20260623:phase_4_non_translation_outputs` | `ontology-source-governance` | `local_passing` | `codex_review_completed` | `not_opened` |
-| `mp_integration_20260623` | `phase_0_implemented_blocked` | `P1` | `open_ontology_download_review_required` | `translation_agents_20260622, ontology_network_20260623:phase_1_registry_schema` | `ontology_network_20260623:phase_3_identifier_network, ontology_network_20260623:phase_4_non_translation_outputs` | `ontology-source-governance` | `local_passing` | `codex_review_completed` | `not_opened` |
-| `upheno_integration_20260623` | `phase_0_implemented_blocked` | `P1` | `open_ontology_download_review_required` | `translation_agents_20260622, ontology_network_20260623:phase_1_registry_schema` | `ontology_network_20260623:phase_3_identifier_network, ontology_network_20260623:phase_4_non_translation_outputs` | `ontology-source-governance` | `local_passing` | `codex_review_completed` | `not_opened` |
-| `efo_integration_20260623` | `phase_0_implemented_blocked` | `P1` | `open_ontology_download_review_required` | `translation_agents_20260622, ontology_network_20260623:phase_1_registry_schema` | `ontology_network_20260623:phase_3_identifier_network, ontology_network_20260623:phase_4_non_translation_outputs` | `ontology-source-governance` | `local_passing` | `codex_review_completed` | `not_opened` |
-| `do_integration_20260623` | `phase_0_implemented_blocked` | `P1` | `open_ontology_download_review_required` | `translation_agents_20260622, ontology_network_20260623:phase_1_registry_schema` | `ontology_network_20260623:phase_3_identifier_network, ontology_network_20260623:phase_4_non_translation_outputs` | `ontology-source-governance` | `local_passing` | `codex_review_completed` | `not_opened` |
-| `oncotree_integration_20260623` | `phase_0_implemented_blocked` | `P1` | `open_api_terms_review_required` | `translation_agents_20260622, ontology_network_20260623:phase_1_registry_schema` | `ontology_network_20260623:phase_3_identifier_network, ontology_network_20260623:phase_4_non_translation_outputs` | `ontology-source-governance` | `local_passing` | `codex_review_completed` | `not_opened` |
-| `lddb_integration_20260623` | `phase_0_implemented_blocked` | `P3` | `source_authority_and_access_unknown` | `translation_agents_20260622, ontology_network_20260623:phase_1_registry_schema` | `ontology_network_20260623:phase_3_identifier_network, ontology_network_20260623:phase_4_non_translation_outputs` | `ontology-source-governance` | `local_passing` | `subagent_review_completed_fixes_applied` | `not_opened` |
+| `icd11_integration_20260623` | `archived` | `P1` | `public_api_metadata_only_terms_recorded` | `translation_agents_20260622, ontology_network_20260623:phase_1_registry_schema` | `ontology_network_20260623:phase_3_identifier_network, ontology_network_20260623:phase_4_non_translation_outputs` | `ontology-source-governance` | `not_applicable` | `archive_review_completed` | `not_applicable` |
+| `loinc_integration_20260623` | `archived` | `P2` | `free_account_license_review_required` | `translation_agents_20260622, ontology_network_20260623:phase_1_registry_schema` | `ontology_network_20260623:phase_3_identifier_network, ontology_network_20260623:phase_4_non_translation_outputs` | `ontology-source-governance` | `not_applicable` | `archive_review_completed` | `not_applicable` |
+| `mesh_integration_20260623` | `archived` | `P1` | `public_download_terms_review_required` | `translation_agents_20260622, ontology_network_20260623:phase_1_registry_schema` | `ontology_network_20260623:phase_3_identifier_network, ontology_network_20260623:phase_4_non_translation_outputs` | `ontology-source-governance` | `not_applicable` | `archive_review_completed` | `not_applicable` |
+| `orphanet_integration_20260623` | `archived` | `P1` | `public_download_terms_review_required` | `translation_agents_20260622, ontology_network_20260623:phase_1_registry_schema` | `ontology_network_20260623:phase_3_identifier_network, ontology_network_20260623:phase_4_non_translation_outputs` | `ontology-source-governance` | `not_applicable` | `archive_review_completed` | `not_applicable` |
+| `omim_integration_20260623` | `archived` | `P2` | `api_key_or_license_required` | `translation_agents_20260622, ontology_network_20260623:phase_1_registry_schema` | `ontology_network_20260623:phase_3_identifier_network, ontology_network_20260623:phase_4_non_translation_outputs` | `ontology-source-governance` | `not_applicable` | `archive_review_completed` | `not_applicable` |
+| `decipher_integration_20260623` | `archived` | `P2` | `permission_or_api_terms_required` | `translation_agents_20260622, ontology_network_20260623:phase_1_registry_schema` | `ontology_network_20260623:phase_3_identifier_network, ontology_network_20260623:phase_4_non_translation_outputs` | `ontology-source-governance` | `not_applicable` | `archive_review_completed` | `not_applicable` |
+| `fma_integration_20260623` | `archived` | `P3` | `public_ontology_terms_review_required` | `translation_agents_20260622, ontology_network_20260623:phase_1_registry_schema` | `ontology_network_20260623:phase_3_identifier_network, ontology_network_20260623:phase_4_non_translation_outputs` | `ontology-source-governance` | `not_applicable` | `archive_review_completed` | `not_applicable` |
+| `pato_integration_20260623` | `archived` | `P1` | `open_ontology_download_review_required` | `translation_agents_20260622, ontology_network_20260623:phase_1_registry_schema` | `ontology_network_20260623:phase_3_identifier_network, ontology_network_20260623:phase_4_non_translation_outputs` | `ontology-source-governance` | `not_applicable` | `archive_review_completed` | `not_applicable` |
+| `mp_integration_20260623` | `archived` | `P1` | `open_ontology_download_review_required` | `translation_agents_20260622, ontology_network_20260623:phase_1_registry_schema` | `ontology_network_20260623:phase_3_identifier_network, ontology_network_20260623:phase_4_non_translation_outputs` | `ontology-source-governance` | `not_applicable` | `archive_review_completed` | `not_applicable` |
+| `upheno_integration_20260623` | `archived` | `P1` | `open_ontology_download_review_required` | `translation_agents_20260622, ontology_network_20260623:phase_1_registry_schema` | `ontology_network_20260623:phase_3_identifier_network, ontology_network_20260623:phase_4_non_translation_outputs` | `ontology-source-governance` | `not_applicable` | `archive_review_completed` | `not_applicable` |
+| `efo_integration_20260623` | `archived` | `P1` | `open_ontology_download_review_required` | `translation_agents_20260622, ontology_network_20260623:phase_1_registry_schema` | `ontology_network_20260623:phase_3_identifier_network, ontology_network_20260623:phase_4_non_translation_outputs` | `ontology-source-governance` | `not_applicable` | `archive_review_completed` | `not_applicable` |
+| `do_integration_20260623` | `archived` | `P1` | `open_ontology_download_review_required` | `translation_agents_20260622, ontology_network_20260623:phase_1_registry_schema` | `ontology_network_20260623:phase_3_identifier_network, ontology_network_20260623:phase_4_non_translation_outputs` | `ontology-source-governance` | `not_applicable` | `archive_review_completed` | `not_applicable` |
+| `oncotree_integration_20260623` | `archived` | `P1` | `open_api_terms_review_required` | `translation_agents_20260622, ontology_network_20260623:phase_1_registry_schema` | `ontology_network_20260623:phase_3_identifier_network, ontology_network_20260623:phase_4_non_translation_outputs` | `ontology-source-governance` | `not_applicable` | `archive_review_completed` | `not_applicable` |
+| `lddb_integration_20260623` | `archived` | `P3` | `source_authority_and_access_unknown` | `translation_agents_20260622, ontology_network_20260623:phase_1_registry_schema` | `ontology_network_20260623:phase_3_identifier_network, ontology_network_20260623:phase_4_non_translation_outputs` | `ontology-source-governance` | `not_applicable` | `archive_review_completed` | `not_applicable` |
 <!-- conductor-automation-index:end -->
 
 ---
@@ -70,72 +70,72 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ---
 
-## [ ] Track: Integrate ICD-11 into terminology and translation support
+## [x] Track: Integrate ICD-11 into terminology and translation support (archived — blocked on source_label_and_payload_review_required)
 *Link: [./tracks/icd11_integration_20260623/](file:///C:/Users/60217257/OneDrive%20-%20Flinders/repos/biomedical/hpo-translations/conductor/tracks/icd11_integration_20260623/)*
 
 ---
 
-## [ ] Track: Integrate LOINC into terminology and translation support
+## [x] Track: Integrate LOINC into terminology and translation support (archived — blocked on free_account_license_review_required)
 *Link: [./tracks/loinc_integration_20260623/](file:///C:/Users/60217257/OneDrive%20-%20Flinders/repos/biomedical/hpo-translations/conductor/tracks/loinc_integration_20260623/)*
 
 ---
 
-## [ ] Track: Integrate MeSH into terminology and translation support
+## [x] Track: Integrate MeSH into terminology and translation support (archived — blocked on public_download_terms_review_required)
 *Link: [./tracks/mesh_integration_20260623/](file:///C:/Users/60217257/OneDrive%20-%20Flinders/repos/biomedical/hpo-translations/conductor/tracks/mesh_integration_20260623/)*
 
 ---
 
-## [ ] Track: Integrate Orphanet into terminology and translation support
+## [x] Track: Integrate Orphanet into terminology and translation support (archived — blocked on public_download_terms_review_required)
 *Link: [./tracks/orphanet_integration_20260623/](file:///C:/Users/60217257/OneDrive%20-%20Flinders/repos/biomedical/hpo-translations/conductor/tracks/orphanet_integration_20260623/)*
 
 ---
 
-## [ ] Track: Integrate OMIM into terminology and translation support
+## [x] Track: Integrate OMIM into terminology and translation support (archived — blocked on api_key_or_license_required)
 *Link: [./tracks/omim_integration_20260623/](file:///C:/Users/60217257/OneDrive%20-%20Flinders/repos/biomedical/hpo-translations/conductor/tracks/omim_integration_20260623/)*
 
 ---
 
-## [ ] Track: Integrate DECIPHER into terminology and translation support
+## [x] Track: Integrate DECIPHER into terminology and translation support (archived — blocked on permission_or_api_terms_required)
 *Link: [./tracks/decipher_integration_20260623/](file:///C:/Users/60217257/OneDrive%20-%20Flinders/repos/biomedical/hpo-translations/conductor/tracks/decipher_integration_20260623/)*
 
 ---
 
-## [ ] Track: Integrate FMA into terminology and translation support
+## [x] Track: Integrate FMA into terminology and translation support (archived — blocked on public_ontology_terms_review_required)
 *Link: [./tracks/fma_integration_20260623/](file:///C:/Users/60217257/OneDrive%20-%20Flinders/repos/biomedical/hpo-translations/conductor/tracks/fma_integration_20260623/)*
 
 ---
 
-## [ ] Track: Integrate PATO into terminology and translation support
+## [x] Track: Integrate PATO into terminology and translation support (archived — blocked on open_ontology_download_review_required)
 *Link: [./tracks/pato_integration_20260623/](file:///C:/Users/60217257/OneDrive%20-%20Flinders/repos/biomedical/hpo-translations/conductor/tracks/pato_integration_20260623/)*
 
 ---
 
-## [ ] Track: Integrate Mammalian Phenotype Ontology into terminology and translation support
+## [x] Track: Integrate Mammalian Phenotype Ontology into terminology and translation support (archived — blocked on open_ontology_download_review_required)
 *Link: [./tracks/mp_integration_20260623/](file:///C:/Users/60217257/OneDrive%20-%20Flinders/repos/biomedical/hpo-translations/conductor/tracks/mp_integration_20260623/)*
 
 ---
 
-## [ ] Track: Integrate uPheno into terminology and translation support
+## [x] Track: Integrate uPheno into terminology and translation support (archived — blocked on open_ontology_download_review_required)
 *Link: [./tracks/upheno_integration_20260623/](file:///C:/Users/60217257/OneDrive%20-%20Flinders/repos/biomedical/hpo-translations/conductor/tracks/upheno_integration_20260623/)*
 
 ---
 
-## [ ] Track: Integrate EFO into terminology and translation support
+## [x] Track: Integrate EFO into terminology and translation support (archived — blocked on open_ontology_download_review_required)
 *Link: [./tracks/efo_integration_20260623/](file:///C:/Users/60217257/OneDrive%20-%20Flinders/repos/biomedical/hpo-translations/conductor/tracks/efo_integration_20260623/)*
 
 ---
 
-## [ ] Track: Integrate Disease Ontology into terminology and translation support
+## [x] Track: Integrate Disease Ontology into terminology and translation support (archived — blocked on open_ontology_download_review_required)
 *Link: [./tracks/do_integration_20260623/](file:///C:/Users/60217257/OneDrive%20-%20Flinders/repos/biomedical/hpo-translations/conductor/tracks/do_integration_20260623/)*
 
 ---
 
-## [ ] Track: Integrate OncoTree into terminology and translation support
+## [x] Track: Integrate OncoTree into terminology and translation support (archived — blocked on open_api_terms_review_required)
 *Link: [./tracks/oncotree_integration_20260623/](file:///C:/Users/60217257/OneDrive%20-%20Flinders/repos/biomedical/hpo-translations/conductor/tracks/oncotree_integration_20260623/)*
 
 ---
 
-## [ ] Track: Integrate LDDB into terminology and translation support
+## [x] Track: Integrate LDDB into terminology and translation support (archived — blocked on source_authority_and_access_unknown)
 *Link: [./tracks/lddb_integration_20260623/](file:///C:/Users/60217257/OneDrive%20-%20Flinders/repos/biomedical/hpo-translations/conductor/tracks/lddb_integration_20260623/)*
 
 ---
