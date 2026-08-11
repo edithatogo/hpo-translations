@@ -1,10 +1,11 @@
 import csv
+import json
 import shutil
 import unittest
 import uuid
 from pathlib import Path
 
-from scripts.build_ontology_network import build, load_json, validate
+from scripts.build_ontology_network import approved_metadata_sample, build, load_json, validate
 
 TEST_TMP = Path(".cache/ontology-network-tests")
 
@@ -51,6 +52,39 @@ class OntologyNetworkTests(unittest.TestCase):
         output_dir.mkdir(parents=True)
         self.addCleanup(lambda: shutil.rmtree(output_dir, ignore_errors=True))
         return output_dir
+
+    def test_generator_rejects_empty_approval_evidence(self) -> None:
+        track_dir = self.make_output_dir()
+        (track_dir / "maintainer_review_handoff.json").write_text(
+            json.dumps(
+                {
+                    "status": "approved_bounded_metadata_only_sample",
+                    "approval": {},
+                    "bounded_sample": {},
+                }
+            ),
+            encoding="utf-8",
+        )
+        (track_dir / "phase2_data_access_normalization.json").write_text(
+            json.dumps(
+                {
+                    "status": "metadata_only_sample_normalized_payload_free",
+                    "normalization": {"source_terms_included": False},
+                    "sample": {
+                        "allowed": True,
+                        "payload_retained": False,
+                        "source_terms_included": False,
+                    },
+                    "normalized_record": {
+                        "release": "test-release",
+                        "immutable_commit": "0" * 40,
+                        "payload_retained": False,
+                    },
+                }
+            ),
+            encoding="utf-8",
+        )
+        self.assertIsNone(approved_metadata_sample(track_dir))
 
     def test_build_and_validate_registry_artifacts(self) -> None:
         output_dir = self.make_output_dir()

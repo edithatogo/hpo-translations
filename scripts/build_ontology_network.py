@@ -339,7 +339,11 @@ def approved_metadata_sample(track_dir: Path) -> dict[str, Any] | None:
     phase2 = load_json(phase2_path)
     if handoff.get("status") != "approved_bounded_metadata_only_sample":
         return None
-    if not isinstance(handoff.get("approval"), dict) or not isinstance(handoff.get("bounded_sample"), dict):
+    approval = handoff.get("approval")
+    bounded_sample = handoff.get("bounded_sample")
+    if not isinstance(approval, dict) or not approval:
+        return None
+    if not isinstance(bounded_sample, dict) or not bounded_sample:
         return None
     if phase2.get("status") != "metadata_only_sample_normalized_payload_free":
         return None
