@@ -208,7 +208,7 @@ class ValidateResearchValidationTests(unittest.TestCase):
         approval = load_json(DEFAULT_RESEARCH_ROOT / "approval_manifest.json")
         docket["blocker_resolution_plan"]["options"].reverse()
         self.assertIn(
-            "Phase 4 blocker options must preserve the recommended B-to-A dual-lane order",
+            "Phase 4 blocker options must preserve selected Option B and its fail-closed fallbacks",
             phase_4_gate_docket_errors(docket, supplementary, approval),
         )
 

@@ -465,8 +465,8 @@ def agent_compute_budget_errors(instance: Any) -> list[str]:
 
     if instance.get("status") != "provisional_g0_budget_approved":
         errors.append("agent compute budget must retain its provisional G0 status")
-    if instance.get("target_option") != "A":
-        errors.append("agent compute budget must remain scoped to selected Option A")
+    if instance.get("target_option") != "B":
+        errors.append("agent compute budget must remain scoped to selected Option B")
     if stage_1.get("release_cap_minutes") != 1800 or full.get("ceiling_minutes") != 7200:
         errors.append("approved Stage 1 and full-pilot workload ceilings cannot drift without amendment")
     if not release_rule.get("stage_1_only_initially") or not release_rule.get(
@@ -619,17 +619,20 @@ def phase_4_candidate_matrix_errors(instance: Any, supplementary: Any) -> list[s
         }.issubset(adjudicator_requirements):
             errors.append("adjudicator requirements must preserve isolation, locking, and deterministic reproduction")
 
+    if instance.get("target_option") != "B" or instance.get("selected_languages") != ["es", "ja"]:
+        errors.append("Phase 4 must retain selected Option B with Spanish and Japanese")
+
     expected_actions = [
-        "step_down_to_option_b_with_es_and_ja",
-        "consider_option_b_with_es_and_zh_subject_to_all_gates",
-        "consider_option_b_with_fr_or_pt_and_ja_subject_to_all_gates",
+        "step_down_to_option_c_for_spanish_if_fully_authorized_otherwise_option_d",
+        "step_down_to_option_c_for_japanese_if_fully_authorized_otherwise_option_d",
+        "do_not_substitute_automatically_step_down_to_the_first_fully_authorized_language_or_option_d",
         "step_down_to_option_c",
         "remain_at_option_d_synthetic_only",
     ]
     contingencies = instance.get("step_down_contingencies", [])
     actions = [item.get("action") for item in contingencies if isinstance(item, dict)]
     if actions != expected_actions:
-        errors.append("Phase 4 step-down contingencies must preserve the approved A-to-B-to-C-to-D order")
+        errors.append("Phase 4 step-down contingencies must preserve the selected B-to-C-to-D order")
 
     authorization = instance.get("authorization_boundary", {})
     if not isinstance(authorization, dict) or any(value is not False for value in authorization.values()):
@@ -662,9 +665,9 @@ def phase_4_gate_docket_errors(
         "option_d_synthetic_only",
     ]
     if option_ids != expected_option_ids or resolution.get("recommended_strategy") != (
-        "dual_lane_minimum_viable_option_b_then_expand_to_option_a_only_if_optional_gates_close_before_G3"
+        "selected_minimum_viable_option_b_with_spanish_and_japanese_subject_to_all_required_gates"
     ):
-        errors.append("Phase 4 blocker options must preserve the recommended B-to-A dual-lane order")
+        errors.append("Phase 4 blocker options must preserve selected Option B and its fail-closed fallbacks")
     if any(not option.get("fallback") for option in options if isinstance(option, dict)):
         errors.append("every Phase 4 blocker option must define a fallback")
 
