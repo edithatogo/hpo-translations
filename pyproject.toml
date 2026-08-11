@@ -22,6 +22,7 @@ strict = [
     "scripts/diff_translations.py",
     "scripts/freeze_phase4_g3.py",
     "scripts/generate_pilot_source_atoms.py",
+    "scripts/validate_language_readiness.py",
     "scripts/package_translations.py",
     "scripts/render_synonyms_owl.py",
     "scripts/translation_workflows.py",
