@@ -109,10 +109,24 @@ def main() -> int:
     if private_inventory.get("promotion_allowed") is not False:
         errors.append("private-source inventory must keep promotion disabled")
     candidate_hosting = private_inventory.get("candidate_hosting")
-    if not isinstance(candidate_hosting, dict) or candidate_hosting.get("status") != "platform_authorized_source_scope_pending":
+    if (
+        not isinstance(candidate_hosting, dict)
+        or candidate_hosting.get("status") != "platform_authorized_source_scope_pending"
+    ):
         errors.append("candidate hosting must record platform authorization while source scope remains pending")
-    if not isinstance(candidate_hosting, dict) or candidate_hosting.get("access_model") != "owner-only private repository; no collaborators authorized":
+    if (
+        not isinstance(candidate_hosting, dict)
+        or candidate_hosting.get("access_model")
+        != "owner-only private repository; no collaborators authorized"
+    ):
         errors.append("candidate hosting must record the owner-only access model")
+    if not isinstance(candidate_hosting, dict) or candidate_hosting.get("source_archiving_authorization") is None:
+        errors.append("candidate hosting must record the source archiving authorization")
+    if not isinstance(candidate_hosting, dict) or candidate_hosting.get("repository_creation_status") not in {
+        "blocked_insufficient_hf_token_scope",
+        "created_private_owner_only",
+    }:
+        errors.append("candidate hosting must record the private archive repository state")
     if not isinstance(candidate_hosting, dict) or not candidate_hosting.get("required_before_upload"):
         errors.append("candidate hosting must record required pre-upload controls")
     if errors:

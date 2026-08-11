@@ -10,14 +10,19 @@
     "recommended_platform": "Hugging Face private dataset repository",
     "status": "platform_authorized_source_scope_pending",
     "environment_authorization": "User attests that private cloud hosting is approved and their private repositories have no other authorized users.",
+    "source_archiving_authorization": "User attests that they hold a licence for each governed ontology source and authorizes owner-only private cloud archiving.",
     "rationale": "The private cloud environment is approved for the user's own reuse. Each ontology source still needs an authority, licence-scope, version, and provenance decision before upload.",
     "access_model": "owner-only private repository; no collaborators authorized",
+    "archive_target": "edithatogo/hpo-licensed-ontology-archive",
+    "repository_creation_status": "blocked_insufficient_hf_token_scope",
+    "repository_creation_evidence": "2026-08-11: authenticated Hugging Face CLI returned HTTP 403 when creating the owner-only private dataset; the current token cannot create datasets under edithatogo.",
     "required_before_upload": [
       "source-specific rightsholder permission or licence scope covering the intended payload and private cloud hosting",
       "named Hugging Face account or organization and owner-only access confirmation",
       "no public Dataset Viewer, inference endpoint, or derivative release",
       "immutable revision, provenance manifest, retention, deletion, and revocation plan"
-    ]
+    ],
+    "next_action": "Authenticate the Hugging Face CLI with an edithatogo token that has write permission, then create the named private dataset and archive source releases one at a time with immutable provenance records."
   },
   "payload_access_allowed": false,
   "promotion_allowed": false
