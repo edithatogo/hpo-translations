@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["schema_version", "status", "official_translation_url", "official_edition_uri_url", "payload_incorporated", "translation_profiles", "edition_examples_without_translation_inference", "french_lineage", "admission_requirements"],
+  "properties": {
+    "schema_version": {"const": "snomed-national-edition-inventory-v1"},
+    "status": {"const": "catalogued_metadata_only"},
+    "official_translation_url": {"type": "string", "format": "uri", "pattern": "^https://"},
+    "official_edition_uri_url": {"type": "string", "format": "uri", "pattern": "^https://"},
+    "payload_incorporated": {"const": false},
+    "translation_profiles": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["jurisdiction", "languages", "edition_uri", "reported_coverage"], "properties": {"jurisdiction": {"type": "string", "minLength": 1}, "languages": {"type": "array", "minItems": 1, "items": {"type": "string"}}, "edition_uri": {"type": ["string", "null"]}, "authority_url": {"type": "string", "format": "uri", "pattern": "^https://"}}}},
+    "edition_examples_without_translation_inference": {"type": "array"},
+    "french_lineage": {"type": "object", "required": ["current_authorities", "policy"]},
+    "admission_requirements": {"type": "array", "minItems": 1, "items": {"type": "string"}}
+  }
+}
