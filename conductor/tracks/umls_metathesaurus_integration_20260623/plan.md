@@ -43,8 +43,10 @@ This plan introduces UMLS Metathesaurus into the project where it can improve te
 
 ## Phase 2: Data Access and Normalization
 - [x] **Task 1:** Define source retrieval path without committing restricted payloads.
-- [x] **Task 2:** Normalize identifiers, preferred labels, synonyms, language tags, and provenance fields.
-- [x] **Task 3:** Produce a bounded sample artifact for maintainer review.
+- [x] **Task 2:** Define the payload-free normalization contract for identifiers, labels, synonyms, language tags, and provenance fields.
+- [x] **Task 3:** Publish the payload-free UMLS 2026AA release and language inventory for agent-panel assessment.
+- [ ] **Task 4:** Normalize an authenticated bounded source sample.
+  - Blocked until the UMLS licence, UTS account, source-vocabulary restrictions, exact release payload, checksum, and local-only cache controls are authorized.
 
 ## Phase 3: HPO Translation Use
 - [x] **Task 1:** Identify where UMLS Metathesaurus helps: crosswalks, synonym review, multilingual label comparison, or domain validation.
@@ -53,5 +55,5 @@ This plan introduces UMLS Metathesaurus into the project where it can improve te
 
 ## Phase 4: Validation and Review
 - [x] **Task 1:** Validate schema, provenance, and license metadata.
-- [x] **Task 2:** Run translation-audit and import dry-run checks against sample outputs.
+- [x] **Task 2:** Run governance and payload-exclusion checks against metadata-only outputs; source-term translation and import dry runs remain blocked.
 - [x] **Task 3:** Document limitations, excluded payloads, and review decisions.
