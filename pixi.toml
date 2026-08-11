@@ -9,7 +9,7 @@ version = "0.1.0"
 sort-all = { cmd = ".pixi/envs/default/python.exe -u scripts/process_translations.py sort-all", env = { PYTHONUTF8 = "1" }, inputs = ["babelon/hp-*.babelon.tsv", "babelon/hp-*.synonyms.tsv"], outputs = ["babelon/hp-*.babelon.tsv", "babelon/hp-*.synonyms.tsv"] }
 clean-all = { cmd = ".pixi/envs/default/python.exe -u scripts/process_translations.py clean-all", env = { PYTHONUTF8 = "1" }, inputs = ["babelon/hp-*.babelon.tsv", "babelon/hp-*.synonyms.tsv"], outputs = ["babelon/hp-*.babelon.tsv", "babelon/hp-*.synonyms.tsv"] }
 validate-all = { cmd = ".pixi/envs/default/python.exe -u scripts/process_translations.py validate-all", env = { PYTHONUTF8 = "1" }, inputs = ["babelon/hp-*.babelon.tsv", "babelon/hp-*.synonyms.tsv"], outputs = ["tmp/*-babelon.owl"] }
-qc = { cmd = ".pixi/envs/default/python.exe -u scripts/process_translations.py validate-all", env = { PYTHONUTF8 = "1" }, inputs = ["babelon/hp-*.babelon.tsv", "babelon/hp-*.synonyms.tsv"], outputs = ["tmp/*-babelon.owl"] }
+qc = { cmd = ".pixi/envs/default/python.exe -u scripts/process_translations.py validate-all", env = { PYTHONUTF8 = "1", HPO_VALIDATION_JOBS = "3" }, inputs = ["babelon/hp-*.babelon.tsv", "babelon/hp-*.synonyms.tsv"], outputs = ["tmp/*-babelon.owl"] }
 update = { depends-on = ["sort-all", "clean-all", "validate-all"] }
 ruff-check = { cmd = ".pixi/envs/default/Scripts/ruff.exe check --no-cache .", inputs = ["scripts/**/*.py", "ruff.toml"] }
 ruff-format = { cmd = ".pixi/envs/default/Scripts/ruff.exe format --no-cache --check .", inputs = ["scripts/**/*.py", "ruff.toml"] }
@@ -41,7 +41,8 @@ validate-source-governance-docket = ".pixi/envs/default/python.exe scripts/valid
 ontology-network = ".pixi/envs/default/python.exe -u scripts/build_ontology_network.py all"
 validate-conductor = ".pixi/envs/default/python.exe -u scripts/validate_conductor.py"
 validate-conductor-report = ".pixi/envs/default/python.exe -u scripts/validate_conductor.py --json-output tmp/conductor_validation_report.json --text-output tmp/conductor_validation_report.md --ci-output tmp/conductor_validation_summary.md"
-test-conductor-validation = ".pixi/envs/default/python.exe -m unittest discover -s tests -p test_*.py"
+test-all = ".pixi/envs/default/python.exe -m unittest discover -s tests -p test_*.py"
+test-conductor-validation = { depends-on = ["test-all"] }
 validate-research-validation = ".pixi/envs/default/python.exe -u -m scripts.validate_research_validation"
 validate-mapping-expansion = ".pixi/envs/default/python.exe -u -m scripts.validate_mapping_expansion"
 test-research-validation = ".pixi/envs/default/python.exe -m unittest discover -s tests -p test_validate_research_validation.py"
