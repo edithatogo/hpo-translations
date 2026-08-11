@@ -15,3 +15,15 @@ dependencies = [
 include = ["scripts"]
 pythonVersion = "3.14"
 typeCheckingMode = "standard"
+strict = [
+    "scripts/__init__.py",
+    "scripts/analyze_phase4_pilot.py",
+    "scripts/check_ontology_network_drift.py",
+    "scripts/diff_translations.py",
+    "scripts/freeze_phase4_g3.py",
+    "scripts/generate_pilot_source_atoms.py",
+    "scripts/package_translations.py",
+    "scripts/render_synonyms_owl.py",
+    "scripts/translation_workflows.py",
+    "scripts/verify_research_sources.py",
+]
