@@ -1,0 +1,165 @@
+{
+  "schema_version": "language-readiness-catalog-v1",
+  "generated_at": "2026-08-12T00:00:00Z",
+  "scope": "metadata_only_no_translation_or_source_payload_rows",
+  "translation_rows_added": 0,
+  "source_payload_rows_added": 0,
+  "hpo_candidate_languages": [
+    {"language":"ko","status":"metadata_candidate_no_hpo_asset","evidence_sources":["UMLS 2026AA","MedDRA documented language metadata"],"source_payload_authorized":false,"community_use_authorized":false},
+    {"language":"pl","status":"metadata_candidate_no_hpo_asset","evidence_sources":["Orphadata alignments","MedDRA documented language metadata","LOINC regional metadata","PRO-CTCAE official language page"],"source_payload_authorized":false,"community_use_authorized":false},
+    {"language":"ru","status":"metadata_candidate_no_hpo_asset","evidence_sources":["UMLS 2026AA","ICD-11 metadata","WHO ICF metadata","MedDRA documented language metadata","LOINC regional metadata","PRO-CTCAE official language page"],"source_payload_authorized":false,"community_use_authorized":false},
+    {"language":"sv","status":"metadata_candidate_no_hpo_asset","evidence_sources":["UMLS 2026AA","SNOMED CT Swedish Edition metadata","MedDRA documented language metadata"],"source_payload_authorized":false,"community_use_authorized":false},
+    {"language":"uk","status":"metadata_candidate_no_hpo_asset","evidence_sources":["UMLS 2026AA","Orphadata alignments","WHO ICF metadata","LOINC regional metadata","PRO-CTCAE official language page"],"source_payload_authorized":false,"community_use_authorized":false}
+  ],
+  "regional_contexts": [
+    {"language_family":"French","tags":[
+      {"tag":"fr-BE","evidence_status":"confirmed_public_metadata","evidence_sources":["SNOMED CT Belgium","LOINC 2.82 via UMLS inventory"]},
+      {"tag":"fr-CA","evidence_status":"confirmed_public_metadata","evidence_sources":["SNOMED CT Canada","ICD-10-CA/CIM-10-CA","LOINC 2.82 via UMLS inventory"]},
+      {"tag":"fr-FR","evidence_status":"confirmed_public_metadata","evidence_sources":["SNOMED CT France","CIM-10-FR","LOINC 2.82 via UMLS inventory"]}
+    ]},
+    {"language_family":"Portuguese","tags":[
+      {"tag":"pt-BR","evidence_status":"confirmed_public_metadata","evidence_sources":["LOINC 2.82 via UMLS inventory"]},
+      {"tag":"pt-PT","evidence_status":"confirmed_public_metadata","evidence_sources":["PRO-CTCAE validated translations authority table"]}
+    ]},
+    {"language_family":"Chinese","tags":[
+      {"tag":"zh-Hans","evidence_status":"confirmed_public_metadata","evidence_sources":["PRO-CTCAE validated translations authority table; Universal Simplified Chinese"]},
+      {"tag":"zh-Hant","evidence_status":"confirmed_public_metadata","evidence_sources":["PRO-CTCAE validated translations authority table; Universal Traditional Chinese"]}
+    ]},
+    {"language_family":"German","tags":[
+      {"tag":"de-AT","evidence_status":"confirmed_public_metadata","evidence_sources":["SNOMED CT Austria","LOINC 2.82 via UMLS inventory"]},
+      {"tag":"de-DE","evidence_status":"confirmed_public_metadata","evidence_sources":["SNOMED CT Germany","ICD-10-GM","LOINC 2.82 via UMLS inventory"]}
+    ]},
+    {"language_family":"Dutch","tags":[
+      {"tag":"nl-BE","evidence_status":"confirmed_public_metadata","evidence_sources":["SNOMED CT Belgium"]},
+      {"tag":"nl-NL","evidence_status":"confirmed_public_metadata","evidence_sources":["SNOMED CT Netherlands","LOINC 2.82 via UMLS inventory"]}
+    ]},
+    {"language_family":"Spanish","tags":[
+      {"tag":"es-AR","evidence_status":"confirmed_public_metadata","evidence_sources":["LOINC 2.82 via UMLS inventory"]},
+      {"tag":"es-ES","evidence_status":"confirmed_public_metadata","evidence_sources":["SNOMED CT Spain","CIE-10-ES","LOINC 2.82 via UMLS inventory"]},
+      {"tag":"es-MX","evidence_status":"confirmed_public_metadata","evidence_sources":["LOINC 2.82 via UMLS inventory"]}
+    ]}
+  ],
+  "decs": {
+    "catalog_completeness": "documented_service_language_set",
+    "languages": ["en", "es", "fr", "pt"],
+    "evidence_urls": ["https://decs.bvsalud.org/wp-content/uploads/2024/04/DeCS-services-EN.pdf", "https://decs.bvsalud.org/I/DeCS-License-Agreement-20080801.pdf"],
+    "permission_status": "pre_license_agreement_required",
+    "payload_retrieval_allowed": false,
+    "payload_commit_allowed": false,
+    "translation_use_allowed": false
+  },
+  "pro_ctcae": {
+    "catalog_completeness": "exhaustive_authority_table_as_of_2026-08-11",
+    "authority_last_updated": "2026-08-11",
+    "validated_translations": [
+      {"authority_name":"Afrikaans","language_tag":"af","countries_tested":["South Africa"]},
+      {"authority_name":"Arabic","language_tag":"ar","countries_tested":["Egypt","Israel","USA","Saudi Arabia","Morocco"]},
+      {"authority_name":"Assamese","language_tag":"as","countries_tested":["India"]},
+      {"authority_name":"Belarusian","language_tag":"be","countries_tested":["Belarus"]},
+      {"authority_name":"Bengali","language_tag":"bn","countries_tested":["India","Bangladesh"]},
+      {"authority_name":"Bosnian","language_tag":"bs","countries_tested":["Bosnia and Herzegovina"]},
+      {"authority_name":"Bulgarian","language_tag":"bg","countries_tested":["Bulgaria"]},
+      {"authority_name":"Cebuano","language_tag":"ceb","countries_tested":["Philippines"]},
+      {"authority_name":"Chinese (Simplified) (Universal)","language_tag":"zh-Hans","countries_tested":["China","Singapore","Malaysia"]},
+      {"authority_name":"Chinese (Traditional) (Universal)","language_tag":"zh-Hant","countries_tested":["USA","Taiwan","Hong Kong"]},
+      {"authority_name":"Croatian (Universal)","language_tag":"hr","countries_tested":["Croatia","Bosnia and Herzegovina"]},
+      {"authority_name":"Czech","language_tag":"cs","countries_tested":["Czech Republic"]},
+      {"authority_name":"Danish","language_tag":"da","countries_tested":["Denmark"]},
+      {"authority_name":"Dutch","language_tag":"nl","countries_tested":["Belgium","The Netherlands"]},
+      {"authority_name":"English (Universal)","language_tag":"en","countries_tested":["USA","Australia","Canada","UK"]},
+      {"authority_name":"Estonian","language_tag":"et","countries_tested":["Estonia"]},
+      {"authority_name":"Finnish","language_tag":"fi","countries_tested":["Finland"]},
+      {"authority_name":"French (for Canada)","language_tag":"fr-CA","countries_tested":["Canada"]},
+      {"authority_name":"French (for France, Belgium, Switzerland)","language_tag":"fr-FR","countries_tested":["France","Belgium","Switzerland"]},
+      {"authority_name":"Georgian","language_tag":"ka","countries_tested":["Georgia"]},
+      {"authority_name":"German (Universal)","language_tag":"de","countries_tested":["Germany","Austria","Switzerland"]},
+      {"authority_name":"Greek","language_tag":"el","countries_tested":["Greece"]},
+      {"authority_name":"Gujarati","language_tag":"gu","countries_tested":["India"]},
+      {"authority_name":"Haitian Creole","language_tag":"ht","countries_tested":["Haiti","USA"]},
+      {"authority_name":"Hausa","language_tag":"ha","countries_tested":["Nigeria"]},
+      {"authority_name":"Hebrew","language_tag":"he","countries_tested":["Israel"]},
+      {"authority_name":"Hiligaynon","language_tag":"hil","countries_tested":["Philippines"]},
+      {"authority_name":"Hindi","language_tag":"hi","countries_tested":["India"]},
+      {"authority_name":"Hungarian","language_tag":"hu","countries_tested":["Hungary"]},
+      {"authority_name":"Icelandic","language_tag":"is","countries_tested":["Iceland"]},
+      {"authority_name":"Igbo","language_tag":"ig","countries_tested":["Nigeria"]},
+      {"authority_name":"Ilocano","language_tag":"ilo","countries_tested":["Philippines"]},
+      {"authority_name":"Italian","language_tag":"it","countries_tested":["Italy","Switzerland"]},
+      {"authority_name":"Japanese","language_tag":"ja","countries_tested":["Japan"]},
+      {"authority_name":"Kannada","language_tag":"kn","countries_tested":["India"]},
+      {"authority_name":"Kazakh","language_tag":"kk","countries_tested":["Kazakhstan"]},
+      {"authority_name":"Korean","language_tag":"ko","countries_tested":["Korea"]},
+      {"authority_name":"Latvian","language_tag":"lv","countries_tested":["Latvia"]},
+      {"authority_name":"Luganda","language_tag":"lg","countries_tested":["Uganda"]},
+      {"authority_name":"Macedonian","language_tag":"mk","countries_tested":["Macedonia"]},
+      {"authority_name":"Malay","language_tag":"ms","countries_tested":["Malaysia","Singapore"]},
+      {"authority_name":"Malayalam","language_tag":"ml","countries_tested":["India"]},
+      {"authority_name":"Marathi","language_tag":"mr","countries_tested":["India"]},
+      {"authority_name":"North Sotho/Sepedi","language_tag":"nso","countries_tested":["South Africa"]},
+      {"authority_name":"Norwegian","language_tag":"no","countries_tested":["Norway"]},
+      {"authority_name":"Odia/Oriya","language_tag":"or","countries_tested":["India"]},
+      {"authority_name":"Persian/Farsi","language_tag":"fa","countries_tested":["USA","Iran"]},
+      {"authority_name":"Polish","language_tag":"pl","countries_tested":["Poland"]},
+      {"authority_name":"Portuguese (for Brazil)","language_tag":"pt-BR","countries_tested":["Brazil"]},
+      {"authority_name":"Portuguese (for Portugal)","language_tag":"pt-PT","countries_tested":["Portugal"]},
+      {"authority_name":"Punjabi","language_tag":"pa","countries_tested":["India"]},
+      {"authority_name":"Romanian","language_tag":"ro","countries_tested":["Romania","Moldova"]},
+      {"authority_name":"Russian (Universal)","language_tag":"ru","countries_tested":["Russia","Ukraine","Israel"]},
+      {"authority_name":"Serbian (for Serbia)","language_tag":"sr-RS","countries_tested":["Serbia"]},
+      {"authority_name":"Serbian (for Bosnia and Herzegovina)","language_tag":"sr-BA","countries_tested":["Bosnia","Herzegovina"]},
+      {"authority_name":"Setswana/Tswana","language_tag":"tn","countries_tested":["South Africa"]},
+      {"authority_name":"Slovak","language_tag":"sk","countries_tested":["Slovakia"]},
+      {"authority_name":"Slovenian","language_tag":"sl","countries_tested":["Slovenia"]},
+      {"authority_name":"Southern Sotho/Sesotho","language_tag":"st","countries_tested":["South Africa"]},
+      {"authority_name":"Spanish (Universal)","language_tag":"es","countries_tested":["USA","Spain","Chile"],"country_note":"USA cognitive interviews included native Spanish speakers with origins listed in authority footnote 2"},
+      {"authority_name":"Swahili","language_tag":"sw","countries_tested":["Kenya"]},
+      {"authority_name":"Swedish","language_tag":"sv","countries_tested":["Sweden","Finland"]},
+      {"authority_name":"Tagalog","language_tag":"tl","countries_tested":["Philippines"]},
+      {"authority_name":"Tamil","language_tag":"ta","countries_tested":["India","Malaysia","Singapore"]},
+      {"authority_name":"Telugu","language_tag":"te","countries_tested":["India"]},
+      {"authority_name":"Thai","language_tag":"th","countries_tested":["Thailand"]},
+      {"authority_name":"Tongan","language_tag":"to","countries_tested":["Tonga"]},
+      {"authority_name":"Turkish","language_tag":"tr","countries_tested":["Turkey"]},
+      {"authority_name":"Twi","language_tag":"tw","countries_tested":["Ghana"],"repository_profile_linkage":"unresolved_do_not_link_to_hp_tw"},
+      {"authority_name":"Ukrainian","language_tag":"uk","countries_tested":["Ukraine"]},
+      {"authority_name":"Urdu","language_tag":"ur","countries_tested":["India","Pakistan"]},
+      {"authority_name":"Vietnamese","language_tag":"vi","countries_tested":["Vietnam"]},
+      {"authority_name":"Xhosa","language_tag":"xh","countries_tested":["South Africa"]},
+      {"authority_name":"Welsh","language_tag":"cy","countries_tested":["United Kingdom"]},
+      {"authority_name":"Yoruba","language_tag":"yo","countries_tested":["Nigeria"]},
+      {"authority_name":"Zulu","language_tag":"zu","countries_tested":["South Africa"]}
+    ],
+    "in_development": {
+      "catalog_completeness": "exhaustive_authority_list_as_of_2026-08-11",
+      "authority_last_updated": "2026-08-11",
+      "pro_ctcae": [
+        {"authority_name":"Amharic","language_tag":"am","countries":["Ethiopia","United States"]},
+        {"authority_name":"Arabic","language_tag":"ar","countries":["Jordan","Lebanon","UAE","Oman"]},
+        {"authority_name":"Indonesian/Bahasa Indonesia","language_tag":"id","countries":["Indonesia"]},
+        {"authority_name":"Lithuanian","language_tag":"lt","countries":["Lithuania"]},
+        {"authority_name":"Tsonga","language_tag":"ts","countries":["South Africa"]}
+      ],
+      "ped_pro_ctcae_separate_module": [
+        {"authority_name":"Greek","language_tag":"el","countries":["Greece"]},
+        {"authority_name":"Hungarian","language_tag":"hu","countries":["Hungary"]},
+        {"authority_name":"Malay","language_tag":"ms","countries":["Singapore","Malaysia"]},
+        {"authority_name":"Polish","language_tag":"pl","countries":["Poland"]},
+        {"authority_name":"Thai","language_tag":"th","countries":["Thailand"]},
+        {"authority_name":"Turkish","language_tag":"tr","countries":["Turkey"]},
+        {"authority_name":"Vietnamese","language_tag":"vi","countries":["Vietnam"]}
+      ],
+      "availability_status":"in_development_not_validated_or_available"
+    },
+    "evidence_urls": ["https://healthcaredelivery.cancer.gov/pro-ctcae/language.html", "https://healthcaredelivery.cancer.gov/pro-ctcae/countries-pro.html", "https://healthcaredelivery.cancer.gov/pro-ctcae/in-development.html", "https://healthcaredelivery.cancer.gov/pro-ctcae/notes.html", "https://healthcaredelivery.cancer.gov/pro-ctcae/terms_of_use.html"],
+    "permission_status": "registration_terms_and_written_agreement_required_for_reproduction_mapping_or_distribution",
+    "payload_retrieval_allowed": false,
+    "payload_commit_allowed": false,
+    "translation_use_allowed": false
+  },
+  "admission_boundary": {
+    "metadata_is_not_language_profile_authority": true,
+    "regional_context_is_not_translation_coverage": true,
+    "candidate_language_is_not_approved_hpo_translation": true,
+    "country_or_in_development_status_must_not_be_inferred": true
+  }
+}

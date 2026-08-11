@@ -88,6 +88,9 @@ jobs:
       - name: Validate terminology metadata inventories
         run: pixi run validate-terminology-inventories
 
+      - name: Validate language readiness catalog
+        run: pixi run validate-language-readiness
+
       - name: Validate approved metadata-only samples
         run: pixi run validate-metadata-only-samples
 
