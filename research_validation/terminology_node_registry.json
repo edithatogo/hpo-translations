@@ -1,0 +1,3468 @@
+{
+  "admission_boundary": {
+    "edition_inheritance_allowed": false,
+    "language_variants_are_interchangeable": false,
+    "parent_relations_create_mappings": false,
+    "payloads_included": false
+  },
+  "generated_at": "2026-08-12T00:00:00Z",
+  "language_renditions": [
+    {
+      "bcp47": "es-ES",
+      "parent_node_id": "edition-cie10es-es-2026",
+      "rendition_id": "rendition-edition-cie10es-es-2026-es-es",
+      "status": "current"
+    },
+    {
+      "bcp47": "fr-FR",
+      "parent_node_id": "edition-cim10fr-fr-2025",
+      "rendition_id": "rendition-edition-cim10fr-fr-2025-fr-fr",
+      "status": "current"
+    },
+    {
+      "bcp47": "en-GB",
+      "parent_node_id": "edition-icd10-uk-5e-2025",
+      "rendition_id": "rendition-edition-icd10-uk-5e-2025-en-gb",
+      "status": "current"
+    },
+    {
+      "bcp47": "en-AU",
+      "parent_node_id": "edition-icd10am-au-13",
+      "rendition_id": "rendition-edition-icd10am-au-13-en-au",
+      "status": "current"
+    },
+    {
+      "bcp47": "en-CA",
+      "parent_node_id": "edition-icd10ca-ca-2022",
+      "rendition_id": "rendition-edition-icd10ca-ca-2022-en-ca",
+      "status": "current"
+    },
+    {
+      "bcp47": "fr-CA",
+      "parent_node_id": "edition-icd10ca-ca-2022",
+      "rendition_id": "rendition-edition-icd10ca-ca-2022-fr-ca",
+      "status": "current"
+    },
+    {
+      "bcp47": "en-US",
+      "parent_node_id": "edition-icd10cm-us-2026",
+      "rendition_id": "rendition-edition-icd10cm-us-2026-en-us",
+      "status": "current"
+    },
+    {
+      "bcp47": "de-DE",
+      "parent_node_id": "edition-icd10gm-de-2026",
+      "rendition_id": "rendition-edition-icd10gm-de-2026-de-de",
+      "status": "current"
+    },
+    {
+      "bcp47": "en-US",
+      "parent_node_id": "edition-icd10pcs-us-2026",
+      "rendition_id": "rendition-edition-icd10pcs-us-2026-en-us",
+      "status": "current"
+    },
+    {
+      "bcp47": "en-AU",
+      "parent_node_id": "edition-snomed-australia",
+      "rendition_id": "rendition-edition-snomed-australia-en-au",
+      "status": "current"
+    },
+    {
+      "bcp47": "de-AT",
+      "parent_node_id": "edition-snomed-austria",
+      "rendition_id": "rendition-edition-snomed-austria-de-at",
+      "status": "current"
+    },
+    {
+      "bcp47": "fr-BE",
+      "parent_node_id": "edition-snomed-belgium",
+      "rendition_id": "rendition-edition-snomed-belgium-fr-be",
+      "status": "current"
+    },
+    {
+      "bcp47": "nl-BE",
+      "parent_node_id": "edition-snomed-belgium",
+      "rendition_id": "rendition-edition-snomed-belgium-nl-be",
+      "status": "current"
+    },
+    {
+      "bcp47": "en-CA",
+      "parent_node_id": "edition-snomed-canada",
+      "rendition_id": "rendition-edition-snomed-canada-en-ca",
+      "status": "current"
+    },
+    {
+      "bcp47": "fr-CA",
+      "parent_node_id": "edition-snomed-canada",
+      "rendition_id": "rendition-edition-snomed-canada-fr-ca",
+      "status": "current"
+    },
+    {
+      "bcp47": "da-DK",
+      "parent_node_id": "edition-snomed-denmark",
+      "rendition_id": "rendition-edition-snomed-denmark-da-dk",
+      "status": "current"
+    },
+    {
+      "bcp47": "et-EE",
+      "parent_node_id": "edition-snomed-estonia",
+      "rendition_id": "rendition-edition-snomed-estonia-et-ee",
+      "status": "current"
+    },
+    {
+      "bcp47": "fi-FI",
+      "parent_node_id": "edition-snomed-finland",
+      "rendition_id": "rendition-edition-snomed-finland-fi-fi",
+      "status": "current"
+    },
+    {
+      "bcp47": "sv-FI",
+      "parent_node_id": "edition-snomed-finland",
+      "rendition_id": "rendition-edition-snomed-finland-sv-fi",
+      "status": "current"
+    },
+    {
+      "bcp47": "fr-FR",
+      "parent_node_id": "edition-snomed-france",
+      "rendition_id": "rendition-edition-snomed-france-fr-fr",
+      "status": "current"
+    },
+    {
+      "bcp47": "de-DE",
+      "parent_node_id": "edition-snomed-germany",
+      "rendition_id": "rendition-edition-snomed-germany-de-de",
+      "status": "current"
+    },
+    {
+      "bcp47": "en-GB",
+      "parent_node_id": "edition-snomed-international",
+      "rendition_id": "rendition-edition-snomed-international-en-gb",
+      "status": "current"
+    },
+    {
+      "bcp47": "en-US",
+      "parent_node_id": "edition-snomed-international",
+      "rendition_id": "rendition-edition-snomed-international-en-us",
+      "status": "current"
+    },
+    {
+      "bcp47": "es",
+      "parent_node_id": "edition-snomed-international-spanish",
+      "rendition_id": "rendition-edition-snomed-international-spanish-es",
+      "status": "current"
+    },
+    {
+      "bcp47": "lt-LT",
+      "parent_node_id": "edition-snomed-lithuania",
+      "rendition_id": "rendition-edition-snomed-lithuania-lt-lt",
+      "status": "current"
+    },
+    {
+      "bcp47": "nl-NL",
+      "parent_node_id": "edition-snomed-netherlands",
+      "rendition_id": "rendition-edition-snomed-netherlands-nl-nl",
+      "status": "current"
+    },
+    {
+      "bcp47": "mi-NZ",
+      "parent_node_id": "edition-snomed-new-zealand",
+      "rendition_id": "rendition-edition-snomed-new-zealand-mi-nz",
+      "status": "current"
+    },
+    {
+      "bcp47": "nb-NO",
+      "parent_node_id": "edition-snomed-norway",
+      "rendition_id": "rendition-edition-snomed-norway-nb-no",
+      "status": "current"
+    },
+    {
+      "bcp47": "nn-NO",
+      "parent_node_id": "edition-snomed-norway",
+      "rendition_id": "rendition-edition-snomed-norway-nn-no",
+      "status": "current"
+    },
+    {
+      "bcp47": "es-ES",
+      "parent_node_id": "edition-snomed-spain",
+      "rendition_id": "rendition-edition-snomed-spain-es-es",
+      "status": "current"
+    },
+    {
+      "bcp47": "sv-SE",
+      "parent_node_id": "edition-snomed-sweden",
+      "rendition_id": "rendition-edition-snomed-sweden-sv-se",
+      "status": "current"
+    },
+    {
+      "bcp47": "en",
+      "parent_node_id": "edition-who-icd10-2019",
+      "rendition_id": "rendition-edition-who-icd10-2019-en",
+      "status": "current"
+    },
+    {
+      "bcp47": "ar",
+      "parent_node_id": "product-hpo-babelon",
+      "rendition_id": "rendition-product-hpo-babelon-ar",
+      "status": "empty_scaffold_not_admitted"
+    },
+    {
+      "bcp47": "cs",
+      "parent_node_id": "product-hpo-babelon",
+      "rendition_id": "rendition-product-hpo-babelon-cs",
+      "status": "tracked_local_content"
+    },
+    {
+      "bcp47": "de",
+      "parent_node_id": "product-hpo-babelon",
+      "rendition_id": "rendition-product-hpo-babelon-de",
+      "status": "tracked_local_content"
+    },
+    {
+      "bcp47": "dtp",
+      "parent_node_id": "product-hpo-babelon",
+      "rendition_id": "rendition-product-hpo-babelon-dtp",
+      "status": "low_resource_separate_governance_required"
+    },
+    {
+      "bcp47": "es",
+      "parent_node_id": "product-hpo-babelon",
+      "rendition_id": "rendition-product-hpo-babelon-es",
+      "status": "tracked_local_content"
+    },
+    {
+      "bcp47": "fr",
+      "parent_node_id": "product-hpo-babelon",
+      "rendition_id": "rendition-product-hpo-babelon-fr",
+      "status": "tracked_local_content_upstream_diverged_babelon_only"
+    },
+    {
+      "bcp47": "it",
+      "parent_node_id": "product-hpo-babelon",
+      "rendition_id": "rendition-product-hpo-babelon-it",
+      "status": "tracked_local_content"
+    },
+    {
+      "bcp47": "ja",
+      "parent_node_id": "product-hpo-babelon",
+      "rendition_id": "rendition-product-hpo-babelon-ja",
+      "status": "tracked_local_content"
+    },
+    {
+      "bcp47": "nl",
+      "parent_node_id": "product-hpo-babelon",
+      "rendition_id": "rendition-product-hpo-babelon-nl",
+      "status": "tracked_local_content"
+    },
+    {
+      "bcp47": "nna",
+      "parent_node_id": "product-hpo-babelon",
+      "rendition_id": "rendition-product-hpo-babelon-nna",
+      "status": "low_resource_separate_governance_required"
+    },
+    {
+      "bcp47": "pt",
+      "parent_node_id": "product-hpo-babelon",
+      "rendition_id": "rendition-product-hpo-babelon-pt",
+      "status": "language_identity_gate_region_unspecified"
+    },
+    {
+      "bcp47": "tr",
+      "parent_node_id": "product-hpo-babelon",
+      "rendition_id": "rendition-product-hpo-babelon-tr",
+      "status": "tracked_local_content_upstream_diverged_babelon_only"
+    },
+    {
+      "bcp47": "tw",
+      "parent_node_id": "product-hpo-babelon",
+      "rendition_id": "rendition-product-hpo-babelon-tw",
+      "status": "excluded_unresolved_tiwi_twi_identity"
+    },
+    {
+      "bcp47": "zh",
+      "parent_node_id": "product-hpo-babelon",
+      "rendition_id": "rendition-product-hpo-babelon-zh",
+      "status": "language_identity_gate_script_region_unspecified"
+    },
+    {
+      "bcp47": "ar-JO",
+      "parent_node_id": "product-loinc-2-82",
+      "rendition_id": "rendition-product-loinc-2-82-ar-jo",
+      "status": "current"
+    },
+    {
+      "bcp47": "cs-CZ",
+      "parent_node_id": "product-loinc-2-82",
+      "rendition_id": "rendition-product-loinc-2-82-cs-cz",
+      "status": "current"
+    },
+    {
+      "bcp47": "de-AT",
+      "parent_node_id": "product-loinc-2-82",
+      "rendition_id": "rendition-product-loinc-2-82-de-at",
+      "status": "current"
+    },
+    {
+      "bcp47": "de-DE",
+      "parent_node_id": "product-loinc-2-82",
+      "rendition_id": "rendition-product-loinc-2-82-de-de",
+      "status": "current"
+    },
+    {
+      "bcp47": "el-GR",
+      "parent_node_id": "product-loinc-2-82",
+      "rendition_id": "rendition-product-loinc-2-82-el-gr",
+      "status": "current"
+    },
+    {
+      "bcp47": "es-AR",
+      "parent_node_id": "product-loinc-2-82",
+      "rendition_id": "rendition-product-loinc-2-82-es-ar",
+      "status": "current"
+    },
+    {
+      "bcp47": "es-ES",
+      "parent_node_id": "product-loinc-2-82",
+      "rendition_id": "rendition-product-loinc-2-82-es-es",
+      "status": "current"
+    },
+    {
+      "bcp47": "es-MX",
+      "parent_node_id": "product-loinc-2-82",
+      "rendition_id": "rendition-product-loinc-2-82-es-mx",
+      "status": "current"
+    },
+    {
+      "bcp47": "et-EE",
+      "parent_node_id": "product-loinc-2-82",
+      "rendition_id": "rendition-product-loinc-2-82-et-ee",
+      "status": "current"
+    },
+    {
+      "bcp47": "fr-BE",
+      "parent_node_id": "product-loinc-2-82",
+      "rendition_id": "rendition-product-loinc-2-82-fr-be",
+      "status": "current"
+    },
+    {
+      "bcp47": "fr-CA",
+      "parent_node_id": "product-loinc-2-82",
+      "rendition_id": "rendition-product-loinc-2-82-fr-ca",
+      "status": "current"
+    },
+    {
+      "bcp47": "fr-FR",
+      "parent_node_id": "product-loinc-2-82",
+      "rendition_id": "rendition-product-loinc-2-82-fr-fr",
+      "status": "current"
+    },
+    {
+      "bcp47": "it-IT",
+      "parent_node_id": "product-loinc-2-82",
+      "rendition_id": "rendition-product-loinc-2-82-it-it",
+      "status": "current"
+    },
+    {
+      "bcp47": "ko-KR",
+      "parent_node_id": "product-loinc-2-82",
+      "rendition_id": "rendition-product-loinc-2-82-ko-kr",
+      "status": "current"
+    },
+    {
+      "bcp47": "nl-NL",
+      "parent_node_id": "product-loinc-2-82",
+      "rendition_id": "rendition-product-loinc-2-82-nl-nl",
+      "status": "current"
+    },
+    {
+      "bcp47": "pl-PL",
+      "parent_node_id": "product-loinc-2-82",
+      "rendition_id": "rendition-product-loinc-2-82-pl-pl",
+      "status": "current"
+    },
+    {
+      "bcp47": "pt-BR",
+      "parent_node_id": "product-loinc-2-82",
+      "rendition_id": "rendition-product-loinc-2-82-pt-br",
+      "status": "current"
+    },
+    {
+      "bcp47": "ru-RU",
+      "parent_node_id": "product-loinc-2-82",
+      "rendition_id": "rendition-product-loinc-2-82-ru-ru",
+      "status": "current"
+    },
+    {
+      "bcp47": "tr-TR",
+      "parent_node_id": "product-loinc-2-82",
+      "rendition_id": "rendition-product-loinc-2-82-tr-tr",
+      "status": "current"
+    },
+    {
+      "bcp47": "uk-UA",
+      "parent_node_id": "product-loinc-2-82",
+      "rendition_id": "rendition-product-loinc-2-82-uk-ua",
+      "status": "current"
+    },
+    {
+      "bcp47": "zh-CN",
+      "parent_node_id": "product-loinc-2-82",
+      "rendition_id": "rendition-product-loinc-2-82-zh-cn",
+      "status": "current"
+    },
+    {
+      "bcp47": "ar",
+      "parent_node_id": "product-meddra-29-0",
+      "rendition_id": "rendition-product-meddra-29-0-ar",
+      "status": "available"
+    },
+    {
+      "bcp47": "cs",
+      "parent_node_id": "product-meddra-29-0",
+      "rendition_id": "rendition-product-meddra-29-0-cs",
+      "status": "available"
+    },
+    {
+      "bcp47": "da",
+      "parent_node_id": "product-meddra-29-0",
+      "rendition_id": "rendition-product-meddra-29-0-da",
+      "status": "available"
+    },
+    {
+      "bcp47": "de",
+      "parent_node_id": "product-meddra-29-0",
+      "rendition_id": "rendition-product-meddra-29-0-de",
+      "status": "available"
+    },
+    {
+      "bcp47": "el",
+      "parent_node_id": "product-meddra-29-0",
+      "rendition_id": "rendition-product-meddra-29-0-el",
+      "status": "available"
+    },
+    {
+      "bcp47": "en",
+      "parent_node_id": "product-meddra-29-0",
+      "rendition_id": "rendition-product-meddra-29-0-en",
+      "status": "available"
+    },
+    {
+      "bcp47": "es",
+      "parent_node_id": "product-meddra-29-0",
+      "rendition_id": "rendition-product-meddra-29-0-es",
+      "status": "available"
+    },
+    {
+      "bcp47": "et",
+      "parent_node_id": "product-meddra-29-0",
+      "rendition_id": "rendition-product-meddra-29-0-et",
+      "status": "available"
+    },
+    {
+      "bcp47": "fi",
+      "parent_node_id": "product-meddra-29-0",
+      "rendition_id": "rendition-product-meddra-29-0-fi",
+      "status": "available"
+    },
+    {
+      "bcp47": "fr",
+      "parent_node_id": "product-meddra-29-0",
+      "rendition_id": "rendition-product-meddra-29-0-fr",
+      "status": "available"
+    },
+    {
+      "bcp47": "hr",
+      "parent_node_id": "product-meddra-29-0",
+      "rendition_id": "rendition-product-meddra-29-0-hr",
+      "status": "available"
+    },
+    {
+      "bcp47": "hu",
+      "parent_node_id": "product-meddra-29-0",
+      "rendition_id": "rendition-product-meddra-29-0-hu",
+      "status": "available"
+    },
+    {
+      "bcp47": "is",
+      "parent_node_id": "product-meddra-29-0",
+      "rendition_id": "rendition-product-meddra-29-0-is",
+      "status": "available"
+    },
+    {
+      "bcp47": "it",
+      "parent_node_id": "product-meddra-29-0",
+      "rendition_id": "rendition-product-meddra-29-0-it",
+      "status": "available"
+    },
+    {
+      "bcp47": "ja",
+      "parent_node_id": "product-meddra-29-0",
+      "rendition_id": "rendition-product-meddra-29-0-ja",
+      "status": "available"
+    },
+    {
+      "bcp47": "ko",
+      "parent_node_id": "product-meddra-29-0",
+      "rendition_id": "rendition-product-meddra-29-0-ko",
+      "status": "available"
+    },
+    {
+      "bcp47": "lt",
+      "parent_node_id": "product-meddra-29-0",
+      "rendition_id": "rendition-product-meddra-29-0-lt",
+      "status": "available"
+    },
+    {
+      "bcp47": "lv",
+      "parent_node_id": "product-meddra-29-0",
+      "rendition_id": "rendition-product-meddra-29-0-lv",
+      "status": "available"
+    },
+    {
+      "bcp47": "nl",
+      "parent_node_id": "product-meddra-29-0",
+      "rendition_id": "rendition-product-meddra-29-0-nl",
+      "status": "available"
+    },
+    {
+      "bcp47": "no",
+      "parent_node_id": "product-meddra-29-0",
+      "rendition_id": "rendition-product-meddra-29-0-no",
+      "status": "available"
+    },
+    {
+      "bcp47": "pl",
+      "parent_node_id": "product-meddra-29-0",
+      "rendition_id": "rendition-product-meddra-29-0-pl",
+      "status": "available"
+    },
+    {
+      "bcp47": "pt",
+      "parent_node_id": "product-meddra-29-0",
+      "rendition_id": "rendition-product-meddra-29-0-pt",
+      "status": "available"
+    },
+    {
+      "bcp47": "pt-BR",
+      "parent_node_id": "product-meddra-29-0",
+      "rendition_id": "rendition-product-meddra-29-0-pt-br",
+      "status": "available"
+    },
+    {
+      "bcp47": "ru",
+      "parent_node_id": "product-meddra-29-0",
+      "rendition_id": "rendition-product-meddra-29-0-ru",
+      "status": "available"
+    },
+    {
+      "bcp47": "sk",
+      "parent_node_id": "product-meddra-29-0",
+      "rendition_id": "rendition-product-meddra-29-0-sk",
+      "status": "available"
+    },
+    {
+      "bcp47": "sl",
+      "parent_node_id": "product-meddra-29-0",
+      "rendition_id": "rendition-product-meddra-29-0-sl",
+      "status": "available"
+    },
+    {
+      "bcp47": "sv",
+      "parent_node_id": "product-meddra-29-0",
+      "rendition_id": "rendition-product-meddra-29-0-sv",
+      "status": "available"
+    },
+    {
+      "bcp47": "zh",
+      "parent_node_id": "product-meddra-29-0",
+      "rendition_id": "rendition-product-meddra-29-0-zh",
+      "status": "available"
+    },
+    {
+      "bcp47": "cs",
+      "parent_node_id": "product-orphadata-nomenclature-pack",
+      "rendition_id": "rendition-product-orphadata-nomenclature-pack-cs",
+      "status": "current"
+    },
+    {
+      "bcp47": "de",
+      "parent_node_id": "product-orphadata-nomenclature-pack",
+      "rendition_id": "rendition-product-orphadata-nomenclature-pack-de",
+      "status": "current"
+    },
+    {
+      "bcp47": "en",
+      "parent_node_id": "product-orphadata-nomenclature-pack",
+      "rendition_id": "rendition-product-orphadata-nomenclature-pack-en",
+      "status": "current"
+    },
+    {
+      "bcp47": "es",
+      "parent_node_id": "product-orphadata-nomenclature-pack",
+      "rendition_id": "rendition-product-orphadata-nomenclature-pack-es",
+      "status": "current"
+    },
+    {
+      "bcp47": "fr",
+      "parent_node_id": "product-orphadata-nomenclature-pack",
+      "rendition_id": "rendition-product-orphadata-nomenclature-pack-fr",
+      "status": "current"
+    },
+    {
+      "bcp47": "it",
+      "parent_node_id": "product-orphadata-nomenclature-pack",
+      "rendition_id": "rendition-product-orphadata-nomenclature-pack-it",
+      "status": "current"
+    },
+    {
+      "bcp47": "nl",
+      "parent_node_id": "product-orphadata-nomenclature-pack",
+      "rendition_id": "rendition-product-orphadata-nomenclature-pack-nl",
+      "status": "current"
+    },
+    {
+      "bcp47": "pl",
+      "parent_node_id": "product-orphadata-nomenclature-pack",
+      "rendition_id": "rendition-product-orphadata-nomenclature-pack-pl",
+      "status": "current"
+    },
+    {
+      "bcp47": "pt",
+      "parent_node_id": "product-orphadata-nomenclature-pack",
+      "rendition_id": "rendition-product-orphadata-nomenclature-pack-pt",
+      "status": "current"
+    },
+    {
+      "bcp47": "cs",
+      "parent_node_id": "product-orphadata-product1-alignments",
+      "rendition_id": "rendition-product-orphadata-product1-alignments-cs",
+      "status": "current"
+    },
+    {
+      "bcp47": "de",
+      "parent_node_id": "product-orphadata-product1-alignments",
+      "rendition_id": "rendition-product-orphadata-product1-alignments-de",
+      "status": "current"
+    },
+    {
+      "bcp47": "en",
+      "parent_node_id": "product-orphadata-product1-alignments",
+      "rendition_id": "rendition-product-orphadata-product1-alignments-en",
+      "status": "current"
+    },
+    {
+      "bcp47": "es",
+      "parent_node_id": "product-orphadata-product1-alignments",
+      "rendition_id": "rendition-product-orphadata-product1-alignments-es",
+      "status": "current"
+    },
+    {
+      "bcp47": "fr",
+      "parent_node_id": "product-orphadata-product1-alignments",
+      "rendition_id": "rendition-product-orphadata-product1-alignments-fr",
+      "status": "current"
+    },
+    {
+      "bcp47": "it",
+      "parent_node_id": "product-orphadata-product1-alignments",
+      "rendition_id": "rendition-product-orphadata-product1-alignments-it",
+      "status": "current"
+    },
+    {
+      "bcp47": "nl",
+      "parent_node_id": "product-orphadata-product1-alignments",
+      "rendition_id": "rendition-product-orphadata-product1-alignments-nl",
+      "status": "current"
+    },
+    {
+      "bcp47": "pl",
+      "parent_node_id": "product-orphadata-product1-alignments",
+      "rendition_id": "rendition-product-orphadata-product1-alignments-pl",
+      "status": "current"
+    },
+    {
+      "bcp47": "pt",
+      "parent_node_id": "product-orphadata-product1-alignments",
+      "rendition_id": "rendition-product-orphadata-product1-alignments-pt",
+      "status": "current"
+    },
+    {
+      "bcp47": "tr",
+      "parent_node_id": "product-orphadata-product1-alignments",
+      "rendition_id": "rendition-product-orphadata-product1-alignments-tr",
+      "status": "stale_legacy_do_not_compare_as_current"
+    },
+    {
+      "bcp47": "uk",
+      "parent_node_id": "product-orphadata-product1-alignments",
+      "rendition_id": "rendition-product-orphadata-product1-alignments-uk",
+      "status": "stale_do_not_compare_as_current"
+    },
+    {
+      "bcp47": "zh",
+      "parent_node_id": "product-orphadata-product1-alignments",
+      "rendition_id": "rendition-product-orphadata-product1-alignments-zh",
+      "status": "stale_legacy_do_not_compare_as_current"
+    },
+    {
+      "bcp47": "de",
+      "parent_node_id": "product-orphadata-product4-phenotypes-hpo",
+      "rendition_id": "rendition-product-orphadata-product4-phenotypes-hpo-de",
+      "status": "current"
+    },
+    {
+      "bcp47": "en",
+      "parent_node_id": "product-orphadata-product4-phenotypes-hpo",
+      "rendition_id": "rendition-product-orphadata-product4-phenotypes-hpo-en",
+      "status": "current"
+    },
+    {
+      "bcp47": "es",
+      "parent_node_id": "product-orphadata-product4-phenotypes-hpo",
+      "rendition_id": "rendition-product-orphadata-product4-phenotypes-hpo-es",
+      "status": "current"
+    },
+    {
+      "bcp47": "fr",
+      "parent_node_id": "product-orphadata-product4-phenotypes-hpo",
+      "rendition_id": "rendition-product-orphadata-product4-phenotypes-hpo-fr",
+      "status": "current"
+    },
+    {
+      "bcp47": "it",
+      "parent_node_id": "product-orphadata-product4-phenotypes-hpo",
+      "rendition_id": "rendition-product-orphadata-product4-phenotypes-hpo-it",
+      "status": "current"
+    },
+    {
+      "bcp47": "nl",
+      "parent_node_id": "product-orphadata-product4-phenotypes-hpo",
+      "rendition_id": "rendition-product-orphadata-product4-phenotypes-hpo-nl",
+      "status": "current"
+    },
+    {
+      "bcp47": "pt",
+      "parent_node_id": "product-orphadata-product4-phenotypes-hpo",
+      "rendition_id": "rendition-product-orphadata-product4-phenotypes-hpo-pt",
+      "status": "current"
+    },
+    {
+      "bcp47": "ar",
+      "parent_node_id": "product-umls-2026aa",
+      "rendition_id": "rendition-product-umls-2026aa-ar",
+      "status": "current"
+    },
+    {
+      "bcp47": "cs",
+      "parent_node_id": "product-umls-2026aa",
+      "rendition_id": "rendition-product-umls-2026aa-cs",
+      "status": "current"
+    },
+    {
+      "bcp47": "da",
+      "parent_node_id": "product-umls-2026aa",
+      "rendition_id": "rendition-product-umls-2026aa-da",
+      "status": "current"
+    },
+    {
+      "bcp47": "de",
+      "parent_node_id": "product-umls-2026aa",
+      "rendition_id": "rendition-product-umls-2026aa-de",
+      "status": "current"
+    },
+    {
+      "bcp47": "el",
+      "parent_node_id": "product-umls-2026aa",
+      "rendition_id": "rendition-product-umls-2026aa-el",
+      "status": "current"
+    },
+    {
+      "bcp47": "en",
+      "parent_node_id": "product-umls-2026aa",
+      "rendition_id": "rendition-product-umls-2026aa-en",
+      "status": "current"
+    },
+    {
+      "bcp47": "es",
+      "parent_node_id": "product-umls-2026aa",
+      "rendition_id": "rendition-product-umls-2026aa-es",
+      "status": "current"
+    },
+    {
+      "bcp47": "et",
+      "parent_node_id": "product-umls-2026aa",
+      "rendition_id": "rendition-product-umls-2026aa-et",
+      "status": "current"
+    },
+    {
+      "bcp47": "eu",
+      "parent_node_id": "product-umls-2026aa",
+      "rendition_id": "rendition-product-umls-2026aa-eu",
+      "status": "current"
+    },
+    {
+      "bcp47": "fi",
+      "parent_node_id": "product-umls-2026aa",
+      "rendition_id": "rendition-product-umls-2026aa-fi",
+      "status": "current"
+    },
+    {
+      "bcp47": "fr",
+      "parent_node_id": "product-umls-2026aa",
+      "rendition_id": "rendition-product-umls-2026aa-fr",
+      "status": "current"
+    },
+    {
+      "bcp47": "he",
+      "parent_node_id": "product-umls-2026aa",
+      "rendition_id": "rendition-product-umls-2026aa-he",
+      "status": "current"
+    },
+    {
+      "bcp47": "hr",
+      "parent_node_id": "product-umls-2026aa",
+      "rendition_id": "rendition-product-umls-2026aa-hr",
+      "status": "current"
+    },
+    {
+      "bcp47": "hu",
+      "parent_node_id": "product-umls-2026aa",
+      "rendition_id": "rendition-product-umls-2026aa-hu",
+      "status": "current"
+    },
+    {
+      "bcp47": "is",
+      "parent_node_id": "product-umls-2026aa",
+      "rendition_id": "rendition-product-umls-2026aa-is",
+      "status": "current"
+    },
+    {
+      "bcp47": "it",
+      "parent_node_id": "product-umls-2026aa",
+      "rendition_id": "rendition-product-umls-2026aa-it",
+      "status": "current"
+    },
+    {
+      "bcp47": "ja",
+      "parent_node_id": "product-umls-2026aa",
+      "rendition_id": "rendition-product-umls-2026aa-ja",
+      "status": "current"
+    },
+    {
+      "bcp47": "ko",
+      "parent_node_id": "product-umls-2026aa",
+      "rendition_id": "rendition-product-umls-2026aa-ko",
+      "status": "current"
+    },
+    {
+      "bcp47": "lt",
+      "parent_node_id": "product-umls-2026aa",
+      "rendition_id": "rendition-product-umls-2026aa-lt",
+      "status": "current"
+    },
+    {
+      "bcp47": "lv",
+      "parent_node_id": "product-umls-2026aa",
+      "rendition_id": "rendition-product-umls-2026aa-lv",
+      "status": "current"
+    },
+    {
+      "bcp47": "nl",
+      "parent_node_id": "product-umls-2026aa",
+      "rendition_id": "rendition-product-umls-2026aa-nl",
+      "status": "current"
+    },
+    {
+      "bcp47": "no",
+      "parent_node_id": "product-umls-2026aa",
+      "rendition_id": "rendition-product-umls-2026aa-no",
+      "status": "current"
+    },
+    {
+      "bcp47": "pl",
+      "parent_node_id": "product-umls-2026aa",
+      "rendition_id": "rendition-product-umls-2026aa-pl",
+      "status": "current"
+    },
+    {
+      "bcp47": "pt",
+      "parent_node_id": "product-umls-2026aa",
+      "rendition_id": "rendition-product-umls-2026aa-pt",
+      "status": "current"
+    },
+    {
+      "bcp47": "ru",
+      "parent_node_id": "product-umls-2026aa",
+      "rendition_id": "rendition-product-umls-2026aa-ru",
+      "status": "current"
+    },
+    {
+      "bcp47": "sk",
+      "parent_node_id": "product-umls-2026aa",
+      "rendition_id": "rendition-product-umls-2026aa-sk",
+      "status": "current"
+    },
+    {
+      "bcp47": "sl",
+      "parent_node_id": "product-umls-2026aa",
+      "rendition_id": "rendition-product-umls-2026aa-sl",
+      "status": "current"
+    },
+    {
+      "bcp47": "sv",
+      "parent_node_id": "product-umls-2026aa",
+      "rendition_id": "rendition-product-umls-2026aa-sv",
+      "status": "current"
+    },
+    {
+      "bcp47": "tr",
+      "parent_node_id": "product-umls-2026aa",
+      "rendition_id": "rendition-product-umls-2026aa-tr",
+      "status": "current"
+    },
+    {
+      "bcp47": "uk",
+      "parent_node_id": "product-umls-2026aa",
+      "rendition_id": "rendition-product-umls-2026aa-uk",
+      "status": "current"
+    },
+    {
+      "bcp47": "zh",
+      "parent_node_id": "product-umls-2026aa",
+      "rendition_id": "rendition-product-umls-2026aa-zh",
+      "status": "current"
+    },
+    {
+      "bcp47": "ar",
+      "parent_node_id": "product-who-icd11-mms-2026-01",
+      "rendition_id": "rendition-product-who-icd11-mms-2026-01-ar",
+      "status": "available"
+    },
+    {
+      "bcp47": "cs",
+      "parent_node_id": "product-who-icd11-mms-2026-01",
+      "rendition_id": "rendition-product-who-icd11-mms-2026-01-cs",
+      "status": "available"
+    },
+    {
+      "bcp47": "de",
+      "parent_node_id": "product-who-icd11-mms-2026-01",
+      "rendition_id": "rendition-product-who-icd11-mms-2026-01-de",
+      "status": "prerelease"
+    },
+    {
+      "bcp47": "en",
+      "parent_node_id": "product-who-icd11-mms-2026-01",
+      "rendition_id": "rendition-product-who-icd11-mms-2026-01-en",
+      "status": "available"
+    },
+    {
+      "bcp47": "es",
+      "parent_node_id": "product-who-icd11-mms-2026-01",
+      "rendition_id": "rendition-product-who-icd11-mms-2026-01-es",
+      "status": "available"
+    },
+    {
+      "bcp47": "fr",
+      "parent_node_id": "product-who-icd11-mms-2026-01",
+      "rendition_id": "rendition-product-who-icd11-mms-2026-01-fr",
+      "status": "available"
+    },
+    {
+      "bcp47": "kk",
+      "parent_node_id": "product-who-icd11-mms-2026-01",
+      "rendition_id": "rendition-product-who-icd11-mms-2026-01-kk",
+      "status": "available"
+    },
+    {
+      "bcp47": "la",
+      "parent_node_id": "product-who-icd11-mms-2026-01",
+      "rendition_id": "rendition-product-who-icd11-mms-2026-01-la",
+      "status": "titles_only"
+    },
+    {
+      "bcp47": "pt",
+      "parent_node_id": "product-who-icd11-mms-2026-01",
+      "rendition_id": "rendition-product-who-icd11-mms-2026-01-pt",
+      "status": "available"
+    },
+    {
+      "bcp47": "ru",
+      "parent_node_id": "product-who-icd11-mms-2026-01",
+      "rendition_id": "rendition-product-who-icd11-mms-2026-01-ru",
+      "status": "available"
+    },
+    {
+      "bcp47": "sk",
+      "parent_node_id": "product-who-icd11-mms-2026-01",
+      "rendition_id": "rendition-product-who-icd11-mms-2026-01-sk",
+      "status": "available"
+    },
+    {
+      "bcp47": "sv",
+      "parent_node_id": "product-who-icd11-mms-2026-01",
+      "rendition_id": "rendition-product-who-icd11-mms-2026-01-sv",
+      "status": "available"
+    },
+    {
+      "bcp47": "tr",
+      "parent_node_id": "product-who-icd11-mms-2026-01",
+      "rendition_id": "rendition-product-who-icd11-mms-2026-01-tr",
+      "status": "available"
+    },
+    {
+      "bcp47": "uz",
+      "parent_node_id": "product-who-icd11-mms-2026-01",
+      "rendition_id": "rendition-product-who-icd11-mms-2026-01-uz",
+      "status": "available"
+    },
+    {
+      "bcp47": "zh",
+      "parent_node_id": "product-who-icd11-mms-2026-01",
+      "rendition_id": "rendition-product-who-icd11-mms-2026-01-zh",
+      "status": "available"
+    },
+    {
+      "bcp47": "cs",
+      "parent_node_id": "product-who-icf-2026-01",
+      "rendition_id": "rendition-product-who-icf-2026-01-cs",
+      "status": "available"
+    },
+    {
+      "bcp47": "en",
+      "parent_node_id": "product-who-icf-2026-01",
+      "rendition_id": "rendition-product-who-icf-2026-01-en",
+      "status": "available"
+    },
+    {
+      "bcp47": "es",
+      "parent_node_id": "product-who-icf-2026-01",
+      "rendition_id": "rendition-product-who-icf-2026-01-es",
+      "status": "available"
+    },
+    {
+      "bcp47": "et",
+      "parent_node_id": "product-who-icf-2026-01",
+      "rendition_id": "rendition-product-who-icf-2026-01-et",
+      "status": "available"
+    },
+    {
+      "bcp47": "fi",
+      "parent_node_id": "product-who-icf-2026-01",
+      "rendition_id": "rendition-product-who-icf-2026-01-fi",
+      "status": "available"
+    },
+    {
+      "bcp47": "fr",
+      "parent_node_id": "product-who-icf-2026-01",
+      "rendition_id": "rendition-product-who-icf-2026-01-fr",
+      "status": "available"
+    },
+    {
+      "bcp47": "hy",
+      "parent_node_id": "product-who-icf-2026-01",
+      "rendition_id": "rendition-product-who-icf-2026-01-hy",
+      "status": "available"
+    },
+    {
+      "bcp47": "it",
+      "parent_node_id": "product-who-icf-2026-01",
+      "rendition_id": "rendition-product-who-icf-2026-01-it",
+      "status": "available"
+    },
+    {
+      "bcp47": "mn",
+      "parent_node_id": "product-who-icf-2026-01",
+      "rendition_id": "rendition-product-who-icf-2026-01-mn",
+      "status": "available"
+    },
+    {
+      "bcp47": "pt",
+      "parent_node_id": "product-who-icf-2026-01",
+      "rendition_id": "rendition-product-who-icf-2026-01-pt",
+      "status": "available"
+    },
+    {
+      "bcp47": "ru",
+      "parent_node_id": "product-who-icf-2026-01",
+      "rendition_id": "rendition-product-who-icf-2026-01-ru",
+      "status": "available"
+    },
+    {
+      "bcp47": "sk",
+      "parent_node_id": "product-who-icf-2026-01",
+      "rendition_id": "rendition-product-who-icf-2026-01-sk",
+      "status": "available"
+    },
+    {
+      "bcp47": "tr",
+      "parent_node_id": "product-who-icf-2026-01",
+      "rendition_id": "rendition-product-who-icf-2026-01-tr",
+      "status": "available"
+    },
+    {
+      "bcp47": "uk",
+      "parent_node_id": "product-who-icf-2026-01",
+      "rendition_id": "rendition-product-who-icf-2026-01-uk",
+      "status": "available"
+    },
+    {
+      "bcp47": "zh",
+      "parent_node_id": "product-who-icf-2026-01",
+      "rendition_id": "rendition-product-who-icf-2026-01-zh",
+      "status": "available"
+    }
+  ],
+  "nodes": [
+    {
+      "aliases": [
+        {
+          "alias_type": "profile_id",
+          "authority_scope": "icd10-inventory",
+          "value": "cie10es_es_2026"
+        }
+      ],
+      "jurisdiction": "Spain",
+      "name": "CIE-10-ES",
+      "node_id": "edition-cie10es-es-2026",
+      "node_kind": "edition",
+      "parent_node_id": "family-icd10",
+      "provenance": [
+        "conductor/tracks/icd10_integration_20260623/national_variant_inventory.json"
+      ],
+      "version": "6th Edition effective 2026-01-01"
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "profile_id",
+          "authority_scope": "icd10-inventory",
+          "value": "cim10fr_fr_2025"
+        }
+      ],
+      "jurisdiction": "France",
+      "name": "CIM-10-FR",
+      "node_id": "edition-cim10fr-fr-2025",
+      "node_kind": "edition",
+      "parent_node_id": "family-icd10",
+      "provenance": [
+        "conductor/tracks/icd10_integration_20260623/national_variant_inventory.json"
+      ],
+      "version": "2025 PMSI edition"
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "profile_id",
+          "authority_scope": "icd10-inventory",
+          "value": "icd10_uk_5e_2025"
+        }
+      ],
+      "jurisdiction": "United Kingdom",
+      "name": "ICD-10 Fifth Edition",
+      "node_id": "edition-icd10-uk-5e-2025",
+      "node_kind": "edition",
+      "parent_node_id": "family-icd10",
+      "provenance": [
+        "conductor/tracks/icd10_integration_20260623/national_variant_inventory.json"
+      ],
+      "version": "Fifth Edition with annual metadata and coding updates"
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "profile_id",
+          "authority_scope": "icd10-inventory",
+          "value": "icd10am_au_13"
+        }
+      ],
+      "jurisdiction": "Australia",
+      "name": "ICD-10-AM with ACHI and ACS",
+      "node_id": "edition-icd10am-au-13",
+      "node_kind": "edition",
+      "parent_node_id": "family-icd10",
+      "provenance": [
+        "conductor/tracks/icd10_integration_20260623/national_variant_inventory.json"
+      ],
+      "version": "13th Edition effective 2025-07-01"
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "profile_id",
+          "authority_scope": "icd10-inventory",
+          "value": "icd10ca_ca_2022"
+        }
+      ],
+      "jurisdiction": "Canada",
+      "name": "ICD-10-CA / CIM-10-CA",
+      "node_id": "edition-icd10ca-ca-2022",
+      "node_kind": "edition",
+      "parent_node_id": "family-icd10",
+      "provenance": [
+        "conductor/tracks/icd10_integration_20260623/national_variant_inventory.json"
+      ],
+      "version": "v2022 frozen with controlled provisional U50-U99 updates"
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "profile_id",
+          "authority_scope": "icd10-inventory",
+          "value": "icd10cm_us_2026"
+        }
+      ],
+      "jurisdiction": "United States",
+      "name": "ICD-10-CM",
+      "node_id": "edition-icd10cm-us-2026",
+      "node_kind": "edition",
+      "parent_node_id": "family-icd10",
+      "provenance": [
+        "conductor/tracks/icd10_integration_20260623/national_variant_inventory.json"
+      ],
+      "version": "FY2026 with 2026-04-01 update"
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "profile_id",
+          "authority_scope": "icd10-inventory",
+          "value": "icd10gm_de_2026"
+        }
+      ],
+      "jurisdiction": "Germany",
+      "name": "ICD-10-GM",
+      "node_id": "edition-icd10gm-de-2026",
+      "node_kind": "edition",
+      "parent_node_id": "family-icd10",
+      "provenance": [
+        "conductor/tracks/icd10_integration_20260623/national_variant_inventory.json"
+      ],
+      "version": "2026"
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "profile_id",
+          "authority_scope": "icd10-inventory",
+          "value": "icd10pcs_us_2026"
+        }
+      ],
+      "jurisdiction": "United States",
+      "name": "ICD-10-PCS",
+      "node_id": "edition-icd10pcs-us-2026",
+      "node_kind": "edition",
+      "parent_node_id": "family-icd10",
+      "provenance": [
+        "conductor/tracks/icd10_integration_20260623/national_variant_inventory.json"
+      ],
+      "version": "FY2026"
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "display_name",
+          "authority_scope": "snomed-inventory",
+          "value": "Argentina"
+        },
+        {
+          "alias_type": "edition_uri",
+          "authority_scope": "snomed-international",
+          "value": "http://snomed.info/sct/11000221109"
+        }
+      ],
+      "jurisdiction": "Argentina",
+      "name": "SNOMED CT Argentina",
+      "node_id": "edition-snomed-argentina",
+      "node_kind": "edition",
+      "parent_node_id": "family-snomed-ct",
+      "provenance": [
+        "conductor/tracks/snomed_ct_integration_20260623/national_edition_inventory.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "display_name",
+          "authority_scope": "snomed-inventory",
+          "value": "Australia"
+        },
+        {
+          "alias_type": "edition_uri",
+          "authority_scope": "snomed-international",
+          "value": "http://snomed.info/sct/32506021000036107"
+        }
+      ],
+      "jurisdiction": "Australia",
+      "name": "SNOMED CT Australia",
+      "node_id": "edition-snomed-australia",
+      "node_kind": "edition",
+      "parent_node_id": "family-snomed-ct",
+      "provenance": [
+        "conductor/tracks/snomed_ct_integration_20260623/national_edition_inventory.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "display_name",
+          "authority_scope": "snomed-inventory",
+          "value": "Austria"
+        },
+        {
+          "alias_type": "edition_uri",
+          "authority_scope": "snomed-international",
+          "value": "http://snomed.info/sct/11000234105"
+        }
+      ],
+      "jurisdiction": "Austria",
+      "name": "SNOMED CT Austria",
+      "node_id": "edition-snomed-austria",
+      "node_kind": "edition",
+      "parent_node_id": "family-snomed-ct",
+      "provenance": [
+        "conductor/tracks/snomed_ct_integration_20260623/national_edition_inventory.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "display_name",
+          "authority_scope": "snomed-inventory",
+          "value": "Belgium"
+        },
+        {
+          "alias_type": "edition_uri",
+          "authority_scope": "snomed-international",
+          "value": "http://snomed.info/sct/11000172109"
+        }
+      ],
+      "jurisdiction": "Belgium",
+      "name": "SNOMED CT Belgium",
+      "node_id": "edition-snomed-belgium",
+      "node_kind": "edition",
+      "parent_node_id": "family-snomed-ct",
+      "provenance": [
+        "conductor/tracks/snomed_ct_integration_20260623/national_edition_inventory.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "display_name",
+          "authority_scope": "snomed-inventory",
+          "value": "Canada"
+        },
+        {
+          "alias_type": "edition_uri",
+          "authority_scope": "snomed-international",
+          "value": "http://snomed.info/sct/20611000087101"
+        }
+      ],
+      "jurisdiction": "Canada",
+      "name": "SNOMED CT Canada",
+      "node_id": "edition-snomed-canada",
+      "node_kind": "edition",
+      "parent_node_id": "family-snomed-ct",
+      "provenance": [
+        "conductor/tracks/snomed_ct_integration_20260623/national_edition_inventory.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "display_name",
+          "authority_scope": "snomed-inventory",
+          "value": "Denmark"
+        },
+        {
+          "alias_type": "edition_uri",
+          "authority_scope": "snomed-international",
+          "value": "http://snomed.info/sct/554471000005108"
+        }
+      ],
+      "jurisdiction": "Denmark",
+      "name": "SNOMED CT Denmark",
+      "node_id": "edition-snomed-denmark",
+      "node_kind": "edition",
+      "parent_node_id": "family-snomed-ct",
+      "provenance": [
+        "conductor/tracks/snomed_ct_integration_20260623/national_edition_inventory.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "display_name",
+          "authority_scope": "snomed-inventory",
+          "value": "Estonia"
+        },
+        {
+          "alias_type": "edition_uri",
+          "authority_scope": "snomed-international",
+          "value": "http://snomed.info/sct/11000181102"
+        }
+      ],
+      "jurisdiction": "Estonia",
+      "name": "SNOMED CT Estonia",
+      "node_id": "edition-snomed-estonia",
+      "node_kind": "edition",
+      "parent_node_id": "family-snomed-ct",
+      "provenance": [
+        "conductor/tracks/snomed_ct_integration_20260623/national_edition_inventory.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "display_name",
+          "authority_scope": "snomed-inventory",
+          "value": "Finland"
+        },
+        {
+          "alias_type": "edition_uri",
+          "authority_scope": "snomed-international",
+          "value": "http://snomed.info/sct/11000229106"
+        }
+      ],
+      "jurisdiction": "Finland",
+      "name": "SNOMED CT Finland",
+      "node_id": "edition-snomed-finland",
+      "node_kind": "edition",
+      "parent_node_id": "family-snomed-ct",
+      "provenance": [
+        "conductor/tracks/snomed_ct_integration_20260623/national_edition_inventory.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "display_name",
+          "authority_scope": "snomed-inventory",
+          "value": "France"
+        }
+      ],
+      "jurisdiction": "France",
+      "name": "SNOMED CT France",
+      "node_id": "edition-snomed-france",
+      "node_kind": "edition",
+      "parent_node_id": "family-snomed-ct",
+      "provenance": [
+        "conductor/tracks/snomed_ct_integration_20260623/national_edition_inventory.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "display_name",
+          "authority_scope": "snomed-inventory",
+          "value": "Germany"
+        },
+        {
+          "alias_type": "edition_uri",
+          "authority_scope": "snomed-international",
+          "value": "http://snomed.info/sct/11000274103"
+        }
+      ],
+      "jurisdiction": "Germany",
+      "name": "SNOMED CT Germany",
+      "node_id": "edition-snomed-germany",
+      "node_kind": "edition",
+      "parent_node_id": "family-snomed-ct",
+      "provenance": [
+        "conductor/tracks/snomed_ct_integration_20260623/national_edition_inventory.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "display_name",
+          "authority_scope": "snomed-inventory",
+          "value": "India"
+        },
+        {
+          "alias_type": "edition_uri",
+          "authority_scope": "snomed-international",
+          "value": "http://snomed.info/sct/1121000189102"
+        }
+      ],
+      "jurisdiction": "India",
+      "name": "SNOMED CT India",
+      "node_id": "edition-snomed-india",
+      "node_kind": "edition",
+      "parent_node_id": "family-snomed-ct",
+      "provenance": [
+        "conductor/tracks/snomed_ct_integration_20260623/national_edition_inventory.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "display_name",
+          "authority_scope": "snomed-inventory",
+          "value": "International"
+        },
+        {
+          "alias_type": "edition_uri",
+          "authority_scope": "snomed-international",
+          "value": "http://snomed.info/sct/900000000000207008"
+        }
+      ],
+      "jurisdiction": "International",
+      "name": "SNOMED CT International",
+      "node_id": "edition-snomed-international",
+      "node_kind": "edition",
+      "parent_node_id": "family-snomed-ct",
+      "provenance": [
+        "conductor/tracks/snomed_ct_integration_20260623/national_edition_inventory.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "display_name",
+          "authority_scope": "snomed-inventory",
+          "value": "International Spanish"
+        },
+        {
+          "alias_type": "edition_uri",
+          "authority_scope": "snomed-international",
+          "value": "http://snomed.info/sct/449081005"
+        }
+      ],
+      "jurisdiction": "International Spanish",
+      "name": "SNOMED CT International Spanish",
+      "node_id": "edition-snomed-international-spanish",
+      "node_kind": "edition",
+      "parent_node_id": "family-snomed-ct",
+      "provenance": [
+        "conductor/tracks/snomed_ct_integration_20260623/national_edition_inventory.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "display_name",
+          "authority_scope": "snomed-inventory",
+          "value": "Ireland"
+        },
+        {
+          "alias_type": "edition_uri",
+          "authority_scope": "snomed-international",
+          "value": "http://snomed.info/sct/11000220105"
+        }
+      ],
+      "jurisdiction": "Ireland",
+      "name": "SNOMED CT Ireland",
+      "node_id": "edition-snomed-ireland",
+      "node_kind": "edition",
+      "parent_node_id": "family-snomed-ct",
+      "provenance": [
+        "conductor/tracks/snomed_ct_integration_20260623/national_edition_inventory.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "display_name",
+          "authority_scope": "snomed-inventory",
+          "value": "Lithuania"
+        }
+      ],
+      "jurisdiction": "Lithuania",
+      "name": "SNOMED CT Lithuania",
+      "node_id": "edition-snomed-lithuania",
+      "node_kind": "edition",
+      "parent_node_id": "family-snomed-ct",
+      "provenance": [
+        "conductor/tracks/snomed_ct_integration_20260623/national_edition_inventory.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "display_name",
+          "authority_scope": "snomed-inventory",
+          "value": "Netherlands"
+        },
+        {
+          "alias_type": "edition_uri",
+          "authority_scope": "snomed-international",
+          "value": "http://snomed.info/sct/11000146104"
+        }
+      ],
+      "jurisdiction": "Netherlands",
+      "name": "SNOMED CT Netherlands",
+      "node_id": "edition-snomed-netherlands",
+      "node_kind": "edition",
+      "parent_node_id": "family-snomed-ct",
+      "provenance": [
+        "conductor/tracks/snomed_ct_integration_20260623/national_edition_inventory.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "display_name",
+          "authority_scope": "snomed-inventory",
+          "value": "New Zealand"
+        },
+        {
+          "alias_type": "edition_uri",
+          "authority_scope": "snomed-international",
+          "value": "http://snomed.info/sct/21000210109"
+        }
+      ],
+      "jurisdiction": "New Zealand",
+      "name": "SNOMED CT New Zealand",
+      "node_id": "edition-snomed-new-zealand",
+      "node_kind": "edition",
+      "parent_node_id": "family-snomed-ct",
+      "provenance": [
+        "conductor/tracks/snomed_ct_integration_20260623/national_edition_inventory.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "display_name",
+          "authority_scope": "snomed-inventory",
+          "value": "Norway"
+        },
+        {
+          "alias_type": "edition_uri",
+          "authority_scope": "snomed-international",
+          "value": "http://snomed.info/sct/51000202101"
+        }
+      ],
+      "jurisdiction": "Norway",
+      "name": "SNOMED CT Norway",
+      "node_id": "edition-snomed-norway",
+      "node_kind": "edition",
+      "parent_node_id": "family-snomed-ct",
+      "provenance": [
+        "conductor/tracks/snomed_ct_integration_20260623/national_edition_inventory.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "display_name",
+          "authority_scope": "snomed-inventory",
+          "value": "South Korea"
+        },
+        {
+          "alias_type": "edition_uri",
+          "authority_scope": "snomed-international",
+          "value": "http://snomed.info/sct/11000267109"
+        }
+      ],
+      "jurisdiction": "South Korea",
+      "name": "SNOMED CT South Korea",
+      "node_id": "edition-snomed-south-korea",
+      "node_kind": "edition",
+      "parent_node_id": "family-snomed-ct",
+      "provenance": [
+        "conductor/tracks/snomed_ct_integration_20260623/national_edition_inventory.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "display_name",
+          "authority_scope": "snomed-inventory",
+          "value": "Spain"
+        },
+        {
+          "alias_type": "edition_uri",
+          "authority_scope": "snomed-international",
+          "value": "http://snomed.info/sct/900000001000122104"
+        }
+      ],
+      "jurisdiction": "Spain",
+      "name": "SNOMED CT Spain",
+      "node_id": "edition-snomed-spain",
+      "node_kind": "edition",
+      "parent_node_id": "family-snomed-ct",
+      "provenance": [
+        "conductor/tracks/snomed_ct_integration_20260623/national_edition_inventory.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "display_name",
+          "authority_scope": "snomed-inventory",
+          "value": "Sweden"
+        },
+        {
+          "alias_type": "edition_uri",
+          "authority_scope": "snomed-international",
+          "value": "http://snomed.info/sct/45991000052106"
+        }
+      ],
+      "jurisdiction": "Sweden",
+      "name": "SNOMED CT Sweden",
+      "node_id": "edition-snomed-sweden",
+      "node_kind": "edition",
+      "parent_node_id": "family-snomed-ct",
+      "provenance": [
+        "conductor/tracks/snomed_ct_integration_20260623/national_edition_inventory.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "profile_id",
+          "authority_scope": "icd10-inventory",
+          "value": "who_icd10_2019"
+        }
+      ],
+      "jurisdiction": "WHO",
+      "name": "ICD-10",
+      "node_id": "edition-who-icd10-2019",
+      "node_kind": "edition",
+      "parent_node_id": "family-icd10",
+      "provenance": [
+        "conductor/tracks/icd10_integration_20260623/national_variant_inventory.json"
+      ],
+      "version": "2019"
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "family_alias",
+          "authority_scope": "cell-ontology",
+          "value": "CL"
+        },
+        {
+          "alias_type": "family_alias",
+          "authority_scope": "cell-ontology",
+          "value": "Cell Ontology"
+        }
+      ],
+      "name": "Cell Ontology",
+      "node_id": "family-cell-ontology",
+      "node_kind": "source_family",
+      "provenance": [
+        "research_validation/mapping_route_definitions.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "family_alias",
+          "authority_scope": "decipher",
+          "value": "DECIPHER"
+        }
+      ],
+      "name": "DECIPHER",
+      "node_id": "family-decipher",
+      "node_kind": "source_family",
+      "provenance": [
+        "research_validation/mapping_route_definitions.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "family_alias",
+          "authority_scope": "decs",
+          "value": "DeCS"
+        },
+        {
+          "alias_type": "family_alias",
+          "authority_scope": "decs",
+          "value": "DECS"
+        },
+        {
+          "alias_type": "family_alias",
+          "authority_scope": "decs",
+          "value": "DeCS/MeSH"
+        }
+      ],
+      "name": "Health Sciences Descriptors",
+      "node_id": "family-decs",
+      "node_kind": "source_family",
+      "provenance": [
+        "research_validation/mapping_route_definitions.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "family_alias",
+          "authority_scope": "do",
+          "value": "DO"
+        },
+        {
+          "alias_type": "family_alias",
+          "authority_scope": "do",
+          "value": "DOID"
+        }
+      ],
+      "name": "Human Disease Ontology",
+      "node_id": "family-do",
+      "node_kind": "source_family",
+      "provenance": [
+        "research_validation/mapping_route_definitions.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "family_alias",
+          "authority_scope": "efo",
+          "value": "EFO"
+        }
+      ],
+      "name": "Experimental Factor Ontology",
+      "node_id": "family-efo",
+      "node_kind": "source_family",
+      "provenance": [
+        "research_validation/mapping_route_definitions.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "family_alias",
+          "authority_scope": "fma",
+          "value": "FMA"
+        },
+        {
+          "alias_type": "family_alias",
+          "authority_scope": "fma",
+          "value": "UMLS-UWDA"
+        }
+      ],
+      "name": "Foundational Model of Anatomy",
+      "node_id": "family-fma",
+      "node_kind": "source_family",
+      "provenance": [
+        "research_validation/mapping_route_definitions.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "family_alias",
+          "authority_scope": "hpo",
+          "value": "HP"
+        },
+        {
+          "alias_type": "family_alias",
+          "authority_scope": "hpo",
+          "value": "HPO"
+        }
+      ],
+      "name": "Human Phenotype Ontology",
+      "node_id": "family-hpo",
+      "node_kind": "source_family",
+      "provenance": [
+        "research_validation/mapping_route_definitions.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "family_alias",
+          "authority_scope": "icd10",
+          "value": "ICD10"
+        },
+        {
+          "alias_type": "family_alias",
+          "authority_scope": "icd10",
+          "value": "ICD-10"
+        }
+      ],
+      "name": "International Classification of Diseases, Tenth Revision family",
+      "node_id": "family-icd10",
+      "node_kind": "source_family",
+      "provenance": [
+        "research_validation/mapping_route_definitions.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "family_alias",
+          "authority_scope": "icd11",
+          "value": "ICD11"
+        },
+        {
+          "alias_type": "family_alias",
+          "authority_scope": "icd11",
+          "value": "ICD-11"
+        }
+      ],
+      "name": "International Classification of Diseases, Eleventh Revision",
+      "node_id": "family-icd11",
+      "node_kind": "source_family",
+      "provenance": [
+        "research_validation/mapping_route_definitions.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "family_alias",
+          "authority_scope": "lddb",
+          "value": "LDDB"
+        }
+      ],
+      "name": "London Dysmorphology Database",
+      "node_id": "family-lddb",
+      "node_kind": "source_family",
+      "provenance": [
+        "research_validation/mapping_route_definitions.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "family_alias",
+          "authority_scope": "loinc",
+          "value": "LOINC"
+        }
+      ],
+      "name": "LOINC",
+      "node_id": "family-loinc",
+      "node_kind": "source_family",
+      "provenance": [
+        "research_validation/mapping_route_definitions.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "family_alias",
+          "authority_scope": "meddra",
+          "value": "MedDRA"
+        },
+        {
+          "alias_type": "family_alias",
+          "authority_scope": "meddra",
+          "value": "MEDDRA"
+        }
+      ],
+      "name": "Medical Dictionary for Regulatory Activities",
+      "node_id": "family-meddra",
+      "node_kind": "source_family",
+      "provenance": [
+        "research_validation/mapping_route_definitions.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "family_alias",
+          "authority_scope": "mesh",
+          "value": "MESH"
+        },
+        {
+          "alias_type": "family_alias",
+          "authority_scope": "mesh",
+          "value": "MeSH"
+        }
+      ],
+      "name": "Medical Subject Headings",
+      "node_id": "family-mesh",
+      "node_kind": "source_family",
+      "provenance": [
+        "research_validation/mapping_route_definitions.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "family_alias",
+          "authority_scope": "mondo",
+          "value": "MONDO"
+        }
+      ],
+      "name": "Mondo Disease Ontology",
+      "node_id": "family-mondo",
+      "node_kind": "source_family",
+      "provenance": [
+        "research_validation/mapping_route_definitions.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "family_alias",
+          "authority_scope": "mp",
+          "value": "MP"
+        }
+      ],
+      "name": "Mammalian Phenotype Ontology",
+      "node_id": "family-mp",
+      "node_kind": "source_family",
+      "provenance": [
+        "research_validation/mapping_route_definitions.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "family_alias",
+          "authority_scope": "nando",
+          "value": "NANDO"
+        }
+      ],
+      "name": "Nanbyo Disease Ontology",
+      "node_id": "family-nando",
+      "node_kind": "source_family",
+      "provenance": [
+        "research_validation/mapping_route_definitions.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "family_alias",
+          "authority_scope": "ncit",
+          "value": "NCIT"
+        },
+        {
+          "alias_type": "family_alias",
+          "authority_scope": "ncit",
+          "value": "NCIt"
+        }
+      ],
+      "name": "NCI Thesaurus",
+      "node_id": "family-ncit",
+      "node_kind": "source_family",
+      "provenance": [
+        "research_validation/mapping_route_definitions.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "family_alias",
+          "authority_scope": "omim",
+          "value": "OMIM"
+        }
+      ],
+      "name": "Online Mendelian Inheritance in Man",
+      "node_id": "family-omim",
+      "node_kind": "source_family",
+      "provenance": [
+        "research_validation/mapping_route_definitions.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "family_alias",
+          "authority_scope": "oncotree",
+          "value": "ONCOTREE"
+        },
+        {
+          "alias_type": "family_alias",
+          "authority_scope": "oncotree",
+          "value": "OncoTree"
+        }
+      ],
+      "name": "OncoTree",
+      "node_id": "family-oncotree",
+      "node_kind": "source_family",
+      "provenance": [
+        "research_validation/mapping_route_definitions.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "family_alias",
+          "authority_scope": "orphanet",
+          "value": "ORPHA"
+        },
+        {
+          "alias_type": "family_alias",
+          "authority_scope": "orphanet",
+          "value": "ORPHANET"
+        },
+        {
+          "alias_type": "family_alias",
+          "authority_scope": "orphanet",
+          "value": "Orphanet"
+        },
+        {
+          "alias_type": "family_alias",
+          "authority_scope": "orphanet",
+          "value": "Orphadata"
+        }
+      ],
+      "name": "Orphanet nomenclature and Orphadata",
+      "node_id": "family-orphanet",
+      "node_kind": "source_family",
+      "provenance": [
+        "research_validation/mapping_route_definitions.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "family_alias",
+          "authority_scope": "pato",
+          "value": "PATO"
+        }
+      ],
+      "name": "Phenotype And Trait Ontology",
+      "node_id": "family-pato",
+      "node_kind": "source_family",
+      "provenance": [
+        "research_validation/mapping_route_definitions.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "family_alias",
+          "authority_scope": "pro-ctcae",
+          "value": "PRO-CTCAE"
+        },
+        {
+          "alias_type": "family_alias",
+          "authority_scope": "pro-ctcae",
+          "value": "PRO_CTCAE"
+        }
+      ],
+      "name": "Patient-Reported Outcomes version of the Common Terminology Criteria for Adverse Events",
+      "node_id": "family-pro-ctcae",
+      "node_kind": "source_family",
+      "provenance": [
+        "research_validation/mapping_route_definitions.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "family_alias",
+          "authority_scope": "radlex",
+          "value": "RADLEX"
+        },
+        {
+          "alias_type": "family_alias",
+          "authority_scope": "radlex",
+          "value": "RadLex"
+        }
+      ],
+      "name": "RadLex",
+      "node_id": "family-radlex",
+      "node_kind": "source_family",
+      "provenance": [
+        "research_validation/mapping_route_definitions.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "family_alias",
+          "authority_scope": "snomed-ct",
+          "value": "SCTID"
+        },
+        {
+          "alias_type": "family_alias",
+          "authority_scope": "snomed-ct",
+          "value": "SNOMEDCT"
+        },
+        {
+          "alias_type": "family_alias",
+          "authority_scope": "snomed-ct",
+          "value": "SNOMED CT"
+        }
+      ],
+      "name": "SNOMED CT International family",
+      "node_id": "family-snomed-ct",
+      "node_kind": "source_family",
+      "provenance": [
+        "research_validation/mapping_route_definitions.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "family_alias",
+          "authority_scope": "uberon",
+          "value": "UBERON"
+        }
+      ],
+      "name": "Uberon multi-species anatomy ontology",
+      "node_id": "family-uberon",
+      "node_kind": "source_family",
+      "provenance": [
+        "research_validation/mapping_route_definitions.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "family_alias",
+          "authority_scope": "umls",
+          "value": "UMLS"
+        },
+        {
+          "alias_type": "family_alias",
+          "authority_scope": "umls",
+          "value": "UMLS-CUI"
+        }
+      ],
+      "name": "Unified Medical Language System Metathesaurus",
+      "node_id": "family-umls",
+      "node_kind": "source_family",
+      "provenance": [
+        "research_validation/mapping_route_definitions.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "family_alias",
+          "authority_scope": "upheno",
+          "value": "UPHENO"
+        },
+        {
+          "alias_type": "family_alias",
+          "authority_scope": "upheno",
+          "value": "uPheno"
+        }
+      ],
+      "name": "Unified Phenotype Ontology",
+      "node_id": "family-upheno",
+      "node_kind": "source_family",
+      "provenance": [
+        "research_validation/mapping_route_definitions.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "family_alias",
+          "authority_scope": "who-icf",
+          "value": "ICF"
+        },
+        {
+          "alias_type": "family_alias",
+          "authority_scope": "who-icf",
+          "value": "WHO-ICF"
+        }
+      ],
+      "name": "WHO International Classification of Functioning, Disability and Health",
+      "node_id": "family-who-icf",
+      "node_kind": "source_family",
+      "provenance": [
+        "research_validation/mapping_route_definitions.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "APO"
+        }
+      ],
+      "governance_status": "auxiliary_inventory_only",
+      "name": "APO",
+      "node_id": "namespace-apo",
+      "node_kind": "identifier_namespace",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "BTO"
+        }
+      ],
+      "governance_status": "auxiliary_inventory_only",
+      "name": "BTO",
+      "node_id": "namespace-bto",
+      "node_kind": "identifier_namespace",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "CHEBI"
+        }
+      ],
+      "governance_status": "auxiliary_inventory_only",
+      "name": "CHEBI",
+      "node_id": "namespace-chebi",
+      "node_kind": "identifier_namespace",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "CL"
+        }
+      ],
+      "governance_status": "governed_family",
+      "name": "CL",
+      "node_id": "namespace-cl",
+      "node_kind": "identifier_namespace",
+      "parent_node_id": "family-cell-ontology",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "DDPHENO"
+        }
+      ],
+      "governance_status": "auxiliary_inventory_only",
+      "name": "DDPHENO",
+      "node_id": "namespace-ddpheno",
+      "node_kind": "identifier_namespace",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "DECIPHER"
+        }
+      ],
+      "governance_status": "governed_family",
+      "name": "DECIPHER",
+      "node_id": "namespace-decipher",
+      "node_kind": "identifier_namespace",
+      "parent_node_id": "family-decipher",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "DOID"
+        }
+      ],
+      "governance_status": "governed_family",
+      "name": "DOID",
+      "node_id": "namespace-doid",
+      "node_kind": "identifier_namespace",
+      "parent_node_id": "family-do",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "EFO"
+        }
+      ],
+      "governance_status": "governed_family",
+      "name": "EFO",
+      "node_id": "namespace-efo",
+      "node_kind": "identifier_namespace",
+      "parent_node_id": "family-efo",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "EMAPA"
+        }
+      ],
+      "governance_status": "auxiliary_inventory_only",
+      "name": "EMAPA",
+      "node_id": "namespace-emapa",
+      "node_kind": "identifier_namespace",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "FBbt"
+        }
+      ],
+      "governance_status": "auxiliary_inventory_only",
+      "name": "FBbt",
+      "node_id": "namespace-fbbt",
+      "node_kind": "identifier_namespace",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "FBcv"
+        }
+      ],
+      "governance_status": "auxiliary_inventory_only",
+      "name": "FBcv",
+      "node_id": "namespace-fbcv",
+      "node_kind": "identifier_namespace",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "FMA"
+        }
+      ],
+      "governance_status": "governed_family",
+      "name": "FMA",
+      "node_id": "namespace-fma",
+      "node_kind": "identifier_namespace",
+      "parent_node_id": "family-fma",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "FYPO"
+        }
+      ],
+      "governance_status": "auxiliary_inventory_only",
+      "name": "FYPO",
+      "node_id": "namespace-fypo",
+      "node_kind": "identifier_namespace",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "GARD"
+        }
+      ],
+      "governance_status": "auxiliary_inventory_only",
+      "name": "GARD",
+      "node_id": "namespace-gard",
+      "node_kind": "identifier_namespace",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "GMDN"
+        }
+      ],
+      "governance_status": "auxiliary_inventory_only",
+      "name": "GMDN",
+      "node_id": "namespace-gmdn",
+      "node_kind": "identifier_namespace",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "GO"
+        }
+      ],
+      "governance_status": "auxiliary_inventory_only",
+      "name": "GO",
+      "node_id": "namespace-go",
+      "node_kind": "identifier_namespace",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "HP"
+        }
+      ],
+      "governance_status": "governed_family",
+      "name": "HP",
+      "node_id": "namespace-hp",
+      "node_kind": "identifier_namespace",
+      "parent_node_id": "family-hpo",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "ICD10"
+        }
+      ],
+      "governance_status": "governed_family",
+      "name": "ICD10",
+      "node_id": "namespace-icd10",
+      "node_kind": "identifier_namespace",
+      "parent_node_id": "family-icd10",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "ICD10CA"
+        }
+      ],
+      "governance_status": "governed_family",
+      "name": "ICD10CA",
+      "node_id": "namespace-icd10ca",
+      "node_kind": "identifier_namespace",
+      "parent_node_id": "family-icd10",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "ICD10CM"
+        }
+      ],
+      "governance_status": "governed_family",
+      "name": "ICD10CM",
+      "node_id": "namespace-icd10cm",
+      "node_kind": "identifier_namespace",
+      "parent_node_id": "family-icd10",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "ICD10WHO"
+        }
+      ],
+      "governance_status": "governed_family",
+      "name": "ICD10WHO",
+      "node_id": "namespace-icd10who",
+      "node_kind": "identifier_namespace",
+      "parent_node_id": "family-icd10",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "ICD11"
+        }
+      ],
+      "governance_status": "governed_family",
+      "name": "ICD11",
+      "node_id": "namespace-icd11",
+      "node_kind": "identifier_namespace",
+      "parent_node_id": "family-icd11",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "ICDO"
+        }
+      ],
+      "governance_status": "auxiliary_inventory_only",
+      "name": "ICDO",
+      "node_id": "namespace-icdo",
+      "node_kind": "identifier_namespace",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "ICDO31"
+        }
+      ],
+      "governance_status": "auxiliary_inventory_only",
+      "name": "ICDO31",
+      "node_id": "namespace-icdo31",
+      "node_kind": "identifier_namespace",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "ICF"
+        }
+      ],
+      "governance_status": "auxiliary_inventory_only",
+      "name": "ICF",
+      "node_id": "namespace-icf",
+      "node_kind": "identifier_namespace",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "IEEE"
+        }
+      ],
+      "governance_status": "auxiliary_inventory_only",
+      "name": "IEEE",
+      "node_id": "namespace-ieee",
+      "node_kind": "identifier_namespace",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "LOINC"
+        }
+      ],
+      "governance_status": "governed_family",
+      "name": "LOINC",
+      "node_id": "namespace-loinc",
+      "node_kind": "identifier_namespace",
+      "parent_node_id": "family-loinc",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "MA"
+        }
+      ],
+      "governance_status": "auxiliary_inventory_only",
+      "name": "MA",
+      "node_id": "namespace-ma",
+      "node_kind": "identifier_namespace",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "MedDRA"
+        }
+      ],
+      "governance_status": "governed_family",
+      "name": "MedDRA",
+      "node_id": "namespace-meddra",
+      "node_kind": "identifier_namespace",
+      "parent_node_id": "family-meddra",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "MEDGEN"
+        }
+      ],
+      "governance_status": "auxiliary_inventory_only",
+      "name": "MEDGEN",
+      "node_id": "namespace-medgen",
+      "node_kind": "identifier_namespace",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "MESH"
+        }
+      ],
+      "governance_status": "governed_family",
+      "name": "MESH",
+      "node_id": "namespace-mesh",
+      "node_kind": "identifier_namespace",
+      "parent_node_id": "family-mesh",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "MGPO"
+        }
+      ],
+      "governance_status": "auxiliary_inventory_only",
+      "name": "MGPO",
+      "node_id": "namespace-mgpo",
+      "node_kind": "identifier_namespace",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "MONDO"
+        }
+      ],
+      "governance_status": "governed_family",
+      "name": "MONDO",
+      "node_id": "namespace-mondo",
+      "node_kind": "identifier_namespace",
+      "parent_node_id": "family-mondo",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "MP"
+        }
+      ],
+      "governance_status": "governed_family",
+      "name": "MP",
+      "node_id": "namespace-mp",
+      "node_kind": "identifier_namespace",
+      "parent_node_id": "family-mp",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "NANDO"
+        }
+      ],
+      "governance_status": "governed_family",
+      "name": "NANDO",
+      "node_id": "namespace-nando",
+      "node_kind": "identifier_namespace",
+      "parent_node_id": "family-nando",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "NBO"
+        }
+      ],
+      "governance_status": "auxiliary_inventory_only",
+      "name": "NBO",
+      "node_id": "namespace-nbo",
+      "node_kind": "identifier_namespace",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "NCIM"
+        }
+      ],
+      "governance_status": "auxiliary_inventory_only",
+      "name": "NCIM",
+      "node_id": "namespace-ncim",
+      "node_kind": "identifier_namespace",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "NCIT"
+        }
+      ],
+      "governance_status": "governed_family",
+      "name": "NCIT",
+      "node_id": "namespace-ncit",
+      "node_kind": "identifier_namespace",
+      "parent_node_id": "family-ncit",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "OBA"
+        }
+      ],
+      "governance_status": "auxiliary_inventory_only",
+      "name": "OBA",
+      "node_id": "namespace-oba",
+      "node_kind": "identifier_namespace",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "OMIM"
+        }
+      ],
+      "governance_status": "governed_family",
+      "name": "OMIM",
+      "node_id": "namespace-omim",
+      "node_kind": "identifier_namespace",
+      "parent_node_id": "family-omim",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "ONCOTREE"
+        }
+      ],
+      "governance_status": "governed_family",
+      "name": "ONCOTREE",
+      "node_id": "namespace-oncotree",
+      "node_kind": "identifier_namespace",
+      "parent_node_id": "family-oncotree",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "ORPHA"
+        }
+      ],
+      "governance_status": "governed_family",
+      "name": "ORPHA",
+      "node_id": "namespace-orpha",
+      "node_kind": "identifier_namespace",
+      "parent_node_id": "family-orphanet",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "ORPHANET"
+        }
+      ],
+      "governance_status": "governed_family",
+      "name": "ORPHANET",
+      "node_id": "namespace-orphanet",
+      "node_kind": "identifier_namespace",
+      "parent_node_id": "family-orphanet",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "PATO"
+        }
+      ],
+      "governance_status": "governed_family",
+      "name": "PATO",
+      "node_id": "namespace-pato",
+      "node_kind": "identifier_namespace",
+      "parent_node_id": "family-pato",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "PHENX"
+        }
+      ],
+      "governance_status": "auxiliary_inventory_only",
+      "name": "PHENX",
+      "node_id": "namespace-phenx",
+      "node_kind": "identifier_namespace",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "PHIPO"
+        }
+      ],
+      "governance_status": "auxiliary_inventory_only",
+      "name": "PHIPO",
+      "node_id": "namespace-phipo",
+      "node_kind": "identifier_namespace",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "PLANP"
+        }
+      ],
+      "governance_status": "auxiliary_inventory_only",
+      "name": "PLANP",
+      "node_id": "namespace-planp",
+      "node_kind": "identifier_namespace",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "PUBCHEM"
+        }
+      ],
+      "governance_status": "auxiliary_inventory_only",
+      "name": "PUBCHEM",
+      "node_id": "namespace-pubchem",
+      "node_kind": "identifier_namespace",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "QUDTQK"
+        }
+      ],
+      "governance_status": "auxiliary_inventory_only",
+      "name": "QUDTQK",
+      "node_id": "namespace-qudtqk",
+      "node_kind": "identifier_namespace",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "RADLEX"
+        }
+      ],
+      "governance_status": "auxiliary_inventory_only",
+      "name": "RADLEX",
+      "node_id": "namespace-radlex",
+      "node_kind": "identifier_namespace",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "RXNORM"
+        }
+      ],
+      "governance_status": "auxiliary_inventory_only",
+      "name": "RXNORM",
+      "node_id": "namespace-rxnorm",
+      "node_kind": "identifier_namespace",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "SCTID"
+        }
+      ],
+      "governance_status": "governed_family",
+      "name": "SCTID",
+      "node_id": "namespace-sctid",
+      "node_kind": "identifier_namespace",
+      "parent_node_id": "family-snomed-ct",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "SCTID-CA"
+        }
+      ],
+      "governance_status": "governed_family",
+      "name": "SCTID-CA",
+      "node_id": "namespace-sctid-ca",
+      "node_kind": "identifier_namespace",
+      "parent_node_id": "family-snomed-ct",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "SNOMEDCT"
+        }
+      ],
+      "governance_status": "auxiliary_inventory_only",
+      "name": "SNOMEDCT",
+      "node_id": "namespace-snomedct",
+      "node_kind": "identifier_namespace",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "UBERON"
+        }
+      ],
+      "governance_status": "governed_family",
+      "name": "UBERON",
+      "node_id": "namespace-uberon",
+      "node_kind": "identifier_namespace",
+      "parent_node_id": "family-uberon",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "UMLS"
+        }
+      ],
+      "governance_status": "governed_family",
+      "name": "UMLS",
+      "node_id": "namespace-umls",
+      "node_kind": "identifier_namespace",
+      "parent_node_id": "family-umls",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "UMLS-UWDA"
+        }
+      ],
+      "governance_status": "auxiliary_inventory_only",
+      "name": "UMLS-UWDA",
+      "node_id": "namespace-umls-uwda",
+      "node_kind": "identifier_namespace",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "UPHENO"
+        }
+      ],
+      "governance_status": "governed_family",
+      "name": "UPHENO",
+      "node_id": "namespace-upheno",
+      "node_kind": "identifier_namespace",
+      "parent_node_id": "family-upheno",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "WBbt"
+        }
+      ],
+      "governance_status": "auxiliary_inventory_only",
+      "name": "WBbt",
+      "node_id": "namespace-wbbt",
+      "node_kind": "identifier_namespace",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "WBPhenotype"
+        }
+      ],
+      "governance_status": "auxiliary_inventory_only",
+      "name": "WBPhenotype",
+      "node_id": "namespace-wbphenotype",
+      "node_kind": "identifier_namespace",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "XAO"
+        }
+      ],
+      "governance_status": "auxiliary_inventory_only",
+      "name": "XAO",
+      "node_id": "namespace-xao",
+      "node_kind": "identifier_namespace",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "XPO"
+        }
+      ],
+      "governance_status": "auxiliary_inventory_only",
+      "name": "XPO",
+      "node_id": "namespace-xpo",
+      "node_kind": "identifier_namespace",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "ZFA"
+        }
+      ],
+      "governance_status": "auxiliary_inventory_only",
+      "name": "ZFA",
+      "node_id": "namespace-zfa",
+      "node_kind": "identifier_namespace",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "canonical_prefix",
+          "authority_scope": "mapping-artifact",
+          "value": "ZP"
+        }
+      ],
+      "governance_status": "auxiliary_inventory_only",
+      "name": "ZP",
+      "node_id": "namespace-zp",
+      "node_kind": "identifier_namespace",
+      "provenance": [
+        "research_validation/mapping_expansion_catalog.json"
+      ]
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "product_id",
+          "authority_scope": "conductor/hpo_babelon_language_inventory.json",
+          "value": "hpo-babelon"
+        }
+      ],
+      "name": "HPO Babelon profiles",
+      "node_id": "product-hpo-babelon",
+      "node_kind": "product_release",
+      "parent_node_id": "family-hpo",
+      "provenance": [
+        "conductor/hpo_babelon_language_inventory.json"
+      ],
+      "version": "867bac79330658e9199b618b4cd57f873f258568"
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "product_id",
+          "authority_scope": "conductor/tracks/loinc_integration_20260623/regional_language_inventory_2_82.json",
+          "value": "loinc-2-82"
+        }
+      ],
+      "name": "LOINC 2.82 linguistic variants",
+      "node_id": "product-loinc-2-82",
+      "node_kind": "product_release",
+      "parent_node_id": "family-loinc",
+      "provenance": [
+        "conductor/tracks/loinc_integration_20260623/regional_language_inventory_2_82.json"
+      ],
+      "version": "2.82"
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "product_id",
+          "authority_scope": "conductor/tracks/meddra_integration_20260623/release_language_inventory_v29_0.json",
+          "value": "meddra-29-0"
+        }
+      ],
+      "name": "MedDRA 29.0",
+      "node_id": "product-meddra-29-0",
+      "node_kind": "product_release",
+      "parent_node_id": "family-meddra",
+      "provenance": [
+        "conductor/tracks/meddra_integration_20260623/release_language_inventory_v29_0.json"
+      ],
+      "version": "29.0"
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "product_id",
+          "authority_scope": "conductor/tracks/orphanet_integration_20260623/product_language_inventory.json",
+          "value": "orphadata-nomenclature-pack"
+        }
+      ],
+      "name": "Orphanet Nomenclature Pack for Coding",
+      "node_id": "product-orphadata-nomenclature-pack",
+      "node_kind": "product_release",
+      "parent_node_id": "family-orphanet",
+      "provenance": [
+        "conductor/tracks/orphanet_integration_20260623/product_language_inventory.json"
+      ],
+      "version": "2024 latest package table exposed by authority page observed 2026-08-12"
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "product_id",
+          "authority_scope": "conductor/tracks/orphanet_integration_20260623/product_language_inventory.json",
+          "value": "orphadata-product1-alignments"
+        }
+      ],
+      "name": "Rare diseases aligned with terminologies and databases",
+      "node_id": "product-orphadata-product1-alignments",
+      "node_kind": "product_release",
+      "parent_node_id": "family-orphanet",
+      "provenance": [
+        "conductor/tracks/orphanet_integration_20260623/product_language_inventory.json"
+      ],
+      "version": "July 2026"
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "product_id",
+          "authority_scope": "conductor/tracks/orphanet_integration_20260623/product_language_inventory.json",
+          "value": "orphadata-product4-phenotypes-hpo"
+        }
+      ],
+      "name": "Phenotypes associated with rare disorders",
+      "node_id": "product-orphadata-product4-phenotypes-hpo",
+      "node_kind": "product_release",
+      "parent_node_id": "family-orphanet",
+      "provenance": [
+        "conductor/tracks/orphanet_integration_20260623/product_language_inventory.json"
+      ],
+      "version": "July 2026"
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "product_id",
+          "authority_scope": "conductor/tracks/umls_metathesaurus_integration_20260623/release_inventory_2026aa.json",
+          "value": "umls-2026aa"
+        }
+      ],
+      "name": "UMLS Metathesaurus 2026AA",
+      "node_id": "product-umls-2026aa",
+      "node_kind": "product_release",
+      "parent_node_id": "family-umls",
+      "provenance": [
+        "conductor/tracks/umls_metathesaurus_integration_20260623/release_inventory_2026aa.json"
+      ],
+      "version": "2026AA"
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "product_id",
+          "authority_scope": "conductor/tracks/icd11_integration_20260623/who_classifications_language_inventory_2026_01.json",
+          "value": "who-icd11-mms-2026-01"
+        }
+      ],
+      "name": "ICD-11 for Mortality and Morbidity Statistics",
+      "node_id": "product-who-icd11-mms-2026-01",
+      "node_kind": "product_release",
+      "parent_node_id": "family-icd11",
+      "provenance": [
+        "conductor/tracks/icd11_integration_20260623/who_classifications_language_inventory_2026_01.json"
+      ],
+      "version": "2026-01"
+    },
+    {
+      "aliases": [
+        {
+          "alias_type": "product_id",
+          "authority_scope": "conductor/tracks/icd11_integration_20260623/who_classifications_language_inventory_2026_01.json",
+          "value": "who-icf-2026-01"
+        }
+      ],
+      "name": "International Classification of Functioning, Disability and Health",
+      "node_id": "product-who-icf-2026-01",
+      "node_kind": "product_release",
+      "parent_node_id": "family-who-icf",
+      "provenance": [
+        "conductor/tracks/icd11_integration_20260623/who_classifications_language_inventory_2026_01.json"
+      ],
+      "version": "2026-01"
+    }
+  ],
+  "schema_version": "terminology-node-registry-v1",
+  "scope": "payload-free terminology families, namespaces, editions, products, and language renditions"
+}

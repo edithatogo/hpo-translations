@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/edithatogo/hpo-translations/research_validation/terminology_node_registry.schema.json",
+  "title": "Terminology node registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "generated_at", "scope", "nodes", "language_renditions", "admission_boundary"],
+  "properties": {
+    "schema_version": {"const": "terminology-node-registry-v1"},
+    "generated_at": {"type": "string", "format": "date-time"},
+    "scope": {"type": "string", "minLength": 1},
+    "nodes": {"type": "array", "items": {"$ref": "#/$defs/node"}},
+    "language_renditions": {"type": "array", "items": {"$ref": "#/$defs/rendition"}},
+    "admission_boundary": {
+      "type": "object", "additionalProperties": false,
+      "required": ["payloads_included", "parent_relations_create_mappings", "language_variants_are_interchangeable", "edition_inheritance_allowed"],
+      "properties": {
+        "payloads_included": {"const": false},
+        "parent_relations_create_mappings": {"const": false},
+        "language_variants_are_interchangeable": {"const": false},
+        "edition_inheritance_allowed": {"const": false}
+      }
+    }
+  },
+  "$defs": {
+    "alias": {
+      "type": "object", "additionalProperties": false,
+      "required": ["value", "alias_type", "authority_scope"],
+      "properties": {
+        "value": {"type": "string", "minLength": 1},
+        "alias_type": {"enum": ["family_alias", "canonical_prefix", "display_name", "edition_uri", "profile_id", "product_id"]},
+        "authority_scope": {"type": "string", "minLength": 1}
+      }
+    },
+    "node": {
+      "type": "object", "additionalProperties": false,
+      "required": ["node_id", "node_kind", "name", "aliases", "provenance"],
+      "properties": {
+        "node_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$"},
+        "node_kind": {"enum": ["source_family", "identifier_namespace", "edition", "product_release"]},
+        "name": {"type": "string", "minLength": 1},
+        "parent_node_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$"},
+        "governance_status": {"enum": ["governed_family", "auxiliary_inventory_only"]},
+        "jurisdiction": {"type": "string", "minLength": 1},
+        "version": {"type": "string", "minLength": 1},
+        "aliases": {"type": "array", "items": {"$ref": "#/$defs/alias"}},
+        "provenance": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "rendition": {
+      "type": "object", "additionalProperties": false,
+      "required": ["rendition_id", "parent_node_id", "bcp47", "status"],
+      "properties": {
+        "rendition_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$"},
+        "parent_node_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$"},
+        "bcp47": {"type": "string", "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{2,8})*$"},
+        "status": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

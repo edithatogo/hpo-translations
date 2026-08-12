@@ -1,22 +1,22 @@
-"""Validate mapping-route definitions and their deterministic all-pairs catalog."""
+"""Validate route definitions and their generated all-pairs catalogue, fail-closed."""
 
 from __future__ import annotations
 
-from pathlib import Path
 from typing import Any
 
 from jsonschema import Draft202012Validator
 
 from scripts.build_mapping_routes import (
     DEFINITIONS,
+    NODE_REGISTRY,
     OUTPUT,
+    ROOT,
     build_catalog,
     canonical_bytes,
     load_json,
     normalized_file_bytes,
 )
 
-ROOT = Path(__file__).resolve().parents[1]
 SCHEMA = ROOT / "research_validation" / "mapping_route_definitions.schema.json"
 EXPANSION = ROOT / "research_validation" / "mapping_expansion_catalog.json"
 SOURCE_CATALOG = ROOT / "research_validation" / "source_catalog.json"
@@ -24,97 +24,132 @@ REGISTRY = ROOT / "ontology_network" / "source_registry.json"
 SUPPLEMENTARY = ROOT / "research_validation" / "supplementary_source_access_reviews.json"
 
 
-def validation_errors(definitions: dict[str, Any], catalog: dict[str, Any]) -> list[str]:
-    errors: list[str] = []
-    schema = load_json(SCHEMA)
-    errors.extend(error.message for error in Draft202012Validator(schema).iter_errors(definitions))
+def validation_errors(
+    definitions: dict[str, Any], catalog: dict[str, Any], node_registry: dict[str, Any] | None = None
+) -> list[str]:
+    errors = [e.message for e in Draft202012Validator(load_json(SCHEMA)).iter_errors(definitions)]
     nodes = definitions.get("nodes", [])
-    node_ids = [item.get("node_id") for item in nodes]
+    node_ids = [n.get("node_id") for n in nodes]
+    known = set(node_ids)
     if len(node_ids) != len(set(node_ids)):
         errors.append("node IDs must be unique")
-    alias_owners: dict[str, set[str]] = {}
-    for item in nodes:
-        for alias in item.get("aliases", []):
-            alias_owners.setdefault(alias.casefold(), set()).add(item["node_id"])
-    if any(len(owners) > 1 for owners in alias_owners.values()):
+    aliases: dict[str, set[str]] = {}
+    for n in nodes:
+        for a in n.get("aliases", []):
+            aliases.setdefault(a.casefold(), set()).add(str(n.get("node_id")))
+    if any(len(v) > 1 for v in aliases.values()):
         errors.append("namespace aliases must resolve uniquely across canonical nodes")
-
-    assertion_ids = [item.get("assertion_id") for item in definitions.get("atomic_assertions", [])]
-    if len(assertion_ids) != len(set(assertion_ids)):
+    policies = {p.get("policy_id"): p for p in definitions.get("composition_policies", [])}
+    aids = []
+    expansion = load_json(EXPANSION)
+    sources = load_json(SOURCE_CATALOG)
+    artifacts = {("mapping_expansion_catalog", a["artifact_id"]): a for a in expansion["artifacts"]} | {
+        ("source_catalog", a["source_id"]): a for a in sources["mappings"]
+    }
+    registry_data = node_registry or load_json(NODE_REGISTRY)
+    reference_records = {
+        **artifacts,
+        **{("terminology_node_registry", n["node_id"]): n for n in registry_data["nodes"]},
+    }
+    registry_node_ids = {n["node_id"] for n in registry_data["nodes"]}
+    for node in nodes:
+        for ref in node.get("catalog_references", []):
+            if (
+                str(ref.get("catalog", "")).endswith("terminology_node_registry.json")
+                and ref.get("record_id") not in registry_node_ids
+            ):
+                errors.append(
+                    f"{node.get('node_id')} references an unknown terminology registry node: {ref.get('record_id')}"
+                )
+    for a in definitions.get("atomic_assertions", []):
+        aids.append(a.get("assertion_id"))
+        if a.get("subject_node_id") not in known or a.get("object_node_id") not in known:
+            errors.append(f"{a.get('assertion_id')} references an unknown node")
+        if a.get("direction") != "directed" or a.get("reversal_policy") not in {
+            "forbidden",
+            "separate-evidence-required",
+        }:
+            errors.append(f"{a.get('assertion_id')} may not synthesize a reverse assertion")
+        if a.get("composition_policy_id") not in policies:
+            errors.append(f"{a.get('assertion_id')} references an unknown composition policy")
+        prefix = (
+            "source_catalog" if ("source_catalog", a.get("artifact_id")) in artifacts else "mapping_expansion_catalog"
+        )
+        if (prefix, a.get("artifact_id")) not in artifacts:
+            errors.append(f"{a.get('assertion_id')} references an unknown artifact")
+        for ref in [
+            *a.get("evidence_refs", []),
+            a.get("artifact_release_ref"),
+            a.get("artifact_integrity_ref"),
+            a.get("artifact_rights_ref"),
+            a.get("payload_policy_ref"),
+        ]:
+            if not isinstance(ref, str) or ":" not in ref:
+                errors.append(f"{a.get('assertion_id')} has an invalid catalog reference")
+                continue
+            base, _, pointer = ref.partition("#/")
+            prefix, record_id = base.split(":", 1)
+            record = reference_records.get((prefix, record_id))
+            if record is None or (pointer and pointer not in record):
+                errors.append(f"{a.get('assertion_id')} has an unresolved catalog reference: {ref}")
+    if len(aids) != len(set(aids)):
         errors.append("assertion IDs must be unique")
-    known_nodes = set(node_ids)
-    known_artifacts = {item["artifact_id"] for item in load_json(EXPANSION)["artifacts"]}
-    known_artifacts |= {item["source_id"] for item in load_json(SOURCE_CATALOG)["mappings"]}
-    for item in definitions.get("atomic_assertions", []):
-        if item.get("subject_node_id") not in known_nodes or item.get("object_node_id") not in known_nodes:
-            errors.append(f"{item.get('assertion_id')} references an unknown node")
-        if item.get("artifact_id") not in known_artifacts:
-            errors.append(f"{item.get('assertion_id')} references an unknown artifact")
-        if item.get("route_class") == "compositional" and item.get("status") == "authorized":
-            errors.append(f"{item.get('assertion_id')} compositional assertion cannot be authorized")
-
-    registry_ids = {item["source_id"] for item in load_json(REGISTRY)["records"]}
-    supplementary_ids = {item["source_id"] for item in load_json(SUPPLEMENTARY)["reviews"]}
-    represented = set(node_ids)
-    normalized_registry = {"snomed-ct" if item == "snomed_ct" else item for item in registry_ids}
-    if not normalized_registry <= represented:
-        errors.append("every registered ontology source must have a canonical node")
-    if not {"hpo", "mondo", "cell-ontology", "nando"} <= represented:
-        errors.append("required anchor and mediator nodes are missing")
-    if not ({"pato"} | (supplementary_ids - {"pato"})) <= represented:
-        errors.append("every supplementary source family must have one canonical node")
-
-    assertions_structurally_routable = all(
-        item.get("subject_node_id") in known_nodes and item.get("object_node_id") in known_nodes
-        for item in definitions.get("atomic_assertions", [])
-    )
-    if assertions_structurally_routable:
-        expected = build_catalog(definitions)
-        if catalog != expected:
-            errors.append("committed mapping route catalog does not match deterministic generation")
+    dispositions = definitions.get("artifact_dispositions", [])
+    dkeys = [(d.get("catalog"), d.get("artifact_id")) for d in dispositions]
+    if set(dkeys) != set(artifacts) or len(dkeys) != len(set(dkeys)):
+        errors.append("artifact dispositions must exactly cover both governed artifact catalogs")
+    for d in dispositions:
+        unknown = set(d.get("assertion_ids", [])) - set(aids)
+        if unknown:
+            errors.append(f"{d.get('artifact_id')} disposition references unknown assertions")
+        cited = {
+            a.get("assertion_id")
+            for a in definitions.get("atomic_assertions", [])
+            if a.get("artifact_id") == d.get("artifact_id")
+        }
+        if d.get("disposition") == "asserted" and set(d.get("assertion_ids", [])) != cited:
+            errors.append(f"{d.get('artifact_id')} asserted disposition must exactly list its assertions")
+    structurally_safe = not errors
+    if structurally_safe:
+        try:
+            expected = build_catalog(definitions, node_registry or load_json(NODE_REGISTRY))
+            if catalog != expected:
+                errors.append("committed mapping route catalog does not match deterministic generation")
+        except (KeyError, TypeError, ValueError) as exc:
+            errors.append(f"route generation rejected invalid definitions: {type(exc).__name__}")
     routes = catalog.get("routes", [])
     if len(routes) != len(nodes) ** 2:
         errors.append("catalog must contain exactly N squared ordered routes")
-    keys = [(item.get("source_node_id"), item.get("target_node_id")) for item in routes]
-    if len(keys) != len(set(keys)):
+    pairs = [(r.get("source_node_id"), r.get("target_node_id")) for r in routes]
+    if len(pairs) != len(set(pairs)):
         errors.append("ordered route pairs must be unique")
-    assertions = {item["assertion_id"]: item for item in catalog.get("assertions", [])}
-    for route in routes:
-        path = route.get("path_node_ids", [])
-        edge_ids = route.get("assertion_ids", [])
-        if edge_ids:
-            if len(path) != len(edge_ids) + 1:
-                errors.append(f"{route.get('route_id')} has a malformed path")
-                continue
-            for index, edge_id in enumerate(edge_ids):
-                edge = assertions.get(edge_id)
-                if (
-                    edge is None
-                    or edge.get("subject_node_id") != path[index]
-                    or edge.get("object_node_id") != path[index + 1]
-                ):
-                    errors.append(f"{route.get('route_id')} path is not directionally contiguous")
-        if route.get("admissibility") == "authorized":
-            errors.append(f"{route.get('route_id')} illegally authorizes a metadata-only route")
-        if route.get("status") == "unavailable" and not route.get("reason_code"):
-            errors.append(f"{route.get('route_id')} unavailable route lacks a reason")
+    for r in routes:
+        preferred = r.get("preferred_path")
+        if r.get("status") == "unavailable" and not r.get("unavailable_reasons"):
+            errors.append(f"{r.get('route_id')} unavailable route lacks structured reasons")
+        for path in ([preferred] if preferred else []) + r.get("alternative_paths", []):
+            if path.get("hop_count", 0) > 3:
+                errors.append(f"{r.get('route_id')} exceeds maximum hops")
+            if path.get("use_status") not in {"catalogue_only", "candidate_only", "blocked"}:
+                errors.append(f"{r.get('route_id')} illegally authorizes use")
     if catalog.get("admission_boundary", {}).get("payloads_included") is not False:
         errors.append("mapping routes must remain payload-free")
     return sorted(set(errors))
 
 
 def main() -> int:
-    definitions = load_json(DEFINITIONS)
-    catalog = load_json(OUTPUT)
-    errors = validation_errors(definitions, catalog)
+    d = load_json(DEFINITIONS)
+    c = load_json(OUTPUT)
+    r = load_json(NODE_REGISTRY)
+    errors = validation_errors(d, c, r)
     if errors:
-        for error in errors:
-            print(f"ERROR: {error}")
+        for e in errors:
+            print(f"ERROR: {e}")
         return 1
-    if normalized_file_bytes(OUTPUT) != canonical_bytes(build_catalog(definitions)):
+    if normalized_file_bytes(OUTPUT) != canonical_bytes(build_catalog(d, r)):
         print("ERROR: mapping route catalog byte drift detected")
         return 1
-    print(f"Mapping route validation passed: {len(catalog['nodes'])} nodes, {len(catalog['routes'])} ordered pairs")
+    print(f"Mapping route validation passed: {len(c['nodes'])} nodes, {len(c['routes'])} ordered pairs")
     return 0
 
 

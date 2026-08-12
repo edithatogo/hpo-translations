@@ -1,79 +1,1706 @@
 {
-  "schema_version": "mapping-route-definitions-v1",
+  "schema_version": "mapping-route-definitions-v2",
   "generated_at": "2026-08-12T00:00:00Z",
-  "scope": "Metadata-only canonical source-family nodes and atomic, artifact-backed mapping assertions. Edition-specific aliases resolve to their parent family unless a later governed graph introduces edition nodes.",
+  "scope": "Metadata-only canonical source-family nodes, explicit directed assertions, and complete artifact dispositions. National and regional editions are not aliases of international families; edition-specific assertions require terminology-registry-backed nodes.",
   "nodes": [
-    {"node_id":"hpo","name":"Human Phenotype Ontology","aliases":["HP","HPO"],"domain":"phenotype","catalog_references":[{"catalog":"research_validation/source_catalog.json","record_id":"hpo_release"}],"artifact_status":"artifact_documented"},
-    {"node_id":"decipher","name":"DECIPHER","aliases":["DECIPHER"],"domain":"rare-disease","catalog_references":[{"catalog":"ontology_network/source_registry.json","record_id":"decipher"}],"artifact_status":"artifact_documented"},
-    {"node_id":"do","name":"Human Disease Ontology","aliases":["DO","DOID"],"domain":"disease","catalog_references":[{"catalog":"ontology_network/source_registry.json","record_id":"do"}],"artifact_status":"artifact_documented"},
-    {"node_id":"efo","name":"Experimental Factor Ontology","aliases":["EFO"],"domain":"multidomain","catalog_references":[{"catalog":"ontology_network/source_registry.json","record_id":"efo"}],"artifact_status":"artifact_documented"},
-    {"node_id":"fma","name":"Foundational Model of Anatomy","aliases":["FMA","UMLS-UWDA"],"domain":"anatomy","catalog_references":[{"catalog":"ontology_network/source_registry.json","record_id":"fma"}],"artifact_status":"artifact_documented"},
-    {"node_id":"icd10","name":"International Classification of Diseases, Tenth Revision family","aliases":["ICD10","ICD-10","ICD10WHO","ICD10CM","ICD-10-CM","ICD10CA","ICD-10-CA"],"domain":"classification","catalog_references":[{"catalog":"ontology_network/source_registry.json","record_id":"icd10"}],"artifact_status":"artifact_documented"},
-    {"node_id":"icd11","name":"International Classification of Diseases, Eleventh Revision","aliases":["ICD11","ICD-11"],"domain":"classification","catalog_references":[{"catalog":"ontology_network/source_registry.json","record_id":"icd11"}],"artifact_status":"artifact_documented"},
-    {"node_id":"lddb","name":"London Dysmorphology Database","aliases":["LDDB"],"domain":"rare-disease","catalog_references":[{"catalog":"ontology_network/source_registry.json","record_id":"lddb"}],"artifact_status":"no_artifact","no_artifact_status":"No governed mapping artifact is documented; keep routes unavailable pending authority, access and licence resolution."},
-    {"node_id":"loinc","name":"LOINC","aliases":["LOINC"],"domain":"measurement","catalog_references":[{"catalog":"ontology_network/source_registry.json","record_id":"loinc"}],"artifact_status":"artifact_documented"},
-    {"node_id":"meddra","name":"Medical Dictionary for Regulatory Activities","aliases":["MedDRA","MEDDRA"],"domain":"adverse-event","catalog_references":[{"catalog":"ontology_network/source_registry.json","record_id":"meddra"}],"artifact_status":"artifact_documented"},
-    {"node_id":"mesh","name":"Medical Subject Headings","aliases":["MESH","MeSH"],"domain":"clinical-terminology","catalog_references":[{"catalog":"ontology_network/source_registry.json","record_id":"mesh"}],"artifact_status":"artifact_documented"},
-    {"node_id":"mp","name":"Mammalian Phenotype Ontology","aliases":["MP"],"domain":"phenotype","catalog_references":[{"catalog":"ontology_network/source_registry.json","record_id":"mp"}],"artifact_status":"artifact_documented"},
-    {"node_id":"omim","name":"Online Mendelian Inheritance in Man","aliases":["OMIM"],"domain":"rare-disease","catalog_references":[{"catalog":"ontology_network/source_registry.json","record_id":"omim"}],"artifact_status":"artifact_documented"},
-    {"node_id":"oncotree","name":"OncoTree","aliases":["ONCOTREE","OncoTree"],"domain":"oncology","catalog_references":[{"catalog":"ontology_network/source_registry.json","record_id":"oncotree"}],"artifact_status":"artifact_documented"},
-    {"node_id":"orphanet","name":"Orphanet nomenclature and Orphadata","aliases":["ORPHA","ORPHANET","Orphanet","Orphadata"],"domain":"rare-disease","catalog_references":[{"catalog":"ontology_network/source_registry.json","record_id":"orphanet"}],"artifact_status":"artifact_documented"},
-    {"node_id":"pato","name":"Phenotype And Trait Ontology","aliases":["PATO"],"domain":"quality","catalog_references":[{"catalog":"ontology_network/source_registry.json","record_id":"pato"},{"catalog":"research_validation/supplementary_source_access_reviews.json","record_id":"pato"}],"artifact_status":"artifact_documented"},
-    {"node_id":"snomed-ct","name":"SNOMED CT family","aliases":["SCTID","SNOMEDCT","SNOMED CT","SCTID-CA","SNOMED CT CA"],"domain":"clinical-terminology","catalog_references":[{"catalog":"ontology_network/source_registry.json","record_id":"snomed_ct"}],"artifact_status":"artifact_documented"},
-    {"node_id":"umls","name":"Unified Medical Language System Metathesaurus","aliases":["UMLS","UMLS-CUI"],"domain":"multidomain","catalog_references":[{"catalog":"ontology_network/source_registry.json","record_id":"umls"}],"artifact_status":"artifact_documented"},
-    {"node_id":"upheno","name":"Unified Phenotype Ontology","aliases":["UPHENO","uPheno"],"domain":"phenotype","catalog_references":[{"catalog":"ontology_network/source_registry.json","record_id":"upheno"}],"artifact_status":"artifact_documented"},
-    {"node_id":"decs","name":"Health Sciences Descriptors","aliases":["DeCS","DECS","DeCS/MeSH"],"domain":"clinical-terminology","catalog_references":[{"catalog":"research_validation/supplementary_source_access_reviews.json","record_id":"decs"}],"artifact_status":"no_artifact","no_artifact_status":"No governed mapping artifact is documented; DeCS payload and DeCS-to-MeSH use remain permission and version evidence gated."},
-    {"node_id":"mondo","name":"Mondo Disease Ontology","aliases":["MONDO"],"domain":"disease","catalog_references":[{"catalog":"research_validation/supplementary_source_access_reviews.json","record_id":"mondo"}],"artifact_status":"artifact_documented"},
-    {"node_id":"pro-ctcae","name":"Patient-Reported Outcomes version of the Common Terminology Criteria for Adverse Events","aliases":["PRO-CTCAE","PRO_CTCAE"],"domain":"adverse-event","catalog_references":[{"catalog":"research_validation/supplementary_source_access_reviews.json","record_id":"pro-ctcae"}],"artifact_status":"no_artifact","no_artifact_status":"No governed mapping artifact is documented; questionnaire and terminology use remain terms and instrument-governance gated."},
-    {"node_id":"who-icf","name":"WHO International Classification of Functioning, Disability and Health","aliases":["ICF","WHO-ICF"],"domain":"classification","catalog_references":[{"catalog":"research_validation/supplementary_source_access_reviews.json","record_id":"who-icf"}],"artifact_status":"no_artifact","no_artifact_status":"No governed mapping artifact is documented; classification payload use remains WHO licence gated."},
-    {"node_id":"ncit","name":"NCI Thesaurus","aliases":["NCIT","NCIt"],"domain":"oncology","catalog_references":[{"catalog":"research_validation/supplementary_source_access_reviews.json","record_id":"ncit"}],"artifact_status":"artifact_documented"},
-    {"node_id":"radlex","name":"RadLex","aliases":["RADLEX","RadLex"],"domain":"clinical-terminology","catalog_references":[{"catalog":"research_validation/supplementary_source_access_reviews.json","record_id":"radlex"}],"artifact_status":"no_artifact","no_artifact_status":"No governed mapping artifact is documented; references in source discovery do not establish a route."},
-    {"node_id":"uberon","name":"Uberon multi-species anatomy ontology","aliases":["UBERON"],"domain":"anatomy","catalog_references":[{"catalog":"research_validation/supplementary_source_access_reviews.json","record_id":"uberon"}],"artifact_status":"artifact_documented"},
-    {"node_id":"cell-ontology","name":"Cell Ontology","aliases":["CL","Cell Ontology"],"domain":"cell","catalog_references":[{"catalog":"research_validation/supplementary_source_access_reviews.json","record_id":"cell-ontology"}],"artifact_status":"artifact_documented"},
-    {"node_id":"nando","name":"Nanbyo Disease Ontology","aliases":["NANDO"],"domain":"rare-disease","catalog_references":[{"catalog":"research_validation/supplementary_source_access_reviews.json","record_id":"nando"}],"artifact_status":"artifact_documented"}
+    {
+      "node_id": "hpo",
+      "name": "Human Phenotype Ontology",
+      "aliases": [
+        "HP",
+        "HPO"
+      ],
+      "domain": "phenotype",
+      "catalog_references": [
+        {
+          "catalog": "research_validation/source_catalog.json",
+          "record_id": "hpo_release"
+        }
+      ],
+      "artifact_status": "artifact_documented"
+    },
+    {
+      "node_id": "decipher",
+      "name": "DECIPHER",
+      "aliases": [
+        "DECIPHER"
+      ],
+      "domain": "rare-disease",
+      "catalog_references": [
+        {
+          "catalog": "ontology_network/source_registry.json",
+          "record_id": "decipher"
+        }
+      ],
+      "artifact_status": "artifact_documented"
+    },
+    {
+      "node_id": "do",
+      "name": "Human Disease Ontology",
+      "aliases": [
+        "DO",
+        "DOID"
+      ],
+      "domain": "disease",
+      "catalog_references": [
+        {
+          "catalog": "ontology_network/source_registry.json",
+          "record_id": "do"
+        }
+      ],
+      "artifact_status": "artifact_documented"
+    },
+    {
+      "node_id": "efo",
+      "name": "Experimental Factor Ontology",
+      "aliases": [
+        "EFO"
+      ],
+      "domain": "multidomain",
+      "catalog_references": [
+        {
+          "catalog": "ontology_network/source_registry.json",
+          "record_id": "efo"
+        }
+      ],
+      "artifact_status": "artifact_documented"
+    },
+    {
+      "node_id": "fma",
+      "name": "Foundational Model of Anatomy",
+      "aliases": [
+        "FMA",
+        "UMLS-UWDA"
+      ],
+      "domain": "anatomy",
+      "catalog_references": [
+        {
+          "catalog": "ontology_network/source_registry.json",
+          "record_id": "fma"
+        }
+      ],
+      "artifact_status": "artifact_documented"
+    },
+    {
+      "node_id": "icd10",
+      "name": "International Classification of Diseases, Tenth Revision family",
+      "aliases": [
+        "ICD10",
+        "ICD-10"
+      ],
+      "domain": "classification",
+      "catalog_references": [
+        {
+          "catalog": "ontology_network/source_registry.json",
+          "record_id": "icd10"
+        }
+      ],
+      "artifact_status": "artifact_documented"
+    },
+    {
+      "node_id": "icd11",
+      "name": "International Classification of Diseases, Eleventh Revision",
+      "aliases": [
+        "ICD11",
+        "ICD-11"
+      ],
+      "domain": "classification",
+      "catalog_references": [
+        {
+          "catalog": "ontology_network/source_registry.json",
+          "record_id": "icd11"
+        }
+      ],
+      "artifact_status": "artifact_documented"
+    },
+    {
+      "node_id": "lddb",
+      "name": "London Dysmorphology Database",
+      "aliases": [
+        "LDDB"
+      ],
+      "domain": "rare-disease",
+      "catalog_references": [
+        {
+          "catalog": "ontology_network/source_registry.json",
+          "record_id": "lddb"
+        }
+      ],
+      "artifact_status": "no_artifact",
+      "no_artifact_status": "No governed mapping artifact is documented; keep routes unavailable pending authority, access and licence resolution."
+    },
+    {
+      "node_id": "loinc",
+      "name": "LOINC",
+      "aliases": [
+        "LOINC"
+      ],
+      "domain": "measurement",
+      "catalog_references": [
+        {
+          "catalog": "ontology_network/source_registry.json",
+          "record_id": "loinc"
+        }
+      ],
+      "artifact_status": "artifact_documented"
+    },
+    {
+      "node_id": "meddra",
+      "name": "Medical Dictionary for Regulatory Activities",
+      "aliases": [
+        "MedDRA",
+        "MEDDRA"
+      ],
+      "domain": "adverse-event",
+      "catalog_references": [
+        {
+          "catalog": "ontology_network/source_registry.json",
+          "record_id": "meddra"
+        }
+      ],
+      "artifact_status": "artifact_documented"
+    },
+    {
+      "node_id": "mesh",
+      "name": "Medical Subject Headings",
+      "aliases": [
+        "MESH",
+        "MeSH"
+      ],
+      "domain": "clinical-terminology",
+      "catalog_references": [
+        {
+          "catalog": "ontology_network/source_registry.json",
+          "record_id": "mesh"
+        }
+      ],
+      "artifact_status": "artifact_documented"
+    },
+    {
+      "node_id": "mp",
+      "name": "Mammalian Phenotype Ontology",
+      "aliases": [
+        "MP"
+      ],
+      "domain": "phenotype",
+      "catalog_references": [
+        {
+          "catalog": "ontology_network/source_registry.json",
+          "record_id": "mp"
+        }
+      ],
+      "artifact_status": "artifact_documented"
+    },
+    {
+      "node_id": "omim",
+      "name": "Online Mendelian Inheritance in Man",
+      "aliases": [
+        "OMIM"
+      ],
+      "domain": "rare-disease",
+      "catalog_references": [
+        {
+          "catalog": "ontology_network/source_registry.json",
+          "record_id": "omim"
+        }
+      ],
+      "artifact_status": "artifact_documented"
+    },
+    {
+      "node_id": "oncotree",
+      "name": "OncoTree",
+      "aliases": [
+        "ONCOTREE",
+        "OncoTree"
+      ],
+      "domain": "oncology",
+      "catalog_references": [
+        {
+          "catalog": "ontology_network/source_registry.json",
+          "record_id": "oncotree"
+        }
+      ],
+      "artifact_status": "artifact_documented"
+    },
+    {
+      "node_id": "orphanet",
+      "name": "Orphanet nomenclature and Orphadata",
+      "aliases": [
+        "ORPHA",
+        "ORPHANET",
+        "Orphanet",
+        "Orphadata"
+      ],
+      "domain": "rare-disease",
+      "catalog_references": [
+        {
+          "catalog": "ontology_network/source_registry.json",
+          "record_id": "orphanet"
+        }
+      ],
+      "artifact_status": "artifact_documented"
+    },
+    {
+      "node_id": "pato",
+      "name": "Phenotype And Trait Ontology",
+      "aliases": [
+        "PATO"
+      ],
+      "domain": "quality",
+      "catalog_references": [
+        {
+          "catalog": "ontology_network/source_registry.json",
+          "record_id": "pato"
+        },
+        {
+          "catalog": "research_validation/supplementary_source_access_reviews.json",
+          "record_id": "pato"
+        }
+      ],
+      "artifact_status": "artifact_documented"
+    },
+    {
+      "node_id": "snomed-ct",
+      "name": "SNOMED CT International family",
+      "aliases": [
+        "SCTID",
+        "SNOMEDCT",
+        "SNOMED CT"
+      ],
+      "domain": "clinical-terminology",
+      "catalog_references": [
+        {
+          "catalog": "ontology_network/source_registry.json",
+          "record_id": "snomed_ct"
+        }
+      ],
+      "artifact_status": "artifact_documented"
+    },
+    {
+      "node_id": "umls",
+      "name": "Unified Medical Language System Metathesaurus",
+      "aliases": [
+        "UMLS",
+        "UMLS-CUI"
+      ],
+      "domain": "multidomain",
+      "catalog_references": [
+        {
+          "catalog": "ontology_network/source_registry.json",
+          "record_id": "umls"
+        }
+      ],
+      "artifact_status": "artifact_documented"
+    },
+    {
+      "node_id": "upheno",
+      "name": "Unified Phenotype Ontology",
+      "aliases": [
+        "UPHENO",
+        "uPheno"
+      ],
+      "domain": "phenotype",
+      "catalog_references": [
+        {
+          "catalog": "ontology_network/source_registry.json",
+          "record_id": "upheno"
+        }
+      ],
+      "artifact_status": "artifact_documented"
+    },
+    {
+      "node_id": "decs",
+      "name": "Health Sciences Descriptors",
+      "aliases": [
+        "DeCS",
+        "DECS",
+        "DeCS/MeSH"
+      ],
+      "domain": "clinical-terminology",
+      "catalog_references": [
+        {
+          "catalog": "research_validation/supplementary_source_access_reviews.json",
+          "record_id": "decs"
+        }
+      ],
+      "artifact_status": "no_artifact",
+      "no_artifact_status": "No governed mapping artifact is documented; DeCS payload and DeCS-to-MeSH use remain permission and version evidence gated."
+    },
+    {
+      "node_id": "mondo",
+      "name": "Mondo Disease Ontology",
+      "aliases": [
+        "MONDO"
+      ],
+      "domain": "disease",
+      "catalog_references": [
+        {
+          "catalog": "research_validation/supplementary_source_access_reviews.json",
+          "record_id": "mondo"
+        }
+      ],
+      "artifact_status": "artifact_documented"
+    },
+    {
+      "node_id": "pro-ctcae",
+      "name": "Patient-Reported Outcomes version of the Common Terminology Criteria for Adverse Events",
+      "aliases": [
+        "PRO-CTCAE",
+        "PRO_CTCAE"
+      ],
+      "domain": "adverse-event",
+      "catalog_references": [
+        {
+          "catalog": "research_validation/supplementary_source_access_reviews.json",
+          "record_id": "pro-ctcae"
+        }
+      ],
+      "artifact_status": "no_artifact",
+      "no_artifact_status": "No governed mapping artifact is documented; questionnaire and terminology use remain terms and instrument-governance gated."
+    },
+    {
+      "node_id": "who-icf",
+      "name": "WHO International Classification of Functioning, Disability and Health",
+      "aliases": [
+        "ICF",
+        "WHO-ICF"
+      ],
+      "domain": "classification",
+      "catalog_references": [
+        {
+          "catalog": "research_validation/supplementary_source_access_reviews.json",
+          "record_id": "who-icf"
+        }
+      ],
+      "artifact_status": "no_artifact",
+      "no_artifact_status": "No governed mapping artifact is documented; classification payload use remains WHO licence gated."
+    },
+    {
+      "node_id": "ncit",
+      "name": "NCI Thesaurus",
+      "aliases": [
+        "NCIT",
+        "NCIt"
+      ],
+      "domain": "oncology",
+      "catalog_references": [
+        {
+          "catalog": "research_validation/supplementary_source_access_reviews.json",
+          "record_id": "ncit"
+        }
+      ],
+      "artifact_status": "artifact_documented"
+    },
+    {
+      "node_id": "radlex",
+      "name": "RadLex",
+      "aliases": [
+        "RADLEX",
+        "RadLex"
+      ],
+      "domain": "clinical-terminology",
+      "catalog_references": [
+        {
+          "catalog": "research_validation/supplementary_source_access_reviews.json",
+          "record_id": "radlex"
+        }
+      ],
+      "artifact_status": "no_artifact",
+      "no_artifact_status": "No governed mapping artifact is documented; references in source discovery do not establish a route."
+    },
+    {
+      "node_id": "uberon",
+      "name": "Uberon multi-species anatomy ontology",
+      "aliases": [
+        "UBERON"
+      ],
+      "domain": "anatomy",
+      "catalog_references": [
+        {
+          "catalog": "research_validation/supplementary_source_access_reviews.json",
+          "record_id": "uberon"
+        }
+      ],
+      "artifact_status": "artifact_documented"
+    },
+    {
+      "node_id": "cell-ontology",
+      "name": "Cell Ontology",
+      "aliases": [
+        "CL",
+        "Cell Ontology"
+      ],
+      "domain": "cell",
+      "catalog_references": [
+        {
+          "catalog": "research_validation/supplementary_source_access_reviews.json",
+          "record_id": "cell-ontology"
+        }
+      ],
+      "artifact_status": "artifact_documented"
+    },
+    {
+      "node_id": "nando",
+      "name": "Nanbyo Disease Ontology",
+      "aliases": [
+        "NANDO"
+      ],
+      "domain": "rare-disease",
+      "catalog_references": [
+        {
+          "catalog": "research_validation/supplementary_source_access_reviews.json",
+          "record_id": "nando"
+        }
+      ],
+      "artifact_status": "artifact_documented"
+    },
+    {
+      "node_id": "edition-snomed-canada",
+      "name": "SNOMED CT Canadian Edition",
+      "aliases": [
+        "SCTID-CA",
+        "SNOMED CT CA"
+      ],
+      "domain": "clinical-terminology",
+      "catalog_references": [
+        {
+          "catalog": "research_validation/terminology_node_registry.json",
+          "record_id": "edition-snomed-canada"
+        }
+      ],
+      "artifact_status": "artifact_documented"
+    },
+    {
+      "node_id": "edition-icd10ca-ca-2022",
+      "name": "ICD-10-CA / CIM-10-CA v2022",
+      "aliases": [
+        "ICD10CA",
+        "ICD-10-CA"
+      ],
+      "domain": "classification",
+      "catalog_references": [
+        {
+          "catalog": "research_validation/terminology_node_registry.json",
+          "record_id": "edition-icd10ca-ca-2022"
+        }
+      ],
+      "artifact_status": "artifact_documented"
+    }
+  ],
+  "composition_policies": [
+    {
+      "policy_id": "non-transitive",
+      "transitive": false,
+      "allowed_route_classes": [
+        "curated-crosswalk",
+        "source-xref",
+        "lexical-candidate",
+        "classification-map",
+        "ontology-bridge"
+      ],
+      "max_hops": 1,
+      "description": "The assertion is usable only in its documented direction and cannot be composed transitively without a separately governed rule."
+    },
+    {
+      "policy_id": "same-domain-xref-chain",
+      "transitive": true,
+      "allowed_route_classes": [
+        "curated-crosswalk",
+        "source-xref"
+      ],
+      "max_hops": 3,
+      "description": "Conservative same-domain identifier cross-reference chaining; predicates, editions, lineage and rights remain attached at every hop."
+    },
+    {
+      "policy_id": "compositional-non-transitive",
+      "transitive": false,
+      "allowed_route_classes": [
+        "compositional"
+      ],
+      "max_hops": 1,
+      "description": "A compositional expression is not class equivalence and cannot be used as lexical or transitive crosswalk evidence."
+    }
   ],
   "atomic_assertions": [
-    {"assertion_id":"hpo-snomed","subject_node_id":"hpo","object_node_id":"snomed-ct","artifact_id":"monarch-hpo-snomed","route_class":"curated-crosswalk","direction":"directed","status":"metadata-only-payload-blocked","lineage_group":"monarch-hpo-snomed-manual-map"},
-    {"assertion_id":"mondo-hpo-xref","subject_node_id":"mondo","object_node_id":"hpo","artifact_id":"mondo-hp-xref","route_class":"source-xref","direction":"directed","status":"metadata-only-payload-blocked","lineage_group":"mondo-hp-source-xrefs"},
-    {"assertion_id":"mondo-hpo-lexical","subject_node_id":"mondo","object_node_id":"hpo","artifact_id":"mondo-hp-lexical","route_class":"lexical-candidate","direction":"directed","status":"metadata-only-payload-blocked","lineage_group":"mondo-hp-lexical-pipeline"},
-    {"assertion_id":"ncit-hpo","subject_node_id":"ncit","object_node_id":"hpo","artifact_id":"monarch-ncit-hp","route_class":"lexical-candidate","direction":"directed","status":"metadata-only-rights-review-required","lineage_group":"monarch-ncit-hp-lexical-pipeline"},
-    {"assertion_id":"hpo-upheno","subject_node_id":"hpo","object_node_id":"upheno","artifact_id":"hpo-hp-upheno-sssom","route_class":"compositional","direction":"directed","status":"metadata-only-payload-blocked","lineage_group":"upheno-generated-species-independent"},
-    {"assertion_id":"uberon-fma","subject_node_id":"uberon","object_node_id":"fma","artifact_id":"uberon-bridge-family","route_class":"ontology-bridge","direction":"directed","status":"metadata-only-rights-review-required","lineage_group":"uberon-generated-bridge-family"},
-    {"assertion_id":"uberon-ncit","subject_node_id":"uberon","object_node_id":"ncit","artifact_id":"uberon-bridge-family","route_class":"ontology-bridge","direction":"directed","status":"metadata-only-rights-review-required","lineage_group":"uberon-generated-bridge-family"},
-    {"assertion_id":"uberon-snomed","subject_node_id":"uberon","object_node_id":"snomed-ct","artifact_id":"uberon-bridge-family","route_class":"ontology-bridge","direction":"directed","status":"metadata-only-rights-review-required","lineage_group":"uberon-generated-bridge-family"},
-    {"assertion_id":"cell-fma","subject_node_id":"cell-ontology","object_node_id":"fma","artifact_id":"uberon-bridge-family","route_class":"ontology-bridge","direction":"directed","status":"metadata-only-rights-review-required","lineage_group":"uberon-generated-cl-bridge-family"},
-    {"assertion_id":"cell-ncit","subject_node_id":"cell-ontology","object_node_id":"ncit","artifact_id":"uberon-bridge-family","route_class":"ontology-bridge","direction":"directed","status":"metadata-only-rights-review-required","lineage_group":"uberon-generated-cl-bridge-family"},
-    {"assertion_id":"cell-snomed","subject_node_id":"cell-ontology","object_node_id":"snomed-ct","artifact_id":"uberon-bridge-family","route_class":"ontology-bridge","direction":"directed","status":"metadata-only-rights-review-required","lineage_group":"uberon-generated-cl-bridge-family"},
-    {"assertion_id":"mondo-decipher","subject_node_id":"mondo","object_node_id":"decipher","artifact_id":"mondo-disease-spine","route_class":"source-xref","direction":"directed","status":"metadata-only-payload-blocked","lineage_group":"mondo-aggregate-source-mappings"},
-    {"assertion_id":"mondo-do","subject_node_id":"mondo","object_node_id":"do","artifact_id":"mondo-disease-spine","route_class":"source-xref","direction":"directed","status":"metadata-only-payload-blocked","lineage_group":"mondo-aggregate-source-mappings"},
-    {"assertion_id":"mondo-efo","subject_node_id":"mondo","object_node_id":"efo","artifact_id":"mondo-disease-spine","route_class":"source-xref","direction":"directed","status":"metadata-only-payload-blocked","lineage_group":"mondo-aggregate-source-mappings"},
-    {"assertion_id":"mondo-icd10","subject_node_id":"mondo","object_node_id":"icd10","artifact_id":"mondo-disease-spine","route_class":"source-xref","direction":"directed","status":"metadata-only-payload-blocked","lineage_group":"mondo-aggregate-source-mappings"},
-    {"assertion_id":"mondo-icd11","subject_node_id":"mondo","object_node_id":"icd11","artifact_id":"mondo-disease-spine","route_class":"source-xref","direction":"directed","status":"metadata-only-payload-blocked","lineage_group":"mondo-aggregate-source-mappings"},
-    {"assertion_id":"mondo-meddra","subject_node_id":"mondo","object_node_id":"meddra","artifact_id":"mondo-disease-spine","route_class":"source-xref","direction":"directed","status":"metadata-only-payload-blocked","lineage_group":"mondo-aggregate-source-mappings"},
-    {"assertion_id":"mondo-mesh","subject_node_id":"mondo","object_node_id":"mesh","artifact_id":"mondo-disease-spine","route_class":"source-xref","direction":"directed","status":"metadata-only-payload-blocked","lineage_group":"mondo-aggregate-source-mappings"},
-    {"assertion_id":"mondo-ncit","subject_node_id":"mondo","object_node_id":"ncit","artifact_id":"mondo-disease-spine","route_class":"source-xref","direction":"directed","status":"metadata-only-payload-blocked","lineage_group":"mondo-aggregate-source-mappings"},
-    {"assertion_id":"mondo-omim","subject_node_id":"mondo","object_node_id":"omim","artifact_id":"mondo-disease-spine","route_class":"source-xref","direction":"directed","status":"metadata-only-payload-blocked","lineage_group":"mondo-aggregate-source-mappings"},
-    {"assertion_id":"mondo-orphanet","subject_node_id":"mondo","object_node_id":"orphanet","artifact_id":"mondo-disease-spine","route_class":"source-xref","direction":"directed","status":"metadata-only-payload-blocked","lineage_group":"mondo-aggregate-source-mappings"},
-    {"assertion_id":"mondo-snomed","subject_node_id":"mondo","object_node_id":"snomed-ct","artifact_id":"mondo-disease-spine","route_class":"source-xref","direction":"directed","status":"metadata-only-payload-blocked","lineage_group":"mondo-aggregate-source-mappings"},
-    {"assertion_id":"mondo-oncotree","subject_node_id":"mondo","object_node_id":"oncotree","artifact_id":"mondo-disease-spine","route_class":"source-xref","direction":"directed","status":"metadata-only-payload-blocked","lineage_group":"mondo-aggregate-source-mappings"},
-    {"assertion_id":"orphanet-icd10","subject_node_id":"orphanet","object_node_id":"icd10","artifact_id":"orphadata-alignments","route_class":"curated-crosswalk","direction":"directed","status":"metadata-only-rights-review-required","lineage_group":"orphanet-kb-multilingual-alignments"},
-    {"assertion_id":"orphanet-icd11","subject_node_id":"orphanet","object_node_id":"icd11","artifact_id":"orphadata-alignments","route_class":"curated-crosswalk","direction":"directed","status":"metadata-only-rights-review-required","lineage_group":"orphanet-kb-multilingual-alignments"},
-    {"assertion_id":"orphanet-omim","subject_node_id":"orphanet","object_node_id":"omim","artifact_id":"orphadata-alignments","route_class":"curated-crosswalk","direction":"directed","status":"metadata-only-rights-review-required","lineage_group":"orphanet-kb-multilingual-alignments"},
-    {"assertion_id":"orphanet-umls","subject_node_id":"orphanet","object_node_id":"umls","artifact_id":"orphadata-alignments","route_class":"curated-crosswalk","direction":"directed","status":"metadata-only-rights-review-required","lineage_group":"orphanet-kb-multilingual-alignments"},
-    {"assertion_id":"orphanet-mondo","subject_node_id":"orphanet","object_node_id":"mondo","artifact_id":"orphadata-alignments","route_class":"curated-crosswalk","direction":"directed","status":"metadata-only-rights-review-required","lineage_group":"orphanet-kb-multilingual-alignments"},
-    {"assertion_id":"orphanet-mesh","subject_node_id":"orphanet","object_node_id":"mesh","artifact_id":"orphadata-alignments","route_class":"curated-crosswalk","direction":"directed","status":"metadata-only-rights-review-required","lineage_group":"orphanet-kb-multilingual-alignments"},
-    {"assertion_id":"orphanet-meddra","subject_node_id":"orphanet","object_node_id":"meddra","artifact_id":"orphadata-alignments","route_class":"curated-crosswalk","direction":"directed","status":"metadata-only-rights-review-required","lineage_group":"orphanet-kb-multilingual-alignments"},
-    {"assertion_id":"nando-mondo","subject_node_id":"nando","object_node_id":"mondo","artifact_id":"nando-ontology","route_class":"source-xref","direction":"directed","status":"metadata-only-payload-blocked","lineage_group":"nando-japanese-rare-disease-authority"},
-    {"assertion_id":"nando-orphanet","subject_node_id":"nando","object_node_id":"orphanet","artifact_id":"nando-ontology","route_class":"source-xref","direction":"directed","status":"metadata-only-payload-blocked","lineage_group":"nando-japanese-rare-disease-authority"},
-    {"assertion_id":"loinc-snomed","subject_node_id":"loinc","object_node_id":"snomed-ct","artifact_id":"loinc-ontology","route_class":"ontology-bridge","direction":"directed","status":"metadata-only-access-required","lineage_group":"loinc-snomed-collaborative-ontology"},
-    {"assertion_id":"snomed-icd10","subject_node_id":"snomed-ct","object_node_id":"icd10","artifact_id":"snomed-map-products","route_class":"classification-map","direction":"directed","status":"metadata-only-access-required","lineage_group":"snomed-authoritative-map-products"},
-    {"assertion_id":"snomed-meddra","subject_node_id":"snomed-ct","object_node_id":"meddra","artifact_id":"snomed-map-products","route_class":"classification-map","direction":"directed","status":"metadata-only-access-required","lineage_group":"snomed-authoritative-map-products"},
-    {"assertion_id":"snomed-orphanet","subject_node_id":"snomed-ct","object_node_id":"orphanet","artifact_id":"snomed-map-products","route_class":"classification-map","direction":"directed","status":"metadata-only-access-required","lineage_group":"snomed-authoritative-map-products"},
-    {"assertion_id":"snomed-loinc","subject_node_id":"snomed-ct","object_node_id":"loinc","artifact_id":"snomed-map-products","route_class":"classification-map","direction":"directed","status":"metadata-only-access-required","lineage_group":"snomed-authoritative-map-products"},
-    {"assertion_id":"hpo-mesh","subject_node_id":"hpo","object_node_id":"mesh","artifact_id":"hpo-hp-mesh-sssom","route_class":"curated-crosswalk","direction":"directed","status":"metadata-only-payload-blocked","lineage_group":"medgen-derived-hpo-mappings"},
-    {"assertion_id":"hpo-umls","subject_node_id":"hpo","object_node_id":"umls","artifact_id":"hpo-hp-umls-sssom","route_class":"curated-crosswalk","direction":"directed","status":"metadata-only-payload-blocked","lineage_group":"medgen-derived-hpo-mappings"},
-    {"assertion_id":"cell-uberon","subject_node_id":"cell-ontology","object_node_id":"uberon","artifact_id":"cell-ontology-relations","route_class":"ontology-bridge","direction":"directed","status":"metadata-only-payload-blocked","lineage_group":"cell-ontology-authoritative-release"},
-    {"assertion_id":"hpo-mp","subject_node_id":"hpo","object_node_id":"mp","artifact_id":"hpo-hp-mp-manual","route_class":"curated-crosswalk","direction":"bidirectional-candidate","status":"metadata-only-payload-blocked","lineage_group":"mouse-human-mapping-initiative"}
+    {
+      "assertion_id": "hpo-snomed",
+      "subject_node_id": "hpo",
+      "object_node_id": "snomed-ct",
+      "artifact_id": "monarch-hpo-snomed",
+      "route_class": "curated-crosswalk",
+      "direction": "directed",
+      "status": "metadata-only-payload-blocked",
+      "lineage_group": "monarch-hpo-snomed-manual-map",
+      "predicate": "skos:relatedMatch",
+      "mapping_unit": "class-to-class",
+      "reversal_policy": "forbidden",
+      "composition_policy_id": "non-transitive",
+      "semantic_loss": "possible",
+      "evidence_refs": [
+        "mapping_expansion_catalog:monarch-hpo-snomed"
+      ],
+      "artifact_release_ref": "mapping_expansion_catalog:monarch-hpo-snomed#/release",
+      "artifact_integrity_ref": "mapping_expansion_catalog:monarch-hpo-snomed#/integrity",
+      "artifact_rights_ref": "mapping_expansion_catalog:monarch-hpo-snomed#/license_status",
+      "payload_policy_ref": "mapping_expansion_catalog:monarch-hpo-snomed#/payload_commit_allowed",
+      "independent_evidence_group": "monarch-hpo-snomed-manual-map",
+      "origin_authority": "Monarch Initiative and SNOMED International",
+      "derivation": [
+        "mapping_expansion_catalog:monarch-hpo-snomed",
+        "explicit directed assertion; no inverse inferred"
+      ]
+    },
+    {
+      "assertion_id": "mondo-hpo-xref",
+      "subject_node_id": "mondo",
+      "object_node_id": "hpo",
+      "artifact_id": "mondo-hp-xref",
+      "route_class": "source-xref",
+      "direction": "directed",
+      "status": "metadata-only-payload-blocked",
+      "lineage_group": "mondo-hp-source-xrefs",
+      "predicate": "oboInOwl:hasDbXref",
+      "mapping_unit": "class-to-class",
+      "reversal_policy": "forbidden",
+      "composition_policy_id": "same-domain-xref-chain",
+      "semantic_loss": "unknown",
+      "evidence_refs": [
+        "mapping_expansion_catalog:mondo-hp-xref"
+      ],
+      "artifact_release_ref": "mapping_expansion_catalog:mondo-hp-xref#/release",
+      "artifact_integrity_ref": "mapping_expansion_catalog:mondo-hp-xref#/integrity",
+      "artifact_rights_ref": "mapping_expansion_catalog:mondo-hp-xref#/license_status",
+      "payload_policy_ref": "mapping_expansion_catalog:mondo-hp-xref#/payload_commit_allowed",
+      "independent_evidence_group": "mondo-hp-source-xrefs",
+      "origin_authority": "Monarch Initiative",
+      "derivation": [
+        "mapping_expansion_catalog:mondo-hp-xref",
+        "explicit directed assertion; no inverse inferred"
+      ]
+    },
+    {
+      "assertion_id": "mondo-hpo-lexical",
+      "subject_node_id": "mondo",
+      "object_node_id": "hpo",
+      "artifact_id": "mondo-hp-lexical",
+      "route_class": "lexical-candidate",
+      "direction": "directed",
+      "status": "metadata-only-payload-blocked",
+      "lineage_group": "mondo-hp-lexical-pipeline",
+      "predicate": "skos:closeMatch",
+      "mapping_unit": "class-to-class",
+      "reversal_policy": "forbidden",
+      "composition_policy_id": "non-transitive",
+      "semantic_loss": "possible",
+      "evidence_refs": [
+        "mapping_expansion_catalog:mondo-hp-lexical"
+      ],
+      "artifact_release_ref": "mapping_expansion_catalog:mondo-hp-lexical#/release",
+      "artifact_integrity_ref": "mapping_expansion_catalog:mondo-hp-lexical#/integrity",
+      "artifact_rights_ref": "mapping_expansion_catalog:mondo-hp-lexical#/license_status",
+      "payload_policy_ref": "mapping_expansion_catalog:mondo-hp-lexical#/payload_commit_allowed",
+      "independent_evidence_group": "mondo-hp-lexical-pipeline",
+      "origin_authority": "Monarch Initiative",
+      "derivation": [
+        "mapping_expansion_catalog:mondo-hp-lexical",
+        "explicit directed assertion; no inverse inferred"
+      ]
+    },
+    {
+      "assertion_id": "ncit-hpo",
+      "subject_node_id": "ncit",
+      "object_node_id": "hpo",
+      "artifact_id": "monarch-ncit-hp",
+      "route_class": "lexical-candidate",
+      "direction": "directed",
+      "status": "metadata-only-rights-review-required",
+      "lineage_group": "monarch-ncit-hp-lexical-pipeline",
+      "predicate": "skos:closeMatch",
+      "mapping_unit": "class-to-class",
+      "reversal_policy": "forbidden",
+      "composition_policy_id": "non-transitive",
+      "semantic_loss": "possible",
+      "evidence_refs": [
+        "mapping_expansion_catalog:monarch-ncit-hp"
+      ],
+      "artifact_release_ref": "mapping_expansion_catalog:monarch-ncit-hp#/release",
+      "artifact_integrity_ref": "mapping_expansion_catalog:monarch-ncit-hp#/integrity",
+      "artifact_rights_ref": "mapping_expansion_catalog:monarch-ncit-hp#/license_status",
+      "payload_policy_ref": "mapping_expansion_catalog:monarch-ncit-hp#/payload_commit_allowed",
+      "independent_evidence_group": "monarch-ncit-hp-lexical-pipeline",
+      "origin_authority": "Monarch Initiative",
+      "derivation": [
+        "mapping_expansion_catalog:monarch-ncit-hp",
+        "explicit directed assertion; no inverse inferred"
+      ]
+    },
+    {
+      "assertion_id": "hpo-upheno",
+      "subject_node_id": "hpo",
+      "object_node_id": "upheno",
+      "artifact_id": "hpo-hp-upheno-sssom",
+      "route_class": "compositional",
+      "direction": "directed",
+      "status": "metadata-only-payload-blocked",
+      "lineage_group": "upheno-generated-species-independent",
+      "predicate": "sssom:compositionalMapping",
+      "mapping_unit": "compositional-expression",
+      "reversal_policy": "forbidden",
+      "composition_policy_id": "compositional-non-transitive",
+      "semantic_loss": "expected",
+      "evidence_refs": [
+        "source_catalog:hpo-hp-upheno-sssom"
+      ],
+      "artifact_release_ref": "source_catalog:hpo-hp-upheno-sssom#/source_release",
+      "artifact_integrity_ref": "source_catalog:hpo-hp-upheno-sssom#/integrity",
+      "artifact_rights_ref": "source_catalog:hpo-hp-upheno-sssom#/license_status",
+      "payload_policy_ref": "source_catalog:hpo-hp-upheno-sssom#/payload_commit_allowed",
+      "independent_evidence_group": "upheno-generated-species-independent",
+      "origin_authority": "uPheno pipeline via Monarch Initiative",
+      "derivation": [
+        "source_catalog:hpo-hp-upheno-sssom",
+        "explicit directed assertion; no inverse inferred"
+      ]
+    },
+    {
+      "assertion_id": "uberon-fma",
+      "subject_node_id": "uberon",
+      "object_node_id": "fma",
+      "artifact_id": "uberon-bridge-family",
+      "route_class": "ontology-bridge",
+      "direction": "directed",
+      "status": "metadata-only-rights-review-required",
+      "lineage_group": "uberon-generated-bridge-family",
+      "predicate": "skos:relatedMatch",
+      "mapping_unit": "class-to-class",
+      "reversal_policy": "forbidden",
+      "composition_policy_id": "non-transitive",
+      "semantic_loss": "possible",
+      "evidence_refs": [
+        "mapping_expansion_catalog:uberon-bridge-family"
+      ],
+      "artifact_release_ref": "mapping_expansion_catalog:uberon-bridge-family#/release",
+      "artifact_integrity_ref": "mapping_expansion_catalog:uberon-bridge-family#/integrity",
+      "artifact_rights_ref": "mapping_expansion_catalog:uberon-bridge-family#/license_status",
+      "payload_policy_ref": "mapping_expansion_catalog:uberon-bridge-family#/payload_commit_allowed",
+      "independent_evidence_group": "uberon-generated-bridge-family",
+      "origin_authority": "Uberon maintainers",
+      "derivation": [
+        "mapping_expansion_catalog:uberon-bridge-family",
+        "explicit directed assertion; no inverse inferred"
+      ]
+    },
+    {
+      "assertion_id": "uberon-ncit",
+      "subject_node_id": "uberon",
+      "object_node_id": "ncit",
+      "artifact_id": "uberon-bridge-family",
+      "route_class": "ontology-bridge",
+      "direction": "directed",
+      "status": "metadata-only-rights-review-required",
+      "lineage_group": "uberon-generated-bridge-family",
+      "predicate": "skos:relatedMatch",
+      "mapping_unit": "class-to-class",
+      "reversal_policy": "forbidden",
+      "composition_policy_id": "non-transitive",
+      "semantic_loss": "possible",
+      "evidence_refs": [
+        "mapping_expansion_catalog:uberon-bridge-family"
+      ],
+      "artifact_release_ref": "mapping_expansion_catalog:uberon-bridge-family#/release",
+      "artifact_integrity_ref": "mapping_expansion_catalog:uberon-bridge-family#/integrity",
+      "artifact_rights_ref": "mapping_expansion_catalog:uberon-bridge-family#/license_status",
+      "payload_policy_ref": "mapping_expansion_catalog:uberon-bridge-family#/payload_commit_allowed",
+      "independent_evidence_group": "uberon-generated-bridge-family",
+      "origin_authority": "Uberon maintainers",
+      "derivation": [
+        "mapping_expansion_catalog:uberon-bridge-family",
+        "explicit directed assertion; no inverse inferred"
+      ]
+    },
+    {
+      "assertion_id": "uberon-snomed",
+      "subject_node_id": "uberon",
+      "object_node_id": "snomed-ct",
+      "artifact_id": "uberon-bridge-family",
+      "route_class": "ontology-bridge",
+      "direction": "directed",
+      "status": "metadata-only-rights-review-required",
+      "lineage_group": "uberon-generated-bridge-family",
+      "predicate": "skos:relatedMatch",
+      "mapping_unit": "class-to-class",
+      "reversal_policy": "forbidden",
+      "composition_policy_id": "non-transitive",
+      "semantic_loss": "possible",
+      "evidence_refs": [
+        "mapping_expansion_catalog:uberon-bridge-family"
+      ],
+      "artifact_release_ref": "mapping_expansion_catalog:uberon-bridge-family#/release",
+      "artifact_integrity_ref": "mapping_expansion_catalog:uberon-bridge-family#/integrity",
+      "artifact_rights_ref": "mapping_expansion_catalog:uberon-bridge-family#/license_status",
+      "payload_policy_ref": "mapping_expansion_catalog:uberon-bridge-family#/payload_commit_allowed",
+      "independent_evidence_group": "uberon-generated-bridge-family",
+      "origin_authority": "Uberon maintainers",
+      "derivation": [
+        "mapping_expansion_catalog:uberon-bridge-family",
+        "explicit directed assertion; no inverse inferred"
+      ]
+    },
+    {
+      "assertion_id": "cell-fma",
+      "subject_node_id": "cell-ontology",
+      "object_node_id": "fma",
+      "artifact_id": "uberon-bridge-family",
+      "route_class": "ontology-bridge",
+      "direction": "directed",
+      "status": "metadata-only-rights-review-required",
+      "lineage_group": "uberon-generated-cl-bridge-family",
+      "predicate": "skos:relatedMatch",
+      "mapping_unit": "class-to-class",
+      "reversal_policy": "forbidden",
+      "composition_policy_id": "non-transitive",
+      "semantic_loss": "possible",
+      "evidence_refs": [
+        "mapping_expansion_catalog:uberon-bridge-family"
+      ],
+      "artifact_release_ref": "mapping_expansion_catalog:uberon-bridge-family#/release",
+      "artifact_integrity_ref": "mapping_expansion_catalog:uberon-bridge-family#/integrity",
+      "artifact_rights_ref": "mapping_expansion_catalog:uberon-bridge-family#/license_status",
+      "payload_policy_ref": "mapping_expansion_catalog:uberon-bridge-family#/payload_commit_allowed",
+      "independent_evidence_group": "uberon-generated-cl-bridge-family",
+      "origin_authority": "Uberon maintainers",
+      "derivation": [
+        "mapping_expansion_catalog:uberon-bridge-family",
+        "explicit directed assertion; no inverse inferred"
+      ]
+    },
+    {
+      "assertion_id": "cell-ncit",
+      "subject_node_id": "cell-ontology",
+      "object_node_id": "ncit",
+      "artifact_id": "uberon-bridge-family",
+      "route_class": "ontology-bridge",
+      "direction": "directed",
+      "status": "metadata-only-rights-review-required",
+      "lineage_group": "uberon-generated-cl-bridge-family",
+      "predicate": "skos:relatedMatch",
+      "mapping_unit": "class-to-class",
+      "reversal_policy": "forbidden",
+      "composition_policy_id": "non-transitive",
+      "semantic_loss": "possible",
+      "evidence_refs": [
+        "mapping_expansion_catalog:uberon-bridge-family"
+      ],
+      "artifact_release_ref": "mapping_expansion_catalog:uberon-bridge-family#/release",
+      "artifact_integrity_ref": "mapping_expansion_catalog:uberon-bridge-family#/integrity",
+      "artifact_rights_ref": "mapping_expansion_catalog:uberon-bridge-family#/license_status",
+      "payload_policy_ref": "mapping_expansion_catalog:uberon-bridge-family#/payload_commit_allowed",
+      "independent_evidence_group": "uberon-generated-cl-bridge-family",
+      "origin_authority": "Uberon maintainers",
+      "derivation": [
+        "mapping_expansion_catalog:uberon-bridge-family",
+        "explicit directed assertion; no inverse inferred"
+      ]
+    },
+    {
+      "assertion_id": "cell-snomed",
+      "subject_node_id": "cell-ontology",
+      "object_node_id": "snomed-ct",
+      "artifact_id": "uberon-bridge-family",
+      "route_class": "ontology-bridge",
+      "direction": "directed",
+      "status": "metadata-only-rights-review-required",
+      "lineage_group": "uberon-generated-cl-bridge-family",
+      "predicate": "skos:relatedMatch",
+      "mapping_unit": "class-to-class",
+      "reversal_policy": "forbidden",
+      "composition_policy_id": "non-transitive",
+      "semantic_loss": "possible",
+      "evidence_refs": [
+        "mapping_expansion_catalog:uberon-bridge-family"
+      ],
+      "artifact_release_ref": "mapping_expansion_catalog:uberon-bridge-family#/release",
+      "artifact_integrity_ref": "mapping_expansion_catalog:uberon-bridge-family#/integrity",
+      "artifact_rights_ref": "mapping_expansion_catalog:uberon-bridge-family#/license_status",
+      "payload_policy_ref": "mapping_expansion_catalog:uberon-bridge-family#/payload_commit_allowed",
+      "independent_evidence_group": "uberon-generated-cl-bridge-family",
+      "origin_authority": "Uberon maintainers",
+      "derivation": [
+        "mapping_expansion_catalog:uberon-bridge-family",
+        "explicit directed assertion; no inverse inferred"
+      ]
+    },
+    {
+      "assertion_id": "mondo-decipher",
+      "subject_node_id": "mondo",
+      "object_node_id": "decipher",
+      "artifact_id": "mondo-disease-spine",
+      "route_class": "source-xref",
+      "direction": "directed",
+      "status": "metadata-only-payload-blocked",
+      "lineage_group": "mondo-aggregate-source-mappings",
+      "predicate": "oboInOwl:hasDbXref",
+      "mapping_unit": "class-to-class",
+      "reversal_policy": "forbidden",
+      "composition_policy_id": "same-domain-xref-chain",
+      "semantic_loss": "unknown",
+      "evidence_refs": [
+        "mapping_expansion_catalog:mondo-disease-spine"
+      ],
+      "artifact_release_ref": "mapping_expansion_catalog:mondo-disease-spine#/release",
+      "artifact_integrity_ref": "mapping_expansion_catalog:mondo-disease-spine#/integrity",
+      "artifact_rights_ref": "mapping_expansion_catalog:mondo-disease-spine#/license_status",
+      "payload_policy_ref": "mapping_expansion_catalog:mondo-disease-spine#/payload_commit_allowed",
+      "independent_evidence_group": "mondo-aggregate-source-mappings",
+      "origin_authority": "Mondo maintainers",
+      "derivation": [
+        "mapping_expansion_catalog:mondo-disease-spine",
+        "explicit directed assertion; no inverse inferred"
+      ]
+    },
+    {
+      "assertion_id": "mondo-do",
+      "subject_node_id": "mondo",
+      "object_node_id": "do",
+      "artifact_id": "mondo-disease-spine",
+      "route_class": "source-xref",
+      "direction": "directed",
+      "status": "metadata-only-payload-blocked",
+      "lineage_group": "mondo-aggregate-source-mappings",
+      "predicate": "oboInOwl:hasDbXref",
+      "mapping_unit": "class-to-class",
+      "reversal_policy": "forbidden",
+      "composition_policy_id": "same-domain-xref-chain",
+      "semantic_loss": "unknown",
+      "evidence_refs": [
+        "mapping_expansion_catalog:mondo-disease-spine"
+      ],
+      "artifact_release_ref": "mapping_expansion_catalog:mondo-disease-spine#/release",
+      "artifact_integrity_ref": "mapping_expansion_catalog:mondo-disease-spine#/integrity",
+      "artifact_rights_ref": "mapping_expansion_catalog:mondo-disease-spine#/license_status",
+      "payload_policy_ref": "mapping_expansion_catalog:mondo-disease-spine#/payload_commit_allowed",
+      "independent_evidence_group": "mondo-aggregate-source-mappings",
+      "origin_authority": "Mondo maintainers",
+      "derivation": [
+        "mapping_expansion_catalog:mondo-disease-spine",
+        "explicit directed assertion; no inverse inferred"
+      ]
+    },
+    {
+      "assertion_id": "mondo-efo",
+      "subject_node_id": "mondo",
+      "object_node_id": "efo",
+      "artifact_id": "mondo-disease-spine",
+      "route_class": "source-xref",
+      "direction": "directed",
+      "status": "metadata-only-payload-blocked",
+      "lineage_group": "mondo-aggregate-source-mappings",
+      "predicate": "oboInOwl:hasDbXref",
+      "mapping_unit": "class-to-class",
+      "reversal_policy": "forbidden",
+      "composition_policy_id": "same-domain-xref-chain",
+      "semantic_loss": "unknown",
+      "evidence_refs": [
+        "mapping_expansion_catalog:mondo-disease-spine"
+      ],
+      "artifact_release_ref": "mapping_expansion_catalog:mondo-disease-spine#/release",
+      "artifact_integrity_ref": "mapping_expansion_catalog:mondo-disease-spine#/integrity",
+      "artifact_rights_ref": "mapping_expansion_catalog:mondo-disease-spine#/license_status",
+      "payload_policy_ref": "mapping_expansion_catalog:mondo-disease-spine#/payload_commit_allowed",
+      "independent_evidence_group": "mondo-aggregate-source-mappings",
+      "origin_authority": "Mondo maintainers",
+      "derivation": [
+        "mapping_expansion_catalog:mondo-disease-spine",
+        "explicit directed assertion; no inverse inferred"
+      ]
+    },
+    {
+      "assertion_id": "mondo-icd10",
+      "subject_node_id": "mondo",
+      "object_node_id": "icd10",
+      "artifact_id": "mondo-disease-spine",
+      "route_class": "source-xref",
+      "direction": "directed",
+      "status": "metadata-only-payload-blocked",
+      "lineage_group": "mondo-aggregate-source-mappings",
+      "predicate": "oboInOwl:hasDbXref",
+      "mapping_unit": "class-to-class",
+      "reversal_policy": "forbidden",
+      "composition_policy_id": "same-domain-xref-chain",
+      "semantic_loss": "unknown",
+      "evidence_refs": [
+        "mapping_expansion_catalog:mondo-disease-spine"
+      ],
+      "artifact_release_ref": "mapping_expansion_catalog:mondo-disease-spine#/release",
+      "artifact_integrity_ref": "mapping_expansion_catalog:mondo-disease-spine#/integrity",
+      "artifact_rights_ref": "mapping_expansion_catalog:mondo-disease-spine#/license_status",
+      "payload_policy_ref": "mapping_expansion_catalog:mondo-disease-spine#/payload_commit_allowed",
+      "independent_evidence_group": "mondo-aggregate-source-mappings",
+      "origin_authority": "Mondo maintainers",
+      "derivation": [
+        "mapping_expansion_catalog:mondo-disease-spine",
+        "explicit directed assertion; no inverse inferred"
+      ]
+    },
+    {
+      "assertion_id": "mondo-icd11",
+      "subject_node_id": "mondo",
+      "object_node_id": "icd11",
+      "artifact_id": "mondo-disease-spine",
+      "route_class": "source-xref",
+      "direction": "directed",
+      "status": "metadata-only-payload-blocked",
+      "lineage_group": "mondo-aggregate-source-mappings",
+      "predicate": "oboInOwl:hasDbXref",
+      "mapping_unit": "class-to-class",
+      "reversal_policy": "forbidden",
+      "composition_policy_id": "same-domain-xref-chain",
+      "semantic_loss": "unknown",
+      "evidence_refs": [
+        "mapping_expansion_catalog:mondo-disease-spine"
+      ],
+      "artifact_release_ref": "mapping_expansion_catalog:mondo-disease-spine#/release",
+      "artifact_integrity_ref": "mapping_expansion_catalog:mondo-disease-spine#/integrity",
+      "artifact_rights_ref": "mapping_expansion_catalog:mondo-disease-spine#/license_status",
+      "payload_policy_ref": "mapping_expansion_catalog:mondo-disease-spine#/payload_commit_allowed",
+      "independent_evidence_group": "mondo-aggregate-source-mappings",
+      "origin_authority": "Mondo maintainers",
+      "derivation": [
+        "mapping_expansion_catalog:mondo-disease-spine",
+        "explicit directed assertion; no inverse inferred"
+      ]
+    },
+    {
+      "assertion_id": "mondo-meddra",
+      "subject_node_id": "mondo",
+      "object_node_id": "meddra",
+      "artifact_id": "mondo-disease-spine",
+      "route_class": "source-xref",
+      "direction": "directed",
+      "status": "metadata-only-payload-blocked",
+      "lineage_group": "mondo-aggregate-source-mappings",
+      "predicate": "oboInOwl:hasDbXref",
+      "mapping_unit": "class-to-class",
+      "reversal_policy": "forbidden",
+      "composition_policy_id": "same-domain-xref-chain",
+      "semantic_loss": "unknown",
+      "evidence_refs": [
+        "mapping_expansion_catalog:mondo-disease-spine"
+      ],
+      "artifact_release_ref": "mapping_expansion_catalog:mondo-disease-spine#/release",
+      "artifact_integrity_ref": "mapping_expansion_catalog:mondo-disease-spine#/integrity",
+      "artifact_rights_ref": "mapping_expansion_catalog:mondo-disease-spine#/license_status",
+      "payload_policy_ref": "mapping_expansion_catalog:mondo-disease-spine#/payload_commit_allowed",
+      "independent_evidence_group": "mondo-aggregate-source-mappings",
+      "origin_authority": "Mondo maintainers",
+      "derivation": [
+        "mapping_expansion_catalog:mondo-disease-spine",
+        "explicit directed assertion; no inverse inferred"
+      ]
+    },
+    {
+      "assertion_id": "mondo-mesh",
+      "subject_node_id": "mondo",
+      "object_node_id": "mesh",
+      "artifact_id": "mondo-disease-spine",
+      "route_class": "source-xref",
+      "direction": "directed",
+      "status": "metadata-only-payload-blocked",
+      "lineage_group": "mondo-aggregate-source-mappings",
+      "predicate": "oboInOwl:hasDbXref",
+      "mapping_unit": "class-to-class",
+      "reversal_policy": "forbidden",
+      "composition_policy_id": "same-domain-xref-chain",
+      "semantic_loss": "unknown",
+      "evidence_refs": [
+        "mapping_expansion_catalog:mondo-disease-spine"
+      ],
+      "artifact_release_ref": "mapping_expansion_catalog:mondo-disease-spine#/release",
+      "artifact_integrity_ref": "mapping_expansion_catalog:mondo-disease-spine#/integrity",
+      "artifact_rights_ref": "mapping_expansion_catalog:mondo-disease-spine#/license_status",
+      "payload_policy_ref": "mapping_expansion_catalog:mondo-disease-spine#/payload_commit_allowed",
+      "independent_evidence_group": "mondo-aggregate-source-mappings",
+      "origin_authority": "Mondo maintainers",
+      "derivation": [
+        "mapping_expansion_catalog:mondo-disease-spine",
+        "explicit directed assertion; no inverse inferred"
+      ]
+    },
+    {
+      "assertion_id": "mondo-ncit",
+      "subject_node_id": "mondo",
+      "object_node_id": "ncit",
+      "artifact_id": "mondo-disease-spine",
+      "route_class": "source-xref",
+      "direction": "directed",
+      "status": "metadata-only-payload-blocked",
+      "lineage_group": "mondo-aggregate-source-mappings",
+      "predicate": "oboInOwl:hasDbXref",
+      "mapping_unit": "class-to-class",
+      "reversal_policy": "forbidden",
+      "composition_policy_id": "same-domain-xref-chain",
+      "semantic_loss": "unknown",
+      "evidence_refs": [
+        "mapping_expansion_catalog:mondo-disease-spine"
+      ],
+      "artifact_release_ref": "mapping_expansion_catalog:mondo-disease-spine#/release",
+      "artifact_integrity_ref": "mapping_expansion_catalog:mondo-disease-spine#/integrity",
+      "artifact_rights_ref": "mapping_expansion_catalog:mondo-disease-spine#/license_status",
+      "payload_policy_ref": "mapping_expansion_catalog:mondo-disease-spine#/payload_commit_allowed",
+      "independent_evidence_group": "mondo-aggregate-source-mappings",
+      "origin_authority": "Mondo maintainers",
+      "derivation": [
+        "mapping_expansion_catalog:mondo-disease-spine",
+        "explicit directed assertion; no inverse inferred"
+      ]
+    },
+    {
+      "assertion_id": "mondo-omim",
+      "subject_node_id": "mondo",
+      "object_node_id": "omim",
+      "artifact_id": "mondo-disease-spine",
+      "route_class": "source-xref",
+      "direction": "directed",
+      "status": "metadata-only-payload-blocked",
+      "lineage_group": "mondo-aggregate-source-mappings",
+      "predicate": "oboInOwl:hasDbXref",
+      "mapping_unit": "class-to-class",
+      "reversal_policy": "forbidden",
+      "composition_policy_id": "same-domain-xref-chain",
+      "semantic_loss": "unknown",
+      "evidence_refs": [
+        "mapping_expansion_catalog:mondo-disease-spine"
+      ],
+      "artifact_release_ref": "mapping_expansion_catalog:mondo-disease-spine#/release",
+      "artifact_integrity_ref": "mapping_expansion_catalog:mondo-disease-spine#/integrity",
+      "artifact_rights_ref": "mapping_expansion_catalog:mondo-disease-spine#/license_status",
+      "payload_policy_ref": "mapping_expansion_catalog:mondo-disease-spine#/payload_commit_allowed",
+      "independent_evidence_group": "mondo-aggregate-source-mappings",
+      "origin_authority": "Mondo maintainers",
+      "derivation": [
+        "mapping_expansion_catalog:mondo-disease-spine",
+        "explicit directed assertion; no inverse inferred"
+      ]
+    },
+    {
+      "assertion_id": "mondo-orphanet",
+      "subject_node_id": "mondo",
+      "object_node_id": "orphanet",
+      "artifact_id": "mondo-disease-spine",
+      "route_class": "source-xref",
+      "direction": "directed",
+      "status": "metadata-only-payload-blocked",
+      "lineage_group": "mondo-aggregate-source-mappings",
+      "predicate": "oboInOwl:hasDbXref",
+      "mapping_unit": "class-to-class",
+      "reversal_policy": "forbidden",
+      "composition_policy_id": "same-domain-xref-chain",
+      "semantic_loss": "unknown",
+      "evidence_refs": [
+        "mapping_expansion_catalog:mondo-disease-spine"
+      ],
+      "artifact_release_ref": "mapping_expansion_catalog:mondo-disease-spine#/release",
+      "artifact_integrity_ref": "mapping_expansion_catalog:mondo-disease-spine#/integrity",
+      "artifact_rights_ref": "mapping_expansion_catalog:mondo-disease-spine#/license_status",
+      "payload_policy_ref": "mapping_expansion_catalog:mondo-disease-spine#/payload_commit_allowed",
+      "independent_evidence_group": "mondo-aggregate-source-mappings",
+      "origin_authority": "Mondo maintainers",
+      "derivation": [
+        "mapping_expansion_catalog:mondo-disease-spine",
+        "explicit directed assertion; no inverse inferred"
+      ]
+    },
+    {
+      "assertion_id": "mondo-snomed",
+      "subject_node_id": "mondo",
+      "object_node_id": "snomed-ct",
+      "artifact_id": "mondo-disease-spine",
+      "route_class": "source-xref",
+      "direction": "directed",
+      "status": "metadata-only-payload-blocked",
+      "lineage_group": "mondo-aggregate-source-mappings",
+      "predicate": "oboInOwl:hasDbXref",
+      "mapping_unit": "class-to-class",
+      "reversal_policy": "forbidden",
+      "composition_policy_id": "same-domain-xref-chain",
+      "semantic_loss": "unknown",
+      "evidence_refs": [
+        "mapping_expansion_catalog:mondo-disease-spine"
+      ],
+      "artifact_release_ref": "mapping_expansion_catalog:mondo-disease-spine#/release",
+      "artifact_integrity_ref": "mapping_expansion_catalog:mondo-disease-spine#/integrity",
+      "artifact_rights_ref": "mapping_expansion_catalog:mondo-disease-spine#/license_status",
+      "payload_policy_ref": "mapping_expansion_catalog:mondo-disease-spine#/payload_commit_allowed",
+      "independent_evidence_group": "mondo-aggregate-source-mappings",
+      "origin_authority": "Mondo maintainers",
+      "derivation": [
+        "mapping_expansion_catalog:mondo-disease-spine",
+        "explicit directed assertion; no inverse inferred"
+      ]
+    },
+    {
+      "assertion_id": "mondo-oncotree",
+      "subject_node_id": "mondo",
+      "object_node_id": "oncotree",
+      "artifact_id": "mondo-disease-spine",
+      "route_class": "source-xref",
+      "direction": "directed",
+      "status": "metadata-only-payload-blocked",
+      "lineage_group": "mondo-aggregate-source-mappings",
+      "predicate": "oboInOwl:hasDbXref",
+      "mapping_unit": "class-to-class",
+      "reversal_policy": "forbidden",
+      "composition_policy_id": "same-domain-xref-chain",
+      "semantic_loss": "unknown",
+      "evidence_refs": [
+        "mapping_expansion_catalog:mondo-disease-spine"
+      ],
+      "artifact_release_ref": "mapping_expansion_catalog:mondo-disease-spine#/release",
+      "artifact_integrity_ref": "mapping_expansion_catalog:mondo-disease-spine#/integrity",
+      "artifact_rights_ref": "mapping_expansion_catalog:mondo-disease-spine#/license_status",
+      "payload_policy_ref": "mapping_expansion_catalog:mondo-disease-spine#/payload_commit_allowed",
+      "independent_evidence_group": "mondo-aggregate-source-mappings",
+      "origin_authority": "Mondo maintainers",
+      "derivation": [
+        "mapping_expansion_catalog:mondo-disease-spine",
+        "explicit directed assertion; no inverse inferred"
+      ]
+    },
+    {
+      "assertion_id": "orphanet-icd10",
+      "subject_node_id": "orphanet",
+      "object_node_id": "icd10",
+      "artifact_id": "orphadata-alignments",
+      "route_class": "curated-crosswalk",
+      "direction": "directed",
+      "status": "metadata-only-rights-review-required",
+      "lineage_group": "orphanet-kb-multilingual-alignments",
+      "predicate": "skos:relatedMatch",
+      "mapping_unit": "class-to-class",
+      "reversal_policy": "forbidden",
+      "composition_policy_id": "same-domain-xref-chain",
+      "semantic_loss": "possible",
+      "evidence_refs": [
+        "mapping_expansion_catalog:orphadata-alignments"
+      ],
+      "artifact_release_ref": "mapping_expansion_catalog:orphadata-alignments#/release",
+      "artifact_integrity_ref": "mapping_expansion_catalog:orphadata-alignments#/integrity",
+      "artifact_rights_ref": "mapping_expansion_catalog:orphadata-alignments#/license_status",
+      "payload_policy_ref": "mapping_expansion_catalog:orphadata-alignments#/payload_commit_allowed",
+      "independent_evidence_group": "orphanet-kb-multilingual-alignments",
+      "origin_authority": "Orphanet",
+      "derivation": [
+        "mapping_expansion_catalog:orphadata-alignments",
+        "explicit directed assertion; no inverse inferred"
+      ]
+    },
+    {
+      "assertion_id": "orphanet-icd11",
+      "subject_node_id": "orphanet",
+      "object_node_id": "icd11",
+      "artifact_id": "orphadata-alignments",
+      "route_class": "curated-crosswalk",
+      "direction": "directed",
+      "status": "metadata-only-rights-review-required",
+      "lineage_group": "orphanet-kb-multilingual-alignments",
+      "predicate": "skos:relatedMatch",
+      "mapping_unit": "class-to-class",
+      "reversal_policy": "forbidden",
+      "composition_policy_id": "same-domain-xref-chain",
+      "semantic_loss": "possible",
+      "evidence_refs": [
+        "mapping_expansion_catalog:orphadata-alignments"
+      ],
+      "artifact_release_ref": "mapping_expansion_catalog:orphadata-alignments#/release",
+      "artifact_integrity_ref": "mapping_expansion_catalog:orphadata-alignments#/integrity",
+      "artifact_rights_ref": "mapping_expansion_catalog:orphadata-alignments#/license_status",
+      "payload_policy_ref": "mapping_expansion_catalog:orphadata-alignments#/payload_commit_allowed",
+      "independent_evidence_group": "orphanet-kb-multilingual-alignments",
+      "origin_authority": "Orphanet",
+      "derivation": [
+        "mapping_expansion_catalog:orphadata-alignments",
+        "explicit directed assertion; no inverse inferred"
+      ]
+    },
+    {
+      "assertion_id": "orphanet-omim",
+      "subject_node_id": "orphanet",
+      "object_node_id": "omim",
+      "artifact_id": "orphadata-alignments",
+      "route_class": "curated-crosswalk",
+      "direction": "directed",
+      "status": "metadata-only-rights-review-required",
+      "lineage_group": "orphanet-kb-multilingual-alignments",
+      "predicate": "skos:relatedMatch",
+      "mapping_unit": "class-to-class",
+      "reversal_policy": "forbidden",
+      "composition_policy_id": "same-domain-xref-chain",
+      "semantic_loss": "possible",
+      "evidence_refs": [
+        "mapping_expansion_catalog:orphadata-alignments"
+      ],
+      "artifact_release_ref": "mapping_expansion_catalog:orphadata-alignments#/release",
+      "artifact_integrity_ref": "mapping_expansion_catalog:orphadata-alignments#/integrity",
+      "artifact_rights_ref": "mapping_expansion_catalog:orphadata-alignments#/license_status",
+      "payload_policy_ref": "mapping_expansion_catalog:orphadata-alignments#/payload_commit_allowed",
+      "independent_evidence_group": "orphanet-kb-multilingual-alignments",
+      "origin_authority": "Orphanet",
+      "derivation": [
+        "mapping_expansion_catalog:orphadata-alignments",
+        "explicit directed assertion; no inverse inferred"
+      ]
+    },
+    {
+      "assertion_id": "orphanet-umls",
+      "subject_node_id": "orphanet",
+      "object_node_id": "umls",
+      "artifact_id": "orphadata-alignments",
+      "route_class": "curated-crosswalk",
+      "direction": "directed",
+      "status": "metadata-only-rights-review-required",
+      "lineage_group": "orphanet-kb-multilingual-alignments",
+      "predicate": "skos:relatedMatch",
+      "mapping_unit": "class-to-class",
+      "reversal_policy": "forbidden",
+      "composition_policy_id": "same-domain-xref-chain",
+      "semantic_loss": "possible",
+      "evidence_refs": [
+        "mapping_expansion_catalog:orphadata-alignments"
+      ],
+      "artifact_release_ref": "mapping_expansion_catalog:orphadata-alignments#/release",
+      "artifact_integrity_ref": "mapping_expansion_catalog:orphadata-alignments#/integrity",
+      "artifact_rights_ref": "mapping_expansion_catalog:orphadata-alignments#/license_status",
+      "payload_policy_ref": "mapping_expansion_catalog:orphadata-alignments#/payload_commit_allowed",
+      "independent_evidence_group": "orphanet-kb-multilingual-alignments",
+      "origin_authority": "Orphanet",
+      "derivation": [
+        "mapping_expansion_catalog:orphadata-alignments",
+        "explicit directed assertion; no inverse inferred"
+      ]
+    },
+    {
+      "assertion_id": "orphanet-mondo",
+      "subject_node_id": "orphanet",
+      "object_node_id": "mondo",
+      "artifact_id": "orphadata-alignments",
+      "route_class": "curated-crosswalk",
+      "direction": "directed",
+      "status": "metadata-only-rights-review-required",
+      "lineage_group": "orphanet-kb-multilingual-alignments",
+      "predicate": "skos:relatedMatch",
+      "mapping_unit": "class-to-class",
+      "reversal_policy": "forbidden",
+      "composition_policy_id": "same-domain-xref-chain",
+      "semantic_loss": "possible",
+      "evidence_refs": [
+        "mapping_expansion_catalog:orphadata-alignments"
+      ],
+      "artifact_release_ref": "mapping_expansion_catalog:orphadata-alignments#/release",
+      "artifact_integrity_ref": "mapping_expansion_catalog:orphadata-alignments#/integrity",
+      "artifact_rights_ref": "mapping_expansion_catalog:orphadata-alignments#/license_status",
+      "payload_policy_ref": "mapping_expansion_catalog:orphadata-alignments#/payload_commit_allowed",
+      "independent_evidence_group": "orphanet-kb-multilingual-alignments",
+      "origin_authority": "Orphanet",
+      "derivation": [
+        "mapping_expansion_catalog:orphadata-alignments",
+        "explicit directed assertion; no inverse inferred"
+      ]
+    },
+    {
+      "assertion_id": "orphanet-mesh",
+      "subject_node_id": "orphanet",
+      "object_node_id": "mesh",
+      "artifact_id": "orphadata-alignments",
+      "route_class": "curated-crosswalk",
+      "direction": "directed",
+      "status": "metadata-only-rights-review-required",
+      "lineage_group": "orphanet-kb-multilingual-alignments",
+      "predicate": "skos:relatedMatch",
+      "mapping_unit": "class-to-class",
+      "reversal_policy": "forbidden",
+      "composition_policy_id": "same-domain-xref-chain",
+      "semantic_loss": "possible",
+      "evidence_refs": [
+        "mapping_expansion_catalog:orphadata-alignments"
+      ],
+      "artifact_release_ref": "mapping_expansion_catalog:orphadata-alignments#/release",
+      "artifact_integrity_ref": "mapping_expansion_catalog:orphadata-alignments#/integrity",
+      "artifact_rights_ref": "mapping_expansion_catalog:orphadata-alignments#/license_status",
+      "payload_policy_ref": "mapping_expansion_catalog:orphadata-alignments#/payload_commit_allowed",
+      "independent_evidence_group": "orphanet-kb-multilingual-alignments",
+      "origin_authority": "Orphanet",
+      "derivation": [
+        "mapping_expansion_catalog:orphadata-alignments",
+        "explicit directed assertion; no inverse inferred"
+      ]
+    },
+    {
+      "assertion_id": "orphanet-meddra",
+      "subject_node_id": "orphanet",
+      "object_node_id": "meddra",
+      "artifact_id": "orphadata-alignments",
+      "route_class": "curated-crosswalk",
+      "direction": "directed",
+      "status": "metadata-only-rights-review-required",
+      "lineage_group": "orphanet-kb-multilingual-alignments",
+      "predicate": "skos:relatedMatch",
+      "mapping_unit": "class-to-class",
+      "reversal_policy": "forbidden",
+      "composition_policy_id": "same-domain-xref-chain",
+      "semantic_loss": "possible",
+      "evidence_refs": [
+        "mapping_expansion_catalog:orphadata-alignments"
+      ],
+      "artifact_release_ref": "mapping_expansion_catalog:orphadata-alignments#/release",
+      "artifact_integrity_ref": "mapping_expansion_catalog:orphadata-alignments#/integrity",
+      "artifact_rights_ref": "mapping_expansion_catalog:orphadata-alignments#/license_status",
+      "payload_policy_ref": "mapping_expansion_catalog:orphadata-alignments#/payload_commit_allowed",
+      "independent_evidence_group": "orphanet-kb-multilingual-alignments",
+      "origin_authority": "Orphanet",
+      "derivation": [
+        "mapping_expansion_catalog:orphadata-alignments",
+        "explicit directed assertion; no inverse inferred"
+      ]
+    },
+    {
+      "assertion_id": "nando-mondo",
+      "subject_node_id": "nando",
+      "object_node_id": "mondo",
+      "artifact_id": "nando-ontology",
+      "route_class": "source-xref",
+      "direction": "directed",
+      "status": "metadata-only-payload-blocked",
+      "lineage_group": "nando-japanese-rare-disease-authority",
+      "predicate": "oboInOwl:hasDbXref",
+      "mapping_unit": "class-to-class",
+      "reversal_policy": "forbidden",
+      "composition_policy_id": "same-domain-xref-chain",
+      "semantic_loss": "unknown",
+      "evidence_refs": [
+        "mapping_expansion_catalog:nando-ontology"
+      ],
+      "artifact_release_ref": "mapping_expansion_catalog:nando-ontology#/release",
+      "artifact_integrity_ref": "mapping_expansion_catalog:nando-ontology#/integrity",
+      "artifact_rights_ref": "mapping_expansion_catalog:nando-ontology#/license_status",
+      "payload_policy_ref": "mapping_expansion_catalog:nando-ontology#/payload_commit_allowed",
+      "independent_evidence_group": "nando-japanese-rare-disease-authority",
+      "origin_authority": "DBCLS",
+      "derivation": [
+        "mapping_expansion_catalog:nando-ontology",
+        "explicit directed assertion; no inverse inferred"
+      ]
+    },
+    {
+      "assertion_id": "nando-orphanet",
+      "subject_node_id": "nando",
+      "object_node_id": "orphanet",
+      "artifact_id": "nando-ontology",
+      "route_class": "source-xref",
+      "direction": "directed",
+      "status": "metadata-only-payload-blocked",
+      "lineage_group": "nando-japanese-rare-disease-authority",
+      "predicate": "oboInOwl:hasDbXref",
+      "mapping_unit": "class-to-class",
+      "reversal_policy": "forbidden",
+      "composition_policy_id": "same-domain-xref-chain",
+      "semantic_loss": "unknown",
+      "evidence_refs": [
+        "mapping_expansion_catalog:nando-ontology"
+      ],
+      "artifact_release_ref": "mapping_expansion_catalog:nando-ontology#/release",
+      "artifact_integrity_ref": "mapping_expansion_catalog:nando-ontology#/integrity",
+      "artifact_rights_ref": "mapping_expansion_catalog:nando-ontology#/license_status",
+      "payload_policy_ref": "mapping_expansion_catalog:nando-ontology#/payload_commit_allowed",
+      "independent_evidence_group": "nando-japanese-rare-disease-authority",
+      "origin_authority": "DBCLS",
+      "derivation": [
+        "mapping_expansion_catalog:nando-ontology",
+        "explicit directed assertion; no inverse inferred"
+      ]
+    },
+    {
+      "assertion_id": "loinc-snomed",
+      "subject_node_id": "loinc",
+      "object_node_id": "snomed-ct",
+      "artifact_id": "loinc-ontology",
+      "route_class": "ontology-bridge",
+      "direction": "directed",
+      "status": "metadata-only-access-required",
+      "lineage_group": "loinc-snomed-collaborative-ontology",
+      "predicate": "skos:relatedMatch",
+      "mapping_unit": "class-to-class",
+      "reversal_policy": "forbidden",
+      "composition_policy_id": "non-transitive",
+      "semantic_loss": "possible",
+      "evidence_refs": [
+        "mapping_expansion_catalog:loinc-ontology"
+      ],
+      "artifact_release_ref": "mapping_expansion_catalog:loinc-ontology#/release",
+      "artifact_integrity_ref": "mapping_expansion_catalog:loinc-ontology#/integrity",
+      "artifact_rights_ref": "mapping_expansion_catalog:loinc-ontology#/license_status",
+      "payload_policy_ref": "mapping_expansion_catalog:loinc-ontology#/payload_commit_allowed",
+      "independent_evidence_group": "loinc-snomed-collaborative-ontology",
+      "origin_authority": "Regenstrief Institute and SNOMED International",
+      "derivation": [
+        "mapping_expansion_catalog:loinc-ontology",
+        "explicit directed assertion; no inverse inferred"
+      ]
+    },
+    {
+      "assertion_id": "snomed-icd10",
+      "subject_node_id": "snomed-ct",
+      "object_node_id": "icd10",
+      "artifact_id": "snomed-map-products",
+      "route_class": "classification-map",
+      "direction": "directed",
+      "status": "metadata-only-access-required",
+      "lineage_group": "snomed-authoritative-map-products",
+      "predicate": "sssom:classificationMap",
+      "mapping_unit": "class-to-code",
+      "reversal_policy": "forbidden",
+      "composition_policy_id": "non-transitive",
+      "semantic_loss": "expected",
+      "evidence_refs": [
+        "mapping_expansion_catalog:snomed-map-products"
+      ],
+      "artifact_release_ref": "mapping_expansion_catalog:snomed-map-products#/release",
+      "artifact_integrity_ref": "mapping_expansion_catalog:snomed-map-products#/integrity",
+      "artifact_rights_ref": "mapping_expansion_catalog:snomed-map-products#/license_status",
+      "payload_policy_ref": "mapping_expansion_catalog:snomed-map-products#/payload_commit_allowed",
+      "independent_evidence_group": "snomed-authoritative-map-products",
+      "origin_authority": "SNOMED International and partner authorities",
+      "derivation": [
+        "mapping_expansion_catalog:snomed-map-products",
+        "explicit directed assertion; no inverse inferred"
+      ]
+    },
+    {
+      "assertion_id": "snomed-meddra",
+      "subject_node_id": "snomed-ct",
+      "object_node_id": "meddra",
+      "artifact_id": "snomed-map-products",
+      "route_class": "classification-map",
+      "direction": "directed",
+      "status": "metadata-only-access-required",
+      "lineage_group": "snomed-authoritative-map-products",
+      "predicate": "sssom:classificationMap",
+      "mapping_unit": "class-to-code",
+      "reversal_policy": "forbidden",
+      "composition_policy_id": "non-transitive",
+      "semantic_loss": "expected",
+      "evidence_refs": [
+        "mapping_expansion_catalog:snomed-map-products"
+      ],
+      "artifact_release_ref": "mapping_expansion_catalog:snomed-map-products#/release",
+      "artifact_integrity_ref": "mapping_expansion_catalog:snomed-map-products#/integrity",
+      "artifact_rights_ref": "mapping_expansion_catalog:snomed-map-products#/license_status",
+      "payload_policy_ref": "mapping_expansion_catalog:snomed-map-products#/payload_commit_allowed",
+      "independent_evidence_group": "snomed-authoritative-map-products",
+      "origin_authority": "SNOMED International and partner authorities",
+      "derivation": [
+        "mapping_expansion_catalog:snomed-map-products",
+        "explicit directed assertion; no inverse inferred"
+      ]
+    },
+    {
+      "assertion_id": "snomed-orphanet",
+      "subject_node_id": "snomed-ct",
+      "object_node_id": "orphanet",
+      "artifact_id": "snomed-map-products",
+      "route_class": "classification-map",
+      "direction": "directed",
+      "status": "metadata-only-access-required",
+      "lineage_group": "snomed-authoritative-map-products",
+      "predicate": "sssom:classificationMap",
+      "mapping_unit": "class-to-code",
+      "reversal_policy": "forbidden",
+      "composition_policy_id": "non-transitive",
+      "semantic_loss": "expected",
+      "evidence_refs": [
+        "mapping_expansion_catalog:snomed-map-products"
+      ],
+      "artifact_release_ref": "mapping_expansion_catalog:snomed-map-products#/release",
+      "artifact_integrity_ref": "mapping_expansion_catalog:snomed-map-products#/integrity",
+      "artifact_rights_ref": "mapping_expansion_catalog:snomed-map-products#/license_status",
+      "payload_policy_ref": "mapping_expansion_catalog:snomed-map-products#/payload_commit_allowed",
+      "independent_evidence_group": "snomed-authoritative-map-products",
+      "origin_authority": "SNOMED International and partner authorities",
+      "derivation": [
+        "mapping_expansion_catalog:snomed-map-products",
+        "explicit directed assertion; no inverse inferred"
+      ]
+    },
+    {
+      "assertion_id": "snomed-loinc",
+      "subject_node_id": "snomed-ct",
+      "object_node_id": "loinc",
+      "artifact_id": "snomed-map-products",
+      "route_class": "classification-map",
+      "direction": "directed",
+      "status": "metadata-only-access-required",
+      "lineage_group": "snomed-authoritative-map-products",
+      "predicate": "sssom:classificationMap",
+      "mapping_unit": "class-to-code",
+      "reversal_policy": "forbidden",
+      "composition_policy_id": "non-transitive",
+      "semantic_loss": "expected",
+      "evidence_refs": [
+        "mapping_expansion_catalog:snomed-map-products"
+      ],
+      "artifact_release_ref": "mapping_expansion_catalog:snomed-map-products#/release",
+      "artifact_integrity_ref": "mapping_expansion_catalog:snomed-map-products#/integrity",
+      "artifact_rights_ref": "mapping_expansion_catalog:snomed-map-products#/license_status",
+      "payload_policy_ref": "mapping_expansion_catalog:snomed-map-products#/payload_commit_allowed",
+      "independent_evidence_group": "snomed-authoritative-map-products",
+      "origin_authority": "SNOMED International and partner authorities",
+      "derivation": [
+        "mapping_expansion_catalog:snomed-map-products",
+        "explicit directed assertion; no inverse inferred"
+      ]
+    },
+    {
+      "assertion_id": "hpo-mesh",
+      "subject_node_id": "hpo",
+      "object_node_id": "mesh",
+      "artifact_id": "hpo-hp-mesh-sssom",
+      "route_class": "curated-crosswalk",
+      "direction": "directed",
+      "status": "metadata-only-payload-blocked",
+      "lineage_group": "medgen-derived-hpo-mappings",
+      "predicate": "skos:relatedMatch",
+      "mapping_unit": "class-to-class",
+      "reversal_policy": "forbidden",
+      "composition_policy_id": "non-transitive",
+      "semantic_loss": "possible",
+      "evidence_refs": [
+        "source_catalog:hpo-hp-mesh-sssom"
+      ],
+      "artifact_release_ref": "source_catalog:hpo-hp-mesh-sssom#/source_release",
+      "artifact_integrity_ref": "source_catalog:hpo-hp-mesh-sssom#/integrity",
+      "artifact_rights_ref": "source_catalog:hpo-hp-mesh-sssom#/license_status",
+      "payload_policy_ref": "source_catalog:hpo-hp-mesh-sssom#/payload_commit_allowed",
+      "independent_evidence_group": "medgen-derived-hpo-mappings",
+      "origin_authority": "MedGen via Monarch Initiative",
+      "derivation": [
+        "source_catalog:hpo-hp-mesh-sssom",
+        "explicit directed assertion; no inverse inferred"
+      ]
+    },
+    {
+      "assertion_id": "hpo-umls",
+      "subject_node_id": "hpo",
+      "object_node_id": "umls",
+      "artifact_id": "hpo-hp-umls-sssom",
+      "route_class": "curated-crosswalk",
+      "direction": "directed",
+      "status": "metadata-only-payload-blocked",
+      "lineage_group": "medgen-derived-hpo-mappings",
+      "predicate": "skos:relatedMatch",
+      "mapping_unit": "class-to-class",
+      "reversal_policy": "forbidden",
+      "composition_policy_id": "non-transitive",
+      "semantic_loss": "possible",
+      "evidence_refs": [
+        "source_catalog:hpo-hp-umls-sssom"
+      ],
+      "artifact_release_ref": "source_catalog:hpo-hp-umls-sssom#/source_release",
+      "artifact_integrity_ref": "source_catalog:hpo-hp-umls-sssom#/integrity",
+      "artifact_rights_ref": "source_catalog:hpo-hp-umls-sssom#/license_status",
+      "payload_policy_ref": "source_catalog:hpo-hp-umls-sssom#/payload_commit_allowed",
+      "independent_evidence_group": "medgen-derived-hpo-mappings",
+      "origin_authority": "MedGen via Monarch Initiative",
+      "derivation": [
+        "source_catalog:hpo-hp-umls-sssom",
+        "explicit directed assertion; no inverse inferred"
+      ]
+    },
+    {
+      "assertion_id": "cell-uberon",
+      "subject_node_id": "cell-ontology",
+      "object_node_id": "uberon",
+      "artifact_id": "cell-ontology-relations",
+      "route_class": "ontology-bridge",
+      "direction": "directed",
+      "status": "metadata-only-payload-blocked",
+      "lineage_group": "cell-ontology-authoritative-release",
+      "predicate": "skos:relatedMatch",
+      "mapping_unit": "class-to-class",
+      "reversal_policy": "forbidden",
+      "composition_policy_id": "non-transitive",
+      "semantic_loss": "possible",
+      "evidence_refs": [
+        "mapping_expansion_catalog:cell-ontology-relations"
+      ],
+      "artifact_release_ref": "mapping_expansion_catalog:cell-ontology-relations#/release",
+      "artifact_integrity_ref": "mapping_expansion_catalog:cell-ontology-relations#/integrity",
+      "artifact_rights_ref": "mapping_expansion_catalog:cell-ontology-relations#/license_status",
+      "payload_policy_ref": "mapping_expansion_catalog:cell-ontology-relations#/payload_commit_allowed",
+      "independent_evidence_group": "cell-ontology-authoritative-release",
+      "origin_authority": "Cell Ontology maintainers",
+      "derivation": [
+        "mapping_expansion_catalog:cell-ontology-relations",
+        "explicit directed assertion; no inverse inferred"
+      ]
+    },
+    {
+      "assertion_id": "hpo-mp",
+      "subject_node_id": "hpo",
+      "object_node_id": "mp",
+      "artifact_id": "hpo-hp-mp-manual",
+      "route_class": "curated-crosswalk",
+      "direction": "directed",
+      "status": "metadata-only-payload-blocked",
+      "lineage_group": "mouse-human-mapping-initiative",
+      "predicate": "skos:relatedMatch",
+      "mapping_unit": "class-to-class",
+      "reversal_policy": "separate-evidence-required",
+      "composition_policy_id": "non-transitive",
+      "semantic_loss": "possible",
+      "evidence_refs": [
+        "mapping_expansion_catalog:hpo-hp-mp-manual"
+      ],
+      "artifact_release_ref": "mapping_expansion_catalog:hpo-hp-mp-manual#/release",
+      "artifact_integrity_ref": "mapping_expansion_catalog:hpo-hp-mp-manual#/integrity",
+      "artifact_rights_ref": "mapping_expansion_catalog:hpo-hp-mp-manual#/license_status",
+      "payload_policy_ref": "mapping_expansion_catalog:hpo-hp-mp-manual#/payload_commit_allowed",
+      "independent_evidence_group": "mouse-human-mapping-initiative",
+      "origin_authority": "Mouse-Human Mapping Initiative collaborators",
+      "derivation": [
+        "mapping_expansion_catalog:hpo-hp-mp-manual",
+        "explicit directed assertion; no inverse inferred"
+      ]
+    },
+    {
+      "assertion_id": "snomed-canada-icd10ca-2022",
+      "subject_node_id": "edition-snomed-canada",
+      "object_node_id": "edition-icd10ca-ca-2022",
+      "artifact_id": "snomedctca-icd10ca-map",
+      "route_class": "classification-map",
+      "direction": "directed",
+      "status": "metadata-only-access-required",
+      "lineage_group": "canada-authoritative-snomed-icd-map",
+      "predicate": "sssom:classificationMap",
+      "mapping_unit": "class-to-code",
+      "reversal_policy": "forbidden",
+      "composition_policy_id": "non-transitive",
+      "semantic_loss": "expected",
+      "evidence_refs": [
+        "mapping_expansion_catalog:snomedctca-icd10ca-map",
+        "terminology_node_registry:edition-snomed-canada",
+        "terminology_node_registry:edition-icd10ca-ca-2022"
+      ],
+      "artifact_release_ref": "mapping_expansion_catalog:snomedctca-icd10ca-map#/release",
+      "artifact_integrity_ref": "mapping_expansion_catalog:snomedctca-icd10ca-map#/integrity",
+      "artifact_rights_ref": "mapping_expansion_catalog:snomedctca-icd10ca-map#/license_status",
+      "payload_policy_ref": "mapping_expansion_catalog:snomedctca-icd10ca-map#/payload_commit_allowed",
+      "independent_evidence_group": "canada-authoritative-snomed-icd-map",
+      "origin_authority": "Canada Health Infoway and Canadian Institute for Health Information",
+      "derivation": [
+        "mapping_expansion_catalog:snomedctca-icd10ca-map",
+        "terminology-registry-backed exact edition endpoints",
+        "explicit directed assertion; no inverse inferred"
+      ]
+    }
   ],
   "admission_boundary": {
     "metadata_only": true,
@@ -81,5 +1708,212 @@
     "hyperedge_cliques_forbidden": true,
     "shared_labels_create_edges": false,
     "routes_authorize_payload_use": false
-  }
+  },
+  "artifact_dispositions": [
+    {
+      "artifact_id": "monarch-hpo-snomed",
+      "catalog": "mapping_expansion_catalog",
+      "disposition": "asserted",
+      "reason": "One or more explicit directed assertions cite this governed artifact.",
+      "assertion_ids": [
+        "hpo-snomed"
+      ]
+    },
+    {
+      "artifact_id": "mondo-hp-xref",
+      "catalog": "mapping_expansion_catalog",
+      "disposition": "asserted",
+      "reason": "One or more explicit directed assertions cite this governed artifact.",
+      "assertion_ids": [
+        "mondo-hpo-xref"
+      ]
+    },
+    {
+      "artifact_id": "mondo-hp-lexical",
+      "catalog": "mapping_expansion_catalog",
+      "disposition": "asserted",
+      "reason": "One or more explicit directed assertions cite this governed artifact.",
+      "assertion_ids": [
+        "mondo-hpo-lexical"
+      ]
+    },
+    {
+      "artifact_id": "monarch-ncit-hp",
+      "catalog": "mapping_expansion_catalog",
+      "disposition": "asserted",
+      "reason": "One or more explicit directed assertions cite this governed artifact.",
+      "assertion_ids": [
+        "ncit-hpo"
+      ]
+    },
+    {
+      "artifact_id": "upheno-cross-species",
+      "catalog": "mapping_expansion_catalog",
+      "disposition": "inventory-only",
+      "reason": "Aggregate multi-namespace output is inventoried, but co-membership cannot create a clique; exact directed predicates must be enumerated first.",
+      "assertion_ids": []
+    },
+    {
+      "artifact_id": "uberon-bridge-family",
+      "catalog": "mapping_expansion_catalog",
+      "disposition": "asserted",
+      "reason": "One or more explicit directed assertions cite this governed artifact.",
+      "assertion_ids": [
+        "uberon-fma",
+        "uberon-ncit",
+        "uberon-snomed",
+        "cell-fma",
+        "cell-ncit",
+        "cell-snomed"
+      ]
+    },
+    {
+      "artifact_id": "pato-qudt",
+      "catalog": "mapping_expansion_catalog",
+      "disposition": "inventory-only",
+      "reason": "QUDT QuantityKind is not yet a governed route node and compositional semantics require an explicit non-transitive assertion.",
+      "assertion_ids": []
+    },
+    {
+      "artifact_id": "mondo-disease-spine",
+      "catalog": "mapping_expansion_catalog",
+      "disposition": "asserted",
+      "reason": "One or more explicit directed assertions cite this governed artifact.",
+      "assertion_ids": [
+        "mondo-decipher",
+        "mondo-do",
+        "mondo-efo",
+        "mondo-icd10",
+        "mondo-icd11",
+        "mondo-meddra",
+        "mondo-mesh",
+        "mondo-ncit",
+        "mondo-omim",
+        "mondo-orphanet",
+        "mondo-snomed",
+        "mondo-oncotree"
+      ]
+    },
+    {
+      "artifact_id": "orphadata-alignments",
+      "catalog": "mapping_expansion_catalog",
+      "disposition": "asserted",
+      "reason": "One or more explicit directed assertions cite this governed artifact.",
+      "assertion_ids": [
+        "orphanet-icd10",
+        "orphanet-icd11",
+        "orphanet-omim",
+        "orphanet-umls",
+        "orphanet-mondo",
+        "orphanet-mesh",
+        "orphanet-meddra"
+      ]
+    },
+    {
+      "artifact_id": "nando-ontology",
+      "catalog": "mapping_expansion_catalog",
+      "disposition": "asserted",
+      "reason": "One or more explicit directed assertions cite this governed artifact.",
+      "assertion_ids": [
+        "nando-mondo",
+        "nando-orphanet"
+      ]
+    },
+    {
+      "artifact_id": "loinc-ontology",
+      "catalog": "mapping_expansion_catalog",
+      "disposition": "asserted",
+      "reason": "One or more explicit directed assertions cite this governed artifact.",
+      "assertion_ids": [
+        "loinc-snomed"
+      ]
+    },
+    {
+      "artifact_id": "ncit-icdo31",
+      "catalog": "mapping_expansion_catalog",
+      "disposition": "inventory-only",
+      "reason": "ICD-O-3.1 is not yet a governed route node; exact package identity and WHO third-party rights remain unresolved.",
+      "assertion_ids": []
+    },
+    {
+      "artifact_id": "snomed-map-products",
+      "catalog": "mapping_expansion_catalog",
+      "disposition": "asserted",
+      "reason": "One or more explicit directed assertions cite this governed artifact.",
+      "assertion_ids": [
+        "snomed-icd10",
+        "snomed-meddra",
+        "snomed-orphanet",
+        "snomed-loinc"
+      ]
+    },
+    {
+      "artifact_id": "medgen-id-mappings",
+      "catalog": "mapping_expansion_catalog",
+      "disposition": "inventory-only",
+      "reason": "MedGen is recorded as source lineage for derived HP-MeSH and HP-UMLS products, not as an independent governed route node.",
+      "assertion_ids": []
+    },
+    {
+      "artifact_id": "cell-ontology-relations",
+      "catalog": "mapping_expansion_catalog",
+      "disposition": "asserted",
+      "reason": "One or more explicit directed assertions cite this governed artifact.",
+      "assertion_ids": [
+        "cell-uberon"
+      ]
+    },
+    {
+      "artifact_id": "hpo-hp-mp-manual",
+      "catalog": "mapping_expansion_catalog",
+      "disposition": "asserted",
+      "reason": "One or more explicit directed assertions cite this governed artifact.",
+      "assertion_ids": [
+        "hpo-mp"
+      ]
+    },
+    {
+      "artifact_id": "snomedctca-icd10ca-map",
+      "catalog": "mapping_expansion_catalog",
+      "disposition": "asserted",
+      "reason": "An explicit directed assertion uses exact terminology-registry-backed Canadian edition endpoints; no family alias or inverse is inferred.",
+      "assertion_ids": [
+        "snomed-canada-icd10ca-2022"
+      ]
+    },
+    {
+      "artifact_id": "hpo-hp-mesh-sssom",
+      "catalog": "source_catalog",
+      "disposition": "asserted",
+      "reason": "One or more explicit directed assertions cite this governed artifact.",
+      "assertion_ids": [
+        "hpo-mesh"
+      ]
+    },
+    {
+      "artifact_id": "hpo-hp-umls-sssom",
+      "catalog": "source_catalog",
+      "disposition": "asserted",
+      "reason": "One or more explicit directed assertions cite this governed artifact.",
+      "assertion_ids": [
+        "hpo-umls"
+      ]
+    },
+    {
+      "artifact_id": "hpo-hp-upheno-sssom",
+      "catalog": "source_catalog",
+      "disposition": "asserted",
+      "reason": "One or more explicit directed assertions cite this governed artifact.",
+      "assertion_ids": [
+        "hpo-upheno"
+      ]
+    },
+    {
+      "artifact_id": "hpo-hp-mp-manual-collection",
+      "catalog": "source_catalog",
+      "disposition": "duplicate-catalog-record",
+      "reason": "Source-catalog record for the same pinned collection represented by mapping-expansion artifact hpo-hp-mp-manual; retained for cross-catalog authority and integrity linkage.",
+      "assertion_ids": []
+    }
+  ]
 }

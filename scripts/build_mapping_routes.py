@@ -5,15 +5,15 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
-from collections import deque
 from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFINITIONS = ROOT / "research_validation" / "mapping_route_definitions.json"
+NODE_REGISTRY = ROOT / "research_validation" / "terminology_node_registry.json"
 OUTPUT = ROOT / "research_validation" / "mapping_route_catalog.json"
-TRAVERSABLE_CLASSES = {"curated-crosswalk", "source-xref", "ontology-bridge", "classification-map"}
-ROUTE_CLASS_RANK = {
+MAX_HOPS = 3
+CLASS_RANK = {
     "curated-crosswalk": 0,
     "source-xref": 1,
     "classification-map": 2,
@@ -21,11 +21,12 @@ ROUTE_CLASS_RANK = {
     "compositional": 4,
     "lexical-candidate": 5,
 }
-STATUS_RANK = {
+RIGHTS_RANK = {
     "metadata-only-payload-blocked": 1,
     "metadata-only-rights-review-required": 2,
     "metadata-only-access-required": 3,
 }
+LOSS_RANK = {"none": 0, "possible": 1, "unknown": 2, "material": 3}
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -37,174 +38,197 @@ def canonical_bytes(value: Any) -> bytes:
 
 
 def normalized_file_bytes(path: Path) -> bytes:
-    """Normalize Git checkout line endings before deterministic comparison."""
     return path.read_bytes().replace(b"\r\n", b"\n")
 
 
-def _edges(definitions: dict[str, Any]) -> list[dict[str, Any]]:
-    edges: list[dict[str, Any]] = []
-    for item in definitions["atomic_assertions"]:
-        edge = dict(item)
-        edges.append(edge)
-        if item["direction"] == "bidirectional-candidate":
-            reverse = dict(item)
-            reverse["assertion_id"] = f"{item['assertion_id']}--reverse-candidate"
-            reverse["subject_node_id"], reverse["object_node_id"] = (item["object_node_id"], item["subject_node_id"])
-            reverse["derived_from_assertion_id"] = item["assertion_id"]
-            edges.append(reverse)
-    return sorted(edges, key=lambda item: item["assertion_id"])
+def _hash(value: Any) -> str:
+    return hashlib.sha256(canonical_bytes(value)).hexdigest()
 
 
-def _route_class(edges: list[dict[str, Any]]) -> str:
-    classes = {edge["route_class"] for edge in edges}
-    if "compositional" in classes:
-        return "compositional"
-    return "direct" if len(edges) == 1 else "mediated"
-
-
-def _admissibility(edges: list[dict[str, Any]]) -> str:
-    statuses = {edge["status"] for edge in edges}
-    if any("access-required" in status or "rights-review-required" in status for status in statuses):
-        return "blocked"
-    if any(edge["route_class"] in {"lexical-candidate", "compositional"} for edge in edges):
-        return "candidate_only"
-    return "metadata_only"
-
-
-def _weakest_rights_status(edges: list[dict[str, Any]]) -> str:
-    return max((edge["status"] for edge in edges), key=lambda value: (STATUS_RANK.get(value, 99), value))
-
-
-def _find_path(
+def _paths(
     source: str,
     target: str,
-    nodes: dict[str, dict[str, Any]],
     outgoing: dict[str, list[dict[str, Any]]],
-) -> list[dict[str, Any]] | None:
-    queue: deque[tuple[str, list[dict[str, Any]]]] = deque([(source, [])])
-    best_depth: dict[str, int] = {source: 0}
-    while queue:
-        current, path = queue.popleft()
-        if len(path) >= 3:
-            continue
+    nodes: dict[str, dict[str, Any]],
+    policies: dict[str, dict[str, Any]],
+) -> list[list[dict[str, Any]]]:
+    found: list[list[dict[str, Any]]] = []
+
+    def visit(current: str, path: list[dict[str, Any]], seen: frozenset[str]) -> None:
+        if len(path) >= MAX_HOPS:
+            return
         for edge in outgoing.get(current, []):
-            next_id = edge["object_node_id"]
+            nxt = edge["object_node_id"]
+            if nxt in seen:
+                continue
             candidate = [*path, edge]
-            if len(candidate) > 1 and (
-                edge["route_class"] not in TRAVERSABLE_CLASSES or nodes[next_id]["domain"] != nodes[source]["domain"]
-            ):
-                continue
-            if next_id == target:
-                return candidate
-            # Composition is allowed only within one declared semantic domain.
-            if edge["route_class"] not in TRAVERSABLE_CLASSES or nodes[next_id]["domain"] != nodes[source]["domain"]:
-                continue
-            depth = len(candidate)
-            if best_depth.get(next_id, 99) < depth:
-                continue
-            best_depth[next_id] = depth
-            queue.append((next_id, candidate))
-    return None
+            if len(candidate) > 1:
+                policy = policies[edge["composition_policy_id"]]
+                first_policy = policies[candidate[0]["composition_policy_id"]]
+                if (
+                    not policy["transitive"]
+                    or not first_policy["transitive"]
+                    or edge["route_class"] not in policy["allowed_route_classes"]
+                    or len(candidate) > min(policy["max_hops"], first_policy["max_hops"])
+                    or any(
+                        nodes[x]["domain"] != nodes[source]["domain"]
+                        for x in [*(e["object_node_id"] for e in candidate)]
+                    )
+                ):
+                    continue
+            if nxt == target:
+                found.append(candidate)
+            visit(nxt, candidate, seen | {nxt})
+
+    visit(source, [], frozenset({source}))
+    return found
 
 
-def build_catalog(definitions: dict[str, Any]) -> dict[str, Any]:
-    nodes = {item["node_id"]: item for item in definitions["nodes"]}
-    edges = _edges(definitions)
+def _admissibility(path: list[dict[str, Any]]) -> str:
+    if any("access-required" in e["status"] or "rights-review-required" in e["status"] for e in path):
+        return "blocked"
+    if any(e["route_class"] in {"lexical-candidate", "compositional"} for e in path):
+        return "candidate_only"
+    return "catalogue_only"
+
+
+def _path_record(path: list[dict[str, Any]], source: str) -> dict[str, Any]:
+    lineages = [e["lineage_group"] for e in path]
+    independent = [e["independent_evidence_group"] for e in path]
+    statuses = [e["status"] for e in path]
+    weakest = max(statuses, key=lambda x: (RIGHTS_RANK.get(x, 99), x))
+    return {
+        "assertion_ids": [e["assertion_id"] for e in path],
+        "path_node_ids": [source, *[e["object_node_id"] for e in path]],
+        "hop_count": len(path),
+        "artifact_ids": sorted({e["artifact_id"] for e in path}),
+        "lineage_groups": list(dict.fromkeys(lineages)),
+        "independent_evidence_groups": list(dict.fromkeys(independent)),
+        "independent_lineage_count": len(set(independent)),
+        "repeated_lineage": len(independent) != len(set(independent)),
+        "weakest_rights_status": weakest,
+        "payload_status": "blocked",
+        "integrity_status": "referenced-not-retrieved",
+        "version_status": "artifact-reference-required",
+        "use_status": _admissibility(path),
+        "semantic_loss": max((e["semantic_loss"] for e in path), key=lambda x: (LOSS_RANK.get(x, 99), x)),
+    }
+
+
+def _rank(record: dict[str, Any], assertions: dict[str, dict[str, Any]]) -> tuple[Any, ...]:
+    edges = [assertions[x] for x in record["assertion_ids"]]
+    use = {"catalogue_only": 0, "candidate_only": 1, "blocked": 2}[record["use_status"]]
+    return (
+        use,
+        LOSS_RANK.get(record["semantic_loss"], 99),
+        RIGHTS_RANK.get(record["weakest_rights_status"], 99),
+        record["hop_count"],
+        record["repeated_lineage"],
+        tuple(CLASS_RANK.get(e["route_class"], 99) for e in edges),
+        tuple(record["assertion_ids"]),
+    )
+
+
+def build_catalog(definitions: dict[str, Any], node_registry: dict[str, Any] | None = None) -> dict[str, Any]:
+    registry = node_registry or load_json(NODE_REGISTRY)
+    nodes = {n["node_id"]: n for n in definitions["nodes"]}
+    assertions = {a["assertion_id"]: dict(a) for a in definitions["atomic_assertions"]}
+    policies = {p["policy_id"]: p for p in definitions["composition_policies"]}
     outgoing: dict[str, list[dict[str, Any]]] = {}
-    for edge in edges:
+    for edge in assertions.values():
         outgoing.setdefault(edge["subject_node_id"], []).append(edge)
-    for value in outgoing.values():
-        value.sort(
-            key=lambda item: (
-                ROUTE_CLASS_RANK.get(item["route_class"], 99),
-                STATUS_RANK.get(item["status"], 99),
-                item["assertion_id"],
-            )
-        )
-
-    routes: list[dict[str, Any]] = []
+    for edges in outgoing.values():
+        edges.sort(key=lambda e: e["assertion_id"])
+    routes = []
     for source in sorted(nodes):
         for target in sorted(nodes):
-            route_id = f"{source}--to--{target}"
+            rid = f"{source}--to--{target}"
             if source == target:
                 routes.append(
                     {
-                        "route_id": route_id,
+                        "route_id": rid,
                         "source_node_id": source,
                         "target_node_id": target,
                         "status": "identity",
                         "route_class": "identity",
-                        "hop_count": 0,
-                        "assertion_ids": [],
-                        "path_node_ids": [source],
-                        "admissibility": "metadata_only",
+                        "preferred_path": {
+                            "assertion_ids": [],
+                            "path_node_ids": [source],
+                            "hop_count": 0,
+                            "use_status": "catalogue_only",
+                        },
+                        "alternative_paths": [],
                     }
                 )
                 continue
-            path = _find_path(source, target, nodes, outgoing)
-            if path is None:
-                reason = "no_declared_directed_path"
+            candidates = [_path_record(p, source) for p in _paths(source, target, outgoing, nodes, policies)]
+            candidates.sort(key=lambda p: _rank(p, assertions))
+            if not candidates:
+                reasons = []
                 if nodes[source].get("artifact_status") == "no_artifact":
-                    reason = "source_has_no_governed_mapping_artifact"
+                    reasons.append("source_has_no_governed_mapping_artifact")
+                if nodes[target].get("artifact_status") == "no_artifact":
+                    reasons.append("target_has_no_governed_mapping_artifact")
+                if not reasons:
+                    reasons.append("no_admissible_directed_semantic_path")
                 routes.append(
                     {
-                        "route_id": route_id,
+                        "route_id": rid,
                         "source_node_id": source,
                         "target_node_id": target,
                         "status": "unavailable",
                         "route_class": "unavailable",
-                        "hop_count": 0,
-                        "assertion_ids": [],
-                        "path_node_ids": [],
-                        "admissibility": "none",
-                        "reason_code": reason,
+                        "preferred_path": None,
+                        "alternative_paths": [],
+                        "unavailable_reasons": reasons,
                     }
                 )
                 continue
-            path_nodes = [source, *[edge["object_node_id"] for edge in path]]
+            preferred = candidates[0]
             routes.append(
                 {
-                    "route_id": route_id,
+                    "route_id": rid,
                     "source_node_id": source,
                     "target_node_id": target,
-                    "status": "direct" if len(path) == 1 else "mediated",
-                    "route_class": _route_class(path),
-                    "hop_count": len(path),
-                    "assertion_ids": [edge["assertion_id"] for edge in path],
-                    "path_node_ids": path_nodes,
-                    "admissibility": _admissibility(path),
-                    "weakest_rights_status": _weakest_rights_status(path),
-                    "lineage_groups": sorted({edge["lineage_group"] for edge in path}),
-                    "artifact_ids": sorted({edge["artifact_id"] for edge in path}),
+                    "status": "direct" if preferred["hop_count"] == 1 else "mediated",
+                    "route_class": "compositional"
+                    if preferred["semantic_loss"] == "material"
+                    else ("direct" if preferred["hop_count"] == 1 else "mediated"),
+                    "preferred_path": preferred,
+                    "alternative_paths": candidates[1:],
                 }
             )
-
     counts: dict[str, int] = {}
-    for route in routes:
-        counts[route["route_class"]] = counts.get(route["route_class"], 0) + 1
-    definition_hash = hashlib.sha256(canonical_bytes(definitions)).hexdigest()
+    for r in routes:
+        route_class = str(r["route_class"])
+        counts[route_class] = counts.get(route_class, 0) + 1
     return {
-        "schema_version": "mapping-route-catalog-v1",
+        "schema_version": "mapping-route-catalog-v2",
         "generated_at": definitions["generated_at"],
-        "scope": "payload-safe-explicit-assertions-and-domain-safe-routes",
-        "definition_sha256": definition_hash,
+        "scope": "payload-safe-explicit-assertions-and-policy-governed-routes",
+        "definition_sha256": _hash(definitions),
+        "terminology_registry_sha256": _hash(registry),
         "node_count": len(nodes),
-        "assertion_count": len(definitions["atomic_assertions"]),
+        "terminology_node_count": len(registry["nodes"]),
+        "assertion_count": len(assertions),
         "ordered_pair_count": len(routes),
         "route_class_counts": dict(sorted(counts.items())),
-        "nodes": [nodes[key] for key in sorted(nodes)],
-        "assertions": edges,
+        "nodes": [nodes[x] for x in sorted(nodes)],
+        "terminology_registry_ref": "research_validation/terminology_node_registry.json",
+        "composition_policies": definitions["composition_policies"],
+        "assertions": [assertions[x] for x in sorted(assertions)],
+        "artifact_dispositions": definitions["artifact_dispositions"],
         "routes": routes,
         "admission_boundary": definitions["admission_boundary"],
     }
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--check", action="store_true")
-    args = parser.parse_args()
-    generated = canonical_bytes(build_catalog(load_json(DEFINITIONS)))
-    if args.check:
+    p = argparse.ArgumentParser()
+    p.add_argument("--check", action="store_true")
+    a = p.parse_args()
+    generated = canonical_bytes(build_catalog(load_json(DEFINITIONS), load_json(NODE_REGISTRY)))
+    if a.check:
         if not OUTPUT.exists() or normalized_file_bytes(OUTPUT) != generated:
             print("ERROR: mapping route catalog drift detected")
             return 1
