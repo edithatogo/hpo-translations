@@ -12,6 +12,10 @@ ASSIGNMENTS_PATH = ROOT / "research_validation" / "translation_source_assignment
 SAP_PATH = ROOT / "research_validation" / "translation_statistical_analysis_plan.json"
 ASSIGNMENTS_SCHEMA_PATH = ROOT / "research_validation" / "translation_source_assignments.schema.json"
 SAP_SCHEMA_PATH = ROOT / "research_validation" / "translation_statistical_analysis_plan.schema.json"
+MODEL_TIER_PATH = ROOT / "research_validation" / "translation_model_tier_plan.json"
+MODEL_TIER_SCHEMA_PATH = ROOT / "research_validation" / "translation_model_tier_plan.schema.json"
+LEARNING_LOOP_PATH = ROOT / "research_validation" / "translation_plan_learning_loop.json"
+LEARNING_LOOP_SCHEMA_PATH = ROOT / "research_validation" / "translation_plan_learning_loop.schema.json"
 
 EXPECTED_ROLES = {
     "withheld_hpo_reference",
@@ -33,6 +37,8 @@ def validation_errors(
     routes: dict[str, Any],
     assignments: dict[str, Any] | None = None,
     sap: dict[str, Any] | None = None,
+    model_tiers: dict[str, Any] | None = None,
+    learning_loop: dict[str, Any] | None = None,
     root: Path = ROOT,
 ) -> list[str]:
     validator: Any = Draft202012Validator(schema)
@@ -119,12 +125,69 @@ def validation_errors(
             for error in validator.evolve(schema=load_json(SAP_SCHEMA_PATH)).iter_errors(sap)
         )
         specs = cast(list[dict[str, Any]], sap.get("analyses", []))
-        if [item.get("id") for item in specs] != [f"A{i}" for i in range(1, 10)]:
-            errors.append("statistical analysis plan must bind A1 through A9 in order")
+        if [item.get("id") for item in specs] != [f"A{i}" for i in range(1, 11)]:
+            errors.append("statistical analysis plan must bind A1 through A10 in order")
         if sap.get("freeze_binding", {}).get("current_freeze_id") != "g3-option-b-es-ja-20260812-v1":
             errors.append("statistical plan must preserve the sealed G3 freeze reference")
         if sap.get("promotion_allowed") is not False:
             errors.append("statistical analysis can never authorize promotion")
+    if model_tiers is not None:
+        errors.extend(
+            f"model tier schema: {error.message}"
+            for error in validator.evolve(schema=load_json(MODEL_TIER_SCHEMA_PATH)).iter_errors(model_tiers)
+        )
+        tier_ids = [item.get("id") for item in model_tiers.get("tier_definition", {}).get("tiers", [])]
+        if tier_ids != ["tiny", "small", "medium", "large"]:
+            errors.append("model tiers must remain ordered tiny, small, medium, large")
+        expected_cells = [f"{tier}_{arm}" for tier in tier_ids for arm in ("E0", "E1", "E2")]
+        if model_tiers.get("cell_manifest") != expected_cells:
+            errors.append("model tier plan must contain the complete ordered 12-cell factorial")
+        arms = cast(list[dict[str, Any]], model_tiers.get("evidence_arms", []))
+        if [item.get("id") for item in arms] != [
+            "E0_model_only",
+            "E1_translation_assisted",
+            "E2_lineage_ontology_assisted",
+            "R0_withheld_existing_hpo_translation",
+        ]:
+            errors.append("model evidence arms must remain E0, E1, E2, and R0")
+        reference: dict[str, Any] = arms[-1] if arms else {}
+        if (
+            reference.get("generation_allowed") is not False
+            or reference.get("reference_reveal") != "after_candidate_lock"
+        ):
+            errors.append("existing HPO translations must remain non-generative and withheld until candidate lock")
+        if model_tiers.get("current_freeze", {}).get("freeze_id") != "g3-option-b-es-ja-20260812-v1":
+            errors.append("model tier plan must preserve the current G3 reference")
+        controls_tier = model_tiers.get("controls", {})
+        for key in (
+            "payload_use_authorized",
+            "empirical_execution_authorized",
+            "automatic_promotion",
+            "agents_grant_rights_community_ethics_or_promotion",
+        ):
+            if controls_tier.get(key) is not False:
+                errors.append("model tier payload, execution, authority, and promotion controls must remain false")
+                break
+        if controls_tier.get("new_freeze_required") is not True:
+            errors.append("model tier execution must require a new prospective freeze")
+    if learning_loop is not None:
+        errors.extend(
+            f"learning loop schema: {error.message}"
+            for error in validator.evolve(schema=load_json(LEARNING_LOOP_SCHEMA_PATH)).iter_errors(learning_loop)
+        )
+        learning_controls = learning_loop.get("controls", {})
+        if any(
+            learning_controls.get(key) is not False
+            for key in (
+                "current_g3_changed",
+                "empirical_execution_authorized",
+                "payload_authorized_by_learning",
+                "automatic_promotion",
+            )
+        ):
+            errors.append("learning-loop G3, execution, payload, and promotion controls must remain false")
+        if learning_controls.get("negative_results_retained") is not True:
+            errors.append("learning loop must retain negative and non-estimable results")
     return sorted(set(errors))
 
 
@@ -135,6 +198,8 @@ def main() -> int:
         load_json(ROUTES_PATH),
         load_json(ASSIGNMENTS_PATH),
         load_json(SAP_PATH),
+        load_json(MODEL_TIER_PATH),
+        load_json(LEARNING_LOOP_PATH),
     )
     if errors:
         for error in errors:
