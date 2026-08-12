@@ -18,6 +18,7 @@
     "research_validation/open_mapping_rights_matrix.json",
     "research_validation/registry_source_expansion_catalog.json",
     "research_validation/ga4gh_relevance_catalog.json",
+    "research_validation/snomed_icd_crosslingual_bridge_catalog.json",
     "research_validation/supplementary_source_access_reviews.json",
     "research_validation/pilot_source_payload_manifest.json",
     "research_validation/pilot_independent_lineage_groups.json"

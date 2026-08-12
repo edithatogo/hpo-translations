@@ -21,6 +21,7 @@
 
 - [x] Task: Add and validate the registry-derived source expansion catalogue covering MAxO, HPO association products, CMO/MMO/XCO, ECO/SEPIO, GA4GH standards, multilingual/context candidates, deferred sources and registry deduplication. (`current continuation`)
 - [x] Task: Replace GA4GH maturity-based deferral with a relevance-first catalogue in which every retained current, draft, developmental or study-group product has a governed mapping or interoperability path. (`current continuation`)
+- [x] Task: Catalogue UMLS, NLM SNOMED map products, OMOP/Athena, Orphadata and MedDRA as cross-lingual SNOMED–ICD bridge resources while keeping direct, hub-mediated and pivot-mediated paths distinct. (`current continuation`)
 - [ ] Task: Define LinkML/JSON schemas for translation objects, evidence atoms, lineage groups, mapping assertions, contradictions, assessment records, downstream outcomes and confidence records.
 - [ ] Task: Add source-kind and evidence-role vocabularies covering human HPO baseline, independent human terminology, structural/context evidence, model candidates and downstream outcomes.
 - [ ] Task: Bind HPO, source, mapping, language-rendition, model, prompt and analysis versions to content hashes.
