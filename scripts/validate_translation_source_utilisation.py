@@ -8,6 +8,10 @@ ROOT = Path(__file__).resolve().parents[1]
 PLAN_PATH = ROOT / "research_validation" / "translation_source_utilisation_plan.json"
 SCHEMA_PATH = ROOT / "research_validation" / "translation_source_utilisation_plan.schema.json"
 ROUTES_PATH = ROOT / "research_validation" / "mapping_route_definitions.json"
+ASSIGNMENTS_PATH = ROOT / "research_validation" / "translation_source_assignments.json"
+SAP_PATH = ROOT / "research_validation" / "translation_statistical_analysis_plan.json"
+ASSIGNMENTS_SCHEMA_PATH = ROOT / "research_validation" / "translation_source_assignments.schema.json"
+SAP_SCHEMA_PATH = ROOT / "research_validation" / "translation_statistical_analysis_plan.schema.json"
 
 EXPECTED_ROLES = {
     "withheld_hpo_reference",
@@ -24,7 +28,12 @@ def load_json(path: Path) -> dict[str, Any]:
 
 
 def validation_errors(
-    plan: dict[str, Any], schema: dict[str, Any], routes: dict[str, Any], root: Path = ROOT
+    plan: dict[str, Any],
+    schema: dict[str, Any],
+    routes: dict[str, Any],
+    assignments: dict[str, Any] | None = None,
+    sap: dict[str, Any] | None = None,
+    root: Path = ROOT,
 ) -> list[str]:
     validator: Any = Draft202012Validator(schema)
     errors = [f"schema: {error.message}" for error in validator.iter_errors(plan)]
@@ -86,11 +95,47 @@ def validation_errors(
     promotion_rule = cast(dict[str, Any], plan["decision_rules"])["promotion"]
     if "No score" not in promotion_rule or "maintainer" not in promotion_rule:
         errors.append("promotion rule must reject score-based promotion and retain maintainer authority")
+    if assignments is not None:
+        errors.extend(
+            f"assignments schema: {error.message}"
+            for error in validator.evolve(schema=load_json(ASSIGNMENTS_SCHEMA_PATH)).iter_errors(assignments)
+        )
+        rows = cast(list[dict[str, Any]], assignments.get("assignments", []))
+        if assignments.get("assignment_count") != 15 or len(rows) != 15:
+            errors.append("source assignment matrix must contain exactly 15 governed assignments")
+        ids = [row.get("id") for row in rows]
+        if len(ids) != len(set(ids)):
+            errors.append("source assignment IDs must be unique")
+        known_assertions = {item["assertion_id"] for item in assertions}
+        for row in rows:
+            for assertion_id in row.get("assertions", []):
+                if assertion_id != "*" and assertion_id not in known_assertions:
+                    errors.append(f"unknown source-assignment assertion: {assertion_id}")
+        if any(assignments.get("controls", {}).values()):
+            errors.append("source assignment payload, candidate, route, and promotion controls must remain false")
+    if sap is not None:
+        errors.extend(
+            f"statistical plan schema: {error.message}"
+            for error in validator.evolve(schema=load_json(SAP_SCHEMA_PATH)).iter_errors(sap)
+        )
+        specs = cast(list[dict[str, Any]], sap.get("analyses", []))
+        if [item.get("id") for item in specs] != [f"A{i}" for i in range(1, 10)]:
+            errors.append("statistical analysis plan must bind A1 through A9 in order")
+        if sap.get("freeze_binding", {}).get("current_freeze_id") != "g3-option-b-es-ja-20260812-v1":
+            errors.append("statistical plan must preserve the sealed G3 freeze reference")
+        if sap.get("promotion_allowed") is not False:
+            errors.append("statistical analysis can never authorize promotion")
     return sorted(set(errors))
 
 
 def main() -> int:
-    errors = validation_errors(load_json(PLAN_PATH), load_json(SCHEMA_PATH), load_json(ROUTES_PATH))
+    errors = validation_errors(
+        load_json(PLAN_PATH),
+        load_json(SCHEMA_PATH),
+        load_json(ROUTES_PATH),
+        load_json(ASSIGNMENTS_PATH),
+        load_json(SAP_PATH),
+    )
     if errors:
         for error in errors:
             print(f"ERROR: {error}")

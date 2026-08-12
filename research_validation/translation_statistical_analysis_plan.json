@@ -1,0 +1,37 @@
+{
+  "schema_version":"translation-statistical-analysis-plan-v1",
+  "status":"prospective_planning_only_re_freeze_required_for_empirical_use",
+  "freeze_binding":{"current_freeze_id":"g3-option-b-es-ja-20260812-v1","candidate_conditions":"research_validation/phase_4_freeze/candidate_conditions.json","sampling":"research_validation/phase_4_freeze/sampling_frame.json","randomization":"research_validation/phase_4_freeze/randomization.json","progression":"research_validation/phase_4_freeze/progression_criteria.json","analysis_environment":"research_validation/phase_4_freeze/analysis_environment.json","effect":"does not amend current freeze"},
+  "phases":[{"id":"stage1","n":12,"purpose":"feasibility only","inference":"descriptive exact or paired estimates with 95 percent intervals; no effectiveness testing"},{"id":"pilot","n":60,"purpose":"variance, prevalence and confirmatory design","inference":"exploratory estimation only"},{"id":"confirmatory","n":null,"purpose":"prospectively powered effectiveness","inference":"new frozen margins, event rates, ICC, attrition, power, simulation code and seed required"}],
+  "populations":{"all_randomized_assignments":"retain every assignment and generation failure","eligible_locked_units":"pass frozen pre-unblinding exclusions","per_protocol":"sensitivity set completing every frozen element"},
+  "primary_unit":"adjudicated concept-language-translation-object by candidate condition; specialist decisions are clustered repeated measurements",
+  "outcomes":[
+    {"id":"clinically_significant_error","formula":"adjudicated clinically significant errors / assigned evaluable candidates including generation failure","direction":"lower"},
+    {"id":"accept_without_edit","formula":"zero-edit acceptances / assigned candidates; abstention and generation failure are nonacceptance","direction":"higher"},
+    {"id":"edit_burden","formula":"character and token edit distance reported separately / completed candidates with locked target","direction":"lower"},
+    {"id":"semantic_discrimination","formula":"intended HPO selections / eligible frozen hard-negative tasks","direction":"higher"},
+    {"id":"calibration","formula":"Brier score and reliability against locked adjudicated acceptance","direction":"lower Brier"},
+    {"id":"candidate_yield","formula":"lineage-deduplicated eligible unique candidates / 100 eligible concept-language-object units","direction":"higher"},
+    {"id":"runtime_compute_cost","formula":"wall time, tokens or calls, retries, adjudication time and pinned-price cost / completed unit and zero-edit acceptance","direction":"lower for equal effect"}
+  ],
+  "contrasts":["c3_lineage_aware minus c1_direct_translation paired within concept-language","c3_lineage_aware minus c2_language_model paired within concept-language"],
+  "models":{"binary":"risk difference and ratio with 95 percent intervals; concept-cluster bootstrap or exact paired fallback; mixed model only if estimable","burden":"paired mean and median differences with concept-cluster bootstrap","cost":"raw mean median IQR plus paired bootstrap","yield":"paired rate difference and ratio; offset count model only if supported","pooling":"language-specific mandatory; pooled requires method by language interaction","prediction":"split and resample by concept, never candidate row"},
+  "missingness":{"categories":["abstention","missing decision","technical invalidity","prohibited source","model failure","unavailable outcome"],"primary":"no imputation; abstention nonacceptance; generation failure retained","sensitivities":["complete case","best-worst bounds","multiple imputation only if prospectively justified"],"late_exclusion":"visible amendment or new run"},
+  "multiplicity":{"pilot":"A1-A9 exploratory; effect sizes and intervals only","confirmatory":"hierarchical safety comparisons then zero-edit acceptance in same order","familywise":"Holm within co-primary family at two-sided 0.05","screens":"BH FDR q=0.10 for declared exploratory route/source/stratum screens"},
+  "stage1_progression":{"completion":{"go":"11-12","revise":"9-10","stop":"0-8"},"technical_invalidity":{"go":"0-1","revise":"2","stop":"3-12"},"precedence":"rights privacy community blinding or material safety stop overrides; otherwise worst branch; one revision maximum","performance":"candidate performance never drives progression","panel":"five specialists plus triggered isolated adjudicator and non-voting auditor"},
+  "analyses":[
+    {"id":"A1","phase5_task":1,"method":"paired lineage-deduplicated yield and safety/acceptance contrasts","limit":"descriptive pilot"},
+    {"id":"A2","phase5_task":2,"method":"raw count versus lineage-aware prediction; delta Brier and log loss primary","limit":"descriptive if events insufficient"},
+    {"id":"A3","phase5_task":1,"method":"outcomes by predicate route hops and semantic loss","limit":"no unapproved composition"},
+    {"id":"A4","phase5_task":3,"method":"paired intended-concept discrimination against frozen negatives","limit":"frozen negatives required"},
+    {"id":"A5","phase5_task":7,"method":"exact variant versus generic within concept","limit":"future-only; non-estimable in current es/ja freeze"},
+    {"id":"A6","phase5_task":2,"method":"rerun generation and aggregation leaving one lineage group out","limit":"collapse dependent imports first"},
+    {"id":"A7","phase5_task":5,"method":"train earlier release then lock and test later release","limit":"at least two release/change sets; no temporal leakage"},
+    {"id":"A8","phase5_task":4,"method":"separately powered extraction or ranking evaluation","limit":"not translation or clinical validation"},
+    {"id":"A9","phase5_task":6,"method":"held-out frozen priority score versus random and FIFO","limit":"utility burden safety; no adaptive outcome reuse"}
+  ],
+  "controls":{"reference_leakage":"withhold item and HPO-derived lineage; model pretraining contamination is a limitation","source_selection":"unavailable sources are missing-not-at-random","negative_controls":["no-route source","direction-forbidden route","regional edition without HPO route"],"lexical":["Unicode NFC","preserve diacritics","exact and normalized case/punctuation reports","explicit Japanese script and segmentation","no transliteration equivalence","retain morphology and register"],"mapping":["one-to-many and many-to-one explicit","obsolete/replaced IDs resolved before freeze","predicate direction and semantic loss retained","route cycles prohibited"]},
+  "cost":{"estimands":["incremental cost per extra zero-edit acceptance","incremental cost per clinically significant error avoided"],"rule":"ratios only for stable correctly signed effects; otherwise joint paired cost-effect report","pricing":"pin currency date and schedule; report tokens or calls separately"},
+  "non_estimability":["do not pool to rescue sparse cells","do not invent effect margin","report non-estimable as result","freeze confirmatory targets after pilot and before outcomes"],
+  "promotion_allowed":false
+}
