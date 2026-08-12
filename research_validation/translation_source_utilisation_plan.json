@@ -19,6 +19,10 @@
     "research_validation/supplementary_source_access_reviews.json",
     "research_validation/pilot_source_payload_manifest.json",
     "research_validation/pilot_independent_lineage_groups.json"
+    ,"research_validation/translation_source_assignments.json"
+    ,"research_validation/translation_statistical_analysis_plan.json"
+    ,"research_validation/translation_source_assignments.schema.json"
+    ,"research_validation/translation_statistical_analysis_plan.schema.json"
   ],
   "analysis_unit": "hpo_concept_by_language_by_translation_object_by_independent_evidence_group",
   "translation_objects": ["preferred_label", "synonym", "definition", "regional_variant", "patient_facing_term"],
@@ -102,6 +106,12 @@
     "payload-safe reproducibility receipt",
     "candidate-only ontology-maintainer handoff"
   ],
+  "operational_contracts": {
+    "source_assignments": "research_validation/translation_source_assignments.json",
+    "statistical_analysis_plan": "research_validation/translation_statistical_analysis_plan.json",
+    "phase5_analysis_count": 9,
+    "current_empirical_change": false
+  },
   "controls": {
     "payload_rows_committed": false,
     "restricted_terms_committed": false,

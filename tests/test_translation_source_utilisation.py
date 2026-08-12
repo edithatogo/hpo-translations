@@ -2,9 +2,11 @@ import copy
 import unittest
 
 from scripts.validate_translation_source_utilisation import (
+    ASSIGNMENTS_PATH,
     PLAN_PATH,
     ROOT,
     ROUTES_PATH,
+    SAP_PATH,
     SCHEMA_PATH,
     load_json,
     validation_errors,
@@ -16,9 +18,35 @@ class TranslationSourceUtilisationTests(unittest.TestCase):
         self.plan = load_json(PLAN_PATH)
         self.schema = load_json(SCHEMA_PATH)
         self.routes = load_json(ROUTES_PATH)
+        self.assignments = load_json(ASSIGNMENTS_PATH)
+        self.sap = load_json(SAP_PATH)
 
     def errors(self, plan: dict) -> list[str]:
-        return validation_errors(plan, self.schema, self.routes, ROOT)
+        return validation_errors(plan, self.schema, self.routes, self.assignments, self.sap, ROOT)
+
+    def test_source_assignments_cover_exact_matrix(self) -> None:
+        mutated = copy.deepcopy(self.assignments)
+        mutated["assignments"].pop()
+        self.assertIn(
+            "source assignment matrix must contain exactly 15 governed assignments",
+            validation_errors(self.plan, self.schema, self.routes, mutated, self.sap, ROOT),
+        )
+
+    def test_unknown_assignment_assertion_is_rejected(self) -> None:
+        mutated = copy.deepcopy(self.assignments)
+        mutated["assignments"][4]["assertions"].append("invented")
+        self.assertIn(
+            "unknown source-assignment assertion: invented",
+            validation_errors(self.plan, self.schema, self.routes, mutated, self.sap, ROOT),
+        )
+
+    def test_statistical_plan_requires_active_learning_analysis(self) -> None:
+        mutated = copy.deepcopy(self.sap)
+        mutated["analyses"].pop()
+        self.assertIn(
+            "statistical analysis plan must bind A1 through A9 in order",
+            validation_errors(self.plan, self.schema, self.routes, self.assignments, mutated, ROOT),
+        )
 
     def test_committed_plan_passes(self) -> None:
         self.assertEqual(self.errors(self.plan), [])

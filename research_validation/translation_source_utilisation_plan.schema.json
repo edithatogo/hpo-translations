@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schema_version", "status", "purpose", "current_study_scope", "canonical_inputs", "analysis_unit", "translation_objects", "source_role_classes", "stages", "analyses", "decision_rules", "contingencies", "required_outputs", "controls"],
+  "required": ["schema_version", "status", "purpose", "current_study_scope", "canonical_inputs", "analysis_unit", "translation_objects", "source_role_classes", "stages", "analyses", "decision_rules", "contingencies", "required_outputs", "operational_contracts", "controls"],
   "properties": {
     "schema_version": {"const": "translation-source-utilisation-plan-v1"},
     "status": {"const": "planning_only_execution_blocked"},
@@ -17,6 +17,7 @@
     "decision_rules": {"type":"object","additionalProperties":{"type":"string","minLength":1},"required":["source_admission","lineage","mapping","variants","progression","promotion"]},
     "contingencies": {"type":"array","minItems":7,"items":{"type":"object","additionalProperties":false,"required":["condition","action"],"properties":{"condition":{"type":"string","minLength":1},"action":{"type":"string","minLength":1}}}},
     "required_outputs": {"type":"array","minItems":10,"uniqueItems":true,"items":{"type":"string","minLength":1}},
+    "operational_contracts": {"type":"object","additionalProperties":false,"required":["source_assignments","statistical_analysis_plan","phase5_analysis_count","current_empirical_change"],"properties":{"source_assignments":{"type":"string"},"statistical_analysis_plan":{"type":"string"},"phase5_analysis_count":{"const":9},"current_empirical_change":{"const":false}}},
     "controls": {"type":"object","additionalProperties":false,"required":["payload_rows_committed","restricted_terms_committed","credentials_committed","automatic_promotion_allowed","agent_panel_can_grant_rights_or_community_or_ethics_authority","maintainer_promotion_decision_required"],"properties":{"payload_rows_committed":{"const":false},"restricted_terms_committed":{"const":false},"credentials_committed":{"const":false},"automatic_promotion_allowed":{"const":false},"agent_panel_can_grant_rights_or_community_or_ethics_authority":{"const":false},"maintainer_promotion_decision_required":{"const":true}}}
   },
   "$defs": {
