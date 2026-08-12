@@ -1,0 +1,128 @@
+{
+  "schema_version": "next-language-pilot-plan-v1",
+  "status": "prospective_planning_only_new_freeze_required",
+  "decision_date": "2026-08-12",
+  "decision_source": "repository_maintainer_user_instruction",
+  "current_freeze": {
+    "freeze_id": "g3-option-b-es-ja-20260812-v1",
+    "languages": ["es", "ja"],
+    "changed": false,
+    "rule": "The French-Czech pilot and every expansion require a distinct prospective freeze after exact source, authority, sampling, model, prompt, analysis and custody gates close."
+  },
+  "primary_next_pilot": {
+    "pilot_id": "option-b-fr-cs-next",
+    "languages": ["fr", "cs"],
+    "design_role": "next_two_language_pilot",
+    "selection_rationale": "French provides a high-resource Romance comparison and substantial synonym coverage; Czech provides a high-coverage Slavic contrast and strong synonym coverage.",
+    "source_profiles": [
+      {
+        "language": "fr",
+        "babelon_rows": 14693,
+        "synonym_rows": 11815,
+        "babelon_blob": "9d37453279a95f6159edd7683437babb21916b44",
+        "synonym_blob": "c9274dc40a1789bc6542a66dbb8da5de3b616d41",
+        "source_status": "tracked_local_content_upstream_diverged_babelon_only",
+        "special_gate": "freeze_explicit_local_or_upstream_preferred_label_source_and_do_not_mix_blobs"
+      },
+      {
+        "language": "cs",
+        "babelon_rows": 31102,
+        "synonym_rows": 18811,
+        "babelon_blob": "0d60f35dd9e0b1785255bb59ac637d9c0328029d",
+        "synonym_blob": "3a7e072cc503df543293b9c6330093e09bf16bc4",
+        "source_status": "tracked_local_content",
+        "special_gate": "freeze_exact_local_blobs_and_release_alignment"
+      }
+    ],
+    "required_gates": [
+      "exact_source_commit_blob_and_release_alignment",
+      "payload_licence_and_planned_use_authority",
+      "french_and_czech_language_community_use_scope",
+      "ethics_and_privacy_decision",
+      "source_atom_and_independent_lineage_generation",
+      "new_model_prompt_role_sampling_randomization_analysis_freeze",
+      "reproducibility_preflight"
+    ],
+    "execution_authorized": false
+  },
+  "affordability_contingency": {
+    "expansion_id": "option-four-fr-cs-nl-tr",
+    "additional_languages": ["nl", "tr"],
+    "full_language_set": ["fr", "cs", "nl", "tr"],
+    "activation_rule": "Activate only before the new freeze when a frozen cost model proves the four-language design fits the explicit financial and compute ceilings without reducing Stage 1 balance, five-specialist coverage, isolated adjudication, reproducibility auditing, or language-specific precision.",
+    "affordability_evidence_required": [
+      "exact_models_and_price_schedule",
+      "concept_language_units_and_candidate_conditions",
+      "tokens_calls_retries_latency_and_storage",
+      "five_specialist_adjudication_and_audit_compute",
+      "ten_percent_contingency_reserve",
+      "language_specific_minimum_evaluable_sample",
+      "explicit_financial_spend_authority"
+    ],
+    "source_profiles": [
+      {
+        "language": "nl",
+        "babelon_rows": 31171,
+        "synonym_rows": 20735,
+        "babelon_blob": "04523ff7b76356d6e756e7b9b06e24618ff3e4ac",
+        "synonym_blob": "b0160b981ece5934b0eaf86ec952819f67197d0c",
+        "source_status": "tracked_local_content",
+        "special_gate": "freeze_exact_local_blobs_and_preserve_nl_nl_nl_be_variant_boundaries"
+      },
+      {
+        "language": "tr",
+        "babelon_rows": 31102,
+        "synonym_rows": 18706,
+        "babelon_blob": "22d6e72d92e63bedba4e9ebfd8b325b34ba5a788",
+        "synonym_blob": "44c3f898249c653ee75c7b0a291f07ddb3754474",
+        "source_status": "tracked_local_content_upstream_diverged_babelon_only",
+        "special_gate": "freeze_explicit_local_or_upstream_preferred_label_source_and_do_not_mix_blobs"
+      }
+    ],
+    "fallback_if_unaffordable": "retain_the_frozen_two_language_french_czech_design_and_defer_dutch_turkish_without_post_outcome_selection",
+    "execution_authorized": false,
+    "financial_spend_authorized": false
+  },
+  "new_language_governance_preparation": [
+    {
+      "language": "pl",
+      "name": "Polish",
+      "study_role": "first_new_language_candidate",
+      "local_hpo_payload_status": "absent",
+      "metadata_pathways": ["UMLS 2026AA", "MedDRA 29.0", "LOINC 2.82 pl-PL", "Orphadata nomenclature and alignment", "PRO-CTCAE"],
+      "preparation_tasks": ["identify_current_HPO_translation_authority", "define_pl_vs_pl_PL_identity_policy", "obtain_payload_and_derivative_use_permission", "pin_exact_source_versions_hashes_and_lineages", "document_language_community_use_scope", "design_source_coverage_and_missingness_study"],
+      "payload_retrieval_authorized": false,
+      "translation_rows_authorized": false,
+      "empirical_use_authorized": false
+    },
+    {
+      "language": "uk",
+      "name": "Ukrainian",
+      "study_role": "first_new_language_candidate",
+      "local_hpo_payload_status": "absent",
+      "metadata_pathways": ["UMLS 2026AA", "WHO ICF 2026-01", "LOINC 2.82 uk-UA", "Orphadata alignment 2024 vintage", "PRO-CTCAE"],
+      "preparation_tasks": ["identify_current_HPO_translation_authority", "define_uk_vs_uk_UA_identity_policy", "obtain_payload_and_derivative_use_permission", "pin_exact_source_versions_hashes_and_lineages", "document_language_community_use_scope", "model_Orphadata_vintage_and_source_drift", "design_source_coverage_and_missingness_study"],
+      "payload_retrieval_authorized": false,
+      "translation_rows_authorized": false,
+      "empirical_use_authorized": false
+    }
+  ],
+  "analysis_extensions": [
+    {"analysis_id":"N1_cross_language_replication","scope":["fr","cs"],"question":"Do source and model-tier effects observed in Spanish and Japanese replicate in a Romance-Slavic pair?","status":"prospective"},
+    {"analysis_id":"N2_four_language_heterogeneity","scope":["fr","cs","nl","tr"],"question":"If affordable, how heterogeneous are evidence benefits across language family, morphology, resource level and source coverage?","status":"conditional_on_pre_freeze_affordability"},
+    {"analysis_id":"N3_upstream_divergence_sensitivity","scope":["fr","tr"],"question":"How sensitive are results to the explicitly frozen local versus upstream-divergent preferred-label snapshot?","status":"prospective_no_blob_mixing"},
+    {"analysis_id":"N4_new_language_feasibility","scope":["pl","uk"],"question":"What proportion of HPO concepts can be supported by authorized independent lineages when no current local HPO translation payload exists?","status":"governance_only_until_payload_authorized"},
+    {"analysis_id":"N5_regional_and_vintage_fit","scope":["fr","nl","pl","uk"],"question":"How do exact regional identity and source vintage affect coverage, disagreement and candidate utility?","status":"prospective"}
+  ],
+  "controls": {
+    "current_g3_changed": false,
+    "source_payload_retrieval_authorized": false,
+    "translation_rows_added": false,
+    "agent_execution_authorized": false,
+    "financial_spend_authorized": false,
+    "external_contact_authorized": false,
+    "remote_upload_authorized": false,
+    "automatic_promotion_allowed": false,
+    "new_freeze_required": true
+  }
+}
