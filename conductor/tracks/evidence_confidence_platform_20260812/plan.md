@@ -23,6 +23,10 @@
 - [x] Task: Replace GA4GH maturity-based deferral with a relevance-first catalogue in which every retained current, draft, developmental or study-group product has a governed mapping or interoperability path. (`current continuation`)
 - [x] Task: Catalogue UMLS, NLM SNOMED map products, OMOP/Athena, Orphadata and MedDRA as cross-lingual SNOMED–ICD bridge resources while keeping direct, hub-mediated and pivot-mediated paths distinct. (`current continuation`)
 - [ ] Task: Define LinkML/JSON schemas for translation objects, evidence atoms, lineage groups, mapping assertions, contradictions, assessment records, downstream outcomes and confidence records.
+- [ ] Task: Define an HPOIE language-profile contract covering ISO 639-1/639-3/IANA identity, submitter, optional ORCID/contributor and ROR/Wikidata attribution, working-group identity, translation-method description, intended use and exact source-of-truth artifact.
+- [ ] Task: Define separate Babelon label/definition and ROBOT synonym contracts with exact columns, object types, upstream status vocabulary, source and translated values, provenance and validation; prohibit the research overlay from assigning `OFFICIAL` status.
+- [ ] Task: Define a release-maintenance contract for `not-translated` and `changed` queues, source-value confirmation, obsolete/replaced HPO identifiers, exact HPO release binding and synchronized international-edition generation.
+- [ ] Task: Define a pivot-inference contract for ranked UMLS, SNOMED CT, Orphadata and compositional candidate atoms; require all eligible alternatives and reject first-row selection, CUI equivalence, edition inheritance and source-name confidence.
 - [ ] Task: Add source-kind and evidence-role vocabularies covering human HPO baseline, independent human terminology, structural/context evidence, model candidates and downstream outcomes.
 - [ ] Task: Bind HPO, source, mapping, language-rendition, model, prompt and analysis versions to content hashes.
 - [ ] Task: Add ECO/SEPIO-compatible evidence and assertion fields without requiring those ontologies as runtime dependencies.
@@ -35,6 +39,9 @@
 - [ ] Task: Build read-only adapters for upstream Babelon translations, synonyms and release metadata.
 - [ ] Task: Preserve source strings and produce separate normalized comparison forms for Unicode, punctuation, morphology, script and regional analysis.
 - [ ] Task: Ingest only authorized external terminology atoms, preserving designation, predicate, edition, rights and origin lineage.
+- [ ] Task: Implement source-specific pivot adapters: UMLS atom and map-set extraction with SAB/VSAB/AUI/LAT/TTY/ISPREF/SUPPRESS; SNOMED mapping and exact language-refset resolution; and Orphadata Product 4/HOOM HPO-association extraction with localized-label lineage checks.
+- [ ] Task: Retain every eligible pivot candidate and exclusion reason; never select an arbitrary first string or silently collapse ties, one-to-many mappings, source vocabularies, regional variants or dependent lineages.
+- [ ] Task: Implement logical-definition-first compositional candidates with explicit anatomy, quality, laterality, severity and temporal components, contradiction checks and a mandatory `recomposed_candidate` provenance marker.
 - [ ] Task: Add namespace-aware import detection so translated labels from imported ontologies are not attributed to the container ontology.
 - [ ] Task: Produce coverage, exclusion and unavailable-source ledgers with exact denominators.
 - [ ] Task: Demonstrate byte-identical upstream core after a complete rebuild.
@@ -54,6 +61,7 @@
 
 - [ ] Task: Implement the multidimensional confidence record and deterministic H1/H2/T1/T2/A1/A2/C/U categorization rules.
 - [ ] Task: Estimate provenance priors without treating human-mediated status as proof of correctness.
+- [ ] Task: Calibrate pivot evidence using held-out HPOIE human-mediated translations and observed outcomes rather than assigning high/low confidence from source names such as SNOMED, Orphanet or ICD-10.
 - [ ] Task: Fit lineage-aware calibration models using held-out concept and language splits; prevent candidate-row leakage.
 - [ ] Task: Compare confidence categories against continuous probabilities, uncertainty intervals and non-estimability flags.
 - [ ] Task: Run calibration, discrimination, source-ablation, model-tier, regional-fit and temporal-replay analyses.
@@ -67,6 +75,8 @@
 - [ ] Task: Evaluate whether network features add predictive value beyond provenance and direct evidence, using held-out data.
 - [ ] Task: Run process mining on stage events, exclusions, queue time, retries, adjudication and rework.
 - [ ] Task: Report compute, cost, latency, stability and evidence marginal value.
+- [ ] Task: Compare naive CUI first-string retrieval, source-aware UMLS ranking, exact-edition SNOMED retrieval, Orphadata/HOOM evidence, logical-definition decomposition, lineage-aware multi-pivot inference and model-only/model-assisted conditions.
+- [ ] Task: Report pivot coverage, no-edit acceptance, clinically significant error, granularity loss, wrong semantic type, history/negation/status error, regional mismatch, candidate multiplicity, calibration and cost by language and HPO branch.
 - [ ] Task: Generate publication-ready, colorblind-safe figures and machine-readable figure receipts.
 - [ ] Task: Phase Verification & Checkpoint (Refer to workflow.md).
 
@@ -105,6 +115,8 @@
 - [ ] Task: Generate a minimal methods/preprint PR proposal and a separate minimal translation-change PR proposal.
 - [ ] Task: Prove that the translation proposal contains no research-platform bulk diff and no unapproved AI-only record.
 - [ ] Task: Attach per-record provenance, confidence category, contradictions, validation and accountable maintainer decision.
+- [ ] Task: Generate an HPOIE-compatible handoff manifest containing the submitter, optional contributor identifiers, organization identifiers, mandatory method/use description, exact language-profile source of truth, Babelon label/definition changes, separate ROBOT synonyms, source-value confirmations and release binding.
+- [ ] Task: Prove that AI-supported records remain `CANDIDATE` research proposals unless upstream-authorized maintainers independently change their status, and that Crowdin/Babelon ingestion routes are not represented as independent evidence.
 - [ ] Task: Draft a concise upstream issue/PR cross-reference map that respects maintainer workload and contribution policy.
 - [ ] Task: Run full local admission, exact-head hosted checks in the fork when authorized, and payload-safe security review.
 - [ ] Task: Obtain explicit upstream repository and action approval before opening any issue or PR.

@@ -23,6 +23,7 @@
   "upstream_owner": "upstream_HPO_translation_maintainers",
   "known_blockers": [
     "Upstream does not accept AI-generated translations as authoritative translation contributions.",
+    "HPOIE-compatible contracts can preserve profile metadata and candidate status but cannot assign OFFICIAL status or substitute for upstream working-group and maintainer decisions.",
     "No upstream write, issue, project, PR or publication action is authorized.",
     "Human-mediated provenance is incomplete or heterogeneous for some translation records.",
     "External terminology licences, redistribution rules and language-community use constraints remain source-specific.",
@@ -51,7 +52,7 @@
     "success_criteria": ["upstream fixture remains byte-identical", "every atom has immutable provenance and rights state", "dependent evidence counts once", "AI evidence cannot become human-mediated", "confidence category and rationale are deterministic", "restricted payload is absent", "dashboard fixture is read-only", "passing and expected-failure tests behave deterministically"]
   },
   "artifact_contract": {
-    "required_before_phase_1_completion": ["upstream preservation manifest", "path ownership classification", "evidence and confidence schemas", "mutation tests", "payload and external-action policy"],
+    "required_before_phase_1_completion": ["upstream preservation manifest", "path ownership classification", "HPOIE language-profile and maintenance contracts", "Babelon label-definition and ROBOT synonym contracts", "pivot inference contract", "evidence and confidence schemas", "mutation tests", "payload and external-action policy"],
     "conditional_outputs": ["registry-derived source expansion catalogue", "evidence lake", "confidence catalogue", "network and process analyses", "payload-safe Gradio Space package", "GitHub Project dry-run manifest", "arXiv preprint package", "minimal upstream handoff proposals"],
     "excluded_until_policy_allows": ["restricted source text", "identifiable clinical records", "unapproved language-community content", "live GitHub project or issue mutations", "Hugging Face deployment", "arXiv submission", "upstream issues or pull requests", "translation promotion"]
   },

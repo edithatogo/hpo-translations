@@ -38,6 +38,7 @@
 - [x] **Task 3:** Populate derivation paths, shared-lineage clusters, and independent-evidence groups at the originating source-atom level for the selected payload set. Generated 37,800 payload-safe atoms from the two authorized repository snapshots: 19,932 Spanish and 17,868 Japanese. No source or translation text is retained. Both snapshots conservatively share one independent-evidence group because repository/HPO provenance does not establish independent votes. External and restricted sources remain omitted. (`3ff429e`, current continuation)
 - [x] **Task 4:** Add DeCS, Mondo, PRO-CTCAE, WHO ICF, NCIt/NCI dictionaries, RadLex, and structural ontologies only after source-specific access review. Nine metadata-only decisions now cover these sources; no payload was retrieved or cleared. (`f3a9584`)
 - [x] **Task 5:** Demonstrate that mirrors and aggregator-derived labels do not increase independent source counts. Four mapping families resolve to three conservative independent-evidence groups; HP–MeSH and HP–UMLS share a MedGen origin. (`3ff429e`, review fix `e410f47`)
+- [ ] **Task 5a:** Validate a prospective pivot-candidate contract against authorized fixtures: UMLS must retain SAB/VSAB/AUI/LAT/TTY/ISPREF/SUPPRESS and distinguish CUI co-membership from asserted maps; SNOMED must bind mapping predicate, edition and language refset; Orphadata must distinguish Product 4/HOOM HPO associations from ORPHA disease labels and test whether localized HPO labels share HPOIE lineage.
 - [x] **Task 6:** Phase Verification & Checkpoint (Refer to workflow.md). Review completed with no blocking implementation findings; 45 tests and the research, ontology-network, Conductor, type, format, lint, and prose gates pass. Payload and authority gates remain open. (`f3a9584`)
 
 ## Phase 4: Prospectively Frozen Feasibility Pilot
@@ -57,11 +58,13 @@
 
 - [ ] **Task 1:** Run the multilingual candidate-method comparison with prespecified ablations.
 - [ ] **Task 2:** Compare naive source voting with lineage-aware evidence aggregation.
+- [ ] **Task 2a:** Compare naive UMLS first-string pivoting with source-aware atom ranking, exact-edition SNOMED, Orphadata/HOOM, compositional and lineage-aware multi-pivot conditions; retain every candidate, tie, exclusion and one-to-many mapping in the analysis denominator.
 - [ ] **Task 3:** Run the ontology-discrimination benchmark with parent, child, and sibling hard negatives.
 - [ ] **Task 4:** Evaluate downstream HPO extraction and phenotype-driven ranking where suitable public or approved data exist.
 - [ ] **Task 5:** Replay HPO releases for drift prediction and temporal generalization.
 - [ ] **Task 6:** Evaluate active-learning queues against random or FIFO review.
 - [ ] **Task 7:** Report language, region, script, register, and resource-tier results separately with exact uncertainty intervals.
+- [ ] **Task 7a:** Estimate pivot-specific coverage, clinically significant error, no-edit acceptance, granularity loss, semantic-type error, history/negation/status error, regional mismatch, calibration and cost; reject source-name-only confidence rules.
 - [ ] **Task 8:** Phase Verification & Checkpoint (Refer to workflow.md).
 
 ## Phase 6: Review, Delivery, and Completion Gates
@@ -98,6 +101,7 @@
 - [x] **Task:** Define the prospective model-capacity study across tiny, small, medium, and large tiers, each evaluated with model-only, authorized existing-translation, and lineage/ontology evidence arms alongside the withheld current HPO translation. Freeze exact endpoints, prompts, evidence, repetitions, common-context budget, costs, and contamination controls in a new G3 package before execution; the current pilot remains unchanged. (current continuation)
 - [x] **Task:** Catalogue orthogonal biomedical evidence from WHO ATC/DDD, RxNorm, ChEBI, GO, Uberon/CL, OBA/PATO/RO, ICF, PRO-CTCAE, MedlinePlus, RadLex, EDQM, EMA and related sources. Prespecify compositional, medication-context, register, negative-control, mapping-depth, contradiction, regional and taxon-leakage analyses while prohibiting phenotype equivalence, direct lexical voting, payload retrieval, remote upload and empirical use until exact rights, releases and a new freeze close. (current continuation)
 - [x] **Task:** Select French and Czech as the next prospective two-language pilot; admit Dutch and Turkish only if a pre-freeze cost model proves a balanced four-language design affordable; and begin governance-only Polish and Ukrainian source preparation. Bind the four existing-language profiles to canonical local row counts and blobs, preserve the French/Turkish upstream-divergence gates, prohibit invented Polish/Ukrainian payloads, and leave the Spanish/Japanese G3 freeze unchanged. (current continuation)
+- [ ] **Task:** Implement and validate HPOIE-aligned contracts for language identity and working-group provenance, submitter and contributor attribution, mandatory translation-method/use description, Babelon labels/definitions, separate ROBOT synonyms, `OFFICIAL`/`CANDIDATE` status preservation, source-of-truth profiles, changed/untranslated maintenance queues and exact HPO release synchronization. These contracts must not imply upstream acceptance or authorize contact, issue or PR creation. (current continuation)
 
 - [x] **Task:** Apply track-review fixes for complete archive-receipt coverage, exact overlap-layer reconciliation, canonical-input binding, and current lifecycle evidence. (`30cc5a2`)
 - [x] **Task:** Remove the credentialed archive workflow's automatic push trigger, restore per-source release pins, prevent complete authenticated metadata responses from entering future uploaded receipts, and enforce manual dispatch with regression validation. A concurrent hosted push run had already executed before this fix; no new external action was authorized or performed during this review. (`8c572c0`)

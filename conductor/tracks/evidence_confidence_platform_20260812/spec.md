@@ -18,6 +18,8 @@ The platform is an overlay, not a fork of the upstream translation policy. AI ou
 8. **Reproducible freezes.** Every empirical run freezes source blobs, models, prompts, seeds, mappings, sampling, exclusions, analysis code and price schedules.
 9. **Payload-safe publication.** Public reports expose identifiers, aggregate metrics and redistributable evidence only.
 10. **Maintainer-controlled handoff.** Upstream-facing changes are generated as a minimal, reviewable patch with provenance attachments and an explicit accountable-maintainer decision.
+11. **HPOIE contract fidelity.** Local research contracts must preserve the official distinction between professional, manual and automated translation provenance; use ISO 639-1 or, when unavailable, ISO 639-3/IANA language identity; keep Babelon labels and definitions separate from ROBOT-template synonyms; and synchronize source-value confirmation with exact HPO releases.
+12. **Pivot inference is candidate retrieval.** UMLS, SNOMED CT, Orphadata and compositional routes may generate ranked evidence sets, but no CUI, SCTID, ORPHA identifier, source preference flag or first returned string is itself an HPO translation decision.
 
 ## Evidence layers
 
@@ -87,6 +89,12 @@ Required dimensions per HPO concept-language-object record:
 - **U — unavailable/unassessed:** insufficient admissible evidence or a blocked rights/community/ethics gate.
 
 These categories are descriptive research outputs. None authorizes upstream promotion. Category thresholds and any probabilistic calibration must be frozen before confirmatory evaluation and reported with uncertainty.
+
+## HPOIE-aligned contract boundary
+
+The platform must define machine-readable contracts for language-profile identity, contributor attribution, translation method, Babelon label/definition rows, ROBOT synonym rows, source-value drift confirmation, release synchronization, candidate provenance and upstream handoff. The contracts must preserve the official HPOIE source-of-truth profile and its `OFFICIAL`/`CANDIDATE` status semantics without allowing this research overlay to assign upstream status. Submitter identity and the mandatory short description of how a profile was produced and used belong to the handoff package; optional ORCID, contributor, ROR and Wikidata identifiers remain attribution metadata. Crowdin and Babelon are ingestion routes, not scientific evidence lineages.
+
+The pivot candidate contract must return all eligible atoms with source, release, AUI or source identifier, language, script/region, designation, suppression state, mapping predicate, direction, semantic loss, lineage and rights state. It must prohibit arbitrary `fetchone()` selection, CUI equivalence inference, edition inheritance and source-name confidence shortcuts. Compositional candidates must preserve anatomy, quality, laterality, severity and temporal modifiers and remain labelled as recomposed candidates.
 
 ## Quantitative and network analyses
 
