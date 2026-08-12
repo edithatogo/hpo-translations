@@ -3,6 +3,8 @@ import unittest
 
 from scripts.validate_translation_source_utilisation import (
     ASSIGNMENTS_PATH,
+    LEARNING_LOOP_PATH,
+    MODEL_TIER_PATH,
     PLAN_PATH,
     ROOT,
     ROUTES_PATH,
@@ -20,16 +22,22 @@ class TranslationSourceUtilisationTests(unittest.TestCase):
         self.routes = load_json(ROUTES_PATH)
         self.assignments = load_json(ASSIGNMENTS_PATH)
         self.sap = load_json(SAP_PATH)
+        self.model_tiers = load_json(MODEL_TIER_PATH)
+        self.learning_loop = load_json(LEARNING_LOOP_PATH)
 
     def errors(self, plan: dict) -> list[str]:
-        return validation_errors(plan, self.schema, self.routes, self.assignments, self.sap, ROOT)
+        return validation_errors(
+            plan, self.schema, self.routes, self.assignments, self.sap, self.model_tiers, self.learning_loop, ROOT
+        )
 
     def test_source_assignments_cover_exact_matrix(self) -> None:
         mutated = copy.deepcopy(self.assignments)
         mutated["assignments"].pop()
         self.assertIn(
             "source assignment matrix must contain exactly 15 governed assignments",
-            validation_errors(self.plan, self.schema, self.routes, mutated, self.sap, ROOT),
+            validation_errors(
+                self.plan, self.schema, self.routes, mutated, self.sap, self.model_tiers, self.learning_loop, ROOT
+            ),
         )
 
     def test_unknown_assignment_assertion_is_rejected(self) -> None:
@@ -37,15 +45,66 @@ class TranslationSourceUtilisationTests(unittest.TestCase):
         mutated["assignments"][4]["assertions"].append("invented")
         self.assertIn(
             "unknown source-assignment assertion: invented",
-            validation_errors(self.plan, self.schema, self.routes, mutated, self.sap, ROOT),
+            validation_errors(
+                self.plan, self.schema, self.routes, mutated, self.sap, self.model_tiers, self.learning_loop, ROOT
+            ),
         )
 
     def test_statistical_plan_requires_active_learning_analysis(self) -> None:
         mutated = copy.deepcopy(self.sap)
         mutated["analyses"].pop()
         self.assertIn(
-            "statistical analysis plan must bind A1 through A9 in order",
-            validation_errors(self.plan, self.schema, self.routes, self.assignments, mutated, ROOT),
+            "statistical analysis plan must bind A1 through A10 in order",
+            validation_errors(
+                self.plan,
+                self.schema,
+                self.routes,
+                self.assignments,
+                mutated,
+                self.model_tiers,
+                self.learning_loop,
+                ROOT,
+            ),
+        )
+
+    def test_all_four_model_tiers_are_required(self) -> None:
+        mutated = copy.deepcopy(self.model_tiers)
+        mutated["tier_definition"]["tiers"].pop()
+        self.assertIn(
+            "model tiers must remain ordered tiny, small, medium, large",
+            validation_errors(
+                self.plan, self.schema, self.routes, self.assignments, self.sap, mutated, self.learning_loop, ROOT
+            ),
+        )
+
+    def test_existing_translation_reference_cannot_generate(self) -> None:
+        mutated = copy.deepcopy(self.model_tiers)
+        mutated["evidence_arms"][-1]["generation_allowed"] = True
+        self.assertIn(
+            "existing HPO translations must remain non-generative and withheld until candidate lock",
+            validation_errors(
+                self.plan, self.schema, self.routes, self.assignments, self.sap, mutated, self.learning_loop, ROOT
+            ),
+        )
+
+    def test_model_tier_plan_requires_new_freeze(self) -> None:
+        mutated = copy.deepcopy(self.model_tiers)
+        mutated["controls"]["new_freeze_required"] = False
+        self.assertIn(
+            "model tier execution must require a new prospective freeze",
+            validation_errors(
+                self.plan, self.schema, self.routes, self.assignments, self.sap, mutated, self.learning_loop, ROOT
+            ),
+        )
+
+    def test_complete_tier_by_evidence_factorial_is_required(self) -> None:
+        mutated = copy.deepcopy(self.model_tiers)
+        mutated["cell_manifest"].pop()
+        self.assertIn(
+            "model tier plan must contain the complete ordered 12-cell factorial",
+            validation_errors(
+                self.plan, self.schema, self.routes, self.assignments, self.sap, mutated, self.learning_loop, ROOT
+            ),
         )
 
     def test_committed_plan_passes(self) -> None:

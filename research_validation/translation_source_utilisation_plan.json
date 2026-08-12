@@ -23,6 +23,10 @@
     ,"research_validation/translation_statistical_analysis_plan.json"
     ,"research_validation/translation_source_assignments.schema.json"
     ,"research_validation/translation_statistical_analysis_plan.schema.json"
+    ,"research_validation/translation_model_tier_plan.json"
+    ,"research_validation/translation_model_tier_plan.schema.json"
+    ,"research_validation/translation_plan_learning_loop.json"
+    ,"research_validation/translation_plan_learning_loop.schema.json"
   ],
   "analysis_unit": "hpo_concept_by_language_by_translation_object_by_independent_evidence_group",
   "translation_objects": ["preferred_label", "synonym", "definition", "regional_variant", "patient_facing_term"],
@@ -109,6 +113,8 @@
   "operational_contracts": {
     "source_assignments": "research_validation/translation_source_assignments.json",
     "statistical_analysis_plan": "research_validation/translation_statistical_analysis_plan.json",
+    "model_tier_plan": "research_validation/translation_model_tier_plan.json",
+    "learning_loop": "research_validation/translation_plan_learning_loop.json",
     "phase5_analysis_count": 9,
     "current_empirical_change": false
   },
