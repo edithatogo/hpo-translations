@@ -147,3 +147,8 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ## [~] Track: Establish empirical validation for multilingual HPO translation and ontology evidence
 *Link: [./tracks/research_validation_20260801/index.md](./tracks/research_validation_20260801/index.md)*
+
+---
+
+## [ ] Track: Build a layered translation evidence, confidence, visualization, publication, and upstream-handoff platform
+*Link: [./tracks/evidence_confidence_platform_20260812/index.md](./tracks/evidence_confidence_platform_20260812/index.md)*
