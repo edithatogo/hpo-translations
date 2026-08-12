@@ -19,6 +19,7 @@ nav:
   - How to maintain a language profile: maintain.md
   - Contact: contact.md
   - Translations: translations.md
+  - Ontology mapping catalogue: ontology-mapping-catalog.md
   - Language translations:
     - Arabic: translations/ar.md
     - Chinese: translations/zh.md

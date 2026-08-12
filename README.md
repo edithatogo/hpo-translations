@@ -34,3 +34,7 @@ The HPOEI does not concern itself how you perform translations (i.e. how to actu
 2. [Babelon](https://github.com/monarch-initiative/babelon) TSV files on Google sheets. The format is table-based and closely aligned with xliff. We use it internally to manage language translations. This is the recommended format if you choose to use Google sheets to manage your translations ([see here](https://obophenotype.github.io/hpo-translations/submit/)).
 
 Currently only Crowdin and Babelon TSV is supported by the HPOEI, but feel free to reach out if you wish to submit your translations in a different format.
+
+## Governed ontology mapping catalogue
+
+The repository also maintains a payload-safe [ontology mapping catalogue](docs/ontology-mapping-catalog.md). It distinguishes source inventory, explicit mapping assertions, and computed directed routes; documents all governed source-family pairs; and records unavailable mappings without inferring relationships from shared labels or multi-namespace artifact membership.

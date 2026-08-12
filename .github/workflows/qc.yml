@@ -85,6 +85,12 @@ jobs:
       - name: Validate ontology mapping expansion catalog
         run: pixi run validate-mapping-expansion
 
+      - name: Validate deterministic ontology mapping routes
+        run: pixi run validate-mapping-routes
+
+      - name: Check ontology mapping route drift
+        run: pixi run check-mapping-route-drift
+
       - name: Validate open mapping rights matrix
         run: pixi run validate-open-mapping-rights
 

@@ -47,6 +47,9 @@ test-all = ".pixi/envs/default/python.exe -m unittest discover -s tests -p test_
 test-conductor-validation = { depends-on = ["test-all"] }
 validate-research-validation = ".pixi/envs/default/python.exe -u -m scripts.validate_research_validation"
 validate-mapping-expansion = ".pixi/envs/default/python.exe -u -m scripts.validate_mapping_expansion"
+build-mapping-routes = ".pixi/envs/default/python.exe -u scripts/build_mapping_routes.py"
+validate-mapping-routes = ".pixi/envs/default/python.exe -u -m scripts.validate_mapping_routes"
+check-mapping-route-drift = ".pixi/envs/default/python.exe -u scripts/build_mapping_routes.py --check"
 validate-open-mapping-rights = ".pixi/envs/default/python.exe -u -m scripts.validate_open_mapping_rights"
 validate-terminology-inventories = ".pixi/envs/default/python.exe -u -m scripts.validate_terminology_inventories"
 validate-language-readiness = ".pixi/envs/default/python.exe -u -m scripts.validate_language_readiness"
