@@ -48,11 +48,14 @@
     "Sixteen of eighteen ontology-network registry source versions remain unpinned; separate archive receipts do not substitute for registry or pilot-source approval.",
     "Current ontology-network comparison packs contain zero empirical candidates and are not computed.",
     "Restricted terminology content requires source-specific license and redistribution review.",
-    "The specialist-agent panel and G3 protocol are frozen but have not run on an authorized empirical sample.",
-    "Spanish and Japanese are selected for Option B; bounded use of the two exact repository payload snapshots is approved without a community-validation claim.",
-    "No formal ethics or privacy application is required for the frozen no-person, no-personal-data scope; Stage 1 has not yet executed.",
+    "Stage 1 preflight passes for all 13 G3 hashes, 12 units, 48 condition rows, five specialists, adjudicator, auditor, and gate receipts; empirical execution has not yet started.",
     "Upstream push, PR, preregistration, and publication require explicit maintainer approval."
     ,"The code-and-run audit isolated the presumed affected remote object to receipts/loinc-2.82-multilingual.json; content verification is blocked by private-dataset read scope and remote remediation remains unauthorized."
+  ],
+  "resolved_blockers": [
+    "Bounded Spanish and Japanese use is approved for the exact frozen repository snapshots without a community-validation claim.",
+    "No formal ethics or privacy application is required for the frozen no-person, no-personal-data scope.",
+    "The Stage 1 execution preflight is deterministic and green."
   ],
   "expected_blockers": [
     "Source dependence may reduce the number of genuinely independent terminology signals.",

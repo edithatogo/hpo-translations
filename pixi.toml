@@ -68,6 +68,7 @@ validate-babelnet-linguistic-anchor = ".pixi/envs/default/python.exe -u -m scrip
 validate-biomedical-source-preparation = ".pixi/envs/default/python.exe -u -m scripts.validate_biomedical_source_preparation"
 validate-spanish-japanese-use-approval = ".pixi/envs/default/python.exe -u -m scripts.validate_spanish_japanese_use_approval"
 validate-ethics-privacy-determination = ".pixi/envs/default/python.exe -u -m scripts.validate_ethics_privacy_determination"
+validate-stage1-preflight = ".pixi/envs/default/python.exe -u -m scripts.validate_stage1_preflight"
 validate-source-payload-archive = ".pixi/envs/default/python.exe -u -m scripts.archive_source_payloads"
 archive-source-payloads-local = ".pixi/envs/default/python.exe -u -m scripts.archive_source_payloads --execute"
 archive-source-payloads-receipt = ".pixi/envs/default/python.exe -u -m scripts.archive_source_payloads --execute --receipt-path research_validation/source_payload_archive_receipts.json"

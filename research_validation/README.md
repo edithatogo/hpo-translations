@@ -25,6 +25,8 @@ or pull request.
 
 `ethics_privacy_determination.json` records that no formal ethics or privacy application is required for the exact no-person, no-personal-data G3 scope. Privacy controls remain mandatory, and any participant, patient-data, external-payload, or design change reopens the determination. Run `pixi run validate-ethics-privacy-determination` after editing it.
 
+`stage_1_execution_preflight.json` is the payload-safe execution boundary. It verifies all frozen component hashes, the 12-unit/48-row design, panel roles, adjudicator, auditor, and gate receipts while refusing to claim that execution has begun. Run `pixi run validate-stage1-preflight` before every Stage 1 attempt.
+
 `language_identity_registry.json` records language identities that require authority review. An unresolved record fails translation-evidence readiness but does not rename or modify any translation profile.
 
 `phase_4_wave_1_source_decisions.json` records bounded conditional licence-scope
