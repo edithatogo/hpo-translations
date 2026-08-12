@@ -7,7 +7,14 @@ from typing import Any
 
 from jsonschema import Draft202012Validator
 
-from scripts.build_mapping_routes import DEFINITIONS, OUTPUT, build_catalog, canonical_bytes, load_json
+from scripts.build_mapping_routes import (
+    DEFINITIONS,
+    OUTPUT,
+    build_catalog,
+    canonical_bytes,
+    load_json,
+    normalized_file_bytes,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 SCHEMA = ROOT / "research_validation" / "mapping_route_definitions.schema.json"
@@ -104,7 +111,7 @@ def main() -> int:
         for error in errors:
             print(f"ERROR: {error}")
         return 1
-    if OUTPUT.read_bytes() != canonical_bytes(build_catalog(definitions)):
+    if normalized_file_bytes(OUTPUT) != canonical_bytes(build_catalog(definitions)):
         print("ERROR: mapping route catalog byte drift detected")
         return 1
     print(f"Mapping route validation passed: {len(catalog['nodes'])} nodes, {len(catalog['routes'])} ordered pairs")

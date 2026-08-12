@@ -1,7 +1,16 @@
 import copy
+import tempfile
 import unittest
+from pathlib import Path
 
-from scripts.build_mapping_routes import DEFINITIONS, OUTPUT, build_catalog, canonical_bytes, load_json
+from scripts.build_mapping_routes import (
+    DEFINITIONS,
+    OUTPUT,
+    build_catalog,
+    canonical_bytes,
+    load_json,
+    normalized_file_bytes,
+)
 from scripts.validate_mapping_routes import validation_errors
 
 
@@ -31,7 +40,13 @@ class MappingRouteTests(unittest.TestCase):
         second = build_catalog(copy.deepcopy(self.definitions))
         self.assertEqual(first, second)
         self.assertEqual(canonical_bytes(first), canonical_bytes(second))
-        self.assertEqual(canonical_bytes(first), OUTPUT.read_bytes())
+        self.assertEqual(canonical_bytes(first), normalized_file_bytes(OUTPUT))
+
+    def test_windows_checkout_line_endings_are_normalized(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "catalog.json"
+            path.write_bytes(b'{\r\n  "ok": true\r\n}\r\n')
+            self.assertEqual(normalized_file_bytes(path), b'{\n  "ok": true\n}\n')
 
     def test_curated_or_source_xref_route_precedes_lexical_candidate(self) -> None:
         route = next(item for item in self.catalog["routes"] if item["route_id"] == "mondo--to--hpo")

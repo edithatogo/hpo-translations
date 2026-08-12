@@ -36,6 +36,11 @@ def canonical_bytes(value: Any) -> bytes:
     return (json.dumps(value, ensure_ascii=False, indent=2, sort_keys=True) + "\n").encode()
 
 
+def normalized_file_bytes(path: Path) -> bytes:
+    """Normalize Git checkout line endings before deterministic comparison."""
+    return path.read_bytes().replace(b"\r\n", b"\n")
+
+
 def _edges(definitions: dict[str, Any]) -> list[dict[str, Any]]:
     edges: list[dict[str, Any]] = []
     for item in definitions["atomic_assertions"]:
@@ -200,7 +205,7 @@ def main() -> int:
     args = parser.parse_args()
     generated = canonical_bytes(build_catalog(load_json(DEFINITIONS)))
     if args.check:
-        if not OUTPUT.exists() or OUTPUT.read_bytes() != generated:
+        if not OUTPUT.exists() or normalized_file_bytes(OUTPUT) != generated:
             print("ERROR: mapping route catalog drift detected")
             return 1
         print("Mapping route catalog drift check passed")
