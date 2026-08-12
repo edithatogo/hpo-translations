@@ -1,7 +1,7 @@
 {
   "track_id": "evidence_confidence_platform_20260812",
   "type": "feature_and_research_platform",
-  "status": "planned_execution_not_started",
+  "status": "in_progress",
   "created_at": "2026-08-12",
   "updated_at": "2026-08-12",
   "description": "Build a non-invasive layered translation evidence, confidence, analysis, visualization, publication and upstream-handoff platform.",
@@ -9,7 +9,7 @@
   "blocks": ["research_validation_20260801:confidence_report_and_upstream_handoff"],
   "branch": "codex/evidence-confidence-platform-20260812",
   "pr_url": null,
-  "ci_status": "local_planning_validation_pending",
+  "ci_status": "local_planning_passing_implementation_started",
   "merge_status": "not_opened",
   "last_commit": null,
   "phase_review_status": "planning_not_reviewed",

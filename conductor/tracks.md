@@ -150,5 +150,5 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ---
 
-## [ ] Track: Build a layered translation evidence, confidence, visualization, publication, and upstream-handoff platform
+## [~] Track: Build a layered translation evidence, confidence, visualization, publication, and upstream-handoff platform
 *Link: [./tracks/evidence_confidence_platform_20260812/index.md](./tracks/evidence_confidence_platform_20260812/index.md)*
