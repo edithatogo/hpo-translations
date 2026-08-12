@@ -61,6 +61,7 @@ validate-hpo-language-inventory = ".pixi/envs/default/python.exe -u scripts/vali
 validate-translation-source-utilisation = ".pixi/envs/default/python.exe -u -m scripts.validate_translation_source_utilisation"
 validate-orthogonal-biomedical-sources = ".pixi/envs/default/python.exe -u -m scripts.validate_orthogonal_biomedical_sources"
 validate-next-language-pilot = ".pixi/envs/default/python.exe -u -m scripts.validate_next_language_pilot"
+validate-registry-source-expansion = ".pixi/envs/default/python.exe -u -m scripts.validate_registry_source_expansion"
 validate-source-payload-archive = ".pixi/envs/default/python.exe -u -m scripts.archive_source_payloads"
 archive-source-payloads-local = ".pixi/envs/default/python.exe -u -m scripts.archive_source_payloads --execute"
 archive-source-payloads-receipt = ".pixi/envs/default/python.exe -u -m scripts.archive_source_payloads --execute --receipt-path research_validation/source_payload_archive_receipts.json"

@@ -52,7 +52,7 @@
   },
   "artifact_contract": {
     "required_before_phase_1_completion": ["upstream preservation manifest", "path ownership classification", "evidence and confidence schemas", "mutation tests", "payload and external-action policy"],
-    "conditional_outputs": ["evidence lake", "confidence catalogue", "network and process analyses", "payload-safe Gradio Space package", "GitHub Project dry-run manifest", "arXiv preprint package", "minimal upstream handoff proposals"],
+    "conditional_outputs": ["registry-derived source expansion catalogue", "evidence lake", "confidence catalogue", "network and process analyses", "payload-safe Gradio Space package", "GitHub Project dry-run manifest", "arXiv preprint package", "minimal upstream handoff proposals"],
     "excluded_until_policy_allows": ["restricted source text", "identifiable clinical records", "unapproved language-community content", "live GitHub project or issue mutations", "Hugging Face deployment", "arXiv submission", "upstream issues or pull requests", "translation promotion"]
   },
   "automation_readiness": "planning_only_no_runtime_or_external_actions",

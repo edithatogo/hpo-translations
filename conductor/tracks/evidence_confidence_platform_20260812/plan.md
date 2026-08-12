@@ -19,6 +19,7 @@
 
 ## Phase 1: Evidence data model and immutable provenance
 
+- [x] Task: Add and validate the registry-derived source expansion catalogue covering MAxO, HPO association products, CMO/MMO/XCO, ECO/SEPIO, GA4GH standards, multilingual/context candidates, deferred sources and registry deduplication. (`current continuation`)
 - [ ] Task: Define LinkML/JSON schemas for translation objects, evidence atoms, lineage groups, mapping assertions, contradictions, assessment records, downstream outcomes and confidence records.
 - [ ] Task: Add source-kind and evidence-role vocabularies covering human HPO baseline, independent human terminology, structural/context evidence, model candidates and downstream outcomes.
 - [ ] Task: Bind HPO, source, mapping, language-rendition, model, prompt and analysis versions to content hashes.
