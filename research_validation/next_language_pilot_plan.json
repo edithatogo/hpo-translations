@@ -19,9 +19,9 @@
         "language": "fr",
         "babelon_rows": 14693,
         "synonym_rows": 11815,
-        "babelon_blob": "9d37453279a95f6159edd7683437babb21916b44",
+        "babelon_blob": "8f77d05d1a10c0bf1e86c851f140d954f9f05a87",
         "synonym_blob": "c9274dc40a1789bc6542a66dbb8da5de3b616d41",
-        "source_status": "tracked_local_content_upstream_diverged_babelon_only",
+        "source_status": "tracked_local_content_matches_upstream",
         "special_gate": "freeze_explicit_local_or_upstream_preferred_label_source_and_do_not_mix_blobs"
       },
       {
