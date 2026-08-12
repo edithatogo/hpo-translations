@@ -52,6 +52,7 @@ Establish a preregisterable, version-pinned research programme that evaluates wh
 - Apply `research_validation/translation_source_utilisation_plan.json` to distinguish withheld HPO references, authorized independent lexical sources, mapped clinical context, structural/compositional evidence, and derived aggregators before source atoms or candidates are generated.
 - Estimate incremental candidate yield, lineage-aware agreement, route utility, semantic discrimination, exact regional-variant fit, leave-one-lineage-group-out contribution, release drift, and downstream utility without treating any one outcome as promotion authority.
 - In a separately re-frozen experiment, evaluate tiny, small, medium, and large model tiers against identical model-only, existing-translation-assisted, and lineage/ontology-assisted evidence arms, with the current HPO translation withheld as the same-item comparator.
+- Apply the continuous improvement register to every source assignment and A1-A10 analysis; retain negative evidence, compare generative cells with a non-generative evidence-only baseline, and require prospective amendment or a new freeze before any resulting empirical change.
 
 ### Language and community governance
 
