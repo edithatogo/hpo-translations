@@ -53,6 +53,7 @@ Establish a preregisterable, version-pinned research programme that evaluates wh
 - Estimate incremental candidate yield, lineage-aware agreement, route utility, semantic discrimination, exact regional-variant fit, leave-one-lineage-group-out contribution, release drift, and downstream utility without treating any one outcome as promotion authority.
 - In a separately re-frozen experiment, evaluate tiny, small, medium, and large model tiers against identical model-only, existing-translation-assisted, and lineage/ontology-assisted evidence arms, with the current HPO translation withheld as the same-item comparator.
 - Apply the continuous improvement register to every source assignment and A1-A10 analysis; retain negative evidence, compare generative cells with a non-generative evidence-only baseline, and require prospective amendment or a new freeze before any resulting empirical change.
+- Archive each mapping-catalog payload when acquisition is authorized: use a public archive only for verified permissive redistribution, a private Hugging Face dataset only when exact terms permit third-party private storage, local-only custody when external hosting is prohibited, and metadata-only status when retrieval or licence scope is unresolved.
 
 ### Language and community governance
 
