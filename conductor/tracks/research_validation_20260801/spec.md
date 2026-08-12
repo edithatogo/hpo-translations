@@ -49,6 +49,8 @@ Establish a preregisterable, version-pinned research programme that evaluates wh
 - Record originating authority, source atom, source release, derivation path, shared-lineage cluster, independent-evidence group, designation role, and license class.
 - Treat aggregators and mirrors as discovery layers unless independent provenance is demonstrated.
 - Keep LLM and terminology outputs candidate-only and require explicit maintainer release authorization for promotion.
+- Apply `research_validation/translation_source_utilisation_plan.json` to distinguish withheld HPO references, authorized independent lexical sources, mapped clinical context, structural/compositional evidence, and derived aggregators before source atoms or candidates are generated.
+- Estimate incremental candidate yield, lineage-aware agreement, route utility, semantic discrimination, exact regional-variant fit, leave-one-lineage-group-out contribution, release drift, and downstream utility without treating any one outcome as promotion authority.
 
 ### Language and community governance
 
@@ -71,6 +73,7 @@ Establish a preregisterable, version-pinned research programme that evaluates wh
 - A versioned benchmark protocol and pilot design are committed.
 - Language identity, translation-evaluation item, source-lineage, agent-decision, and run-manifest schemas validate against passing and failing fixtures.
 - The pilot includes a prespecified error taxonomy, adjudication procedure, statistical analysis plan, and downstream-task evaluation plan.
+- A machine-validated utilisation plan binds every proposed analytical use to a semantic role, lineage rule, route boundary, language/edition rule, accountable gate, contingency, and candidate-only handoff.
 - A fail-fast benchmark fixture exercises at least one HPO item, one hard negative, and two independently identified evidence groups without using restricted text.
 - Conductor, ontology-network, lint, and relevant unit tests pass locally.
 - No empirical completion claim is made until nonzero, version-pinned records and reproducible agent-panel evidence exist.

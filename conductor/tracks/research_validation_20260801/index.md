@@ -11,4 +11,6 @@
 - [Phase 4 G1 Internal Scope Review](../../../research_validation/phase_4_g1_internal_scope_review.json)
 - [Phase 4 Wave 1 Source Decisions](../../../research_validation/phase_4_wave_1_source_decisions.json)
 - [Phase 4 Wave 2 Authority Routes](../../../research_validation/phase_4_wave_2_authority_routes.json)
+- [Translation Source Utilisation Analysis Plan](../../../research_validation/translation_source_utilisation_plan.md)
+- [Machine-readable Translation Source Utilisation Contract](../../../research_validation/translation_source_utilisation_plan.json)
 - [Metadata](./metadata.json)

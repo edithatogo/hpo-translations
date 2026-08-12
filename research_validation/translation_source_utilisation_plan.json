@@ -1,0 +1,113 @@
+{
+  "schema_version": "translation-source-utilisation-plan-v1",
+  "status": "planning_only_execution_blocked",
+  "purpose": "Use governed existing translations and mappings to generate, triangulate, diagnose, and prioritize HPO translation candidates without treating availability, mapping reachability, or source count as validity or permission.",
+  "current_study_scope": {
+    "freeze_id": "g3-option-b-es-ja-20260812-v1",
+    "languages": ["es", "ja"],
+    "execution_status": "blocked_pending_language_community_use_and_ethics_privacy_gates",
+    "expansion_rule": "Any added language, source payload, route, candidate condition, sampling rule, or analysis requires a new prospective freeze before empirical use.",
+    "excluded_profile": "tw"
+  },
+  "canonical_inputs": [
+    "conductor/hpo_babelon_language_inventory.json",
+    "research_validation/source_catalog.json",
+    "research_validation/mapping_expansion_catalog.json",
+    "research_validation/terminology_node_registry.json",
+    "research_validation/mapping_route_catalog.json",
+    "research_validation/open_mapping_rights_matrix.json",
+    "research_validation/supplementary_source_access_reviews.json",
+    "research_validation/pilot_source_payload_manifest.json",
+    "research_validation/pilot_independent_lineage_groups.json"
+  ],
+  "analysis_unit": "hpo_concept_by_language_by_translation_object_by_independent_evidence_group",
+  "translation_objects": ["preferred_label", "synonym", "definition", "regional_variant", "patient_facing_term"],
+  "source_role_classes": [
+    {
+      "role_id": "withheld_hpo_reference",
+      "eligible_sources": ["exact versioned HPO translation snapshots"],
+      "permitted_uses": ["evaluation_comparator_after_candidate_lock", "drift_replay"],
+      "prohibited_uses": ["candidate_generation_for_the_same_item", "independent_vote", "automatic_promotion"]
+    },
+    {
+      "role_id": "independent_multilingual_lexical_source",
+      "eligible_sources": ["authorized versioned terminology editions with exact language or regional identity"],
+      "permitted_uses": ["candidate_generation", "synonym_discovery", "regional_variant_comparison", "conflict_detection"],
+      "prohibited_uses": ["use_before_payload_and_licence_authorization", "inheritance_from_base_language", "automatic_promotion"]
+    },
+    {
+      "role_id": "mapped_clinical_or_disease_context",
+      "eligible_sources": ["predicate-aware mapped disease, clinical, and classification sources"],
+      "permitted_uses": ["contextual_candidate_generation", "sense_disambiguation", "false_friend_detection", "coverage_prioritization"],
+      "prohibited_uses": ["direct_phenotype_equivalence_without_assertion", "transitive_xref_promotion", "automatic_promotion"]
+    },
+    {
+      "role_id": "structural_compositional_source",
+      "eligible_sources": ["PATO, Uberon, Cell Ontology, uPheno, MP and other governed component mappings"],
+      "permitted_uses": ["anatomy_quality_decomposition", "semantic_consistency_check", "hard_negative_construction"],
+      "prohibited_uses": ["lexical_vote", "general_equivalence_inference", "automatic_promotion"]
+    },
+    {
+      "role_id": "aggregator_or_derived_hub",
+      "eligible_sources": ["UMLS, MedGen, Mondo and other lineage-preserving aggregators"],
+      "permitted_uses": ["discovery", "route_identification", "provenance_recovery", "candidate_generation_when_authorized"],
+      "prohibited_uses": ["independent_vote_without_distinct_origin", "rights_laundering", "cui_or_xref_as_exact_translation"]
+    }
+  ],
+  "stages": [
+    {"stage_id":"U0","name":"metadata_feasibility","inputs":["catalogues", "route outcomes", "language renditions"],"outputs":["eligible source-language-route matrix", "blocked-source ledger"],"entry_gate":"none_metadata_only","exit_rule":"every proposed use has a role, exact endpoint, disposition, and gate state"},
+    {"stage_id":"U1","name":"authorization_and_freeze","inputs":["U0 matrix", "licence and community decisions", "exact versions and hashes"],"outputs":["authorized payload manifest", "new freeze when scope changes"],"entry_gate":"accountable source, language, community, ethics and privacy decisions","exit_rule":"all selected payloads, versions, purposes, custody rules, and exclusions are frozen"},
+    {"stage_id":"U2","name":"source_atom_generation","inputs":["authorized payloads only"],"outputs":["payload-safe source atoms", "derivation paths", "independent evidence groups"],"entry_gate":"U1 complete","exit_rule":"every atom has source ID, concept ID, language tag, object type, release, route, rights state, derivation path, and lineage group"},
+    {"stage_id":"U3","name":"candidate_construction","inputs":["eligible U2 atoms", "frozen candidate conditions"],"outputs":["blinded candidate sets", "withheld references", "hard negatives"],"entry_gate":"candidate condition and leakage controls frozen","exit_rule":"reference translations are withheld and no candidate exceeds its weakest route or rights state"},
+    {"stage_id":"U4","name":"isolated_agent_panel_assessment","inputs":["blinded candidates", "ontology context", "source-safe evidence packets"],"outputs":["five specialist decisions", "isolated adjudication", "reproducibility audit"],"entry_gate":"Stage 1 execution gates closed","exit_rule":"all required roles complete or prespecified revise/stop rule applies"},
+    {"stage_id":"U5","name":"comparative_analysis","inputs":["locked agent decisions", "lineage records", "candidate conditions"],"outputs":["prespecified estimands", "source ablations", "language and variant strata", "error taxonomy"],"entry_gate":"outcomes and exclusions locked before unblinding","exit_rule":"results are payload-safe, uncertainty-qualified, and separated by language"},
+    {"stage_id":"U6","name":"candidate_handoff","inputs":["U5 report", "provenance and limitations"],"outputs":["candidate-only maintainer handoff", "gap-priority queue", "drift watchlist"],"entry_gate":"reproducibility audit passes","exit_rule":"explicit maintainer promotion decision remains required for every release change"}
+  ],
+  "analyses": [
+    {"analysis_id":"A1_incremental_candidate_yield","question":"How many unique usable candidates or synonyms does each authorized source role add beyond the baseline?","estimand":"eligible unique candidates per 100 concept-language-object units after lineage deduplication","comparators":["machine_translation_only", "llm_only", "ontology_supported"],"strata":["language", "object_type", "source_role", "route_class"],"decision_use":"prioritize sources for later evaluation, never promote terms"},
+    {"analysis_id":"A2_lineage_aware_agreement","question":"Does independent-lineage support predict panel acceptance better than naive source counts?","estimand":"change in out-of-sample calibration and discrimination for lineage-aware versus naive evidence models","comparators":["raw_source_count", "independent_evidence_group_count"],"strata":["language", "source_role", "semantic_loss"],"decision_use":"select the evidence aggregation rule for confirmatory study"},
+    {"analysis_id":"A3_mapping_route_utility","question":"Which predicate, route, semantic-loss, and rights classes produce useful HPO candidates?","estimand":"acceptance, clinically significant error, and abstention by route class with uncertainty intervals","comparators":["direct", "mediated", "compositional", "lexical_candidate"],"strata":["predicate", "hop_count", "concept_domain", "language"],"decision_use":"retain, narrow, or prohibit route classes prospectively"},
+    {"analysis_id":"A4_semantic_discrimination","question":"Do source-supported translations preserve discrimination from HPO parents, children, and siblings?","estimand":"hard-negative discrimination accuracy and safety-error rate","comparators":["source_supported", "baseline_candidate"],"strata":["ontology_depth", "compositionality", "error_category", "language"],"decision_use":"identify unsafe semantic patterns and required context"},
+    {"analysis_id":"A5_regional_variant_fit","question":"Does exact language-script-region matching reduce disagreement and regional mismatch?","estimand":"difference in regional-mismatch error and edit burden between exact-variant and generic-language evidence","comparators":["exact_variant", "generic_or_unresolved_variant"],"strata":["language", "region", "script", "register"],"decision_use":"require variant-specific evidence where material; never collapse variants"},
+    {"analysis_id":"A6_source_ablation","question":"What is each lineage group's marginal contribution?","estimand":"change in candidate yield, panel acceptance, calibration, and semantic discrimination when a lineage group is removed","comparators":["all_eligible_groups", "leave_one_lineage_group_out"],"strata":["language", "source_role"],"decision_use":"remove redundant or harmful sources and avoid false consensus"},
+    {"analysis_id":"A7_release_drift","question":"Can source and HPO change signals predict translations requiring reassessment?","estimand":"precision-recall and calibration for future changed or rejected items under temporal replay","comparators":["graph_and_provenance_model", "lexical_change_only"],"strata":["change_type", "language", "source_role"],"decision_use":"produce a prioritized drift watchlist"},
+    {"analysis_id":"A8_downstream_utility","question":"Do accepted candidates improve multilingual HPO extraction or phenotype ranking?","estimand":"task-specific performance difference on public or separately authorized evaluation data","comparators":["current_translation", "candidate_translation"],"strata":["language", "task", "translation_object"],"decision_use":"support downstream-utility claims only; not translation validity or clinical effectiveness"}
+  ],
+  "decision_rules": {
+    "source_admission": "A source enters empirical analysis only when its exact payload, version, language rendition, route applicability, rights, and purpose are authorized and frozen.",
+    "lineage": "Count one vote per independent originating evidence group; mirrors, imports, translations copied across editions, and aggregate representations do not create additional votes.",
+    "mapping": "Only explicit directed predicates may support a candidate; xref, related, compositional, containment, family, edition, and language relationships never become exact equivalence by traversal.",
+    "variants": "Language, script, region, register, and edition remain separate; generic evidence may be analysed as unresolved but cannot claim exact regional support.",
+    "progression": "Apply only the prespecified Stage 1 go/revise/stop rule; source performance observed after unblinding cannot redefine that rule.",
+    "promotion": "No score, majority, source count, route, panel agreement, or downstream benefit authorizes promotion. An accountable maintainer promotion decision is always separate."
+  },
+  "contingencies": [
+    {"condition":"source_payload_or_licence_unavailable","action":"retain metadata-only feasibility result; exclude atoms and candidates; do not substitute a mirror"},
+    {"condition":"no_direct_hpo_route","action":"use the source only for discovery, context, or a prespecified candidate-only mediated route; otherwise record unavailable"},
+    {"condition":"lineage_independence_uncertain","action":"collapse to one conservative evidence group"},
+    {"condition":"language_script_region_unresolved","action":"exclude variant-specific claims and analyse only in an explicitly unresolved stratum"},
+    {"condition":"source_release_changes_after_freeze","action":"keep the frozen run, record drift, and create a new freeze for the new release"},
+    {"condition":"community_or_ethics_gate_does_not_close","action":"step down according to the frozen Option B contingency or remain synthetic-only"},
+    {"condition":"restricted_output_cannot_be_reported","action":"publish aggregate payload-safe metrics and provenance identifiers only"}
+  ],
+  "required_outputs": [
+    "source eligibility and exclusion table",
+    "concept-language-source atom ledger stored under applicable custody rules",
+    "lineage and derivation graph",
+    "candidate-condition comparison",
+    "route and source-role utility report",
+    "regional-variant analysis",
+    "leave-one-lineage-group-out ablation",
+    "error taxonomy and hard-negative results",
+    "payload-safe reproducibility receipt",
+    "candidate-only ontology-maintainer handoff"
+  ],
+  "controls": {
+    "payload_rows_committed": false,
+    "restricted_terms_committed": false,
+    "credentials_committed": false,
+    "automatic_promotion_allowed": false,
+    "agent_panel_can_grant_rights_or_community_or_ethics_authority": false,
+    "maintainer_promotion_decision_required": true
+  }
+}

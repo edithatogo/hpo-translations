@@ -112,6 +112,9 @@ jobs:
       - name: Validate HPO language inventory
         run: pixi run validate-hpo-language-inventory
 
+      - name: Validate translation source utilisation plan
+        run: pixi run validate-translation-source-utilisation
+
       - name: Validate approved metadata-only samples
         run: pixi run validate-metadata-only-samples
 
