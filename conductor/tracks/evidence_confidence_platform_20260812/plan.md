@@ -20,6 +20,7 @@
 ## Phase 1: Evidence data model and immutable provenance
 
 - [x] Task: Add and validate the registry-derived source expansion catalogue covering MAxO, HPO association products, CMO/MMO/XCO, ECO/SEPIO, GA4GH standards, multilingual/context candidates, deferred sources and registry deduplication. (`current continuation`)
+- [x] Task: Decompose the priority catalogue into a validated 22-component preparation matrix so every association file, ontology, schema, API, bilingual candidate and bias-control source has an explicit HPO connection, lineage, archive route, next gate and prospective analysis binding. (current continuation)
 - [x] Task: Replace GA4GH maturity-based deferral with a relevance-first catalogue in which every retained current, draft, developmental or study-group product has a governed mapping or interoperability path. (`current continuation`)
 - [x] Task: Catalogue UMLS, NLM SNOMED map products, OMOP/Athena, Orphadata and MedDRA as cross-lingual SNOMED–ICD bridge resources while keeping direct, hub-mediated and pivot-mediated paths distinct. (`current continuation`)
 - [ ] Task: Define LinkML/JSON schemas for translation objects, evidence atoms, lineage groups, mapping assertions, contradictions, assessment records, downstream outcomes and confidence records.

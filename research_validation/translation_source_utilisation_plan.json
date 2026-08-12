@@ -21,6 +21,8 @@
     "research_validation/snomed_icd_crosslingual_bridge_catalog.json",
     "research_validation/babelnet_linguistic_anchor_plan.json",
     "research_validation/babelnet_linguistic_anchor_plan.schema.json",
+    "research_validation/biomedical_source_preparation_matrix.json",
+    "research_validation/biomedical_source_preparation_matrix.schema.json",
     "research_validation/supplementary_source_access_reviews.json",
     "research_validation/pilot_source_payload_manifest.json",
     "research_validation/pilot_independent_lineage_groups.json"
