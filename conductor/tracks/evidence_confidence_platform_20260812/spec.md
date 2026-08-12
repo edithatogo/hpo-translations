@@ -20,6 +20,7 @@ The platform is an overlay, not a fork of the upstream translation policy. AI ou
 10. **Maintainer-controlled handoff.** Upstream-facing changes are generated as a minimal, reviewable patch with provenance attachments and an explicit accountable-maintainer decision.
 11. **HPOIE contract fidelity.** Local research contracts must preserve the official distinction between professional, manual and automated translation provenance; use ISO 639-1 or, when unavailable, ISO 639-3/IANA language identity; keep Babelon labels and definitions separate from ROBOT-template synonyms; and synchronize source-value confirmation with exact HPO releases.
 12. **Pivot inference is candidate retrieval.** UMLS, SNOMED CT, Orphadata and compositional routes may generate ranked evidence sets, but no CUI, SCTID, ORPHA identifier, source preference flag or first returned string is itself an HPO translation decision.
+13. **BabelNet is conditional linguistic evidence.** Use BabelNet only when governed triggers identify pivot disagreement, lexical gaps, descriptive components, low confidence or unresolved locale. Preserve the originating resource and collapse Wikidata-derived senses into the Wikidata lineage; a Health domain label and generic `pt` never establish clinical meaning or a national Portuguese variant.
 
 ## Evidence layers
 

@@ -64,6 +64,7 @@ validate-next-language-pilot = ".pixi/envs/default/python.exe -u -m scripts.vali
 validate-registry-source-expansion = ".pixi/envs/default/python.exe -u -m scripts.validate_registry_source_expansion"
 validate-ga4gh-relevance = ".pixi/envs/default/python.exe -u -m scripts.validate_ga4gh_relevance"
 validate-snomed-icd-bridges = ".pixi/envs/default/python.exe -u -m scripts.validate_snomed_icd_bridges"
+validate-babelnet-linguistic-anchor = ".pixi/envs/default/python.exe -u -m scripts.validate_babelnet_linguistic_anchor"
 validate-source-payload-archive = ".pixi/envs/default/python.exe -u -m scripts.archive_source_payloads"
 archive-source-payloads-local = ".pixi/envs/default/python.exe -u -m scripts.archive_source_payloads --execute"
 archive-source-payloads-receipt = ".pixi/envs/default/python.exe -u -m scripts.archive_source_payloads --execute --receipt-path research_validation/source_payload_archive_receipts.json"

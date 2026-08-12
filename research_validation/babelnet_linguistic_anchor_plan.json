@@ -1,0 +1,138 @@
+{
+  "schema_version": "babelnet-linguistic-anchor-plan-v1",
+  "status": "prospective_planning_only_new_freeze_required",
+  "authority": {
+    "name": "BabelNet",
+    "version": "5.3",
+    "data_vintage": "2023-12",
+    "api_guide": "https://babelnet.org/guide",
+    "license_url": "https://babelnet.org/license"
+  },
+  "role": {
+    "evidence_role": "conditional_linguistic_anchor",
+    "direct_clinical_authority": false,
+    "independent_vote_by_default": false,
+    "health_domain_filter_is_sufficient": false,
+    "description": "Resolve descriptive language, morphology and polysemy only after clinical and cultural pivots are evaluated; never promote a BabelNet sense as an HPO translation by itself."
+  },
+  "trigger_policy": {
+    "mode": "conditional_tie_breaker_and_gap_resolver",
+    "run_on_every_term": false,
+    "triggers": [
+      "snomed_wikidata_material_disagreement",
+      "no_eligible_lexical_candidate",
+      "descriptive_or_compositional_component",
+      "low_calibrated_confidence",
+      "unresolved_regional_portuguese",
+      "model_tier_material_disagreement",
+      "untranslated_structural_component"
+    ],
+    "skip_conditions": [
+      "exact_authorized_human_clinical_evidence_is_sufficient",
+      "duplicate_or_downstream_wikidata_lineage",
+      "precoordinated_term_would_lose_clinical_meaning",
+      "quota_or_license_gate_closed"
+    ]
+  },
+  "api_contract": {
+    "operations": ["resolve_synsets", "retrieve_synset", "retrieve_outgoing_edges"],
+    "authentication": "api_key_from_runtime_secret_store_only",
+    "base_daily_coin_budget": 1000,
+    "query_cost_assumption_coins": 1,
+    "maximum_target_languages_per_resolution_request": 3,
+    "gzip_enabled": true,
+    "bounded_retry_with_backoff": true,
+    "resumable_request_ledger": true,
+    "cache_policy": "content_addressed_metadata_and_permitted_fields_only",
+    "bulk_offline_index_required": false
+  },
+  "sense_selection": {
+    "required_features": [
+      "part_of_speech",
+      "source_resource",
+      "source_language",
+      "target_language",
+      "sense_quality",
+      "domain_labels",
+      "gloss_context",
+      "outgoing_edge_context",
+      "external_identifier_context",
+      "clinical_pivot_agreement"
+    ],
+    "health_domain_is_feature_not_gate": true,
+    "single_first_result_selection_allowed": false,
+    "polysemy_abstention_required": true
+  },
+  "regional_language_policy": {
+    "generic_portuguese_tag": "pt",
+    "variants_requiring_independent_evidence": ["pt-BR", "pt-PT"],
+    "generic_pt_proves_variant": false,
+    "country_or_locale_inference_from_api_language_only": false,
+    "regional_claim_requires": ["variant_tagged_source", "jurisdictional_usage_evidence", "exact_source_provenance"]
+  },
+  "lineage_policy": {
+    "babelnet_aggregates_are_not_automatically_independent": true,
+    "wikidata_derived_senses_share_wikidata_lineage": true,
+    "originating_resource_must_be_preserved": true,
+    "one_vote_per_independent_evidence_group": true
+  },
+  "evidence_record_required_fields": [
+    "babelnet_version",
+    "api_operation",
+    "request_fingerprint",
+    "retrieved_at",
+    "synset_id",
+    "source_lemma",
+    "target_sense",
+    "language_tag",
+    "source_resource",
+    "part_of_speech",
+    "sense_quality",
+    "domain_labels",
+    "gloss_context_digest",
+    "edge_context_digest",
+    "external_identifiers",
+    "regional_evidence",
+    "selection_reason",
+    "exclusion_reasons",
+    "license_cohort",
+    "independent_evidence_group"
+  ],
+  "prospective_ablation": {
+    "conditions": [
+      "B0_snomed_only",
+      "B1_wikidata_only",
+      "B2_snomed_plus_wikidata",
+      "B3_babelnet_only",
+      "B4_baseline_plus_conditional_babelnet",
+      "B5_conditional_babelnet_plus_structural_decomposition",
+      "B6_lineage_aware_full_system"
+    ],
+    "outcomes": [
+      "incremental_eligible_coverage",
+      "accept_without_edit",
+      "clinically_significant_error",
+      "wrong_sense_rate",
+      "regional_mismatch_rate",
+      "lineage_deduplicated_unique_yield",
+      "calibration",
+      "api_cost_and_latency"
+    ],
+    "execution_requires_new_freeze": true
+  },
+  "architecture": {
+    "recommended_location": "separate_evidence_platform_overlay",
+    "upstream_hpo_translation_files_modified": false,
+    "candidate_output_only": true
+  },
+  "controls": {
+    "api_called": false,
+    "api_key_committed": false,
+    "payload_retrieved": false,
+    "empirical_execution_authorized": false,
+    "commercial_use_authorized": false,
+    "public_redistribution_authorized": false,
+    "automatic_promotion_allowed": false,
+    "current_g3_changed": false
+  }
+}

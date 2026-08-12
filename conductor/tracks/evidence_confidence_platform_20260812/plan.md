@@ -70,6 +70,9 @@
 
 ## Phase 5: Network, process and quantitative analysis
 
+- [x] Task: Define and validate a prospective BabelNet conditional linguistic-anchor contract with bounded API/quota handling, contextual sense selection, Portuguese-variant safeguards, lineage deduplication and B0-B6 ablation conditions; preserve zero API execution and require a new freeze. (current continuation)
+- [ ] Task: After rights, API credentials, exact source selection and a new freeze are approved, implement the bounded BabelNet adapter and compare conditional use against full-scan and no-BabelNet arms.
+
 - [ ] Task: Generate a typed multiplex evidence graph without turning shared artifacts or registries into cliques.
 - [ ] Task: Calculate language, branch, source, lineage, mapping, contradiction and confidence coverage metrics.
 - [ ] Task: Evaluate whether network features add predictive value beyond provenance and direct evidence, using held-out data.
