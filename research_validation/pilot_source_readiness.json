@@ -1,14 +1,15 @@
 {
   "schema_version": "pilot-source-readiness-v1",
   "track_id": "research_validation_20260801",
-  "status": "exact_local_payload_set_selected_language_use_approved_ethics_privacy_pending",
+  "status": "exact_local_payload_set_ready_for_stage_1_execution",
   "canonical_inputs": {
     "official_mapping_catalog": "research_validation/source_catalog.json",
     "supplementary_source_reviews": "research_validation/supplementary_source_access_reviews.json",
     "source_hosting_inventory": "conductor/source_hosting_inventory.json",
     "approval_manifest": "research_validation/approval_manifest.json",
     "pilot_source_payload_manifest": "research_validation/pilot_source_payload_manifest.json",
-    "spanish_japanese_use_approval": "research_validation/spanish_japanese_use_approval.json"
+    "spanish_japanese_use_approval": "research_validation/spanish_japanese_use_approval.json",
+    "ethics_privacy_determination": "research_validation/ethics_privacy_determination.json"
   },
   "evidence_layers": [
     {
@@ -55,10 +56,9 @@
     "independent_evidence_groups_added_from_hosting_inventory": 0,
     "g1_source_authority_closed": false,
     "bounded_repository_snapshot_set_selected": true,
-    "next_accountable_decision": "close_the_ethics_and_privacy_determination_before_any_empirical_agent_execution"
+    "next_accountable_decision": "execute_and_audit_the_frozen_12_unit_stage_1_without_changing_G3"
   },
   "remaining_gates": [
-    "ethics_and_privacy_determination",
     "source_atom_lineage_for_any_future_external_source",
     "G3_payload_hash_freeze_integrity_must_remain_valid"
   ],
@@ -68,8 +68,8 @@
     "new_external_payload_retrieval_authorized": false,
     "payload_safe_source_atom_generation_authorized": true,
     "source_payload_text_ingestion_authorized": false,
-    "candidate_generation_authorized": false,
+    "candidate_generation_authorized": true,
     "translation_promotion_authorized": false
   },
-  "claims_boundary": "two_content_addressed_repository_snapshots_approved_for_bounded_use_no_external_payload_current_release_community_endorsement_or_translation_validation_claim"
+  "claims_boundary": "stage_1_ready_for_exact_frozen_agent_only_scope_no_external_payload_person_data_current_release_community_endorsement_or_translation_validation_claim"
 }

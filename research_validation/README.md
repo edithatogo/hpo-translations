@@ -21,7 +21,9 @@ or pull request.
 
 ## Current gate
 
-`spanish_japanese_use_approval.json` records the repository maintainer's bounded approval to use the exact frozen Spanish and Japanese snapshots under the official HPO licence conditions. It is a post-freeze receipt and does not alter G3, authorize empirical execution before ethics/privacy closes, claim community endorsement, or authorize promotion. Run `pixi run validate-spanish-japanese-use-approval` after editing it.
+`spanish_japanese_use_approval.json` records the repository maintainer's bounded approval to use the exact frozen Spanish and Japanese snapshots under the official HPO licence conditions. It is a post-freeze receipt and does not alter G3, claim community endorsement, or authorize promotion. Run `pixi run validate-spanish-japanese-use-approval` after editing it.
+
+`ethics_privacy_determination.json` records that no formal ethics or privacy application is required for the exact no-person, no-personal-data G3 scope. Privacy controls remain mandatory, and any participant, patient-data, external-payload, or design change reopens the determination. Run `pixi run validate-ethics-privacy-determination` after editing it.
 
 `language_identity_registry.json` records language identities that require authority review. An unresolved record fails translation-evidence readiness but does not rename or modify any translation profile.
 

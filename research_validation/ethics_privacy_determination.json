@@ -1,0 +1,45 @@
+{
+  "schema_version": "ethics-privacy-determination-v1",
+  "status": "determination_recorded_no_formal_application_required",
+  "decision_date": "2026-08-12",
+  "decision_source": "explicit_study_sponsor_instruction_in_current_project_session",
+  "authority_role": "project_repository_maintainer_and_study_sponsor",
+  "scope": {
+    "freeze_id": "g3-option-b-es-ja-20260812-v1",
+    "languages": ["es", "ja"],
+    "source_snapshots": ["hpo-translation-es-repository-snapshot", "hpo-translation-ja-repository-snapshot"],
+    "activity": "agent_only_translation_feasibility_assessment_using_existing_repository_ontology_content"
+  },
+  "basis": [
+    "no_person_participation_or_recruitment",
+    "no_patient_records_or_identifiable_clinical_text",
+    "no_health_or_personal_data_collection",
+    "existing_repository_ontology_translation_content_only",
+    "five_specialist_agents_isolated_adjudication_agent_and_non_voting_reproducibility_auditor_only",
+    "payload_safe_aggregate_reporting_and_candidate_only_handoff",
+    "no_automatic_promotion_or_upstream_submission"
+  ],
+  "formal_ethics_application_required": false,
+  "formal_privacy_application_required": false,
+  "privacy_controls_required": true,
+  "privacy_controls": [
+    "do_not_introduce_personal_or_patient_data",
+    "retain_only_frozen_repository_inputs_agent_outputs_and_payload_safe_aggregates",
+    "apply_the_frozen_retention_deletion_and_incident_controls",
+    "stop_and_reassess_on_any_scope_or_data_classification_change"
+  ],
+  "supersedes_pending_packets": ["g2-ethics-privacy"],
+  "does_not_authorize": ["new_external_source_payloads", "person_participation", "patient_or_identifiable_data", "translation_promotion", "publication", "upstream_write"],
+  "freeze_effect": "post_freeze_gate_receipt_does_not_modify_frozen_components",
+  "stage_1_execution_gate_closed": true,
+  "stage_1_execution_started": false,
+  "reopen_on": [
+    "person_participation_or_recruitment",
+    "patient_personal_or_identifiable_data",
+    "new_external_or_restricted_payload",
+    "changed_language_source_model_prompt_sampling_analysis_or_output_scope",
+    "privacy_security_rights_or_community_incident"
+  ],
+  "promotion_allowed": false,
+  "upstream_write_authorized": false
+}
