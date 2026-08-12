@@ -28,7 +28,7 @@ EXPECTED_SOURCES = {
     "ga4gh-vrs-va",
     "obi-obcs-ogms-labo",
     "ichpt",
-    "ga4gh-deferred",
+    "ga4gh-developmental-products",
     "icpc3-discovery",
 }
 
