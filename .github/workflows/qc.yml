@@ -91,6 +91,12 @@ jobs:
       - name: Check ontology mapping route drift
         run: pixi run check-mapping-route-drift
 
+      - name: Validate terminology node and edition registry
+        run: pixi run validate-terminology-node-registry
+
+      - name: Check terminology node registry drift
+        run: pixi run check-terminology-node-registry-drift
+
       - name: Validate open mapping rights matrix
         run: pixi run validate-open-mapping-rights
 
