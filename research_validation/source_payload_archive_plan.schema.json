@@ -6,10 +6,11 @@
   "properties": {
     "schema_version": {"const": "source-payload-archive-plan-v1"},
     "status": {"enum": ["local_archive_active_remote_blocked_token_rotation", "remote_archive_active"]},
-    "targets": {"type": "object", "additionalProperties": false, "required": ["public", "private", "local"], "properties": {
+    "targets": {"type": "object", "additionalProperties": false, "required": ["public", "private", "local", "restricted_local"], "properties": {
       "public": {"type": ["string", "null"]},
       "private": {"const": "edithatogo/hpo-licensed-ontology-archive"},
-      "local": {"const": ".archive-staging"}
+      "local": {"const": ".archive-staging"},
+      "restricted_local": {"type": "null"}
     }},
     "routes": {"type": "array", "minItems": 4, "maxItems": 4, "uniqueItems": true},
     "artifacts": {"type": "array", "minItems": 1, "items": {"type": "object", "additionalProperties": false, "required": ["artifact_id", "source_url", "release", "license", "license_evidence", "archive_route", "expected_sha256", "payload_retrieval_allowed", "remote_upload_allowed", "reason"], "properties": {
@@ -23,6 +24,7 @@
       "payload_retrieval_allowed": {"type": "boolean"},
       "remote_upload_allowed": {"type": "boolean"},
       "reason": {"type": "string", "minLength": 1}
+      ,"components": {"type":"array","items":{"type":"object","additionalProperties":false,"required":["component_id","source_url","license","expected_sha256","expected_bytes","payload_retrieval_allowed"],"properties":{"component_id":{"type":"string","pattern":"^[a-z0-9][a-z0-9-]+$"},"source_url":{"type":"string","pattern":"^https://"},"license":{"type":"string","minLength":1},"expected_sha256":{"type":"string","pattern":"^[a-f0-9]{64}$"},"expected_bytes":{"type":"integer","minimum":1},"payload_retrieval_allowed":{"type":"boolean"}}}}
     }}},
     "controls": {"type": "object", "additionalProperties": false, "required": ["credentials_committed", "restricted_payloads_committed", "private_means_redistributable", "checksum_before_upload", "licence_evidence_required", "token_rotation_required"], "properties": {
       "credentials_committed": {"const": false},

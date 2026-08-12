@@ -61,6 +61,7 @@ validate-hpo-language-inventory = ".pixi/envs/default/python.exe -u scripts/vali
 validate-translation-source-utilisation = ".pixi/envs/default/python.exe -u -m scripts.validate_translation_source_utilisation"
 validate-source-payload-archive = ".pixi/envs/default/python.exe -u -m scripts.archive_source_payloads"
 archive-source-payloads-local = ".pixi/envs/default/python.exe -u -m scripts.archive_source_payloads --execute"
+archive-source-payloads-receipt = ".pixi/envs/default/python.exe -u -m scripts.archive_source_payloads --execute --receipt-path research_validation/source_payload_archive_receipts.json"
 test-research-validation = ".pixi/envs/default/python.exe -m unittest discover -s tests -p test_validate_research_validation.py"
 verify-research-source-pins = ".pixi/envs/default/python.exe -u scripts/verify_research_sources.py"
 run-stage-0-rehearsal = ".pixi/envs/default/python.exe -u scripts/run_stage0_rehearsal.py"

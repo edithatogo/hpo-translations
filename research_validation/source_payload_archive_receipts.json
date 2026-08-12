@@ -1,0 +1,193 @@
+{
+  "schema_version": "local-source-archive-receipts-v1",
+  "status": "checksum_verified_permissive_local_archive_remote_upload_blocked",
+  "receipts": [
+    {
+      "artifact_id": "mondo-hp-xref",
+      "status": "checksum_verified_local_archive",
+      "sha256": "78d68dbffd926aeaf221bcc20850d3f67f148b8baaaf3f807c2c2c00edb6a6e9",
+      "bytes": 55891,
+      "relative_path": ".archive-staging/mondo-hp-xref/mondo_hasdbxref_hp.sssom.tsv",
+      "archive_route": "public_hf",
+      "remote_upload_allowed": false
+    },
+    {
+      "artifact_id": "mondo-hp-lexical",
+      "status": "checksum_verified_local_archive",
+      "sha256": "8a99400c40dde58edb9f043a801e0ea130a0cd98419b79ae0919642e92ee3f14",
+      "bytes": 404479,
+      "relative_path": ".archive-staging/mondo-hp-lexical/mondo_hp_lexical.sssom.tsv",
+      "archive_route": "public_hf",
+      "remote_upload_allowed": false
+    },
+    {
+      "artifact_id": "upheno-cross-species",
+      "status": "checksum_verified_local_archive",
+      "sha256": "56459d88aa984ef1f1a0ffdbcf05ce047198112aad295e54d27ac805c206d580",
+      "bytes": 8292765,
+      "relative_path": ".archive-staging/upheno-cross-species/upheno-cross-species.sssom.tsv",
+      "archive_route": "public_hf",
+      "remote_upload_allowed": false
+    },
+    {
+      "artifact_id": "monarch-ncit-hp",
+      "status": "not_retrieved",
+      "reason": "Mapping-level licence and NCIt target-term scope are not yet sufficient for archive redistribution."
+    },
+    {
+      "artifact_id": "uberon-bridge-family",
+      "status": "not_retrieved",
+      "reason": "Bridge family must be split per file; FMA, NCIt and SNOMED target rights differ."
+    },
+    {
+      "artifact_id": "pato-qudt",
+      "status": "components_archived_checksum_verified",
+      "components": [
+        {
+          "artifact_id": "pato-qudt-map",
+          "status": "checksum_verified_local_archive",
+          "sha256": "0c0f5e6d7269d712af987cd4380220050bc6de36fb7eead356b4c20f0f86138a",
+          "bytes": 6123,
+          "relative_path": ".archive-staging/pato-qudt-map/pato-to-qudt-quantitykind.sssom.tsv",
+          "archive_route": "public_hf",
+          "remote_upload_allowed": false
+        }
+      ]
+    },
+    {
+      "artifact_id": "mondo-disease-spine",
+      "status": "not_retrieved",
+      "reason": "Aggregate directory must be enumerated per file and routed according to every target source licence."
+    },
+    {
+      "artifact_id": "orphadata-alignments",
+      "status": "not_retrieved",
+      "reason": "Twelve language/format artifacts require exact immutable URLs and individual hashes before archival."
+    },
+    {
+      "artifact_id": "nando-ontology",
+      "status": "components_archived_checksum_verified",
+      "components": [
+        {
+          "artifact_id": "nando-ttl",
+          "status": "checksum_verified_local_archive",
+          "sha256": "11bed6df8017a83267a9bb350b1e81f3ff0459dbe6b4e4f4d954828f75a9e11f",
+          "bytes": 2950211,
+          "relative_path": ".archive-staging/nando-ttl/nando.ttl",
+          "archive_route": "public_hf",
+          "remote_upload_allowed": false
+        }
+      ]
+    },
+    {
+      "artifact_id": "ncit-icdo31",
+      "status": "not_retrieved",
+      "reason": "Exact package URL and WHO ICD-O redistribution permission remain unresolved."
+    },
+    {
+      "artifact_id": "cell-ontology-relations",
+      "status": "not_retrieved",
+      "reason": "Mapping directory must be split and target licences for FBbt, ZFA and Uberon recorded per artifact."
+    },
+    {
+      "artifact_id": "hpo-hp-mp-manual",
+      "status": "components_archived_checksum_verified",
+      "components": [
+        {
+          "artifact_id": "mhmi-eye",
+          "status": "checksum_verified_local_archive",
+          "sha256": "b3bd039ad77952ca346327cc174002faab4f7028bb7e5fa8c67fdf7fa8444f2e",
+          "bytes": 6280,
+          "relative_path": ".archive-staging/mhmi-eye/mp_hp_eye_impc.sssom.tsv",
+          "archive_route": "public_hf",
+          "remote_upload_allowed": false
+        },
+        {
+          "artifact_id": "mhmi-hwt",
+          "status": "checksum_verified_local_archive",
+          "sha256": "5a16cdab600f6168fa8381404a47d3528c14f21b2cca0f49665f60c3e33901b8",
+          "bytes": 1475,
+          "relative_path": ".archive-staging/mhmi-hwt/mp_hp_hwt_impc.sssom.tsv",
+          "archive_route": "public_hf",
+          "remote_upload_allowed": false
+        },
+        {
+          "artifact_id": "mhmi-mgi-all",
+          "status": "checksum_verified_local_archive",
+          "sha256": "6b23131d80d596a8a5d5a5e6c3a3e94a63c83229059bc6b346888d6b9fd7a5de",
+          "bytes": 328986,
+          "relative_path": ".archive-staging/mhmi-mgi-all/mp_hp_mgi_all.sssom.tsv",
+          "archive_route": "public_hf",
+          "remote_upload_allowed": false
+        },
+        {
+          "artifact_id": "mhmi-owt",
+          "status": "checksum_verified_local_archive",
+          "sha256": "1be781557e66ae1d904b672894f4ccb6d1c737a6aea31132c7c2d19610685f8f",
+          "bytes": 4547,
+          "relative_path": ".archive-staging/mhmi-owt/mp_hp_owt_impc.sssom.tsv",
+          "archive_route": "public_hf",
+          "remote_upload_allowed": false
+        },
+        {
+          "artifact_id": "mhmi-pat",
+          "status": "checksum_verified_local_archive",
+          "sha256": "b955bfec3c2a716e472bdc8cd049250203cf0abe8b644ffcc23999528133521e",
+          "bytes": 21061,
+          "relative_path": ".archive-staging/mhmi-pat/mp_hp_pat_impc.sssom.tsv",
+          "archive_route": "public_hf",
+          "remote_upload_allowed": false
+        },
+        {
+          "artifact_id": "mhmi-pistoia",
+          "status": "checksum_verified_local_archive",
+          "sha256": "929f241915b478e6b6eea371d593f9f034694c04ac1207b6532fd078dfddf0db",
+          "bytes": 126678,
+          "relative_path": ".archive-staging/mhmi-pistoia/mp_hp_pistoia.sssom.tsv",
+          "archive_route": "public_hf",
+          "remote_upload_allowed": false
+        },
+        {
+          "artifact_id": "mhmi-xry",
+          "status": "checksum_verified_local_archive",
+          "sha256": "8b8dcba74333512e525806fdf0c07b1e62c765e580e6753ba6a8bfcd30f30e34",
+          "bytes": 7313,
+          "relative_path": ".archive-staging/mhmi-xry/mp_hp_xry_impc.sssom.tsv",
+          "archive_route": "public_hf",
+          "remote_upload_allowed": false
+        }
+      ]
+    },
+    {
+      "artifact_id": "monarch-hpo-snomed",
+      "status": "not_retrieved",
+      "reason": "Private hosting requires confirmation that the package excludes restricted SNOMED text and permits third-party private storage."
+    },
+    {
+      "artifact_id": "loinc-ontology",
+      "status": "not_retrieved",
+      "reason": "Authenticated package and dual terminology terms are unresolved; private hosting is not inferred."
+    },
+    {
+      "artifact_id": "snomed-map-products",
+      "status": "not_retrieved",
+      "reason": "Affiliate and target-map terms must explicitly permit the chosen custody location."
+    },
+    {
+      "artifact_id": "snomedctca-icd10ca-map",
+      "status": "not_retrieved",
+      "reason": "CIHI and SNOMED licences and restricted-storage requirements are unresolved."
+    },
+    {
+      "artifact_id": "medgen-id-mappings",
+      "status": "not_retrieved",
+      "reason": "Mutable endpoint and underlying source-vocabulary restrictions prevent archival until exact scope is verified."
+    }
+  ],
+  "controls": {
+    "payload_embedded": false,
+    "credentials_embedded": false,
+    "absolute_paths_embedded": false,
+    "remote_write_performed": false
+  }
+}

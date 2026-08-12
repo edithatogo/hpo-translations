@@ -28,12 +28,14 @@ class SourcePayloadArchiveTests(unittest.TestCase):
             any("metadata-only route cannot retrieve" in item for item in validation_errors(mutated, self.schema))
         )
 
-    def test_private_route_cannot_enable_upload_by_default(self) -> None:
+    def test_private_upload_requires_explicit_storage_permission(self) -> None:
         mutated = copy.deepcopy(self.plan)
-        mutated["artifacts"][3]["remote_upload_allowed"] = True
+        private = next(item for item in mutated["artifacts"] if item["archive_route"] == "private_hf")
+        private["remote_upload_allowed"] = True
+        private["license"] = None
         self.assertTrue(
             any(
-                "restricted route cannot enable remote upload" in item
+                "private upload requires explicit storage permission" in item
                 for item in validation_errors(mutated, self.schema)
             )
         )
@@ -53,6 +55,15 @@ class SourcePayloadArchiveTests(unittest.TestCase):
         mutated["artifacts"][0]["expected_sha256"] = None
         self.assertTrue(
             any("retrieval requires an expected SHA-256" in item for item in validation_errors(mutated, self.schema))
+        )
+
+    def test_component_ids_are_unique_within_artifact(self) -> None:
+        mutated = copy.deepcopy(self.plan)
+        parent = next(item for item in mutated["artifacts"] if item["artifact_id"] == "hpo-hp-mp-manual")
+        parent["components"].append(copy.deepcopy(parent["components"][0]))
+        self.assertIn(
+            "hpo-hp-mp-manual: component IDs must be unique",
+            validation_errors(mutated, self.schema, self.catalog),
         )
 
 
