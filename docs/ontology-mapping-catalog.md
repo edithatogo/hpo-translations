@@ -23,24 +23,30 @@ the metadata record that supports it.
 
 ## Catalogue scope
 
-The canonical node set consists of HPO, every source in
-`ontology_network/source_registry.json`, and the distinct governed source
-families in `research_validation/supplementary_source_access_reviews.json`.
-This currently gives 28 canonical nodes: HPO, 18 registry sources, and 9
-supplementary sources that are not already represented by a registry source.
-Auxiliary nodes, such as a routing hub that is not governed as a source family,
-may mediate a route but are not silently promoted into the canonical set.
-Namespace aliases are explicit so that, for example, SNOMED CT identifiers are
-not confused with a national edition or an unrelated label for the same
-product.
+The terminology registry and route catalogue have different scopes. The
+terminology registry currently contains:
 
-The generated pairwise catalogue contains one directed outcome for every
-ordered canonical-source pair, including identity outcomes. The current 28-node
-inventory therefore produces 784 outcomes. The validator derives the expected
-count from the governed input rather than relying on either number as a fixed
-constant. The generated JSON is the authoritative complete matrix; this page
-explains how to interpret it. A reverse outcome is evaluated independently
-because many maps are directional.
+| Record kind | Count | Purpose |
+| --- | ---: | --- |
+| Governed source families | 28 | Governance roots from the ontology and supplementary-source catalogues |
+| Identifier namespaces | 64 | Every namespace token observed in a governed mapping artifact or source-coverage declaration |
+| National or international editions | 30 | Exact ICD-10 and SNOMED CT editions, kept separate from their families |
+| Product releases | 9 | Versioned HPO, UMLS, LOINC, MedDRA, WHO, and Orphadata products |
+| Language renditions | 184 | Product-language records kept outside the ontology-equivalence graph |
+
+The route catalogue contains the 28 governed source families plus the exact
+Canadian SNOMED CT and ICD-10-CA edition endpoints needed by the documented
+national map. Its 30 nodes produce 900 directed outcomes. The remaining
+namespaces, editions, products, and language renditions are explicit
+`inventory_only` or parented registry records until a governed assertion names
+them as exact endpoints. This is complete cataloguing without inventing graph
+edges.
+
+Aliases are typed and authority-scoped. `ICD10CA`, `ICD10CM`, and `SCTID-CA`
+resolve to their own namespace or edition records, never to the international
+parent family. Likewise, `fr-CA`, `fr-FR`, and `fr-BE`, or `zh-Hans` and
+`zh-Hant`, remain distinct renditions. Parent, edition, and language relations
+do not create mappings.
 
 Each outcome has one of these route classes:
 
@@ -52,8 +58,8 @@ Each outcome has one of these route classes:
 - `unavailable`: no governed path satisfies the catalogue rules. The outcome
   records a reason rather than inventing a relationship.
 
-The current generated matrix has 28 identity outcomes, 40 direct outcomes,
-one mediated outcome, one compositional outcome, and 714 explicitly unavailable
+The current generated matrix has 30 identity outcomes, 41 direct outcomes,
+one mediated outcome, and 828 explicitly unavailable
 outcomes. This deliberately sparse result reflects the direction and semantics
 of the evidence actually catalogued. It is not appropriate to fill the matrix
 by assuming that a cross-reference can be reversed or that two namespaces in
@@ -62,13 +68,12 @@ one aggregate artifact are mutually mapped.
 ## Source-to-HPO view
 
 This compact view answers the most common query. The complete, machine-readable
-28 by 28 directed matrix is `research_validation/mapping_route_catalog.json`.
+30 by 30 directed matrix is `research_validation/mapping_route_catalog.json`.
 
 | Source family | Route to HPO | Present use | Evidence or reason |
 | --- | --- | --- | --- |
 | HPO | identity | metadata only | identity |
 | Mondo | direct | metadata only | source xref and lexical assertions remain distinct; the source xref is preferred over the lexical candidate |
-| MP | direct | metadata only | reverse candidate declared by the HP-MP manual collection |
 | NCIt | direct | blocked | lexical candidate; rights review required |
 | LDDB, DeCS, PRO-CTCAE, WHO ICF, RadLex | unavailable | none | no governed mapping artifact |
 | All other governed source families | unavailable | none | no declared directed path to HPO under current domain and composition rules |
@@ -79,25 +84,43 @@ and Orphadata has directed assertions from Orphanet to multiple disease
 classifications. It means that the declared directions cannot currently be
 composed into an HPO route without inventing reversal or semantic equivalence.
 
-Route class and present admissibility are independent. A technically plausible
-route can remain `metadata_only`, `candidate_only`, or `blocked` because of
-permissions, integrity, version, predicate, or semantic-loss constraints. Only
-an explicitly authorized path can be labelled `authorized`, and the route
-cannot be more permissive than its least permissive edge.
+Route class and present use are independent. A technically plausible route is
+`catalogue_only`, `candidate_only`, or `blocked` according to its weakest
+rights, payload, integrity, version, predicate, and semantic-loss state. No
+route can be labelled authorized.
 
 ## Reading a route
 
 A route records its source and target, ordered edge identifiers, path nodes,
-admissibility, semantic-loss class, and the evidence records used. Consecutive
+present use, semantic-loss class, and the evidence records used. Consecutive
 edges must meet at the same declared node. Artifact identifiers resolve to the
 mapping expansion catalogue, and source records resolve to their governed
 catalogues. Versions, lineage groups, retrieval gates, and licence gates remain
 attached to the edge rather than being erased during traversal.
 
-The route builder chooses deterministically among eligible paths. It prefers
-the governed route ordering defined by the catalogue and uses stable
-identifiers as a final tie-break. Regenerating from unchanged inputs must
-therefore produce the same ordered outcomes byte for byte.
+The route builder enumerates every simple, policy-admissible path up to three
+hops. It ranks complete paths by present use, semantic loss, weakest rights,
+hop count, repeated lineage, mapping class, and stable assertion identifiers.
+The preferred path and all alternatives are retained. Regenerating unchanged
+inputs produces the same ordered outcomes byte for byte.
+
+Every assertion records its predicate, mapping unit, reversal policy,
+composition policy, semantic loss, artifact release, integrity, rights,
+payload gate, authority, origin, derivation, lineage, and independent evidence
+group. The 21 artifact dispositions exactly cover both governed mapping
+catalogues, including artifacts that remain inventory-only because their
+endpoint structure or rights are unresolved.
+
+## National-edition example
+
+The Canadian map is represented only as:
+
+`SNOMED CT Canadian Edition` → `ICD-10-CA / CIM-10-CA v2022`
+
+It is directed, classification-specific, access-gated, and supported by the
+Canadian map-product metadata. It does not create SNOMED International → WHO
+ICD-10, ICD-10-CM, or a reverse ICD-10-CA → SNOMED route. Its `en-CA` and
+`fr-CA` renditions remain language metadata, not mapping evidence.
 
 ## Worked interpretations
 

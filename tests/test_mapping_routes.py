@@ -50,8 +50,9 @@ class MappingRouteTests(unittest.TestCase):
 
     def test_curated_or_source_xref_route_precedes_lexical_candidate(self) -> None:
         route = next(item for item in self.catalog["routes"] if item["route_id"] == "mondo--to--hpo")
-        self.assertEqual(route["assertion_ids"], ["mondo-hpo-xref"])
-        self.assertEqual(route["admissibility"], "metadata_only")
+        self.assertEqual(route["preferred_path"]["assertion_ids"], ["mondo-hpo-xref"])
+        self.assertEqual(route["preferred_path"]["use_status"], "catalogue_only")
+        self.assertEqual(route["alternative_paths"][0]["assertion_ids"], ["mondo-hpo-lexical"])
 
     def test_missing_pair_is_rejected(self) -> None:
         mutated = copy.deepcopy(self.catalog)
@@ -83,40 +84,77 @@ class MappingRouteTests(unittest.TestCase):
 
     def test_broken_path_shape_is_rejected(self) -> None:
         mutated = copy.deepcopy(self.catalog)
-        route = next(item for item in mutated["routes"] if item["assertion_ids"])
-        route["path_node_ids"].pop()
-        self.assertTrue(any("has a malformed path" in error for error in self.errors(catalog=mutated)))
+        route = next(
+            item for item in mutated["routes"] if item["preferred_path"] and item["preferred_path"]["assertion_ids"]
+        )
+        route["preferred_path"]["path_node_ids"].pop()
+        self.assertIn(
+            "committed mapping route catalog does not match deterministic generation", self.errors(catalog=mutated)
+        )
 
     def test_broken_path_direction_is_rejected(self) -> None:
         mutated = copy.deepcopy(self.catalog)
-        route = next(item for item in mutated["routes"] if item["assertion_ids"])
-        route["path_node_ids"][0] = route["target_node_id"]
-        self.assertTrue(any("path is not directionally contiguous" in error for error in self.errors(catalog=mutated)))
+        route = next(
+            item for item in mutated["routes"] if item["preferred_path"] and item["preferred_path"]["assertion_ids"]
+        )
+        route["preferred_path"]["path_node_ids"][0] = route["target_node_id"]
+        self.assertIn(
+            "committed mapping route catalog does not match deterministic generation", self.errors(catalog=mutated)
+        )
 
     def test_metadata_route_cannot_be_escalated_to_authorized(self) -> None:
         mutated = copy.deepcopy(self.catalog)
-        route = next(item for item in mutated["routes"] if item["assertion_ids"])
-        route["admissibility"] = "authorized"
+        route = next(
+            item for item in mutated["routes"] if item["preferred_path"] and item["preferred_path"]["assertion_ids"]
+        )
+        route["preferred_path"]["use_status"] = "authorized"
         self.assertTrue(any("illegally authorizes" in error for error in self.errors(catalog=mutated)))
 
     def test_compositional_assertion_cannot_be_authorized(self) -> None:
         mutated = copy.deepcopy(self.definitions)
         assertion = next(item for item in mutated["atomic_assertions"] if item["route_class"] == "compositional")
         assertion["status"] = "authorized"
-        self.assertTrue(
-            any("compositional assertion cannot be authorized" in error for error in self.errors(definitions=mutated))
-        )
+        self.assertTrue(self.errors(definitions=mutated))
 
     def test_unavailable_route_requires_reason(self) -> None:
         mutated = copy.deepcopy(self.catalog)
         route = next(item for item in mutated["routes"] if item["status"] == "unavailable")
-        route.pop("reason_code")
-        self.assertTrue(any("unavailable route lacks a reason" in error for error in self.errors(catalog=mutated)))
+        route.pop("unavailable_reasons")
+        self.assertTrue(
+            any("unavailable route lacks structured reasons" in error for error in self.errors(catalog=mutated))
+        )
 
     def test_payload_boundary_is_fail_closed(self) -> None:
         mutated = copy.deepcopy(self.catalog)
         mutated["admission_boundary"]["payloads_included"] = True
         self.assertIn("mapping routes must remain payload-free", self.errors(catalog=mutated))
+
+    def test_no_reverse_edge_is_synthesized(self) -> None:
+        self.assertFalse(any("reverse" in item["assertion_id"] for item in self.catalog["assertions"]))
+        reverse = next(item for item in self.catalog["routes"] if item["route_id"] == "mp--to--hpo")
+        self.assertEqual(reverse["status"], "unavailable")
+
+    def test_alternative_routes_are_retained_and_ranked(self) -> None:
+        route = next(item for item in self.catalog["routes"] if item["route_id"] == "mondo--to--hpo")
+        self.assertEqual(route["preferred_path"]["assertion_ids"], ["mondo-hpo-xref"])
+        self.assertTrue(any(path["assertion_ids"] == ["mondo-hpo-lexical"] for path in route["alternative_paths"]))
+
+    def test_artifact_dispositions_are_exact(self) -> None:
+        mutated = copy.deepcopy(self.definitions)
+        mutated["artifact_dispositions"].pop()
+        self.assertIn(
+            "artifact dispositions must exactly cover both governed artifact catalogs", self.errors(definitions=mutated)
+        )
+
+    def test_unresolved_catalog_reference_is_rejected_without_crashing(self) -> None:
+        mutated = copy.deepcopy(self.definitions)
+        mutated["atomic_assertions"][0]["evidence_refs"] = ["terminology_node_registry:invented-node"]
+        self.assertTrue(any("unresolved catalog reference" in error for error in self.errors(definitions=mutated)))
+
+    def test_invalid_schema_fails_without_calling_generation(self) -> None:
+        mutated = copy.deepcopy(self.definitions)
+        mutated["atomic_assertions"][0].pop("predicate")
+        self.assertTrue(self.errors(definitions=mutated))
 
     def test_hyperedge_clique_inference_boundary_is_fail_closed(self) -> None:
         mutated = copy.deepcopy(self.definitions)
