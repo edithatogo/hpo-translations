@@ -1,0 +1,43 @@
+{
+  "schema_version": "spanish-japanese-use-approval-v1",
+  "status": "approved_for_frozen_internal_study_scope",
+  "decision_date": "2026-08-12",
+  "approval_source": "explicit_repository_maintainer_instruction_in_current_project_session",
+  "authority_role": "project_repository_maintainer_and_study_sponsor",
+  "languages": ["es", "ja"],
+  "source_snapshots": [
+    "hpo-translation-es-repository-snapshot",
+    "hpo-translation-ja-repository-snapshot"
+  ],
+  "scope": "Use the exact content-addressed Spanish and Japanese repository translation snapshots bound by g3-option-b-es-ja-20260812-v1 for the internal Stage 1 and pilot analyses.",
+  "license_evidence": {
+    "provided_url": "https://hpo.jax.org/license",
+    "canonical_application_url": "https://hpo.jax.org/app/license",
+    "official_ontology_license_annotation_evidence": "https://www.ebi.ac.uk/ols4/ontologies/hp",
+    "official_project_license_text_evidence": "https://human-phenotype-ontology.github.io/license.html",
+    "verified_on": "2026-08-12",
+    "conditions_recorded": [
+      "acknowledge_and_cite_the_HPO_Consortium",
+      "display_the_relevant_file_dates_or_versions_for_public_display",
+      "do_not_alter_HPO_files_or_embedded_logical_relationships",
+      "keep_generated_candidates_and_analyses_in_separate_derivative_layers",
+      "submit_any_future_HPO_content_change_through_a_separately_authorized_narrow_upstream_process"
+    ]
+  },
+  "study_conditions": [
+    "exact_frozen_snapshots_only",
+    "no_external_source_payload_added",
+    "no_human_or_community_validation_claim",
+    "no_automatic_translation_promotion",
+    "no_upstream_write",
+    "ethics_and_privacy_gate_must_close_before_empirical_agent_execution",
+    "any_payload_hash_or_design_change_requires_a_new_freeze"
+  ],
+  "community_use_interpretation": "Approval authorizes bounded project use of the existing translations; it does not claim endorsement by Spanish-speaking or Japanese-speaking communities or validate linguistic quality.",
+  "freeze_effect": "post_freeze_gate_receipt_does_not_modify_frozen_components",
+  "supersedes_pending_packets": ["g2-spanish-language", "g2-japanese-language"],
+  "does_not_supersede": ["g2-ethics-privacy", "g2-community-slot"],
+  "promotion_allowed": false,
+  "empirical_execution_authorized": false,
+  "remaining_blocker": "ethics_privacy_determination"
+}

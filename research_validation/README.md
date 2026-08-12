@@ -21,6 +21,8 @@ or pull request.
 
 ## Current gate
 
+`spanish_japanese_use_approval.json` records the repository maintainer's bounded approval to use the exact frozen Spanish and Japanese snapshots under the official HPO licence conditions. It is a post-freeze receipt and does not alter G3, authorize empirical execution before ethics/privacy closes, claim community endorsement, or authorize promotion. Run `pixi run validate-spanish-japanese-use-approval` after editing it.
+
 `language_identity_registry.json` records language identities that require authority review. An unresolved record fails translation-evidence readiness but does not rename or modify any translation profile.
 
 `phase_4_wave_1_source_decisions.json` records bounded conditional licence-scope
