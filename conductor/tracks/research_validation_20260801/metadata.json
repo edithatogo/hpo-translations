@@ -48,11 +48,14 @@
     "Sixteen of eighteen ontology-network registry source versions remain unpinned; separate archive receipts do not substitute for registry or pilot-source approval.",
     "Current ontology-network comparison packs contain zero empirical candidates and are not computed.",
     "Restricted terminology content requires source-specific license and redistribution review.",
-    "The specialist-agent panel and G3 protocol are frozen but have not run on an authorized empirical sample.",
-    "Spanish and Japanese are selected for Option B; the two exact repository payload snapshots are authorized for local processing only after separate language/community-use approval, and no concept sample is approved.",
-    "Wave 2 ethics/privacy sponsor route, authorized sender reference, and language contact mode are not selected; no request has been dispatched.",
+    "Stage 1 preflight passes for all 13 G3 hashes, 12 units, 48 condition rows, five specialists, adjudicator, auditor, and gate receipts; empirical execution has not yet started.",
     "Upstream push, PR, preregistration, and publication require explicit maintainer approval."
     ,"The code-and-run audit isolated the presumed affected remote object to receipts/loinc-2.82-multilingual.json; content verification is blocked by private-dataset read scope and remote remediation remains unauthorized."
+  ],
+  "resolved_blockers": [
+    "Bounded Spanish and Japanese use is approved for the exact frozen repository snapshots without a community-validation claim.",
+    "No formal ethics or privacy application is required for the frozen no-person, no-personal-data scope.",
+    "The Stage 1 execution preflight is deterministic and green."
   ],
   "expected_blockers": [
     "Source dependence may reduce the number of genuinely independent terminology signals.",
@@ -219,8 +222,8 @@
     "agent_time_budget_artifact": "research_validation/agent_compute_budget.json",
     "candidate_matrix_artifact": "research_validation/phase_4_candidate_matrix.json",
     "gate_docket_artifact": "research_validation/phase_4_gate_docket.json",
-    "gate_docket_status": "wave_2_routes_verified_three_conditional_seven_pending_no_external_action_or_payload_authorized",
-    "blocker_resolution_recommendation": "execute_selected_option_b_only_after_spanish_japanese_source_community_use_privacy_and_freeze_gates_close",
+    "gate_docket_status": "frozen_docket_superseded_for_selected_option_b_by_post_freeze_language_use_and_ethics_privacy_receipts",
+    "blocker_resolution_recommendation": "execute_and_audit_the_exact_frozen_12_unit_stage_1_without_changing_G3",
     "blocker_resolution_fallbacks": [
       "single_language_option_c",
       "option_d_synthetic_only"

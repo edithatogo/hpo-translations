@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "status", "authority", "role", "trigger_policy", "api_contract", "sense_selection", "regional_language_policy", "lineage_policy", "evidence_record_required_fields", "prospective_ablation", "architecture", "controls"],
+  "properties": {
+    "schema_version": {"const": "babelnet-linguistic-anchor-plan-v1"},
+    "status": {"const": "prospective_planning_only_new_freeze_required"},
+    "authority": {"type": "object"},
+    "role": {"type": "object"},
+    "trigger_policy": {"type": "object"},
+    "api_contract": {"type": "object"},
+    "sense_selection": {"type": "object"},
+    "regional_language_policy": {"type": "object"},
+    "lineage_policy": {"type": "object"},
+    "evidence_record_required_fields": {"type": "array", "minItems": 18, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "prospective_ablation": {"type": "object"},
+    "architecture": {"type": "object"},
+    "controls": {"type": "object"}
+  }
+}

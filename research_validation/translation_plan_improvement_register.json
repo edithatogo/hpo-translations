@@ -1,0 +1,29 @@
+{
+  "schema_version": "translation-plan-improvement-register-v1",
+  "status": "continuous_prospective_improvement_active",
+  "source_assignment_ids": ["M01_route_feasibility", "M02_language_edition_opportunity", "M03_authorization_priority", "F01_withheld_hpo_reference", "F02_mondo_ja_context", "F03_umls_es_ja_discovery", "F04_mesh_decs_es_lexical", "F05_snomed_es_ja_context", "F06_structural_upheno_mp", "F07_ncit_context", "F08_nando_ja_context", "F09_orphanet_context", "F10_regional_canada", "F11_unmapped_supplementary", "F12_disease_aggregates"],
+  "analysis_ids": ["A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "A9", "A10"],
+  "improvement_dimensions": ["authority and release currency", "rights purpose custody and output scope", "language script region edition and register", "mapping predicate direction and semantic loss", "origin lineage and independence", "coverage selection and missing-not-at-random bias", "reference and pretraining leakage", "normalization morphology and script handling", "one-to-many obsolete and replaced identifiers", "outcome denominator missingness and estimability", "uncertainty multiplicity and sample size", "runtime compute cost and reproducibility", "community ethics privacy and withdrawal", "candidate-only handoff and claim boundary"],
+  "record_contract": {
+    "required_fields": ["record_id", "observed_at", "source_assignment_ids", "analysis_ids", "evidence_refs_and_hashes", "finding", "negative_evidence", "uncertainty", "affected_dimensions", "options", "recommendation_and_rationale", "contingency", "freeze_effect", "decision_authority", "validation", "supersedes"],
+    "source_review_questions": ["Is the authority current and exact release immutable?", "Is the intended role permitted for storage derivation and output?", "Does the exact language script region edition and register match?", "Is an explicit directed predicate available without edition inheritance?", "Are origin and independent evidence groups known?", "Could a hub mirror import or model memory duplicate the evidence?", "What useful negative or conflict evidence would this source provide?", "What changes to eligibility sampling analyses and claims follow?"],
+    "analysis_review_questions": ["Is the estimand operationally defined with an exact denominator?", "Are populations missingness abstention and failures handled prospectively?", "Are language-specific estimates protected from pooled rescue?", "Are clustering uncertainty multiplicity and fallback methods frozen?", "Could leakage circularity source selection or temporal drift bias the result?", "Are negative controls ablations and non-estimability rules adequate?", "Are compute cost stability and reproducibility measured?", "Would the finding change an empirical input and therefore require a new freeze?"],
+    "allowed_dispositions": ["retain", "clarify_metadata", "add_negative_control", "prospective_amendment", "new_freeze_and_run", "defer_blocked", "exclude", "stop_and_incident"]
+  },
+  "decision_rules": {
+    "planning_only": "Metadata clarification may update a future plan after schema validation without changing a frozen run.",
+    "prospective_amendment": "A design change before affected outcomes requires an amendment ID, rationale, versioned diff and fresh validation.",
+    "new_freeze": "Any source atom, model, prompt, sampling, randomization, outcome, margin, exclusion or analysis-code change affecting empirical work starts a new freeze and preserves the prior run.",
+    "stop": "Rights, privacy, community, safety, restricted-payload, secret or reproducibility incidents stop the affected work and create a payload-safe incident receipt.",
+    "negative_result": "Blocked, null, harmful, contradictory and non-estimable findings remain in the ledger and downstream synthesis; they are never deleted to improve apparent performance."
+  },
+  "model_comparison_extensions": {
+    "non_generative_evidence_baseline": true,
+    "common_context_primary": true,
+    "native_context_sensitivity": true,
+    "repetition_policy": "Three independently seeded calls per tier-arm-unit in Stage 1 and pilot, five on a frozen reliability subset, with paired seeds and evidence-order permutations.",
+    "judge_generator_overlap": "Record provider and model-family overlap; run a family-disjoint sensitivity where feasible and otherwise retain the limitation.",
+    "stability_outputs": ["exact and normalized agreement", "semantic agreement", "between-run variance", "abstention consistency", "worst-run safety"]
+  },
+  "controls": {"current_g3_changed": false, "empirical_execution_authorized": false, "payload_authorized": false, "automatic_promotion": false, "negative_results_retained": true, "new_freeze_required": true}
+}
