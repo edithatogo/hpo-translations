@@ -1,0 +1,66 @@
+import copy
+import unittest
+
+from scripts.validate_translation_source_utilisation import (
+    PLAN_PATH,
+    ROOT,
+    ROUTES_PATH,
+    SCHEMA_PATH,
+    load_json,
+    validation_errors,
+)
+
+
+class TranslationSourceUtilisationTests(unittest.TestCase):
+    def setUp(self) -> None:
+        self.plan = load_json(PLAN_PATH)
+        self.schema = load_json(SCHEMA_PATH)
+        self.routes = load_json(ROUTES_PATH)
+
+    def errors(self, plan: dict) -> list[str]:
+        return validation_errors(plan, self.schema, self.routes, ROOT)
+
+    def test_committed_plan_passes(self) -> None:
+        self.assertEqual(self.errors(self.plan), [])
+
+    def test_empirical_scope_cannot_change_without_new_contract(self) -> None:
+        mutated = copy.deepcopy(self.plan)
+        mutated["current_study_scope"]["languages"].append("fr")
+        self.assertTrue(self.errors(mutated))
+
+    def test_tw_cannot_be_admitted(self) -> None:
+        mutated = copy.deepcopy(self.plan)
+        mutated["current_study_scope"]["excluded_profile"] = "none"
+        self.assertTrue(self.errors(mutated))
+
+    def test_automatic_promotion_fails_closed(self) -> None:
+        mutated = copy.deepcopy(self.plan)
+        mutated["controls"]["automatic_promotion_allowed"] = True
+        self.assertTrue(self.errors(mutated))
+
+    def test_agent_panel_cannot_grant_accountable_authority(self) -> None:
+        mutated = copy.deepcopy(self.plan)
+        mutated["controls"]["agent_panel_can_grant_rights_or_community_or_ethics_authority"] = True
+        self.assertTrue(self.errors(mutated))
+
+    def test_source_roles_cannot_silently_disappear(self) -> None:
+        mutated = copy.deepcopy(self.plan)
+        mutated["source_role_classes"].pop()
+        self.assertTrue(self.errors(mutated))
+
+    def test_analysis_set_cannot_silently_drift(self) -> None:
+        mutated = copy.deepcopy(self.plan)
+        mutated["analyses"].pop()
+        self.assertTrue(self.errors(mutated))
+
+    def test_canonical_input_must_exist(self) -> None:
+        mutated = copy.deepcopy(self.plan)
+        mutated["canonical_inputs"].append("research_validation/invented.json")
+        self.assertIn(
+            "canonical input does not exist: research_validation/invented.json",
+            self.errors(mutated),
+        )
+
+
+if __name__ == "__main__":
+    unittest.main()

@@ -28,4 +28,5 @@ strict = [
     "scripts/translation_workflows.py",
     "scripts/verify_research_sources.py",
     "scripts/validate_open_mapping_rights.py",
+    "scripts/validate_translation_source_utilisation.py",
 ]

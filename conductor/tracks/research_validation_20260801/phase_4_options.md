@@ -58,6 +58,12 @@ complete review, measure the prespecified outcomes, estimate agent and concept
 variance, and size a later confirmatory study. Apparent method superiority is not
 a Phase 4 progression criterion.
 
+The prospective [translation-source utilisation plan](../../../research_validation/translation_source_utilisation_plan.md)
+defines how existing translations and mapped sources could support this and later
+studies. It does not amend the frozen Spanish/Japanese inputs: adding any source
+payload, language, edition, candidate condition, or analysis input requires a new
+freeze identifier after its accountable gates close.
+
 ## Design options
 
 Workload estimates assume four candidate conditions and five independent

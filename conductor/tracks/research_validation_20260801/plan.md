@@ -91,6 +91,8 @@
 
 ## Current Continuation Review Fixes
 
+- [x] **Task:** Define and validate how existing HPO translations, multilingual terminology editions, disease/context mappings, structural ontologies, and lineage-preserving aggregators may support candidate generation, triangulation, conflict detection, semantic discrimination, regional-variant analysis, source ablation, drift prioritization, and downstream evaluation. The plan is prospective and metadata-only; all 42 mapping assertions remain payload-blocked, the Spanish/Japanese G3 freeze is unchanged, and new empirical inputs require a new freeze. (current continuation)
+
 - [x] **Task:** Apply track-review fixes for complete archive-receipt coverage, exact overlap-layer reconciliation, canonical-input binding, and current lifecycle evidence. (`30cc5a2`)
 - [x] **Task:** Remove the credentialed archive workflow's automatic push trigger, restore per-source release pins, prevent complete authenticated metadata responses from entering future uploaded receipts, and enforce manual dispatch with regression validation. A concurrent hosted push run had already executed before this fix; no new external action was authorized or performed during this review. (`8c572c0`)
 - [x] **Task:** Supersede the planned people-based evaluation and adjudication pathway with the canonical isolated specialist-agent panel in `research_validation/agent_review_panel.json`. Preserve source rights, community-use constraints, prospective freeze, and maintainer release authority as non-review gates; prohibit human-validation claims. (current continuation)

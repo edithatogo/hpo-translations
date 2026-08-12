@@ -34,6 +34,8 @@
   "pilot_source_atoms_artifact": "research_validation/pilot_source_atoms.jsonl.gz",
   "pilot_source_atoms_status": "37800_payload_safe_atoms_one_conservative_independent_evidence_group_empirical_use_blocked",
   "pilot_independent_lineage_groups_artifact": "research_validation/pilot_independent_lineage_groups.json",
+  "translation_source_utilisation_plan_artifact": "research_validation/translation_source_utilisation_plan.json",
+  "translation_source_utilisation_plan_status": "machine_validated_metadata_only_current_g3_unchanged_empirical_use_blocked",
   "phase_4_payload_safe_report_artifact": "research_validation/phase_4_payload_safe_report.md",
   "phase_4_payload_safe_report_status": "interim_blocked_state_zero_empirical_results_no_progression_decision",
   "ontology_maintainer_handoff_artifact": "research_validation/ontology_maintainer_handoff.md",
