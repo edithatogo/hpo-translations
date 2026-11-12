@@ -8,6 +8,7 @@ crowdin_data/
 /site
 tmp/
 .entire/
+.archive-staging/
 # pixi environments
 .pixi/*
 !.pixi/config.toml

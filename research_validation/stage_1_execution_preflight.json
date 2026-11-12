@@ -1,0 +1,20 @@
+{
+  "schema_version": "stage-1-execution-preflight-v1",
+  "status": "ready_not_started",
+  "freeze_id": "g3-option-b-es-ja-20260812-v1",
+  "run_id": "run-phase4-option-b-es-ja-v1",
+  "prepared_on": "2026-08-12",
+  "stage_1_hpo_ids": ["HP:0005456", "HP:0032487", "HP:0002463", "HP:5200053", "HP:0010794", "HP:0000555", "HP:0011209", "HP:0030675", "HP:0001848", "HP:0012441"],
+  "concept_language_unit_count": 12,
+  "candidate_condition_count": 4,
+  "candidate_row_count": 48,
+  "specialist_roles": ["target_language_semantics", "clinical_safety", "ontology_semantics", "provenance_and_rights", "adversarial_error_finder"],
+  "adjudicator": "independent_adjudicator",
+  "auditor": "reproducibility_auditor_non_voting",
+  "gate_receipts": ["research_validation/spanish_japanese_use_approval.json", "research_validation/ethics_privacy_determination.json"],
+  "component_manifest": "research_validation/phase_4_freeze/component_manifest.json",
+  "execution_started": false,
+  "candidate_text_committed": false,
+  "promotion_allowed": false,
+  "upstream_write_authorized": false
+}

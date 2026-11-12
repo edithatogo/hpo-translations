@@ -1,0 +1,76 @@
+{
+  "track_id": "evidence_confidence_platform_20260812",
+  "type": "feature_and_research_platform",
+  "status": "in_progress",
+  "created_at": "2026-08-12",
+  "updated_at": "2026-08-12",
+  "description": "Build a non-invasive layered translation evidence, confidence, analysis, visualization, publication and upstream-handoff platform.",
+  "depends_on": ["research_validation_20260801", "ontology_network_20260623", "translation_agents_20260622"],
+  "blocks": ["research_validation_20260801:confidence_report_and_upstream_handoff"],
+  "branch": "codex/evidence-confidence-platform-20260812",
+  "pr_url": null,
+  "ci_status": "local_planning_passing_implementation_started",
+  "merge_status": "not_opened",
+  "last_commit": null,
+  "phase_review_status": "planning_not_reviewed",
+  "github_checks_url": null,
+  "merge_commit": null,
+  "priority": "P0",
+  "parallel_group": "confidence-platform",
+  "source_access_status": "planning_only_mixed_public_and_restricted_metadata",
+  "write_owner": "repository_maintainer_and_local_agents",
+  "merge_owner": "fork_maintainer",
+  "upstream_owner": "upstream_HPO_translation_maintainers",
+  "known_blockers": [
+    "Upstream does not accept AI-generated translations as authoritative translation contributions.",
+    "HPOIE-compatible contracts can preserve profile metadata and candidate status but cannot assign OFFICIAL status or substitute for upstream working-group and maintainer decisions.",
+    "No upstream write, issue, project, PR or publication action is authorized.",
+    "Human-mediated provenance is incomplete or heterogeneous for some translation records.",
+    "External terminology licences, redistribution rules and language-community use constraints remain source-specific.",
+    "Empirical calibration data and outcome labels do not yet exist for the proposed confidence model.",
+    "A public Hugging Face Space must not expose restricted source text, private evaluation data or unapproved candidate translations.",
+    "The final arXiv and upstream handoff require completed analyses, reproducible artifacts, disclosure, maintainer approval and current-session external-write authority."
+  ],
+  "expected_blockers": [
+    "Independent human-mediated evidence may be sparse or share hidden upstream lineages.",
+    "Confidence calibration may be unstable for low-resource languages and rare HPO branches.",
+    "Model pretraining contamination cannot be fully excluded.",
+    "Interactive network visualization may require aggregation to remain performant and payload-safe.",
+    "Upstream maintainers may prefer only minimal translation changes and no research-platform code."
+  ],
+  "blocker_owner": "fork maintainer with source-rights, language-community, ethics/privacy, upstream and publication authorities",
+  "fallback_path": "Remain a local metadata-only research overlay; publish no dashboard, preprint, issue, project or upstream patch until every applicable gate closes.",
+  "restricted_payload_policy": {
+    "commit_policy": "Commit schemas, source identifiers, hashes, synthetic fixtures, permitted open artifacts, aggregate metrics and payload-safe receipts only.",
+    "local_only_artifacts": ["licensed terminology payloads", "credentialed responses", "identifiable clinical records", "restricted model contexts and outputs", "private benchmark cases"],
+    "blocked_patterns": ["api_key", "access_token", "authorization", "patient_record", "restricted_payload", "private_source_text"],
+    "required_evidence": ["source-specific licence and purpose decision", "custody and redistribution decision", "secret and privacy scan", "payload-safe report validation", "exact release and integrity receipt"]
+  },
+  "fail_fast_probe": {
+    "required": true,
+    "scope": "one synthetic HPO concept-language record with a simulated human baseline, two lineage groups, one structural constraint, one AI candidate, one contradiction and one unavailable source",
+    "success_criteria": ["upstream fixture remains byte-identical", "every atom has immutable provenance and rights state", "dependent evidence counts once", "AI evidence cannot become human-mediated", "confidence category and rationale are deterministic", "restricted payload is absent", "dashboard fixture is read-only", "passing and expected-failure tests behave deterministically"]
+  },
+  "artifact_contract": {
+    "required_before_phase_1_completion": ["upstream preservation manifest", "path ownership classification", "HPOIE language-profile and maintenance contracts", "Babelon label-definition and ROBOT synonym contracts", "pivot inference contract", "evidence and confidence schemas", "mutation tests", "payload and external-action policy"],
+    "conditional_outputs": ["registry-derived source expansion catalogue", "evidence lake", "confidence catalogue", "network and process analyses", "payload-safe Gradio Space package", "GitHub Project dry-run manifest", "arXiv preprint package", "minimal upstream handoff proposals"],
+    "excluded_until_policy_allows": ["restricted source text", "identifiable clinical records", "unapproved language-community content", "live GitHub project or issue mutations", "Hugging Face deployment", "arXiv submission", "upstream issues or pull requests", "translation promotion"]
+  },
+  "automation_readiness": "planning_only_no_runtime_or_external_actions",
+  "evidence_score_policy": {
+    "candidate_only": true,
+    "dimensions": ["provenance", "lexical_support", "semantic_consistency", "mapping", "regional_fit", "currency", "model_stability", "assessment", "downstream_utility"],
+    "promotion_rule": "No confidence category or probability authorizes upstream promotion."
+  },
+  "agent_telemetry": {
+    "record_required": true,
+    "fields": ["agent", "model", "task_id", "prompt_version", "source_versions", "runtime_seconds", "validation_command", "validation_result", "conflict_count", "open_blockers"],
+    "last_run": null
+  },
+  "review_handoff": ["upstream preservation diff", "evidence schema and provenance", "confidence model assumptions and calibration", "lineage and rights controls", "network and process analysis", "dashboard payload boundary", "publication claim-evidence matrix", "external-action authorization state"],
+  "external_actions_authorized": false,
+  "upstream_mutation_authorized": false,
+  "github_project_mutation_authorized": false,
+  "hugging_face_deployment_authorized": false,
+  "publication_authorized": false
+}

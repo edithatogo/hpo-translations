@@ -3,6 +3,7 @@ import unittest
 
 from scripts.validate_translation_source_utilisation import (
     ASSIGNMENTS_PATH,
+    IMPROVEMENT_REGISTER_PATH,
     LEARNING_LOOP_PATH,
     MODEL_TIER_PATH,
     PLAN_PATH,
@@ -24,10 +25,19 @@ class TranslationSourceUtilisationTests(unittest.TestCase):
         self.sap = load_json(SAP_PATH)
         self.model_tiers = load_json(MODEL_TIER_PATH)
         self.learning_loop = load_json(LEARNING_LOOP_PATH)
+        self.improvement_register = load_json(IMPROVEMENT_REGISTER_PATH)
 
     def errors(self, plan: dict) -> list[str]:
         return validation_errors(
-            plan, self.schema, self.routes, self.assignments, self.sap, self.model_tiers, self.learning_loop, ROOT
+            plan,
+            self.schema,
+            self.routes,
+            self.assignments,
+            self.sap,
+            self.model_tiers,
+            self.learning_loop,
+            ROOT,
+            self.improvement_register,
         )
 
     def test_source_assignments_cover_exact_matrix(self) -> None:
@@ -109,6 +119,78 @@ class TranslationSourceUtilisationTests(unittest.TestCase):
 
     def test_committed_plan_passes(self) -> None:
         self.assertEqual(self.errors(self.plan), [])
+
+    def test_improvement_register_covers_every_source(self) -> None:
+        mutated = copy.deepcopy(self.improvement_register)
+        mutated["source_assignment_ids"].pop()
+        self.assertIn(
+            "improvement register must cover every source assignment in canonical order",
+            validation_errors(
+                self.plan,
+                self.schema,
+                self.routes,
+                self.assignments,
+                self.sap,
+                self.model_tiers,
+                self.learning_loop,
+                ROOT,
+                mutated,
+            ),
+        )
+
+    def test_evidence_only_baseline_cannot_generate(self) -> None:
+        mutated = copy.deepcopy(self.model_tiers)
+        mutated["evidence_arms"][3]["generation_allowed"] = True
+        self.assertIn(
+            "existing evidence-only baseline must remain non-generative",
+            validation_errors(
+                self.plan,
+                self.schema,
+                self.routes,
+                self.assignments,
+                self.sap,
+                mutated,
+                self.learning_loop,
+                ROOT,
+                self.improvement_register,
+            ),
+        )
+
+    def test_improvement_register_cannot_authorize_execution(self) -> None:
+        mutated = copy.deepcopy(self.improvement_register)
+        mutated["controls"]["empirical_execution_authorized"] = True
+        self.assertIn(
+            "improvement register execution, payload, G3, and promotion controls must remain false",
+            validation_errors(
+                self.plan,
+                self.schema,
+                self.routes,
+                self.assignments,
+                self.sap,
+                self.model_tiers,
+                self.learning_loop,
+                ROOT,
+                mutated,
+            ),
+        )
+
+    def test_improvement_register_covers_every_analysis(self) -> None:
+        mutated = copy.deepcopy(self.improvement_register)
+        mutated["analysis_ids"].pop()
+        self.assertIn(
+            "improvement register must cover every analysis in canonical order",
+            validation_errors(
+                self.plan,
+                self.schema,
+                self.routes,
+                self.assignments,
+                self.sap,
+                self.model_tiers,
+                self.learning_loop,
+                ROOT,
+                mutated,
+            ),
+        )
 
     def test_empirical_scope_cannot_change_without_new_contract(self) -> None:
         mutated = copy.deepcopy(self.plan)
