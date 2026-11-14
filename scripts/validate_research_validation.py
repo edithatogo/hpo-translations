@@ -1384,7 +1384,7 @@ def pilot_source_readiness_errors(
     errors: list[str] = []
     if (
         instance.get("schema_version") != "pilot-source-readiness-v1"
-        or instance.get("status") != "exact_local_payload_set_selected_external_sources_omitted_community_gate_pending"
+        or instance.get("status") != "exact_local_payload_set_ready_for_stage_1_execution"
     ):
         errors.append("pilot source readiness must record the selected, fail-closed local payload set")
     expected_inputs = {
@@ -1393,6 +1393,8 @@ def pilot_source_readiness_errors(
         "source_hosting_inventory": "conductor/source_hosting_inventory.json",
         "approval_manifest": "research_validation/approval_manifest.json",
         "pilot_source_payload_manifest": "research_validation/pilot_source_payload_manifest.json",
+        "spanish_japanese_use_approval": "research_validation/spanish_japanese_use_approval.json",
+        "ethics_privacy_determination": "research_validation/ethics_privacy_determination.json",
     }
     if instance.get("canonical_inputs") != expected_inputs:
         errors.append("pilot source readiness must reference every canonical input by its exact repository path")
@@ -1462,7 +1464,7 @@ def pilot_source_readiness_errors(
         "new_external_payload_retrieval_authorized": False,
         "payload_safe_source_atom_generation_authorized": True,
         "source_payload_text_ingestion_authorized": False,
-        "candidate_generation_authorized": False,
+        "candidate_generation_authorized": True,
         "translation_promotion_authorized": False,
     }
     if authorization != expected_authorization:

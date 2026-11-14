@@ -13869,5 +13869,5 @@
   "scope": "payload-safe-explicit-assertions-and-policy-governed-routes",
   "terminology_node_count": 131,
   "terminology_registry_ref": "research_validation/terminology_node_registry.json",
-  "terminology_registry_sha256": "977d03a734878ca941787109e0f9fa4100b3b793fe4db03e2c4981d820176109"
+  "terminology_registry_sha256": "ea40ccc16aa0354add66d2397b22b5dad233746f101a35694bbfbb5694b08482"
 }

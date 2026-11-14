@@ -1,0 +1,11 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema","type":"object","additionalProperties":false,
+  "required":["schema_version","status","selection_policy","mapping_evidence_levels","products","controls"],
+  "properties":{
+    "schema_version":{"const":"ga4gh-relevance-catalog-v1"},"status":{"const":"relevance_assessed_governance_only"},"selection_policy":{"type":"string","minLength":80},
+    "mapping_evidence_levels":{"const":["explicit_standard_mapping","documented_interoperability","proposed_alignment","testable_adjacency"]},
+    "products":{"type":"array","minItems":14,"maxItems":14,"items":{"$ref":"#/$defs/product"}},
+    "controls":{"type":"object","additionalProperties":false,"required":["maturity_exclusion_allowed","mapping_path_required","empirical_execution_authorized","payload_retrieval_authorized","new_freeze_required","automatic_promotion_allowed"],"properties":{"maturity_exclusion_allowed":{"const":false},"mapping_path_required":{"const":true},"empirical_execution_authorized":{"const":false},"payload_retrieval_authorized":{"const":false},"new_freeze_required":{"const":true},"automatic_promotion_allowed":{"const":false}}}
+  },
+  "$defs":{"product":{"type":"object","additionalProperties":false,"required":["product_id","name","lifecycle","product_type","mapping_evidence","mapping_paths","hpo_use","languages","direct_lexical_vote","payload_authorized"],"properties":{"product_id":{"pattern":"^[a-z0-9-]+$"},"name":{"type":"string","minLength":1},"lifecycle":{"type":"string","minLength":1},"product_type":{"type":"string","minLength":1},"mapping_evidence":{"enum":["explicit_standard_mapping","documented_interoperability","proposed_alignment","testable_adjacency"]},"mapping_paths":{"type":"array","minItems":1,"uniqueItems":true,"items":{"type":"string","minLength":8}},"hpo_use":{"type":"string","minLength":10},"languages":{"type":"array","uniqueItems":true,"items":{"type":"string"}},"direct_lexical_vote":{"const":false},"payload_authorized":{"const":false}}}}
+}

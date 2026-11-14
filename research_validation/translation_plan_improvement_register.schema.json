@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "status", "source_assignment_ids", "analysis_ids", "improvement_dimensions", "record_contract", "decision_rules", "model_comparison_extensions", "controls"],
+  "properties": {
+    "schema_version": {"const": "translation-plan-improvement-register-v1"},
+    "status": {"const": "continuous_prospective_improvement_active"},
+    "source_assignment_ids": {"type": "array", "minItems": 15, "maxItems": 15, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "analysis_ids": {"type": "array", "minItems": 10, "maxItems": 10, "uniqueItems": true, "items": {"type": "string", "pattern": "^A(?:[1-9]|10)$"}},
+    "improvement_dimensions": {"type": "array", "minItems": 12, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "record_contract": {"type": "object", "additionalProperties": false, "required": ["required_fields", "source_review_questions", "analysis_review_questions", "allowed_dispositions"], "properties": {
+      "required_fields": {"type": "array", "minItems": 12, "uniqueItems": true},
+      "source_review_questions": {"type": "array", "minItems": 8, "uniqueItems": true},
+      "analysis_review_questions": {"type": "array", "minItems": 8, "uniqueItems": true},
+      "allowed_dispositions": {"type": "array", "minItems": 6, "uniqueItems": true}
+    }},
+    "decision_rules": {"type": "object", "additionalProperties": false, "required": ["planning_only", "prospective_amendment", "new_freeze", "stop", "negative_result"], "properties": {
+      "planning_only": {"type": "string", "minLength": 1}, "prospective_amendment": {"type": "string", "minLength": 1}, "new_freeze": {"type": "string", "minLength": 1}, "stop": {"type": "string", "minLength": 1}, "negative_result": {"type": "string", "minLength": 1}
+    }},
+    "model_comparison_extensions": {"type": "object", "additionalProperties": false, "required": ["non_generative_evidence_baseline", "common_context_primary", "native_context_sensitivity", "repetition_policy", "judge_generator_overlap", "stability_outputs"], "properties": {
+      "non_generative_evidence_baseline": {"const": true}, "common_context_primary": {"const": true}, "native_context_sensitivity": {"const": true}, "repetition_policy": {"type": "string", "minLength": 1}, "judge_generator_overlap": {"type": "string", "minLength": 1}, "stability_outputs": {"type": "array", "minItems": 4, "uniqueItems": true}
+    }},
+    "controls": {"type": "object", "additionalProperties": false, "required": ["current_g3_changed", "empirical_execution_authorized", "payload_authorized", "automatic_promotion", "negative_results_retained", "new_freeze_required"], "properties": {
+      "current_g3_changed": {"const": false}, "empirical_execution_authorized": {"const": false}, "payload_authorized": {"const": false}, "automatic_promotion": {"const": false}, "negative_results_retained": {"const": true}, "new_freeze_required": {"const": true}
+    }}
+  }
+}

@@ -16,6 +16,8 @@ MODEL_TIER_PATH = ROOT / "research_validation" / "translation_model_tier_plan.js
 MODEL_TIER_SCHEMA_PATH = ROOT / "research_validation" / "translation_model_tier_plan.schema.json"
 LEARNING_LOOP_PATH = ROOT / "research_validation" / "translation_plan_learning_loop.json"
 LEARNING_LOOP_SCHEMA_PATH = ROOT / "research_validation" / "translation_plan_learning_loop.schema.json"
+IMPROVEMENT_REGISTER_PATH = ROOT / "research_validation" / "translation_plan_improvement_register.json"
+IMPROVEMENT_REGISTER_SCHEMA_PATH = ROOT / "research_validation" / "translation_plan_improvement_register.schema.json"
 
 EXPECTED_ROLES = {
     "withheld_hpo_reference",
@@ -40,6 +42,7 @@ def validation_errors(
     model_tiers: dict[str, Any] | None = None,
     learning_loop: dict[str, Any] | None = None,
     root: Path = ROOT,
+    improvement_register: dict[str, Any] | None = None,
 ) -> list[str]:
     validator: Any = Draft202012Validator(schema)
     errors = [f"schema: {error.message}" for error in validator.iter_errors(plan)]
@@ -147,10 +150,14 @@ def validation_errors(
             "E0_model_only",
             "E1_translation_assisted",
             "E2_lineage_ontology_assisted",
+            "B1_existing_evidence_only",
             "R0_withheld_existing_hpo_translation",
         ]:
-            errors.append("model evidence arms must remain E0, E1, E2, and R0")
+            errors.append("model evidence arms must remain E0, E1, E2, B1, and R0")
         reference: dict[str, Any] = arms[-1] if arms else {}
+        evidence_baseline: dict[str, Any] = arms[-2] if len(arms) >= 2 else {}
+        if evidence_baseline.get("generation_allowed") is not False:
+            errors.append("existing evidence-only baseline must remain non-generative")
         if (
             reference.get("generation_allowed") is not False
             or reference.get("reference_reveal") != "after_candidate_lock"
@@ -188,6 +195,32 @@ def validation_errors(
             errors.append("learning-loop G3, execution, payload, and promotion controls must remain false")
         if learning_controls.get("negative_results_retained") is not True:
             errors.append("learning loop must retain negative and non-estimable results")
+    if improvement_register is not None:
+        errors.extend(
+            f"improvement register schema: {error.message}"
+            for error in validator.evolve(schema=load_json(IMPROVEMENT_REGISTER_SCHEMA_PATH)).iter_errors(
+                improvement_register
+            )
+        )
+        assignment_ids = [item.get("id") for item in (assignments or {}).get("assignments", [])]
+        if improvement_register.get("source_assignment_ids") != assignment_ids:
+            errors.append("improvement register must cover every source assignment in canonical order")
+        analysis_ids = [item.get("id") for item in (sap or {}).get("analyses", [])]
+        if improvement_register.get("analysis_ids") != analysis_ids:
+            errors.append("improvement register must cover every analysis in canonical order")
+        register_controls = improvement_register.get("controls", {})
+        if any(
+            register_controls.get(key) is not False
+            for key in (
+                "current_g3_changed",
+                "empirical_execution_authorized",
+                "payload_authorized",
+                "automatic_promotion",
+            )
+        ):
+            errors.append("improvement register execution, payload, G3, and promotion controls must remain false")
+        if register_controls.get("negative_results_retained") is not True:
+            errors.append("improvement register must retain negative findings")
     return sorted(set(errors))
 
 
@@ -200,6 +233,8 @@ def main() -> int:
         load_json(SAP_PATH),
         load_json(MODEL_TIER_PATH),
         load_json(LEARNING_LOOP_PATH),
+        ROOT,
+        load_json(IMPROVEMENT_REGISTER_PATH),
     )
     if errors:
         for error in errors:

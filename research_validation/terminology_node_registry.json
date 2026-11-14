@@ -233,7 +233,7 @@
       "bcp47": "fr",
       "parent_node_id": "product-hpo-babelon",
       "rendition_id": "rendition-product-hpo-babelon-fr",
-      "status": "tracked_local_content_upstream_diverged_babelon_only"
+      "status": "tracked_local_content_matches_upstream"
     },
     {
       "bcp47": "it",
